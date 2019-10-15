@@ -1,0 +1,21 @@
+< mariaDB 설치 >
+- https://downloads.mariadb.org/mariadb/10.4.7/ 'mariadb-10.4.7-winx64.msi' 다운
+- 비밀번호 설정하고 밑에 두개 체크하고 install
+- 환경변수 들어가서 시스템변수에서 Path에 새로 만들기 -> C:\Program Files\MariaDB 10.4\bin 추가 -> 맨 위로 이동
+
+- bitcamp-docs - dbms - mariadb-settings.txt 참고
+- cmd창에서 mysql -u root -p 입력하고 비밀번호 입력
+- CREATE USER 'bitcamp'@'localhost' IDENTIFIED BY '1111';
+- CREATE DATABASE bitcampdb
+  CHARACTER SET utf8
+  COLLATE utf8_general_ci;
+- show databases;
+- grant all on bitcampdb.* to 'bitcamp'@'localhost';
+
+- cmd창에서 mysql -u bitcamp -p
+- show databases
+- use bitcampdb
+
+- bitcamp-docs/db/project-ddl.sql 내용 복사/붙여넣기
+- bitcamp-docs/db/project-data.sql 내용 복사/붙여넣기
+- bitcamp-docs/db/ch25-ddl.sql 내용 복사/붙여넣기
