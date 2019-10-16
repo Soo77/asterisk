@@ -1,7 +1,6 @@
 package com.ast.eom.config;
 
 import javax.servlet.Filter;
-
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -17,7 +16,7 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
   
   @Override
   protected Class<?>[] getServletConfigClasses() {
-    return new Class<?>[] {AppConfig.class, DatabaseConfig.class, MybatisConfig.class};
+    return new Class<?>[] {WebConfig.class};
   }
   
   @Override
@@ -32,9 +31,9 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
   
   @Override
   protected Filter[] getServletFilters() {
-    CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-    encodingFilter.setEncoding("UTF-8");
-    return new Filter[]{encodingFilter};
+    CharacterEncodingFilter encoding = new CharacterEncodingFilter();
+    encoding.setEncoding("UTF-8");
+    return new Filter[] {encoding};
   }
   
 }

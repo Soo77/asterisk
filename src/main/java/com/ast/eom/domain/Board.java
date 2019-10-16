@@ -20,9 +20,5 @@ public class Board implements Serializable {
   public void setContents(String contents) {
     this.contents = contents;
   }
-  @Override
-  public String toString() {
-    return "Board [no=" + no + ", contents=" + contents + "]";
-  }
   
 }
