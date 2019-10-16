@@ -20,12 +20,12 @@ public class DefaultBoardService implements BoardService {
     boardDao.insert(board);
   }
 
-//  @Override
-//  public void delete(int no) throws Exception {
-//    if (boardDao.delete(no) == 0) {
-//      throw new Exception("해당 데이터가 없습니다.");
-//    }
-//  }
+  @Override
+  public void delete(int no) throws Exception {
+    if (boardDao.delete(no) == 0) {
+      throw new Exception("해당 데이터가 없습니다.");
+    }
+  }
 
   @Override
   public Board get(int no) throws Exception {
