@@ -16,7 +16,7 @@
 	</resultMap>
 
 	<select id="findAll" resultMap="BoardMap">
-		select b.board_no, b.titl, b.mem_no, b.vw_cnt
+		select b.board_no, b.titl, m.name, b.vw_cnt
 		from board b
 		inner join member m on b.mem_no = m.mem_no;
 	</select>
