@@ -25,7 +25,7 @@
     <td>${board.no}</td>
     <td><a href='detail?no=${board.no}'>${board.contents}</a></td>
   </tr>
-</c:forEach>  
+</c:forEach>
 </table>
 </div>
 </body>
