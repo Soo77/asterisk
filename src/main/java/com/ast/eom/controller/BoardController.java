@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ast.eom.domain.Board;
-import com.ast.eom.domain.Member;
 import com.ast.eom.service.BoardService;
-import com.ast.eom.service.MemberService;
 
 @Controller
 @RequestMapping("/board")
@@ -18,9 +16,6 @@ public class BoardController {
   
   @Resource
   private BoardService boardService;
-  
-  @Resource
-  private MemberService memberService;
   
   @GetMapping("form")
   public void form() {
@@ -36,7 +31,9 @@ public class BoardController {
   @GetMapping("list")
   public void list(Model model) throws Exception {
     List<Board> boards = boardService.list();
-    List<Member> member = memberService.list();
+//    for (Board board : boards)
+//      System.out.println("test" + board.getMember().getName());
+    
     model.addAttribute("boards", boards);
 
   }
