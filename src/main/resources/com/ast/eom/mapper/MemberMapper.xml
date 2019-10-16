@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.MemberDao">
+
+	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+	<resultMap type="Member" id="MemberMap">
+		<id column="mem_no" property="no" />
+		<result column="reg_date" property="registeredDate" />
+		<result column="gender" property="gender" />
+		<result column="dob" property="dateOfBirth" />
+		<result column="id" property="id" />
+		<result column="email" property="email" />
+		<result column="name" property="name" />
+		<result column="pwd" property="password" />
+		<result column="addr" property="address" />
+		<result column="tel" property="tel" />
+		<result column="profile_photo" property="profilePhoto" />
+		<collection resultMap="MemberTypeMap" property="memberType"></collection>
+	</resultMap>
+
+	<resultMap type="MemberType" id="MemberTypeMap">
+		<id column="mem_type_no" property="no" />
+		<result column="mem_type" property="memberType" />
+	</resultMap>
+
+	<select id="findAll" resultMap="MemberMap">
+		select
+		  *
+		from
+		  member m
+		inner join 
+		  member_type mt
+		on
+		  m.mem_type_no = mt.mem_type_no
+	</select>
+	
+
+<!-- 
+
+	<select id="findBy" parameterType="int" resultMap="BoardMap">
+		select
+		no,
+		conts 
+		from test_board 
+		where no=#{haha}
+	</select>
+
+	<insert id="insert" parameterType="Board">
+		insert into test_board(conts)
+		values(#{contents})
+	</insert>
+	
+	<update id="update" parameterType="Board">
+    update test_board set
+      conts=#{contents}
+    where no=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from test_board
+    where no=#{value}
+  </delete>
+   -->
+
+</mapper>
