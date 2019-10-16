@@ -4,43 +4,38 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ast.eom.dao.BoardDao">
 
-  <resultMap type="Board" id="BoardMap">
-    <id column="no" property="no"/>
-    <result column="conts" property="contents"/>
-  </resultMap>
-  
-  <sql id="sql">
-    select 
-      no,
-      conts
-    from test_board 
-  </sql>
-  
-  <select id="findAll" resultMap="BoardMap">
-  	select *
-  	from test_board;
-  </select>  
-  
-  <insert id="insert" parameterType="Board">
-  	insert into test_board(conts)
-  	values (#{contents})
-  </insert>
-  
-  <update id="update" parameterType="Board">
+	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+	<resultMap type="Board" id="BoardMap">
+		<id column="no" property="no" />
+		<result column="conts" property="contents" />
+	</resultMap>
+
+	<select id="findAll" resultMap="BoardMap">
+		select * from test_board;
+	</select>
+
+	<select id="findBy" parameterType="int" resultMap="BoardMap">
+		select
+		no,
+		conts 
+		from test_board 
+		where no=#{haha}
+	</select>
+
+	<insert id="insert" parameterType="Board">
+		insert into test_board(conts)
+		values(#{contents})
+	</insert>
+	
+	<update id="update" parameterType="Board">
     update test_board set
       conts=#{contents}
     where no=#{no}
   </update>
   
-  <select id="findBy" parameterType="int" resultMap="BoardMap">
-    <include refid="sql"/>
-    where no=#{haha} 
-  </select>
-  
   <delete id="delete" parameterType="int">
-    delete from test_board 
+    delete from test_board
     where no=#{value}
   </delete>
-  
-  
+
 </mapper>
