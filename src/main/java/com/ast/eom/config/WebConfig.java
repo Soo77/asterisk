@@ -12,8 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.util.UrlPathHelper;
 
-@ComponentScan("com.ast.eom.web")
-@EnableWebMvc
+//@ComponentScan("com.ast.eom.web")
+//@EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
   
   // multipart/form-data를 처리할 때
@@ -31,12 +31,12 @@ public class WebConfig implements WebMvcConfigurer {
   }
   
   // 기본 ViewResolver 대체할 때
-  @Bean
-  public ViewResolver viewResolver() {
-    InternalResourceViewResolver vr = new InternalResourceViewResolver(
-        "/WEB-INF/jsp/", ".jsp");
-    return vr;
-  }
+//  @Bean
+//  public ViewResolver viewResolver() {
+//    InternalResourceViewResolver vr = new InternalResourceViewResolver(
+//        "/WEB-INF/jsp/", ".jsp");
+//    return vr;
+//  }
   
   // @MatrixVariable 사용할 때
   @Override
