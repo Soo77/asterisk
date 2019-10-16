@@ -113,11 +113,11 @@ public class Member implements Serializable {
   }
 
   public String getTel() {
-    return tel;
+    return telephone;
   }
 
   public void setTel(String tel) {
-    this.tel = tel;
+    this.telephone = tel;
   }
 
   public String getPhoto() {
