@@ -37,10 +37,9 @@
 	</select>
 
 	<select id="findBy" parameterType="int" resultMap="BoardMap">
-		select
-		no,
-		conts 
-		from board 
+		select b.board_no, b.titl, m.name, b.vw_cnt
+    from board b
+    inner join member m on b.mem_no = m.mem_no;
 		where no=#{haha}
 	</select>
 
