@@ -12,26 +12,14 @@ import com.ast.eom.service.BoardService;
 
 @Controller
 @RequestMapping("/board")
-public class BoardController {
+public class BoardContoller {
   
   @Resource
-  BoardService boardService;
-  
-  @GetMapping("list")
-  public void list(Model model) throws Exception {
-    List<Board> boards = boardService.list();
-    model.addAttribute("boards", boards);
-  }
+  private BoardService boardService;
   
   @GetMapping("form")
   public void form() {
-  }
-  
-  @GetMapping("detail")
-  public void detail(Model model, int no) 
-      throws Exception {
-    Board board = boardService.get(no);
-    model.addAttribute("board", board);
+    
   }
   
   @PostMapping("add")
@@ -40,8 +28,21 @@ public class BoardController {
     return "redirect:list";
   }
   
+  @GetMapping("list")
+  public void list(Model model) throws Exception {
+    List<Board> boards = boardService.list();
+    model.addAttribute("boards", boards);
+  }
+  
+  @GetMapping("detail")
+  public void detail(Model model, int no) throws Exception {
+    Board board = boardService.get(no);
+    model.addAttribute("board", board);
+  }
+  
   @PostMapping("update")
-  public String update(Board board) throws Exception {
+  public String update(Board board) 
+      throws Exception {
     boardService.update(board);
     return "redirect:list";
   }
@@ -51,5 +52,4 @@ public class BoardController {
     boardService.delete(no);
     return "redirect:list";
   }
-  
 }
