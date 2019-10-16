@@ -1,8 +1,6 @@
 package com.ast.eom.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 // Spring IoC 컨테이너에게 알려줄 설정 정보를 애노테이션을 이용하여 

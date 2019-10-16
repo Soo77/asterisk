@@ -12,7 +12,7 @@ import com.ast.eom.service.BoardService;
 
 @Controller
 @RequestMapping("/board")
-public class BoardContoller {
+public class BoardController {
   
   @Resource
   private BoardService boardService;
@@ -31,7 +31,9 @@ public class BoardContoller {
   @GetMapping("list")
   public void list(Model model) throws Exception {
     List<Board> boards = boardService.list();
+    
     model.addAttribute("boards", boards);
+
   }
   
   @GetMapping("detail")

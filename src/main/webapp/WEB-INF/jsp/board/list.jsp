@@ -5,26 +5,31 @@
 <html>
 <head>
   <title>게시물 목록</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/common.css'>
 </head>
 <body>
 
 <div id='content'>
-<h1>게시물 목록</h1>
+<h1>질문게시판</h1>
 <a href='form'>새 글</a><br>
 <table class='table table-hover'>
 <tr>
   <th>번호</th>
-  <th>내용</th>
+  <th>제목</th>
+  <th>이름</th>
+  <th>조회</th>
 </tr>
+
 <c:forEach items="${boards}" var="board">
   <tr>
     <td>${board.no}</td>
-    <td><a href='detail?no=${board.no}'>${board.contents}</a></td>
+    <td><a href='detail?no=${board.no}'>${board.title}</a></td>
+    <td>${board.member_no}</td>
+    <td>${board.view_count}</td>
   </tr>
-</c:forEach>  
+</c:forEach>
 </table>
 </div>
 
+
 </body></html>
+
