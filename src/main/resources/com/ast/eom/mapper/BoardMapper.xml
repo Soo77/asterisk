@@ -7,25 +7,39 @@
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
 	<resultMap type="Board" id="BoardMap">
 		<id column="board_no" property="no" />
-		<result column="board_type_no" property="type_no" />
-		<result column="mem_no" property="member_no" />
+		<result column="board_type_no" property="typeNo" />
+		<result column="mem_no" property="memberNo" />
 		<result column="titl" property="title" />
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
-		<result column="vw_cnt" property="view_count" />
+		<result column="vw_cnt" property="viewCount" />
+		<collection resultMap="MemberMap" property="member" />
 	</resultMap>
+	
+	 <resultMap type="Member" id="MemberMap">
+    <id column="mem_no" property="no" />
+    <result column="reg_date" property="registeredDate" />
+    <result column="mem_type_no" property="typeNo" />
+    <result column="gender" property="gender" />
+    <result column="dob" property="dateOfBirth" />
+    <result column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="password" property="password" />
+    <result column="addr" property="address" />
+    <result column="tel" property="telephone" />
+    <result column="profile_photo" property="profilePhoto" />
+  </resultMap>
 
 	<select id="findAll" resultMap="BoardMap">
-		select b.board_no, b.titl, b.mem_no, b.vw_cnt
+		select b.board_no, b.titl, m.name, b.vw_cnt
 		from board b
 		inner join member m on b.mem_no = m.mem_no;
 	</select>
 
 	<select id="findBy" parameterType="int" resultMap="BoardMap">
-		select
-		no,
-		conts 
-		from board 
+		select b.board_no, b.titl, m.name, b.vw_cnt
+    from board b
+    inner join member m on b.mem_no = m.mem_no;
 		where no=#{haha}
 	</select>
 

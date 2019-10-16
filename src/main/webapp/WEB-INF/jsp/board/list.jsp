@@ -23,8 +23,8 @@
   <tr>
     <td>${board.no}</td>
     <td><a href='detail?no=${board.no}'>${board.title}</a></td>
-    <td>${board.member_no}</td>
-    <td>${board.view_count}</td>
+    <td>${board.member.name}</td>
+    <td>${board.viewCount}</td>
   </tr>
 </c:forEach>
 </table>

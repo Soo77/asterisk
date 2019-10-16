@@ -8,15 +8,14 @@ public class Board implements Serializable {
   private static final long serialVersionUID = 1L;
   
   private int no;
-  private int type_no;
-  private int member_no;
+  private int typeNo;
+  private int memberNo;
   private String title;
   private String contents;
-  
+  private Member member;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
-  
-  private int view_count;
+  private int viewCount;
   
   public int getNo() {
     return no;
@@ -24,17 +23,17 @@ public class Board implements Serializable {
   public void setNo(int no) {
     this.no = no;
   }
-  public int getType_no() {
-    return type_no;
+  public int getTypeNo() {
+    return typeNo;
   }
-  public void setType_no(int type_no) {
-    this.type_no = type_no;
+  public void setTypeNo(int typeNo) {
+    this.typeNo = typeNo;
   }
-  public int getMember_no() {
-    return member_no;
+  public int getMemberNo() {
+    return memberNo;
   }
-  public void setMember_no(int member_no) {
-    this.member_no = member_no;
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
   }
   public String getTitle() {
     return title;
@@ -54,12 +53,20 @@ public class Board implements Serializable {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
-  public int getView_count() {
-    return view_count;
+  public int getViewCount() {
+    return viewCount;
   }
-  public void setView_count(int view_count) {
-    this.view_count = view_count;
+  public void setViewCount(int viewCount) {
+    this.viewCount = viewCount;
   }
+  public Member getMember() {
+    return member;
+  }
+  public void setMember(Member member) {
+    this.member = member;
+  }
+  
+  
   
   
   
