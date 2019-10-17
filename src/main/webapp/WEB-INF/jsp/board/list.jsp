@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<jsp:include page="../header.jsp"/>
+
 <div id='content'>
 <h1>질문게시판</h1>
 
@@ -33,6 +35,7 @@
 <a href='form'>글쓰기</a><br>
 </div>
 
+<jsp:include page="../footer.jsp"/>
 
 </body></html>
 

@@ -44,6 +44,7 @@ public class DefaultBoardService implements BoardService {
 
   @Override
   public List<Board> list() throws Exception {
+    
     return boardDao.findAll();
   }
 
