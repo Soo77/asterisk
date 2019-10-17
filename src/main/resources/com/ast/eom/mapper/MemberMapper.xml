@@ -59,7 +59,7 @@
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from test_board
+    delete from member
     where no=#{value}
   </delete>
    -->

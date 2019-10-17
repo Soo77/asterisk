@@ -10,11 +10,17 @@
 <body>
 
 <div id='content'>
-<h1>게시물</h1>
+<h1>질문게시판</h1>
 <form action='update' method='post'>
 번호 : <input type='text' name='no' value='${board.no}' readonly><br>
+제목 : <input type='text' name='title' value='${board.title}'><br>
+이름 : <input type='text' name='name' value='${board.member.name}' readonly><br>
+수정일 : <input type='text' name='createdDate' value='${board.createdDate}' readonly><br>
+조회 : <input type='text' name='viewCount' value='${board.viewCount}' readonly><br>
 내용 : <textarea name='contents' rows='5'
             cols='50'>${board.contents}</textarea><br>
+
+ 
 <button>변경</button>
 <a href='delete?no=${board.no}'>삭제</a>
 </form>
