@@ -17,11 +17,11 @@
       if (s.options[s.selectedIndex].value == 1) {
         location.href='http://localhost:8888/app/board/listbytype1';
       } else if (s.options[s.selectedIndex].value == 2) {
-        location.href='http://localhost:8888/app/board/listbytype1';
+        location.href='http://localhost:8888/app/board/listbytype2';
       } else if (s.options[s.selectedIndex].value == 3) {
-        location.href='http://localhost:8888/app/board/listbytype1';
+        location.href='http://localhost:8888/app/board/listbytype3';
       } else if (s.options[s.selectedIndex].value == 4) {
-        location.href='http://localhost:8888/app/board/listbytype1';
+        location.href='http://localhost:8888/app/board/listbytype4';
       }
     });
     
