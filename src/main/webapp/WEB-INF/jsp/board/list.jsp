@@ -23,8 +23,8 @@
 
 <c:forEach items="${boards}" var="board">
   <tr>
-    <td>${board.no}</td>
-    <td><a href='detail?no=${board.no}'>${board.title}</a></td>
+    <td>${board.boardNo}</td>
+    <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
     <td>${board.member.name}</td>
     <td>${board.viewCount}</td>
   </tr>
