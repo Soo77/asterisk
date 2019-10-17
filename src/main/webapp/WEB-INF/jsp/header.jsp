@@ -17,17 +17,14 @@
       if (s.options[s.selectedIndex].value == 1) {
         location.href='http://localhost:8888/app/board/listbytype1';
       } else if (s.options[s.selectedIndex].value == 2) {
-        location.href='http://localhost:8888/app/board/listbytype1';
+        location.href='http://localhost:8888/app/board/listbytype2';
       } else if (s.options[s.selectedIndex].value == 3) {
-        location.href='http://localhost:8888/app/board/listbytype1';
+        location.href='http://localhost:8888/app/board/listbytype3';
       } else if (s.options[s.selectedIndex].value == 4) {
-        location.href='http://localhost:8888/app/board/listbytype1';
+        location.href='http://localhost:8888/app/board/listbytype4';
       }
     });
-    
-    s.addEventListener('mouseover', function() {
-      console.log('아이고 마우스가 올라갔네!?')
-    });
+
   </script>
 
 

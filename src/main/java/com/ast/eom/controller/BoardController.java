@@ -41,9 +41,11 @@ public class BoardController {
   }
   
   @PostMapping("update")
-  public String update(Board board) 
+  public String update(Model model, int no) 
       throws Exception {
+    Board board = boardService.get(no);
     boardService.update(board);
+    model.addAttribute("board", board);
     return "redirect:list";
   }
   
