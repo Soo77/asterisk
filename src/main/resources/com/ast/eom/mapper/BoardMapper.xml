@@ -14,9 +14,12 @@
     <result column="cdt" property="createdDate" />
 		<result column="vw_cnt" property="viewCount" />
 		<collection resultMap="MemberMap" property="member" />
+		<!-- 
+    <collection resultMap="CommentMap" property="comment" />
+     -->
 	</resultMap>
 	
-	 <resultMap type="Member" id="MemberMap">
+	<resultMap type="Member" id="MemberMap">
     <id column="mem_no" property="no" />
     <result column="reg_date" property="registeredDate" />
     <result column="mem_type_no" property="typeNo" />
@@ -29,34 +32,62 @@
     <result column="tel" property="telephone" />
     <result column="profile_photo" property="profilePhoto" />
   </resultMap>
+  
+  <!-- 
+  <resultMap type="Comment" id="CommentMap">
+    <id column="cmt_no" property="no" />
+    <result column="board_no" property="boardNo" />
+    <result column="mem_no" property="memberNo" />
+    <result column="conts" property="contents" />
+    <result column="cdt" property="createdDate" />
+  </resultMap>
+   -->
 
 	<select id="findAll" resultMap="BoardMap">
 		select b.board_no, b.titl, m.name, b.vw_cnt
 		from board b
-		inner join member m on b.mem_no = m.mem_no;
+		join member m on b.mem_no = m.mem_no
+		order by b.cdt desc
 	</select>
 
-	<select id="findBy" parameterType="int" resultMap="BoardMap">
-		select b.board_no, b.titl, m.name, b.vw_cnt
+  <select id="findBy" parameterType="int" resultMap="BoardMap">
+    select b.board_no, b.titl, m.name, b.cdt, b.vw_cnt, b.conts
     from board b
-    inner join member m on b.mem_no = m.mem_no;
-		where no=#{haha}
+    join member m on b.mem_no = m.mem_no
+    where b.board_no=#{haha}
+  </select>
+  
+  <!-- 
+	<select id="findBy" parameterType="int" resultMap="BoardMap">
+		select b.titl, m.name, b.cdt, b.vw_cnt, b.conts, c.conts, c.cdt
+    from board b
+    join member m on b.mem_no = m.mem_no
+    join comment c on b.board_no = c.board_no
+		where b.board_no=#{haha}
 	</select>
+	 -->
+	 
+	<update id="increaseViewCount" parameterType="int">
+    update board set
+      vw_cnt = vw_cnt + 1
+    where board_no=#{value}
+  </update>
 
 	<insert id="insert" parameterType="Board">
-		insert into board(conts)
-		values(#{contents})
+		insert into board(board_type_no, mem_no, titl, conts, cdt, vw_cnt)
+		values(#{typeNo}, 1, #{title}, #{contents}, now(), 1)
 	</insert>
 	
 	<update id="update" parameterType="Board">
     update board set
+      titl=#{title},
       conts=#{contents}
-    where no=#{no}
+    where board_no=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
     delete from board
-    where no=#{value}
+    where board_no=#{no}
   </delete>
 
 </mapper>
