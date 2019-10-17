@@ -1,6 +1,9 @@
 package com.ast.eom.domain;
 
-public class MemberType {
+import java.io.Serializable;
+
+public class MemberType implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   int no;
   String memberType;

@@ -20,7 +20,13 @@
 내용 : <textarea name='contents' rows='5'
             cols='50'>${board.contents}</textarea><br>
 
- 
+댓글<br>
+<input type='text' name='name' value='${board.member.name}' readonly>
+<input type='text' name='createdDate' value='${board.comment.cdt}' readonly><br>
+<textarea name='contents' rows="5" cols="50">${board.comment.conts}</textarea><br>
+
+
+
 <button>변경</button>
 <a href='delete?no=${board.no}'>삭제</a>
 </form>

@@ -1,36 +1,39 @@
 package com.ast.eom.domain;
 
-import java.io.Serializable;
 import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Comment implements Serializable {
-  private static final long serialVersionUID = 1L;
+public class Comment {
   
-  private int no;
-  private int boardNo;
-  private int memberNo;
+  private int commentNo;
+  private Board board;
+  private Member member;
   private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
-  private Member member;
-  public int getNo() {
-    return no;
+  
+  @Override
+  public String toString() {
+    return "Comment [commentNo=" + commentNo + ", board=" + board + ", member=" + member
+        + ", contents=" + contents + ", createdDate=" + createdDate + "]";
   }
-  public void setNo(int no) {
-    this.no = no;
+  public int getCommentNo() {
+    return commentNo;
   }
-  public int getBoardNo() {
-    return boardNo;
+  public void setCommentNo(int commentNo) {
+    this.commentNo = commentNo;
   }
-  public void setBoardNo(int boardNo) {
-    this.boardNo = boardNo;
+  public Board getBoard() {
+    return board;
   }
-  public int getMemberNo() {
-    return memberNo;
+  public void setBoard(Board board) {
+    this.board = board;
   }
-  public void setMemberNo(int memberNo) {
-    this.memberNo = memberNo;
+  public Member getMember() {
+    return member;
+  }
+  public void setMember(Member member) {
+    this.member = member;
   }
   public String getContents() {
     return contents;
@@ -44,13 +47,5 @@ public class Comment implements Serializable {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
-  public Member getMember() {
-    return member;
-  }
-  public void setMember(Member member) {
-    this.member = member;
-  }
   
-  
-
 }
