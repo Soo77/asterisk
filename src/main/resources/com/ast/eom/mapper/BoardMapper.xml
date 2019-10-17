@@ -34,7 +34,8 @@
 		select b.board_no, b.titl, m.name, b.vw_cnt
 		from board b
 		join member m on b.mem_no = m.mem_no
-		order by b.cdt desc
+		#where b.board_type_no = 2
+		order by b.cdt asc
 	</select>
 
   <select id="findBy" parameterType="int" resultMap="BoardMap">
@@ -42,6 +43,14 @@
     from board b
     join member m on b.mem_no = m.mem_no
     where b.board_no=#{haha}
+  </select>
+	 
+	 <select id="findByType2" parameterType="int" resultMap="BoardMap">
+    select b.board_no, b.titl, m.name, b.vw_cnt
+    from board b
+    join member m on b.mem_no = m.mem_no
+    where b.board_type_no=2
+    order by b.cdt asc
   </select>
 	 
 	<update id="increaseViewCount" parameterType="int">

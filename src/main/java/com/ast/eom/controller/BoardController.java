@@ -32,7 +32,6 @@ public class BoardController {
   public void list(Model model) throws Exception {
     List<Board> boards = boardService.list();
     model.addAttribute("boards", boards);
-
   }
   
   @GetMapping("detail")
@@ -53,4 +52,11 @@ public class BoardController {
     boardService.delete(no);
     return "redirect:list";
   }
+  
+  @GetMapping("listbytype2")
+  public void listByType2(Model model) throws Exception {
+    List<Board> boards = boardService.listByType2();
+    model.addAttribute("boards", boards);
+  }
+  
 }
