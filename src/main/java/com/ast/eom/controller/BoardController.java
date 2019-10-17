@@ -31,9 +31,6 @@ public class BoardController {
   @GetMapping("list")
   public void list(Model model) throws Exception {
     List<Board> boards = boardService.list();
-//    for (Board board : boards)
-//      System.out.println("test" + board.getMember().getName());
-    
     model.addAttribute("boards", boards);
 
   }

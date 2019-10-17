@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.ast.eom.dao.BoardDao;
+import com.ast.eom.dao.MemberDao;
 import com.ast.eom.domain.Board;
 import com.ast.eom.service.BoardService;
 
@@ -14,6 +15,9 @@ public class DefaultBoardService implements BoardService {
 
   @Resource
   private BoardDao boardDao;
+  
+  @Resource
+  private MemberDao memberDao;
 
   @Override
   public void insert(Board board) throws Exception {
@@ -22,9 +26,10 @@ public class DefaultBoardService implements BoardService {
 
   @Override
   public void delete(int no) throws Exception {
-    if (boardDao.delete(no) == 0) {
+    if (boardDao.findBy(no) == null)
       throw new Exception("해당 데이터가 없습니다.");
-    }
+    
+    boardDao.delete(no);
   }
 
   @Override
@@ -33,6 +38,7 @@ public class DefaultBoardService implements BoardService {
     if (board == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
     } 
+    boardDao.increaseViewCount(no);
     return board;
   }
 
