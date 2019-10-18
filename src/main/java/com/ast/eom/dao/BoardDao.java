@@ -11,6 +11,7 @@ public interface BoardDao {
   int update(Board board) throws Exception;
   int delete(int no) throws Exception;
   int increaseViewCount(int no) throws Exception;
+  List<Board> findByType2() throws Exception;
 }
 
 

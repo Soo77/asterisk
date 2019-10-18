@@ -51,4 +51,9 @@ public class DefaultBoardService implements BoardService {
   public void update(Board board) throws Exception {
     boardDao.update(board);
   }
+  
+  @Override
+  public List<Board> listByType2() throws Exception {
+    return boardDao.findByType2();
+  }
 }

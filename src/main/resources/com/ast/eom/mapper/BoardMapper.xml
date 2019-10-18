@@ -5,8 +5,8 @@
 <mapper namespace="com.ast.eom.dao.BoardDao">
 
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
-<!-- 	<resultMap type="Board" id="BoardMap">
-		<id column="board_no" property="no" />
+	<resultMap type="Board" id="BoardMap">
+		<id column="board_no" property="boardNo" />
 		<result column="board_type_no" property="typeNo" />
 		<result column="mem_no" property="memberNo" />
 		<result column="titl" property="title" />
@@ -30,38 +30,12 @@
     <result column="profile_photo" property="profilePhoto" />
   </resultMap>
   
-  <resultMap type="Board" id="CommentMap">
-    <id column="board_no" property="no" />
-    <result column="board_type_no" property="typeNo" />
-    <result column="mem_no" property="memberNo" />
-    <result column="titl" property="title" />
-    <result column="conts" property="contents" />
-    <result column="cdt" property="createdDate" />
-    <result column="vw_cnt" property="viewCount" />
-     -->
-    <!-- 회원 데이터를 Member 객체에 저장 -->
-      <!-- <association property="member" javaType="Member">
-        <id column="member_id" property="member_no"/>
-        <result column="name" property="name" />
-      </association>
-      
-      <collection property="Comment" ofType="CommentMap">
-        <id column="cmt_no" property="no" />
-        <result column="board_no" property="boardNo" />
-		    <result column="mem_no" property="memberNo" />
-		    <result column="conts" property="contents" />
-		    <result column="cdt" property="createdDate" />
-      </collection>
-      
-  </resultMap>
-  
-  
-
 	<select id="findAll" resultMap="BoardMap">
 		select b.board_no, b.titl, m.name, b.vw_cnt
 		from board b
 		join member m on b.mem_no = m.mem_no
-		order by b.cdt desc
+		#where b.board_type_no = 2
+		order by b.cdt asc
 	</select>
 
   <select id="findBy" parameterType="int" resultMap="BoardMap">
@@ -70,14 +44,14 @@
     join member m on b.mem_no = m.mem_no
     where b.board_no=#{haha}
   </select>
-  
-	<select id="findWithCommentBy" parameterType="int" resultMap="BoardWithCommentMap">
-		select b.titl, m.name, b.cdt, b.vw_cnt, b.conts, c.conts, c.cdt
+	 
+	 <select id="findByType2" parameterType="int" resultMap="BoardMap">
+    select b.board_no, b.titl, m.name, b.vw_cnt
     from board b
-    join comment c on b.board_no = c.board_no
     join member m on b.mem_no = m.mem_no
-		where b.board_no=#{haha}
-	</select>
+    where b.board_type_no=2
+    order by b.cdt asc
+  </select>
 	 
 	<update id="increaseViewCount" parameterType="int">
     update board set
@@ -94,13 +68,12 @@
     update board set
       titl=#{title},
       conts=#{contents}
-    where board_no=#{no}
+    where board_no=#{boardNo}
   </update>
   
   <delete id="delete" parameterType="int">
     delete from board
     where board_no=#{haha}
   </delete>
-  -->
 
 </mapper>

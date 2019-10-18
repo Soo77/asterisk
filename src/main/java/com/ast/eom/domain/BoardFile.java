@@ -7,7 +7,11 @@ public class BoardFile {
   private Board board;
   private Notice notice;
   
-
+  @Override
+  public String toString() {
+    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", board=" + board
+        + ", notice=" + notice + "]";
+  }
   public int getFileNo() {
     return fileNo;
   }
