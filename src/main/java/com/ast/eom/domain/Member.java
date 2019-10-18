@@ -4,19 +4,19 @@ import java.sql.Date;
 
 public class Member {
 
-    int no;
-    Date registeredDate;
-    String gender;
-    Date dateOfBirth;
-    String id;
-    String email;
-    String name;
-    String password;
-    String address;
-    String tel;
-    String profilePhoto;
+    private int no;
+    private MemberType memberType;
+    private Date registeredDate;
+    private String gender;
+    private Date dateOfBirth;
+    private String id;
+    private String email;
+    private String name;
+    private String password;
+    private String address;
+    private String tel;
+    private String profilePhoto;
     
-    MemberType memberType;
     
     Teacher teacher;
     

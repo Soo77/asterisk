@@ -387,7 +387,7 @@ ALTER TABLE lesson_subject
 -- 과목
 CREATE TABLE subject (
   sub_no   INTEGER     NOT NULL COMMENT '과목번호', -- 과목번호
-  sch_type INTEGER     NOT NULL COMMENT '학교유형', -- 학교유형
+  sch_type VARCHAR(10) NOT NULL COMMENT '학교유형', -- 학교유형
   sub_name VARCHAR(10) NOT NULL COMMENT '과목명' -- 과목명
 )
 COMMENT '과목';

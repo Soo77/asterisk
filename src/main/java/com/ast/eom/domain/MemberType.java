@@ -1,12 +1,8 @@
 package com.ast.eom.domain;
 
-import java.io.Serializable;
-
-public class MemberType implements Serializable {
-  private static final long serialVersionUID = 1L;
-
-  int no;
-  String memberType;
+public class MemberType {
+  private int no;
+  private String memberType;
   
   public int getNo() {
     return no;
