@@ -2,21 +2,17 @@ package com.ast.eom.domain;
 
 public class BoardFile {
 
-  private int boardNo;
+  private int fileNo;
   private String fileName;
   private Board board;
   private Notice notice;
   
-  @Override
-  public String toString() {
-    return "BoardFile [boardNo=" + boardNo + ", fileName=" + fileName + ", board=" + board
-        + ", notice=" + notice + "]";
+
+  public int getFileNo() {
+    return fileNo;
   }
-  public int getBoardNo() {
-    return boardNo;
-  }
-  public void setBoardNo(int boardNo) {
-    this.boardNo = boardNo;
+  public void setFileNo(int fileNo) {
+    this.fileNo = fileNo;
   }
   public String getFileName() {
     return fileName;
