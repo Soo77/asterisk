@@ -14,11 +14,10 @@ public class MemberController {
   @Autowired
   MemberDao memberDao;
   
-  
   @RequestMapping("detail")
   public String detail(Model model, int no) throws Exception {
     
-    Member member = memberDao.findBy(no);
+    Member member = memberDao.findMember(no);
     model.addAttribute("member", member);
     return "memdetail";
   }

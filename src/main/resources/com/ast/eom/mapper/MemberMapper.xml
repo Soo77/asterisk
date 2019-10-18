@@ -48,21 +48,19 @@
 		  m.mem_type_no = mt.mem_type_no
 	</select>
 	
-	<select id="findAll" resultMap="MemberMap">
+	<select id="findMemberAndTeacher" resultMap="MemberMap">
 		select
 		  *
 		from
 		  member m
 		inner join 
-		  member_type mt
+		  teacher t
 		on
-		  m.mem_type_no = mt.mem_type_no
+		  m.mem_type_no = t.tch_no
 	</select>
 	
 
-
-
-	<select id="findBy" parameterType="int" resultMap="MemberMap">
+	<select id="findMember" parameterType="int" resultMap="MemberMap">
 		select
 		mem_no,
 		reg_date,
@@ -78,6 +76,19 @@
 		profile_photo 
 		from member 
 		where mem_no=#{ddd}
+	</select>
+	
+	<select id="findTeacher" parameterType="int" resultMap="MemberMap">
+		select
+		tch_no,
+		acc_no,
+		bank_name,
+		lesson_certi,
+		tch_intro,
+		appr_stat,
+		vid_addr
+		from teacher 
+		where tch_no=#{ddd}
 	</select>
 
 </mapper>
