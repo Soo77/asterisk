@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>오호라 제목</title>
+  <style>
+    #div1 {
+      border: 1px solid red;
+      display: none;
+    }
+  </style>
 </head>
 <body>
+  
+  <div id="div1">
+    test
+  </div>
 
+  <input type="button" value="버튼을 눌러보세요"
+  onclick="document.getElementById('div1').style.display = 'block'">
 </body>
 </html>

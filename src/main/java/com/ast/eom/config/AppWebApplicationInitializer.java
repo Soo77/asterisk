@@ -1,5 +1,7 @@
 package com.ast.eom.config;
 
+import javax.servlet.Filter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class AppWebApplicationInitializer 
@@ -26,6 +28,14 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
   protected String getServletName() {
     return "app";
   }
+  
+  @Override
+  protected Filter[] getServletFilters() {
+    CharacterEncodingFilter encoding = new CharacterEncodingFilter();
+    encoding.setEncoding("UTF-8");
+    return new Filter[] {encoding};
+  }
+  
 }
 
 

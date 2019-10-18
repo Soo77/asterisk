@@ -52,6 +52,9 @@ DROP TABLE IF EXISTS board_file RESTRICT;
 -- 선생님 사진
 DROP TABLE IF EXISTS teacher_photo RESTRICT;
 
+-- 회원유형
+DROP TABLE IF EXISTS member_type RESTRICT;
+
 -- 선생님
 CREATE TABLE teacher (
   tch_no       INTEGER      NOT NULL COMMENT '선생님번호', -- 선생님번호
@@ -211,7 +214,7 @@ ALTER TABLE lesson
 CREATE TABLE curriculum (
   curr_no      INTEGER  NOT NULL COMMENT '커리큘럼번호', -- 커리큘럼번호
   lesson_no    INTEGER  NOT NULL COMMENT '수업번호', -- 수업번호
-  order_no        INTEGER  NOT NULL COMMENT '순서', -- 순서
+  order_no     INTEGER  NOT NULL COMMENT '순서', -- 순서
   lesson_conts TEXT     NOT NULL COMMENT '수업내용', -- 수업내용
   lesson_date  DATETIME NOT NULL COMMENT '수업일', -- 수업일
   total_hr     INTEGER  NULL     COMMENT '총수업시간' -- 총수업시간
@@ -231,8 +234,8 @@ ALTER TABLE curriculum
 -- 회원
 CREATE TABLE member (
   mem_no        INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+  mem_type_no   INTEGER      NOT NULL COMMENT '회원구분번호', -- 회원구분번호
   reg_date      DATETIME     NOT NULL COMMENT '가입일', -- 가입일
-  mem_type      INTEGER      NOT NULL COMMENT '회원구분', -- 회원구분
   gender        VARCHAR(1)   NOT NULL COMMENT '성별', -- 성별
   dob           DATETIME     NOT NULL COMMENT '생년월일', -- 생년월일
   id            VARCHAR(15)  NOT NULL COMMENT '아이디', -- 아이디
@@ -384,7 +387,7 @@ ALTER TABLE lesson_subject
 -- 과목
 CREATE TABLE subject (
   sub_no   INTEGER     NOT NULL COMMENT '과목번호', -- 과목번호
-  sch_type INTEGER     NOT NULL COMMENT '학교유형', -- 학교유형
+  sch_type VARCHAR(10) NOT NULL COMMENT '학교유형', -- 학교유형
   sub_name VARCHAR(10) NOT NULL COMMENT '과목명' -- 과목명
 )
 COMMENT '과목';
@@ -452,6 +455,23 @@ ALTER TABLE teacher_photo
 
 ALTER TABLE teacher_photo
   MODIFY COLUMN tch_photo_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '선생님사진번호';
+
+-- 회원유형
+CREATE TABLE member_type (
+  mem_type_no INTEGER      NOT NULL COMMENT '회원구분번호', -- 회원구분번호
+  mem_type    VARCHAR(255) NOT NULL COMMENT '회원구분' -- 회원구분
+)
+COMMENT '회원유형';
+
+-- 회원유형
+ALTER TABLE member_type
+  ADD CONSTRAINT PK_member_type -- 회원유형 기본키
+    PRIMARY KEY (
+      mem_type_no -- 회원구분번호
+    );
+
+ALTER TABLE member_type
+  MODIFY COLUMN mem_type_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원구분번호';
 
 -- 선생님
 ALTER TABLE teacher
@@ -571,6 +591,16 @@ ALTER TABLE curriculum
     )
     REFERENCES lesson ( -- 수업
       lesson_no -- 수업번호
+    );
+
+-- 회원
+ALTER TABLE member
+  ADD CONSTRAINT FK_member_type_TO_member -- 회원유형 -> 회원
+    FOREIGN KEY (
+      mem_type_no -- 회원구분번호
+    )
+    REFERENCES member_type ( -- 회원유형
+      mem_type_no -- 회원구분번호
     );
 
 -- 일별수업

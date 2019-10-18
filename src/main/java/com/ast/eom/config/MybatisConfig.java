@@ -22,9 +22,9 @@ public class MybatisConfig {
     
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSource);
-    sqlSessionFactoryBean.setTypeAliasesPackage("com.eomcs.lms.domain");
+    sqlSessionFactoryBean.setTypeAliasesPackage("com.ast.eom.domain");
     sqlSessionFactoryBean.setMapperLocations(
-        appCtx.getResources("classpath:com/eomcs/lms/mapper/*Mapper.xml"));
+        appCtx.getResources("classpath:com/ast/eom/mapper/*Mapper.xml"));
     
     return sqlSessionFactoryBean.getObject();
   }
