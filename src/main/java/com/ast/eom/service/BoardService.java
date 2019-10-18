@@ -14,6 +14,7 @@ public interface BoardService {
   void insert(Board board) throws Exception;
   void update(Board board) throws Exception;
   void delete(int no) throws Exception;
+  List<Board> listByType2() throws Exception;
 }
 
 

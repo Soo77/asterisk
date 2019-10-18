@@ -1,39 +1,42 @@
 package com.ast.eom.domain;
 
-import java.io.Serializable;
 import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class Board implements Serializable {
-  private static final long serialVersionUID = 1L;
+public class Board {
   
-  private int no;
-  private int typeNo;
-  private int memberNo;
+  private int boardNo;
+  private BoardType boardType;
+  private Member member;
   private String title;
   private String contents;
-  private Member member;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   private int viewCount;
   
-  public int getNo() {
-    return no;
+  @Override
+  public String toString() {
+    return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", member=" + member
+        + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
+        + ", viewCount=" + viewCount + "]";
   }
-  public void setNo(int no) {
-    this.no = no;
+  public int getBoardNo() {
+    return boardNo;
   }
-  public int getTypeNo() {
-    return typeNo;
+  public void setBoardNo(int boardNo) {
+    this.boardNo = boardNo;
   }
-  public void setTypeNo(int typeNo) {
-    this.typeNo = typeNo;
+  public BoardType getBoardType() {
+    return boardType;
   }
-  public int getMemberNo() {
-    return memberNo;
+  public void setBoardType(BoardType boardType) {
+    this.boardType = boardType;
   }
-  public void setMemberNo(int memberNo) {
-    this.memberNo = memberNo;
+  public Member getMember() {
+    return member;
+  }
+  public void setMember(Member member) {
+    this.member = member;
   }
   public String getTitle() {
     return title;
@@ -59,15 +62,5 @@ public class Board implements Serializable {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
-  public Member getMember() {
-    return member;
-  }
-  public void setMember(Member member) {
-    this.member = member;
-  }
-  
-  
-  
-  
   
 }
