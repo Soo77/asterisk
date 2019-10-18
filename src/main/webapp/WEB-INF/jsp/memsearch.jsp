@@ -12,7 +12,7 @@
   <h2>선생님 찾기</h2>
   <hr><br>
   
-<div class="teacherSearch">
+<div class="teacher-search">
   <div class="address">
     <h3>지역</h3>
     <select>
@@ -43,7 +43,7 @@
     <button> 30 이상</button>
   </div>
   
-  <div class="tuitionfee">
+  <div class="tuition-fee">
     <h3>수업료</h3>
     <button> 20만원 ~ 30만원 </button>
     <button> 30만원 ~ 40만원 </button>
@@ -54,7 +54,7 @@
   <br>
   <h3>과목으로 찾기</h3>
   
-  <div class="highSchool">
+  <div class="high-school">
     <h3>고등학교</h3>
     <button> 국어 </button>
     <button> 영어 </button>
@@ -64,7 +64,7 @@
     <button> 기타 </button>
   </div>
   
-  <div class="midSchool">
+  <div class="mid-school">
     <h3>중학교</h3>
     <button> 국어 </button>
     <button> 영어 </button>
@@ -74,7 +74,7 @@
     <button> 기타 </button>
   </div>
   
-  <div class="eleSchool">
+  <div class="ele-school">
     <h3>초등학교</h3>
     <button> 국어 </button>
     <button> 영어 </button>
@@ -93,7 +93,7 @@
       <img src="images/Rabbit.png" height="100px" />
     </div>
     
-    <div class="tchInfo">
+    <div class="tch-info">
       <p><a href='detail?no=${member.no}'>${member.name}</a></p>
       <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.address}/ 경력 2년/${member.memberType.memberType}</p>
     </div>
@@ -101,7 +101,7 @@
   </div>
   </c:forEach>  
 
-<div class="pageButton">
+<div class="page-button">
 <button> &lt; </button>
 <button> 1 </button>
 <button> &gt; </button>

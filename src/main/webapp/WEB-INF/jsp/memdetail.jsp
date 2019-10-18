@@ -15,7 +15,7 @@
 <script src="http://vjs.zencdn.net/c/video.js"></script>
 
 <!-- 후기 박스 -->
-<style type="text/css">
+<style>
 .review {border: 1px solid;padding: 10px;}
 </style>
 
@@ -25,7 +25,7 @@
   <h2>선생님 상세 정보</h2>
   <hr><br>
 
-  <div class="tchProfile">
+  <div class="tch-profile">
     <img src="${member.profilePhoto }" height="70px" /> 
     ${member.name}<br>
     ${member.gender}, ${member.dateOfBirth}<br> 
@@ -43,24 +43,24 @@
              가입일: ${member.registeredDate}<br>
     </div>
 
-    <div class="tchschoolINfo">
+    <div class="tch-school-info">
         <h3>출신학교</h3>
         <p>한국 중학교 졸업</p>
         <p>한국 고등학교 졸업</p>
         <p>한국 대학교 수학과 재학중</p>
     </div>
 
-    <div class="tchintroduce">
+    <div class="tch-introduce">
       <h3>자기소개</h3>
-       ${teacher.teacherIntro}<br>
+       ${member.teacher.teacherIntro}<br>
     </div>
 
-    <div class="tchintroduce video">
+    <div class="tch-introduce-video">
       <h3>자기소개영상</h3>
-      ${teacher.videoAddress}
+      ${member.teacher.videoAddress}
     </div>
 
-    <div class="tchphotos">
+    <div class="tch-photos">
       <h3>사진</h3>
       <img src="images/hong.png" height="100px" /> 
       <img src="images/Rabbit.png" height="100px" /> 
@@ -68,29 +68,29 @@
     </div>
   </div><hr>
 
-  <div class="tchlesson">
-    <div class="tchlessonSubject">
+  <div class="tch-lesson">
+    <div class="tch-lesson-subject">
       <p>과목: 초등 영어</p>
       <h3>과외 가능 요일/시간</h3>
       <p>월~금. 오후 7시 ~ 10시</p>
     </div>
-    <div class="tchlessonfee">
+    <div class="tch-lesson-fee">
       <h3>희망 과외 금액</h3>
       <p>30 ~ 40만원</p>
     </div>
   </div><hr>
 
-  <div class="stulesson">
-    <div class="stulessonSubject">
+  <div class="stu-lesson">
+    <div class="stu-lesson-subject">
       <p>과목: 초등 수학</p>
       <h3>과외 가능 요일/시간</h3>
       <p>월~금. 오후 5시 ~ 7시</p>
     </div>
-    <div class="stulessonfee">
+    <div class="stu-lesson-fee">
       <h3>희망 과외 금액</h3>
       <p>30 ~ 40만원</p>
     </div>
-    <div class="stuwanttotch">
+    <div class="stu-wanttotch">
       <h3>선생님께 바라는점</h3>
       <p>기초부터 탄탄하게 배우고 싶어요!</p>
     </div>
@@ -105,7 +105,7 @@
             선생님이 수업에 열정적입니다. 성적이 많이 올랐어요 ~~<br>
     </div>
 
-  <div class="pageButton">
+  <div class="page-button">
     <button>&lt;</button>
     <button>1</button>
     <button>&gt;</button>
