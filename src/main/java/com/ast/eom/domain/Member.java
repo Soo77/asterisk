@@ -92,19 +92,13 @@ public class Member {
     public void setMemberType(MemberType memberType) {
       this.memberType = memberType;
     }
-    public Teacher getTeacher() {
-      return teacher;
-    }
-    public void setTeacher(Teacher teacher) {
-      this.teacher = teacher;
-    }
     
     @Override
     public String toString() {
       return "Member [no=" + no + ", registeredDate=" + registeredDate + ", gender=" + gender
           + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name
           + ", password=" + password + ", address=" + address + ", tel=" + tel + ", profilePhoto="
-          + profilePhoto + ", memberType=" + memberType + ", teacher=" + teacher + "]";
+          + profilePhoto + "]";
     }
     
     

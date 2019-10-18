@@ -19,6 +19,7 @@
 		<result column="profile_photo" property="profilePhoto" />
 		<collection resultMap="MemberTypeMap" property="memberType"></collection>
 		<collection resultMap="TeacherMap" property="teacher"></collection>
+		<collection resultMap="StudentMap" property="student"></collection>
 	</resultMap>
 
 	<resultMap type="MemberType" id="MemberTypeMap">
@@ -27,15 +28,26 @@
 	</resultMap>
 	
 	<resultMap type="Teacher" id="TeacherMap">
-	<id column="tch_no" property="teacherNo"/>
-	<result column="acc_no" property="accountNo"/>
-	<result column="bank_name" property="bankNo"/>
-	<result column="lesson_certi" property="lessonCertificate"/>
-	<result column="tch_intro" property="teacherIntro"/>
-	<result column="appr_stat" property="approvementState"/>
-	<result column="vid_addr" property="videoAddress"/>
-	
+		<id column="tch_no" property="teacherNo"/>
+		<result column="acc_no" property="accountNo"/>
+		<result column="bank_name" property="bankNo"/>
+		<result column="lesson_certi" property="lessonCertificate"/>
+		<result column="tch_intro" property="teacherIntro"/>
+		<result column="appr_stat" property="approvementState"/>
+		<result column="vid_addr" property="videoAddress"/>
 	</resultMap>
+	
+	<resultMap type="Student" id="StudentMap">
+		<id column="stu_no" property="studentNo"/>
+		<result column="sch_type" property="schoolType"/>
+		<collection resultMap="ParentsMap" property="parents"></collection>
+	</resultMap>
+	
+	<resultMap type="Parents" id="ParentsMap">
+		<id column="parents_no" property="parentsNo" />
+		<result column="kakaotalk" property="wantKakaotalk" />
+	</resultMap>
+	
 
 	<select id="findAll" resultMap="MemberMap">
 		select
@@ -62,13 +74,6 @@
 		on
 		  t.tch_no = m.mem_no  
 		where m.mem_no=#{ddd}
-	</select>
-	
-	<select id="findBy2" parameterType="int" resultMap="MemberMap">
-		select
-		*
-		from teacher t
-		where t.tch_no=#{ddd}
 	</select>
 	
 	
