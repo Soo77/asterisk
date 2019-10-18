@@ -52,14 +52,12 @@
 
     <div class="tchintroduce">
       <h3>자기소개</h3>
-              안녕하세요. 한국대학교 수학과 라이언입니다.<br> 성실히 수업하겠습니다.<br>
+       ${teacher.teacherIntro}<br>
     </div>
 
     <div class="tchintroduce video">
       <h3>자기소개영상</h3>
-      <video width="640" height="360" controls="controls" class="video-js" data-setup="{}">
-        <source src="https://youtu.be/kR77WlHRZrs" type="video/webm" />
-      </video>
+      ${teacher.videoAddress}
     </div>
 
     <div class="tchphotos">
