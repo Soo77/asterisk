@@ -5,7 +5,7 @@
 <mapper namespace="com.ast.eom.dao.BoardDao">
 
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
-	<resultMap type="Board" id="BoardMap">
+<!-- 	<resultMap type="Board" id="BoardMap">
 		<id column="board_no" property="no" />
 		<result column="board_type_no" property="typeNo" />
 		<result column="mem_no" property="memberNo" />
@@ -38,9 +38,9 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
-    
+     -->
     <!-- 회원 데이터를 Member 객체에 저장 -->
-      <association property="member" javaType="Member">
+      <!-- <association property="member" javaType="Member">
         <id column="member_id" property="member_no"/>
         <result column="name" property="name" />
       </association>
@@ -101,5 +101,6 @@
     delete from board
     where board_no=#{haha}
   </delete>
+  -->
 
 </mapper>
