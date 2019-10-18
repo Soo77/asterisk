@@ -156,15 +156,16 @@
       <img src="images/Rabbit.png" height="100px" />
     </div>
     <div>
-      <p>${member.name}</p>
+  
+      <p><a href='detail?no=${member.no}'>${member.name}</a></p>
+ 
     </div>
     <div>
-      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.address}/ 경력 2년/ ${member.memberType.memberType}</p>
+      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.address}/ 경력 2년/${member.memberType.memberType}</p>
     </div>
     <hr>
   </div>
   </c:forEach>  
-
 </div>  
 
 <div>

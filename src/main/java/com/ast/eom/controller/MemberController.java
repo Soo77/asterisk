@@ -9,13 +9,17 @@ import com.ast.eom.dao.MemberDao;
 import com.ast.eom.domain.Member;
 
 @Controller
-public class TempController {
+public class MemberController {
   
   @Autowired
   MemberDao memberDao;
   
+  
   @RequestMapping("detail")
-  public String detail() {
+  public String detail(Model model, int no) throws Exception {
+    
+    Member member = memberDao.findBy(no);
+    model.addAttribute("member", member);
     return "memdetail";
   }
   
