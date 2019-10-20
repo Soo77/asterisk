@@ -1,13 +1,13 @@
 package com.ast.eom.domain;
 
-import java.io.Serializable;
-
-public class MemberType implements Serializable {
-  private static final long serialVersionUID = 1L;
-
-  int no;
-  String memberType;
+public class MemberType {
+  private int no;
+  private String memberType;
   
+  @Override
+  public String toString() {
+    return "MemberType [no=" + no + ", memberType=" + memberType + "]";
+  }
   public int getNo() {
     return no;
   }
@@ -20,6 +20,4 @@ public class MemberType implements Serializable {
   public void setMemberType(String memberType) {
     this.memberType = memberType;
   }
-  
-  
 }

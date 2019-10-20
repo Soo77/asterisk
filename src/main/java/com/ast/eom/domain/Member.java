@@ -4,25 +4,33 @@ import java.sql.Date;
 
 public class Member {
 
-    int no;
-    Date registeredDate;
-    String gender;
-    Date dateOfBirth;
-    String id;
-    String email;
-    String name;
-    String password;
-    String address;
-    String tel;
-    String profilePhoto;
+    private int memberNo;
+    private Date registeredDate;
+    private String gender;
+    private Date dateOfBirth;
+    private String id;
+    private String email;
+    private String name;
+    private String password;
+    private String addressCity;
+    private String addressSuburb;
+    private String tel;
+    private String profilePhoto;
     
-    MemberType memberType;
+    private MemberType memberType;
     
-    public int getNo() {
-      return no;
+    @Override
+    public String toString() {
+      return "Member [memberNo=" + memberNo + ", registeredDate=" + registeredDate + ", gender=" + gender
+          + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name + ", password="
+          + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel=" + tel
+          + ", profilePhoto=" + profilePhoto + ", memberType=" + memberType + "]";
     }
-    public void setNo(int no) {
-      this.no = no;
+    public int getMemberNo() {
+      return memberNo;
+    }
+    public void setMemberNo(int memberNo) {
+      this.memberNo = memberNo;
     }
     public Date getRegisteredDate() {
       return registeredDate;
@@ -66,11 +74,17 @@ public class Member {
     public void setPassword(String password) {
       this.password = password;
     }
-    public String getAddress() {
-      return address;
+    public String getAddressCity() {
+      return addressCity;
     }
-    public void setAddress(String address) {
-      this.address = address;
+    public void setAddressCity(String addressCity) {
+      this.addressCity = addressCity;
+    }
+    public String getAddressSuburb() {
+      return addressSuburb;
+    }
+    public void setAddressSuburb(String addressSuburb) {
+      this.addressSuburb = addressSuburb;
     }
     public String getTel() {
       return tel;
@@ -90,14 +104,5 @@ public class Member {
     public void setMemberType(MemberType memberType) {
       this.memberType = memberType;
     }
-    @Override
-    public String toString() {
-      return "Member [no=" + no + ", registeredDate=" + registeredDate + ", gender=" + gender
-          + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name
-          + ", password=" + password + ", address=" + address + ", tel=" + tel + ", profilePhoto="
-          + profilePhoto + ", memberType=" + memberType + "]";
-    }
     
-    
-
 }
