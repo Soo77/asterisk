@@ -15,19 +15,16 @@
     
     s.addEventListener('change', function() {
       if (s.options[s.selectedIndex].value == 1) {
-        location.href='http://localhost:8888/app/board/listbytype1';
+        location.href='http://localhost:8888/app/board/list?boardType=1';
       } else if (s.options[s.selectedIndex].value == 2) {
-        location.href='http://localhost:8888/app/board/listbytype2';
+        location.href='http://localhost:8888/app/board/list?boardType=2';
       } else if (s.options[s.selectedIndex].value == 3) {
-        location.href='http://localhost:8888/app/board/listbytype3';
+        location.href='http://localhost:8888/app/board/list?boardType=3';
       } else if (s.options[s.selectedIndex].value == 4) {
-        location.href='http://localhost:8888/app/board/listbytype4';
+        location.href='http://localhost:8888/app/board/list?boardType=4';
       }
     });
     
-    s.addEventListener('mouseover', function() {
-      console.log('아이고 마우스가 올라갔네!?')
-    });
   </script>
 
 

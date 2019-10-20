@@ -11,12 +11,11 @@
 <body>
 
 <div id='content'>
-<h1>질문게시판</h1>
-<h1>질문 게시판 글쓰기</h1>
+<h1>공부상담 글쓰기</h1>
 
 <form action='add' method='post'>
-  제목 : <input type='text' name='title' value='${board.title}'><br>
-<select name="boardType">
+  제목 : <input type='text' name='title'><br>
+<select name="boardTypeNo">
   <option value='2'>공부상담</option>
   <option value='3'>입시상담</option>
   <option value='4'>문제풀이</option>

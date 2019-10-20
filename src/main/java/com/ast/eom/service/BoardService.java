@@ -9,12 +9,11 @@ import com.ast.eom.domain.Board;
 // => 여러 페이지 컨트롤러가 사용한다.
 //
 public interface BoardService {
-  List<Board> list() throws Exception;
+  List<Board> list(int boardType) throws Exception;
   Board get(int no) throws Exception;
   void insert(Board board) throws Exception;
   void update(Board board) throws Exception;
   void delete(int no) throws Exception;
-  List<Board> listByType2() throws Exception;
 }
 
 

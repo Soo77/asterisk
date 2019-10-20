@@ -29,8 +29,8 @@ public class BoardController {
   }
   
   @GetMapping("list")
-  public void list(Model model) throws Exception {
-    List<Board> boards = boardService.list();
+  public void list(Model model, int boardType) throws Exception {
+    List<Board> boards = boardService.list(boardType);
     model.addAttribute("boards", boards);
   }
   
@@ -41,8 +41,7 @@ public class BoardController {
   }
   
   @PostMapping("update")
-  public String update(Board board) 
-      throws Exception {
+  public String update(Board board) throws Exception {
     boardService.update(board);
     return "redirect:list";
   }
@@ -51,12 +50,6 @@ public class BoardController {
   public String delete(int no) throws Exception {
     boardService.delete(no);
     return "redirect:list";
-  }
-  
-  @GetMapping("listbytype2")
-  public void listByType2(Model model) throws Exception {
-    List<Board> boards = boardService.listByType2();
-    model.addAttribute("boards", boards);
   }
   
 }

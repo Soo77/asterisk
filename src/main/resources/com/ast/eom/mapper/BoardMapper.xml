@@ -7,15 +7,15 @@
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
 	<resultMap type="Board" id="BoardMap">
 		<id column="board_no" property="boardNo" />
-		<result column="titl" property="title" />
+    <result column="titl" property="title" />
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
 		<result column="vw_cnt" property="viewCount" />
+    <collection resultMap="BoardTypeNoMap" property="boardType" />
 		<collection resultMap="MemberMap" property="member" />
-    <collection resultMap="BoardTypeMap" property="boardType" />
 	</resultMap>
-	
-	<resultMap type="BoardType" id="BoardTypeMap">
+  
+	<resultMap type="BoardType" id="BoardTypeNoMap">
     <id column="board_type_no" property="boardTypeNo" />
     <result column="board_name" property="boardName" />
   </resultMap>
@@ -34,27 +34,19 @@
     <result column="profile_photo" property="profilePhoto" />
   </resultMap>
   
-	<select id="findAll" resultMap="BoardMap">
+	<select id="findAll" parameterType="int" resultMap="BoardMap">
 		select b.board_no, b.titl, m.name, b.vw_cnt
 		from board b
 		join member m on b.mem_no = m.mem_no
-		#where b.board_type_no = 2
+		where b.board_type_no = #{hello}
 		order by b.cdt asc
 	</select>
-
+  
   <select id="findBy" parameterType="int" resultMap="BoardMap">
     select b.board_no, b.titl, m.name, b.cdt, b.vw_cnt, b.conts
     from board b
     join member m on b.mem_no = m.mem_no
     where b.board_no=#{haha}
-  </select>
-	 
-	 <select id="findByType2" parameterType="int" resultMap="BoardMap">
-    select b.board_no, b.titl, m.name, b.vw_cnt
-    from board b
-    join member m on b.mem_no = m.mem_no
-    where b.board_type_no=2
-    order by b.cdt asc
   </select>
 	 
 	<update id="increaseViewCount" parameterType="int">
@@ -65,7 +57,7 @@
 
 	<insert id="insert" parameterType="Board">
 		insert into board(board_type_no, mem_no, titl, conts, cdt, vw_cnt)
-		values(#{boardType}, 1, #{title}, #{contents}, now(), 1)
+		values(#{boardTypeNo}, 1, #{title}, #{contents}, now(), 1)
 	</insert>
 	
 	<update id="update" parameterType="Board">
