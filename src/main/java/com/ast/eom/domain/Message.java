@@ -4,29 +4,23 @@ import java.sql.Date;
 
 public class Message {
   private int messageNo;
-  private Member sender;
-  private Member receiver;
   private String messageContents;
   private Date sendDate;
-  private Date readDate;
+  private boolean isRead;
   
+  private Member sender;
+  private Member receiver;
+  
+  @Override
+  public String toString() {
+    return "Message [messageNo=" + messageNo + ", messageContents=" + messageContents + ", sendDate=" + sendDate
+        + ", isRead=" + isRead + ", sender=" + sender + ", receiver=" + receiver + "]";
+  }
   public int getMessageNo() {
     return messageNo;
   }
   public void setMessageNo(int messageNo) {
     this.messageNo = messageNo;
-  }
-  public Member getSender() {
-    return sender;
-  }
-  public void setSender(Member sender) {
-    this.sender = sender;
-  }
-  public Member getReceiver() {
-    return receiver;
-  }
-  public void setReceiver(Member receiver) {
-    this.receiver = receiver;
   }
   public String getMessageContents() {
     return messageContents;
@@ -40,10 +34,22 @@ public class Message {
   public void setSendDate(Date sendDate) {
     this.sendDate = sendDate;
   }
-  public Date getReadDate() {
-    return readDate;
+  public boolean isRead() {
+    return isRead;
   }
-  public void setReadDate(Date readDate) {
-    this.readDate = readDate;
+  public void setRead(boolean isRead) {
+    this.isRead = isRead;
+  }
+  public Member getSender() {
+    return sender;
+  }
+  public void setSender(Member sender) {
+    this.sender = sender;
+  }
+  public Member getReceiver() {
+    return receiver;
+  }
+  public void setReceiver(Member receiver) {
+    this.receiver = receiver;
   }
 }
