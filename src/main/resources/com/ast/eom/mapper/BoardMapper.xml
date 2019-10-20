@@ -7,16 +7,20 @@
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
 	<resultMap type="Board" id="BoardMap">
 		<id column="board_no" property="boardNo" />
-		<result column="board_type_no" property="typeNo" />
-		<result column="mem_no" property="memberNo" />
 		<result column="titl" property="title" />
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
 		<result column="vw_cnt" property="viewCount" />
 		<collection resultMap="MemberMap" property="member" />
+    <collection resultMap="BoardTypeMap" property="boardType" />
 	</resultMap>
 	
-	<resultMap type="Member" id="MemberMap">
+	<resultMap type="BoardType" id="BoardTypeMap">
+    <id column="board_type_no" property="boardTypeNo" />
+    <result column="board_name" property="boardName" />
+  </resultMap>
+  
+  <resultMap type="Member" id="MemberMap">
     <id column="mem_no" property="no" />
     <result column="reg_date" property="registeredDate" />
     <result column="mem_type_no" property="typeNo" />
@@ -61,7 +65,7 @@
 
 	<insert id="insert" parameterType="Board">
 		insert into board(board_type_no, mem_no, titl, conts, cdt, vw_cnt)
-		values(#{typeNo}, 1, #{title}, #{contents}, now(), 1)
+		values(#{boardType}, 1, #{title}, #{contents}, now(), 1)
 	</insert>
 	
 	<update id="update" parameterType="Board">

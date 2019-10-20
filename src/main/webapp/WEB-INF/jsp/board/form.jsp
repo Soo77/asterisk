@@ -16,7 +16,7 @@
 
 <form action='add' method='post'>
   제목 : <input type='text' name='title' value='${board.title}'><br>
-<select name="typeNo">
+<select name="boardType">
   <option value='2'>공부상담</option>
   <option value='3'>입시상담</option>
   <option value='4'>문제풀이</option>
