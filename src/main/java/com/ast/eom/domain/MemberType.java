@@ -4,6 +4,10 @@ public class MemberType {
   private int no;
   private String memberType;
   
+  @Override
+  public String toString() {
+    return "MemberType [no=" + no + ", memberType=" + memberType + "]";
+  }
   public int getNo() {
     return no;
   }
@@ -16,6 +20,4 @@ public class MemberType {
   public void setMemberType(String memberType) {
     this.memberType = memberType;
   }
-  
-  
 }

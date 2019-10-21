@@ -7,15 +7,17 @@ public class Notice {
   
   private int noticeNo;
   private String title;
-  private int viewCount;
+  private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
-  private String contents;
+  private int viewCount;
+  
+  private Member member;
   
   @Override
   public String toString() {
-    return "Notice [noticeNo=" + noticeNo + ", title=" + title + ", viewCount=" + viewCount
-        + ", createdDate=" + createdDate + ", contents=" + contents + "]";
+    return "Notice [noticeNo=" + noticeNo + ", title=" + title + ", contents=" + contents + ", createdDate="
+        + createdDate + ", viewCount=" + viewCount + ", member=" + member + "]";
   }
   public int getNoticeNo() {
     return noticeNo;
@@ -29,11 +31,11 @@ public class Notice {
   public void setTitle(String title) {
     this.title = title;
   }
-  public int getViewCount() {
-    return viewCount;
+  public String getContents() {
+    return contents;
   }
-  public void setViewCount(int viewCount) {
-    this.viewCount = viewCount;
+  public void setContents(String contents) {
+    this.contents = contents;
   }
   public Date getCreatedDate() {
     return createdDate;
@@ -41,11 +43,16 @@ public class Notice {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
-  public String getContents() {
-    return contents;
+  public int getViewCount() {
+    return viewCount;
   }
-  public void setContents(String contents) {
-    this.contents = contents;
+  public void setViewCount(int viewCount) {
+    this.viewCount = viewCount;
   }
-  
+  public Member getMember() {
+    return member;
+  }
+  public void setMember(Member member) {
+    this.member = member;
+  }
 }
