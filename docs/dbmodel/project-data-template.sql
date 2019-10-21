@@ -1,4 +1,4 @@
--- 회원유형 
+-- 회원유형  
 INSERT INTO member_type(mem_type_name)
 VALUES ('student');
 INSERT INTO member_type(mem_type_name)
@@ -189,7 +189,7 @@ VALUES (2, 2, 2, "World's best English lesson", 350000, '2019-2-2', '2019-3-3');
 INSERT INTO lesson(tch_no, std_no, sub_no, lesson_desc, lesson_fee, sdt, edt)
 VALUES (3, 3, 3, "World's best Mathematics lesson", 400000, '2019-3-3', '2019-4-4');
 
--- 일별수업 (FK: lesson_no)
+-- 일별수업! (FK: lesson_no)
 INSERT INTO day_lesson(lesson_no, lesson_date, lesson_start_hr, lesson_end_hr, lesson_summ, lesson_eval)
 VALUES (1, now(), 17, 18, 'Beauty of Korean', "Horrible");
 INSERT INTO day_lesson(lesson_no, lesson_date, lesson_start_hr, lesson_end_hr, lesson_summ, lesson_eval)
