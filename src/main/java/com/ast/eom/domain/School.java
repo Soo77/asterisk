@@ -4,45 +4,35 @@ import java.sql.Date;
 
 public class School {
   private int schoolNo;
-  private Teacher teacher;
-  private String schoolType;
   private String schoolName;
-  private String major;
   private String certificate;
   private boolean isGraduated;
   private Date modifiedDate;
+  private String major;
   private boolean isConfirmed;
   private Date graduatedDate;
   
+  private Teacher teacher;
+  private SchoolType schoolType;
+  
+  @Override
+  public String toString() {
+    return "School [schoolNo=" + schoolNo + ", schoolName=" + schoolName + ", certificate=" + certificate
+        + ", isGraduated=" + isGraduated + ", modifiedDate=" + modifiedDate + ", major=" + major + ", isConfirmed="
+        + isConfirmed + ", graduatedDate=" + graduatedDate + ", teacher=" + teacher + ", schoolType=" + schoolType
+        + "]";
+  }
   public int getSchoolNo() {
     return schoolNo;
   }
   public void setSchoolNo(int schoolNo) {
     this.schoolNo = schoolNo;
   }
-  public Teacher getTeacher() {
-    return teacher;
-  }
-  public void setTeacher(Teacher teacher) {
-    this.teacher = teacher;
-  }
-  public String getSchoolType() {
-    return schoolType;
-  }
-  public void setSchoolType(String schoolType) {
-    this.schoolType = schoolType;
-  }
   public String getSchoolName() {
     return schoolName;
   }
   public void setSchoolName(String schoolName) {
     this.schoolName = schoolName;
-  }
-  public String getMajor() {
-    return major;
-  }
-  public void setMajor(String major) {
-    this.major = major;
   }
   public String getCertificate() {
     return certificate;
@@ -62,6 +52,12 @@ public class School {
   public void setModifiedDate(Date modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
+  public String getMajor() {
+    return major;
+  }
+  public void setMajor(String major) {
+    this.major = major;
+  }
   public boolean isConfirmed() {
     return isConfirmed;
   }
@@ -74,6 +70,16 @@ public class School {
   public void setGraduatedDate(Date graduatedDate) {
     this.graduatedDate = graduatedDate;
   }
-  
-  
+  public Teacher getTeacher() {
+    return teacher;
+  }
+  public void setTeacher(Teacher teacher) {
+    this.teacher = teacher;
+  }
+  public SchoolType getSchoolType() {
+    return schoolType;
+  }
+  public void setSchoolType(SchoolType schoolType) {
+    this.schoolType = schoolType;
+  }
 }

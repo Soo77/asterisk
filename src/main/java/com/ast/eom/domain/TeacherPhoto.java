@@ -2,9 +2,15 @@ package com.ast.eom.domain;
 
 public class TeacherPhoto {
   private int teacherPhotoNo;
+
   private Teacher teacher;
-  private String teacherPhoto;
+  private TeacherPhoto teacherPhoto;
   
+  @Override
+  public String toString() {
+    return "TeacherPhoto [teacherPhotoNo=" + teacherPhotoNo + ", teacher=" + teacher + ", teacherPhoto=" + teacherPhoto
+        + "]";
+  }
   public int getTeacherPhotoNo() {
     return teacherPhotoNo;
   }
@@ -17,11 +23,10 @@ public class TeacherPhoto {
   public void setTeacher(Teacher teacher) {
     this.teacher = teacher;
   }
-  public String getTeacherPhoto() {
+  public TeacherPhoto getTeacherPhoto() {
     return teacherPhoto;
   }
-  public void setTeacherPhoto(String teacherPhoto) {
+  public void setTeacherPhoto(TeacherPhoto teacherPhoto) {
     this.teacherPhoto = teacherPhoto;
   }
-  
 }

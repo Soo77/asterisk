@@ -2,19 +2,22 @@ package com.ast.eom.domain;
 
 public class Parents {
   private int parentsNo;
-  private boolean wantKakaotalk;
+  private boolean kakaotalk;
   
+  @Override
+  public String toString() {
+    return "Parents [parentsNo=" + parentsNo + ", kakaotalk=" + kakaotalk + "]";
+  }
   public int getParentsNo() {
     return parentsNo;
   }
   public void setParentsNo(int parentsNo) {
     this.parentsNo = parentsNo;
   }
-  public boolean isWantKakaotalk() {
-    return wantKakaotalk;
+  public boolean isKakaotalk() {
+    return kakaotalk;
   }
-  public void setWantKakaotalk(boolean wantKakaotalk) {
-    this.wantKakaotalk = wantKakaotalk;
+  public void setKakaotalk(boolean kakaotalk) {
+    this.kakaotalk = kakaotalk;
   }
-  
 }

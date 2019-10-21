@@ -9,6 +9,12 @@ public class Teacher {
   private boolean approvementState;
   private String videoAddress;
   
+  @Override
+  public String toString() {
+    return "Teacher [teacherNo=" + teacherNo + ", accountNo=" + accountNo + ", bankNo=" + bankNo
+        + ", lessonCertificate=" + lessonCertificate + ", teacherIntro=" + teacherIntro + ", approvementState="
+        + approvementState + ", videoAddress=" + videoAddress + "]";
+  }
   public int getTeacherNo() {
     return teacherNo;
   }
@@ -51,5 +57,4 @@ public class Teacher {
   public void setVideoAddress(String videoAddress) {
     this.videoAddress = videoAddress;
   }
-  
 }

@@ -4,13 +4,13 @@ public class BoardFile {
 
   private int fileNo;
   private String fileName;
+  
   private Board board;
   private Notice notice;
   
   @Override
   public String toString() {
-    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", board=" + board
-        + ", notice=" + notice + "]";
+    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", board=" + board + ", notice=" + notice + "]";
   }
   public int getFileNo() {
     return fileNo;
@@ -36,5 +36,4 @@ public class BoardFile {
   public void setNotice(Notice notice) {
     this.notice = notice;
   }
-  
 }
