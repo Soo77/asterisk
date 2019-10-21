@@ -11,11 +11,11 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
 		<result column="vw_cnt" property="viewCount" />
-    <collection resultMap="BoardTypeNoMap" property="boardType" />
+    <collection resultMap="BoardTypeMap" property="boardType" />
 		<collection resultMap="MemberMap" property="member" />
 	</resultMap>
   
-	<resultMap type="BoardType" id="BoardTypeNoMap">
+  <resultMap type="BoardType" id="BoartTypeMap">
     <id column="board_type_no" property="boardTypeNo" />
     <result column="board_name" property="boardName" />
   </resultMap>
@@ -57,7 +57,7 @@
 
 	<insert id="insert" parameterType="Board">
 		insert into board(board_type_no, mem_no, titl, conts, cdt, vw_cnt)
-		values(#{boardTypeNo}, 1, #{title}, #{contents}, now(), 1)
+		values(#{boardType.boardTypeNo}, 1, #{title}, #{contents}, now(), 1)
 	</insert>
 	
 	<update id="update" parameterType="Board">

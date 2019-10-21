@@ -1,6 +1,7 @@
 package com.ast.eom.domain;
 
 import java.sql.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Board {
@@ -12,6 +13,7 @@ public class Board {
   private Date createdDate;
   private int viewCount;
   
+  @Autowired
   private BoardType boardType;
   private Member member;
   

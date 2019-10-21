@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ast.eom.domain.Board;
+import com.ast.eom.domain.BoardType;
 import com.ast.eom.service.BoardService;
 
 @Controller
@@ -23,7 +24,9 @@ public class BoardController {
   }
   
   @PostMapping("add")
-  public String add(Board board) throws Exception {
+  public String add(Board board, BoardType boardType) throws Exception {
+    board.setBoardType(boardType);
+    
     boardService.insert(board);
     return "redirect:list";
   }
