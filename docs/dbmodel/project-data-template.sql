@@ -1,11 +1,11 @@
 -- 회원유형 
-INSERT INTO member_type(mem_type)
+INSERT INTO member_type(mem_type_name)
 VALUES ('student');
-INSERT INTO member_type(mem_type)
+INSERT INTO member_type(mem_type_name)
 VALUES ('parents');
-INSERT INTO member_type(mem_type)
+INSERT INTO member_type(mem_type_name)
 VALUES ('teacher');
-INSERT INTO member_type(mem_type)
+INSERT INTO member_type(mem_type_name)
 VALUES ('admin');
 
 -- 학교유형
