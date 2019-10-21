@@ -13,7 +13,7 @@
 <div id='content'>
 <h1>공부상담 글쓰기</h1>
 
-<form action='add' method='post'>
+<form action='add' method=post>
   제목 : <input type='text' name='title'><br>
 <select name="boardTypeNo">
   <option value='2'>공부상담</option>
