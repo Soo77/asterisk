@@ -43,8 +43,8 @@ public class DefaultBoardService implements BoardService {
   }
 
   @Override
-  public List<Board> list(int boardType) throws Exception {
-    return boardDao.findAll(boardType);
+  public List<Board> list(int boardTypeNo) throws Exception {
+    return boardDao.findAll(boardTypeNo);
   }
 
   @Override

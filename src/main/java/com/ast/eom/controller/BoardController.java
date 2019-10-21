@@ -24,16 +24,14 @@ public class BoardController {
   }
   
   @PostMapping("add")
-  public String add(Board board, BoardType boardType) throws Exception {
-    board.setBoardType(boardType);
-    
-    boardService.insert(board);
-    return "redirect:list";
+  public String add(BoardType boardType, Board board) throws Exception {
+    System.out.println(boardType.getBoardTypeNo());
+    return "redirect:list?boardTypeNo=" + boardType.getBoardTypeNo();
   }
   
   @GetMapping("list")
-  public void list(Model model, int boardType) throws Exception {
-    List<Board> boards = boardService.list(boardType);
+  public void list(Model model, int boardTypeNo) throws Exception {
+    List<Board> boards = boardService.list(boardTypeNo);
     model.addAttribute("boards", boards);
   }
   

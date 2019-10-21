@@ -13,7 +13,6 @@ public class Board {
   private Date createdDate;
   private int viewCount;
   
-  @Autowired
   private BoardType boardType;
   private Member member;
   
