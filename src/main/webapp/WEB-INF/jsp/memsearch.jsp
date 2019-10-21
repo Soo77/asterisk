@@ -95,7 +95,7 @@
     
     <div class="tch-info">
       <p><a href='detail?no=${member.memberNo}'>${member.name}</a></p>
-      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.addressCity} ${member.addressSuburb} / ${teacher.approvementState} /${member.memberType.memberType}</p>
+      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.addressCity} ${member.addressSuburb} / ${member.teacher.approvementState} /${member.memberType.memberType}</p>
     </div>
     <hr>
   </div>

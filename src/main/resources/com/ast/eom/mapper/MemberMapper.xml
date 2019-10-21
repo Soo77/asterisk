@@ -19,9 +19,9 @@
 		<result column="tel" property="tel" />
 		<result column="profile_photo" property="profilePhoto" />
 		<collection resultMap="MemberTypeMap" property="memberType"></collection>
+		<collection resultMap="TeacherMap" property="teacher"></collection>
 		
 		<!-- 
-		<collection resultMap="TeacherMap" property="teacher"></collection>
 		<collection resultMap="StudentMap" property="student"></collection> -->
 	</resultMap>
 
@@ -63,7 +63,7 @@
 		  member_type mt
 		on
 		  m.mem_type_no = mt.mem_type_no 
-		inner join
+		left join
 		  teacher t
 		on
 		  m.mem_no = t.tch_no
