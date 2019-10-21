@@ -6,7 +6,7 @@
 
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
 	<resultMap type="Member" id="MemberMap">
-		<id column="mem_no" property="no" />
+		<id column="mem_no" property="memberNo" />
 		<result column="reg_date" property="registeredDate" />
 		<result column="gender" property="gender" />
 		<result column="dob" property="dateOfBirth" />
@@ -14,12 +14,15 @@
 		<result column="email" property="email" />
 		<result column="name" property="name" />
 		<result column="pwd" property="password" />
-		<result column="addr" property="address" />
+		<result column="addr_city" property="addressCity" />
+		<result column="addr_sub" property="addressSuburb" />
 		<result column="tel" property="tel" />
 		<result column="profile_photo" property="profilePhoto" />
 		<collection resultMap="MemberTypeMap" property="memberType"></collection>
+		
+		<!-- 
 		<collection resultMap="TeacherMap" property="teacher"></collection>
-		<collection resultMap="StudentMap" property="student"></collection>
+		<collection resultMap="StudentMap" property="student"></collection> -->
 	</resultMap>
 
 	<resultMap type="MemberType" id="MemberTypeMap">
@@ -27,7 +30,7 @@
 		<result column="mem_type" property="memberType" />
 	</resultMap>
 	
-	<resultMap type="Teacher" id="TeacherMap">
+	 <resultMap type="Teacher" id="TeacherMap">
 		<id column="tch_no" property="teacherNo"/>
 		<result column="acc_no" property="accountNo"/>
 		<result column="bank_name" property="bankNo"/>
@@ -36,6 +39,8 @@
 		<result column="appr_stat" property="approvementState"/>
 		<result column="vid_addr" property="videoAddress"/>
 	</resultMap>
+	
+	<!--
 	
 	<resultMap type="Student" id="StudentMap">
 		<id column="stu_no" property="studentNo"/>
@@ -46,7 +51,7 @@
 	<resultMap type="Parents" id="ParentsMap">
 		<id column="parents_no" property="parentsNo" />
 		<result column="kakaotalk" property="wantKakaotalk" />
-	</resultMap>
+	</resultMap> -->
 	
 
 	<select id="findAll" resultMap="MemberMap">
@@ -57,24 +62,25 @@
 		inner join 
 		  member_type mt
 		on
-		  m.mem_type_no = mt.mem_type_no
-	</select>
-	
-	<select id="findBy" parameterType="int" resultMap="MemberMap">
-		select
-		  *
-		from
-		  member m
-		inner join 
-		  member_type mt
-		on
-		  m.mem_type_no = mt.mem_type_no
+		  m.mem_type_no = mt.mem_type_no 
 		inner join
 		  teacher t
 		on
-		  t.tch_no = m.mem_no  
-		where m.mem_no=#{ddd}
+		  m.mem_no = t.tch_no
 	</select>
+	
+<!-- 	<select id="findBy" parameterType="int" resultMap="MemberMap">
+		select
+		  *
+		from
+		  member m, member_type mt, teacher t, student s
+		inner join 
+		  m.mem_type_no = mt.mem_type_no
+		and
+		  t.tch_no = m.mem_no
+		or
+		  s.sch_no = m.mem_no 
+	</select> -->
 	
 	
 	
