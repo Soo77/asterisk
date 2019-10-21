@@ -783,7 +783,7 @@ ALTER TABLE teacher_photo
 			tch_no -- 선생님번호
 		);
 
--- 커리큘럼수업내용
+-- 커리큘럼수업내용!
 ALTER TABLE curr_lesson_conts
 	ADD CONSTRAINT FK_curriculum_TO_curr_lesson_conts -- 커리큘럼 -> 커리큘럼수업내용
 		FOREIGN KEY (
