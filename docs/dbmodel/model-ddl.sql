@@ -455,7 +455,7 @@ ALTER TABLE teacher_photo
 -- 회원유형
 CREATE TABLE member_type (
 	mem_type_no INTEGER      NOT NULL, -- 회원구분번호
-	mem_type    VARCHAR(255) NOT NULL  -- 회원구분
+	mem_type_name    VARCHAR(255) NOT NULL  -- 회원구분
 );
 
 -- 회원유형
