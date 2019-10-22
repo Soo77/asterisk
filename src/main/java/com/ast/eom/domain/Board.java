@@ -1,7 +1,7 @@
 package com.ast.eom.domain;
 
 import java.sql.Date;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Board {
@@ -16,10 +16,20 @@ public class Board {
   private BoardType boardType;
   private Member member;
   
+  private List<BoardFile> files;
+  private List<Comment> comments;
+  
   @Override
   public String toString() {
-    return "Board [boardNo=" + boardNo + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", boardType=" + boardType + ", member=" + member + "]";
+    return "Board [boardNo=" + boardNo + ", title=" + title + ", contents=" + contents
+        + ", createdDate=" + createdDate + ", viewCount=" + viewCount + ", boardType=" + boardType
+        + ", member=" + member + ", files=" + files + ", comments=" + comments + "]";
+  }
+  public List<Comment> getComments() {
+    return comments;
+  }
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
   public int getBoardNo() {
     return boardNo;
@@ -62,5 +72,11 @@ public class Board {
   }
   public void setMember(Member member) {
     this.member = member;
+  }
+  public List<BoardFile> getFiles() {
+    return files;
+  }
+  public void setFiles(List<BoardFile> files) {
+    this.files = files;
   }
 }
