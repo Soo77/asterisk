@@ -25,7 +25,8 @@ public class BoardController {
   
   @PostMapping("add")
   public String add(BoardType boardType, Board board) throws Exception {
-    System.out.println(boardType.getBoardTypeNo());
+    board.setBoardType(boardType);
+    boardService.insert(board);
     return "redirect:list?boardTypeNo=" + boardType.getBoardTypeNo();
   }
   
@@ -37,20 +38,28 @@ public class BoardController {
   
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
+    Board board = boardService.getWithIncreaseViewCount(no);
+    model.addAttribute("board", board);
+  }
+  
+  @GetMapping("detailedit")
+  public void detailedit(Model model, int no) throws Exception {
     Board board = boardService.get(no);
     model.addAttribute("board", board);
   }
   
   @PostMapping("update")
-  public String update(Board board) throws Exception {
+  public String update(BoardType boardType, Board board) throws Exception {
+    board.setBoardType(boardType);
     boardService.update(board);
-    return "redirect:list";
+    return "redirect:list?boardTypeNo=" + boardType.getBoardTypeNo();
   }
   
   @GetMapping("delete")
   public String delete(int no) throws Exception {
+    Board board = boardService.get(no);
     boardService.delete(no);
-    return "redirect:list";
+    return "redirect:list?boardTypeNo=" + board.getBoardType().getBoardTypeNo();
   }
   
 }

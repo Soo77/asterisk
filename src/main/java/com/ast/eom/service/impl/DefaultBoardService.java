@@ -33,12 +33,21 @@ public class DefaultBoardService implements BoardService {
   }
 
   @Override
-  public Board get(int no) throws Exception {
+  public Board getWithIncreaseViewCount(int no) throws Exception {
     Board board = boardDao.findBy(no);
     if (board == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
     } 
     boardDao.increaseViewCount(no);
+    return board;
+  }
+  
+  @Override
+  public Board get(int no) throws Exception {
+    Board board = boardDao.findBy(no);
+    if (board == null) {
+      throw new Exception("해당 번호의 데이터가 없습니다!");
+    } 
     return board;
   }
 

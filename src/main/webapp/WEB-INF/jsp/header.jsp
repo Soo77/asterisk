@@ -3,11 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
   <select id="optionValue" name="typeNo">
-    <option selected value=0>게시판
-    <option value=1>공지사항
-    <option value=2>공부상담
-    <option value=3>입시상담
-    <option value=4>문제풀이
+    <option value=0>게시판
+    <option value=1>공부상담
+    <option value=2>입시상담
+    <option value=3>문제풀이
   </select>
   
   <script>
@@ -15,14 +14,12 @@
     
     s.addEventListener('change', function() {
       if (s.options[s.selectedIndex].value == 1) {
-        location.href='http://localhost:8888/app/board/list?boardTypeNo=1';
+        location.href='list?boardTypeNo=1';
       } else if (s.options[s.selectedIndex].value == 2) {
-        location.href='http://localhost:8888/app/board/list?boardTypeNo=2';
+        location.href='list?boardTypeNo=2';
       } else if (s.options[s.selectedIndex].value == 3) {
-        location.href='http://localhost:8888/app/board/list?boardTypeNo=3';
-      } else if (s.options[s.selectedIndex].value == 4) {
-        location.href='http://localhost:8888/app/board/list?boardTypeNo=4';
-      }
+        location.href='list?boardTypeNo=3';
+      } 
     });
     
   </script>

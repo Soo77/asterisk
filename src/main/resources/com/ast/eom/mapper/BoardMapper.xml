@@ -5,7 +5,7 @@
 <mapper namespace="com.ast.eom.dao.BoardDao">
 
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
-    <resultMap type="Board" id="BoardMap">
+  <resultMap type="Board" id="BoardMap">
 		<id column="board_no" property="boardNo" />
     <result column="titl" property="title" />
     <result column="conts" property="contents" />
@@ -15,7 +15,25 @@
 		<collection resultMap="MemberMap" property="member" />
 	</resultMap>
   
-   <resultMap type="BoardType" id="BoardTypeMap">
+  <resultMap type="Board" id="BoardWithFilesMap">
+    <id column="board_no" property="boardNo" />
+    <result column="titl" property="title" />
+    <result column="conts" property="contents" />
+    <result column="cdt" property="createdDate" />
+		<result column="vw_cnt" property="viewCount" />
+    <collection resultMap="BoardTypeMap" property="boardType" />
+		<collection resultMap="MemberMap" property="member" />
+    
+    <!-- 자식 테이블의 데이터와 PhotoFile 객체 연결 -->
+    <collection property="files" ofType="BoardFile">
+      <id column="file_no" property="fileNo"/>
+      <result column="file_name" property="fileName"/>
+      <collection resultMap="BoardMap" property="board"/>
+      <collection resultMap="Notice" property="notice"/>
+    </collection>
+  </resultMap>
+  
+  <resultMap type="BoardType" id="BoardTypeMap">
     <id column="board_type_no" property="boardTypeNo" />
     <result column="board_name" property="boardName" />
   </resultMap>
@@ -43,9 +61,9 @@
 	</select>
   
   <select id="findBy" parameterType="int" resultMap="BoardMap">
-    select b.board_no, b.titl, m.name, b.cdt, b.vw_cnt, b.conts
+    select b.board_no, b.titl, m.name, b.cdt, b.vw_cnt, b.conts, b.board_type_no
     from board b
-    join member m on b.mem_no = m.mem_no
+    inner join member m on b.mem_no = m.mem_no
     where b.board_no=#{haha}
   </select>
 	 
@@ -56,8 +74,8 @@
   </update>
   
 	<insert id="insert" parameterType="Board">
-		insert into board(board_type_no, mem_no, titl, conts, cdt, vw_cnt)
-		values(${boardType.boardTypeNo}, 1, #{title}, #{contents}, now(), 1)
+		insert into board(board_type_no, mem_no, titl, conts, cdt)
+		values(${boardType.boardTypeNo}, 1, #{title}, #{contents}, now())
 	</insert>
   
 	<update id="update" parameterType="Board">
