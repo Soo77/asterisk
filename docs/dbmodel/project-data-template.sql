@@ -20,7 +20,7 @@ VALUES ('university');
 INSERT INTO school_type(sch_type)
 VALUES ('college');
 
--- 회원 (FK: mem_type_no)
+-- 회원 (FK: mem_type_name_no)
 INSERT INTO member(mem_type_no, reg_date, gender, dob, id, email, name, pwd, addr_city, addr_sub, tel, profile_photo)
 VALUES(1, now(), 'M', '2019-01-01', 'hong11', 'hong@test.com', 'hong', password('1111'), 'Seoul', 'Seocho', '1111-2222', 'a.gif');
 INSERT INTO member(mem_type_no, reg_date, gender, dob, id, email, name, pwd, addr_city, addr_sub, tel, profile_photo)
