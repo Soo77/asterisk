@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import com.ast.eom.domain.Board;
+import com.ast.eom.domain.BoardFile;
 import com.ast.eom.domain.BoardType;
 import com.ast.eom.service.BoardService;
 
@@ -15,8 +17,8 @@ import com.ast.eom.service.BoardService;
 @RequestMapping("/board")
 public class BoardController {
   
-  @Resource
-  private BoardService boardService;
+  @Resource private FileWriter fileWriter;
+  @Resource private BoardService boardService;
   
   @GetMapping("form")
   public void form() {
@@ -24,9 +26,13 @@ public class BoardController {
   }
   
   @PostMapping("add")
-  public String add(BoardType boardType, Board board) throws Exception {
+  public String add(
+      BoardType boardType,
+      Board board,
+      MultipartFile[] fileName) throws Exception {
+    List<BoardFile> files = fileWriter.getFiles(board, fileName);
     board.setBoardType(boardType);
-    boardService.insert(board);
+    boardService.insert(board, files);
     return "redirect:list?boardTypeNo=" + boardType.getBoardTypeNo();
   }
   

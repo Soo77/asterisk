@@ -13,27 +13,19 @@
 
 <div id='content'>
 <h1>게시판</h1>
-
+<form action='update' method='post'>
+<input type='hidden' name='boardTypeNo' value='${board.boardType.boardTypeNo}'>
 번호 : <input type='text' name='boardNo' value='${board.boardNo}' readonly><br>
-제목 : <input type='text' name='title' value='${board.title}' readonly><br>
+제목 : <input type='text' name='title' value='${board.title}' ><br>
 작성자 : <input type='text' name='name' value='${board.member.name}' readonly><br>
 작성일 : <input type='text' name='createdDate' value='${board.createdDate}' readonly><br>
-조회 : <input type='text' name='viewCount' value='${board.viewCount}' readonly><br>
+조회 : <input type='text' name='viewCount' value='${board.viewCount}'readonly ><br>
 내용 : <textarea name='contents' rows='5'
-            cols='50' readonly>${board.contents}</textarea><br>
-            
-<p>
-<c:forEach items="${Board.files}" var="file">
-  <img src='/upload/board/${BoardFile.fileName}' class='photo2'> 
-</c:forEach>
-</p>
-<c:forEach begin="1" end="6">
-  사진: <input type='file' name='fileName'><br>
-</c:forEach>
+            cols='50'>${board.contents}</textarea><br>
+<button>수정</button>
+<a href='delete?no=${board.boardNo}'>삭제</a>
 
-<a href='list?boardTypeNo=${board.boardType.boardTypeNo}'>글목록</a>
-<a href='detailedit?no=${board.boardNo}'> 수정</a>
-
+</form>
 </div>
 
 <jsp:include page="../footer.jsp"/>
