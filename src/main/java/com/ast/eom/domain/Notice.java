@@ -14,21 +14,15 @@ public class Notice {
   private int viewCount;
   
   private Member member;
-  
-  private List<BoardFile> files;
+
   
   @Override
   public String toString() {
     return "Notice [noticeNo=" + noticeNo + ", title=" + title + ", contents=" + contents
         + ", createdDate=" + createdDate + ", viewCount=" + viewCount + ", member=" + member
-        + ", files=" + files + "]";
+        ;
   }
-  public List<BoardFile> getFiles() {
-    return files;
-  }
-  public void setFiles(List<BoardFile> files) {
-    this.files = files;
-  }
+
   public int getNoticeNo() {
     return noticeNo;
   }

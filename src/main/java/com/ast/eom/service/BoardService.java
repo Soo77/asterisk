@@ -11,7 +11,7 @@ import com.ast.eom.domain.BoardFile;
 //
 public interface BoardService {
   List<Board> list(int boardType) throws Exception;
-  Board getWithIncreaseViewCount(int no) throws Exception;
+  List<BoardFile> getWithIncreaseViewCount(int no) throws Exception;
   Board get(int no) throws Exception;
   void insert(Board board, List<BoardFile> boardFile) throws Exception;
   void update(Board board) throws Exception;

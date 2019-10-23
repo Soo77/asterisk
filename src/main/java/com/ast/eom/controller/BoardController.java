@@ -44,8 +44,8 @@ public class BoardController {
   
   @GetMapping("detail")
   public void detail(Model model, int no) throws Exception {
-    Board board = boardService.getWithIncreaseViewCount(no);
-    model.addAttribute("board", board);
+    List<BoardFile> boardFileList = boardService.getWithIncreaseViewCount(no);
+    model.addAttribute("boardFileList", boardFileList);
   }
   
   @GetMapping("detailedit")

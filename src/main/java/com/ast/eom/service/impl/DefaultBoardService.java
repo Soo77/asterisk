@@ -1,5 +1,6 @@
 package com.ast.eom.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,13 +50,14 @@ public class DefaultBoardService implements BoardService {
   }
 
   @Override
-  public Board getWithIncreaseViewCount(int no) throws Exception {
+  public List<BoardFile> getWithIncreaseViewCount(int no) throws Exception {
     Board board = boardDao.findWithFilesBy(no);
     if (board == null) {
       throw new Exception("해당 번호의 데이터가 없습니다!");
-    } 
+    }
+    List<BoardFile> boardFileList = boardFileDao.findAll(no);
     boardDao.increaseViewCount(no);
-    return board;
+    return boardFileList;
   }
   
   @Override
