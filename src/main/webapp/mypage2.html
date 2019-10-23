@@ -6,20 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mypage2</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
 
   <style>
     .container {
       border: 1px solid powderblue;
     }
+
+    #modificationDiv {
+      text-align: right;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
 
+  <div class="container">
     <p class="h3">
       회원정보
     </p>
@@ -29,6 +36,7 @@
         <label for="inputId">아이디</label>
         <input type="text" class="form-control" id="inputId" placeholder="hong111" readonly>
       </div>
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputPassword">비밀번호</label>
@@ -40,7 +48,6 @@
         </div>
       </div>
 
-
       <div class="form-row align-items-end">
         <div class="col">
           <label for="inlineFormInput">이메일</label>
@@ -51,45 +58,16 @@
             <div class="input-group-prepend">
               <div class="input-group-text">@</div>
             </div>
+
             <input type="text" class="form-control" id="inlineFormInputGroup" value="test.com">
           </div>
         </div>
       </div>
 
-      <div class="form-row align-items-end">
-        <div class="col">
-          <label for="dateOfBirthInput">생년월일</label>
-          <input type="text" class="form-control mb-2" id="inlineFormInput" value="hong">
-        </div>
-        <div class="col">
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">@</div>
-            </div>
-            <input type="text" class="form-control" id="inlineFormInputGroup" value="test.com">
-          </div>
-        </div>
+      <div class="form-group">
+        <label for="dateOfBirthInput">생년월일</label>
+        <input type="date" class="form-control" id="dateOfBirthInput" value='1970-01-01'>
       </div>
-
-
-      <label for="dateOfBirthInput">생년월일</label>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">2019</button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div role="separator" class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </div>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
-      </div>
-
-
-
 
       <div class="form-group">
         <label for="inputAddress">주소</label>
@@ -101,37 +79,99 @@
           </div>
         </div>
       </div>
+
       <div class="form-group">
         <label for="inputAddress2">상세주소</label>
         <input type="text" class="form-control" id="inputAddress2" readonly>
       </div>
+
+      <div class="form-group">
+        <label for="inputAddress2">전화번호</label>
+        <input type="text" class="form-control" id="inputAddress2" value="010-1234-5678">
+      </div>
+
       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputCity">City</label>
-          <input type="text" class="form-control" id="inputCity">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputState">State</label>
+        <div class="form-group col-md">
+          <label for="inputState">은행명</label>
           <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
+            <option selected>은행선택</option>
+            <option>국민은행</option>
+            <option>우리은행</option>
+            <option>신한은행</option>
           </select>
         </div>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Zip</label>
-          <input type="text" class="form-control" id="inputZip">
+        <div class="form-group col-md">
+          <label for="inputCity">계좌번호</label>
+          <input type="text" class="form-control" id="inputCity" value="123-45-6789">
         </div>
       </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            Check me out
-          </label>
+
+      <div class="form-row">
+        <div class="form-group col-md">
+          <label for="inputState">고등학교</label>
+          <input type="text" class="form-control" id="inputCity" value="비트고등학교" readonly>
+        </div>
+        <div class="form-group col-md">
+          <label for="inputCity">대학교</label>
+          <input type="text" class="form-control" id="inputCity" value="비트대학교" readonly>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Sign in</button>
+
+      <div class="form-row align-items-center">
+        <div class="form-group col-md">
+          <label for="inputState">과외가능 요일</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkboxSunday" value="sunday">
+            <label class="form-check-label" for="checkboxSunday">일</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkboxMonday" value="monday">
+            <label class="form-check-label" for="checkboxMonday">월</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkboxTuesday" value="tuesday">
+            <label class="form-check-label" for="checkboxTuesday">화</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkboxWednesday" value="wednesday">
+            <label class="form-check-label" for="checkboxWednesday">수</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkboxThursday" value="thursday">
+            <label class="form-check-label" for="checkboxThursday">목</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkboxFriday" value="friday">
+            <label class="form-check-label" for="checkboxFriday">금</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="checkboxSaturday" value="saturday">
+            <label class="form-check-label" for="checkboxSaturday">토</label>
+          </div>
+        </div>
+        
+        <div class="form-group col-md">
+            <label for="inputState">과외가능 시간</label>
+          <div class="d-inline-flex p-2 bd-highlight">
+            <input type='time' value='18:00' class="form-control" />
+          </div>
+          <div class="d-inline-flex p-2 bd-highlight">
+            ~
+          </div>
+          <div class="d-inline-flex p-2 bd-highlight">
+            <input type='time' value='20:00' class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div id="modificationDiv" class="form-row">
+        <div class="col">
+          <button id="modificationButton" type="submit" class="btn btn-success">수정</button>
+        </div>
+      </div>
     </form>
+  </div>
+
 
   </div>
 
@@ -140,10 +180,7 @@
 
 </body>
 
-<!-- 생년월일 자동 추가 -->
-<script>
 
-</script>
 
 <!-- 주소 찾기 버튼 -->
 <script>
