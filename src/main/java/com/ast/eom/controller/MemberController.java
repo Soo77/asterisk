@@ -10,20 +10,10 @@ import com.ast.eom.domain.Member;
 
 @Controller
 public class MemberController {
-
+  
   @Autowired
   MemberDao memberDao;
-
-  @RequestMapping("detail")
-  public String detail(Model model, int no) throws Exception {
-
-    Member member = new Member();
-    member = memberDao.findBy(no);
-    model.addAttribute("member", member);
-
-    return "memdetail";
-  }
-
+  
   @RequestMapping("search")
   public String search(Model model) throws Exception {
     List<Member> members = memberDao.findAll();
@@ -33,4 +23,14 @@ public class MemberController {
     model.addAttribute("members", members);
     return "memsearch";
   }
+  
+  @RequestMapping("detail")
+  public String detail(Model model, int no) throws Exception {
+    
+    Member member = memberDao.findBy(no);
+    model.addAttribute("member", member);
+    
+    return "memdetail";
+  }
+
 }

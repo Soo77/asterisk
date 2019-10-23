@@ -6,37 +6,25 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Board {
   
   private int boardNo;
-  private BoardType boardType;
-  private Member member;
   private String title;
   private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   private int viewCount;
   
+  private BoardType boardType;
+  private Member member;
+  
   @Override
   public String toString() {
-    return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", member=" + member
-        + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + "]";
+    return "Board [boardNo=" + boardNo + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
+        + ", viewCount=" + viewCount + ", boardType=" + boardType + ", member=" + member + "]";
   }
   public int getBoardNo() {
     return boardNo;
   }
   public void setBoardNo(int boardNo) {
     this.boardNo = boardNo;
-  }
-  public BoardType getBoardType() {
-    return boardType;
-  }
-  public void setBoardType(BoardType boardType) {
-    this.boardType = boardType;
-  }
-  public Member getMember() {
-    return member;
-  }
-  public void setMember(Member member) {
-    this.member = member;
   }
   public String getTitle() {
     return title;
@@ -62,5 +50,16 @@ public class Board {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
-  
+  public BoardType getBoardType() {
+    return boardType;
+  }
+  public void setBoardType(BoardType boardType) {
+    this.boardType = boardType;
+  }
+  public Member getMember() {
+    return member;
+  }
+  public void setMember(Member member) {
+    this.member = member;
+  }
 }

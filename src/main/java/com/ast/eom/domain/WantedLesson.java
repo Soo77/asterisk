@@ -4,16 +4,34 @@ import java.sql.Date;
 
 public class WantedLesson {
   private int wantedLessonNo;
-  private Student student;
-  private Subject subject;
-  private String requirement;
+  private String requirements;
   private Date registeredDate;
   
+  private Student student;
+  private Subject subject;
+  
+  @Override
+  public String toString() {
+    return "WantedLesson [wantedLessonNo=" + wantedLessonNo + ", requirements=" + requirements + ", registeredDate="
+        + registeredDate + ", student=" + student + ", subject=" + subject + "]";
+  }
   public int getWantedLessonNo() {
     return wantedLessonNo;
   }
   public void setWantedLessonNo(int wantedLessonNo) {
     this.wantedLessonNo = wantedLessonNo;
+  }
+  public String getRequirements() {
+    return requirements;
+  }
+  public void setRequirements(String requirements) {
+    this.requirements = requirements;
+  }
+  public Date getRegisteredDate() {
+    return registeredDate;
+  }
+  public void setRegisteredDate(Date registeredDate) {
+    this.registeredDate = registeredDate;
   }
   public Student getStudent() {
     return student;
@@ -27,17 +45,4 @@ public class WantedLesson {
   public void setSubject(Subject subject) {
     this.subject = subject;
   }
-  public String getRequirement() {
-    return requirement;
-  }
-  public void setRequirement(String requirement) {
-    this.requirement = requirement;
-  }
-  public Date getRegisteredDate() {
-    return registeredDate;
-  }
-  public void setRegisteredDate(Date registeredDate) {
-    this.registeredDate = registeredDate;
-  }
-  
 }

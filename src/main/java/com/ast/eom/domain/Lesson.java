@@ -4,9 +4,6 @@ import java.sql.Date;
 
 public class Lesson {
   private int lessonNo;
-  private Teacher teacher;
-  private Student student;
-  private Subject subject;
   private String lessonDescription;
   private int lessonFee;
   private int lessonState;
@@ -26,30 +23,27 @@ public class Lesson {
   private boolean refundState;
   private Date refundDate;
   private int refundAmount;
+
+  private Teacher teacher;
+  private Student student;
+  private Subject subject;
   
+  @Override
+  public String toString() {
+    return "Lesson [lessonNo=" + lessonNo + ", lessonDescription=" + lessonDescription + ", lessonFee=" + lessonFee
+        + ", lessonState=" + lessonState + ", studentLessonStop=" + studentLessonStop + ", teacherLessonStop="
+        + teacherLessonStop + ", startDate=" + startDate + ", endDate=" + endDate + ", teacherReview=" + teacherReview
+        + ", studentReview=" + studentReview + ", teacherEvaluation=" + teacherEvaluation + ", paymentMethod="
+        + paymentMethod + ", payDay=" + payDay + ", calculationDay=" + calculationDay + ", calculationState="
+        + calculationState + ", studentStopReason=" + studentStopReason + ", teacherStopReason=" + teacherStopReason
+        + ", refundState=" + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount
+        + ", teacher=" + teacher + ", student=" + student + ", subject=" + subject + "]";
+  }
   public int getLessonNo() {
     return lessonNo;
   }
   public void setLessonNo(int lessonNo) {
     this.lessonNo = lessonNo;
-  }
-  public Teacher getTeacher() {
-    return teacher;
-  }
-  public void setTeacher(Teacher teacher) {
-    this.teacher = teacher;
-  }
-  public Student getStudent() {
-    return student;
-  }
-  public void setStudent(Student student) {
-    this.student = student;
-  }
-  public Subject getSubject() {
-    return subject;
-  }
-  public void setSubject(Subject subject) {
-    this.subject = subject;
   }
   public String getLessonDescription() {
     return lessonDescription;
@@ -165,4 +159,24 @@ public class Lesson {
   public void setRefundAmount(int refundAmount) {
     this.refundAmount = refundAmount;
   }
+  public Teacher getTeacher() {
+    return teacher;
+  }
+  public void setTeacher(Teacher teacher) {
+    this.teacher = teacher;
+  }
+  public Student getStudent() {
+    return student;
+  }
+  public void setStudent(Student student) {
+    this.student = student;
+  }
+  public Subject getSubject() {
+    return subject;
+  }
+  public void setSubject(Subject subject) {
+    this.subject = subject;
+  }
+  
+  
 }
