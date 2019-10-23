@@ -1,11 +1,13 @@
 package com.ast.eom.domain;
 
 import java.sql.Date;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Notice {
   
   private int noticeNo;
+  private int memberNo;
   private String title;
   private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
@@ -13,11 +15,25 @@ public class Notice {
   private int viewCount;
   
   private Member member;
-  
+  private List<BoardFile> files;
+
   @Override
   public String toString() {
-    return "Notice [noticeNo=" + noticeNo + ", title=" + title + ", contents=" + contents + ", createdDate="
-        + createdDate + ", viewCount=" + viewCount + ", member=" + member + "]";
+    return "Notice [noticeNo=" + noticeNo + ", memberNo=" + memberNo + ", title=" + title
+        + ", contents=" + contents + ", createdDate=" + createdDate + ", viewCount=" + viewCount
+        + ", member=" + member + ", files=" + files + "]";
+  }
+  public int getMemberNo() {
+    return memberNo;
+  }
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
+  }
+  public List<BoardFile> getFiles() {
+    return files;
+  }
+  public void setFiles(List<BoardFile> files) {
+    this.files = files;
   }
   public int getNoticeNo() {
     return noticeNo;
