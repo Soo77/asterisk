@@ -13,23 +13,15 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
-    <collection resultMap="MemberMap" property="member" />
   </resultMap>
 
   <resultMap type="Board" id="BoardWithFilesMap">
     <id column="board_no" property="boardNo" />
     <result column="board_type_no" property="boardTypeNo" />
-    <result column="mem_no" property="memberNo" />
     <result column="titl" property="title" />
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
-
-    <!-- 회원 데이터를 Member 객체에 저장 -->
-    <association property="member" javaType="Member">
-      <id column="mem_no" property="memberNo" />
-      <result column="name" property="name" />
-    </association>
 
     <!-- 자식 테이블의 데이터와 PhotoFile 객체 연결 -->
     <collection property="files" ofType="BoardFile">
@@ -40,7 +32,7 @@
     </collection>
   </resultMap>
 
-  <resultMap type="Member" id="MemberMap">
+<!--   <resultMap type="Member" id="MemberMap">
     <id column="mem_no" property="memberNo" />
     <result column="reg_date" property="registeredDate" />
     <result column="gender" property="gender" />
@@ -53,7 +45,7 @@
     <result column="addr_sub" property="addressSuburb" />
     <result column="tel" property="tel" />
     <result column="profile_photo" property="profilePhoto" />
-  </resultMap>
+  </resultMap> -->
 <!--   
   <resultMap type="BoardType" id="BoardTypeMap">
     <id column="board_type_no" property="boardTypeNo" />
@@ -66,6 +58,13 @@
     <result column="mem_type_name" property="memberTypeName" />
   </resultMap>
    -->
+   
+<!--    <select id="findMemberName" parameterType="int" resultType="String">
+    select m.name
+    from board b
+    inner join member m on b.mem_no=m.mem_no
+    where b.board_no=#{ohora}
+   </select> -->
 
   <select id="findAll" parameterType="int" resultMap="BoardMap">
     select b.board_no, b.titl, m.name, b.vw_cnt, b.board_type_no

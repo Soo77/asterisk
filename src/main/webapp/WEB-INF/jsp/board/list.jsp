@@ -22,17 +22,16 @@
   <th>이름</th>
   <th>조회</th>
 </tr>
-
 <c:forEach items="${boards}" var="board">
   <tr>
     <td>${board.boardNo}</td>
     <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
-    <td>${board.member.name}</td>
+    <td>${member.name}</td>
     <td>${board.viewCount}</td>
   </tr>
 </c:forEach>
 </table>
-<a href='form'>글쓰기</a><br>
+<button onclick="location='form'">글쓰기</button>
 </div>
 
 <jsp:include page="../footer.jsp"/>

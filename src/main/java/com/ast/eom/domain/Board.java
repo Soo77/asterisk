@@ -8,14 +8,13 @@ public class Board {
   
   private int boardNo;
   private int boardTypeNo;
-  private int memberNo;
+  private int memberNo;  
   private String title;
   private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   private int viewCount;
   
-  private Member member;
   private List<BoardFile> files;
   private List<Comment> comments;
   
@@ -23,20 +22,19 @@ public class Board {
   public String toString() {
     return "Board [boardNo=" + boardNo + ", boardTypeNo=" + boardTypeNo + ", memberNo=" + memberNo
         + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", member=" + member + ", files=" + files + ", comments="
-        + comments + "]";
+        + ", viewCount=" + viewCount + ", files=" + files + ", comments=" + comments + "]";
+  }
+  public int getMemberNo() {
+    return memberNo;
+  }
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
   }
   public List<Comment> getComments() {
     return comments;
   }
   public void setComments(List<Comment> comments) {
     this.comments = comments;
-  }
-  public Member getMember() {
-    return member;
-  }
-  public void setMember(Member member) {
-    this.member = member;
   }
   public List<BoardFile> getFiles() {
     return files;
@@ -55,12 +53,6 @@ public class Board {
   }
   public void setBoardTypeNo(int boardTypeNo) {
     this.boardTypeNo = boardTypeNo;
-  }
-  public int getMemberNo() {
-    return memberNo;
-  }
-  public void setMemberNo(int memberNo) {
-    this.memberNo = memberNo;
   }
   public String getTitle() {
     return title;

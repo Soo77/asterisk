@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <div id='footer'>
   &copy; 2019
-  <span>비트캠프, 자바130기</span>
+  <span>엄과외</span>
 </div>

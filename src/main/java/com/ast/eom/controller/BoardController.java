@@ -1,6 +1,7 @@
 package com.ast.eom.controller;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,8 @@ public class BoardController {
   }
   
   @GetMapping("detail")
-  public void detail(Model model, int no) throws Exception {
+  public void detail(HttpSession session, Model model, int no) throws Exception {
+    session.setAttribute("memberNo", 1);
     Board board = boardService.getWithIncreaseViewCount(no);
     model.addAttribute("board", board);
   }
@@ -63,5 +65,11 @@ public class BoardController {
     boardService.delete(no);
     return "redirect:list?boardTypeNo=" + board.getBoardTypeNo();
   }
+  
+//  @GetMapping("ohora")
+//  @ResponseBody
+//  public String ohora(int no) {
+//    return no+"+111";
+//  }
   
 }
