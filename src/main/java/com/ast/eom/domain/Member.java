@@ -17,14 +17,12 @@ public class Member {
     private String tel;
     private String profilePhoto;
     
-    private MemberType memberType;
-    
     @Override
     public String toString() {
       return "Member [memberNo=" + memberNo + ", registeredDate=" + registeredDate + ", gender=" + gender
           + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name + ", password="
           + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel=" + tel
-          + ", profilePhoto=" + profilePhoto + ", memberType=" + memberType + "]";
+          + ", profilePhoto=" + profilePhoto + "]";
     }
     public int getMemberNo() {
       return memberNo;
@@ -97,12 +95,6 @@ public class Member {
     }
     public void setProfilePhoto(String profilePhoto) {
       this.profilePhoto = profilePhoto;
-    }
-    public MemberType getMemberType() {
-      return memberType;
-    }
-    public void setMemberType(MemberType memberType) {
-      this.memberType = memberType;
     }
     
 }

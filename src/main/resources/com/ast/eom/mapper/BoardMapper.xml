@@ -13,6 +13,7 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
+    <collection resultMap="MemberMap" property="member" />
   </resultMap>
 
   <resultMap type="Board" id="BoardWithFilesMap">
@@ -39,12 +40,6 @@
     </collection>
   </resultMap>
 
-<!--   
-  <resultMap type="BoardType" id="BoardTypeMap">
-    <id column="board_type_no" property="boardTypeNo" />
-    <result column="board_name" property="boardName" />
-  </resultMap>
-
   <resultMap type="Member" id="MemberMap">
     <id column="mem_no" property="memberNo" />
     <result column="reg_date" property="registeredDate" />
@@ -58,9 +53,13 @@
     <result column="addr_sub" property="addressSuburb" />
     <result column="tel" property="tel" />
     <result column="profile_photo" property="profilePhoto" />
-    <collection resultMap="MemberTypeMap"
-      property="memberType" />
   </resultMap>
+<!--   
+  <resultMap type="BoardType" id="BoardTypeMap">
+    <id column="board_type_no" property="boardTypeNo" />
+    <result column="board_name" property="boardName" />
+  </resultMap>
+
 
   <resultMap type="MemberType" id="MemberTypeMap">
     <id column="mem_type_no" property="memberTypeNo" />
@@ -71,7 +70,7 @@
   <select id="findAll" parameterType="int" resultMap="BoardMap">
     select b.board_no, b.titl, m.name, b.vw_cnt, b.board_type_no
     from board b
-    inner join member m on b.mem_no = m.mem_no
+    inner join member m on b.mem_no=m.mem_no
     where b.board_type_no = #{hello}
     order by b.cdt asc
   </select>
@@ -81,8 +80,7 @@
     b.board_no, b.titl, m.name, b.cdt, b.vw_cnt, b.conts,
     b.board_type_no
     from board b
-    inner join member m on b.mem_no =
-    m.mem_no
+    inner join member m on b.mem_no=m.mem_no
     where b.board_no=#{haha}
   </select>
 
@@ -96,11 +94,13 @@
     b.conts,
     b.cdt,
     b.vw_cnt,
+    m.name,
     f.file_no,
     f.file_name
     from
     board b
     left outer join board_file f on b.board_no=f.board_no
+    left outer join member m on b.mem_no=m.mem_no
     where
     b.board_no=#{value}
   </select>
@@ -114,7 +114,7 @@
   <insert id="insert" parameterType="Board"
     useGeneratedKeys="true" keyColumn="board_no" keyProperty="boardNo">
     insert into board(board_type_no, mem_no, titl, conts, cdt)
-    values(${boardType.boardTypeNo}, 1, #{title}, #{contents}, now())
+    values(${boardTypeNo}, 1, #{title}, #{contents}, now())
   </insert>
 
   <update id="update" parameterType="Board">

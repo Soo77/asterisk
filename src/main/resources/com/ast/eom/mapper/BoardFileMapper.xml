@@ -56,7 +56,7 @@
 		<collection resultMap="MemberMap" property="member" />
   </resultMap>
   
-<!--   <select id="findAll2" parameterType="int" resultMap="BoardFileMap">
+  <select id="findAll" parameterType="int" resultMap="BoardFileMap">
     select 
       file_no, 
       file_name, 
@@ -68,30 +68,17 @@
       board_no=#{value}
     order by 
       file_no asc
-  </select> -->
-  
-  <select id="findAll" parameterType="int" resultMap="BoardFileMap">
-  select
-      b.board_no,
-      b.board_type_no,
-      b.mem_no,
-      b.titl,
-      b.conts,
-      b.cdt,
-      b.vw_cnt,
-      f.file_no,
-      f.file_name
-    from 
-      board b
-        left outer join board_file f on b.board_no=f.board_no
-    where 
-      b.board_no=#{value}
-      </select>
+  </select>
   
   <insert id="insert" parameterType="map">
     insert into board_file(board_no, file_name)
-    values(#{board.boardNo},#{file.fileName})
+    values(#{boardNo},#{fileName})
   </insert>
+  
+  <delete id="deleteAll" parameterType="int">
+    delete from board_file
+    where board_no=#{value}
+  </delete>
   
 </mapper>
 
