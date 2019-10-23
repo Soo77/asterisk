@@ -1,16 +1,33 @@
 package com.ast.eom.domain;
 
+import java.util.List;
+
 public class BoardFile {
 
   private int fileNo;
   private String fileName;
+  private int boardNo;
+  private int noticeNo;
   
-  private Board board;
-  private Notice notice;
+  private List<Board> boards;
+  private List<Notice> notices;
   
   @Override
   public String toString() {
-    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", board=" + board + ", notice=" + notice + "]";
+    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", boardNo=" + boardNo
+        + ", noticeNo=" + noticeNo + ", boards=" + boards + ", notices=" + notices + "]";
+  }
+  public List<Board> getBoards() {
+    return boards;
+  }
+  public void setBoards(List<Board> boards) {
+    this.boards = boards;
+  }
+  public List<Notice> getNotices() {
+    return notices;
+  }
+  public void setNotices(List<Notice> notices) {
+    this.notices = notices;
   }
   public int getFileNo() {
     return fileNo;
@@ -24,16 +41,16 @@ public class BoardFile {
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
-  public Board getBoard() {
-    return board;
+  public int getBoardNo() {
+    return boardNo;
   }
-  public void setBoard(Board board) {
-    this.board = board;
+  public void setBoardNo(int boardNo) {
+    this.boardNo = boardNo;
   }
-  public Notice getNotice() {
-    return notice;
+  public int getNoticeNo() {
+    return noticeNo;
   }
-  public void setNotice(Notice notice) {
-    this.notice = notice;
+  public void setNoticeNo(int noticeNo) {
+    this.noticeNo = noticeNo;
   }
 }
