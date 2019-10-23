@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +11,12 @@
 </head>
 <body>
 
+<jsp:include page="../header.jsp"/>
+
 <div id='content'>
 <h1>글쓰기</h1>
 
-<form action='add' method=post>
+<form action='add' method=post enctype='multipart/form-data'>>
   제목 : <input type='text' name='title'><br>
 <select name="boardTypeNo" id="boardTypeSelect">
   <option value=1>공부상담</option>
@@ -22,8 +25,17 @@
 </select>
 <br>
 내용 : <textarea name='contents' rows='5' cols='50'></textarea><br>
+사진: <input type='file' name='fileName'><br>
+사진: <input type='file' name='fileName'><br>
+사진: <input type='file' name='fileName'><br>
+사진: <input type='file' name='fileName'><br>
+사진: <input type='file' name='fileName'><br>
+사진: <input type='file' name='fileName'><br>
 <button>등록</button>
 </form>
 </div>
+
+<jsp:include page="../footer.jsp"/>
+
 </body>
 </html>

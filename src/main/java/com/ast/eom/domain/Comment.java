@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Comment {
   
   private int commentNo;
+  private int boardNo;
+  private int memberNo;
   private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
@@ -15,8 +17,21 @@ public class Comment {
   
   @Override
   public String toString() {
-    return "Comment [commentNo=" + commentNo + ", contents=" + contents + ", createdDate=" + createdDate + ", board="
-        + board + ", member=" + member + "]";
+    return "Comment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", memberNo=" + memberNo
+        + ", contents=" + contents + ", createdDate=" + createdDate + ", board=" + board
+        + ", member=" + member + "]";
+  }
+  public int getBoardNo() {
+    return boardNo;
+  }
+  public void setBoardNo(int boardNo) {
+    this.boardNo = boardNo;
+  }
+  public int getMemberNo() {
+    return memberNo;
+  }
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
   }
   public int getCommentNo() {
     return commentNo;

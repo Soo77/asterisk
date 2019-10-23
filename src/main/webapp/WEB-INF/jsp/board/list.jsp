@@ -13,7 +13,7 @@
 <jsp:include page="../header.jsp"/>
 
 <div id='content'>
-<h1>질문게시판</h1>
+<h1>게시판</h1>
 
 <table class='table table-hover'>
 <tr>
