@@ -61,20 +61,33 @@
 	</select>
 	
 	<select id="findBy" parameterType="int" resultMap="MemberMap">
+
 		select
-		  *
-		from
-		  member m
-		inner join 
-		  member_type mt
-		on
-		  m.mem_type_no = mt.mem_type_no
-		inner join
-		  teacher t
-		on
-		  t.tch_no = m.mem_no  
-		where m.mem_no=#{ddd}
+      *
+    from
+      member m
+    inner join 
+      member_type mt, teacher t
+    on
+      m.mem_type_no = mt.mem_type_no
+      
 	</select>
+	
+	<!-- <select id="findBy2" parameterType="int" resultMap="MemberMap">
+    select
+      *
+    from
+      member m
+    inner join 
+      member_type mt
+    on
+      m.mem_type_no = mt.mem_type_no
+    inner join
+      student s
+    on
+      s.std_no = m.mem_no  
+    where m.mem_no=#{ddd}
+  </select> -->
 	
 	
 	

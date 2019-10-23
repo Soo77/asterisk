@@ -17,8 +17,24 @@ public class Member {
     private String tel;
     private String profilePhoto;
     
-    
     Teacher teacher;
+    Student student;
+    
+    
+    
+    public Teacher getTeacher() {
+      return teacher;
+    }
+    public void setTeacher(Teacher teacher) {
+      this.teacher = teacher;
+    }
+    public Student getStudent() {
+      return student;
+    }
+    public void setStudent(Student student) {
+      this.student = student;
+    }
+    
     
     public int getNo() {
       return no;
@@ -92,14 +108,15 @@ public class Member {
     public void setMemberType(MemberType memberType) {
       this.memberType = memberType;
     }
-    
     @Override
     public String toString() {
-      return "Member [no=" + no + ", registeredDate=" + registeredDate + ", gender=" + gender
-          + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name
-          + ", password=" + password + ", address=" + address + ", tel=" + tel + ", profilePhoto="
-          + profilePhoto + "]";
+      return "Member [no=" + no + ", memberType=" + memberType + ", registeredDate="
+          + registeredDate + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", id=" + id
+          + ", email=" + email + ", name=" + name + ", password=" + password + ", address="
+          + address + ", tel=" + tel + ", profilePhoto=" + profilePhoto + ", teacher=" + teacher
+          + ", student=" + student + "]";
     }
+    
     
     
 

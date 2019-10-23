@@ -21,7 +21,9 @@
 
 </head>
 <body>
-
+<c:forEach items="${members}" var="member">
+<input type="text" value="${member.memberType}"/>
+</c:forEach>
   <h2>선생님 상세 정보</h2>
   <hr><br>
 
@@ -41,6 +43,8 @@
              전공: 수학과<br> 
              지역: ${member.address}<br>
              가입일: ${member.registeredDate}<br>
+             ${member.student.schoolType}
+             ${member.student.parents }
     </div>
 
     <div class="tch-school-info">
