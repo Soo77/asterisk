@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mypage2</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+  <style>
+    .container {
+      border: 1px solid powderblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <p class="h3">
+      회원정보
+    </p>
+
+    <form>
+      <div class="form-group">
+        <label for="inputId">아이디</label>
+        <input type="text" class="form-control" id="inputId" placeholder="hong111" readonly>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputPassword">비밀번호</label>
+          <input type="password" class="form-control" id="inputPassword" value="Password">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPasswordCheck">비밀번호확인</label>
+          <input type="password" class="form-control" id="inputPasswordCheck" value="Password">
+        </div>
+      </div>
+
+
+      <div class="form-row align-items-end">
+        <div class="col">
+          <label for="inlineFormInput">이메일</label>
+          <input type="text" class="form-control mb-2" id="inlineFormInput" value="hong">
+        </div>
+        <div class="col">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" value="test.com">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row align-items-end">
+        <div class="col">
+          <label for="dateOfBirthInput">생년월일</label>
+          <input type="text" class="form-control mb-2" id="inlineFormInput" value="hong">
+        </div>
+        <div class="col">
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" value="test.com">
+          </div>
+        </div>
+      </div>
+
+
+      <label for="dateOfBirthInput">생년월일</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">2019</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div role="separator" class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+      </div>
+
+
+
+
+      <div class="form-group">
+        <label for="inputAddress">주소</label>
+        <div class="input-group mb-3">
+          <input type="text" id="inputAddress" class="form-control" readonly aria-label="Recipient's username"
+            aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="addressSearchButton">주소검색</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">상세주소</label>
+        <input type="text" class="form-control" id="inputAddress2" readonly>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">State</label>
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Zip</label>
+          <input type="text" class="form-control" id="inputZip">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Check me out
+          </label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+
+  </div>
+
+
+
+
+</body>
+
+<!-- 생년월일 자동 추가 -->
+<script>
+
+</script>
+
+<!-- 주소 찾기 버튼 -->
+<script>
+  let addressSearchButton = document.getElementById('addressSearchButton');
+
+  addressSearchButton.addEventListener('click', function () {
+    new daum.Postcode({
+      oncomplete: function (data) {
+        document.getElementById('inputAddress').value = data.sido;
+        document.getElementById('inputAddress2').value = data.sigungu;
+      }
+    }).open();
+  });
+</script>
+
+</html>
