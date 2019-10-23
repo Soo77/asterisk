@@ -8,7 +8,7 @@ public class Board {
   
   private int boardNo;
   private int boardTypeNo;
-  private int memberNo;  
+  private int memberNo;
   private String title;
   private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
@@ -20,27 +20,9 @@ public class Board {
   
   @Override
   public String toString() {
-    return "Board [boardNo=" + boardNo + ", boardTypeNo=" + boardTypeNo + ", memberNo=" + memberNo
-        + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", files=" + files + ", comments=" + comments + "]";
-  }
-  public int getMemberNo() {
-    return memberNo;
-  }
-  public void setMemberNo(int memberNo) {
-    this.memberNo = memberNo;
-  }
-  public List<Comment> getComments() {
-    return comments;
-  }
-  public void setComments(List<Comment> comments) {
-    this.comments = comments;
-  }
-  public List<BoardFile> getFiles() {
-    return files;
-  }
-  public void setFiles(List<BoardFile> files) {
-    this.files = files;
+    return "Board [boardNo=" + boardNo + ", boardTypeNo=" + boardTypeNo + ", memberNo=" + memberNo + ", title=" + title
+        + ", contents=" + contents + ", createdDate=" + createdDate + ", viewCount=" + viewCount + ", files=" + files
+        + ", comments=" + comments + "]";
   }
   public int getBoardNo() {
     return boardNo;
@@ -53,6 +35,12 @@ public class Board {
   }
   public void setBoardTypeNo(int boardTypeNo) {
     this.boardTypeNo = boardTypeNo;
+  }
+  public int getMemberNo() {
+    return memberNo;
+  }
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
   }
   public String getTitle() {
     return title;
@@ -77,5 +65,17 @@ public class Board {
   }
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
+  }
+  public List<BoardFile> getFiles() {
+    return files;
+  }
+  public void setFiles(List<BoardFile> files) {
+    this.files = files;
+  }
+  public List<Comment> getComments() {
+    return comments;
+  }
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
 }

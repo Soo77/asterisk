@@ -9,8 +9,8 @@ public class BoardFile {
   
   @Override
   public String toString() {
-    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", boardNo=" + boardNo
-        + ", noticeNo=" + noticeNo + "]";
+    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", boardNo=" + boardNo + ", noticeNo=" + noticeNo
+        + "]";
   }
   public int getFileNo() {
     return fileNo;

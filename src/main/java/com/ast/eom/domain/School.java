@@ -4,6 +4,8 @@ import java.sql.Date;
 
 public class School {
   private int schoolNo;
+  private int teacherNo;
+  private int schoolTypeNo;
   private String schoolName;
   private String certificate;
   private boolean isGraduated;
@@ -12,21 +14,30 @@ public class School {
   private boolean isConfirmed;
   private Date graduatedDate;
   
-  private Teacher teacher;
-  private SchoolType schoolType;
-  
   @Override
   public String toString() {
-    return "School [schoolNo=" + schoolNo + ", schoolName=" + schoolName + ", certificate=" + certificate
-        + ", isGraduated=" + isGraduated + ", modifiedDate=" + modifiedDate + ", major=" + major + ", isConfirmed="
-        + isConfirmed + ", graduatedDate=" + graduatedDate + ", teacher=" + teacher + ", schoolType=" + schoolType
-        + "]";
+    return "School [schoolNo=" + schoolNo + ", teacherNo=" + teacherNo + ", schoolTypeNo=" + schoolTypeNo
+        + ", schoolName=" + schoolName + ", certificate=" + certificate + ", isGraduated=" + isGraduated
+        + ", modifiedDate=" + modifiedDate + ", major=" + major + ", isConfirmed=" + isConfirmed + ", graduatedDate="
+        + graduatedDate + "]";
   }
   public int getSchoolNo() {
     return schoolNo;
   }
   public void setSchoolNo(int schoolNo) {
     this.schoolNo = schoolNo;
+  }
+  public int getTeacherNo() {
+    return teacherNo;
+  }
+  public void setTeacherNo(int teacherNo) {
+    this.teacherNo = teacherNo;
+  }
+  public int getSchoolTypeNo() {
+    return schoolTypeNo;
+  }
+  public void setSchoolTypeNo(int schoolTypeNo) {
+    this.schoolTypeNo = schoolTypeNo;
   }
   public String getSchoolName() {
     return schoolName;
@@ -69,17 +80,5 @@ public class School {
   }
   public void setGraduatedDate(Date graduatedDate) {
     this.graduatedDate = graduatedDate;
-  }
-  public Teacher getTeacher() {
-    return teacher;
-  }
-  public void setTeacher(Teacher teacher) {
-    this.teacher = teacher;
-  }
-  public SchoolType getSchoolType() {
-    return schoolType;
-  }
-  public void setSchoolType(SchoolType schoolType) {
-    this.schoolType = schoolType;
   }
 }
