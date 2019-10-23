@@ -12,14 +12,16 @@ public class Comment {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   
-  private Board board;
-  private Member member;
-  
   @Override
   public String toString() {
-    return "Comment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", memberNo=" + memberNo
-        + ", contents=" + contents + ", createdDate=" + createdDate + ", board=" + board
-        + ", member=" + member + "]";
+    return "Comment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", memberNo=" + memberNo + ", contents="
+        + contents + ", createdDate=" + createdDate + "]";
+  }
+  public int getCommentNo() {
+    return commentNo;
+  }
+  public void setCommentNo(int commentNo) {
+    this.commentNo = commentNo;
   }
   public int getBoardNo() {
     return boardNo;
@@ -33,12 +35,6 @@ public class Comment {
   public void setMemberNo(int memberNo) {
     this.memberNo = memberNo;
   }
-  public int getCommentNo() {
-    return commentNo;
-  }
-  public void setCommentNo(int commentNo) {
-    this.commentNo = commentNo;
-  }
   public String getContents() {
     return contents;
   }
@@ -50,17 +46,5 @@ public class Comment {
   }
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
-  }
-  public Board getBoard() {
-    return board;
-  }
-  public void setBoard(Board board) {
-    this.board = board;
-  }
-  public Member getMember() {
-    return member;
-  }
-  public void setMember(Member member) {
-    this.member = member;
   }
 }
