@@ -4,13 +4,13 @@ public class BoardFile {
 
   private int fileNo;
   private String fileName;
-  
-  private Board board;
-  private Notice notice;
+  private int boardNo;
+  private int noticeNo;
   
   @Override
   public String toString() {
-    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", board=" + board + ", notice=" + notice + "]";
+    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", boardNo=" + boardNo + ", noticeNo=" + noticeNo
+        + "]";
   }
   public int getFileNo() {
     return fileNo;
@@ -24,16 +24,16 @@ public class BoardFile {
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
-  public Board getBoard() {
-    return board;
+  public int getBoardNo() {
+    return boardNo;
   }
-  public void setBoard(Board board) {
-    this.board = board;
+  public void setBoardNo(int boardNo) {
+    this.boardNo = boardNo;
   }
-  public Notice getNotice() {
-    return notice;
+  public int getNoticeNo() {
+    return noticeNo;
   }
-  public void setNotice(Notice notice) {
-    this.notice = notice;
+  public void setNoticeNo(int noticeNo) {
+    this.noticeNo = noticeNo;
   }
 }

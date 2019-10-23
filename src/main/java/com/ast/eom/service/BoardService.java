@@ -2,6 +2,7 @@ package com.ast.eom.service;
 
 import java.util.List;
 import com.ast.eom.domain.Board;
+import com.ast.eom.domain.BoardFile;
 
 // 역할:
 // => 게시물 관리 업무를 수행
@@ -9,12 +10,12 @@ import com.ast.eom.domain.Board;
 // => 여러 페이지 컨트롤러가 사용한다.
 //
 public interface BoardService {
-  List<Board> list() throws Exception;
+  List<Board> list(int boardType) throws Exception;
+  List<BoardFile> getWithIncreaseViewCount(int no) throws Exception;
   Board get(int no) throws Exception;
-  void insert(Board board) throws Exception;
+  void insert(Board board, List<BoardFile> boardFile) throws Exception;
   void update(Board board) throws Exception;
   void delete(int no) throws Exception;
-  List<Board> listByType2() throws Exception;
 }
 
 

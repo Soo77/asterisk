@@ -1,19 +1,28 @@
 package com.ast.eom.domain;
 
+import java.util.List;
+
 public class Teacher {
   private int teacherNo;
   private String accountNo;
-  private String bankNo;
+  private String bankName;
   private String lessonCertificate;
   private String teacherIntro;
   private boolean approvementState;
   private String videoAddress;
   
+  private List<Lesson> lessons;
+  private List<School> schools;
+  private List<LessonSubject> lessonSubjects;
+  private List<Teacher> teachers;
+  private List<TeacherPhoto> teacherPhotos;
+  
   @Override
   public String toString() {
-    return "Teacher [teacherNo=" + teacherNo + ", accountNo=" + accountNo + ", bankNo=" + bankNo
+    return "Teacher [teacherNo=" + teacherNo + ", accountNo=" + accountNo + ", bankName=" + bankName
         + ", lessonCertificate=" + lessonCertificate + ", teacherIntro=" + teacherIntro + ", approvementState="
-        + approvementState + ", videoAddress=" + videoAddress + "]";
+        + approvementState + ", videoAddress=" + videoAddress + ", lessons=" + lessons + ", schools=" + schools
+        + ", lessonSubjects=" + lessonSubjects + ", teachers=" + teachers + ", teacherPhotos=" + teacherPhotos + "]";
   }
   public int getTeacherNo() {
     return teacherNo;
@@ -27,11 +36,11 @@ public class Teacher {
   public void setAccountNo(String accountNo) {
     this.accountNo = accountNo;
   }
-  public String getBankNo() {
-    return bankNo;
+  public String getBankName() {
+    return bankName;
   }
-  public void setBankNo(String bankNo) {
-    this.bankNo = bankNo;
+  public void setBankName(String bankName) {
+    this.bankName = bankName;
   }
   public String getLessonCertificate() {
     return lessonCertificate;
@@ -56,5 +65,35 @@ public class Teacher {
   }
   public void setVideoAddress(String videoAddress) {
     this.videoAddress = videoAddress;
+  }
+  public List<Lesson> getLessons() {
+    return lessons;
+  }
+  public void setLessons(List<Lesson> lessons) {
+    this.lessons = lessons;
+  }
+  public List<School> getSchools() {
+    return schools;
+  }
+  public void setSchools(List<School> schools) {
+    this.schools = schools;
+  }
+  public List<LessonSubject> getLessonSubjects() {
+    return lessonSubjects;
+  }
+  public void setLessonSubjects(List<LessonSubject> lessonSubjects) {
+    this.lessonSubjects = lessonSubjects;
+  }
+  public List<Teacher> getTeachers() {
+    return teachers;
+  }
+  public void setTeachers(List<Teacher> teachers) {
+    this.teachers = teachers;
+  }
+  public List<TeacherPhoto> getTeacherPhotos() {
+    return teacherPhotos;
+  }
+  public void setTeacherPhotos(List<TeacherPhoto> teacherPhotos) {
+    this.teacherPhotos = teacherPhotos;
   }
 }

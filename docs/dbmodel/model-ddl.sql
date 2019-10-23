@@ -486,12 +486,11 @@ ALTER TABLE school_type
 
 -- 커리큘럼수업내용
 CREATE TABLE curr_lesson_conts (
-	curr_lesson_no INTEGER NOT NULL COMMENT '커리큘럼수업내용번호', -- 커리큘럼수업내용번호
-	curr_no        INTEGER NOT NULL COMMENT '커리큘럼번호', -- 커리큘럼번호
-	lesson_conts   TEXT    NOT NULL COMMENT '수업내용', -- 수업내용
-	lesson_days    INTEGER NOT NULL COMMENT '수업일수' -- 수업일수
-)
-COMMENT '커리큘럼수업내용';
+	curr_lesson_no INTEGER NOT NULL, -- 커리큘럼수업내용번호
+	curr_no        INTEGER NOT NULL, -- 커리큘럼번호
+	lesson_conts   TEXT    NOT NULL, -- 수업내용
+	lesson_days    INTEGER NOT NULL  -- 수업일수
+);
 
 -- 커리큘럼수업내용
 ALTER TABLE curr_lesson_conts
@@ -501,7 +500,7 @@ ALTER TABLE curr_lesson_conts
 		);
 
 ALTER TABLE curr_lesson_conts
-	MODIFY COLUMN curr_lesson_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '커리큘럼수업내용번호';
+	MODIFY COLUMN curr_lesson_no INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 선생님
 ALTER TABLE teacher
@@ -783,7 +782,7 @@ ALTER TABLE teacher_photo
 			tch_no -- 선생님번호
 		);
 
--- 커리큘럼수업내용
+-- 커리큘럼수업내용!
 ALTER TABLE curr_lesson_conts
 	ADD CONSTRAINT FK_curriculum_TO_curr_lesson_conts -- 커리큘럼 -> 커리큘럼수업내용
 		FOREIGN KEY (
