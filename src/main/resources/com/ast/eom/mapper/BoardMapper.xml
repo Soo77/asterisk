@@ -13,7 +13,7 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
-    <result column="name" property="name" />
+    <result column="name" property="memberName" />
   </resultMap>
 
   <resultMap type="Board" id="BoardWithFilesMap">
@@ -24,7 +24,7 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
-    <result column="name" property="name" />
+    <result column="name" property="memberName" />
 
     <!-- 자식 테이블의 데이터와 PhotoFile 객체 연결 -->
     <collection property="files" ofType="BoardFile">
@@ -34,6 +34,8 @@
       <result column="notice_no" property="noticeNo" />
     </collection>
   </resultMap>
+  
+  
 
 <!--   <resultMap type="Member" id="MemberMap">
     <id column="mem_no" property="memberNo" />

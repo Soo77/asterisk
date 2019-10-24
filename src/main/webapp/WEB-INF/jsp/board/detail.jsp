@@ -17,7 +17,7 @@
 
 번호 : <input type='text' name='boardNo' value='${board.boardNo}' readonly><br>
 제목 : <input type='text' name='title' value='${board.title}' readonly><br>
-작성자 : <input type='text' name='name' value='${board.name}' readonly><br>
+작성자 : <input type='text' name='name' value='${board.memberName}' readonly><br>
 작성일 : <input type='text' name='createdDate' value='${board.createdDate}' readonly><br>
 조회 : <input type='text' name='viewCount' value='${board.viewCount}' readonly><br>
 내용 : <textarea name='contents' rows='5'

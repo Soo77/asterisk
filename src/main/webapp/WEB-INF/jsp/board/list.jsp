@@ -26,7 +26,7 @@
   <tr>
     <td>${board.boardNo}</td>
     <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
-    <td>${board.name}</td>
+    <td>${board.memberName}</td>
     <td>${board.viewCount}</td>
   </tr>
 </c:forEach>

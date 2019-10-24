@@ -14,15 +14,24 @@ public class Board {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   private int viewCount;
+  private String memberName;
   
   private List<BoardFile> files;
   private List<Comment> comments;
   
+  
+  public String getMemberName() {
+    return memberName;
+  }
+  public void setMemberName(String memberName) {
+    this.memberName = memberName;
+  }
   @Override
   public String toString() {
     return "Board [boardNo=" + boardNo + ", boardTypeNo=" + boardTypeNo + ", memberNo=" + memberNo
         + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", files=" + files + ", comments=" + comments + "]";
+        + ", viewCount=" + viewCount + ", memberName=" + memberName + ", files=" + files
+        + ", comments=" + comments + "]";
   }
   public int getBoardNo() {
     return boardNo;

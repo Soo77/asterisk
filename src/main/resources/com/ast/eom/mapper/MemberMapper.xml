@@ -36,6 +36,7 @@
 		  m.mem_type_no = mt.mem_type_no
 	</select>
 	
+<!-- 
 	<select id="findBy" parameterType="int" resultMap="BoardMap">
 		select
 		no,
@@ -44,7 +45,6 @@
 		where no=#{haha}
 	</select>
 
-<!-- 
 
 
 	<insert id="insert" parameterType="Board">
