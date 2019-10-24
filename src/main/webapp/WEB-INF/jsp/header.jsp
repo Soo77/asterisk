@@ -15,7 +15,7 @@
     
     s.addEventListener('change', function() {
       if (s.options[s.selectedIndex].value == 1) {
-        location.href='http://localhost:8888/app/board/list?boardType=1';
+        location.href='list?boardType=1';
       } else if (s.options[s.selectedIndex].value == 2) {
         location.href='http://localhost:8888/app/board/list?boardType=2';
       } else if (s.options[s.selectedIndex].value == 3) {
