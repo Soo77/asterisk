@@ -4,25 +4,30 @@ import java.sql.Date;
 
 public class DayLesson {
   private int dayLessonNo;
+  private int lessonNo;
   private Date lessonDate;
   private int lessonStartHour;
   private int lessonEndHour;
   private String lessonSummary;
   private String lessonEvaluation;
   
-  private Lesson lesson;
-  
   @Override
   public String toString() {
-    return "DayLesson [dayLessonNo=" + dayLessonNo + ", lessonDate=" + lessonDate + ", lessonStartHour="
-        + lessonStartHour + ", lessonEndHour=" + lessonEndHour + ", lessonSummary=" + lessonSummary
-        + ", lessonEvaluation=" + lessonEvaluation + ", lesson=" + lesson + "]";
+    return "DayLesson [dayLessonNo=" + dayLessonNo + ", lessonNo=" + lessonNo + ", lessonDate=" + lessonDate
+        + ", lessonStartHour=" + lessonStartHour + ", lessonEndHour=" + lessonEndHour + ", lessonSummary="
+        + lessonSummary + ", lessonEvaluation=" + lessonEvaluation + "]";
   }
   public int getDayLessonNo() {
     return dayLessonNo;
   }
   public void setDayLessonNo(int dayLessonNo) {
     this.dayLessonNo = dayLessonNo;
+  }
+  public int getLessonNo() {
+    return lessonNo;
+  }
+  public void setLessonNo(int lessonNo) {
+    this.lessonNo = lessonNo;
   }
   public Date getLessonDate() {
     return lessonDate;
@@ -53,11 +58,5 @@ public class DayLesson {
   }
   public void setLessonEvaluation(String lessonEvaluation) {
     this.lessonEvaluation = lessonEvaluation;
-  }
-  public Lesson getLesson() {
-    return lesson;
-  }
-  public void setLesson(Lesson lesson) {
-    this.lesson = lesson;
   }
 }

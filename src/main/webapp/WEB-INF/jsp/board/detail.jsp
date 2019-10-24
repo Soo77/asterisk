@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,22 +10,34 @@
 </head>
 <body>
 
+<jsp:include page="../header.jsp"/>
+
 <div id='content'>
-<h1>질문게시판</h1>
-<form action='detail' method='get'>
-번호 : <input type='text' name='boardNo' value='${board.boardNo}' readonly><br>
-제목 : <input type='text' name='title' value='${board.title}' readonly><br>
-이름 : <input type='text' name='name' value='${board.member.name}' readonly><br>
-수정일 : <input type='text' name='createdDate' value='${board.createdDate}' readonly><br>
-조회 : <input type='text' name='viewCount' value='${board.viewCount}' readonly><br>
+<h1>게시판</h1>
+
+번호 : <input type='text' name='boardNo' value='${boardFileList[0].board.boardNo}' readonly><br>
+제목 : <input type='text' name='title' value='${boardFileList[0].board.title}' readonly><br>
+작성자 : <input type='text' name='name' value='${boardFileList[0].board.member.name}' readonly><br>
+작성일 : <input type='text' name='createdDate' value='${boardFileList[0].board.createdDate}' readonly><br>
+조회 : <input type='text' name='viewCount' value='${boardFileList[0].board.viewCount}' readonly><br>
 내용 : <textarea name='contents' rows='5'
-            cols='50' readonly>${board.contents}</textarea><br>
+            cols='50' readonly>${boardFileList[0].board.contents}</textarea><br>
+            
+<c:forEach items="${boardFileList}">
+<p>
+  <img src='/upload/board/${fileName}' class='photo2'> 
+</p>
+</c:forEach>
+<c:forEach begin="1" end="6">
+  사진: <input type='file' name='fileName'><br>
+</c:forEach>
 
+<a href='list?boardTypeNo=${board.boardType.boardTypeNo}'>글목록</a>
+<a href='detailedit?no=${board.boardNo}'> 수정</a>
 
-<a href='update?no=${board.boardNo}'>수정</a>
-<a href='delete?no=${board.boardNo}'>삭제</a>
-</form>
 </div>
+
+<jsp:include page="../footer.jsp"/>
 
 </body>
 </html>

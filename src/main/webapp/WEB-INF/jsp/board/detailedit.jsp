@@ -9,9 +9,12 @@
 </head>
 <body>
 
+<jsp:include page="../header.jsp"/>
+
 <div id='content'>
-<h1>질문게시판</h1>
+<h1>게시판</h1>
 <form action='update' method='post'>
+<input type='hidden' name='boardTypeNo' value='${board.boardType.boardTypeNo}'>
 번호 : <input type='text' name='boardNo' value='${board.boardNo}' readonly><br>
 제목 : <input type='text' name='title' value='${board.title}'><br>
 이름 : <input type='text' name='name' value='${board.member.name}' readonly><br>
@@ -23,8 +26,11 @@
 <a href='list'>글목록</a>
 <a href='detail?no=${board.boardNo}'>수정</a>
 <a href='delete?no=${board.boardNo}'>삭제</a>
+
 </form>
 </div>
+
+<jsp:include page="../footer.jsp"/>
 
 </body>
 </html>

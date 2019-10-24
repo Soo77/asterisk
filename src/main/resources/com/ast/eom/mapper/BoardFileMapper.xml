@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.BoardFileDao">
+
+  <resultMap type="BoardFile" id="BoardFileMap">
+    <id column="file_no" property="fileNo"/>
+    <result column="file_name" property="fileName"/>
+    <collection resultMap="BoardMap" property="board"/>
+    <collection resultMap="NoticeMap" property="notice"/>
+  </resultMap>
+  
+  <resultMap type="Board" id="BoardMap">
+		<id column="board_no" property="boardNo" />
+    <result column="titl" property="title" />
+    <result column="conts" property="contents" />
+    <result column="cdt" property="createdDate" />
+		<result column="vw_cnt" property="viewCount" />
+    <collection resultMap="BoardTypeMap" property="boardType" />
+		<collection resultMap="MemberMap" property="member" />
+	</resultMap>
+  
+  <resultMap type="BoardType" id="BoardTypeMap">
+    <id column="board_type_no" property="boardTypeNo" />
+    <result column="board_name" property="boardName" />
+  </resultMap>
+  
+  <resultMap type="Member" id="MemberMap">
+    <id column="mem_no" property="memberNo" />
+    <result column="reg_date" property="registeredDate" />
+    <result column="gender" property="gender" />
+    <result column="dob" property="dateOfBirth" />
+    <result column="id" property="id" />
+    <result column="email" property="email" />
+    <result column="name" property="name" />
+    <result column="pwd" property="password" />
+    <result column="addr_city" property="addressCity" />
+    <result column="addr_sub" property="addressSuburb" />
+    <result column="tel" property="tel" />
+    <result column="profile_photo" property="profilePhoto" />
+      <collection resultMap="MemberTypeMap" property="memberType"/>
+  </resultMap>
+  
+  <resultMap type="MemberType" id="MemberTypeMap">
+    <id column="mem_type_no" property="memberTypeNo" />
+    <result column="mem_type_name" property="memberTypeName" />
+  </resultMap>
+  
+  <resultMap type="Notice" id="NoticeMap">
+    <id column="notice_no" property="noticeNo" />
+    <result column="titl" property="title" />
+    <result column="conts" property="contents" />
+    <result column="cdt" property="createdDate" />
+    <result column="vw_cnt" property="viewCount" />
+		<collection resultMap="MemberMap" property="member" />
+  </resultMap>
+  
+<!--   <select id="findAll2" parameterType="int" resultMap="BoardFileMap">
+    select 
+      file_no, 
+      file_name, 
+      board_no,
+      notice_no
+    from 
+      board_file
+    where 
+      board_no=#{value}
+    order by 
+      file_no asc
+  </select> -->
+  
+  <select id="findAll" parameterType="int" resultMap="BoardFileMap">
+  select
+      b.board_no,
+      b.board_type_no,
+      b.mem_no,
+      b.titl,
+      b.conts,
+      b.cdt,
+      b.vw_cnt,
+      f.file_no,
+      f.file_name
+    from 
+      board b
+        left outer join board_file f on b.board_no=f.board_no
+    where 
+      b.board_no=#{value}
+      </select>
+  
+  <insert id="insert" parameterType="map">
+    insert into board_file(board_no, file_name)
+    values(#{board.boardNo},#{file.fileName})
+  </insert>
+  
+</mapper>
+
+
+
+
