@@ -6,7 +6,8 @@
 
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
 	<resultMap type="Member" id="MemberMap">
-		<id column="mem_no" property="memberNo" />
+		<result column="mem_no" property="memberNo" />
+		<result column="mem_type_no" property="memberTypeNo" />
 		<result column="reg_date" property="registeredDate" />
 		<result column="gender" property="gender" />
 		<result column="dob" property="dateOfBirth" />
@@ -18,69 +19,24 @@
 		<result column="addr_sub" property="addressSuburb" />
 		<result column="tel" property="tel" />
 		<result column="profile_photo" property="profilePhoto" />
-		<collection resultMap="MemberTypeMap" property="memberType"></collection>
-		<collection resultMap="TeacherMap" property="teacher"></collection>
-		
-		<!-- 
-		<collection resultMap="StudentMap" property="student"></collection> -->
+		<collection property="MemberType" resultMap="MemberMap"/>
 	</resultMap>
 
 	<resultMap type="MemberType" id="MemberTypeMap">
-		<id column="mem_type_no" property="no" />
-		<result column="mem_type" property="memberType" />
+		<result column="mem_type_no" property="memberTypeNo" />
+		<result column="mem_type_name" property="memberTypeName" />
 	</resultMap>
-	
-	 <resultMap type="Teacher" id="TeacherMap">
-		<id column="tch_no" property="teacherNo"/>
-		<result column="acc_no" property="accountNo"/>
-		<result column="bank_name" property="bankNo"/>
-		<result column="lesson_certi" property="lessonCertificate"/>
-		<result column="tch_intro" property="teacherIntro"/>
-		<result column="appr_stat" property="approvementState"/>
-		<result column="vid_addr" property="videoAddress"/>
-	</resultMap>
-	
-	<!--
-	
-	<resultMap type="Student" id="StudentMap">
-		<id column="stu_no" property="studentNo"/>
-		<result column="sch_type" property="schoolType"/>
-		<collection resultMap="ParentsMap" property="parents"></collection>
-	</resultMap>
-	
-	<resultMap type="Parents" id="ParentsMap">
-		<id column="parents_no" property="parentsNo" />
-		<result column="kakaotalk" property="wantKakaotalk" />
-	</resultMap> -->
-	
 
 	<select id="findAll" resultMap="MemberMap">
 		select
-		  *
+		 m.mem_no, m.name, m.gender, m.addr_city, m.addr_sub, m.profile_photo, mt.mem_type_name
 		from
 		  member m
 		inner join 
 		  member_type mt
 		on
 		  m.mem_type_no = mt.mem_type_no 
-		left join
-		  teacher t
-		on
-		  m.mem_no = t.tch_no
 	</select>
-	
-<!-- 	<select id="findBy" parameterType="int" resultMap="MemberMap">
-		select
-		  *
-		from
-		  member m, member_type mt, teacher t, student s
-		inner join 
-		  m.mem_type_no = mt.mem_type_no
-		and
-		  t.tch_no = m.mem_no
-		or
-		  s.sch_no = m.mem_no 
-	</select> -->
 	
 	
 	

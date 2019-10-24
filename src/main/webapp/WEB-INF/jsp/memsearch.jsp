@@ -90,12 +90,12 @@
   <c:forEach items="${members}" var="member">
   <div class="tchdetail">
     <div class="tchPhoto">
-      <img src="images/Rabbit.png" height="100px" />
+      ${member.profilePhoto}
     </div>
     
     <div class="tch-info">
       <p><a href='detail?no=${member.memberNo}'>${member.name}</a></p>
-      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.addressCity} ${member.addressSuburb} / ${member.teacher.approvementState} /${member.memberType.memberType}</p>
+      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.addressCity} ${member.addressSuburb} / 주소 /</p>
     </div>
     <hr>
   </div>
