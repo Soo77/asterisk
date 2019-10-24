@@ -8,8 +8,8 @@
   <title>선생님 찾기</title>
   </head>
   <body>
-
-  <h2>선생님 찾기</h2>
+ 
+  <h2>${member.memberType.memberTypeName} 찾기</h2>
   <hr><br>
   
 <div class="teacher-search">
@@ -89,14 +89,11 @@
   
   <c:forEach items="${members}" var="member">
   <div class="tchdetail">
-    <div class="tchPhoto">
-      <img src="images/Rabbit.png" height="100px" />
-    </div>
-    
-    <div class="tch-info">
-      <p><a href='detail?no=${member.memberNo}'>${member.name}</a></p>
-      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.addressCity} ${member.addressSuburb} / ${member.teacher.approvementState} /${member.memberType.memberType}</p>
-    </div>
+    <tr>
+      <td>${teacherPhotos.teacherPhoto}</td>
+      <td><a href='detail?no=${member.memberNo}'>${member.name}</a><td><br>
+      <td>${member.gender}</td>/ 초등 영어, 초등 수학/ <td>${member.addressCity}</td><td> ${member.addressSuburb}</td> / <td>${member.memberTypeNo}</td>
+    </tr>
     <hr>
   </div>
   </c:forEach>  

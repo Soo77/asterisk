@@ -41,7 +41,7 @@
       <h3>기본정보</h3>
              학교: 한국대학교<br> 
              전공: 수학과<br> 
-             지역: ${member.address}<br>
+             지역: ${member.addressCity} ${member.addressSuburb}<br>
              가입일: ${member.registeredDate}<br>
              ${member.student.schoolType}
              ${member.student.parents }

@@ -26,8 +26,7 @@ public class MemberController {
   
   @RequestMapping("detail")
   public String detail(Model model, int no) throws Exception {
-    
-    Member member = memberDao.findBy(no);
+    Member member = memberDao.findMemberAndStudent(no);
     model.addAttribute("member", member);
     
     return "memdetail";
