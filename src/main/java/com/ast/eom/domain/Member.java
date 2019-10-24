@@ -18,6 +18,10 @@ public class Member {
   private String addressSuburb;
   private String tel;
   private String profilePhoto;
+  
+  private Teacher teacher;
+  private Parents parents;
+  private Student student;
 
   private List<Message> sentMessages;
   private List<Message> receivedMessages;
@@ -29,8 +33,9 @@ public class Member {
     return "Member [memberNo=" + memberNo + ", memberTypeNo=" + memberTypeNo + ", registeredDate=" + registeredDate
         + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name
         + ", password=" + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel="
-        + tel + ", profilePhoto=" + profilePhoto + ", sentMessage=" + sentMessages + ", receivedMessage="
-        + receivedMessages + ", notices=" + notices + ", comments=" + comments + "]";
+        + tel + ", profilePhoto=" + profilePhoto + ", teacher=" + teacher + ", parents=" + parents + ", student="
+        + student + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages + ", notices=" + notices
+        + ", comments=" + comments + "]";
   }
   public int getMemberNo() {
     return memberNo;
@@ -110,17 +115,35 @@ public class Member {
   public void setProfilePhoto(String profilePhoto) {
     this.profilePhoto = profilePhoto;
   }
-  public List<Message> getSentMessage() {
+  public Teacher getTeacher() {
+    return teacher;
+  }
+  public void setTeacher(Teacher teacher) {
+    this.teacher = teacher;
+  }
+  public Parents getParents() {
+    return parents;
+  }
+  public void setParents(Parents parents) {
+    this.parents = parents;
+  }
+  public Student getStudent() {
+    return student;
+  }
+  public void setStudent(Student student) {
+    this.student = student;
+  }
+  public List<Message> getSentMessages() {
     return sentMessages;
   }
-  public void setSentMessage(List<Message> sentMessage) {
-    this.sentMessages = sentMessage;
+  public void setSentMessages(List<Message> sentMessages) {
+    this.sentMessages = sentMessages;
   }
-  public List<Message> getReceivedMessage() {
+  public List<Message> getReceivedMessages() {
     return receivedMessages;
   }
-  public void setReceivedMessage(List<Message> receivedMessage) {
-    this.receivedMessages = receivedMessage;
+  public void setReceivedMessages(List<Message> receivedMessages) {
+    this.receivedMessages = receivedMessages;
   }
   public List<Notice> getNotices() {
     return notices;
@@ -134,4 +157,5 @@ public class Member {
   public void setComments(List<Comment> comments) {
     this.comments = comments;
   }
+  
 }
