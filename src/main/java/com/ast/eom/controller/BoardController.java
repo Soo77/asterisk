@@ -41,7 +41,7 @@ public class BoardController {
   
   @GetMapping("detail")
   public void detail(HttpSession session, Model model, int no) throws Exception {
-    session.setAttribute("memberNo", 1);
+    session.setAttribute("memberNo", 2);
     Board board = boardService.getWithIncreaseViewCount(no);
     model.addAttribute("board", board);
   }

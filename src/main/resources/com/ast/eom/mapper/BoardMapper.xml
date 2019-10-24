@@ -7,21 +7,24 @@
   <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
   <resultMap type="Board" id="BoardMap">
     <id column="board_no" property="boardNo" />
-    <result column="board_type_no" property="boardTypeNo" />
     <result column="mem_no" property="memberNo" />
+    <result column="board_type_no" property="boardTypeNo" />
     <result column="titl" property="title" />
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
+    <result column="name" property="name" />
   </resultMap>
 
   <resultMap type="Board" id="BoardWithFilesMap">
     <id column="board_no" property="boardNo" />
+    <result column="mem_no" property="memberNo" />
     <result column="board_type_no" property="boardTypeNo" />
     <result column="titl" property="title" />
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
+    <result column="name" property="name" />
 
     <!-- 자식 테이블의 데이터와 PhotoFile 객체 연결 -->
     <collection property="files" ofType="BoardFile">
@@ -45,26 +48,18 @@
     <result column="addr_sub" property="addressSuburb" />
     <result column="tel" property="tel" />
     <result column="profile_photo" property="profilePhoto" />
-  </resultMap> -->
-<!--   
+    <collection resultMap="MemberTypeMap" property="memberTypeNo"></collection>
+  </resultMap>
+
   <resultMap type="BoardType" id="BoardTypeMap">
     <id column="board_type_no" property="boardTypeNo" />
     <result column="board_name" property="boardName" />
   </resultMap>
 
-
   <resultMap type="MemberType" id="MemberTypeMap">
     <id column="mem_type_no" property="memberTypeNo" />
     <result column="mem_type_name" property="memberTypeName" />
-  </resultMap>
-   -->
-   
-<!--    <select id="findMemberName" parameterType="int" resultType="String">
-    select m.name
-    from board b
-    inner join member m on b.mem_no=m.mem_no
-    where b.board_no=#{ohora}
-   </select> -->
+  </resultMap> -->
 
   <select id="findAll" parameterType="int" resultMap="BoardMap">
     select b.board_no, b.titl, m.name, b.vw_cnt, b.board_type_no
