@@ -6,7 +6,7 @@
 
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
 	<resultMap type="Member" id="MemberMap">
-		<result column="mem_no" property="memberNo" />
+		<id column="mem_no" property="memberNo" />
 		<result column="mem_type_no" property="memberTypeNo" />
 		<result column="reg_date" property="registeredDate" />
 		<result column="gender" property="gender" />
@@ -19,24 +19,100 @@
 		<result column="addr_sub" property="addressSuburb" />
 		<result column="tel" property="tel" />
 		<result column="profile_photo" property="profilePhoto" />
-		<collection property="MemberType" resultMap="MemberMap"/>
+		<collection resultMap="TeacherMap" property="teacher"/>
+		<collection resultMap="StudentMap" property="student"/>
 	</resultMap>
 
 	<resultMap type="MemberType" id="MemberTypeMap">
-		<result column="mem_type_no" property="memberTypeNo" />
+		<id column="mem_type_no" property="memberTypeNo" />
 		<result column="mem_type_name" property="memberTypeName" />
 	</resultMap>
+	
+	<resultMap type="Teacher" id="TeacherMap">
+		<id column="tch_no" property="teacherNo"/>
+		<result column="acc_no" property="accountNo"/>
+		<result column="bank_name" property="bankName"/>
+		<result column="lesson_certi" property="lessonCertificate"/>
+		<result column="tch_intro" property="teacherIntro"/>
+		<result column="appr_stat" property="approvementState"/>
+		<result column="vid_addr" property="videoAddress"/>
+		<collection resultMap="TeacherPhotoMap" property="teacherPhotos"/>
+		<collection resultMap="LessonSubjectMap" property="lessonSubjects"/>
+		<collection resultMap="SchoolMap" property="schools"/>
+	</resultMap>
+	
+	<resultMap type="TeacherPhoto" id="TeacherPhotoMap">
+		<id column="tch_photo_no" property="teacherPhotoNo"/>
+		<result column="tch_no" property="teacherNo"/>
+		<result column="tch_photo" property="teacherPhoto"/>
+	</resultMap>
+	
+	<resultMap type="LessonSubject" id="LessonSubjectMap">
+		<id column="lesson_sub_no" property="lessonSubjectNo"/>
+		<result column="tch_no" property="teacherNo"/>
+		<result column="sub_no" property="subjectNo"/>
+		<result column="sub_conts" property="subjectContents"/>
+		<result column="rdt" property="registeredDate"/>
+		<result column="wanted_fee" property="wantedFee"/>
+	</resultMap>
+	
+	<resultMap type="School" id="SchoolMap">
+		<id column="sch_no" property="schoolNo"/>
+		<result column="tch_no" property="teacherNo"/>
+		<result column="sch_type_no" property="schoolTypeNo"/>
+		<result column="sch_name" property="schoolName"/>
+		<result column="certi" property="certificate"/>
+		<result column="grad" property="isGraduated"/>
+		<result column="mdt" property="modifiedDate"/>
+		<result column="major" property="major"/>
+		<result column="confirm" property="isConfirmed"/>
+		<result column="grad_date" property="graduatedDate"/>
+	</resultMap>
+	
+	<resultMap type="Student" id="StudentMap">
+		<id column="std_no" property="studentNo"/>
+		<!-- <result column="parents_no" property="parentsNo"/> -->
+		<result column="sch_type_no" property="schoolTypeNo"/>
+	</resultMap>
+
+<!-- 	<resultMap type="Parents" id="ParentsMap">
+		<id column="parents_no" property="parentsNo"/>
+		<result column="kakaotalk" property="kakaotalk"/>
+		<collection resultMap="StudentMap" property="students"/>
+	</resultMap> -->
 
 	<select id="findAll" resultMap="MemberMap">
 		select
-		 *
+		 m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
 		from
-		  member m
-		inner join 
-		  member_type mt
-		on
-		  m.mem_type_no = mt.mem_type_no 
+		  member m, member_type mt, school s, teacher_photo tp
+		where m.mem_type_no = mt.mem_type_no
+		and m.mem_no = t.tch_no = s.tch_no = tp.tch_no
 	</select>
+	
+	<select id="findMemberAndStudent" parameterType="int" resultMap="MemberMap">
+		select
+		*
+		from 
+		  member m
+		inner join
+		  student s
+		on m.mem_no = s.std_no 
+		where mem_no=#{ddd}
+	</select>
+	
+	<select id="findMemberAndTeacher" parameterType="int" resultMap="MemberMap">
+		select
+		*
+		from 
+		  member m
+		inner join
+		  teacher t
+		on m.mem_no = t.tch_no 
+		where mem_no=#{ddd}
+	</select>
+	
+	
 	
 	
 	
