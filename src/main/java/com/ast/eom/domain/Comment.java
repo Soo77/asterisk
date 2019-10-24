@@ -6,16 +6,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Comment {
   
   private int commentNo;
-  private Board board;
-  private Member member;
+  private int boardNo;
+  private int memberNo;
   private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   
   @Override
   public String toString() {
-    return "Comment [commentNo=" + commentNo + ", board=" + board + ", member=" + member
-        + ", contents=" + contents + ", createdDate=" + createdDate + "]";
+    return "Comment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", memberNo=" + memberNo + ", contents="
+        + contents + ", createdDate=" + createdDate + "]";
   }
   public int getCommentNo() {
     return commentNo;
@@ -23,17 +23,17 @@ public class Comment {
   public void setCommentNo(int commentNo) {
     this.commentNo = commentNo;
   }
-  public Board getBoard() {
-    return board;
+  public int getBoardNo() {
+    return boardNo;
   }
-  public void setBoard(Board board) {
-    this.board = board;
+  public void setBoardNo(int boardNo) {
+    this.boardNo = boardNo;
   }
-  public Member getMember() {
-    return member;
+  public int getMemberNo() {
+    return memberNo;
   }
-  public void setMember(Member member) {
-    this.member = member;
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
   }
   public String getContents() {
     return contents;
@@ -47,5 +47,4 @@ public class Comment {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
-  
 }

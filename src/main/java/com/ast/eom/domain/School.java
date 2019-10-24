@@ -4,45 +4,46 @@ import java.sql.Date;
 
 public class School {
   private int schoolNo;
-  private Teacher teacher;
-  private String schoolType;
+  private int teacherNo;
+  private int schoolTypeNo;
   private String schoolName;
-  private String major;
   private String certificate;
   private boolean isGraduated;
   private Date modifiedDate;
+  private String major;
   private boolean isConfirmed;
   private Date graduatedDate;
   
+  @Override
+  public String toString() {
+    return "School [schoolNo=" + schoolNo + ", teacherNo=" + teacherNo + ", schoolTypeNo=" + schoolTypeNo
+        + ", schoolName=" + schoolName + ", certificate=" + certificate + ", isGraduated=" + isGraduated
+        + ", modifiedDate=" + modifiedDate + ", major=" + major + ", isConfirmed=" + isConfirmed + ", graduatedDate="
+        + graduatedDate + "]";
+  }
   public int getSchoolNo() {
     return schoolNo;
   }
   public void setSchoolNo(int schoolNo) {
     this.schoolNo = schoolNo;
   }
-  public Teacher getTeacher() {
-    return teacher;
+  public int getTeacherNo() {
+    return teacherNo;
   }
-  public void setTeacher(Teacher teacher) {
-    this.teacher = teacher;
+  public void setTeacherNo(int teacherNo) {
+    this.teacherNo = teacherNo;
   }
-  public String getSchoolType() {
-    return schoolType;
+  public int getSchoolTypeNo() {
+    return schoolTypeNo;
   }
-  public void setSchoolType(String schoolType) {
-    this.schoolType = schoolType;
+  public void setSchoolTypeNo(int schoolTypeNo) {
+    this.schoolTypeNo = schoolTypeNo;
   }
   public String getSchoolName() {
     return schoolName;
   }
   public void setSchoolName(String schoolName) {
     this.schoolName = schoolName;
-  }
-  public String getMajor() {
-    return major;
-  }
-  public void setMajor(String major) {
-    this.major = major;
   }
   public String getCertificate() {
     return certificate;
@@ -62,6 +63,12 @@ public class School {
   public void setModifiedDate(Date modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
+  public String getMajor() {
+    return major;
+  }
+  public void setMajor(String major) {
+    this.major = major;
+  }
   public boolean isConfirmed() {
     return isConfirmed;
   }
@@ -74,6 +81,4 @@ public class School {
   public void setGraduatedDate(Date graduatedDate) {
     this.graduatedDate = graduatedDate;
   }
-  
-  
 }

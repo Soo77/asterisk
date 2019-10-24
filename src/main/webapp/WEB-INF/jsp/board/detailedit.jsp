@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +13,28 @@
 <jsp:include page="../header.jsp"/>
 
 <div id='content'>
-<h1>질문게시판</h1>
-<form action='update' method='post'>
+<h1>게시판</h1>
+<form action='update' method='post' enctype='multipart/form-data'>
+<input type='hidden' name='boardTypeNo' value='${board.boardTypeNo}'>
 번호 : <input type='text' name='boardNo' value='${board.boardNo}' readonly><br>
 제목 : <input type='text' name='title' value='${board.title}' ><br>
-이름 : <input type='text' name='name' value='${board.member.name}' readonly><br>
-수정일 : <input type='text' name='createdDate' value='${board.createdDate}' readonly><br>
-조회 : <input type='text' name='viewCount' value='${board.viewCount}' ><br>
+작성자 : <input type='text' name='name' value='${board.name}' readonly><br>
+작성일 : <input type='text' name='createdDate' value='${board.createdDate}' readonly><br>
+조회 : <input type='text' name='viewCount' value='${board.viewCount}'readonly ><br>
 내용 : <textarea name='contents' rows='5'
-            cols='50' readonly>${board.contents}</textarea><br>
+            cols='50'>${board.contents}</textarea><br>
+
+<p>
+  <c:forEach items="${board.files}" var="file">
+  <img src='/upload/board/${file.fileName}' class='photo2'> 
+</c:forEach>
+</p>
+<c:forEach begin="1" end="6">
+  사진: <input type='file' name='fileName'><br>
+</c:forEach>
 <button>수정</button>
 <a href='delete?no=${board.boardNo}'>삭제</a>
+
 </form>
 </div>
 

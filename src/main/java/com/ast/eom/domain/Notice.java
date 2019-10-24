@@ -1,21 +1,25 @@
 package com.ast.eom.domain;
 
 import java.sql.Date;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Notice {
   
   private int noticeNo;
+  private int memberNo;
   private String title;
-  private int viewCount;
+  private String contents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
-  private String contents;
+  private int viewCount;
   
+  private List<BoardFile> files;
+
   @Override
   public String toString() {
-    return "Notice [noticeNo=" + noticeNo + ", title=" + title + ", viewCount=" + viewCount
-        + ", createdDate=" + createdDate + ", contents=" + contents + "]";
+    return "Notice [noticeNo=" + noticeNo + ", memberNo=" + memberNo + ", title=" + title + ", contents=" + contents
+        + ", createdDate=" + createdDate + ", viewCount=" + viewCount + ", files=" + files + "]";
   }
   public int getNoticeNo() {
     return noticeNo;
@@ -23,23 +27,17 @@ public class Notice {
   public void setNoticeNo(int noticeNo) {
     this.noticeNo = noticeNo;
   }
+  public int getMemberNo() {
+    return memberNo;
+  }
+  public void setMemberNo(int memberNo) {
+    this.memberNo = memberNo;
+  }
   public String getTitle() {
     return title;
   }
   public void setTitle(String title) {
     this.title = title;
-  }
-  public int getViewCount() {
-    return viewCount;
-  }
-  public void setViewCount(int viewCount) {
-    this.viewCount = viewCount;
-  }
-  public Date getCreatedDate() {
-    return createdDate;
-  }
-  public void setCreatedDate(Date createdDate) {
-    this.createdDate = createdDate;
   }
   public String getContents() {
     return contents;
@@ -47,5 +45,22 @@ public class Notice {
   public void setContents(String contents) {
     this.contents = contents;
   }
-  
+  public Date getCreatedDate() {
+    return createdDate;
+  }
+  public void setCreatedDate(Date createdDate) {
+    this.createdDate = createdDate;
+  }
+  public int getViewCount() {
+    return viewCount;
+  }
+  public void setViewCount(int viewCount) {
+    this.viewCount = viewCount;
+  }
+  public List<BoardFile> getFiles() {
+    return files;
+  }
+  public void setFiles(List<BoardFile> files) {
+    this.files = files;
+  }
 }

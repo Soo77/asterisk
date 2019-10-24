@@ -4,29 +4,35 @@ import java.sql.Date;
 
 public class LessonSubject {
   private int lessonSubjectNo;
-  private Teacher teacher;
-  private Subject subject;
+  private int teacherNo;
+  private int subjectNo;
   private String subjectContents;
   private Date registeredDate;
   private int wantedFee;
   
+  @Override
+  public String toString() {
+    return "LessonSubject [lessonSubjectNo=" + lessonSubjectNo + ", teacherNo=" + teacherNo + ", subjectNo=" + subjectNo
+        + ", subjectContents=" + subjectContents + ", registeredDate=" + registeredDate + ", wantedFee=" + wantedFee
+        + "]";
+  }
   public int getLessonSubjectNo() {
     return lessonSubjectNo;
   }
   public void setLessonSubjectNo(int lessonSubjectNo) {
     this.lessonSubjectNo = lessonSubjectNo;
   }
-  public Teacher getTeacher() {
-    return teacher;
+  public int getTeacherNo() {
+    return teacherNo;
   }
-  public void setTeacher(Teacher teacher) {
-    this.teacher = teacher;
+  public void setTeacherNo(int teacherNo) {
+    this.teacherNo = teacherNo;
   }
-  public Subject getSubject() {
-    return subject;
+  public int getSubjectNo() {
+    return subjectNo;
   }
-  public void setSubject(Subject subject) {
-    this.subject = subject;
+  public void setSubjectNo(int subjectNo) {
+    this.subjectNo = subjectNo;
   }
   public String getSubjectContents() {
     return subjectContents;
@@ -46,5 +52,4 @@ public class LessonSubject {
   public void setWantedFee(int wantedFee) {
     this.wantedFee = wantedFee;
   }
-  
 }

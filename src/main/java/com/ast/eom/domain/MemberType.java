@@ -1,21 +1,23 @@
 package com.ast.eom.domain;
 
 public class MemberType {
-  private int no;
-  private String memberType;
+  private int memberTypeNo;
+  private String memberTypeName;
   
-  public int getNo() {
-    return no;
+  @Override
+  public String toString() {
+    return "MemberType [memberTypeNo=" + memberTypeNo + ", memberTypeName=" + memberTypeName + "]";
   }
-  public void setNo(int no) {
-    this.no = no;
+  public int getMemberTypeNo() {
+    return memberTypeNo;
   }
-  public String getMemberType() {
-    return memberType;
+  public void setMemberTypeNo(int memberTypeNo) {
+    this.memberTypeNo = memberTypeNo;
   }
-  public void setMemberType(String memberType) {
-    this.memberType = memberType;
+  public String getMemberTypeName() {
+    return memberTypeName;
   }
-  
-  
+  public void setMemberTypeName(String memberTypeName) {
+    this.memberTypeName = memberTypeName;
+  }
 }
