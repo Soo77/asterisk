@@ -29,7 +29,7 @@
 
 	<select id="findAll" resultMap="MemberMap">
 		select
-		 m.mem_no, m.name, m.gender, m.addr_city, m.addr_sub, m.profile_photo, mt.mem_type_name
+		 *
 		from
 		  member m
 		inner join 
