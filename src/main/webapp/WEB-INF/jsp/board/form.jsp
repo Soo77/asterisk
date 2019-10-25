@@ -16,7 +16,7 @@
 <div id='content'>
 <h1>글쓰기</h1>
 
-<form action='add' method=post enctype='multipart/form-data'>>
+<form action='add' method=post enctype='multipart/form-data'>
   제목 : <input type='text' name='title'><br>
 <select name="boardTypeNo" id="boardTypeSelect">
   <option value=1>공부상담</option>

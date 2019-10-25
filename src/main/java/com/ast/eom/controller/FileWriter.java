@@ -7,7 +7,6 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import com.ast.eom.domain.Board;
 import com.ast.eom.domain.BoardFile;
 
 @Component
@@ -19,7 +18,7 @@ public class FileWriter {
     uploadDir = sc.getRealPath("/upload/board");
   }
   
-  public List<BoardFile> getFiles(Board board, MultipartFile[] fileName) throws Exception {
+  public List<BoardFile> getFiles(MultipartFile[] fileName) throws Exception {
     List<BoardFile> boardFiles = new ArrayList<>();
     for (MultipartFile file : fileName) {
       if (file.isEmpty())
@@ -30,7 +29,6 @@ public class FileWriter {
       // 저장한 파일명을 PhotoFile에 보관한다.
       BoardFile boardFile = new BoardFile();
       boardFile.setFileName(filename);
-      boardFile.setBoard(board);
       boardFiles.add(boardFile);
     }
     return boardFiles;
