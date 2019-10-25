@@ -7,11 +7,11 @@
   <resultMap type="BoardFile" id="BoardFileMap">
     <id column="file_no" property="fileNo"/>
     <result column="file_name" property="fileName"/>
-    <collection resultMap="BoardMap" property="board"/>
-    <collection resultMap="NoticeMap" property="notice"/>
+    <result column="board_no" property="boardNo"/>
+    <result column="notice_no" property="noticeNo"/>
   </resultMap>
   
-  <resultMap type="Board" id="BoardMap">
+<!--   <resultMap type="Board" id="BoardMap">
 		<id column="board_no" property="boardNo" />
     <result column="titl" property="title" />
     <result column="conts" property="contents" />
@@ -54,7 +54,7 @@
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
 		<collection resultMap="MemberMap" property="member" />
-  </resultMap>
+  </resultMap> -->
   
   <select id="findAll" parameterType="int" resultMap="BoardFileMap">
     select 

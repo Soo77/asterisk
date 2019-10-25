@@ -64,11 +64,11 @@
   </resultMap> -->
 
   <select id="findAll" parameterType="int" resultMap="BoardMap">
-    select b.board_no, b.titl, m.name, b.vw_cnt, b.board_type_no
+    select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.name
     from board b
     inner join member m on b.mem_no=m.mem_no
     where b.board_type_no = #{hello}
-    order by b.cdt asc
+    order by b.board_no desc
   </select>
 
   <select id="findBy" parameterType="int" resultMap="BoardMap">
@@ -110,7 +110,7 @@
   <insert id="insert" parameterType="Board"
     useGeneratedKeys="true" keyColumn="board_no" keyProperty="boardNo">
     insert into board(board_type_no, mem_no, titl, conts, cdt)
-    values(${boardTypeNo}, 1, #{title}, #{contents}, now())
+    values(${boardTypeNo}, ${memberNo}, #{title}, #{contents}, now())
   </insert>
 
   <update id="update" parameterType="Board">

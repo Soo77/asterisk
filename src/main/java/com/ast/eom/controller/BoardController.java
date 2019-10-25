@@ -27,7 +27,10 @@ public class BoardController {
   @PostMapping("add")
   public String add(
       Board board,
-      MultipartFile[] fileName) throws Exception {
+      MultipartFile[] fileName,
+      HttpSession session) throws Exception {
+    int memberNo = (Integer) session.getAttribute("memberNo");
+    board.setMemberNo(memberNo);
     board.setFiles(fileWriter.getFiles(fileName));
     boardService.insert(board);
     return "redirect:list?boardTypeNo=" + board.getBoardTypeNo();
@@ -42,12 +45,6 @@ public class BoardController {
   @GetMapping("detail")
   public void detail(HttpSession session, Model model, int no) throws Exception {
     session.setAttribute("memberNo", 2);
-    Board board = boardService.getWithIncreaseViewCount(no);
-    model.addAttribute("board", board);
-  }
-  
-  @GetMapping("detailedit")
-  public void detailedit(Model model, int no) throws Exception {
     Board board = boardService.get(no);
     model.addAttribute("board", board);
   }

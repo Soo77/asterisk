@@ -14,24 +14,31 @@
 
 <div id='content'>
 <h1>게시판</h1>
+<hr>
 
 <table class='table table-hover'>
-<tr>
-  <th>번호</th>
-  <th>제목</th>
-  <th>이름</th>
-  <th>조회</th>
-</tr>
-<c:forEach items="${boards}" var="board">
   <tr>
-    <td>${board.boardNo}</td>
-    <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
-    <td>${board.memberName}</td>
-    <td>${board.viewCount}</td>
+    <th>번호</th>
+    <th>제목</th>
+    <th>작성자</th>
+    <th>작성일</th>
+    <th>조회수</th>
   </tr>
-</c:forEach>
+      <c:forEach items="${boards}" var="board">
+        <tr>
+          <td>${board.boardNo}</td>
+          <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
+          <td>${board.memberName}</td>
+          <td>${board.createdDate}</td>
+          <td>${board.viewCount}</td>
+        </tr>
+      </c:forEach>
 </table>
-<button onclick="location='form'">글쓰기</button>
+
+<c:if test="${sessionScope.memberNo != null}">
+  <button onclick="location='form'">글쓰기</button>
+</c:if>
+
 </div>
 
 <jsp:include page="../footer.jsp"/>
