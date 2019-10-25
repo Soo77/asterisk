@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.AuthDao">
+
+  <select id="findId" parameterType="Member" resultType="Member">
+   select id from member where email=#{email} and name=#{name}
+  </select>
+  
+  <select id="login" parameterType="map" resultType="Member">
+  select * from member where id=#{id} and pwd=password(#{pw})
+  </select>
+  
+  <update id="pwChange" parameterType="Member">
+    update member set pwd=password("${password}") where email="${email}"
+  </update>
+  
+</mapper>

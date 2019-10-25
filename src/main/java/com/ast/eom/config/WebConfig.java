@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.util.UrlPathHelper;
 
-@ComponentScan("com.ast.eom.controller")
+@ComponentScan("com.ast.eom")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
   
