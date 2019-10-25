@@ -82,13 +82,13 @@
 	</resultMap> -->
 
 	<select id="findAll" resultMap="MemberMap">
-		select
-		 m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
-		from
-		  member m, member_type mt, school s, teacher_photo tp
-		where m.mem_type_no = mt.mem_type_no
-		and m.mem_no = t.tch_no = s.tch_no = tp.tch_no
-	</select>
+		select m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
+		from member m
+		inner join teacher t, school s, teacher_photo tp
+		where 
+		m.mem_no = t.tch_no and t.tch_no = s.sch_no and t.tch_no = tp.tch_photo_no 
+     
+   </select>
 	
 	<select id="findMemberAndStudent" parameterType="int" resultMap="MemberMap">
 		select
