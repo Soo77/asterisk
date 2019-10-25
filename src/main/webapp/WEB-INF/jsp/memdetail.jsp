@@ -26,7 +26,7 @@
   <hr><br>
 
   <div class="tch-profile">
-    <img src="${member.profilePhoto }" height="70px" /> 
+    <img src="${member.profilePhoto}" height="70px" /> 
     ${member.name}<br>
     ${member.gender}, ${member.dateOfBirth}<br> 
     <i class="fas fa-check"> </i>자격검증완료 

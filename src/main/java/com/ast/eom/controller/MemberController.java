@@ -16,7 +16,7 @@ public class MemberController {
   
   @RequestMapping("search")
   public String search(Model model) throws Exception {
-    List<Member> members = memberDao.findAll();
+    List<Member> members = memberDao.listMember();
     for (Member member : members) {
       System.out.println(member);
     }
@@ -26,7 +26,7 @@ public class MemberController {
   
   @RequestMapping("detail")
   public String detail(Model model, int no) throws Exception {
-    Member member = memberDao.findMemberAndStudent(no);
+    Member member = memberDao.detailMember(no);
     model.addAttribute("member", member);
     
     return "memdetail";

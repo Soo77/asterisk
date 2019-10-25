@@ -81,8 +81,9 @@
 		<collection resultMap="StudentMap" property="students"/>
 	</resultMap> -->
 
-	<select id="findAll" resultMap="MemberMap">
-		select m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
+	<select id="listMember" resultMap="MemberMap">
+		select 
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
 		from member m
 		inner join teacher t, school s, teacher_photo tp
 		where 
@@ -90,28 +91,14 @@
      
    </select>
 	
-	<select id="findMemberAndStudent" parameterType="int" resultMap="MemberMap">
+	<select id="detailMember" parameterType="int" resultMap="MemberMap">
 		select
 		*
-		from 
-		  member m
-		inner join
-		  student s
-		on m.mem_no = s.std_no 
-		where mem_no=#{ddd}
+		from member m
+		inner join teacher t, school s
+		where
+		m.mem_no = t.tch_no and t.tch_no = s.sch_no
 	</select>
-	
-	<select id="findMemberAndTeacher" parameterType="int" resultMap="MemberMap">
-		select
-		*
-		from 
-		  member m
-		inner join
-		  teacher t
-		on m.mem_no = t.tch_no 
-		where mem_no=#{ddd}
-	</select>
-	
 	
 	
 	
