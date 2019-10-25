@@ -18,11 +18,23 @@
 		<result column="tel" property="tel" />
 		<result column="profile_photo" property="profilePhoto" />
 		<collection resultMap="MemberTypeMap" property="memberType"></collection>
+		<collection resultMap="TeacherMap" property="teacher"></collection>
 	</resultMap>
 
 	<resultMap type="MemberType" id="MemberTypeMap">
 		<id column="mem_type_no" property="no" />
 		<result column="mem_type" property="memberType" />
+	</resultMap>
+	
+	<resultMap type="Teacher" id="TeacherMap">
+	<id column="tch_no" property="no"/>
+	<result column="acc_no" property="account"/>
+	<result column="bank_name" property="bankName"/>
+	<result column="lesson_certi" property="lessonCertification"/>
+	<result column="tch_intro" property="teacherIntroduce"/>
+	<result column="appr_stat" property="approvalStatus"/>
+	<result column="vid_addr" property="videoAddress"/>
+	
 	</resultMap>
 
 	<select id="findAll" resultMap="MemberMap">
@@ -36,32 +48,47 @@
 		  m.mem_type_no = mt.mem_type_no
 	</select>
 	
-
-<!-- 
-
-	<select id="findBy" parameterType="int" resultMap="BoardMap">
+	<select id="findMemberAndTeacher" resultMap="MemberMap">
 		select
-		no,
-		conts 
-		from test_board 
-		where no=#{haha}
+		  *
+		from
+		  member m
+		inner join 
+		  teacher t
+		on
+		  m.mem_type_no = t.tch_no
 	</select>
-
-	<insert id="insert" parameterType="Board">
-		insert into test_board(conts)
-		values(#{contents})
-	</insert>
 	
-	<update id="update" parameterType="Board">
-    update test_board set
-      conts=#{contents}
-    where no=#{no}
-  </update>
-  
-  <delete id="delete" parameterType="int">
-    delete from member
-    where no=#{value}
-  </delete>
-   -->
+
+	<select id="findMember" parameterType="int" resultMap="MemberMap">
+		select
+		mem_no,
+		reg_date,
+		mem_type_no,
+		gender,
+		dob,
+		id,
+		email,
+		name,
+		pwd,
+		addr,
+		tel,
+		profile_photo 
+		from member 
+		where mem_no=#{ddd}
+	</select>
+	
+	<select id="findTeacher" parameterType="int" resultMap="MemberMap">
+		select
+		tch_no,
+		acc_no,
+		bank_name,
+		lesson_certi,
+		tch_intro,
+		appr_stat,
+		vid_addr
+		from teacher 
+		where tch_no=#{ddd}
+	</select>
 
 </mapper>
