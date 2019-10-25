@@ -14,35 +14,24 @@ public class Board {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   private int viewCount;
+  private String memberName;
   
-  private Member member;
   private List<BoardFile> files;
   private List<Comment> comments;
   
+  
+  public String getMemberName() {
+    return memberName;
+  }
+  public void setMemberName(String memberName) {
+    this.memberName = memberName;
+  }
   @Override
   public String toString() {
     return "Board [boardNo=" + boardNo + ", boardTypeNo=" + boardTypeNo + ", memberNo=" + memberNo
         + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", member=" + member + ", files=" + files + ", comments="
-        + comments + "]";
-  }
-  public List<Comment> getComments() {
-    return comments;
-  }
-  public void setComments(List<Comment> comments) {
-    this.comments = comments;
-  }
-  public Member getMember() {
-    return member;
-  }
-  public void setMember(Member member) {
-    this.member = member;
-  }
-  public List<BoardFile> getFiles() {
-    return files;
-  }
-  public void setFiles(List<BoardFile> files) {
-    this.files = files;
+        + ", viewCount=" + viewCount + ", memberName=" + memberName + ", files=" + files
+        + ", comments=" + comments + "]";
   }
   public int getBoardNo() {
     return boardNo;
@@ -85,5 +74,17 @@ public class Board {
   }
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
+  }
+  public List<BoardFile> getFiles() {
+    return files;
+  }
+  public void setFiles(List<BoardFile> files) {
+    this.files = files;
+  }
+  public List<Comment> getComments() {
+    return comments;
+  }
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
 }

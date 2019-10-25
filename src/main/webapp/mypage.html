@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mypage</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    .container,
+    .col {
+      border: 1px solid powderblue;
+    }
+
+    #modifyButton {
+      text-align: right;
+    }
+
+    #time-tilde {
+      text-align: center;
+    }
+
+    .teacher-confirm {
+      display: none;
+    }
+    .dob-inline {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col align-self-center">
+        <strong>디버그모드; 회원 변경</strong>
+      </div>
+      <div class="col">
+        <select id="debugOption" class="form-control">
+          <option value="" selected disabled hidden>선택</option>
+          <option value="student">학생</option>
+          <option value="parents">학부모</option>
+          <option value="teacher">선생님</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <img id="profilePhoto" src="profile_photo.jpg" class="img-thumbnail" width="300px">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button id="photoChangeBtn" type="button" class="btn btn-outline-success">사진 변경</button>
+            <p class="h4">라이언</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <button type="button" class="btn btn-success">쪽지함</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-success">과외관리시스템</button>
+          </div>
+        </div>
+        <div class="row teacher-confirm">
+          <div class="col">
+            <p class="h4">선생님 인증</p>
+          </div>
+        </div>
+        <div class="row teacher-confirm">
+          <div class="col">
+            <img src="profile_photo.jpg" class="img-thumbnail">
+          </div>
+          <div class="col align-self-center">
+            학생증 인증됨
+          </div>
+        </div>
+        <div class="row teacher-confirm">
+          <div class="col">
+            <img src="profile_photo.jpg" class="img-thumbnail">
+          </div>
+          <div class="col align-self-center">
+            신고서 인증됨
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            가입일 : 2018-06-07
+          </div>
+        </div>
+        
+        <form action="https://google.com.au" method="get">
+          <div class="col">
+            <p class="h4">회원정보</p>
+            <div class="form-group">
+              <label for="member-id">아이디</label>
+              <input type="text" readonly class="form-control-plaintext" id="member-id" value="hong111">
+            </div>
+            <div class="form-group">
+              <label for="member-password">비밀번호</label>
+              <input type="password" class="form-control" id="member-password" value="11111111">
+            </div>
+            <div class="form-group">
+              <label for="member-password-confirm">비밀번호 확인</label>
+              <input type="password" class="form-control" id="member-password-confirm" value="11111111">
+            </div>
+            <div class="form-group">
+              <label>생년월일</label>
+              <div class="row">
+                <div class="col">
+                  <ul class="list-inline dob-inline">
+                    <li class="list-inline-item">
+                      <select class="form-control">
+                        <option>2019</option>
+                      </select>
+                    </li>
+                    <li class="list-inline-item">
+                      년
+                    </li>
+                    <li class="list-inline-item">
+                      <select class="form-control">
+                        <option>10</option>
+                      </select>
+                    </li>
+                    <li class="list-inline-item">
+                      월
+                    </li>
+                    <li class="list-inline-item">
+                      <select class="form-control">
+                        <option>23</option>
+                      </select>
+                    </li>
+                    <li class="list-inline-item">
+                      일
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label for="member-email">이메일</label>
+              <input type="email" class="form-control" id="member-email" value="hong@test.com">
+            </div>
+            <div class="form-group">
+              <label for="member-address">주소</label>
+              <select class="form-control">
+                <option value=1>서울특별시</option>
+                <option value=2>부산광역시</option>
+                <option value=3>대구광역시</option>
+                <option value=4>인천광역시</option>
+                <option value=5>광주광역시</option>
+                <option value=6>대전광역시</option>
+                <option value=7>울산광역시</option>
+                <option value=8>경기도</option>
+                <option value=9>강원도</option>
+                <option value=10>충청북도</option>
+                <option value=11>충청남도</option>
+                <option value=12>전라북도</option>
+                <option value=13>전라남도</option>
+                <option value=14>경상북도</option>
+                <option value=15>경상남도</option>
+                <option value=16>제주도</option>
+                <option value=17>세종시</option>
+              </select>
+              <input type="text" class="form-control" id="member-address2" value="서초구">
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-group">
+              <label for="member-tel">전화번호</label>
+              <input type="text" class="form-control" id="member-tel" value="010-1234-5678">
+            </div>
+          </div>
+
+          <div class="col teacher-info">
+            <hr>
+            <p class="h4">
+              은행명/계좌번호
+            </p>
+            <select class="form-control">
+              <option>국민은행</option>
+              <option>우리은행</option>
+              <option>신한은행</option>
+            </select>
+            <input type="text" class="form-control" id="member-address2" value="123-45-6789">
+          </div>
+
+          <div class="col teacher-info">
+            <p class="h4">
+              고등학교
+            </p>
+            <div class="form-group">
+              <input type="text" readonly class="form-control-plaintext" id="member-id" value="비트고등학교">
+            </div>
+          </div>
+
+          <div class="col teacher-info">
+            <p class="h4">
+              대학교
+            </p>
+            <div class="form-group">
+              <input type="text" readonly class="form-control-plaintext" id="member-id" value="비트대학교">
+            </div>
+          </div>
+
+          <div class="col teacher-info">
+            <hr>
+            <p class="h4">
+              사진등록
+            </p>
+            <div class="row">
+              <div class="col">
+                <img src="profile_photo.jpg" class="img-fluid img-thumbnail">
+              </div>
+
+              <div class="col align-self-center">
+
+                <div class="row">
+                  <div class="col pictures">
+                    <img src="profile_photo.jpg" class="img-fluid">
+                  </div>
+                  <div class="col pictures">
+                    <img src="profile_photo.jpg" class="img-fluid">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col pictures">
+                    <img src="profile_photo.jpg" class="img-fluid">
+                  </div>
+                  <div class="col pictures">
+                    <img src="profile_photo.jpg" class="img-fluid">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-success">사진등록</button>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col">
+            <hr>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <p class="h4">희망과목</p>
+              </li>
+              <li class="list-inline-item">
+                <div class="col-1">
+                  <button type="button" class="btn btn-outline-success">+</button>
+                </div>
+              </li>
+            </ul>
+
+            <div class="row">
+              <div class="col-3">
+                <select class="form-control">
+                  <option value=1>초등학교</option>
+                  <option value=2>중학교</option>
+                  <option value=3>고등학교</option>
+                </select>
+              </div>
+
+              <div class="col-3">
+                <select class="form-control">
+                  <option value=1>국어</option>
+                  <option value=2>영어</option>
+                  <option value=3>수학</option>
+                  <option value=4>과학</option>
+                  <option value=5>사회</option>
+                </select>
+              </div>
+
+              <div class="col-4">
+                <select class="form-control">
+                  <option value=1>20만원이하</option>
+                  <option value=2>30만원~40만원</option>
+                  <option value=3>20만원~30만원</option>
+                  <option value=4>40만원이상</option>
+                </select>
+              </div>
+
+              <div class="col-1">
+                <button type="button" class="btn btn-outline-success">-</button>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col">
+            <hr>
+            <p class="h4">과외가능 요일/시간</p>
+            <div class="row">
+              <div class="col">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="checkboxSunday" value="sunday">
+                  <label class="form-check-label" for="checkboxSunday">일</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="checkboxMonday" value="monday">
+                  <label class="form-check-label" for="checkboxMonday">월</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="checkboxTuesday" value="tuesday">
+                  <label class="form-check-label" for="checkboxTuesday">화</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="checkboxWednesday" value="wednesday">
+                  <label class="form-check-label" for="checkboxWednesday">수</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="checkboxThursday" value="thursday">
+                  <label class="form-check-label" for="checkboxThursday">목</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="checkboxFriday" value="friday">
+                  <label class="form-check-label" for="checkboxFriday">금</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" id="checkboxSaturday" value="saturday">
+                  <label class="form-check-label" for="checkboxSaturday">토</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <div class="col-5">
+                      <input type='time' value='18:00' class="form-control"/>
+                    <!-- <select class="form-control">
+                      <option>00:00</option>
+                      <option>01:00</option>
+                      <option>02:00</option>
+                      <option>03:00</option>
+                      <option>04:00</option>
+                      <option>05:00</option>
+                      <option>06:00</option>
+                      <option>07:00</option>
+                      <option>08:00</option>
+                      <option>09:00</option>
+                      <option>10:00</option>
+                      <option>11:00</option>
+                      <option>12:00</option>
+                      <option>13:00</option>
+                      <option>14:00</option>
+                      <option>15:00</option>
+                      <option>16:00</option>
+                      <option>17:00</option>
+                      <option>18:00</option>
+                      <option>19:00</option>
+                      <option>20:00</option>
+                      <option>21:00</option>
+                      <option>22:00</option>
+                      <option>23:00</option>
+                      <option>24:00</option>
+                    </select> -->
+                  </div>
+                  <div id="time-tilde" class="col">
+                    ~
+                  </div>
+                  <div class="col-5">
+                    <input type='time' value='20:00' class="form-control"/>
+                    <!-- <select class="form-control">
+                      <option>Default select</option>
+                    </select> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col student-info">
+            <hr>
+            <p class="h4">선생님께 바라는 점</p>
+            <div class="form-group">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+            </div>
+          </div>
+
+          <div class="col teacher-info">
+            <hr>
+            <p class="h4">자기소개</p>
+            <div class="form-group">
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+            </div>
+          </div>
+
+          <div class="col teacher-info">
+            <p class="h4">
+              자기소개 동영상
+            </p>
+            <p>
+              <a href="https://www.youtube.com/watch?v=eEXNY-fNZtc">https://www.youtube.com/watch?v=eEXNY-fNZtc</a>
+            </p>
+            <button type="button" class="btn btn-success">링크 변경</button>
+          </div>
+
+          <div class="col parents-info">
+            <hr>
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <p class="h4">자녀아이디</p>
+              </li>
+              <li class="list-inline-item">
+                <div class="col-1">
+                  <button type="button" class="btn btn-outline-success">+</button>
+                </div>
+              </li>
+            </ul>
+
+            <div class="row align-items-center">
+              <div class="col">
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    hong111
+                  </li>
+                  <li class="list-inline-item">
+                    <button type="button" class="btn btn-success">과외현황</button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button type="button" class="btn btn-outline-success">-</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col parents-info">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="parentsKakao">
+              <label class="form-check-label" for="parentsKakao">과외 내용을 카톡으로 수신</label>
+            </div>
+          </div>
+
+          <div id="modifyButton" class="col">
+            <button type="button" class="btn btn-success">수정</button>
+          </div>
+
+
+          <!-- ButtonEvent 전용 input-->
+          <input id="fileInput" type="file" hidden>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</body>
+
+<!-- 사진을 변경하는 부분 -->
+<script>
+  let photoChangeBtn = document.getElementById('photoChangeBtn');
+  let fileInput = document.getElementById('fileInput');
+
+  fileInput.addEventListener('change', function(e) {
+    let get_file = e.target.files;
+    let profilePhoto = document.getElementById('profilePhoto');
+
+    let reader = new FileReader();
+    reader.onload = (function (aImg) {
+      return function(e) {
+        aImg.src = e.target.result;
+      }
+    })(profilePhoto);
+
+    reader.readAsDataURL(get_file[0]);
+    profilePhoto.src = get_file[0].name;
+  });
+
+  photoChangeBtn.addEventListener('click',function() {
+    var clickPhotoChangeBtn = new MouseEvent('click', {
+      bubbles: true, cancelable: true, view: window
+    });
+
+    document.getElementById('fileInput').dispatchEvent(clickPhotoChangeBtn);
+    
+  });
+</script>
+
+<!-- 회원에 따라 출력하는 항목들을 다르게 표시 -->
+<script>
+  let s = document.getElementById('debugOption');
+
+  let studentInfos = document.getElementsByClassName('student-info');
+  let parentsInfos = document.getElementsByClassName('parents-info');
+  let teacherInfos = document.getElementsByClassName('teacher-info');
+  let teacherConfirms = document.getElementsByClassName('teacher-confirm');
+
+  let initialiseMemberInfos = function () {
+    for (teacherInfo of teacherInfos) {
+      teacherInfo.style.display = 'block';
+    }
+    for (parentsInfo of parentsInfos) {
+      parentsInfo.style.display = 'block';
+    }
+    for (studentInfo of studentInfos) {
+      studentInfo.style.display = 'block';
+    }
+  }
+
+  let changeMemberInfoFunc = function () {
+    initialiseMemberInfos();
+    let debugOption = s.options[s.selectedIndex].value;
+
+    if (debugOption == "student") {
+      for (teacherInfo of teacherInfos) {
+        teacherInfo.style.display = 'none';
+      }
+      for (parentsInfo of parentsInfos) {
+        parentsInfo.style.display = 'none';
+      }
+
+    } else if (debugOption == "teacher") {
+      for (studentInfo of studentInfos) {
+        studentInfo.style.display = 'none';
+      }
+      for (parentsInfo of parentsInfos) {
+        parentsInfo.style.display = 'none';
+      }
+      for (teacherConfirm of teacherConfirms) {
+        teacherConfirm.style.display = 'block';
+      }
+
+    } else if (debugOption == 'parents') {
+      for (teacherInfo of teacherInfos) {
+        teacherInfo.style.display = 'none';
+      }
+      for (studentInfo of studentInfos) {
+        studentInfo.style.display = 'none';
+      }
+    }
+  }
+
+  s.addEventListener('change', changeMemberInfoFunc);
+</script>
+
+</html>
