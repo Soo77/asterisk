@@ -3,6 +3,8 @@ package com.ast.eom.domain;
 import java.sql.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Lesson {
   private int lessonNo;
   private int teacherNo;
@@ -13,18 +15,23 @@ public class Lesson {
   private int lessonState;
   private boolean studentLessonStop;
   private boolean teacherLessonStop;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date startDate;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date endDate;
   private String teacherReview;
   private String studentReview;
   private int teacherEvaluation;
   private int paymentMethod;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date payDay;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date calculationDay;
   private int calculationState;
   private String studentStopReason;
   private String teacherStopReason;
   private boolean refundState;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date refundDate;
   private int refundAmount;
   
