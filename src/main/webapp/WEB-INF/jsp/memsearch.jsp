@@ -119,4 +119,5 @@
 
 
 </body>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 </html>

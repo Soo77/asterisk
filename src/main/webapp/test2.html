@@ -3,8 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 </head>
 <body>
-
+  <input id="ttt" type="text">
+  <input id="btn" type="button" value="얍!">
 </body>
+<script>
+  var btn = document.querySelector('#btn');
+
+  var event = function() {
+
+    // var text = "no=" + 3;
+    var text2 = {"no" : 3};
+    $.ajax({
+      url:"/app/board/ohora",
+      type:"get",
+      data: text2,
+
+      success: function(ohora) {
+        console.log(ohora);
+      }
+    });
+  };
+
+  btn.addEventListener('click', event);
+
+</script>
 </html>
