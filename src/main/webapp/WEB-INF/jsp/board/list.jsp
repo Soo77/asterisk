@@ -5,8 +5,7 @@
 <html>
 <head>
   <title>게시물 목록</title>
-  <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
-  <link rel='stylesheet' href='/css/common.css'>
+  <link rel='stylesheet' href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
 </head>
 <body>
 
@@ -40,6 +39,9 @@
 </c:if>
 
 </div>
+
+<script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <jsp:include page="../footer.jsp"/>
 
