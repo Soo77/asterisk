@@ -2,11 +2,14 @@ package com.ast.eom.domain;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class WantedLesson {
   private int wantedLessonNo;
   private int studentNo;
   private int subjectNo;
   private String requirements;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date registeredDate;
   
   @Override

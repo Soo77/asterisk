@@ -9,13 +9,11 @@
   </head>
   <body>
 
-<div>
   <h2>선생님 찾기</h2>
-</div>
   <hr><br>
   
-<div>
-  <div>
+<div class="teacherSearch">
+  <div class="address">
     <h3>지역</h3>
     <select>
       <option value="seoul">서울특별시</option>
@@ -29,145 +27,81 @@
     </select>
   </div>
   
-  <div>
+  <div class="gender">
     <h3>성별</h3>
-    <div>
     <button> 남자 </button>
-    </div>
-    <div>
     <button> 여자 </button>
-    </div>
   </div>
   
-  <div>
+  <div class="age">
     <h3>나이</h3>
-    <div>
     <button> 20 ~ 21 </button>
-    </div>
-    <div>
     <button> 22 ~ 23 </button>
-    </div>
-    <div>
     <button> 24 ~ 25 </button>
-    </div>
-    <div>
     <button> 26 ~ 27 </button>
-    </div>
-    <div>
     <button> 28 ~ 29 </button>
-    </div>
-    <div>
     <button> 30 이상</button>
-    </div>
   </div>
   
-  <div>
+  <div class="tuitionfee">
     <h3>수업료</h3>
-    <div>
     <button> 20만원 ~ 30만원 </button>
-    </div>
-    <div>
     <button> 30만원 ~ 40만원 </button>
-    </div>
-    <div>
     <button> 40만원 ~ 50만원 </button>
-    </div>
-    <div>
     <button> 50만원 이상 </button>
-    </div>
   </div>
+  
   <br>
   <h3>과목으로 찾기</h3>
-  <div>
+  
+  <div class="highSchool">
     <h3>고등학교</h3>
-    <div>
     <button> 국어 </button>
-    </div>
-    <div>
     <button> 영어 </button>
-    </div>
-    <div>
     <button> 수학 </button>
-    </div>
-    <div>
     <button> 사회 </button>
-    </div>
-    <div>
     <button> 과학 </button>
-    </div>
-    <div>
     <button> 기타 </button>
-    </div>
   </div>
   
-  <div>
+  <div class="midSchool">
     <h3>중학교</h3>
-    <div>
     <button> 국어 </button>
-    </div>
-    <div>
     <button> 영어 </button>
-    </div>
-    <div>
     <button> 수학 </button>
-    </div>
-    <div>
     <button> 사회 </button>
-    </div>
-    <div>
     <button> 과학 </button>
-    </div>
-    <div>
     <button> 기타 </button>
-    </div>
   </div>
   
-  <div>
+  <div class="eleSchool">
     <h3>초등학교</h3>
-    <div>
     <button> 국어 </button>
-    </div>
-    <div>
     <button> 영어 </button>
-    </div>
-    <div>
     <button> 수학 </button>
-    </div>
-    <div>
     <button> 사회 </button>
-    </div>
-    <div>
     <button> 과학 </button>
-    </div>
-    <div>
     <button> 기타 </button>
-    </div>
   </div>
-  <button><h3>조건 검색</h3></button>
   
+  <button><h3>조건 검색</h3></button>
 </div>  
   
-  
-<div>
-
   <c:forEach items="${members}" var="member">
-  <div>
-    <div>
+  <div class="tchdetail">
+    <div class="tchPhoto">
       <img src="images/Rabbit.png" height="100px" />
     </div>
-    <div>
-      <p>${member.name}</p>
-    </div>
-    <div>
-      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.address}/ 경력 2년/ ${member.memberType.memberType}</p>
+    
+    <div class="tchInfo">
+      <p><a href='detail?no=${member.no}'>${member.name}</a></p>
+      <p>${member.gender}/ 초등 영어, 초등 수학/ ${member.address}/ 경력 2년/${member.memberType.memberType}</p>
     </div>
     <hr>
   </div>
   </c:forEach>  
 
-</div>  
-
-<div>
+<div class="pageButton">
 <button> &lt; </button>
 <button> 1 </button>
 <button> &gt; </button>

@@ -2,11 +2,14 @@ package com.ast.eom.domain;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class LessonSubject {
   private int lessonSubjectNo;
   private int teacherNo;
   private int subjectNo;
   private String subjectContents;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date registeredDate;
   private int wantedFee;
   

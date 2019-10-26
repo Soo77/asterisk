@@ -2,12 +2,12 @@ package com.ast.eom.domain;
 
 import java.sql.Date;
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Board {
   
   private int boardNo;
-  private int boardTypeNo;
   private int memberNo;
   private String title;
   private String contents;
@@ -16,34 +16,22 @@ public class Board {
   private int viewCount;
   private String memberName;
   
+  private BoardType boardType;
+  
   private List<BoardFile> files;
   private List<Comment> comments;
   
-  
-  public String getMemberName() {
-    return memberName;
-  }
-  public void setMemberName(String memberName) {
-    this.memberName = memberName;
-  }
   @Override
   public String toString() {
-    return "Board [boardNo=" + boardNo + ", boardTypeNo=" + boardTypeNo + ", memberNo=" + memberNo
-        + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", memberName=" + memberName + ", files=" + files
-        + ", comments=" + comments + "]";
+    return "Board [boardNo=" + boardNo + ", memberNo=" + memberNo + ", title=" + title + ", contents=" + contents
+        + ", createdDate=" + createdDate + ", viewCount=" + viewCount + ", memberName=" + memberName + ", boardType="
+        + boardType + ", files=" + files + ", comments=" + comments + "]";
   }
   public int getBoardNo() {
     return boardNo;
   }
   public void setBoardNo(int boardNo) {
     this.boardNo = boardNo;
-  }
-  public int getBoardTypeNo() {
-    return boardTypeNo;
-  }
-  public void setBoardTypeNo(int boardTypeNo) {
-    this.boardTypeNo = boardTypeNo;
   }
   public int getMemberNo() {
     return memberNo;
@@ -74,6 +62,18 @@ public class Board {
   }
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
+  }
+  public String getMemberName() {
+    return memberName;
+  }
+  public void setMemberName(String memberName) {
+    this.memberName = memberName;
+  }
+  public BoardType getBoardType() {
+    return boardType;
+  }
+  public void setBoardType(BoardType boardType) {
+    this.boardType = boardType;
   }
   public List<BoardFile> getFiles() {
     return files;

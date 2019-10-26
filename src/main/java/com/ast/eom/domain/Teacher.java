@@ -14,7 +14,6 @@ public class Teacher {
   private List<Lesson> lessons;
   private List<School> schools;
   private List<LessonSubject> lessonSubjects;
-  private List<Teacher> teachers;
   private List<TeacherPhoto> teacherPhotos;
   
   @Override
@@ -22,7 +21,7 @@ public class Teacher {
     return "Teacher [teacherNo=" + teacherNo + ", accountNo=" + accountNo + ", bankName=" + bankName
         + ", lessonCertificate=" + lessonCertificate + ", teacherIntro=" + teacherIntro + ", approvementState="
         + approvementState + ", videoAddress=" + videoAddress + ", lessons=" + lessons + ", schools=" + schools
-        + ", lessonSubjects=" + lessonSubjects + ", teachers=" + teachers + ", teacherPhotos=" + teacherPhotos + "]";
+        + ", lessonSubjects=" + lessonSubjects + ", teacherPhotos=" + teacherPhotos + "]";
   }
   public int getTeacherNo() {
     return teacherNo;
@@ -83,12 +82,6 @@ public class Teacher {
   }
   public void setLessonSubjects(List<LessonSubject> lessonSubjects) {
     this.lessonSubjects = lessonSubjects;
-  }
-  public List<Teacher> getTeachers() {
-    return teachers;
-  }
-  public void setTeachers(List<Teacher> teachers) {
-    this.teachers = teachers;
   }
   public List<TeacherPhoto> getTeacherPhotos() {
     return teacherPhotos;
