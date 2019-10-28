@@ -4,11 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ast.eom.dao.BoardDao">
 
-  <!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
   <resultMap type="Board" id="BoardMap">
     <id column="board_no" property="boardNo" />
-    <result column="mem_no" property="memberNo" />
     <result column="board_type_no" property="boardTypeNo" />
+    <result column="mem_no" property="memberNo" />
     <result column="titl" property="title" />
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
@@ -34,8 +33,6 @@
       <result column="notice_no" property="noticeNo" />
     </collection>
   </resultMap>
-  
-  
 
 <!--   <resultMap type="Member" id="MemberMap">
     <id column="mem_no" property="memberNo" />
@@ -62,15 +59,21 @@
     <id column="mem_type_no" property="memberTypeNo" />
     <result column="mem_type_name" property="memberTypeName" />
   </resultMap> -->
-
-  <select id="findAll" parameterType="int" resultMap="BoardMap">
-    select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.name
-    from board b
-    inner join member m on b.mem_no=m.mem_no
-    where b.board_type_no = #{hello}
-    order by b.board_no desc
+  
+  <select id="findAllBy" parameterType="map" resultMap="BoardMap">
+  select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.name
+  from board b
+  inner join member m on b.mem_no=m.mem_no
+  where (#{searchType} like '%'||#{keyword}||'%') and b.board_type_no = #{boardTypeNo}
+  order by b.board_no desc
   </select>
-
+  
+  <select id="getListCount" resultType="int">
+    select count(*)
+    from board b
+    where b.board_type_no = #{boardTypeNo}
+  </select>
+  
   <select id="findBy" parameterType="int" resultMap="BoardMap">
     select
     b.board_no, b.titl, m.name, b.cdt, b.vw_cnt, b.conts,
@@ -125,4 +128,6 @@
     where
     board_no=#{haha}
   </delete>
+  
+
 </mapper>

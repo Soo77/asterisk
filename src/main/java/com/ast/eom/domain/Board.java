@@ -2,6 +2,7 @@ package com.ast.eom.domain;
 
 import java.sql.Date;
 import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Board {
@@ -19,13 +20,6 @@ public class Board {
   private List<BoardFile> files;
   private List<Comment> comments;
   
-  
-  public String getMemberName() {
-    return memberName;
-  }
-  public void setMemberName(String memberName) {
-    this.memberName = memberName;
-  }
   @Override
   public String toString() {
     return "Board [boardNo=" + boardNo + ", boardTypeNo=" + boardTypeNo + ", memberNo=" + memberNo
@@ -74,6 +68,12 @@ public class Board {
   }
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
+  }
+  public String getMemberName() {
+    return memberName;
+  }
+  public void setMemberName(String memberName) {
+    this.memberName = memberName;
   }
   public List<BoardFile> getFiles() {
     return files;

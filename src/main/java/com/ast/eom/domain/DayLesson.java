@@ -2,9 +2,12 @@ package com.ast.eom.domain;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class DayLesson {
   private int dayLessonNo;
   private int lessonNo;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date lessonDate;
   private int lessonStartHour;
   private int lessonEndHour;

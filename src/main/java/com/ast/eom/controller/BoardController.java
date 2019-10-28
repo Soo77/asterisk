@@ -8,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.ast.eom.domain.Board;
+import com.ast.eom.domain.Pagination;
 import com.ast.eom.service.BoardService;
 
 @Controller
@@ -37,9 +39,25 @@ public class BoardController {
   }
   
   @GetMapping("list")
-  public void list(Model model, int boardTypeNo) throws Exception {
-    List<Board> boards = boardService.list(boardTypeNo);
+  public void list(
+      int boardTypeNo,
+      HttpSession session,
+      Model model,
+      @RequestParam(defaultValue = "1") int curPage,
+      @RequestParam(defaultValue = "title") String searchType,
+      @RequestParam(defaultValue = "") String keyword) throws Exception {
+    session.setAttribute("memberNo", 2);
+    List<Board> boards = boardService.list(boardTypeNo, searchType, keyword);
+    
+    int listCnt = boards.size();
+    Pagination pagination = new Pagination(listCnt, curPage);
+    
     model.addAttribute("boards", boards);
+    model.addAttribute("listCnt", listCnt);
+    model.addAttribute("pagination", pagination);
+    model.addAttribute("boardTypeNo", boardTypeNo);
+    model.addAttribute("searchType", searchType);
+    model.addAttribute("keyword", keyword);
   }
   
   @GetMapping("detail")
