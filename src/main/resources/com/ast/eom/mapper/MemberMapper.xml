@@ -37,7 +37,7 @@
 		<result column="appr_stat" property="approvementState"/>
 		<result column="vid_addr" property="videoAddress"/>
 		<collection resultMap="TeacherPhotoMap" property="teacherPhotos"/>
-		<collection resultMap="LessonSubjectMap" property="lessonSubjects"/>
+		<!-- <collection resultMap="LessonSubjectMap" property="lessonSubjects"/> -->
 		<collection resultMap="SchoolMap" property="schools"/>
 	</resultMap>
 	
@@ -47,6 +47,7 @@
 		<result column="tch_photo" property="teacherPhoto"/>
 	</resultMap>
 	
+	<!-- 
 	<resultMap type="LessonSubject" id="LessonSubjectMap">
 		<id column="lesson_sub_no" property="lessonSubjectNo"/>
 		<result column="tch_no" property="teacherNo"/>
@@ -54,7 +55,7 @@
 		<result column="sub_conts" property="subjectContents"/>
 		<result column="rdt" property="registeredDate"/>
 		<result column="wanted_fee" property="wantedFee"/>
-	</resultMap>
+	</resultMap> -->
 	
 	<resultMap type="School" id="SchoolMap">
 		<id column="sch_no" property="schoolNo"/>
@@ -82,12 +83,12 @@
 	</resultMap> -->
 
 	<select id="findAll" resultMap="MemberMap">
-		select
-		 m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
+		select distinct 
+		 m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name
 		from
-		  member m, member_type mt, school s, teacher_photo tp
+		  member m, member_type mt, school s, teacher_photo tp, teacher t
 		where m.mem_type_no = mt.mem_type_no
-		and m.mem_no = t.tch_no = s.tch_no = tp.tch_no
+		and m.mem_no = t.tch_no = s.sch_no
 	</select>
 	
 	<select id="findMemberAndStudent" parameterType="int" resultMap="MemberMap">

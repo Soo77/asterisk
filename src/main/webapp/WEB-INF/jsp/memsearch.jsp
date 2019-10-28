@@ -6,6 +6,14 @@
   <head>
   <meta charset="UTF-8">
   <title>선생님 찾기</title>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+	  $("button").click(function(){
+	   $(".age").hide();
+	  });
+  });
+  </script>
   </head>
   <body>
  
@@ -92,7 +100,12 @@
     <tr>
       <td>${teacherPhotos.teacherPhoto}</td>
       <td><a href='detail?no=${member.memberNo}'>${member.name}</a><td><br>
+      <c:if test="${member.memberTypeNo == 1}">
+       <td>초등 영어, 초등 수학/</td> <td>${member.addressCity}</td><td> ${member.addressSuburb}</td> / <td>${member.memberTypeNo}</td>
+      </c:if>
+      <c:if test="${member.memberTypeNo == 3}">
       <td>${member.gender}</td>/ 초등 영어, 초등 수학/ <td>${member.addressCity}</td><td> ${member.addressSuburb}</td> / <td>${member.memberTypeNo}</td>
+      </c:if>
     </tr>
     <hr>
   </div>
