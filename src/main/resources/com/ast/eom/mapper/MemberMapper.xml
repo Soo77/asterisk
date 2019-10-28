@@ -37,7 +37,7 @@
 		<result column="appr_stat" property="approvementState"/>
 		<result column="vid_addr" property="videoAddress"/>
 		<collection resultMap="TeacherPhotoMap" property="teacherPhotos"/>
-		<!-- <collection resultMap="LessonSubjectMap" property="lessonSubjects"/> -->
+		<collection resultMap="LessonSubjectMap" property="lessonSubjects"/>
 		<collection resultMap="SchoolMap" property="schools"/>
 	</resultMap>
 	
@@ -47,7 +47,6 @@
 		<result column="tch_photo" property="teacherPhoto"/>
 	</resultMap>
 	
-	<!-- 
 	<resultMap type="LessonSubject" id="LessonSubjectMap">
 		<id column="lesson_sub_no" property="lessonSubjectNo"/>
 		<result column="tch_no" property="teacherNo"/>
@@ -55,7 +54,7 @@
 		<result column="sub_conts" property="subjectContents"/>
 		<result column="rdt" property="registeredDate"/>
 		<result column="wanted_fee" property="wantedFee"/>
-	</resultMap> -->
+	</resultMap>
 	
 	<resultMap type="School" id="SchoolMap">
 		<id column="sch_no" property="schoolNo"/>
@@ -82,37 +81,24 @@
 		<collection resultMap="StudentMap" property="students"/>
 	</resultMap> -->
 
-	<select id="findAll" resultMap="MemberMap">
-		select distinct 
-		 m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name
-		from
-		  member m, member_type mt, school s, teacher_photo tp, teacher t
-		where m.mem_type_no = mt.mem_type_no
-		and m.mem_no = t.tch_no = s.sch_no
-	</select>
+	<select id="listMember" resultMap="MemberMap">
+		select 
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
+		from member m
+		inner join teacher t, school s, teacher_photo tp
+		where 
+		m.mem_no = t.tch_no and t.tch_no = s.sch_no and t.tch_no = tp.tch_photo_no 
+     
+   </select>
 	
-	<select id="findMemberAndStudent" parameterType="int" resultMap="MemberMap">
+	<select id="detailMember" parameterType="int" resultMap="MemberMap">
 		select
 		*
-		from 
-		  member m
-		inner join
-		  student s
-		on m.mem_no = s.std_no 
-		where mem_no=#{ddd}
+		from member m
+		inner join teacher t, school s
+		where
+		m.mem_no = t.tch_no and t.tch_no = s.sch_no
 	</select>
-	
-	<select id="findMemberAndTeacher" parameterType="int" resultMap="MemberMap">
-		select
-		*
-		from 
-		  member m
-		inner join
-		  teacher t
-		on m.mem_no = t.tch_no 
-		where mem_no=#{ddd}
-	</select>
-	
 	
 	
 	

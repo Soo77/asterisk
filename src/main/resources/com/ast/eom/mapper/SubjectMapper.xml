@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.SubjectDao">
+
+	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+	<resultMap type="Subject" id="SubjectMap">
+		<id column="sub_no" property="subjectNo" />
+		<result column="sch_type_no" property="schoolTypeNo" />
+		<result column="sub_name" property="subjectName" />
+		<collection resultMap="LessonSubjectMap" property="lessonSubjects"/>
+		<collection resultMap="SchoolTypeMap" property="schoolTypes"/>
+	</resultMap>
+	
+	<resultMap type="LessonSubject" id="LessonSubjectMap">
+		<id column="lesson_sub_no" property="lessonSubjectNo"/>
+		<result column="tch_no" property="teacherNo"/>
+		<result column="sub_no" property="subjectNo"/>
+		<result column="sub_conts" property="subjectContents"/>
+		<result column="rdt" property="registeredDate"/>
+		<result column="wanted_fee" property="wantedFee"/>
+	</resultMap>
+	
+	<resultMap type="SchoolType" id="SchoolTypeMap">
+		<id column="sch_type_no" property="schoolTypeNo"/>
+		<result column="sch_type" property="schoolType"/>
+	</resultMap>
+	
+	<select id="listSubject" resultMap="SubjectMap">
+		select 
+		s.sub_name, st.sch_type  
+		from subject s
+		inner join school_type st, lesson_subject ls
+		where 
+		s.sch_type_no = st.sch_type_no and s.sub_no = ls.lesson_sub_no
+     
+   </select>
+	
+	
+	
+	
+	
+	
+
+</mapper>
