@@ -20,7 +20,8 @@
 			<input type="checkbox" id="idmemory">아이디 기억
 			<button>로그인</button>
 		</form>
-		<a href="../auth/find">찾기</a>
+		<a href="../auth/findid">아이디 찾기</a>
+		<a href="../auth/findpw">비밀번호 찾기</a>
 	</div>
 
 <!--   아이디 기억 -->

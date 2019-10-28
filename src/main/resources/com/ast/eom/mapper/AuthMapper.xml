@@ -8,6 +8,10 @@
    select id from member where email=#{email} and name=#{name}
   </select>
   
+  <select id="findPw" parameterType="Member" resultType="int">
+   select count(*) from member where id=#{id} and email=#{email} and name=#{name}
+  </select>
+  
   <select id="login" parameterType="map" resultType="Member">
   select * from member where id=#{id} and pwd=password(#{pw})
   </select>

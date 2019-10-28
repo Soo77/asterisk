@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.ast.eom.dao.JoinDao;
 import com.ast.eom.domain.Member;
-import com.ast.eom.domain.MemberType;
 
 @Controller
 @RequestMapping("/join")
@@ -28,14 +27,26 @@ public class JoinController {
     uploadDir = sc.getRealPath("/upload");
   }
   
-  @GetMapping("register")
-  public void register() {
+  @GetMapping("student")
+  public void student() {
+  }
+  
+  @GetMapping("parents")
+  public void parents() {
+  }
+  
+  @GetMapping("teacher")
+  public void teacher() {
+  }
+  
+  @GetMapping("form")
+  public void form() {
   }
   
   @PostMapping("join")
   public String join(Member member, 
       MultipartFile filePath,
-      MemberType memberType,
+      int memberTypeNo,
       String birthyy,
       String birthmm,
       String birthdd,
@@ -46,7 +57,8 @@ public class JoinController {
     Date testdob = Date.valueOf(dob);
     member.setEmail(emailAddress);
     member.setDateOfBirth(testdob);
-    member.setMemberType(memberType);
+    member.setMemberTypeNo(memberTypeNo);
+    //멤버 타입 수정함 MemberType
     
     if (!filePath.isEmpty()) {
     String filename = UUID.randomUUID().toString();

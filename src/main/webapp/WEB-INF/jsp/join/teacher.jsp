@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>가입 화면</title>
 <script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+  src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
     
         // 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
         function checkValue()
         {
-            if(document.userInfo.memberTypeNo.value == ""){
-              alert("회원 구분을 해주세요.");
-              return false;
-            }
             
             if(!document.userInfo.filePath.value){
                 alert("프로필 사진을 입력하세요.");
@@ -71,7 +68,7 @@
 <body>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
 	<div id="wrap">
-		<br> <br> <b><font size="6" color="gray">회원가입</font></b> <br>
+		<br> <br> <b><font size="6" color="gray">선생님 회원가입</font></b> <br>
 		<br> <br>
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
@@ -86,11 +83,8 @@
 				<tr>
 					<td id="title">회원구분</td>
 					<td><select name="memberTypeNo">
-							<option value="">회원구분</option>
-							<option value="1">student</option>
-							<option value="2">parents</option>
+					<option value="" selected disabled>회원 구분</option>
 							<option value="3">teacher</option>
-							<option value="4">admin</option>
 					</select>
 				</tr>
 
@@ -163,6 +157,65 @@
 			<input type="text" name="addressCity" id="sido"placeholder="주소">
 			<input type="text" name="addressSuburb" id="sigungu"placeholder="상세주소">
 			<input type="button" onclick="execDaumPostcode()" value="주소 찾기"><br><br>
+			
+			고등학교명
+			<input type="text"><br>
+			대학교명
+      <input type="text"><br>
+            전공
+      <input type="text"><br>
+      
+            과외 신고서
+      <input type='file'>
+<!--       <img id="view_file" src="#" width="400px" height="200px" /> -->
+      <br>
+      
+            전문 과목
+      <select name="subject">
+         <optgroup label="초등학교">
+           <option value="수학">수학</option>
+           <option value="영어">영어</option>
+         </optgroup>
+         <optgroup label="중학교">
+           <option value="수학">수학</option>
+           <option value="영어">영어</option>
+         </optgroup>
+         <optgroup label="고등학교">
+           <option value="수학">수학</option>
+           <option value="영어">영어</option>
+         </optgroup>
+      </select><br>
+      
+            과외 가능 요일
+      <input type="checkbox">일<input type="checkbox">월<input type="checkbox">화
+      <input type="checkbox">수<input type="checkbox">목<input type="checkbox">금
+      <input type="checkbox">토<br>
+      
+            과외 가능 시간
+      <select>
+         <option>12:00</option>
+         <option>13:00</option>
+         <option>14:00</option>
+      </select>
+      ~
+      <select>
+         <option>15:00</option>
+         <option>16:00</option>
+         <option>17:00</option>
+      </select><br>
+      
+            수업료
+      <input type="text">만원<br>
+      
+            은행명/계좌번호
+      <select>
+         <option>국민은행</option>
+         <option>신한은행</option>
+      </select>
+      
+            자기소개<br>
+      <textarea rows="10" cols="30"></textarea><br>
+			
 			<button type="submit" id="submit">가입</button>
 			<input id="cancelbtn" type="button" value="취소">
 
@@ -388,6 +441,6 @@
       });
     });
     </script>
-
+<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
 </body>
 </html>
