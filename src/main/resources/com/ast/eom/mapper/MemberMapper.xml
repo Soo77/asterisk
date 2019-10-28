@@ -7,7 +7,6 @@
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
 	<resultMap type="Member" id="MemberMap">
 		<id column="mem_no" property="memberNo" />
-		<result column="mem_type_no" property="memberTypeNo" />
 		<result column="reg_date" property="registeredDate" />
 		<result column="gender" property="gender" />
 		<result column="dob" property="dateOfBirth" />
@@ -19,6 +18,7 @@
 		<result column="addr_sub" property="addressSuburb" />
 		<result column="tel" property="tel" />
 		<result column="profile_photo" property="profilePhoto" />
+		<collection resultMap="MemberTypeMap" property="memberType"/>
 		<collection resultMap="TeacherMap" property="teacher"/>
 		<collection resultMap="StudentMap" property="student"/>
 	</resultMap>
@@ -85,9 +85,9 @@
 		select 
 		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
 		from member m
-		inner join teacher t, school s, teacher_photo tp
+		inner join member_type mt, teacher t, school s, teacher_photo tp
 		where 
-		m.mem_no = t.tch_no and t.tch_no = s.sch_no and t.tch_no = tp.tch_photo_no 
+		mt.mem_type_no = m.mem_type_no and m.mem_no = t.tch_no and t.tch_no = s.sch_no and t.tch_no = tp.tch_photo_no 
      
    </select>
 	
