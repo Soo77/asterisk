@@ -3,12 +3,11 @@ package com.ast.eom.dao;
 import java.util.List;
 import com.ast.eom.domain.Board;
 
-// DAO 사용 규칙을 정의한다.
 public interface BoardDao {
-  int insert(Board board) throws Exception;
-  List<Board> findAll(int boardType) throws Exception;
+  List<Board> findAllBy(int boardTypeNo) throws Exception;
   Board findBy(int no) throws Exception;
   Board findWithFilesBy(int no) throws Exception;
+  int insert(Board board) throws Exception;
   int update(Board board) throws Exception;
   int delete(int no) throws Exception;
   int increaseViewCount(int no) throws Exception;
