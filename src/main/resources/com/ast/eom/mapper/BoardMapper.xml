@@ -60,18 +60,12 @@
     <result column="mem_type_name" property="memberTypeName" />
   </resultMap> -->
   
-  <select id="findAllBy" parameterType="map" resultMap="BoardMap">
-  select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.name
-  from board b
-  inner join member m on b.mem_no=m.mem_no
-  where (#{searchType} like '%'||#{keyword}||'%') and b.board_type_no = #{boardTypeNo}
-  order by b.board_no desc
-  </select>
-  
-  <select id="getListCount" resultType="int">
-    select count(*)
+  <select id="findAllBy" parameterType="int" resultMap="BoardMap">
+    select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.name
     from board b
-    where b.board_type_no = #{boardTypeNo}
+    inner join member m on b.mem_no=m.mem_no
+    where b.board_type_no = #{hello}
+    order by b.board_no desc
   </select>
   
   <select id="findBy" parameterType="int" resultMap="BoardMap">
