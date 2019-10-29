@@ -2,11 +2,14 @@ package com.ast.eom.domain;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Message {
   private int messageNo;
   private int senderNo;
   private int receiverNo;
   private String messageContents;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date sendDate;
   private boolean isRead;
   
