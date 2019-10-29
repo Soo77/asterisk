@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +9,100 @@
 	integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
 	crossorigin='anonymous'>
 	<script type="text/JavaScript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+<style>
+body {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #FFD8D8;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#content{
+  margin: auto;
+}
+
+.btn{
+  display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color 
+    .15s ease-in-out,box-shadow .15s ease-in-out;
+    width: 100%;
+    margin-top: 10px;
+    
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+</style>
+
 </head>
-<body>
+<body class="text-center">
 
 	<div id='content'>
 		<h1>로그인 폼</h1>
-		<form action='login' method='post'>
-			아이디:<input type='text' id='id' name='id' value=''><br>
-			암호:<input type='password' name=pw><br>
-			<input type="checkbox" id="idmemory">아이디 기억
-			<button>로그인</button>
+		<form action='login' method='post' class="form-signin">
+			<input type='text' id='id' name='id' value='' 
+			class="form-control" placeholder="아이디" required autofocus>
+			
+			<input type='password' name='pw' class="form-control"
+			placeholder="암호" required>
+			
+			<input type="checkbox" id="idmemory" value="아이디 기억">아이디 기억
+			<button class="btn btn-primary">로그인</button>
+			<a href="../join/form/"><button type="button" class="btn btn-primary">회원가입</button></a>
 		</form>
-		<a href="../auth/findid">아이디 찾기</a>
+		<a href="../auth/findid">아이디 찾기</a><br>
 		<a href="../auth/findpw">비밀번호 찾기</a>
 	</div>
 
