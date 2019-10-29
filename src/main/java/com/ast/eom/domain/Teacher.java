@@ -2,7 +2,7 @@ package com.ast.eom.domain;
 
 import java.util.List;
 
-public class Teacher {
+public class Teacher extends Member {
   private int teacherNo;
   private String accountNo;
   private String bankName;

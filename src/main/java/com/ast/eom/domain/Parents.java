@@ -2,7 +2,7 @@ package com.ast.eom.domain;
 
 import java.util.List;
 
-public class Parents {
+public class Parents extends Member {
   private int parentsNo;
   private boolean kakaotalk;
   
