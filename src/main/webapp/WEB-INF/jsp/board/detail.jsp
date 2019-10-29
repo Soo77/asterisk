@@ -43,6 +43,7 @@
               조회 : <input type='text' name='viewCount' value='${board.viewCount}' readonly> <br>
               내용 : <textarea id="my-contents-input" name='contents' rows='5'cols='50' readonly>${board.contents}</textarea> <br>
 
+      <div id="boardFiles">
         <p>
           <c:if test="${not empty board.files}">
             <c:forEach items="${board.files}" var="file">
@@ -50,6 +51,7 @@
             </c:forEach>
           </c:if>
         </p>
+      </div>
 
       <div id="insertBoardPhotos">
         <c:forEach begin="1" end="6">
