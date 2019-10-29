@@ -73,7 +73,7 @@
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
-		<form method="post" action="join" name="userInfo"
+		<form method="post" action="teacherjoin" name="userInfo"
 			enctype="multipart/form-data" onsubmit="return checkValue()">
 
 			프로필 사진: <input type='file' id='filePath' name='filePath'>
@@ -166,7 +166,7 @@
       <input type="text"><br>
       
             과외 신고서
-      <input type='file'>
+      <input type='file' name="lessoncertificate">
 <!--       <img id="view_file" src="#" width="400px" height="200px" /> -->
       <br>
       
@@ -207,14 +207,15 @@
             수업료
       <input type="text">만원<br>
       
-            은행명/계좌번호
-      <select>
-         <option>국민은행</option>
-         <option>신한은행</option>
-      </select>
+            은행명/계좌번호<br>
+      <select name="bankname">
+         <option value="국민은행">국민은행</option>
+         <option value="신한은행">신한은행</option>
+      </select><br>
+      <input type="text" name="accountno"><br>
       
             자기소개<br>
-      <textarea rows="10" cols="30"></textarea><br>
+      <textarea rows="10" cols="30" name="teacherintro"></textarea><br>
 			
 			<button type="submit" id="submit">가입</button>
 			<input id="cancelbtn" type="button" value="취소">

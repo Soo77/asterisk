@@ -159,8 +159,9 @@
 			<input type="button" onclick="execDaumPostcode()" value="주소 찾기"><br><br>
 			
 			자녀 아이디
-			<input type="text">
-			<button>인증하기</button><br>
+			<input type="text" id="textverify">
+			<button type="button" id="verify" onclick="verify2()">인증하기</button><br>
+			<div id="checkverify"></div>
 			
 			<button type="submit" id="submit">가입</button>
 			<input id="cancelbtn" type="button" value="취소">
@@ -204,7 +205,7 @@
 	<script>
     var cbtn = document.querySelector("#cancelbtn");
     cbtn.addEventListener("click", function(){
-      location.href = "../board/list";
+      location.href = "../auth/form";
     });
     
   </script>
@@ -386,6 +387,39 @@
         }
       });
     });
+    </script>
+    
+<!--     자녀 아이디 인증 -->
+    <script>
+    function verify2() {
+        var id = $('#textverify').val();
+        $.ajax({
+          url : 'idCheck',
+          type : 'get',
+          data : "id="+id,
+          success : function(result) {
+            if (result == 0) {
+                $("#checkverify").text("없는 아이디입니당");
+                $("#checkverify").css("color", "red");
+                $("#textverify").css("color", "red");
+                $("#submit").attr("disabled", true);
+              } else {
+                if(id){
+                  $("#checkverify").text("인증된 아이디입니당");
+                  $("#checkverify").css("color", "green");
+                  $("#textverify").css("color", "green");
+                  $("#submit").attr("disabled", false);
+                } else if(id == ""){
+                  $('#checkverify').text('아이디를 입력해주세요 :)');
+                  $('#checkverify').css('color', 'red');
+                  $("#submit").attr("disabled", true);
+                }
+              }
+            }, error : function() {
+                console.log("실패");
+            }
+          });
+        }
     </script>
 <!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
 </body>
