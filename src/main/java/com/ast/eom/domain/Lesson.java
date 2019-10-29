@@ -9,8 +9,8 @@ public class Lesson {
   private int lessonNo;
   private int teacherNo;
   private int studentNo;
-  private int subjectNo;
   private String lessonDescription;
+  private int subjectNo;
   private int lessonFee;
   private int lessonState;
   private boolean studentLessonStop;
@@ -34,7 +34,10 @@ public class Lesson {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date refundDate;
   private int refundAmount;
+  private Member member;
+  private String subjectName;
   
+  private List<Member> members;
   private List<Curriculum> curriculums;
   private List<DayLesson> dayLessons;
   
@@ -200,4 +203,25 @@ public class Lesson {
   public void setDayLessons(List<DayLesson> dayLessons) {
     this.dayLessons = dayLessons;
   }
+  public List<Member> getMembers() {
+    return members;
+  }
+  public void setMembers(List<Member> members) {
+    this.members = members;
+  }
+  public Member getMember() {
+    return member;
+  }
+  public void setMember(Member member) {
+    this.member = member;
+  }
+  public String getSubjectName() {
+    return subjectName;
+  }
+  public void setSubjectName(String subjectName) {
+    this.subjectName = subjectName;
+  }
+  
+  
+  
 }

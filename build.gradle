@@ -63,6 +63,13 @@ dependencies {
     // 파일 업로드 처리
     compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
     
+    // JavaMail API JAR
+    compile group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
+    
+    // https://mvnrepository.com/artifact/org.springframework/spring-context-support
+    compile group: 'org.springframework', name: 'spring-context-support', version: '3.2.0.RELEASE'
+    
+    
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
 }

@@ -26,6 +26,8 @@ public class Member {
   private Parents parents;
   private Student student;
   private MemberType memberType;
+  
+  private int memberTypeNo;
 
   private List<Message> sentMessages;
   private List<Message> receivedMessages;
@@ -168,4 +170,11 @@ public class Member {
   public void setComments(List<Comment> comments) {
     this.comments = comments;
   }
+  public int getMemberTypeNo() {
+    return memberTypeNo;
+  }
+  public void setMemberTypeNo(int memberTypeNo) {
+    this.memberTypeNo = memberTypeNo;
+  }
+  
 }
