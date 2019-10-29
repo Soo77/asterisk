@@ -1,3 +1,6 @@
+-- 공지사항
+DROP TABLE IF EXISTS notice RESTRICT;
+
 -- 선생님
 DROP TABLE IF EXISTS teacher RESTRICT;
 
@@ -6,9 +9,6 @@ DROP TABLE IF EXISTS student RESTRICT;
 
 -- 학부모
 DROP TABLE IF EXISTS parents RESTRICT;
-
--- 공지사항
-DROP TABLE IF EXISTS notice RESTRICT;
 
 -- 게시글
 DROP TABLE IF EXISTS board RESTRICT;
@@ -85,13 +85,10 @@ CREATE UNIQUE INDEX UIX_teacher
 		acc_no ASC -- 계좌번호
 	);
 
-ALTER TABLE teacher
-	MODIFY COLUMN tch_no INTEGER NOT NULL AUTO_INCREMENT;
-
 -- 학생
 CREATE TABLE student (
 	std_no      INTEGER NOT NULL, -- 학생번호
-	parents_no  INTEGER NULL    , -- 학부모번호
+	parents_no  INTEGER NULL,     -- 학부모번호
 	sch_type_no INTEGER NULL      -- 학교유형번호
 );
 
@@ -101,9 +98,6 @@ ALTER TABLE student
 		PRIMARY KEY (
 			std_no -- 학생번호
 		);
-
-ALTER TABLE student
-	MODIFY COLUMN std_no INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 학부모
 CREATE TABLE parents (
@@ -117,29 +111,6 @@ ALTER TABLE parents
 		PRIMARY KEY (
 			parents_no -- 학부모번호
 		);
-
-ALTER TABLE parents
-	MODIFY COLUMN parents_no INTEGER NOT NULL AUTO_INCREMENT;
-
--- 공지사항
-CREATE TABLE notice (
-	notice_no INTEGER     NOT NULL, -- 공지사항글번호
-	mem_no    INTEGER     NOT NULL, -- 회원번호
-	titl      VARCHAR(50) NOT NULL, -- 제목
-	conts     TEXT        NOT NULL, -- 내용
-	cdt       DATETIME    NOT NULL, -- 작성일
-	vw_cnt    INTEGER     NOT NULL DEFAULT 0 -- 조회수
-);
-
--- 공지사항
-ALTER TABLE notice
-	ADD CONSTRAINT PK_notice -- 공지사항 기본키
-		PRIMARY KEY (
-			notice_no -- 공지사항글번호
-		);
-
-ALTER TABLE notice
-	MODIFY COLUMN notice_no INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 게시글
 CREATE TABLE board (
@@ -169,7 +140,7 @@ CREATE TABLE message (
 	receiver      INTEGER  NOT NULL, -- 수신인
 	message_conts TEXT     NOT NULL, -- 쪽지내용
 	send_date     DATETIME NOT NULL, -- 보낸날짜
-	is_read          BOOLEAN  NOT NULL DEFAULT false -- 수신여부
+	is_read       BOOLEAN  NOT NULL DEFAULT false -- 수신여부
 );
 
 -- 쪽지
@@ -186,7 +157,7 @@ ALTER TABLE message
 CREATE TABLE lesson (
 	lesson_no       INTEGER  NOT NULL, -- 수업번호
 	tch_no          INTEGER  NOT NULL, -- 선생님번호
-	std_no          INTEGER  NULL    , -- 학생번호
+	std_no          INTEGER  NULL,     -- 학생번호
 	sub_no          INTEGER  NOT NULL, -- 과목번호
 	lesson_desc     TEXT     NOT NULL, -- 수업소개
 	lesson_fee      INTEGER  NOT NULL, -- 수업료
@@ -195,17 +166,17 @@ CREATE TABLE lesson (
 	tch_lesson_stop BOOLEAN  NOT NULL DEFAULT false, -- 선생님수업중단신청여부
 	sdt             DATETIME NOT NULL, -- 시작일
 	edt             DATETIME NOT NULL, -- 종료일
-	tch_review      TEXT     NULL    , -- 선생님후기내용
-	std_review      TEXT     NULL    , -- 학생후기내용
-	tch_eval        INTEGER  NULL    , -- 선생님별점
-	payment         INTEGER  NULL    , -- 결제수단
-	pay_day         DATETIME NULL    , -- 결제일
-	cal_date        DATETIME NULL    , -- 정산일
+	tch_review      TEXT     NULL,     -- 선생님후기내용
+	std_review      TEXT     NULL,     -- 학생후기내용
+	tch_eval        INTEGER  NULL,     -- 선생님별점
+	payment         INTEGER  NULL,     -- 결제수단
+	pay_day         DATETIME NULL,     -- 결제일
+	cal_date        DATETIME NULL,     -- 정산일
 	cal_stat        INTEGER  NULL     DEFAULT 0, -- 정산상태
-	std_stop_reason TEXT     NULL    , -- 학생중단사유
-	tch_stop_reason TEXT     NULL    , -- 선생님중단사유
+	std_stop_reason TEXT     NULL,     -- 학생중단사유
+	tch_stop_reason TEXT     NULL,     -- 선생님중단사유
 	ref_stat        BOOLEAN  NULL     DEFAULT 0, -- 환불상태
-	ref_date        DATETIME NULL    , -- 환불일
+	ref_date        DATETIME NULL,     -- 환불일
 	ref_amount      INTEGER  NULL      -- 환불금액
 );
 
@@ -238,19 +209,21 @@ ALTER TABLE curriculum
 
 -- 회원
 CREATE TABLE member (
-	mem_no        INTEGER      NOT NULL, -- 회원번호
-	mem_type_no   INTEGER      NOT NULL, -- 회원구분번호
-	reg_date      DATETIME     NOT NULL, -- 가입일
-	gender        VARCHAR(1)   NOT NULL, -- 성별
-	dob           DATETIME     NOT NULL, -- 생년월일
-	id            VARCHAR(15)  NOT NULL, -- 아이디
-	email         VARCHAR(40)  NOT NULL, -- 이메일
-	name          VARCHAR(15)  NOT NULL, -- 이름
-	pwd           VARCHAR(255) NOT NULL, -- 비밀번호
-	addr_city     VARCHAR(255) NULL    , -- 주소(시/도)
-	addr_sub      VARCHAR(255) NULL    , -- 주소(시/군/구)
-	tel           VARCHAR(30)  NULL    , -- 전화번호
-	profile_photo VARCHAR(255) NULL      -- 프로필사진
+	mem_no         INTEGER      NOT NULL, -- 회원번호
+	mem_type_no    INTEGER      NOT NULL, -- 회원구분번호
+	reg_date       DATETIME     NOT NULL, -- 가입일
+	gender         VARCHAR(1)   NOT NULL, -- 성별
+	dob            DATETIME     NOT NULL, -- 생년월일
+	id             VARCHAR(15)  NOT NULL, -- 아이디
+	email          VARCHAR(40)  NOT NULL, -- 이메일
+	name           VARCHAR(15)  NOT NULL, -- 이름
+	pwd            VARCHAR(255) NOT NULL, -- 비밀번호
+	addr_city      VARCHAR(255) NULL,     -- 주소(시/도)
+	addr_sub       VARCHAR(255) NULL,     -- 주소(시/군/구)
+	tel            VARCHAR(30)  NULL,     -- 전화번호
+	profile_photo  VARCHAR(255) NULL,     -- 프로필사진
+	email_checked  BOOLEAN      NULL     DEFAULT false, -- 이메일인증여부
+	activation_key VARCHAR(255) NULL      -- 인증번호
 );
 
 -- 회원
@@ -349,7 +322,7 @@ CREATE TABLE school (
 	certi       VARCHAR(255) NOT NULL, -- 증명서
 	grad        BOOLEAN      NOT NULL DEFAULT false, -- 졸업유무
 	mdt         DATETIME     NOT NULL, -- 변경일
-	major       VARCHAR(50)  NULL    , -- 전공
+	major       VARCHAR(50)  NULL,     -- 전공
 	confirm     BOOLEAN      NULL     DEFAULT false, -- 검증여부
 	grad_date   DATETIME     NULL      -- 졸업일
 );
@@ -421,8 +394,7 @@ ALTER TABLE board_type
 CREATE TABLE board_file (
 	file_no   INTEGER      NOT NULL, -- 게시글첨부파일번호
 	file_name VARCHAR(255) NOT NULL, -- 첨부파일명
-	board_no  INTEGER      NULL    , -- 게시글번호
-	notice_no INTEGER      NULL      -- 공지사항글번호
+	board_no  INTEGER      NULL      -- 게시글번호
 );
 
 -- 게시글첨부파일
@@ -454,8 +426,8 @@ ALTER TABLE teacher_photo
 
 -- 회원유형
 CREATE TABLE member_type (
-	mem_type_no INTEGER      NOT NULL, -- 회원구분번호
-	mem_type_name    VARCHAR(255) NOT NULL  -- 회원구분
+	mem_type_no   INTEGER      NOT NULL, -- 회원구분번호
+	mem_type_name VARCHAR(255) NOT NULL  -- 회원구분
 );
 
 -- 회원유형
@@ -547,16 +519,6 @@ ALTER TABLE parents
 	ADD CONSTRAINT FK_member_TO_parents -- 회원 -> 학부모
 		FOREIGN KEY (
 			parents_no -- 학부모번호
-		)
-		REFERENCES member ( -- 회원
-			mem_no -- 회원번호
-		);
-
--- 공지사항
-ALTER TABLE notice
-	ADD CONSTRAINT FK_member_TO_notice -- 회원 -> 공지사항
-		FOREIGN KEY (
-			mem_no -- 회원번호
 		)
 		REFERENCES member ( -- 회원
 			mem_no -- 회원번호
@@ -762,16 +724,6 @@ ALTER TABLE board_file
 			board_no -- 게시글번호
 		);
 
--- 게시글첨부파일
-ALTER TABLE board_file
-	ADD CONSTRAINT FK_notice_TO_board_file -- 공지사항 -> 게시글첨부파일
-		FOREIGN KEY (
-			notice_no -- 공지사항글번호
-		)
-		REFERENCES notice ( -- 공지사항
-			notice_no -- 공지사항글번호
-		);
-
 -- 선생님 사진
 ALTER TABLE teacher_photo
 	ADD CONSTRAINT FK_teacher_TO_teacher_photo -- 선생님 -> 선생님 사진
@@ -782,7 +734,7 @@ ALTER TABLE teacher_photo
 			tch_no -- 선생님번호
 		);
 
--- 커리큘럼수업내용!
+-- 커리큘럼수업내용
 ALTER TABLE curr_lesson_conts
 	ADD CONSTRAINT FK_curriculum_TO_curr_lesson_conts -- 커리큘럼 -> 커리큘럼수업내용
 		FOREIGN KEY (
