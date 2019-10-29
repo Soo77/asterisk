@@ -1,0 +1,67 @@
+/* 헤더의 우측의 벨모양 링크 제거 */
+.my-link-disabled {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* 프로필 사진 리사이징 */
+
+#menu-ProfilePhoto {
+  display: none;
+}
+
+.menu-profile-thumbnail {
+  position: relative;
+  padding-top: 100%; /* 1:1 ratio */
+  overflow: hidden;
+}
+
+.menu-profile-thumbnail .centered {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transform: translate(50%,50%);
+  -ms-transform: translate(50%,50%);
+  transform: translate(50%,50%);
+}
+
+.menu-profile-thumbnail .centered img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  height: auto;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+/* 프로필 사진 변경 파일 업로드 버튼 */
+.menu-profile-photo-upload {
+  display: none;
+}
+
+/* 프로필 사진 변경 버튼 */
+.menu-modify-profile-btn:focus {
+  color: #ffffff;
+  background-color: #212529;
+}
+@media (max-width: 575.98px) {
+  .menu-modify-profile-btn {
+    padding: 6px;
+    font-size: 0.65em;
+  }
+}
+@media (max-width: 767.98px) {
+  .menu-modify-profile-btn{
+    padding: 6px;
+    font-size: 0.65em;
+  }
+}
+
+/* 마이페이지 내 정보 희망과목, 자녀아이디 추가 버튼 가운데 정렬 */
+.subjectAddButtonDiv, .childAddButtonDiv {
+  text-align: center;
+}
