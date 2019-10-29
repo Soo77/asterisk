@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Mypage</title>
+  <title>Eom-Tutor</title>
   <tiles:insertAttribute name="stylesheet"/>
 
 </head>

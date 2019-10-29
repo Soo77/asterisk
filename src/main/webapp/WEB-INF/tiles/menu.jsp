@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <ul class="sidebar navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item active" style="display: none">
         <div class="nav-link">
           <a href="#" data-toggle="modal" data-target="#menu-profilePhotoModal">
             <div class="thumbnail-wrapper">
@@ -23,7 +23,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="#" data-toggle="modal" data-target="#mypageModal">
           <i class="fas fa-fw fa-user"></i>
-          <span>내 정보 수정</span>
+          <span>내 정보</span>
         </a>
       </li>
 
@@ -53,9 +53,9 @@
           <a class="dropdown-item" href="#">공지사항</a>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Boards:</h6>
-          <a class="dropdown-item" href="#">공부상담</a>
-          <a class="dropdown-item" href="#">입시상담</a>
-          <a class="dropdown-item" href="#">문제풀이</a>
+          <a class="dropdown-item" href="list?boardTypeNo=1">공부상담</a>
+          <a class="dropdown-item" href="list?boardTypeNo=2">입시상담</a>
+          <a class="dropdown-item" href="list?boardTypeNo=3">문제풀이</a>
         </div>
       </li>
       <div class="menu-profile-photo-upload">
