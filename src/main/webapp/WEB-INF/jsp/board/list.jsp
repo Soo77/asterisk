@@ -8,35 +8,48 @@
 <link rel='stylesheet'
   href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='/css/common.css'>
-<meta charset="UTF-8">
 </head>
 <body>
 
   <jsp:include page="../header.jsp" />
 
   <div id='content'>
-    <h1>게시판</h1>
-    <hr>
-      
+    <div class="title">
+      <h1 style="display:inline">질문게시판 ㅣ</h1>
+      <c:if test="${boardTypeNo == 1}">
+        <h2 style="display:inline">공부상담</h2>
+      </c:if>
+      <c:if test="${boardTypeNo == 2}">
+        <h2 style="display:inline">입시상담</h2>
+      </c:if>
+      <c:if test="${boardTypeNo == 3}">
+        <h2 style="display:inline">문제풀이</h2>
+      </c:if>
+    </div>
+    
     <table class='table table-hover'>
-      <tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회수</th>
-      </tr>
-      <c:forEach items="${boards}" var="board"
-        begin="${pagination.pageSize * (pagination.curPage - 1)}"
-        end="${pagination.pageSize * pagination.curPage - 1}">
+      <thead>
         <tr>
-          <td>${board.boardNo}</td>
-          <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
-          <td>${board.memberName}</td>
-          <td>${board.createdDate}</td>
-          <td>${board.viewCount}</td>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>조회수</th>
         </tr>
-      </c:forEach>
+      </thead>
+      <tbody>
+        <c:forEach items="${boards}" var="board"
+          begin="${pagination.pageSize * (pagination.curPage - 1)}"
+          end="${pagination.pageSize * pagination.curPage - 1}">
+          <tr>
+            <td>${board.boardNo}</td>
+            <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
+            <td>${board.memberName}</td>
+            <td>${board.createdDate}</td>
+            <td>${board.viewCount}</td>
+          </tr>
+        </c:forEach>
+      </tbody>
     </table>
 
     <div align="right">
@@ -57,9 +70,8 @@
           end="${pagination.endPage }">
           <c:choose>
             <c:when test="${pageNum eq  pagination.curPage}">
-              <li class="page-item active" aria-current="page"><a
-                class="page-link"
-                href='list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}'>${pageNum}</a></li>
+              <li class="page-item active" aria-current="page"><a class="page-link"
+                href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:when>
             <c:otherwise>
               <li class="page-item"><a class="page-link"
@@ -71,8 +83,7 @@
         <c:if
           test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
           <li class="page-item"><a class="page-link"
-            href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.nextPage}&searchType=${searchType}&keyword=${keyword}">
-              &raquo;</a></li>
+            href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.nextPage}&searchType=${searchType}&keyword=${keyword}">&raquo;</a></li>
         </c:if>
       </ul>
     </nav>
@@ -99,7 +110,7 @@
   <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
+  <script>
     $(document).on('click', '#btnSearch', function(e){
       e.preventDefault();
       var url = "list?boardTypeNo=" + ${boardTypeNo}
