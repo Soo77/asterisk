@@ -4901,7 +4901,7 @@ input[type="button"].btn-block {
   padding: 1.25rem;
 }
 
-.card-title {
+.card-name {
   margin-bottom: 0.75rem;
 }
 
@@ -10723,7 +10723,7 @@ body {
   .sidebar {
     width: 225px !important;
   }
-  .sidebar .nav-item .nav-link {
+  .sidebar .nav-item .nav-link  {
     display: block;
     width: 100%;
     text-align: left;
