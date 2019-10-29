@@ -1,5 +1,6 @@
 package com.ast.eom.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,17 @@ public class DefaultBoardService implements BoardService {
   @Resource private BoardFileDao boardFileDao;
 
   @Override
-  public List<Board> list(int boardTypeNo) throws Exception {
-    return boardDao.findAllBy(boardTypeNo);
+  public List<Board> list(int boardTypeNo, String searchType, String keyword) throws Exception {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("boardTypeNo", boardTypeNo);
+    params.put("searchType", searchType);
+    params.put("keyword", keyword);
+    return boardDao.findAllBy(params);
+  }
+  
+  @Override
+  public int getListCnt(int boardTypeNo) throws Exception {
+    return boardDao.getListCount(boardTypeNo);
   }
   
   @Override

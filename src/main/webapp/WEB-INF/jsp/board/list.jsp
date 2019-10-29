@@ -16,7 +16,7 @@
   <div id='content'>
     <h1>게시판</h1>
     <hr>
-
+      
     <table class='table table-hover'>
       <tr>
         <th>번호</th>
@@ -80,8 +80,7 @@
       <div class="w100" style="padding-right:10px">
         <select class="form-control form-control-sm" name="searchType" id="searchType">
           <option value="title">제목</option>
-          <option value="Content">내용</option>
-          <option value="reg_id">작성자</option>
+          <option value="name">작성자</option>
         </select>
       </div>
       <div class="w300" style="padding-right:10px">
@@ -100,9 +99,14 @@
   <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    $
+    $(document).on('click', '#btnSearch', function(e){
+    	e.preventDefault();
+    	var url = "list?boardTypeNo=" + ${boardTypeNo};
+    	url = url + "&searchType=" + $('#searchType').val();
+    	url = url + "&keyword=" + $('#keyword').val();
+    	location.href = url;
+    })
   </script>
-  
   
   <jsp:include page="../footer.jsp" />
 
