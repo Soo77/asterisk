@@ -44,11 +44,11 @@ public class BoardController {
       HttpSession session,
       Model model,
       @RequestParam(defaultValue = "1") int curPage,
-      @RequestParam(defaultValue = "title") String searchType,
+      @RequestParam(defaultValue = "") String searchType,
       @RequestParam(defaultValue = "") String keyword) throws Exception {
     session.setAttribute("memberNo", 2);
-    List<Board> boards = boardService.list(boardTypeNo, searchType, keyword);
     
+    List<Board> boards = boardService.list(boardTypeNo, searchType, keyword);
     int listCnt = boards.size();
     Pagination pagination = new Pagination(listCnt, curPage);
     

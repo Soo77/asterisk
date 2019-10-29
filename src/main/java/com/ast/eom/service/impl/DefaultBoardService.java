@@ -27,11 +27,6 @@ public class DefaultBoardService implements BoardService {
   }
   
   @Override
-  public int getListCnt(int boardTypeNo) throws Exception {
-    return boardDao.getListCount(boardTypeNo);
-  }
-  
-  @Override
   public Board get(int no) throws Exception {
     Board board = boardDao.findWithFilesBy(no);
     if (board == null) {
