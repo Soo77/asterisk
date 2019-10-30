@@ -4,6 +4,8 @@ public class SchoolType {
   private int schoolTypeNo;
   private String schoolType;
   
+ 
+  
   @Override
   public String toString() {
     return "SchoolType [schoolTypeNo=" + schoolTypeNo + ", schoolType=" + schoolType + "]";

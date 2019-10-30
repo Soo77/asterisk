@@ -67,27 +67,46 @@
 		<result column="major" property="major"/>
 		<result column="confirm" property="isConfirmed"/>
 		<result column="grad_date" property="graduatedDate"/>
+		<collection resultMap="SchoolTypeMap" property="schoolType"/>
 	</resultMap>
 	
 	<resultMap type="Student" id="StudentMap">
 		<id column="std_no" property="studentNo"/>
-		<!-- <result column="parents_no" property="parentsNo"/> -->
+		<result column="parents_no" property="parentsNo"/>
 		<result column="sch_type_no" property="schoolTypeNo"/>
 	</resultMap>
-
-<!-- 	<resultMap type="Parents" id="ParentsMap">
+	
+	<resultMap type="Parents" id="ParentsMap">
 		<id column="parents_no" property="parentsNo"/>
 		<result column="kakaotalk" property="kakaotalk"/>
 		<collection resultMap="StudentMap" property="students"/>
-	</resultMap> -->
+	</resultMap>
+	
+	<resultMap type="SchoolType" id="SchoolTypeMap">
+		<id column="sch_type_no" property="schoolTypeNo"/>
+		<result column="sch_type" property="schoolType"/>
+	</resultMap>
+	
+	<resultMap type="Subject" id="SubjectMap">
+		<id column="sub_no" property="subjectNo" />
+		<result column="sch_type_no" property="schoolTypeNo" />
+		<result column="sub_name" property="subjectName" />
+		<collection resultMap="LessonSubjectMap" property="lessonSubjects"/>
+		<collection resultMap="SchoolTypeMap" property="schoolType"/>
+		
+		
+	</resultMap>
+
+
 
 	<select id="listMember" resultMap="MemberMap">
 		select 
-		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, s.sch_name, tp.tch_photo, st.sch_type, sub.sub_name
 		from member m
-		inner join member_type mt, teacher t, school s, teacher_photo tp
+		inner join member_type mt, teacher t, school s, teacher_photo tp, school_type st, subject sub, lesson_subject ls
 		where 
-		mt.mem_type_no = m.mem_type_no and m.mem_no = t.tch_no and t.tch_no = s.sch_no and t.tch_no = tp.tch_photo_no 
+		mt.mem_type_no = m.mem_type_no and m.mem_no = t.tch_no and t.tch_no = s.sch_no and t.tch_no = tp.tch_photo_no
+		and ls.sub_no = sub.sub_no and sub.sch_type_no = st.sch_type_no
      
    </select>
 	

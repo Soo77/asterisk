@@ -21,7 +21,7 @@ public class MemberController {
       System.out.println(member);
     }
     model.addAttribute("members", members);
-    return "search";
+    return "memsearch";
   }
   
   @RequestMapping("detail")
