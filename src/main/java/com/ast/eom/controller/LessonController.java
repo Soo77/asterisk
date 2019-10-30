@@ -17,13 +17,7 @@ public class LessonController {
   
   @GetMapping("list")
   public void list(Model model, int memberTypeNo) throws Exception {
-    if (memberTypeNo == 1) {
-      
-    } else if (memberTypeNo == 2) {
-      
-    }
-    List<Lesson> lessons = lessonService.list(memberTypeNo);
-    model.addAttribute("lessons", lessons);
+      List<Lesson> lessons = lessonService.list(memberTypeNo);
+      model.addAttribute("lessons", lessons);
   }
-  
 }

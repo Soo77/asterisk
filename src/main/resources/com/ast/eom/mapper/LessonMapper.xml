@@ -50,11 +50,17 @@
 
     <select id="findAllTeacherBy" resultMap="LessonMap">
 			select l.lesson_no, m.name, s.sub_name, l.sdt, l.edt
-			from lesson l inner join subject s on l.sub_no = s.sub_no
+			from lesson l 
+			inner join subject s on l.sub_no = s.sub_no
 			inner join member m on l.tch_no = m.mem_no;
     </select>
     
-    
+    <select id="findAllStudentBy" resultMap="LessonMap">
+			select l.lesson_no, m.name, s.sub_name, l.sdt, l.edt
+			from lesson l 
+			left outer join subject s on l.sub_no = s.sub_no
+			left outer join member m on l.std_no = m.mem_no;
+    </select>
   
   
   </mapper>
