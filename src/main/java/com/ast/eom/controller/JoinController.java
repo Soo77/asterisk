@@ -57,7 +57,7 @@ public class JoinController {
     Date testdob = Date.valueOf(dob);
     member.setEmail(emailAddress);
     member.setDateOfBirth(testdob);
-    member.setMemberTypeNo(memberTypeNo);
+    member.getMemberType().setMemberTypeNo(memberTypeNo);
     //멤버 타입 수정함 MemberType
     
     if (!filePath.isEmpty()) {

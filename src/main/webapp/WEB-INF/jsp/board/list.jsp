@@ -5,9 +5,6 @@
 <html>
 <head>
 <title>게시물 목록</title>
-<link rel='stylesheet'
-  href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='/css/common.css'>
 
 <style>
 
@@ -49,8 +46,6 @@
 </style>
 </head>
 <body>
-
-  <jsp:include page="../header.jsp" />
 
   <div id='content'>
     <div class="title">
@@ -150,8 +145,6 @@
   </div>
 
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     $(document).on('click', '#btnSearch', function(e){

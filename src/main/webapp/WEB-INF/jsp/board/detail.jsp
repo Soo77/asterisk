@@ -5,9 +5,6 @@
 <html>
 <head>
 <title>게시물 보기</title>
-<link rel='stylesheet'
-  href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='/css/common.css'>
 <style>
 #insertBoardPhotos {
   display: none;
@@ -54,8 +51,6 @@
 </style>
 </head>
 <body>
-
-  <jsp:include page="../header.jsp" />
 
   <div id='content'>
     <div class="title">
@@ -146,8 +141,6 @@
   </div>
 
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
 			var modifyButton = document.querySelector('#btnUpdate');

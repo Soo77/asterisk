@@ -5,9 +5,6 @@
 <html>
 <head>
 <title>게시물 등록폼</title>
-<link rel='stylesheet'
-  href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-  <link rel='stylesheet' href='/css/common.css'>
   
   <style>
   .my-title-input{
@@ -69,8 +66,6 @@
 
 </head>
 <body>
-
-  <jsp:include page="../header.jsp" />
 
 <div id='content'>
   <h1>글쓰기</h1>
@@ -140,8 +135,6 @@
   </div>  -->
 
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
