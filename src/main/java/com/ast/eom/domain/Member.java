@@ -3,12 +3,15 @@ package com.ast.eom.domain;
 import java.sql.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Member {
 
   private int memberNo;
-  private int memberTypeNo;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date registeredDate;
   private String gender;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date dateOfBirth;
   private String id;
   private String email;
@@ -18,36 +21,51 @@ public class Member {
   private String addressSuburb;
   private String tel;
   private String profilePhoto;
+  private boolean userEmailChecked;
+  private String activationKey;
   
   private Teacher teacher;
   private Parents parents;
   private Student student;
+  private MemberType memberType;
 
   private List<Message> sentMessages;
   private List<Message> receivedMessages;
+  private List<Board> boards;
   private List<Notice> notices;
   private List<Comment> comments;
   
   @Override
   public String toString() {
-    return "Member [memberNo=" + memberNo + ", memberTypeNo=" + memberTypeNo + ", registeredDate=" + registeredDate
-        + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name
-        + ", password=" + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel="
-        + tel + ", profilePhoto=" + profilePhoto + ", teacher=" + teacher + ", parents=" + parents + ", student="
-        + student + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages + ", notices=" + notices
-        + ", comments=" + comments + "]";
+    return "Member [memberNo=" + memberNo + ", registeredDate=" + registeredDate + ", gender=" + gender
+        + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name + ", password="
+        + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel=" + tel
+        + ", profilePhoto=" + profilePhoto + ", teacher=" + teacher + ", parents=" + parents + ", student=" + student
+        + ", memberType=" + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages
+        + ", boards=" + boards + ", notices=" + notices + ", comments=" + comments + "]";
   }
+  
+  public boolean isUserEmailChecked() {
+    return userEmailChecked;
+  }
+
+  public void setUserEmailChecked(boolean userEmailChecked) {
+    this.userEmailChecked = userEmailChecked;
+  }
+
+  public String getActivationKey() {
+    return activationKey;
+  }
+
+  public void setActivationKey(String activationKey) {
+    this.activationKey = activationKey;
+  }
+
   public int getMemberNo() {
     return memberNo;
   }
   public void setMemberNo(int memberNo) {
     this.memberNo = memberNo;
-  }
-  public int getMemberTypeNo() {
-    return memberTypeNo;
-  }
-  public void setMemberTypeNo(int memberTypeNo) {
-    this.memberTypeNo = memberTypeNo;
   }
   public Date getRegisteredDate() {
     return registeredDate;
@@ -133,6 +151,12 @@ public class Member {
   public void setStudent(Student student) {
     this.student = student;
   }
+  public MemberType getMemberType() {
+    return memberType;
+  }
+  public void setMemberType(MemberType memberType) {
+    this.memberType = memberType;
+  }
   public List<Message> getSentMessages() {
     return sentMessages;
   }
@@ -144,6 +168,12 @@ public class Member {
   }
   public void setReceivedMessages(List<Message> receivedMessages) {
     this.receivedMessages = receivedMessages;
+  }
+  public List<Board> getBoards() {
+    return boards;
+  }
+  public void setBoards(List<Board> boards) {
+    this.boards = boards;
   }
   public List<Notice> getNotices() {
     return notices;
@@ -157,5 +187,4 @@ public class Member {
   public void setComments(List<Comment> comments) {
     this.comments = comments;
   }
-  
 }

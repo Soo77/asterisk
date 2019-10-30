@@ -66,6 +66,9 @@ dependencies {
     // 메일
     compile group: 'javax.mail', name: 'mail', version: '1.4.7'
     
+    // Tiles
+	compile group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+    
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
 }

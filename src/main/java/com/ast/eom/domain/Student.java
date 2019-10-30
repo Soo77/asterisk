@@ -2,11 +2,12 @@ package com.ast.eom.domain;
 
 import java.util.List;
 
-public class Student {
+public class Student extends Member {
   private int studentNo;
   private int parentsNo;
-  private int schoolTypeNo;
   
+  private SchoolType schoolType;
+
   private List<Lesson> lessons;
   private List<WantedLesson> wantedLessons;
   private List<School> schools;
@@ -14,9 +15,9 @@ public class Student {
   
   @Override
   public String toString() {
-    return "Student [studentNo=" + studentNo + ", parentsNo=" + parentsNo + ", schoolTypeNo=" + schoolTypeNo
-        + ", lessons=" + lessons + ", wantedLessons=" + wantedLessons + ", schools=" + schools + ", lessonSubjects="
-        + lessonSubjects + "]";
+    return "Student [studentNo=" + studentNo + ", parentsNo=" + parentsNo + ", schoolType=" + schoolType + ", lessons="
+        + lessons + ", wantedLessons=" + wantedLessons + ", schools=" + schools + ", lessonSubjects=" + lessonSubjects
+        + "]";
   }
   public int getStudentNo() {
     return studentNo;
@@ -30,11 +31,11 @@ public class Student {
   public void setParentsNo(int parentsNo) {
     this.parentsNo = parentsNo;
   }
-  public int getSchoolTypeNo() {
-    return schoolTypeNo;
+  public SchoolType getSchoolType() {
+    return schoolType;
   }
-  public void setSchoolTypeNo(int schoolTypeNo) {
-    this.schoolTypeNo = schoolTypeNo;
+  public void setSchoolType(SchoolType schoolType) {
+    this.schoolType = schoolType;
   }
   public List<Lesson> getLessons() {
     return lessons;

@@ -2,24 +2,28 @@ package com.ast.eom.domain;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class School {
   private int schoolNo;
   private int teacherNo;
-  private int schoolTypeNo;
   private String schoolName;
   private String certificate;
   private boolean isGraduated;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date modifiedDate;
   private String major;
   private boolean isConfirmed;
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date graduatedDate;
+  
+  private SchoolType schoolType;
   
   @Override
   public String toString() {
-    return "School [schoolNo=" + schoolNo + ", teacherNo=" + teacherNo + ", schoolTypeNo=" + schoolTypeNo
-        + ", schoolName=" + schoolName + ", certificate=" + certificate + ", isGraduated=" + isGraduated
-        + ", modifiedDate=" + modifiedDate + ", major=" + major + ", isConfirmed=" + isConfirmed + ", graduatedDate="
-        + graduatedDate + "]";
+    return "School [schoolNo=" + schoolNo + ", teacherNo=" + teacherNo + ", schoolName=" + schoolName + ", certificate="
+        + certificate + ", isGraduated=" + isGraduated + ", modifiedDate=" + modifiedDate + ", major=" + major
+        + ", isConfirmed=" + isConfirmed + ", graduatedDate=" + graduatedDate + ", schoolType=" + schoolType + "]";
   }
   public int getSchoolNo() {
     return schoolNo;
@@ -32,12 +36,6 @@ public class School {
   }
   public void setTeacherNo(int teacherNo) {
     this.teacherNo = teacherNo;
-  }
-  public int getSchoolTypeNo() {
-    return schoolTypeNo;
-  }
-  public void setSchoolTypeNo(int schoolTypeNo) {
-    this.schoolTypeNo = schoolTypeNo;
   }
   public String getSchoolName() {
     return schoolName;
@@ -80,5 +78,11 @@ public class School {
   }
   public void setGraduatedDate(Date graduatedDate) {
     this.graduatedDate = graduatedDate;
+  }
+  public SchoolType getSchoolType() {
+    return schoolType;
+  }
+  public void setSchoolType(SchoolType schoolType) {
+    this.schoolType = schoolType;
   }
 }
