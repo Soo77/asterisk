@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.ast.eom.dao.AuthDao;
 import com.ast.eom.domain.Member;
+import com.ast.eom.service.AuthService;
 
 @Controller
 @RequestMapping("/auth")
@@ -30,7 +30,7 @@ public class AuthController implements Runnable {
   ExecutorService executorService;
 
   @Autowired
-  private AuthDao authDao;
+  private AuthService authService;
 
   @GetMapping("form")
   public void form() {
@@ -52,7 +52,7 @@ public class AuthController implements Runnable {
     params.put("id", id);
     params.put("pw", pw);
 
-    Member member = authDao.login(params);
+    Member member = authService.login(params);
 
     if (member == null) {
       return "redirect:../auth/loginfail";
@@ -78,15 +78,28 @@ public class AuthController implements Runnable {
     member.setEmail(email);
     member.setName(name);
 
-    if(authDao.findId(member) != null) {
-      session.setAttribute("findId", authDao.findId(member));
+    if(authService.findId(member) != null) {
+      session.setAttribute("findId", authService.findId(member));
       return "redirect:../auth/findidcheck";
     } else {
-      session.setAttribute("findId", authDao.findId(member));
       return "redirect:../auth/findidcheck";
     }
   }
 
+  // 비밀번호 찾기 일치
+  @PostMapping("findpw2")
+  @ResponseBody
+  private int findpw2(String name, String id, String whatmail) 
+      throws Exception {
+    Member member = new Member();
+    member.setId(id);
+    member.setName(name);
+    member.setEmail(whatmail);
+    
+    authService.findPw(member);
+    return authService.findPw(member);
+  }
+  
   // 아이디 찾기페이지
   @GetMapping("findid")
   public void find() throws Exception {
@@ -105,21 +118,6 @@ public class AuthController implements Runnable {
   // 아이디 기억페이지
   @GetMapping("findidcheck")
   public void findidcheck() throws Exception {
-  }
-
-  // 비밀번호 찾기 일치
-  @PostMapping("findpw2")
-  @ResponseBody
-  private int findpw2(String name, String id, String whatmail) 
-      throws Exception {
-    Member member = new Member();
-    member.setId(id);
-    member.setName(name);
-    member.setEmail(whatmail);
-
-    authDao.findPw(member);
-    System.out.println(authDao.findPw(member));
-    return authDao.findPw(member);
   }
 
   // 메일 전송
@@ -186,7 +184,7 @@ public class AuthController implements Runnable {
       member.setEmail(whatmail);
       member.setPassword(sb);
 
-      authDao.pwChange(member);
+      authService.pwChange(member);
     } catch (Exception e) { 
       e.printStackTrace(); 
     }
