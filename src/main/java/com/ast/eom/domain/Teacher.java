@@ -10,19 +10,30 @@ public class Teacher extends Member {
   private String teacherIntro;
   private boolean approvementState;
   private String videoAddress;
+  private String subjectName;
   
   private List<Lesson> lessons;
   private List<School> schools;
   private List<LessonSubject> lessonSubjects;
   private List<TeacherPhoto> teacherPhotos;
   
-  @Override
-  public String toString() {
-    return "Teacher [teacherNo=" + teacherNo + ", accountNo=" + accountNo + ", bankName=" + bankName
-        + ", lessonCertificate=" + lessonCertificate + ", teacherIntro=" + teacherIntro + ", approvementState="
-        + approvementState + ", videoAddress=" + videoAddress + ", lessons=" + lessons + ", schools=" + schools
-        + ", lessonSubjects=" + lessonSubjects + ", teacherPhotos=" + teacherPhotos + "]";
+  
+  
+  
+  public String getSubjectName() {
+    return subjectName;
   }
+  public void setSubjectName(String subjectName) {
+    this.subjectName = subjectName;
+  }
+  public String getSchoolType() {
+    return schoolType;
+  }
+  public void setSchoolType(String schoolType) {
+    this.schoolType = schoolType;
+  }
+  private String schoolType;
+  
   public int getTeacherNo() {
     return teacherNo;
   }
