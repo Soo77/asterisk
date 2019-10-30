@@ -18,12 +18,16 @@ public class School {
   private Date graduatedDate;
   
   private SchoolType schoolType;
+  private int schoolTypeNo;
+  
   
   @Override
   public String toString() {
-    return "School [schoolNo=" + schoolNo + ", teacherNo=" + teacherNo + ", schoolName=" + schoolName + ", certificate="
-        + certificate + ", isGraduated=" + isGraduated + ", modifiedDate=" + modifiedDate + ", major=" + major
-        + ", isConfirmed=" + isConfirmed + ", graduatedDate=" + graduatedDate + ", schoolType=" + schoolType + "]";
+    return "School [schoolNo=" + schoolNo + ", teacherNo=" + teacherNo + ", schoolName="
+        + schoolName + ", certificate=" + certificate + ", isGraduated=" + isGraduated
+        + ", modifiedDate=" + modifiedDate + ", major=" + major + ", isConfirmed=" + isConfirmed
+        + ", graduatedDate=" + graduatedDate + ", schoolType=" + schoolType + ", schoolTypeNo="
+        + schoolTypeNo + "]";
   }
   public int getSchoolNo() {
     return schoolNo;
@@ -84,5 +88,11 @@ public class School {
   }
   public void setSchoolType(SchoolType schoolType) {
     this.schoolType = schoolType;
+  }
+  public int getSchoolTypeNo() {
+    return schoolTypeNo;
+  }
+  public void setSchoolTypeNo(int schoolTypeNo) {
+    this.schoolTypeNo = schoolTypeNo;
   }
 }
