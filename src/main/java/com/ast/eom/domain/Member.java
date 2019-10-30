@@ -21,6 +21,8 @@ public class Member {
   private String addressSuburb;
   private String tel;
   private String profilePhoto;
+  private boolean userEmailChecked;
+  private String activationKey;
   
   private Teacher teacher;
   private Parents parents;
@@ -42,6 +44,23 @@ public class Member {
         + ", memberType=" + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages
         + ", boards=" + boards + ", notices=" + notices + ", comments=" + comments + "]";
   }
+  
+  public boolean isUserEmailChecked() {
+    return userEmailChecked;
+  }
+
+  public void setUserEmailChecked(boolean userEmailChecked) {
+    this.userEmailChecked = userEmailChecked;
+  }
+
+  public String getActivationKey() {
+    return activationKey;
+  }
+
+  public void setActivationKey(String activationKey) {
+    this.activationKey = activationKey;
+  }
+
   public int getMemberNo() {
     return memberNo;
   }

@@ -63,6 +63,12 @@ dependencies {
     // 파일 업로드 처리
     compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
     
+    // 메일
+    compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+    
+    // Tiles
+	compile group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+    
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'
 }
