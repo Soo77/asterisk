@@ -99,10 +99,10 @@ body {
 			
 			<input type="checkbox" id="idmemory" value="아이디 기억">아이디 기억
 			<button class="btn btn-primary">로그인</button>
-			<a href="../join/form/"><button type="button" class="btn btn-primary">회원가입</button></a>
+			<a href="/app/join/form"><button type="button" class="btn btn-primary">회원가입</button></a>
 		</form>
 		<a href="../auth/findid">아이디 찾기</a><br>
-		<a href="../auth/findpw">비밀번호 찾기</a>
+		<a href="../auth//findpw">비밀번호 찾기</a>
 	</div>
 
 <!--   아이디 기억 -->

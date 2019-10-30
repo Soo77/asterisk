@@ -141,7 +141,7 @@ body {
         	      type : 'post',
         	      data : "whatmail="+whatmail,
         	      success : function(data) {
-        	    	  location.href = "../auth/form";
+        	    	  location.href = "../form";
         	      }, error : function(){
         	    	  console.log("실패");  
         	      }

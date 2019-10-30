@@ -41,8 +41,8 @@
   </style>
 </head>
 <body>
-<a href="../student"><button class="btn btn-primary">학생 가입</button></a>
-<a href="../parents"><button class="btn btn-primary">학부모 가입</button></a>
-<a href="../teacher"><button class="btn btn-primary">선생님 가입</button></a>
+<a href="../join/student"><button class="btn btn-primary">학생 가입</button></a>
+<a href="../join/parents"><button class="btn btn-primary">학부모 가입</button></a>
+<a href="../join/teacher"><button class="btn btn-primary">선생님 가입</button></a>
 </body>
 </html>
