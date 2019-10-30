@@ -15,10 +15,13 @@
   margin: 10px;
 }
 
-
 .sidemenubar {
-  max-width: 250px;
+  width: 250px;
   margin: 30px;
+}
+
+.contents-list {
+  width: 400px; 
 }
 </style>
 </head>
