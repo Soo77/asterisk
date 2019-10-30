@@ -8,6 +8,45 @@
 <link rel='stylesheet'
   href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' href='/css/common.css'>
+
+<style>
+
+#header {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+#header img {
+  height: 35px;
+}
+
+#footer {
+  background-color: #524845;
+  color: #ffffff;
+  height: 40px;
+  width: 1100px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 10px;
+  margin: auto auto;
+}
+
+#content {
+  width: 1100px;
+  padding-top: 10px;
+  margin: auto auto;
+}
+
+.photo1 {
+  height: 120px;
+}
+
+.photo2 {
+  height: 100px;
+  margin: 2px;
+}
+
+</style>
 </head>
 <body>
 
@@ -26,6 +65,8 @@
         <h2 style="display:inline">문제풀이</h2>
       </c:if>
     </div>
+    
+    <br>
     
     <table class='table table-hover'>
       <thead>
@@ -54,7 +95,7 @@
 
     <div align="right">
       <c:if test="${sessionScope.memberNo != null}">
-        <button class="btn btn-primary" onclick="location='form'">글쓰기</button>
+        <button class="btn btn-primary" type="button" onclick="location='form'" style="background-color: #00AFA0; border-color: #00AFA0;">글쓰기</button>
       </c:if>
     </div>
 
@@ -70,7 +111,7 @@
           end="${pagination.endPage }">
           <c:choose>
             <c:when test="${pageNum eq  pagination.curPage}">
-              <li class="page-item active" aria-current="page"><a class="page-link"
+              <li class="page-item active" aria-current="page" style="background: #00AFA0; border-color: #00AFA0;"><a class="page-link"
                 href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:when>
             <c:otherwise>
@@ -88,6 +129,8 @@
       </ul>
     </nav>
     
+    <br>
+    
     <input type='hidden' name='boardTypeNo' value='${boardTypeNo}'>
     <div class="form-group row justify-content-center">
       <div class="w100" style="padding-right:10px">
@@ -100,7 +143,7 @@
         <input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
       </div>
       <div>
-        <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
+        <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch" style="background-color: #00AFA0; border-color: #00AFA0;">검색</button>
       </div>
     </div>
     
@@ -121,8 +164,6 @@
     })
   </script>
   
-  <jsp:include page="../footer.jsp" />
-
 </body>
 </html>
 

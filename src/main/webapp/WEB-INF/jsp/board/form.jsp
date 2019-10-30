@@ -30,6 +30,41 @@
     vertical-align:middle;
   }
   
+  #header {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+#header img {
+  height: 35px;
+}
+
+#footer {
+  background-color: #524845;
+  color: #ffffff;
+  height: 40px;
+  width: 1100px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 10px;
+  margin: auto auto;
+}
+
+#content {
+  width: 1100px;
+  padding-top: 10px;
+  margin: auto auto;
+}
+
+.photo1 {
+  height: 120px;
+}
+
+.photo2 {
+  height: 100px;
+  margin: 2px;
+}
+  
 </style>
 
 </head>
@@ -43,6 +78,7 @@
   <div class='my-title-input'>
     <p class="p">질문게시판 글쓰기</p>
   </div>
+  <br>
   
   <form action='add' method=post enctype='multipart/form-data'>
     <div class="form-row">
@@ -58,19 +94,29 @@
         </select>
       </div>
     </div>
+    
     <div class="form-group">
-      <textarea class="form-control" name='contents' rows="10" placeholder="내용을 입력해주세요"></textarea>
+      <textarea class="form-control" name='contents' rows="10" style="resize: none;" placeholder="내용을 입력해주세요"></textarea>
     </div>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="customFile" name='fileName'>
-      <label class="custom-file-label" for="customFile">파일을 선택하세요</label>
+    
+    <hr>
+    
+    <div class="custom-file" id="insertBoardPhotos">
+      <c:forEach begin="1" end="6">
+                사진: <input type='file' name='fileName'>
+        <!-- <input type="file" class="custom-file-input" id="customFile" name='fileName'>
+        <label class="custom-file-label" for="customFile">파일을 선택하세요</label> -->
+      <br>
+      </c:forEach>
     </div>
+    
+    <hr>
+
     <div align="right">
-      <button type="submit" class="btn btn-primary">등록</button>
+      <button type="submit" class="btn btn-primary" style="background-color: #00AFA0; border-color: #00AFA0;">등록</button>
     </div>
   </form>
 </div>
-
 
 <!--   <div id='content'>
     <h1>글쓰기</h1>
@@ -96,8 +142,6 @@
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-  <jsp:include page="../footer.jsp" />
 
 </body>
 </html>
