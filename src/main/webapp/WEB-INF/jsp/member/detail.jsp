@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>선생님 상세 정보</title>
 
-<!-- 아이콘  -->
-<script src="https://kit.fontawesome.com/60aaa234a3.js" crossorigin="anonymous"></script>
+<!-- <!-- 아이콘  -->
+<script src="https://kit.fontawesome.com/60aaa234a3.js" crossorigin="anonymous"></script> -->
 
 <!-- 동영상 -->
 <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
