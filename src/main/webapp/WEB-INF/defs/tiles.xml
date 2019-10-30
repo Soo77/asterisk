@@ -19,5 +19,9 @@
   <definition name="board/*" extends="base">
     <put-attribute name="body" value="/WEB-INF/jsp/board/{1}.jsp"/>
   </definition>
+  
+    <definition name="member/*" extends="base">
+    <put-attribute name="body" value="/WEB-INF/jsp/member/{1}.jsp"/>
+  </definition>
 
 </tiles-definitions>
