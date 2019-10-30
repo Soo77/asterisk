@@ -19,7 +19,6 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #FFD8D8;
 }
 
 .form-signin {

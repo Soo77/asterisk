@@ -56,8 +56,22 @@
         }
     </script>
 <style>
+body {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
 #view_file {
 	display: none;
+}
+
+#content{
+  margin: auto;
 }
 
 #mail {
@@ -67,7 +81,7 @@
 </head>
 <body>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
-	<div id="wrap">
+	<div id="content">
 		<br> <br> <b><font size="6" color="gray">선생님 회원가입</font></b> <br>
 		<br> <br>
 

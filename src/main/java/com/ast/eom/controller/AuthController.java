@@ -86,6 +86,20 @@ public class AuthController implements Runnable {
     }
   }
 
+  // 비밀번호 찾기 일치
+  @PostMapping("findpw2")
+  @ResponseBody
+  private int findpw2(String name, String id, String whatmail) 
+      throws Exception {
+    Member member = new Member();
+    member.setId(id);
+    member.setName(name);
+    member.setEmail(whatmail);
+    
+    authService.findPw(member);
+    return authService.findPw(member);
+  }
+  
   // 아이디 찾기페이지
   @GetMapping("findid")
   public void find() throws Exception {
@@ -104,20 +118,6 @@ public class AuthController implements Runnable {
   // 아이디 기억페이지
   @GetMapping("findidcheck")
   public void findidcheck() throws Exception {
-  }
-
-  // 비밀번호 찾기 일치
-  @PostMapping("findpw2")
-  @ResponseBody
-  private int findpw2(String name, String id, String whatmail) 
-      throws Exception {
-    Member member = new Member();
-    member.setId(id);
-    member.setName(name);
-    member.setEmail(whatmail);
-
-    authService.findPw(member);
-    return authService.findPw(member);
   }
 
   // 메일 전송
