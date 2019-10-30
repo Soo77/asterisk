@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.JoinDao">
+
+	<resultMap type="Member" id="MemberMap">
+		<id column="mem_no" property="memberNo" />
+		<result column="reg_date" property="registeredDate" />
+		<result column="gender" property="gender" />
+		<result column="dob" property="dateOfBirth" />
+		<result column="id" property="id" />
+		<result column="email" property="email" />
+		<result column="name" property="name" />
+		<result column="pwd" property="password" />
+		<result column="addr_city" property="addressCity" />
+		<result column="addr_sub" property="addressSuburb" />
+		<result column="tel" property="tel" />
+		<result column="profile_photo" property="profilePhoto" />
+		<collection resultMap="MemberTypeMap" property="memberType"></collection>
+	</resultMap>
+
+	<resultMap type="MemberType" id="MemberTypeMap">
+		<id column="mem_type_no" property="memberTypeNo" />
+		<result column="mem_type_name" property="memberTypeName" />
+	</resultMap>
+
+<!--   가입시 정보 저장 -->
+	<insert id="insert" parameterType="Member">
+		insert into
+		member(mem_type_no,reg_date,gender,dob,id,email,name,pwd,addr_city,addr_sub,tel,profile_photo)
+		values
+		(#{memberTypeNo},now(),#{gender},#{dateOfBirth},#{id},#{email},#{name},password(#{password}),#{addressCity},#{addressSuburb},#{tel},#{profilePhoto});
+	</insert>
+  
+<!--   아이디 중복 -->
+	<select id="checkOverId" parameterType="String" resultType="int">
+		select count(*) from member where id=#{id}
+	</select>
+	
+<!-- 	이메일 중복 -->
+	<select id="checkOverEmail" parameterType="String" resultType="int">
+    select count(*) from member where email=#{email}
+  </select>
+  
+<!--   전화번호 중복 -->
+  <select id="checkOverTel" parameterType="String" resultType="int">
+    select count(*) from member where tel=#{tel}
+  </select>
+
+</mapper>

@@ -60,13 +60,22 @@
     <result column="mem_type_name" property="memberTypeName" />
   </resultMap> -->
   
-  <select id="findAllBy" parameterType="int" resultMap="BoardMap">
-    select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.name
-    from board b
-    inner join member m on b.mem_no=m.mem_no
-    where b.board_type_no = #{hello}
-    order by b.board_no desc
-  </select>
+  
+  <select id="findAllBy" resultMap="BoardMap">
+      select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.name
+      from board b
+      inner join member m on b.mem_no=m.mem_no
+      where b.board_type_no = #{boardTypeNo}
+      <if test="searchType != null">
+         <if test="searchType == 'title'.toString()">
+            and b.titl like CONCAT('%', #{keyword}, '%')
+         </if>
+         <if test="searchType == 'writer'.toString()">
+            and m.name like CONCAT('%', #{keyword}, '%')
+         </if>
+      </if>
+      order by b.board_no desc
+   </select>
   
   <select id="findBy" parameterType="int" resultMap="BoardMap">
     select
