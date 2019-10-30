@@ -43,17 +43,21 @@ public class BoardController {
       int boardTypeNo,
       HttpSession session,
       Model model,
-      @RequestParam(defaultValue = "1") int curPage) throws Exception {
+      @RequestParam(defaultValue = "1") int curPage,
+      @RequestParam(defaultValue = "") String searchType,
+      @RequestParam(defaultValue = "") String keyword) throws Exception {
     session.setAttribute("memberNo", 2);
-    List<Board> boards = boardService.list(boardTypeNo);
     
+    List<Board> boards = boardService.list(boardTypeNo, searchType, keyword);
     int listCnt = boards.size();
     Pagination pagination = new Pagination(listCnt, curPage);
     
     model.addAttribute("boards", boards);
     model.addAttribute("listCnt", listCnt);
     model.addAttribute("pagination", pagination);
-    session.setAttribute("boardTypeNo", boardTypeNo);
+    model.addAttribute("boardTypeNo", boardTypeNo);
+    model.addAttribute("searchType", searchType);
+    model.addAttribute("keyword", keyword);
   }
   
   @GetMapping("detail")

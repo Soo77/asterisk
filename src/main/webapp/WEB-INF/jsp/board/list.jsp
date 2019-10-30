@@ -5,42 +5,92 @@
 <html>
 <head>
 <title>게시물 목록</title>
-<link rel='stylesheet'
-  href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='/css/common.css'>
+
+<style>
+
+#header {
+  width: 1100px;
+  margin: 0 auto;
+}
+
+#header img {
+  height: 35px;
+}
+
+#footer {
+  background-color: #524845;
+  color: #ffffff;
+  height: 40px;
+  width: 1100px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 10px;
+  margin: auto auto;
+}
+
+#content {
+  width: 1100px;
+  padding-top: 10px;
+  margin: auto auto;
+}
+
+.photo1 {
+  height: 120px;
+}
+
+.photo2 {
+  height: 100px;
+  margin: 2px;
+}
+
+</style>
 </head>
 <body>
 
-  <jsp:include page="../header.jsp" />
-
   <div id='content'>
-    <h1>게시판</h1>
-    <hr>
-
+    <div class="title">
+      <h1 style="display:inline">질문게시판 ㅣ</h1>
+      <c:if test="${boardTypeNo == 1}">
+        <h2 style="display:inline">공부상담</h2>
+      </c:if>
+      <c:if test="${boardTypeNo == 2}">
+        <h2 style="display:inline">입시상담</h2>
+      </c:if>
+      <c:if test="${boardTypeNo == 3}">
+        <h2 style="display:inline">문제풀이</h2>
+      </c:if>
+    </div>
+    
+    <br>
+    
     <table class='table table-hover'>
-      <tr>
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회수</th>
-      </tr>
-      <c:forEach items="${boards}" var="board"
-        begin="${pagination.pageSize * (pagination.curPage - 1)}"
-        end="${pagination.pageSize * pagination.curPage - 1}">
+      <thead>
         <tr>
-          <td>${board.boardNo}</td>
-          <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
-          <td>${board.memberName}</td>
-          <td>${board.createdDate}</td>
-          <td>${board.viewCount}</td>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>조회수</th>
         </tr>
-      </c:forEach>
+      </thead>
+      <tbody>
+        <c:forEach items="${boards}" var="board"
+          begin="${pagination.pageSize * (pagination.curPage - 1)}"
+          end="${pagination.pageSize * pagination.curPage - 1}">
+          <tr>
+            <td>${board.boardNo}</td>
+            <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
+            <td>${board.memberName}</td>
+            <td>${board.createdDate}</td>
+            <td>${board.viewCount}</td>
+          </tr>
+        </c:forEach>
+      </tbody>
     </table>
 
     <div align="right">
       <c:if test="${sessionScope.memberNo != null}">
-        <button class="btn btn-primary" onclick="location='form'">글쓰기</button>
+        <button class="btn btn-primary" type="button" onclick="location='form'" style="background-color: #00AFA0; border-color: #00AFA0;">글쓰기</button>
       </c:if>
     </div>
 
@@ -48,7 +98,7 @@
       <ul class="pagination justify-content-center">
         <c:if test="${pagination.curPage ne 1}">
           <li class="page-item"><a class="page-link"
-            href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.prevPage}">&laquo;</a>
+            href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.prevPage}&searchType=${searchType}&keyword=${keyword}">&laquo;</a>
           </li>
         </c:if>
 
@@ -56,13 +106,12 @@
           end="${pagination.endPage }">
           <c:choose>
             <c:when test="${pageNum eq  pagination.curPage}">
-              <li class="page-item active" aria-current="page"><a
-                class="page-link"
-                href='list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}'>${pageNum }</a></li>
+              <li class="page-item active" aria-current="page" style="background: #00AFA0; border-color: #00AFA0;"><a class="page-link"
+                href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:when>
             <c:otherwise>
               <li class="page-item"><a class="page-link"
-                href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}">${pageNum }</a></li>
+                href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:otherwise>
           </c:choose>
         </c:forEach>
@@ -70,42 +119,44 @@
         <c:if
           test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
           <li class="page-item"><a class="page-link"
-            href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.nextPage}">
-              &raquo;</a></li>
+            href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.nextPage}&searchType=${searchType}&keyword=${keyword}">&raquo;</a></li>
         </c:if>
       </ul>
     </nav>
     
+    <br>
+    
+    <input type='hidden' name='boardTypeNo' value='${boardTypeNo}'>
     <div class="form-group row justify-content-center">
       <div class="w100" style="padding-right:10px">
         <select class="form-control form-control-sm" name="searchType" id="searchType">
           <option value="title">제목</option>
-          <option value="Content">내용</option>
-          <option value="reg_id">작성자</option>
+          <option value="writer">작성자</option>
         </select>
       </div>
       <div class="w300" style="padding-right:10px">
         <input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
       </div>
       <div>
-        <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
+        <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch" style="background-color: #00AFA0; border-color: #00AFA0;">검색</button>
       </div>
     </div>
-
-
+    
   </div>
 
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    $
+    $(document).on('click', '#btnSearch', function(e){
+      e.preventDefault();
+      var url = "list?boardTypeNo=" + ${boardTypeNo}
+      url = url + "&curPage=1";
+      url = url + "&searchType=" + $('#searchType').val();
+      url = url + "&keyword=" + $('#keyword').val();
+      location.href = url;
+    })
   </script>
   
-  
-  <jsp:include page="../footer.jsp" />
-
 </body>
 </html>
 

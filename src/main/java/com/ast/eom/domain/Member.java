@@ -21,12 +21,14 @@ public class Member {
   private String addressSuburb;
   private String tel;
   private String profilePhoto;
+  private boolean userEmailChecked;
+  private String activationKey;
   
   private Teacher teacher;
   private Parents parents;
   private Student student;
   private MemberType memberType;
-  
+
   private int memberTypeNo;
 
   private List<Message> sentMessages;
@@ -44,6 +46,31 @@ public class Member {
         + ", memberType=" + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages
         + ", boards=" + boards + ", notices=" + notices + ", comments=" + comments + "]";
   }
+  
+  public int getMemberTypeNo() {
+    return memberTypeNo;
+  }
+
+  public void setMemberTypeNo(int memberTypeNo) {
+    this.memberTypeNo = memberTypeNo;
+  }
+
+  public boolean isUserEmailChecked() {
+    return userEmailChecked;
+  }
+
+  public void setUserEmailChecked(boolean userEmailChecked) {
+    this.userEmailChecked = userEmailChecked;
+  }
+
+  public String getActivationKey() {
+    return activationKey;
+  }
+
+  public void setActivationKey(String activationKey) {
+    this.activationKey = activationKey;
+  }
+
   public int getMemberNo() {
     return memberNo;
   }
@@ -170,11 +197,4 @@ public class Member {
   public void setComments(List<Comment> comments) {
     this.comments = comments;
   }
-  public int getMemberTypeNo() {
-    return memberTypeNo;
-  }
-  public void setMemberTypeNo(int memberTypeNo) {
-    this.memberTypeNo = memberTypeNo;
-  }
-  
 }
