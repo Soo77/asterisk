@@ -16,7 +16,7 @@ public class MemberController {
   
   @Autowired private MemberDao memberDao;
   
-  @GetMapping("list")
+  @GetMapping("list2")
   public void list(Model model,HttpSession session) throws Exception {
     List<Member> members = memberDao.listMember();
     for (Member member : members) {
