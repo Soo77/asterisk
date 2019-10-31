@@ -282,22 +282,20 @@
         <div class="row" id="layout_table">
     
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-    
-    <c:forEach items="${memberTeacherStudents}" var="member">
-      <a href='detail?no=${member.memberNo}'>
-        <td>${member.name}</td>/ 
-        <td>${member.gender}</td>/ 
-        <td>${member.addressCity}</td> 
-        <td>${member.addressSuburb}</td>/ 
-        <td>${member.memberTypeNo}</td>
+  
+    <c:forEach items="${memberTeacherStudents}" varStatus="status">
+      <a href='detail?no=${memberTeacherStudents[status.index].memberNo}'>
+      ${memberTeacherStudents[status.index].name}
+      ${memberTeacherStudents[status.index].gender}
+      ${memberTeacherStudents[status.index].addressCity}
+      ${memberTeacherStudents[status.index].addressSuburb}
+      ${memberTeacherStudents[status.index].memberTypeNo}
+      ${memberTeacherStudents[status.index].schoolType}
+      ${memberTeacherStudents2[status.index].schoolType}
+      ${memberTeacherStudents2[status.index].subjects[0].subjectName}
         <hr>
       </a>
     </c:forEach>
-  <%--  <c:forEach items="${memberTeacherStudents2}" var="member">
-       <td>${member.schoolType}</td>/ 
-       <td>${member.subjectName}</td>
-      <hr>
-    </c:forEach>  --%>
     
 <%-- <c:forEach items="${memberTeacherStudents}" var="member">
         <a href='detail?no=${member.memberNo}'>
