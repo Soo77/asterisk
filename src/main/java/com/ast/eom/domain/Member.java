@@ -30,7 +30,6 @@ public class Member {
   private Student student;
   private MemberType memberType;
 
-  private int memberTypeNo;
 
   private List<Message> sentMessages;
   private List<Message> receivedMessages;
@@ -46,14 +45,6 @@ public class Member {
         + ", profilePhoto=" + profilePhoto + ", teacher=" + teacher + ", parents=" + parents + ", student=" + student
         + ", memberType=" + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages
         + ", boards=" + boards + ", notices=" + notices + ", comments=" + comments + "]";
-  }
-  
-  public int getMemberTypeNo() {
-    return memberTypeNo;
-  }
-
-  public void setMemberTypeNo(int memberTypeNo) {
-    this.memberTypeNo = memberTypeNo;
   }
 
   public boolean isUserEmailChecked() {
