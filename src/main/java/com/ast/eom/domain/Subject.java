@@ -5,6 +5,7 @@ import java.util.List;
 public class Subject {
   private int subjectNo;
   private String subjectName;
+  private int schoolTypeNo;
   
   private SchoolType schoolType;
 
@@ -14,8 +15,9 @@ public class Subject {
   
   @Override
   public String toString() {
-    return "Subject [subjectNo=" + subjectNo + ", subjectName=" + subjectName + ", schoolType=" + schoolType
-        + ", lessons=" + lessons + ", wantedLessons=" + wantedLessons + ", lessonSubjects=" + lessonSubjects + "]";
+    return "Subject [subjectNo=" + subjectNo + ", subjectName=" + subjectName + ", schoolTypeNo="
+        + schoolTypeNo + ", schoolType=" + schoolType + ", lessons=" + lessons + ", wantedLessons="
+        + wantedLessons + ", lessonSubjects=" + lessonSubjects + "]";
   }
   public int getSubjectNo() {
     return subjectNo;
@@ -52,5 +54,11 @@ public class Subject {
   }
   public void setLessonSubjects(List<LessonSubject> lessonSubjects) {
     this.lessonSubjects = lessonSubjects;
+  }
+  public int getSchoolTypeNo() {
+    return schoolTypeNo;
+  }
+  public void setSchoolTypeNo(int schoolTypeNo) {
+    this.schoolTypeNo = schoolTypeNo;
   }
 }
