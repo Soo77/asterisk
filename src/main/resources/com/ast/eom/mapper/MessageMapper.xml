@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.MessageDao">
+	
+	<select id="messageList" parameterType="int" resultType="Message">
+	   select *from message where sender=#{memberNo}
+	</select>
+	
+	<insert id="messageIn" parameterType="Message">
+     insert into
+     message(message_no,sender,receiver,message_conts,send_date,is_read)
+     values
+     (#{messageNo},42,99,#{messageContents},now(),#{isRead})
+  </insert>
+
+</mapper>
