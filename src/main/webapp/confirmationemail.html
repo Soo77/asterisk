@@ -34,7 +34,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
       <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="/landing_images/eomtutor.png" alt="main brand"></a>
+        <a class="navbar-brand" href="index.html"><img src="./WEB-INF/images/eomtutor.png" alt="main brand"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,10 +43,11 @@
           <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-comments fa-2x" style="color: #1abc9c"></i>
-              <span class="badge badge-danger">1+</span>
+              
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
               <a class="dropdown-item" href="#">쪽지함</a>
+              
             </div>
           </li>
           <li class="nav-item dropdown no-arrow">
@@ -54,7 +55,7 @@
               <i class="fas fa-user-circle fa-2x" style="color: #1abc9c"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-              
+              <a class="dropdown-item" href="#">마이페이지</a>
               <a class="dropdown-item" href="#">회원 정보</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a>
@@ -67,36 +68,52 @@
     <div class="container" style="display:flex">
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav bg-secondary text-white text-center" style="width: 225px; background-color: gray;">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span></span></a>
-        </li>
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
-            <i class="fas fa-user p-2" style="color: #1abc9c"> </i>
-            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">나의 과외</span></a>
+            <span>선생님 찾기</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
-            <i class="fas fa-users p-2" style="color: #1abc9c"></i>
-            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">선생님 찾기</span></a>
+            <span>학생 찾기</span></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-clipboard-list p-2" style="color: #1abc9c"></i>
-            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">게시판</span>
+            <span>공지사항</span>
           </a>
-          <div class="dropdown-menu" style="background-color:#1abc9c" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item text-center" href="#">공지사항</a>
+          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item text-center" href="#">공부상담</a>
             <a class="dropdown-item text-center" href="#">입시상담</a>
             <a class="dropdown-item text-center" href="#">문제풀이</a>
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="tables.html">
+            <span>회원 정보</span></a>
+        </li>
       </ul>
       
       <div id="content-wrapper" style="overflow-x:hidden;">
-        <div class="row-fluid" style="width:900px;height:650px;"></div>
+        <div class="row-fluid" style="width:900px;height:650px;">
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-8">
+                  <p></p>
+                  <p></p>
+                  <p></p>
+                  <h5><b>인증메일 발송</b></h5>
+                  <hr>
+                  <p>등록된 이메일로 임시 비밀번호가 발송되었습니다.</br>
+                     확인해주세요.</br>
+                  </p>
+                  <p></p>
+                  <p></p>
+                  <a class="btn btn-block text-white" href="login.html" style="width:200px; height:40px; background-color: #1abc9c;">로그인하러 가기</a>
+                </div>
+                <div class="col-2">
+                </div>
+              </div>
+        </div>
       </div>
     </div>  
     
