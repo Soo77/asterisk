@@ -74,7 +74,7 @@ public class JoinController implements Runnable {
     Date testdob = Date.valueOf(dob);
     member.setEmail(emailAddress);
     member.setDateOfBirth(testdob);
-    //    member.getMemberType().setMemberTypeNo(memberTypeNo);
+//    member.getMemberType().setMemberTypeNo(memberTypeNo);
     member.setMemberTypeNo(memberTypeNo);
     //멤버 타입 수정함 MemberType
 
