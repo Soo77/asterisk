@@ -31,13 +31,11 @@
             수업과목: ${lesson.subjectName}<br>
             시작일: ${lesson.startDate}&ensp;종료일: ${lesson.endDate}
       </p>
-      <a href="#" class="btn btn-primary">Button</a>
+      <a href="detail.jsp" class="btn btn-primary">상세보기</a>
       </div>
     </div>
   </div>
 </c:forEach>
-
-<% System.out.println(request.getContextPath()); %>
 
 </body>
 </html>
