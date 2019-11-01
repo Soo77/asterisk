@@ -84,20 +84,5 @@
 
   </script>
 
-
-  <script>
-    let subjectAddButton = document.getElementsByClassName('subjectAddButton');
-    subjectAddButton[0].addEventListener('click', () => {
-      let wantedSubjects = document.getElementsByClassName('wantedSubjects');
-      let wantedSubjectTemplate = wantedSubjects[0].cloneNode(true);
-
-      wantedSubjectTemplate.setAttribute('id', 'wantedTest');
-      // wantedSubectLabel.innerHTML = 'test';
-      wantedSubjects[0].parentNode.insertBefore(wantedSubjectTemplate, wantedSubjects[0].nextSibling);
-
-      let wantedSubectLabel = document.querySelector('#wantedTest > div:nth-child(1) > label');
-      wantedSubectLabel.innerHTML = '희망과목2';
-    });
-  </script>
   
   
