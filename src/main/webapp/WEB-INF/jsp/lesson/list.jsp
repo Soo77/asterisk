@@ -10,20 +10,34 @@
 <body>
 <h1>수업 리스트</h1>
 <c:forEach items="${lessons}" var="lesson">
-  <tr>
-    <td>수업번호: ${lesson.lessonNo}<br></td>
-    
+
+  <div class="card w-75">
+  <div class="row no-gutters">
     <c:choose>
-    <c:when test="${lesson.member.name eq NULL}"> <td>이름: 미정<br></td> </c:when>
-    <c:otherwise> <td>이름: ${lesson.member.name}<br></td> </c:otherwise>
+    <c:when test="${lesson.member.memberTypeNo eq 3}">
+     <div class="col-md-2"> 
+      <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}" class="card-img">
+     </div> 
+     </c:when>
+      <c:otherwise> <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}" class="card-img" style="display:none;"> </c:otherwise>
     </c:choose>
-    
-<%--     <td>이름: ${lesson.member.name}<br></td> --%>
-    <td>수업과목: ${lesson.subjectName}<br></td>
-    <td>시작일: ${lesson.startDate}&ensp;종료일: ${lesson.endDate}<br></td>
-  </tr>
-  <br>
-</c:forEach> 
+    <div class="card-body">
+      <h5 class="card-title">수업번호: ${lesson.lessonNo} </h5>
+      <p class="card-text">
+      <c:choose>
+      <c:when test="${lesson.member.name eq NULL}"> <td>이름: 미정<br></td> </c:when>
+      <c:otherwise> <td>이름: ${lesson.member.name}<br></td> </c:otherwise>
+      </c:choose>
+            수업과목: ${lesson.subjectName}<br>
+            시작일: ${lesson.startDate}&ensp;종료일: ${lesson.endDate}
+      </p>
+      <a href="#" class="btn btn-primary">Button</a>
+      </div>
+    </div>
+  </div>
+</c:forEach>
+
+<% System.out.println(request.getContextPath()); %>
 
 </body>
 </html>

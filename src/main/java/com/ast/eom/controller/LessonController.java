@@ -15,9 +15,12 @@ public class LessonController {
 
   @Autowired private LessonService lessonService;
   
+  
   @GetMapping("list")
-  public void list(Model model, int memberTypeNo) throws Exception {
+  public void tchList(Model model, int memberTypeNo) throws Exception {
       List<Lesson> lessons = lessonService.list(memberTypeNo);
       model.addAttribute("lessons", lessons);
   }
+  
+
 }
