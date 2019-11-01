@@ -96,7 +96,6 @@ public class AuthController implements Runnable {
     member.setName(name);
     member.setEmail(whatmail);
     
-    authService.findPw(member);
     return authService.findPw(member);
   }
   

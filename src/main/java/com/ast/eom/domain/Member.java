@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Member {
 
   private int memberNo;
+  private int memberTypeNo;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date registeredDate;
   private String gender;
@@ -186,5 +187,13 @@ public class Member {
   }
   public void setComments(List<Comment> comments) {
     this.comments = comments;
+  }
+
+  public int getMemberTypeNo() {
+    return memberTypeNo;
+  }
+
+  public void setMemberTypeNo(int memberTypeNo) {
+    this.memberTypeNo = memberTypeNo;
   }
 }
