@@ -6,41 +6,43 @@
 <head>
 <meta charset="UTF-8">
 <title>선생님/학생 찾기</title>
-
-<!-- 아이콘  -->
-<!-- <script src="https://kit.fontawesome.com/60aaa234a3.js" crossorigin="anonymous"></script> -->
 <style>
-/* .sidemenu {
-  margin: 10px;
-  width: 200px;
+row {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-.searchlist {
-  float: left;
-  margin: 10px;
-}*/
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+  color: black;
+  background-color: #ffffff;
+  border-color: #00afa0;
+}
+
+
+.btn-outline-info {
+  color: black;
+  background-color:: #ffffff;
+  border-color: #00afa0;
+}
 
 .sidemenubar {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 27px;
   font-family: 'Nanum Gothic', sans-serif, "Raleway", "HelveticaNeue",
     "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 200px;
+  width: auto;
   float: left;
-} 
+  margin-left: 15px;
+}
 </style>
 </head>
 <body>
 
-  <div id="wrapper">
+  <div class="container">
 
-    <div id="content-wrapper">
-
-      <div class="container-fluid">
-
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active">
         <%--   <div class="title">
       <c:if test="${memberTeacherStudents.memberTypeNo == 1}">
         <h2 style="display:inline">학생 찾기</h2>
@@ -49,333 +51,209 @@
         <h2 style="display:inline">선생님 찾기</h2>
       </c:if>
     </div> --%>
-    </li>
-        </ol>
+      </li>
+    </ol>
 
-        <!-- DataTables -->
-        <div class="card mb-3">
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <div class="container" id="container" data-page-type="" style="margin-top: 15px;margin-bottom: 15px;">
-        <div class="row">
-    <!-- Sidebar
-    ================================================== -->
-    <div class="col-lg-3 col-md-4 margin-bottom-30">
+    <!-- DataTables -->
+    <div class="row">
+
+      <!-- Sidebar ================================================== -->
+      <div class="col-lg-3 col-md-4" style="margin-bottom: 30px;">
         <div class="sidemenubar" id="sideMenuBar">
-             <p class="address">지역</p>
-                <div class="addressCity">
-                  <select name="h_area1"
-                    onChange="cat1_change(this.value,h_area2)">
-                    <option selected>-선택-</option>
-                    <option value='1'>서울</option>
-                    <option value='2'>부산</option>
-                    <option value='3'>대구</option>
-                    <option value='4'>인천</option>
-                    <option value='5'>광주</option>
-                    <option value='6'>대전</option>
-                    <option value='7'>울산</option>
-                    <option value='8'>강원</option>
-                    <option value='9'>경기</option>
-                    <option value='10'>경남</option>
-                    <option value='11'>경북</option>
-                    <option value='12'>전남</option>
-                    <option value='13'>전북</option>
-                    <option value='14'>제주</option>
-                    <option value='15'>충남</option>
-                    <option value='16'>충북</option>
-                  </select>
-                </div>
-                <div class="addressSuburb">
-                  <select name="h_area2">
-                    <option selected>-선택-</option>
-                  </select>
-                </div>
+          <p class="address">지역</p>
+          
+          <div class="address">
+          <select class="custom-select" name="h_area1" onChange="cat1_change(this.value,h_area2)">
+            <option selected>- 선택 -</option>
+            <option value='1'>서울</option>
+            <option value='2'>부산</option>
+            <option value='3'>대구</option>
+            <option value='4'>인천</option>
+            <option value='5'>광주</option>
+            <option value='6'>대전</option>
+            <option value='7'>울산</option>
+            <option value='8'>강원</option>
+            <option value='9'>경기</option>
+            <option value='10'>경남</option>
+            <option value='11'>경북</option>
+            <option value='12'>전남</option>
+            <option value='13'>전북</option>
+            <option value='14'>제주</option>
+            <option value='15'>충남</option>
+            <option value='16'>충북</option>
+          </select>
+          <select class="custom-select" name="h_area2">
+            <option selected>- 선택 -</option>
+          </select>
+          </div> 
+          
+          
+          <p class="more-search-options-title active">성별</p>
+          <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="gender" id="gender_man" autocomplete="off" value="1"> 남자
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="gender" id="gender_woman" autocomplete="off" value="0"> 여자
+            </label>
+          </div>
+          
+          
 
-                <p class="more-search-options-title active">성별</p>
-                <div class="checkbox-container">
-                  <div class="checkbox-element">
-                    <input id="tutor_gender_man" type="checkbox"
-                      name="gender2" class="checkbox" value="1">
-                    <label for="tutor_gender_man" class="sex">남자</label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_gender_woman" type="checkbox"
-                      name="gender2" class="checkbox" value="0">
-                    <label for="tutor_gender_woman" class="sex">여자</label>
-                  </div>
-                </div>
+          <p class="more-search-options-title active">나이</p>
+          <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="age" id="age_20and21" autocomplete="off" value="20,21"> 20 ~ 21
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="age" id="age_22and23" autocomplete="off" value="22,23"> 22 ~ 23
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="age" id="age_24and25" autocomplete="off" value="24,25"> 24 ~ 25
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="age" id="age_26and27" autocomplete="off" value="26,27"> 26 ~ 27
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="age" id="age_28and29" autocomplete="off" value="28,29"> 28 ~ 29
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="age" id="age_30" autocomplete="off" value="30"> 30 이상
+            </label>
+          </div>
+          
 
-                <p class="more-search-options-title active">나이</p>
-                <div class="checkbox-container">
-                  <div class="checkbox-element">
-                    <input id="tutor_age_20" type="checkbox" name="age"
-                      class="checkbox" value="20"> <label
-                      for="tutor_age_20"> 20세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_21" type="checkbox" name="age"
-                      class="checkbox" value="21"> <label
-                      for="tutor_age_21"> 21세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_22" type="checkbox" name="age"
-                      class="checkbox" value="22"> <label
-                      for="tutor_age_22"> 22세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_23" type="checkbox" name="age"
-                      class="checkbox" value="23"> <label
-                      for="tutor_age_23"> 23세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_24" type="checkbox" name="age"
-                      class="checkbox" value="24"> <label
-                      for="tutor_age_24"> 24세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_25" type="checkbox" name="age"
-                      class="checkbox" value="25"> <label
-                      for="tutor_age_25"> 25세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_26" type="checkbox" name="age"
-                      class="checkbox" value="26"> <label
-                      for="tutor_age_26"> 26세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_27" type="checkbox" name="age"
-                      class="checkbox" value="27"> <label
-                      for="tutor_age_27"> 27세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_28" type="checkbox" name="age"
-                      class="checkbox" value="28"> <label
-                      for="tutor_age_28"> 28세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_29" type="checkbox" name="age"
-                      class="checkbox" value="29"> <label
-                      for="tutor_age_29"> 29세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_30" type="checkbox" name="age"
-                      class="checkbox" value="30"> <label
-                      for="tutor_age_30"> 30세 이상 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_age_all" type="checkbox" name="age"
-                      class="checkbox" value="all"> <label
-                      for="tutor_age_all"> 나이 무관 </label>
-                  </div>
-                </div>
+          <p class="more-search-options-title margin-top-15 active">수업료</p>
+          <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="lesson_fee" id="lesson_fee_20" autocomplete="off" value="20"> 20만원 까지
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="lesson_fee" id="lesson_fee_30" autocomplete="off" value="30"> 30만원 까지
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="lesson_fee" id="lesson_fee_40" autocomplete="off" value="40"> 40만원 까지
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="lesson_fee" id="lesson_fee_50" autocomplete="off" value="50"> 50만원 이상
+            </label>
+          </div>
+          
+          
 
-                <p
-                  class="more-search-options-title margin-top-15 active">수업료</p>
-                <div class="checkbox-container checkbox-container-four">
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_20" type="checkbox"
-                      name="budgets" class="checkbox" value="20">
-                    <label for="tutor_budgets_20"> 20만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_25" type="checkbox"
-                      name="budgets" class="checkbox" value="25">
-                    <label for="tutor_budgets_25"> 25만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_30" type="checkbox"
-                      name="budgets" class="checkbox" value="30">
-                    <label for="tutor_budgets_30"> 30만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_35" type="checkbox"
-                      name="budgets" class="checkbox" value="35">
-                    <label for="tutor_budgets_35"> 35만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_40" type="checkbox"
-                      name="budgets" class="checkbox" value="40">
-                    <label for="tutor_budgets_40"> 40만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_45" type="checkbox"
-                      name="budgets" class="checkbox" value="45">
-                    <label for="tutor_budgets_45"> 45만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_50" type="checkbox"
-                      name="budgets" class="checkbox" value="50">
-                    <label for="tutor_budgets_50"> 50만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_60" type="checkbox"
-                      name="budgets" class="checkbox" value="60">
-                    <label for="tutor_budgets_60"> 60만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_70" type="checkbox"
-                      name="budgets" class="checkbox" value="70">
-                    <label for="tutor_budgets_70"> 70만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_80" type="checkbox"
-                      name="budgets" class="checkbox" value="80">
-                    <label for="tutor_budgets_80"> 80만원 까지 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_budgets_any" type="checkbox"
-                      name="budgets" class="checkbox" value="100">
-                    <label for="tutor_budgets_any"> 가격 무관 </label>
-                  </div>
-                </div>
+          <p class="more-search-options-title margin-top-15 active">과목으로
+            찾기</p>
+          <div class="checkbox-container checkbox-container-four active">
+            <p class="more-search-options-title-sub-high">고등학교</p>
+            <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="korean" autocomplete="off" value="high_korean"> 국어
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="english" autocomplete="off" value="high_english"> 영어
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="math" autocomplete="off" value="high_math"> 수학
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="social" autocomplete="off" value="high_social"> 사회
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="science" autocomplete="off" value="high_science"> 과학
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="etc" autocomplete="off" value="high_etc"> 기타
+            </label>
+          </div>
 
-                <p
-                  class="more-search-options-title margin-top-15 active">과목으로
-                  찾기</p>
-                <div
-                  class="checkbox-container checkbox-container-four active">
-                  <p class="more-search-options-title-sub">주요 과목</p>
-                  <div class="checkbox-element">
-                    <input id="tutor_subjectIds_korean" type="checkbox"
-                      name="subjectIds" class="checkbox"
-                      value="EC62D3EE-36D1-E411-9018-CAFE0600B00B">
-                    <label for="tutor_subjectIds_korean"> 국어 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_subjectIds_math" type="checkbox"
-                      name="subjectIds" class="checkbox"
-                      value="ED62D3EE-36D1-E411-9018-CAFE0600B00B">
-                    <label for="tutor_subjectIds_math"> 수학 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_subjectIds_english" type="checkbox"
-                      name="subjectIds" class="checkbox"
-                      value="3E24CDF5-36D1-E411-9018-CAFE0600B00B">
-                    <label for="tutor_subjectIds_english"> 영어 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_subjectIds_social" type="checkbox"
-                      name="subjectIds" class="checkbox"
-                      value="3F24CDF5-36D1-E411-9018-CAFE0600B00B">
-                    <label for="tutor_subjectIds_social"> 사회 </label>
-                  </div>
-                  <div class="checkbox-element">
-                    <input id="tutor_subjectIds_science" type="checkbox"
-                      name="subjectIds" class="checkbox"
-                      value="4024CDF5-36D1-E411-9018-CAFE0600B00B">
-                    <label for="tutor_subjectIds_science"> 과학 </label>
-                  </div>
-                </div>
+            <p class="more-search-options-title-sub-middle">중학교</p>
+            <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="korean" autocomplete="off" value="middle_korean"> 국어
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="english" autocomplete="off" value="middle_english"> 영어
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="math" autocomplete="off" value="middle_math"> 수학
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="social" autocomplete="off" value="middle_social"> 사회
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="science" autocomplete="off" value="middle_science"> 과학
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="etc" autocomplete="off" value="middle_etc"> 기타
+            </label>
+          </div>
 
+            <p class="more-search-options-title-sub-primary">초등학교</p>
+            <div class="btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="korean" autocomplete="off" value="pri_korean"> 국어
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="english" autocomplete="off" value="pri_english"> 영어
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="math" autocomplete="off" value="pri_math"> 수학
+            </label>
+             <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="social" autocomplete="off" value="pri_social"> 사회
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="science" autocomplete="off" value="pri_science"> 과학
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="checkbox" name="sub_name" id="etc" autocomplete="off" value="pri_etc"> 기타
+            </label>
+          </div>
+            
+            
+          </div>
+          <button type="button" class="btn btn-outline-info">조건검색</button>
         </div>
-       
-    </div>
-    <!-- Sidebar / End -->
-    <div class="col-lg-9 col-md-8 padding-right-30">
-        <div class="row" id="layout_table">
-    
-    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-  
-    <c:forEach items="${memberTeacherStudents}" varStatus="status">
-      <a href='detail?no=${memberTeacherStudents[status.index].memberNo}'>
-      ${memberTeacherStudents[status.index].name}
-      ${memberTeacherStudents[status.index].gender}
-      ${memberTeacherStudents[status.index].addressCity}
-      ${memberTeacherStudents[status.index].addressSuburb}
-      ${memberTeacherStudents[status.index].memberTypeNo}
-      ${memberTeacherStudents[status.index].schoolType}
-      ${memberTeacherStudents2[status.index].schoolType}
-      ${memberTeacherStudents2[status.index].subjects[0].subjectName}
-        <hr>
-      </a>
-    </c:forEach>
-    
-<%-- <c:forEach items="${memberTeacherStudents}" var="member">
-        <a href='detail?no=${member.memberNo}'>
-            <div class="tutor-card">
-                <div class="tutor-card-body">
-                  ${member.name}
-                <c:choose>
-                  <c:when test="${member.memberTypeNo == 1}">
-                    <td>${member.gender}</td>/ 
-                    <td>${member.schoolType}</td>/ 
-                    <td>${member.subjectName}</td>/ 
-                    <td>${member.addressCity}</td>
-                    <td>${member.addressSuburb}</td>/ 
-                    <td>${member.memberTypeNo}</td>
-                  </c:when>
-                  <c:when test="${member.memberTypeNo == 3}">
-                    <td>${member.teacherPhoto}</td>
-                    <br>
-                    <td>${member.schoolName}</td>/<td>${member.gender}</td>/${member.schoolType}/<td>${member.subjectName}</td>/<td>${member.addressCity}</td>
-                    <td>${member.addressSuburb}</td>/<td>${member.memberTypeNo}</td>
-                  </c:when>
-                </c:choose> 
-                  <hr>
-                </c:forEach> --%>
-      <!--           </div>
-            </div> -->
-      <!--   </a> -->
-    </div>
-    
-    
-    
-</div>
-        <div class="clearfix"></div>
-    </div>
-    
-</div>
-<!-- Wrapper / End -->
-<!-- Template -->
-
-</div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-         <!--    </div> -->
-            <!-- searchlist / End -->
-
-
-       <!--    </div> -->
-          <!-- card body / End -->
-         </div>
-        <!--  card mb-3 / End -->
-
-
-
       </div>
-      <!-- /.container-fluid -->
+      <!-- Sidebar / End -->
+      <!-- contents ================================================== -->
+      <div class="col-lg-9 col-md-8">
+
+        <c:forEach items="${memberTeacherStudents}" varStatus="status">
+          <a href="detail?no=${memberTeacherStudents[status.index].memberNo}">
+            <div class="card-body">
+              <div class="cardcard mb-3">
+                <div class="row no-gutters">
+                  <div class="col-md-3">
+                    <img
+                      src="${memberTeacherStudents[status.index].teacherPhoto}"
+                      class="card-img" alt="...">
+                  </div>
+                  <div class="col-md-9">
+                    <h5 class="card-title">${memberTeacherStudents[status.index].name}</h5>
+                    <p class="card-text">
+                      ${memberTeacherStudents[status.index].gender}/
+                      ${memberTeacherStudents[status.index].addressCity}
+                      ${memberTeacherStudents[status.index].addressSuburb}/
+                      ${memberTeacherStudents2[status.index].schoolType}/
+                      ${memberTeacherStudents2[status.index].subjects[0].subjectName}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <hr>
+        </c:forEach>
+      </div>
+      <!-- contents / End -->
 
     </div>
-    <!-- /.content-wrapper -->
+    <!-- row / End -->
 
   </div>
-  <!-- /#wrapper -->
+  <!-- Container / End -->
+
 
   <script>
       var cat1_num = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
@@ -485,9 +363,9 @@
 
       -->
     </script>
-    
-    
-    
+
+
+
 
 </body>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
