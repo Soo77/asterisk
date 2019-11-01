@@ -18,8 +18,14 @@ public class Teacher extends Member {
   private List<TeacherPhoto> teacherPhotos;
   
   
-  
-  
+  @Override
+  public String toString() {
+    return "Teacher [teacherNo=" + teacherNo + ", accountNo=" + accountNo + ", bankName=" + bankName
+        + ", lessonCertificate=" + lessonCertificate + ", teacherIntro=" + teacherIntro + ", approvementState="
+        + approvementState + ", videoAddress=" + videoAddress + ", subjectName=" + subjectName + ", lessons=" + lessons
+        + ", schools=" + schools + ", lessonSubjects=" + lessonSubjects + ", teacherPhotos=" + teacherPhotos
+        + ", schoolType=" + schoolType + "]";
+  }
   public String getSubjectName() {
     return subjectName;
   }
