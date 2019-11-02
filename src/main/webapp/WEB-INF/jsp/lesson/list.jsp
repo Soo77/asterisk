@@ -31,7 +31,8 @@
             수업과목: ${lesson.subjectName}<br>
             시작일: ${lesson.startDate}&ensp;종료일: ${lesson.endDate}
       </p>
-      <a href="detail.jsp" class="btn btn-primary">상세보기</a>
+<!--       <a href="detail.jsp"  class="btn btn-primary">상세보기</a> -->
+       <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">상세보기</a> 
       </div>
     </div>
   </div>

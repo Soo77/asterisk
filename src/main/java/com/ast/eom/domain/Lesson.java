@@ -35,6 +35,7 @@ public class Lesson {
   private Date refundDate;
   private int refundAmount;
   private Member member;
+  private CurriculumLessonContents clc;
   private String subjectName;
   
   private List<Member> members;
@@ -43,14 +44,17 @@ public class Lesson {
   
   @Override
   public String toString() {
-    return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo + ", subjectNo="
-        + subjectNo + ", lessonDescription=" + lessonDescription + ", lessonFee=" + lessonFee + ", lessonState="
-        + lessonState + ", studentLessonStop=" + studentLessonStop + ", teacherLessonStop=" + teacherLessonStop
-        + ", startDate=" + startDate + ", endDate=" + endDate + ", teacherReview=" + teacherReview + ", studentReview="
-        + studentReview + ", teacherEvaluation=" + teacherEvaluation + ", paymentMethod=" + paymentMethod + ", payDay="
-        + payDay + ", calculationDay=" + calculationDay + ", calculationState=" + calculationState
-        + ", studentStopReason=" + studentStopReason + ", teacherStopReason=" + teacherStopReason + ", refundState="
-        + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount + ", curriculums=" + curriculums
+    return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo
+        + ", lessonDescription=" + lessonDescription + ", subjectNo=" + subjectNo + ", lessonFee="
+        + lessonFee + ", lessonState=" + lessonState + ", studentLessonStop=" + studentLessonStop
+        + ", teacherLessonStop=" + teacherLessonStop + ", startDate=" + startDate + ", endDate="
+        + endDate + ", teacherReview=" + teacherReview + ", studentReview=" + studentReview
+        + ", teacherEvaluation=" + teacherEvaluation + ", paymentMethod=" + paymentMethod
+        + ", payDay=" + payDay + ", calculationDay=" + calculationDay + ", calculationState="
+        + calculationState + ", studentStopReason=" + studentStopReason + ", teacherStopReason="
+        + teacherStopReason + ", refundState=" + refundState + ", refundDate=" + refundDate
+        + ", refundAmount=" + refundAmount + ", member=" + member + ", clc=" + clc
+        + ", subjectName=" + subjectName + ", members=" + members + ", curriculums=" + curriculums
         + ", dayLessons=" + dayLessons + "]";
   }
   public int getLessonNo() {
@@ -220,6 +224,12 @@ public class Lesson {
   }
   public void setSubjectName(String subjectName) {
     this.subjectName = subjectName;
+  }
+  public CurriculumLessonContents getClc() {
+    return clc;
+  }
+  public void setClc(CurriculumLessonContents clc) {
+    this.clc = clc;
   }
   
   

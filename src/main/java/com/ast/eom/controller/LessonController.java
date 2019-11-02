@@ -23,9 +23,10 @@ public class LessonController {
   }
   
   @GetMapping("detail")
-  public void detail(Model model) throws Exception {
-//      List<Lesson> lessons = lessonService.list(memberTypeNo);
-//      model.addAttribute("lessons", lessons);
+  public void detail(Model model, int lessonNo) throws Exception {
+    System.out.println(lessonNo);
+    List<Lesson> lessons = lessonService.currList(lessonNo);
+    model.addAttribute("lessons", lessons);
   }
 
 }
