@@ -71,7 +71,7 @@
     </select>
     
      <select id="findAllCurrBy" parameterType="int" resultMap="LessonMap">
-      select cl.curr_lesson_no, cl.curr_no, cl.lesson_conts, cl.lesson_days
+      select l.sdt, l.edt, cl.curr_lesson_no, cl.curr_no, cl.lesson_conts, cl.lesson_days
       from lesson l 
       inner join curriculum c  on l.lesson_no = c.lesson_no
       inner join curr_lesson_conts cl on cl.curr_no = c.curr_no

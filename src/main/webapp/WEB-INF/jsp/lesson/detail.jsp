@@ -9,12 +9,20 @@
 </head>
 <body>
 <h1>수업내용</h1>
+
+<c:forEach items="${lessons}" var="lesson">
+수업시작일: ${lesson.startDate} 수업종료일: ${lesson.endDate} 수업요일/시간: <br>
+
+</c:forEach>
+
 <c:forEach items="${lessons}" var="lesson">
 <div>
-<td>번호: ${lesson.clc.curriculumLessonNo}<br></td> 
-<td>수업번호: ${lesson.clc.curriculumNo}<br></td> 
-<td>내용: ${lesson.clc.lessonContents}<br></td> 
-<td>수업일: ${lesson.clc.lessonDays}<br></td> 
+<%-- <td>번호: ${lesson.clc.curriculumLessonNo}<br></td> 
+<td>수업번호: ${lesson.clc.curriculumNo}<br></td>  --%>
+
+
+내용: ${lesson.clc.lessonContents}&ensp;
+수업일: ${lesson.clc.lessonDays}<br> 
 </div>
 </c:forEach>
 

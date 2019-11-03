@@ -158,11 +158,11 @@ INSERT INTO subject(sch_type_no, sub_name)
 VALUES (2, 'math');
 
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'korean');
+VALUES (3, 'korean');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'english');
+VALUES (3, 'english');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'math');
+VALUES (3, 'math');
 
 -- 과외희망(희망과목) (FK: std_no, sub_no)
 INSERT INTO wanted_lesson(std_no, sub_no, req, rdt)
