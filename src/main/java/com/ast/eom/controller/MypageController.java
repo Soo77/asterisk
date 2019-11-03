@@ -21,17 +21,13 @@ public class MypageController {
   
   @GetMapping("detail")
   public void detail(HttpSession session) throws Exception {
-    // 로그인 페이지에서 합칠 경우 사라질 임시 코드들
-    Member tempMember = mypageService.getTempMember(7);
-    session.setAttribute("loginUser", tempMember);
-    //
     
-    Member memberInfo = (Member) session.getAttribute("loginUser");
-    Map<String, Object> memberInfoMap = mypageService.getMemberInfoMapBy(memberInfo);
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    Map<String, Object> memberInfoMap = mypageService.getMemberInfoMapBy(loginUser);
     
     session.setAttribute("memberInfoMap", memberInfoMap);
     
-    String[] email = tempMember.getEmail().split("@");
+    String[] email = loginUser.getEmail().split("@");
     session.setAttribute("email", email);
   }
 }
