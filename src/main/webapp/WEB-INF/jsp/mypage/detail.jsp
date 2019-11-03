@@ -146,7 +146,7 @@
           <div class="form-group row">
             <label for="inputHighSchool" class="col-sm-2 col-form-label">고등학교</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputHighSchool" value="${teacher.}" readonly>
+              <input type="text" class="form-control" id="inputHighSchool" value="bit-high-school" readonly>
             </div>
           </div>
           <div class="form-group row">

@@ -33,6 +33,7 @@ extends AbstractAnnotationConfigDispatcherServletInitializer {
   protected Filter[] getServletFilters() {
     CharacterEncodingFilter encoding = new CharacterEncodingFilter();
     encoding.setEncoding("UTF-8");
+    
     return new Filter[] {encoding};
   }
   

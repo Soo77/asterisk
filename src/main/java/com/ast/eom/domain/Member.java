@@ -30,7 +30,6 @@ public class Member {
   private Student student;
   private MemberType memberType;
 
-
   private List<Message> sentMessages;
   private List<Message> receivedMessages;
   private List<Board> boards;
@@ -46,7 +45,7 @@ public class Member {
         + ", memberType=" + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages
         + ", boards=" + boards + ", notices=" + notices + ", comments=" + comments + "]";
   }
-
+  
   public boolean isUserEmailChecked() {
     return userEmailChecked;
   }
