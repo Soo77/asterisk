@@ -1,19 +1,19 @@
-package com.ast.eom.controller;
+package com.ast.eom.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-public class LoginCheckInterceptor implements HandlerInterceptor {
+public class AuthControllerCheckInterceptor implements HandlerInterceptor {
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
       throws Exception {
     
-    if (request.getSession().getAttribute("loginUser") == null) {
+    if (request.getSession().getAttribute("loginUser") != null) {
       // 로그인 하지 않았다면 로그인 폼으로 보낸다.
-      response.sendRedirect("/app/auth/form");
+      response.sendRedirect("/app/mypage/detail");
       return false;
     }
     

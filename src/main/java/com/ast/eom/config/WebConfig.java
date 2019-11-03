@@ -15,8 +15,8 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.util.UrlPathHelper;
 
-import com.ast.eom.controller.AuthControllerCheckInterceptor;
-import com.ast.eom.controller.LoginCheckInterceptor;
+import com.ast.eom.interceptor.AuthControllerCheckInterceptor;
+import com.ast.eom.interceptor.LoginCheckInterceptor;
 
 @ComponentScan("com.ast.eom")
 @EnableWebMvc
