@@ -189,11 +189,11 @@ ALTER TABLE lesson
 
 -- 커리큘럼
 CREATE TABLE curriculum (
-  lesson_no      INTEGER  NOT NULL, -- 수업번호
-  curr_lesson_dt INTEGER  NOT NULL, -- 수업요일
-  curr_lesson_st DATETIME NOT NULL, -- 수업시작시간
-  curr_lesson_et DATETIME NOT NULL, -- 수업종료시간
-  total_hr       INTEGER  NOT NULL DEFAULT 0 -- 총수업시간
+  lesson_no      INTEGER      NOT NULL, -- 수업번호
+  curr_lesson_dt VARCHAR(255) NOT NULL, -- 수업요일
+  curr_lesson_st VARCHAR(255) NOT NULL, -- 수업시작시간
+  curr_lesson_et VARCHAR(255) NOT NULL, -- 수업종료시간
+  total_hr       INTEGER      NOT NULL DEFAULT 0 -- 총수업시간
 );
 
 -- 커리큘럼
@@ -218,9 +218,9 @@ CREATE TABLE member (
   addr_sub       VARCHAR(255) NULL,     -- 주소(시/군/구)
   tel            VARCHAR(30)  NULL,     -- 전화번호
   profile_photo  VARCHAR(255) NULL,     -- 프로필사진
-  curr_lesson_dt INTEGER      NULL,     -- 수업요일
-  curr_lesson_st DATETIME     NULL,     -- 수업시작시간
-  curr_lesson_et DATETIME     NULL,     -- 수업종료시간
+  curr_lesson_dt VARCHAR(255) NULL,     -- 수업요일
+  curr_lesson_st VARCHAR(255) NULL,     -- 수업시작시간
+  curr_lesson_et VARCHAR(255) NULL,     -- 수업종료시간
   email_checked  BOOLEAN      NULL     DEFAULT false, -- 이메일인증여부
   activation_key VARCHAR(255) NULL      -- 인증번호
 );

@@ -198,13 +198,13 @@ VALUES (3, now(), 17, 18, 'Beauty of Korean', "KNOCK KNOCK");
 
 -- 커리큘럼 (FK: lesson_no)
 INSERT INTO curriculum(lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
-VALUES (1, 1010111, now(), now());
+VALUES (1, '1010111', '1800', '2000');
 INSERT INTO curriculum(lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
-VALUES (2, 1010100, now(), now());
+VALUES (2, '1010100', '1600', '1800');
 INSERT INTO curriculum(lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
-VALUES (3, 0111111, now(), now());
+VALUES (3, '0111111', '1700', '1900');
 
--- 커리큘럼수업내용 (FK: curr_no) !!수정필요!!
+-- 커리큘럼수업내용 (FK: curr_no)
 INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
 VALUES (1, 'blah blah1', 2);
 INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
