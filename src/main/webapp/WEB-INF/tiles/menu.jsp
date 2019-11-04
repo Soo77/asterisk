@@ -50,7 +50,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <h6 class="dropdown-header">Notice Board:</h6>
-          <a class="dropdown-item" href="#">공지사항</a>
+          <a class="dropdown-item" href="list?boardTypeNo=4">공지사항</a>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Boards:</h6>
           <a class="dropdown-item" href="list?boardTypeNo=1">공부상담</a>

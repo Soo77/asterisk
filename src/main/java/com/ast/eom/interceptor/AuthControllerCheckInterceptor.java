@@ -12,7 +12,6 @@ public class AuthControllerCheckInterceptor implements HandlerInterceptor {
       throws Exception {
     
     if (request.getSession().getAttribute("loginUser") != null) {
-      // 로그인 하지 않았다면 로그인 폼으로 보낸다.
       response.sendRedirect("/app/mypage/detail");
       return false;
     }
