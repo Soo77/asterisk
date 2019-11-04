@@ -8,17 +8,14 @@
 <title>쪽지</title>
 <script type="text/JavaScript"
 	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<style>
-#showmy {
-	margin-left: 50px;
-}
-</style>
 </head>
 <body>
-	<div id="showyou"></div>
 	<br>
 	<br>
 	<div id="showmy"></div>
+	<br>
+	<br>
+	<div id="showyou"></div>
 	<br>
 	<br>
 	<h2>
@@ -37,18 +34,22 @@
 			$.ajax({
 				url : 'messageDetail',
 				type : 'post',
-				data : "memberNo=" + 1,
+				data : "memberNo=" + ${loginUser.memberNo},
 				success : function(data) {
 					for ( var i = 0 in data) {
-						if (data[i].receiverNo == 1) {
+					console.log(data[i].receiverNo+"rece");
+					console.log(${loginUser.memberNo}+"log");
+						if (data[i].receiverNo == ${loginUser.memberNo}) {
 							var str = '<TR>';
 							str += '<TD>' + data[i].messageContents + '</TD>';
 							str += '</TR>';
+							$("#showmy").css("margin-left","50px");
 							$("#showmy").append(str);
 						} else {
 							var str = '<TR>';
 							str += '<TD>' + data[i].messageContents + '</TD>';
 							str += '</TR>';
+							$("#showyou").css("margin-left","0px");
 							$("#showyou").append(str);
 						}
 					}

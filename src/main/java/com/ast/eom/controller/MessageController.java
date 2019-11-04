@@ -1,7 +1,6 @@
 package com.ast.eom.controller;
 
 import java.util.List;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,9 +32,8 @@ public class MessageController {
   
   @PostMapping("memberlist")
   @ResponseBody
-  public List<Member> memberlist(HttpSession session, int memberNo) throws Exception {
+  public List<Member> memberlist(int memberNo) throws Exception {
     List<Member> message = messageDao.messageList(memberNo);
-//    session.setAttribute("memNo", message);
     System.out.println(memberNo);
     for (Member m : message) {
       System.out.println(m);
@@ -54,7 +52,7 @@ public class MessageController {
   
   @PostMapping("messagein")
   @ResponseBody
-  public int messagein(HttpSession session, String messageConts) throws Exception {
+  public int messagein(String messageConts) throws Exception {
 //    int memberNo = (int) session.getAttribute("loginUser.memberNo");
 //    System.out.println(memberNo+"dsa");
     Message message = new Message();
