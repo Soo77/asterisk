@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Member {
 
   private int memberNo;
+  private int memberTypeNo;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date registeredDate;
   private String gender;
@@ -37,14 +38,15 @@ public class Member {
   
   @Override
   public String toString() {
-    return "Member [memberNo=" + memberNo + ", registeredDate=" + registeredDate + ", gender=" + gender
-        + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name + ", password="
-        + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel=" + tel
-        + ", profilePhoto=" + profilePhoto + ", teacher=" + teacher + ", parents=" + parents + ", student=" + student
-        + ", memberType=" + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages
-        + ", boards=" + boards + ", notices=" + notices + ", comments=" + comments + "]";
+    return "Member [memberNo=" + memberNo + ", memberTypeNo=" + memberTypeNo + ", registeredDate=" + registeredDate
+        + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name
+        + ", password=" + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel="
+        + tel + ", profilePhoto=" + profilePhoto + ", userEmailChecked=" + userEmailChecked + ", activationKey="
+        + activationKey + ", teacher=" + teacher + ", parents=" + parents + ", student=" + student + ", memberType="
+        + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages + ", boards="
+        + boards + ", notices=" + notices + ", comments=" + comments + "]";
   }
-  
+
   public boolean isUserEmailChecked() {
     return userEmailChecked;
   }
@@ -186,5 +188,13 @@ public class Member {
   }
   public void setComments(List<Comment> comments) {
     this.comments = comments;
+  }
+
+  public int getMemberTypeNo() {
+    return memberTypeNo;
+  }
+
+  public void setMemberTypeNo(int memberTypeNo) {
+    this.memberTypeNo = memberTypeNo;
   }
 }

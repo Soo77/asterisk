@@ -5,37 +5,8 @@
 <html>
 <head>
 <title>게시물 목록</title>
-<link rel='stylesheet'
-  href='/node_modules/bootstrap/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='/css/common.css'>
 
 <style>
-
-#header {
-  width: 1100px;
-  margin: 0 auto;
-}
-
-#header img {
-  height: 35px;
-}
-
-#footer {
-  background-color: #524845;
-  color: #ffffff;
-  height: 40px;
-  width: 1100px;
-  text-align: center;
-  vertical-align: middle;
-  padding-top: 10px;
-  margin: auto auto;
-}
-
-#content {
-  width: 1100px;
-  padding-top: 10px;
-  margin: auto auto;
-}
 
 .photo1 {
   height: 120px;
@@ -50,23 +21,25 @@
 </head>
 <body>
 
-  <jsp:include page="../header.jsp" />
+  <div class="title">
+    <c:if test="${boardTypeNo == 1}">
+      <h1 style="display: inline">질문게시판 ㅣ</h1>
+      <h2 style="display: inline">공부상담</h2>
+    </c:if>
+    <c:if test="${boardTypeNo == 2}">
+      <h1 style="display: inline">질문게시판 ㅣ</h1>
+      <h2 style="display: inline">입시상담</h2>
+    </c:if>
+    <c:if test="${boardTypeNo == 3}">
+      <h1 style="display: inline">질문게시판 ㅣ</h1>
+      <h2 style="display: inline">문제풀이</h2>
+    </c:if>
+    <c:if test="${boardTypeNo == 4}">
+      <h1 style="display: inline">공지사항</h1>
+    </c:if>
+  </div>
 
-  <div id='content'>
-    <div class="title">
-      <h1 style="display:inline">질문게시판 ㅣ</h1>
-      <c:if test="${boardTypeNo == 1}">
-        <h2 style="display:inline">공부상담</h2>
-      </c:if>
-      <c:if test="${boardTypeNo == 2}">
-        <h2 style="display:inline">입시상담</h2>
-      </c:if>
-      <c:if test="${boardTypeNo == 3}">
-        <h2 style="display:inline">문제풀이</h2>
-      </c:if>
-    </div>
-    
-    <br>
+  <br>
     
     <table class='table table-hover'>
       <thead>
@@ -94,15 +67,18 @@
     </table>
 
     <div align="right">
-      <c:if test="${sessionScope.memberNo != null}">
-        <button class="btn btn-primary" type="button" onclick="location='form'" style="background-color: #00AFA0; border-color: #00AFA0;">글쓰기</button>
+      <c:if test="${sessionScope.memberNo != null and sessionScope.memberNo != 4 and boardTypeNo != 4}">
+        <button class="btn btn-info" type="button" onclick="location='form?boardTypeNo=${boardTypeNo}'">글쓰기</button>
+      </c:if>
+      <c:if test="${sessionScope.memberNo != null and sessionScope.memberNo == 4}">
+        <button class="btn btn-info" type="button" onclick="location='form?boardTypeNo=${boardTypeNo}'">관리자글쓰기</button>
       </c:if>
     </div>
 
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <c:if test="${pagination.curPage ne 1}">
-          <li class="page-item"><a class="page-link"
+          <li class="page-item"><a class="page-link" style="color: #00AFA0;"
             href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.prevPage}&searchType=${searchType}&keyword=${keyword}">&laquo;</a>
           </li>
         </c:if>
@@ -111,11 +87,11 @@
           end="${pagination.endPage }">
           <c:choose>
             <c:when test="${pageNum eq  pagination.curPage}">
-              <li class="page-item active" aria-current="page" style="background: #00AFA0; border-color: #00AFA0;"><a class="page-link"
+              <li class="page-item active" aria-current="page"><a class="page-link"
                 href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:when>
             <c:otherwise>
-              <li class="page-item"><a class="page-link"
+              <li class="page-item"><a class="page-link" style="color: #000000;"
                 href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:otherwise>
           </c:choose>
@@ -123,12 +99,11 @@
 
         <c:if
           test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-          <li class="page-item"><a class="page-link"
+          <li class="page-item"><a class="page-link" style="color: #000000;"
             href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.nextPage}&searchType=${searchType}&keyword=${keyword}">&raquo;</a></li>
         </c:if>
       </ul>
     </nav>
-    
     <br>
     
     <input type='hidden' name='boardTypeNo' value='${boardTypeNo}'>
@@ -143,15 +118,11 @@
         <input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
       </div>
       <div>
-        <button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch" style="background-color: #00AFA0; border-color: #00AFA0;">검색</button>
+        <button class="btn btn-sm btn-info" name="btnSearch" id="btnSearch">검색</button>
       </div>
     </div>
     
-  </div>
-
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     $(document).on('click', '#btnSearch', function(e){

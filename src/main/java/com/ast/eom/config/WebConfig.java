@@ -15,6 +15,9 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.util.UrlPathHelper;
 
+import com.ast.eom.interceptor.AuthControllerCheckInterceptor;
+import com.ast.eom.interceptor.LoginCheckInterceptor;
+
 @ComponentScan("com.ast.eom")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
@@ -73,6 +76,13 @@ public class WebConfig implements WebMvcConfigurer {
   
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(new LoginCheckInterceptor())
+            .addPathPatterns("/**")
+            .excludePathPatterns("/auth/**")
+            .excludePathPatterns("/join/**");
+
+    registry.addInterceptor(new AuthControllerCheckInterceptor())
+            .addPathPatterns("/auth/**");
     /*
     registry.addInterceptor(new Controller04_1_Interceptor1());
     registry.addInterceptor(new Controller04_1_Interceptor3())

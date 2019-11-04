@@ -5,11 +5,10 @@ public class BoardFile {
   private int fileNo;
   private String fileName;
   private int boardNo;
-  private int noticeNo;
   
   @Override
   public String toString() {
-    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", boardNo=" + boardNo + ", noticeNo=" + noticeNo
+    return "BoardFile [fileNo=" + fileNo + ", fileName=" + fileName + ", boardNo=" + boardNo
         + "]";
   }
   public int getFileNo() {
@@ -29,11 +28,5 @@ public class BoardFile {
   }
   public void setBoardNo(int boardNo) {
     this.boardNo = boardNo;
-  }
-  public int getNoticeNo() {
-    return noticeNo;
-  }
-  public void setNoticeNo(int noticeNo) {
-    this.noticeNo = noticeNo;
   }
 }

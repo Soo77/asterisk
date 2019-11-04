@@ -39,26 +39,30 @@ public class DefaultBoardService implements BoardService {
   @Transactional
   @Override
   public void insert(Board board) throws Exception {
-    if (board.getFiles().size() == 0) {
-      throw new Exception("사진 파일 없음!");
-    }
+//    if (board.getFiles().size() == 0) {
+//      throw new Exception("사진 파일 없음!");
+//    }
     boardDao.insert(board);
-    for (BoardFile file : board.getFiles()) {
-      file.setBoardNo(board.getBoardNo());
-      boardFileDao.insert(file);
+    if (board.getFiles().size() > 0) {
+      for (BoardFile file : board.getFiles()) {
+        file.setBoardNo(board.getBoardNo());
+        boardFileDao.insert(file);
+      }
     }
   }
   
   @Override
   public void update(Board board) throws Exception {
-    if (board.getFiles().size() == 0) {
-      throw new Exception("사진 파일 없음!");
-    }
+//    if (board.getFiles().size() == 0) {
+//      throw new Exception("사진 파일 없음!");
+//    }
     boardDao.update(board);
-    boardFileDao.deleteAll(board.getBoardNo());
-    for (BoardFile file : board.getFiles()) {
-      file.setBoardNo(board.getBoardNo());
-      boardFileDao.insert(file);
+    if (board.getFiles().size() > 0) {
+//      boardFileDao.deleteAll(board.getBoardNo());
+      for (BoardFile file : board.getFiles()) {
+        file.setBoardNo(board.getBoardNo());
+        boardFileDao.insert(file);
+      }
     }
   }
   
