@@ -58,6 +58,7 @@ public class AuthController implements Runnable {
       return "redirect:../auth/loginfail";
     }
     session.setAttribute("loginUser", member);
+    System.out.println(member);
     return "redirect:../auth/loginsuccess";
   }
 

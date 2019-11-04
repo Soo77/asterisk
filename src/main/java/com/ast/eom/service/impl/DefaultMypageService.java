@@ -26,7 +26,7 @@ public class DefaultMypageService implements MypageService {
   public Map<String, Object> getMemberInfoMapBy(Member member) throws Exception {
     Map<String, Object> memberInfoMap = new HashMap<>();
     
-    int memberTypeNo = member.getMemberType().getMemberTypeNo();
+    int memberTypeNo = member.getMemberTypeNo();
     int memberNo = member.getMemberNo();
     
     if (memberTypeNo == 1) {

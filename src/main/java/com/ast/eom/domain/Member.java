@@ -38,14 +38,15 @@ public class Member {
   
   @Override
   public String toString() {
-    return "Member [memberNo=" + memberNo + ", registeredDate=" + registeredDate + ", gender=" + gender
-        + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name + ", password="
-        + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel=" + tel
-        + ", profilePhoto=" + profilePhoto + ", teacher=" + teacher + ", parents=" + parents + ", student=" + student
-        + ", memberType=" + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages
-        + ", boards=" + boards + ", notices=" + notices + ", comments=" + comments + "]";
+    return "Member [memberNo=" + memberNo + ", memberTypeNo=" + memberTypeNo + ", registeredDate=" + registeredDate
+        + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name
+        + ", password=" + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel="
+        + tel + ", profilePhoto=" + profilePhoto + ", userEmailChecked=" + userEmailChecked + ", activationKey="
+        + activationKey + ", teacher=" + teacher + ", parents=" + parents + ", student=" + student + ", memberType="
+        + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages + ", boards="
+        + boards + ", notices=" + notices + ", comments=" + comments + "]";
   }
-  
+
   public boolean isUserEmailChecked() {
     return userEmailChecked;
   }
