@@ -55,7 +55,7 @@ border: 1px solid;
 
   <hr>
 
-    <form id="form1" action='update' method='post' enctype='multipart/form-data'>
+    <form id="form1" name="frm1" action='update' method='post' enctype='multipart/form-data'>
       <input type="hidden" name="boardTypeNo" value="${board.boardTypeNo}">
       <input type="hidden" name="boardNo" value="${board.boardNo}"> <br>
       
@@ -120,7 +120,8 @@ border: 1px solid;
           <c:if test="${board.memberNo == memberNo}">
             <button id="btnUpdate" type="button" class="btn btn-info" style="float: right;" >수정</button>
             <button id="btnCancle" type="button" class="btn btn-danger my-view-group" data-toggle="modal" data-target="#cancelModal" style="float: right;">취소</button>
-            <button id="btnSave" type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal" style="float: right;">등록</button>
+            <!-- <button id="btnSave" type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal" style="float: right;">등록</button> -->
+            <button id="btnSave" type="button" class="btn btn-info" onclick="add_board()" style="float: right;">등록</button>
           </c:if>
         </div>
       </div>
@@ -148,7 +149,7 @@ border: 1px solid;
 </div>
 
 <!-- update Modal -->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -166,7 +167,7 @@ border: 1px solid;
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- cancel Modal -->
 <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -225,9 +226,26 @@ border: 1px solid;
 				});
 			});
 			
-			function form_submit() {
+			function submit_form() {
 			    document.getElementById("form1").submit();
 			   }    
+			
+			function add_board() {
+ 				var form = document.frm1;
+ 				if (form.title.value.length == 0) {
+ 					alert("제목을 입력하세요.");
+ 					form.title.focus();
+ 					return;
+ 				}
+ 				if (form.contents.value.length == 0) {
+ 					alert("내용을 입력하세요.");
+ 					form.contents.focus();
+ 					return;
+ 				}
+ 				else {
+ 					submit_form();
+ 				}
+ 			}
 </script>
 
 </body>

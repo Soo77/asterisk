@@ -87,7 +87,7 @@ border: 1px solid;
     </c:if>
   </div>
 
-  <form id="form1" action='add' method=post enctype='multipart/form-data'>
+  <form id="form1" name="frm1" action='add' method=post enctype='multipart/form-data'>
     <div class="row">
       <div class="col" align="center">
         <h2
@@ -105,7 +105,7 @@ border: 1px solid;
 
     <div class="row">
       <div class="col">
-        <textarea id="contents" class="form-control" name='contents' rows="10"
+        <textarea class="form-control" name='contents' rows="10"
           style="resize: none;" placeholder="내용을 입력해주세요"></textarea>
       </div>
     </div>
@@ -156,14 +156,15 @@ border: 1px solid;
     <div class="row">
       <div class="col">
         <div align="right">
-           <button id="btnAdd" type="button" class="btn btn-info" data-toggle="modal" data-target="#addModal">등록</button>
+           <!-- <button id="btnAdd" type="button" class="btn btn-info" data-toggle="modal" data-target="#addModal">등록</button> -->
+           <button id="btnAdd" type="button" class="btn btn-info" onclick="add_board()">등록</button>
            <button id="btnCancle" type="button" class="btn btn-danger my-view-group" data-toggle="modal" data-target="#cancelModal" style="float: right;">취소</button>
         </div>
       </div>
     </div>
 
-    <!-- add Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+<!--     add Modal-->
+<!--  <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -183,7 +184,7 @@ border: 1px solid;
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- cancel Modal -->
     <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"
@@ -348,17 +349,27 @@ border: 1px solid;
 			});
         
     
-			function form_submit() {
+			function submit_form() {
 				document.getElementById("form1").submit();
 			}
 
-			var addButton = document.querySelector('#btnAdd');
-			var contents = document.querySelector('.contents');
-			addButton.addEventListener('click', function() {
-				if(contents == null){
-					alert('내용을 입력하세요');
-				}
-			});
+ 			function add_board() {
+ 				var form = document.frm1;
+ 				if (form.title.value.length == 0) {
+ 					alert("제목을 입력하세요.");
+ 					form.title.focus();
+ 					return;
+ 				}
+ 				if (form.contents.value.length == 0) {
+ 					alert("내용을 입력하세요.");
+ 					form.contents.focus();
+ 					return;
+ 				}
+ 				else {
+ 					submit_form();
+ 				}
+ 			}
+			
 		</script>
   
 </body>
