@@ -14,24 +14,22 @@
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
       <li class="breadcrumb-item active">
-       <%--  <div class="title">
-      <c:if test="${memberTypeNo == 1}">
+      <%-- <c:if test="${memberTypeNo == 1}">
         <h2 style="display:inline">학생 상세 정보</h2>
       </c:if>
       <c:if test="${memberTypeNo == 3}">
         <h2 style="display:inline">선생님 상세 정보</h2>
-      </c:if>
-    </div> --%>
+      </c:if>  --%>
       </li>
     </ol>
-    
+    <input type="text" value="${detailTeacher}"/>
     <c:forEach items="${detailTeacher}" var="member">
     
     
     
     
   <div class="tch-profile">
-    <img src="/WEB-INF/images/AP2/jpg" height="70px" /> 
+    <img src="/landing_images/images/AP2.jpg" height="70px" /> 
     ${member.name}<br>
     ${member.gender}, ${member.dateOfBirth} 세<br> 
     <i class="fas fa-check"> </i>자격검증완료 
@@ -72,9 +70,9 @@
 
     <div class="tch-photos">
       <h3>사진</h3>
-      <img src="images/hong.png" height="100px" /> 
-      <img src="images/Rabbit.png" height="100px" /> 
-      <img src="images/small.jpg" height="100px" />
+      <img src="/landing_images/images/hong.png" height="100px" /> 
+      <img src="/landing_images/images/Rabbit.png" height="100px" /> 
+      <img src="/landing_images/images/small.jpg" height="100px" />
     </div>
   </div><hr>
 
@@ -108,7 +106,7 @@
 
       <h3>선생님 과외 후기</h3>
     <div class="review">
-      <img src="images/hong.png" height="70px" />
+      <img src="/landing_images/images/hong.png" height="70px" />
             학생1<br>
             과외과목: 초등수학<br>
             과외기간: 2018.5 ~ 2019.5<br>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,291 +8,305 @@
 <title>선생님/학생 찾기</title>
 <style>
 row {
-  margin-top: 15px;
-  margin-bottom: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
-.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
-  color: black;
-  background-color: #ffffff;
-  border-color: #00afa0;
+.btn-secondary:not (:disabled ):not (.disabled ):active, .btn-secondary:not
+	(:disabled ):not (.disabled ).active, .show>.btn-secondary.dropdown-toggle
+	{
+	color: black;
+	background-color: #ffffff;
+	border-color: #00afa0;
 }
-
 
 .btn-outline-info {
-  color: black;
-  background-color:: #ffffff;
-  border-color: #00afa0;
+	color: black;
+	background-color: : #ffffff;
+	border-color: #00afa0;
 }
 
 .sidemenubar {
-  font-size: 16px;
-  line-height: 27px;
-  font-family: 'Nanum Gothic', sans-serif, "Raleway", "HelveticaNeue",
-    "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: auto;
-  float: left;
-  margin-left: 15px;
+	font-size: 16px;
+	line-height: 27px;
+	font-family: 'Nanum Gothic', sans-serif, "Raleway", "HelveticaNeue",
+		"Helvetica Neue", Helvetica, Arial, sans-serif;
+	width: auto;
+	float: left;
+	margin-left: 15px;
 }
 </style>
 </head>
 <body>
 
-  <div class="container">
-
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
+	<div class="container">
+	
+	<!-- Breadcrumbs-->
+	<ol class="breadcrumb">
       <li class="breadcrumb-item active">
-       <%--  <div class="title">
       <c:if test="${memberTypeNo == 1}">
         <h2 style="display:inline">학생 찾기</h2>
       </c:if>
       <c:if test="${memberTypeNo == 3}">
         <h2 style="display:inline">선생님 찾기</h2>
       </c:if>
-    </div> --%>
       </li>
-    </ol>
+  </ol>
 
-    <!-- DataTables -->
-    <div class="row">
+		<!-- DataTables -->
+		<div class="row">
 
-      <!-- Sidebar ================================================== -->
-      <div class="col-lg-3 col-md-4" style="margin-bottom: 30px;">
-        <div class="sidemenubar" id="sideMenuBar">
-          <p class="address">지역</p>
-          
-          <div class="address">
-          <select class="custom-select" name="h_area1" onChange="cat1_change(this.value,h_area2)">
-            <option selected>- 선택 -</option>
-            <option value='1'>서울</option>
-            <option value='2'>부산</option>
-            <option value='3'>대구</option>
-            <option value='4'>인천</option>
-            <option value='5'>광주</option>
-            <option value='6'>대전</option>
-            <option value='7'>울산</option>
-            <option value='8'>강원</option>
-            <option value='9'>경기</option>
-            <option value='10'>경남</option>
-            <option value='11'>경북</option>
-            <option value='12'>전남</option>
-            <option value='13'>전북</option>
-            <option value='14'>제주</option>
-            <option value='15'>충남</option>
-            <option value='16'>충북</option>
-          </select>
-          <select class="custom-select" name="h_area2">
-            <option selected>- 선택 -</option>
-          </select>
-          </div> 
-          
-          
-          <p class="more-search-options-title active">성별</p>
-          <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="checkbox" style="width:50px" name="gender" id="gender_man" autocomplete="off" value="1"> 남자
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="gender" id="gender_woman" autocomplete="off" value="0"> 여자
-            </label>
-          </div>
-          
-          
+			<!-- Sidebar ================================================== -->
+			<div class="col-lg-3 col-md-4" style="margin-bottom: 30px;">
+				<div class="sidemenubar" id="sideMenuBar">
+					<p class="address">지역</p>
 
-          <p class="more-search-options-title active">나이</p>
-          <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="age" id="age_20and21" autocomplete="off" value="20,21"> 20 ~ 21
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="age" id="age_22and23" autocomplete="off" value="22,23"> 22 ~ 23
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="age" id="age_24and25" autocomplete="off" value="24,25"> 24 ~ 25
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="age" id="age_26and27" autocomplete="off" value="26,27"> 26 ~ 27
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="age" id="age_28and29" autocomplete="off" value="28,29"> 28 ~ 29
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="age" id="age_30" autocomplete="off" value="30"> 30 이상
-            </label>
-          </div>
-          
+					<div class="address">
+						<select class="custom-select" name="h_area1"
+							onChange="cat1_change(this.value,h_area2)">
+							<option selected>- 선택 -</option>
+							<option value='1'>서울</option>
+							<option value='2'>부산</option>
+							<option value='3'>대구</option>
+							<option value='4'>인천</option>
+							<option value='5'>광주</option>
+							<option value='6'>대전</option>
+							<option value='7'>울산</option>
+							<option value='8'>강원</option>
+							<option value='9'>경기</option>
+							<option value='10'>경남</option>
+							<option value='11'>경북</option>
+							<option value='12'>전남</option>
+							<option value='13'>전북</option>
+							<option value='14'>제주</option>
+							<option value='15'>충남</option>
+							<option value='16'>충북</option>
+						</select> <select class="custom-select" name="h_area2">
+							<option selected>- 선택 -</option>
+							<option value='215'></option>
+							<option value='216'>김제시</option>
+							<option value='217'>남원시</option>
+							<option value='218'>익산시</option>
+							<option value='219'>전주시 덕진구</option>
+							<option value='220'>전주시 완산구</option>
+							<option value='221'>정읍시</option>
+							<option value='222'>고창군</option>
+							<option value='223'>무주군</option>
+							<option value='224'>부안군</option>
+							<option value='225'>순창군</option>
+							<option value='226'>완주군</option>
+							<option value='227'>임실군</option>
+							<option value='228'>장수군</option>
+							<option value='229'>진안군</option>
 
-          <p class="more-search-options-title margin-top-15 active">수업료</p>
-          <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="lesson_fee" id="lesson_fee_20" autocomplete="off" value="20"> 20만원 까지
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="lesson_fee" id="lesson_fee_30" autocomplete="off" value="30"> 30만원 까지
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="lesson_fee" id="lesson_fee_40" autocomplete="off" value="40"> 40만원 까지
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="lesson_fee" id="lesson_fee_50" autocomplete="off" value="50"> 50만원 이상
-            </label>
-          </div>
-          
-          
+						</select>
+					</div>
 
-          <p class="more-search-options-title margin-top-15 active">과목으로
-            찾기</p>
-          <div class="checkbox-container checkbox-container-four active">
-            <p class="more-search-options-title-sub-high">고등학교</p>
-            <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="korean" autocomplete="off" value="high_korean"> 국어
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="english" autocomplete="off" value="high_english"> 영어
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="math" autocomplete="off" value="high_math"> 수학
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="social" autocomplete="off" value="high_social"> 사회
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="science" autocomplete="off" value="high_science"> 과학
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="etc" autocomplete="off" value="high_etc"> 기타
-            </label>
-          </div>
 
-            <p class="more-search-options-title-sub-middle">중학교</p>
-            <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="korean" autocomplete="off" value="middle_korean"> 국어
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="english" autocomplete="off" value="middle_english"> 영어
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="math" autocomplete="off" value="middle_math"> 수학
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="social" autocomplete="off" value="middle_social"> 사회
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="science" autocomplete="off" value="middle_science"> 과학
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="etc" autocomplete="off" value="middle_etc"> 기타
-            </label>
-          </div>
+					<p class="more-search-options-title active">성별</p>
+					<div class="btn-group-toggle" data-toggle="buttons">
+						<label class="btn btn-secondary active"> <input
+							type="checkbox" style="width: 50px" name="gender" id="gender_man"
+							autocomplete="off" value="1"> 남자
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="gender" id="gender_woman"
+							autocomplete="off" value="0"> 여자
+						</label>
+					</div>
 
-            <p class="more-search-options-title-sub-primary">초등학교</p>
-            <div class="btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="korean" autocomplete="off" value="pri_korean"> 국어
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="english" autocomplete="off" value="pri_english"> 영어
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="math" autocomplete="off" value="pri_math"> 수학
-            </label>
-             <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="social" autocomplete="off" value="pri_social"> 사회
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="science" autocomplete="off" value="pri_science"> 과학
-            </label>
-            <label class="btn btn-secondary active">
-              <input type="checkbox" name="sub_name" id="etc" autocomplete="off" value="pri_etc"> 기타
-            </label>
-          </div>
-            
-            
-          </div>
-          <button type="button" class="btn btn-outline-info">조건검색</button>
-        </div>
-      </div>
-      <!-- Sidebar / End -->
-      <!-- contents ================================================== -->
-      <div class="col-lg-9 col-md-8">
-      <%-- <c:choose> --%>
-      
-      <%-- <c:when test="${memberTypeNo == 3}"> --%>
-        <c:forEach items="${memberTeacherStudents}" varStatus="status">
-          <a href="detail?no=${memberTeacherStudents[status.index].memberNo}">
-            <div class="card-body">
-              <div class="cardcard mb-3">
-                <div class="row no-gutters">
-                  <div class="col-md-3">
-                    <img
+
+
+					<p class="more-search-options-title active">나이</p>
+					<div class="btn-group-toggle" data-toggle="buttons">
+						<label class="btn btn-secondary active"> <input
+							type="checkbox" name="age" id="age_20and21" autocomplete="off"
+							value="20,21"> 20 ~ 21
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="age" id="age_22and23" autocomplete="off"
+							value="22,23"> 22 ~ 23
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="age" id="age_24and25" autocomplete="off"
+							value="24,25"> 24 ~ 25
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="age" id="age_26and27" autocomplete="off"
+							value="26,27"> 26 ~ 27
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="age" id="age_28and29" autocomplete="off"
+							value="28,29"> 28 ~ 29
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="age" id="age_30" autocomplete="off"
+							value="30"> 30 이상
+						</label>
+					</div>
+
+
+					<p class="more-search-options-title margin-top-15 active">수업료</p>
+					<div class="btn-group-toggle" data-toggle="buttons">
+						<label class="btn btn-secondary active"> <input
+							type="checkbox" name="lesson_fee" id="lesson_fee_20"
+							autocomplete="off" value="20"> 20만원 까지
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="lesson_fee" id="lesson_fee_30"
+							autocomplete="off" value="30"> 30만원 까지
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="lesson_fee" id="lesson_fee_40"
+							autocomplete="off" value="40"> 40만원 까지
+						</label> <label class="btn btn-secondary active"> <input
+							type="checkbox" name="lesson_fee" id="lesson_fee_50"
+							autocomplete="off" value="50"> 50만원 이상
+						</label>
+					</div>
+
+
+
+					<p class="more-search-options-title margin-top-15 active">과목으로
+						찾기</p>
+					<div class="checkbox-container checkbox-container-four active">
+						<p class="more-search-options-title-sub-high">고등학교</p>
+						<div class="btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="korean" autocomplete="off"
+								value="high_korean"> 국어
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="english" autocomplete="off"
+								value="high_english"> 영어
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="math" autocomplete="off"
+								value="high_math"> 수학
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="social" autocomplete="off"
+								value="high_social"> 사회
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="science" autocomplete="off"
+								value="high_science"> 과학
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="etc" autocomplete="off"
+								value="high_etc"> 기타
+							</label>
+						</div>
+
+						<p class="more-search-options-title-sub-middle">중학교</p>
+						<div class="btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="korean" autocomplete="off"
+								value="middle_korean"> 국어
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="english" autocomplete="off"
+								value="middle_english"> 영어
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="math" autocomplete="off"
+								value="middle_math"> 수학
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="social" autocomplete="off"
+								value="middle_social"> 사회
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="science" autocomplete="off"
+								value="middle_science"> 과학
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="etc" autocomplete="off"
+								value="middle_etc"> 기타
+							</label>
+						</div>
+
+						<p class="more-search-options-title-sub-primary">초등학교</p>
+						<div class="btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="korean" autocomplete="off"
+								value="pri_korean"> 국어
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="english" autocomplete="off"
+								value="pri_english"> 영어
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="math" autocomplete="off"
+								value="pri_math"> 수학
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="social" autocomplete="off"
+								value="pri_social"> 사회
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="science" autocomplete="off"
+								value="pri_science"> 과학
+							</label> <label class="btn btn-secondary active"> <input
+								type="checkbox" name="sub_name" id="etc" autocomplete="off"
+								value="pri_etc"> 기타
+							</label>
+						</div>
+
+
+					</div>
+					<button type="button" class="btn btn-outline-info">조건검색</button>
+				</div>
+			</div>
+			<!-- Sidebar / End -->
+			<!-- contents ================================================== -->
+			<div class="col-lg-9 col-md-8">
+
+					<c:if test="${memberTypeNo eq 3}">
+						<c:forEach items="${memberTeacherStudents}" varStatus="status">
+							<a
+								href="detail?no=${memberTeacherStudents[status.index].memberNo}">
+								<div class="card-body">
+									<div class="cardcard mb-3">
+										<div class="row no-gutters">
+											<div class="col-md-3">
+												<%-- <img
                       src="${memberTeacherStudents[status.index].teacherPhoto}"
-                      class="card-img">
-                  </div>
-                  <div class="col-md-9">
-                    <h5 class="card-title">${memberTeacherStudents[status.index].name}</h5>
-                    <p class="card-text">
-                      ${memberTeacherStudents[status.index].schools[0].schoolName}/
-                      ${memberTeacherStudents[status.index].gender}/
-                      ${memberTeacherStudents[status.index].addressCity}
-                      ${memberTeacherStudents[status.index].addressSuburb}/
-                      ${memberTeacherStudents2[status.index].schoolType}/
-                      ${memberTeacherStudents2[status.index].subjects[0].subjectName}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <hr>
-       </c:forEach>
-        <%-- </c:when> --%>
-        
-        <%-- <c:when test="${memberTypeNo == 1}"> --%>
-        <c:forEach items="${memberStudents}" var="member">
-          <a href="detail?no=${member.memberNo}">
-            <div class="card-body">
-              <div class="cardcard mb-3">
-                <div class="row no-gutters">
-                  <div class="col-md-3">
-                    <img
-                      src=""
-                      class="card-img">
-                  </div>
-                  <div class="col-md-9">
-                    <h5 class="card-title">${member.name}</h5>
-                    <p class="card-text">
-                      ${member.gender}/
-                      ${membe.addressCity}
-                      ${member.addressSuburb}/
-                      ${member.schoolType}/
-                      ${member.subjects[0].subjectName}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </a>
-          <hr>
-        </c:forEach>
-        <%-- </c:when> --%>
-        
-      <%-- </c:choose> --%>
-        
-        
-      </div>
-      <!-- contents / End -->
+                      class="card-img"> --%>
+												<img src="/landing_images/images/small.jpg" class="card-img">
+											</div>
+											<div class="col-md-9">
+												<h5 class="card-title">${memberTeacherStudents[status.index].name}</h5>
+												<p class="card-text">
+													${memberTeacherStudents[status.index].schools[0].schoolName}/
+													${memberTeacherStudents[status.index].gender}/
+													${memberTeacherStudents[status.index].addressCity}
+													${memberTeacherStudents[status.index].addressSuburb}/
+													${memberTeacherStudents2[status.index].schoolType}/
+													${memberTeacherStudents2[status.index].subjects[0].subjectName}
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+							<hr>
+						</c:forEach>
+					</c:if>
 
-    </div>
-    <!-- row / End -->
-
-  </div>
-  <!-- Container / End -->
+					<c:if test="${memberTypeNo eq 1}">
+						<c:forEach items="${memberStudents}" var="member">
+							<a href="detail?no=${member.memberNo}">
+								<div class="card-body">
+									<div class="cardcard mb-3">
+										<div class="row no-gutters">
+											<div class="col-md-3">
+												<img src="/landing_images/images/AP2.jpg" class="card-img">
+											</div>
+											<div class="col-md-9">
+												<h5 class="card-title">${member.name}</h5>
+												<p class="card-text">${member.gender}/
+													${membe.addressCity} ${member.addressSuburb}/
+													${member.schoolType}/ ${member.subjects[0].subjectName}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+							<hr>
+						</c:forEach>
+					</c:if>
 
 
-  <script>
+			</div>
+			<!-- contents / End -->
+
+		</div>
+		<!-- row / End -->
+
+	</div>
+	<!-- Container / End -->
+
+
+	<script>
       var cat1_num = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
           15, 16);
       var cat1_name = new Array('서울', '부산', '대구', '인천', '광주', '대전', '울산', '강원',
@@ -398,7 +412,8 @@ row {
         }
       }
 
-      -->
+      
+      
     </script>
 
 
