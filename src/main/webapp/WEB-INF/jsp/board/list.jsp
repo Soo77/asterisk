@@ -87,7 +87,7 @@
           end="${pagination.endPage }">
           <c:choose>
             <c:when test="${pageNum eq  pagination.curPage}">
-              <li class="page-item active" aria-current="page"><a class="page-link"
+              <li class="page-item active" aria-current="page"><a class="page-link" style="background-color: #00AFA0; color: #ffffff"
                 href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:when>
             <c:otherwise>
@@ -99,7 +99,7 @@
 
         <c:if
           test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
-          <li class="page-item"><a class="page-link" style="color: #000000;"
+          <li class="page-item"><a class="page-link" style="color: #00AFA0;"
             href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.nextPage}&searchType=${searchType}&keyword=${keyword}">&raquo;</a></li>
         </c:if>
       </ul>

@@ -16,7 +16,7 @@
 }
 
 #btnCancle {
-  display: none;
+  display: none;  
 }
 
 .photo1 {
@@ -26,6 +26,57 @@
 .photo2 {
   height: 100px;
   margin: 2px;
+}
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #ffffff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #00AFA0;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* named upload */
+.filebox .upload-name {
+  display: inline-block;
+  padding: .5em .75em; /* label의 패딩값과 일치 */
+  font-size: inherit;
+  font-family: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.content {
+  border: solid 1px #00AFA0;
+  padding: 10px 10px 10px 10px;
+}
+
+.col-1 .form-control {
+  background-color: #00AFA0;
+  color: #ffffff;
 }
 
 /* div{
@@ -60,7 +111,9 @@ border: 1px solid;
       <input type="hidden" name="boardNo" value="${board.boardNo}"> <br>
       
       <div class="form-group row">
-        <label>제목</label>
+        <div class="col-1">
+          <input type="text" readonly class="form-control" value="제목" style="width: 80px">
+        </div>
         <div class="col">
           <input type="text" readonly class="form-control" id="inputTitle" name="title" value="${board.title}">
         </div>
@@ -69,39 +122,68 @@ border: 1px solid;
       <hr>
       
       <div class="form-group row">
-        <label>작성자</label>
-        <div class="col">
+        <div class="col-1">
+          <input type="text" readonly class="form-control" value="작성자" style="width: 80px">
+        </div>
+        <div class="col-3">
           <input type="text" readonly class="form-control" name="name" value="${board.memberName}">
         </div>
         
-        <label>작성일</label>
-        <div class="col">
+        <div class="col-1">
+          <input type="text" readonly class="form-control" value="작성일" style="width: 80px">
+        </div>
+        <div class="col-3">
           <input type="text" readonly class="form-control" name="createdDate" value="${board.createdDate}">
         </div>
         
-        <label>조회수</label>
-        <div class="col">
+        <div class="col-1">
+          <input type="text" readonly class="form-control" value="조회" style="width: 80px">
+        </div>
+        <div class="col-3">
           <input type="text" readonly class="form-control" name="viewCount" value="${board.viewCount}">
         </div>
       </div>
       
-      <div class="form-group row">
-        <label>내용</label>
+      <div class="content">
+        <div class="form-group row">
+          <div class="col">
+          <textarea id="inputContents" class="form-control" name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
+          </div>
+        </div>
+  
+        <hr>
+        
+         <div id="boardFiles">
+            <p>
+              <c:forEach items="${board.files}" var="file">
+                <img src='/upload/board/${file.fileName}' class='photo2' onerror="this.style.display='none'" alt=''>
+              </c:forEach>
+            </p>
+        </div> 
+
+      </div>
+      
+<!--     <div id="insertBoardPhotos">
+      <input type="file" multiple id="gallery-photo-add" name="fileName">
+      <div class="row">
         <div class="col">
-        <textarea id="inputContents" class="form-control" name="contents" rows="10" style="resize: none;" readonly>${board.contents}</textarea>
+          <div class="gallery"></div>
         </div>
       </div>
-
-       <div id="boardFiles">
-          <p>
-            <c:forEach items="${board.files}" var="file">
-              <img src='/upload/board/${file.fileName}' class='photo2' onerror="this.style.display='none'" alt=''>
-            </c:forEach>
-          </p>
-      </div> 
-
+    </div> -->
+    
     <div id="insertBoardPhotos">
-      <input type="file" multiple id="gallery-photo-add" name="fileName">
+      <div class="row">
+        <div class="col">
+          <div class="filebox"> 
+          <input class="upload-name" disabled="disabled">
+          <label for="gallery-photo-add">파일선택</label> 
+          <input type="file" multiple id="gallery-photo-add" name="fileName">
+          </div>
+        </div>
+      </div>
+        
+      <!-- <input type="file" multiple id="gallery-photo-add" name="fileName"> -->
       <div class="row">
         <div class="col">
           <div class="gallery"></div>
@@ -109,8 +191,9 @@ border: 1px solid;
       </div>
     </div>
     
-    <hr> 
-      
+    </form>
+
+      <br>
       <div class="form-group row">
         <div class="col">
           <button id="btnList" type="button" class="btn btn-secondary" onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
@@ -125,7 +208,6 @@ border: 1px solid;
           </c:if>
         </div>
       </div>
-    </form>
     
 <!-- delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -205,6 +287,27 @@ border: 1px solid;
 				boardPhotos.style.display = 'inline';
 			});
 			
+			/* $(function() {
+				var imagesPreview = function(input, placeToInsertImagePreview) {
+					if (input.files) {
+						var filesAmount = input.files.length;
+						for (i = 0; i < filesAmount; i++) {
+							var reader = new FileReader();
+							reader.onload = function(event) {
+								$($.parseHTML('<img style="height:100px; margin-top:10px;">'))
+										.attr('src', event.target.result)
+										.appendTo(placeToInsertImagePreview);
+							}
+							reader.readAsDataURL(input.files[i]);
+						}
+					}
+				};
+
+				$('#gallery-photo-add').on('change', function() {
+					imagesPreview(this, 'div.gallery');
+				});
+			}); */
+			
 			$(function() {
 				var imagesPreview = function(input, placeToInsertImagePreview) {
 					if (input.files) {
@@ -223,6 +326,7 @@ border: 1px solid;
 
 				$('#gallery-photo-add').on('change', function() {
 					imagesPreview(this, 'div.gallery');
+					$('.upload-name').val('파일' + this.files.length + '개');
 				});
 			});
 			
