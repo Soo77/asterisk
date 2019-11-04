@@ -8,7 +8,6 @@
     <id column="file_no" property="fileNo"/>
     <result column="file_name" property="fileName"/>
     <result column="board_no" property="boardNo"/>
-    <result column="notice_no" property="noticeNo"/>
   </resultMap>
   
 <!--   <resultMap type="Board" id="BoardMap">
@@ -61,7 +60,6 @@
       file_no, 
       file_name, 
       board_no,
-      notice_no
     from 
       board_file
     where 
