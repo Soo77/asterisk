@@ -79,6 +79,10 @@
   color: #ffffff;
 }
 
+
+
+
+
 /* div{
 border: 1px solid;
 } */
@@ -106,64 +110,137 @@ border: 1px solid;
 
   <hr>
 
-    <form id="form1" name="frm1" action='update' method='post' enctype='multipart/form-data'>
-      <input type="hidden" name="boardTypeNo" value="${board.boardTypeNo}">
-      <input type="hidden" name="boardNo" value="${board.boardNo}"> <br>
-      
-      <div class="form-group row">
-        <div class="col-1">
-          <input type="text" readonly class="form-control" value="제목" style="width: 80px">
-        </div>
-        <div class="col">
-          <input type="text" readonly class="form-control" id="inputTitle" name="title" value="${board.title}">
-        </div>
-      </div>
-      
-      <hr>
-      
-      <div class="form-group row">
-        <div class="col-1">
-          <input type="text" readonly class="form-control" value="작성자" style="width: 80px">
-        </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control" name="name" value="${board.memberName}">
-        </div>
-        
-        <div class="col-1">
-          <input type="text" readonly class="form-control" value="작성일" style="width: 80px">
-        </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control" name="createdDate" value="${board.createdDate}">
-        </div>
-        
-        <div class="col-1">
-          <input type="text" readonly class="form-control" value="조회" style="width: 80px">
-        </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control" name="viewCount" value="${board.viewCount}">
-        </div>
-      </div>
-      
-      <div class="content">
-        <div class="form-group row">
-          <div class="col">
-          <textarea id="inputContents" class="form-control" name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
-          </div>
-        </div>
-  
-        <hr>
-        
-         <div id="boardFiles">
-            <p>
-              <c:forEach items="${board.files}" var="file">
-                <img src='/upload/board/${file.fileName}' class='photo2' onerror="this.style.display='none'" alt=''>
-              </c:forEach>
-            </p>
-        </div> 
+  <form id="form1" name="frm1" action='update' method='post'
+    enctype='multipart/form-data'>
+    <input type="hidden" name="boardTypeNo" value="${board.boardTypeNo}">
+    <input type="hidden" name="boardNo" value="${board.boardNo}">
+    <br>
 
+    <div class="form-group row">
+      <div class="col-1">
+        <input type="text" readonly class="form-control" value="제목"
+          style="width: 80px">
       </div>
-      
-<!--     <div id="insertBoardPhotos">
+      <div class="col">
+        <input type="text" readonly class="form-control" id="inputTitle"
+          name="title" value="${board.title}">
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-group row">
+      <div class="col-1">
+        <input type="text" readonly class="form-control" value="작성자"
+          style="width: 80px">
+      </div>
+      <div class="col-3">
+        <input type="text" readonly class="form-control" name="id"
+          value="${board.memberId}">
+      </div>
+
+      <div class="col-1">
+        <input type="text" readonly class="form-control" value="작성일"
+          style="width: 80px">
+      </div>
+      <div class="col-3">
+        <input type="text" readonly class="form-control"
+          name="createdDate" value="${board.createdDate}">
+      </div>
+
+      <div class="col-1">
+        <input type="text" readonly class="form-control" value="조회"
+          style="width: 80px">
+      </div>
+      <div class="col-3">
+        <input type="text" readonly class="form-control"
+          name="viewCount" value="${board.viewCount}">
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="form-group row">
+        <div class="col">
+          <textarea id="inputContents" class="form-control"
+            name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
+        </div>
+      </div>
+
+      <hr>
+
+      <div id="boardFiles">
+        <p>
+          <c:forEach items="${board.files}" var="file">
+            <img src='/upload/board/${file.fileName}' class='photo2'
+              onerror="this.style.display='none'" alt=''>
+          </c:forEach>
+        </p>
+      </div>
+      </div>
+      </form>
+      <hr>
+
+      댓글 8<br>
+
+<!--   <div class="container">
+    <label for="content">comment</label>
+    <form name="commentInsertForm">
+      <div class="input-group">
+        <input type="hidden" name="bno" value="${detail.bno}" /> <input
+          type="text" class="form-control" id="content" name="content"
+          placeholder="내용을 입력하세요."> <span
+          class="input-group-btn">
+          <button class="btn btn-default" type="button"
+            name="commentInsertBtn">등록</button>
+        </span>
+      </div>
+    </form>
+  </div> -->
+
+  <div class="container">
+    <div class="commentList">
+      <c:forEach items="${comments}" var="comment">
+        <div>
+        <img src="/upload/board/${comment.profilePhoto}" class="photo2">
+        <input type="text" readonly value="${comment.memberId}">
+        <input type="text" readonly value="${comment.createdDate}">
+        <input type="text" readonly value="${comment.contents}">
+        </div>
+      </c:forEach>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--     <div id="insertBoardPhotos">
       <input type="file" multiple id="gallery-photo-add" name="fileName">
       <div class="row">
         <div class="col">
@@ -191,7 +268,7 @@ border: 1px solid;
       </div>
     </div>
     
-    </form>
+    
 
       <br>
       <div class="form-group row">
@@ -350,6 +427,103 @@ border: 1px solid;
  					submit_form();
  				}
  			}
+			
+			
+			
+			
+			var bno = '${detail.bno}'; //게시글 번호
+			 
+			$('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
+			    var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+			    commentInsert(insertData); //Insert 함수호출(아래)
+			});
+			 
+			 
+			 
+			//댓글 목록 
+			function commentList(){
+			    $.ajax({
+			        url : '/comment/list',
+			        type : 'get',
+			        data : {'bno':bno},
+			        success : function(data){
+			            var a =''; 
+			            $.each(data, function(key, value){ 
+			                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+			                a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
+			                a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
+			                a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
+			                a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
+			                a += '</div></div>';
+			            });
+			            
+			            $(".commentList").html(a);
+			        }
+			    });
+			}
+			 
+			//댓글 등록
+			function commentInsert(insertData){
+			    $.ajax({
+			        url : '/comment/insert',
+			        type : 'post',
+			        data : insertData,
+			        success : function(data){
+			            if(data == 1) {
+			                commentList(); //댓글 작성 후 댓글 목록 reload
+			                $('[name=content]').val('');
+			            }
+			        }
+			    });
+			}
+			 
+			//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+			function commentUpdate(cno, content){
+			    var a ='';
+			    
+			    a += '<div class="input-group">';
+			    a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
+			    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
+			    a += '</div>';
+			    
+			    $('.commentContent'+cno).html(a);
+			    
+			}
+			 
+			//댓글 수정
+			function commentUpdateProc(cno){
+			    var updateContent = $('[name=content_'+cno+']').val();
+			    
+			    $.ajax({
+			        url : '/comment/update',
+			        type : 'post',
+			        data : {'content' : updateContent, 'cno' : cno},
+			        success : function(data){
+			            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
+			        }
+			    });
+			}
+			 
+			//댓글 삭제 
+			function commentDelete(cno){
+			    $.ajax({
+			        url : '/comment/delete/'+cno,
+			        type : 'post',
+			        success : function(data){
+			            if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
+			        }
+			    });
+			}
+			 
+			 
+			 
+			 
+			$(document).ready(function(){
+			    commentList(); //페이지 로딩시 댓글 목록 출력 
+			});
+			 
+
+
 </script>
 
 </body>

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import com.ast.eom.domain.Board;
+import com.ast.eom.domain.Comment;
 import com.ast.eom.domain.Pagination;
 import com.ast.eom.service.BoardService;
+import com.ast.eom.service.CommentService;
 
 @Controller
 @RequestMapping("/board")
@@ -20,6 +22,7 @@ public class BoardController {
   
   @Autowired private FileWriter fileWriter;
   @Autowired private BoardService boardService;
+  @Autowired private CommentService commentService;
   
   @GetMapping("form")
   public void form(Model model, int boardTypeNo) {
@@ -64,7 +67,10 @@ public class BoardController {
   public void detail(HttpSession session, Model model, int no) throws Exception {
     session.setAttribute("memberNo", 4);
     Board board = boardService.get(no);
+    List<Comment> comments = commentService.list(no);
     model.addAttribute("board", board);
+    model.addAttribute("comments", comments);
+    
   }
   
   @PostMapping("update")
