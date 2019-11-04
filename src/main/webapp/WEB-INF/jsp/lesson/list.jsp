@@ -28,7 +28,21 @@
       <c:when test="${lesson.member.name eq NULL}"> <td>이름: 미정<br></td> </c:when>
       <c:otherwise> <td>이름: ${lesson.member.name}<br></td> </c:otherwise>
       </c:choose>
-            수업과목: ${lesson.subjectName}<br>
+              수업과목:
+      <c:choose>
+      <c:when test="${lesson.subject.schoolTypeNo eq 1}">
+                  초등
+      </c:when>
+      <c:when test="${lesson.subject.schoolTypeNo eq 2}">
+                  중등
+      </c:when>
+      <c:when test="${lesson.subject.schoolTypeNo eq 3}">
+                  고등
+      </c:when>
+      <c:otherwise> 
+      </c:otherwise>
+      </c:choose>
+       ${lesson.subjectName}<br>
             시작일: ${lesson.startDate}&ensp;종료일: ${lesson.endDate}
       </p>
 <!--       <a href="detail.jsp"  class="btn btn-primary">상세보기</a> -->

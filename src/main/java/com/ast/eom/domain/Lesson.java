@@ -34,9 +34,12 @@ public class Lesson {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date refundDate;
   private int refundAmount;
+  
   private Member member;
   private CurriculumLessonContents clc;
+  private Subject subject;
   private String subjectName;
+  
   
   private List<Member> members;
   private List<Curriculum> curriculums;
@@ -230,6 +233,12 @@ public class Lesson {
   }
   public void setClc(CurriculumLessonContents clc) {
     this.clc = clc;
+  }
+  public Subject getSubject() {
+    return subject;
+  }
+  public void setSubject(Subject subject) {
+    this.subject = subject;
   }
   
   

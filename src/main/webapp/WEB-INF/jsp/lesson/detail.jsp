@@ -10,9 +10,12 @@
 <body>
 <h1>수업내용</h1>
 
+<c:set var="i" value="0"/>
 <c:forEach items="${lessons}" var="lesson">
+<c:if test="${i == 0}">
 수업시작일: ${lesson.startDate} 수업종료일: ${lesson.endDate} 수업요일/시간: <br>
-
+</c:if>
+<c:set var="i" value="${i + 1}"/>
 </c:forEach>
 
 <c:forEach items="${lessons}" var="lesson">
