@@ -17,20 +17,22 @@ public class MemberTeacherStudentController {
   
   @GetMapping("list")
   public void list(Model model) throws Exception {
-    List<MemberTeacherStudent> memberTeacherStudents = memberTeacherStudentDao.listMember();
-    List<MemberTeacherStudent> memberTeacherStudents2 = memberTeacherStudentDao.listMember2();
+    List<MemberTeacherStudent> memberTeacherStudents = memberTeacherStudentDao.listTeacher();
+    List<MemberTeacherStudent> memberTeacherStudents2 = memberTeacherStudentDao.listTeacher2();
+    List<MemberTeacherStudent> memberStudents = memberTeacherStudentDao.listStudent();
     for (MemberTeacherStudent memberTeacherStudent : memberTeacherStudents) {
       System.out.println(memberTeacherStudent);
     }
     model.addAttribute("memberTeacherStudents", memberTeacherStudents);
     model.addAttribute("memberTeacherStudents2", memberTeacherStudents2);
+    model.addAttribute("memberStudents", memberStudents);
   }
   
-//  @GetMapping("detail")
-//  public void detail(HttpSession session, Model model, int no) throws Exception {
-//    Member member = memberDao.detailMember(no);
-//    model.addAttribute("member", member);
-//  }
+  @GetMapping("detail")
+  public void detail(Model model, int no) throws Exception {
+    MemberTeacherStudent detailTeacher = memberTeacherStudentDao.detailTeacher(no);
+    model.addAttribute("detailTeacher", detailTeacher);
+  }
   
   
 }

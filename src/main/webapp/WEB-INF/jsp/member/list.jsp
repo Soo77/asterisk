@@ -43,8 +43,8 @@ row {
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
       <li class="breadcrumb-item active">
-        <%--   <div class="title">
-      <c:if test="${memberTeacherStudents.memberTypeNo == 1}">
+       <%--  <div class="title">
+      <c:if test="${memberTypeNo == 1}">
         <h2 style="display:inline">학생 찾기</h2>
       </c:if>
       <c:if test="${memberTypeNo == 3}">
@@ -91,7 +91,7 @@ row {
           <p class="more-search-options-title active">성별</p>
           <div class="btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-secondary active">
-              <input type="checkbox" name="gender" id="gender_man" autocomplete="off" value="1"> 남자
+              <input type="checkbox" style="width:50px" name="gender" id="gender_man" autocomplete="off" value="1"> 남자
             </label>
             <label class="btn btn-secondary active">
               <input type="checkbox" name="gender" id="gender_woman" autocomplete="off" value="0"> 여자
@@ -218,7 +218,9 @@ row {
       <!-- Sidebar / End -->
       <!-- contents ================================================== -->
       <div class="col-lg-9 col-md-8">
-
+      <%-- <c:choose> --%>
+      
+      <%-- <c:when test="${memberTypeNo == 3}"> --%>
         <c:forEach items="${memberTeacherStudents}" varStatus="status">
           <a href="detail?no=${memberTeacherStudents[status.index].memberNo}">
             <div class="card-body">
@@ -227,11 +229,12 @@ row {
                   <div class="col-md-3">
                     <img
                       src="${memberTeacherStudents[status.index].teacherPhoto}"
-                      class="card-img" alt="...">
+                      class="card-img">
                   </div>
                   <div class="col-md-9">
                     <h5 class="card-title">${memberTeacherStudents[status.index].name}</h5>
                     <p class="card-text">
+                      ${memberTeacherStudents[status.index].schools[0].schoolName}/
                       ${memberTeacherStudents[status.index].gender}/
                       ${memberTeacherStudents[status.index].addressCity}
                       ${memberTeacherStudents[status.index].addressSuburb}/
@@ -244,7 +247,41 @@ row {
             </div>
           </a>
           <hr>
+       </c:forEach>
+        <%-- </c:when> --%>
+        
+        <%-- <c:when test="${memberTypeNo == 1}"> --%>
+        <c:forEach items="${memberStudents}" var="member">
+          <a href="detail?no=${member.memberNo}">
+            <div class="card-body">
+              <div class="cardcard mb-3">
+                <div class="row no-gutters">
+                  <div class="col-md-3">
+                    <img
+                      src=""
+                      class="card-img">
+                  </div>
+                  <div class="col-md-9">
+                    <h5 class="card-title">${member.name}</h5>
+                    <p class="card-text">
+                      ${member.gender}/
+                      ${membe.addressCity}
+                      ${member.addressSuburb}/
+                      ${member.schoolType}/
+                      ${member.subjects[0].subjectName}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          <hr>
         </c:forEach>
+        <%-- </c:when> --%>
+        
+      <%-- </c:choose> --%>
+        
+        
       </div>
       <!-- contents / End -->
 

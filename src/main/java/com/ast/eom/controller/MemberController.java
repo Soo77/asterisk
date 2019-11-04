@@ -24,12 +24,10 @@ public class MemberController {
     }
     model.addAttribute("members", members);
   }
-  
-  @GetMapping("detail")
-  public void detail(HttpSession session, Model model, int no) throws Exception {
-    Member member = memberDao.detailMember(no);
-    model.addAttribute("member", member);
-  }
+  /*
+   * @GetMapping("detail") public void detail(HttpSession session, Model model, int no) throws
+   * Exception { Member member = memberDao.detailMember(no); model.addAttribute("member", member); }
+   */
   
   
 }

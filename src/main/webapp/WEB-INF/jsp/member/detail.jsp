@@ -6,37 +6,43 @@
 <head>
 <meta charset="UTF-8">
 <title>선생님 상세 정보</title>
-
-<!-- 아이콘  -->
-<!-- <script src="https://kit.fontawesome.com/60aaa234a3.js" crossorigin="anonymous"></script>  -->
-
-<!-- 동영상 -->
-<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet" />
-<script src="http://vjs.zencdn.net/c/video.js"></script>
-
-<!-- 후기 박스 -->
-<style>
-.review {border: 1px solid;padding: 10px;}
-</style>
-
 </head>
 <body>
-<c:forEach items="${members}" var="member">
-<input type="text" value="${member.memberType}"/>
-</c:forEach>
-  <h2>선생님 상세 정보</h2>
-  <hr><br>
 
+<div class="container">
+
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active">
+       <%--  <div class="title">
+      <c:if test="${memberTypeNo == 1}">
+        <h2 style="display:inline">학생 상세 정보</h2>
+      </c:if>
+      <c:if test="${memberTypeNo == 3}">
+        <h2 style="display:inline">선생님 상세 정보</h2>
+      </c:if>
+    </div> --%>
+      </li>
+    </ol>
+    
+    <c:forEach items="${detailTeacher}" var="member">
+    
+    
+    
+    
   <div class="tch-profile">
-    <img src="${member.profilePhoto}" height="70px" /> 
+    <img src="/WEB-INF/images/AP2/jpg" height="70px" /> 
     ${member.name}<br>
-    ${member.gender}, ${member.dateOfBirth}<br> 
+    ${member.gender}, ${member.dateOfBirth} 세<br> 
     <i class="fas fa-check"> </i>자격검증완료 
     <i class="far fa-envelope"></i> 
     <a href="http://naver.com"> 선생님께 쪽지 보내기 </a>
   </div><hr>
+    </c:forEach>
+</div>
+<!-- Container / End -->
 
-  <div class="information">
+  <%-- <div class="information">
     <div class="info">
       <h3>기본정보</h3>
              학교: 한국대학교<br> 
@@ -62,7 +68,7 @@
     <div class="tch-introduce-video">
       <h3>자기소개영상</h3>
       ${member.teacher.videoAddress}
-    </div>
+    </div> --%>
 
     <div class="tch-photos">
       <h3>사진</h3>
