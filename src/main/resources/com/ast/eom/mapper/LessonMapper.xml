@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.LessonDao">
+
+  <resultMap type="Lesson" id="LessonMap">
+    <id column="lesson_no" property="lessonNo" />
+    <result column="tch_no" property="teacherNo" />
+    <result column="std_no" property="studentNo" />
+    <result column="sub_no" property="subjectNo" />
+    <result column="lesson_desc" property="lessonDescription" />
+    <result column="lesson_fee" property="lessonFee" />
+    <result column="lesson_stat" property="lessonState" />
+    <result column="std_lesson_stop" property="studentLessonStop" />
+    <result column="tch_lesson_stop" property="teacherLessonStop" />
+    <result column="sdt" property="startDate" />
+    <result column="edt" property="endDate" />
+    <result column="tch_review" property="teacherReview" />
+    <result column="std_review" property="studentReview" />
+    <result column="tch_eval" property="teacherEvaluation" />
+    <result column="payment" property="paymentMethod" />
+    <result column="pay_day" property="payDay" />
+    <result column="cal_date" property="calculationDay" />
+    <result column="cal_stat" property="calculationState" />
+    <result column="std_stop_reason" property="studentStopReason" />
+    <result column="tch_stop_reason" property="teacherStopReason" />
+    <result column="ref_stat" property="refundState" />
+    <result column="ref_date" property="refundDate" />
+    <result column="ref_amount" property="refundAmount" />
+    <result column="sub_name" property="subjectName" />
+    <collection resultMap="MemberMap" property="member" />
+  </resultMap>
+  
+  <resultMap type="Member" id="MemberMap">
+      <id column="mem_no" property="memberNo"/>
+      <result column="mem_type_no" property="memberTypeNo"/>
+      <result column="reg_date" property="registeredDate"/>
+      <result column="gender" property="gender"/>
+      <result column="dob" property="dateOfBirth"/>
+      <result column="id" property="id"/>
+      <result column="email" property="email"/>
+      <result column="name" property="name"/>
+      <result column="pwd" property="password"/>
+      <result column="addr_city" property="addressCity"/>
+      <result column="addr_sub" property="addressSuburb"/>
+      <result column="tel" property="tel"/>
+      <result column="profile_photo" property="profilePhoto"/>
+  </resultMap>
+
+    <select id="findAllTeacherBy" resultMap="LessonMap">
+			select l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
+			from lesson l 
+			inner join subject s on l.sub_no = s.sub_no
+			inner join member m on l.tch_no = m.mem_no;
+    </select>
+    
+    <select id="findAllStudentBy" resultMap="LessonMap">
+			select l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
+			from lesson l 
+			left outer join subject s on l.sub_no = s.sub_no
+			left outer join member m on l.std_no = m.mem_no;
+    </select>
+  
+  
+  </mapper>
+  
+  

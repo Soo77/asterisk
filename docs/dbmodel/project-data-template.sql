@@ -158,11 +158,11 @@ INSERT INTO subject(sch_type_no, sub_name)
 VALUES (2, 'math');
 
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'korean');
+VALUES (3, 'korean');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'english');
+VALUES (3, 'english');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'math');
+VALUES (3, 'math');
 
 -- 과외희망(희망과목) (FK: std_no, sub_no)
 INSERT INTO wanted_lesson(std_no, sub_no, req, rdt)
@@ -197,17 +197,17 @@ INSERT INTO day_lesson(lesson_no, lesson_date, lesson_start_hr, lesson_end_hr, l
 VALUES (3, now(), 17, 18, 'Beauty of Korean', "KNOCK KNOCK");
 
 -- 커리큘럼 (FK: lesson_no)
-INSERT INTO curriculum(lesson_no)
-VALUES (1);
-INSERT INTO curriculum(lesson_no)
-VALUES (2);
-INSERT INTO curriculum(lesson_no)
-VALUES (3);
+INSERT INTO curriculum(lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
+VALUES (1, '1010111', '18:00', '20:00');
+INSERT INTO curriculum(lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
+VALUES (2, '1010100', '16:00', '18:00');
+INSERT INTO curriculum(lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
+VALUES (3, '0111111', '17:00', '19:00');
 
 -- 커리큘럼수업내용 (FK: curr_no)
-INSERT INTO curr_lesson_conts(curr_no, lesson_conts, lesson_days)
+INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
 VALUES (1, 'blah blah1', 2);
-INSERT INTO curr_lesson_conts(curr_no, lesson_conts, lesson_days)
+INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
 VALUES (2, 'blah blah2', 1);
-INSERT INTO curr_lesson_conts(curr_no, lesson_conts, lesson_days)
+INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
 VALUES (3, 'blah blah3', 3);

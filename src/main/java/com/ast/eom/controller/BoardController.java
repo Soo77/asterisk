@@ -22,8 +22,8 @@ public class BoardController {
   @Autowired private BoardService boardService;
   
   @GetMapping("form")
-  public void form() {
-    
+  public void form(Model model, int boardTypeNo) {
+    model.addAttribute("boardTypeNo", boardTypeNo);
   }
 
   @PostMapping("add")
@@ -46,7 +46,7 @@ public class BoardController {
       @RequestParam(defaultValue = "1") int curPage,
       @RequestParam(defaultValue = "") String searchType,
       @RequestParam(defaultValue = "") String keyword) throws Exception {
-    session.setAttribute("memberNo", 2);
+    session.setAttribute("memberNo", 4);
     
     List<Board> boards = boardService.list(boardTypeNo, searchType, keyword);
     int listCnt = boards.size();
@@ -62,7 +62,7 @@ public class BoardController {
   
   @GetMapping("detail")
   public void detail(HttpSession session, Model model, int no) throws Exception {
-    session.setAttribute("memberNo", 2);
+    session.setAttribute("memberNo", 4);
     Board board = boardService.get(no);
     model.addAttribute("board", board);
   }
