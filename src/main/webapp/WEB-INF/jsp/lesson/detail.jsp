@@ -8,17 +8,23 @@
 <title>수업 내용</title>
 </head>
 <body>
-<h1>수업내용111</h1>
+<h1>수업내용</h1>
 
 수업시작일: ${lesson.startDate}&ensp; 수업종료일: ${lesson.endDate}&ensp;
-수업요일: ${lesson.curriculum.currentLessonDay}c
+수업요일: ${lesson.curriculum.currentLessonDay}
 시간: ${lesson.curriculum.currentLessonStartTime} ~ ${lesson.curriculum.currentLessonEndTime} <br>
 <c:forEach items="${lesson.clcs}" var="clc">
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <input type="text" class="form-control" id="testinput1" value="${clc.lessonContents}">
+    </div>
+    <div class="form-group col-md-1">
+      <input type="text" class="form-control" id="testinput2" value="${clc.lessonDays}">
+    </div>
+  </div> 
+</form>
 
-<div>
-내용: ${clc.lessonContents}&ensp;
-수업일: ${clc.lessonDays}<br> 
-</div>
 </c:forEach>
 </body>
 </html>  
