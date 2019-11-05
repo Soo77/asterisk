@@ -1,14 +1,16 @@
 package com.ast.eom.controller;
 
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.ast.eom.domain.CurriculumLessonContents;
 import com.ast.eom.domain.Lesson;
 import com.ast.eom.service.LessonService;
-
+ 
 @Controller
 @RequestMapping("/lesson")
 public class LessonController {
@@ -75,9 +77,30 @@ public class LessonController {
     lesson.getCurriculum().setCurriculumLessonDay(resultDay);
     System.out.println(lesson.getCurriculum().getCurriculumLessonDay());
     
-
     
     model.addAttribute("lesson", lesson);
   }
-
+  @RequestMapping("update")
+  public String update(
+      HttpSession session,
+      int[] curriculumLessonNo,
+      String[] lessonconts,
+      int[] lessondays
+      ) throws Exception {
+    
+    int garoNo = (int) session.getAttribute("garo");
+    
+    for (int i = 0; i < lessonconts.length; i++) {
+      Lesson lesson = new Lesson();
+      CurriculumLessonContents clc = new CurriculumLessonContents();
+      clc.setCurriculumLessonNo(curriculumLessonNo[i]);
+      clc.setLessonContents(lessonconts[i]);
+      clc.setLessonDays(lessondays[i]);
+      lesson.setClc(clc);
+      
+      lessonService.update(lesson);
+    }
+    
+    return "redirect:detail?lessonNo="+garoNo;
+  }
 }

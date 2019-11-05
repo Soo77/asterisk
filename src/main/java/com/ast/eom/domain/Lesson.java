@@ -35,6 +35,8 @@ public class Lesson {
   private Date refundDate;
   private int refundAmount;
   
+  private CurriculumLessonContents clc;
+  
   private Member member;
   private List<CurriculumLessonContents> clcs;
   private Curriculum curriculum;
@@ -56,11 +58,20 @@ public class Lesson {
         + ", payDay=" + payDay + ", calculationDay=" + calculationDay + ", calculationState="
         + calculationState + ", studentStopReason=" + studentStopReason + ", teacherStopReason="
         + teacherStopReason + ", refundState=" + refundState + ", refundDate=" + refundDate
-        + ", refundAmount=" + refundAmount + ", member=" + member + ", clcs=" + clcs
-        + ", curriculum=" + curriculum + ", subject=" + subject + ", subjectName=" + subjectName
-        + ", members=" + members + ", curriculums=" + curriculums + ", dayLessons=" + dayLessons
-        + "]";
+        + ", refundAmount=" + refundAmount + ", clc=" + clc + ", member=" + member + ", clcs="
+        + clcs + ", curriculum=" + curriculum + ", subject=" + subject + ", subjectName="
+        + subjectName + ", members=" + members + ", curriculums=" + curriculums + ", dayLessons="
+        + dayLessons + "]";
   }
+
+  public CurriculumLessonContents getClc() {
+    return clc;
+  }
+
+  public void setClc(CurriculumLessonContents clc) {
+    this.clc = clc;
+  }
+
   public int getLessonNo() {
     return lessonNo;
   }

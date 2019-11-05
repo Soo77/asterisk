@@ -146,7 +146,15 @@
       inner join curr_lesson_conts cl on c.lesson_no = cl.lesson_no
       where l.lesson_no = #{haha}
     </select>
-  
+    
+  <update id="update" parameterType="Lesson">
+    update curr_lesson_conts
+    <set>
+      <if test="clc.lessonContents != null">lesson_conts=#{clc.lessonContents},</if> 
+      <if test="clc.lessonDays != null">lesson_days=#{clc.lessonDays}</if> 
+    </set>
+		where curr_lesson_no = #{clc.curriculumLessonNo}
+  </update>
   
   </mapper>
   
