@@ -4,39 +4,37 @@ import java.util.List;
 
 public class Curriculum {
   private int lessonNo;
-  private String currentLessonDay;
-  private String currentLessonStartTime;
-  private String currentLessonEndTime;
+  private String curriculumLessonDay;
+  private String curriculumLessonStartTime;
+  private String curriculumLessonEndTime;
   private int totalHours;
   
   private List<CurriculumLessonContents> curriculumLessonContents;
   
-
   @Override
   public String toString() {
-    return "Curriculum [lessonNo=" + lessonNo + ", currentLessonDay=" + currentLessonDay
-        + ", currentLessonStartTime=" + currentLessonStartTime + ", currentLessonEndTime="
-        + currentLessonEndTime + ", totalHours=" + totalHours + ", curriculumLessonContents="
+    return "Curriculum [lessonNo=" + lessonNo + ", curriculumLessonDay=" + curriculumLessonDay
+        + ", curriculumLessonStartTime=" + curriculumLessonStartTime + ", curriculumLessonEndTime="
+        + curriculumLessonEndTime + ", totalHours=" + totalHours + ", curriculumLessonContents="
         + curriculumLessonContents + "]";
   }
-  public String getCurrentLessonDay() {
-    return currentLessonDay;
+  public String getCurriculumLessonDay() {
+    return curriculumLessonDay;
   }
-  public void setCurrentLessonDay(String currentLessonDay) {
-    this.currentLessonDay = currentLessonDay;
+  public void setCurriculumLessonDay(String curriculumLessonDay) {
+    this.curriculumLessonDay = curriculumLessonDay;
   }
-
-  public String getCurrentLessonStartTime() {
-    return currentLessonStartTime;
+  public String getCurriculumLessonStartTime() {
+    return curriculumLessonStartTime;
   }
-  public void setCurrentLessonStartTime(String currentLessonStartTime) {
-    this.currentLessonStartTime = currentLessonStartTime;
+  public void setCurriculumLessonStartTime(String curriculumLessonStartTime) {
+    this.curriculumLessonStartTime = curriculumLessonStartTime;
   }
-  public String getCurrentLessonEndTime() {
-    return currentLessonEndTime;
+  public String getCurriculumLessonEndTime() {
+    return curriculumLessonEndTime;
   }
-  public void setCurrentLessonEndTime(String currentLessonEndTime) {
-    this.currentLessonEndTime = currentLessonEndTime;
+  public void setCurriculumLessonEndTime(String curriculumLessonEndTime) {
+    this.curriculumLessonEndTime = curriculumLessonEndTime;
   }
   public int getLessonNo() {
     return lessonNo;

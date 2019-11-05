@@ -37,9 +37,9 @@
   
   <resultMap type="Curriculum" id="CurriculumMap">
     <id column="lesson_no" property="lessonNo"/>
-    <result column="curr_lesson_dt" property="currentLessonDay"/>
-    <result column="curr_lesson_st" property="currentLessonStartTime"/>
-    <result column="curr_lesson_et" property="currentLessonEndTime"/>
+    <result column="curr_lesson_dt" property="curriculumLessonDay"/>
+    <result column="curr_lesson_st" property="curriculumLessonStartTime"/>
+    <result column="curr_lesson_et" property="curriculumLessonEndTime"/>
     <result column="total_hr" property="totalHours"/>
   </resultMap>
   

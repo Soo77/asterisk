@@ -25,7 +25,7 @@ public class LessonController {
   @GetMapping("detail")
   public void detail(Model model, int lessonNo) throws Exception {
     Lesson lesson = lessonService.lessonDetail(lessonNo);
-    String whatDay = lesson.getCurriculum().getCurrentLessonDay();
+    String whatDay = lesson.getCurriculum().getCurriculumLessonDay();
     System.out.println(whatDay);
     
     String resultDay = "";
@@ -72,8 +72,8 @@ public class LessonController {
     
     
     System.out.println(resultDay);
-    lesson.getCurriculum().setCurrentLessonDay(resultDay);
-    System.out.println(lesson.getCurriculum().getCurrentLessonDay());
+    lesson.getCurriculum().setCurriculumLessonDay(resultDay);
+    System.out.println(lesson.getCurriculum().getCurriculumLessonDay());
     
 
     
