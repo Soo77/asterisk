@@ -12,7 +12,7 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
-    <result column="name" property="memberName" />
+    <result column="id" property="memberId" />
   </resultMap>
 
   <resultMap type="Board" id="BoardWithFilesMap">
@@ -23,7 +23,7 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="vw_cnt" property="viewCount" />
-    <result column="name" property="memberName" />
+    <result column="id" property="memberId" />
 
     <!-- 자식 테이블의 데이터와 PhotoFile 객체 연결 -->
     <collection property="files" ofType="BoardFile">
@@ -60,8 +60,8 @@
   </resultMap> -->
   
   
-  <select id="findAllBy" resultMap="BoardMap">
-      select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.name
+  <select id="findAllBy" parameterType="map" resultMap="BoardMap">
+      select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.id
       from board b
       inner join member m on b.mem_no=m.mem_no
       where b.board_type_no = #{boardTypeNo}
@@ -70,7 +70,7 @@
             and b.titl like CONCAT('%', #{keyword}, '%')
          </if>
          <if test="searchType == 'writer'.toString()">
-            and m.name like CONCAT('%', #{keyword}, '%')
+            and m.id like CONCAT('%', #{keyword}, '%')
          </if>
       </if>
       order by b.board_no desc
@@ -78,7 +78,7 @@
   
   <select id="findBy" parameterType="int" resultMap="BoardMap">
     select
-    b.board_no, b.titl, m.name, b.cdt, b.vw_cnt, b.conts,
+    b.board_no, b.titl, m.id, b.cdt, b.vw_cnt, b.conts,
     b.board_type_no
     from board b
     inner join member m on b.mem_no=m.mem_no
@@ -95,7 +95,7 @@
     b.conts,
     b.cdt,
     b.vw_cnt,
-    m.name,
+    m.id,
     f.file_no,
     f.file_name
     from
