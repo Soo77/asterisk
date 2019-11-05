@@ -18,23 +18,40 @@ public class MemberTeacherStudentController {
   
   @GetMapping("list")
   public void list(Model model, int memberTypeNo) throws Exception {
-    List<MemberTeacherStudent> memberTeacherStudents = memberTeacherStudentDao.listTeacher(memberTypeNo);
-    List<MemberTeacherStudent> memberTeacherStudents2 = memberTeacherStudentDao.listTeacher2();
+    
+    /*
+     * HttpSession session = request.getSession();
+     * 
+     * // 전체리스트 개수 int listCnt = boardServiceImpl.selectBoardListCnt(boardVO);
+     * 
+     * Pagination pagination = new Pagination(listCnt, curPage);
+     * 
+     * boardVO.setStartIndex(pagination.getStartIndex());
+     * boardVO.setCntPerPage(pagination.getPageSize()); // 전체리스트 출력 List<BoardVO> list =
+     * boardServiceImpl.selectBoardList(boardVO);
+     */
+    
+    List<MemberTeacherStudent> memberTeacher = memberTeacherStudentDao.listTeacher(memberTypeNo);
+    List<MemberTeacherStudent> memberTeacher2 = memberTeacherStudentDao.listTeacher2();
     List<MemberTeacherStudent> memberStudents = memberTeacherStudentDao.listStudent(memberTypeNo);
-    for (MemberTeacherStudent memberTeacherStudent : memberTeacherStudents) {
+    for (MemberTeacherStudent memberTeacherStudent : memberTeacher) {
       System.out.println(memberTeacherStudent);
     }
-    model.addAttribute("memberTeacherStudents", memberTeacherStudents);
-    model.addAttribute("memberTeacherStudents2", memberTeacherStudents2);
+    for (MemberTeacherStudent memberTeacherStudent2 : memberTeacher2) {
+      System.out.println(memberTeacherStudent2);
+    }
+    model.addAttribute("memberTeacher", memberTeacher);
+    model.addAttribute("memberTeacher2", memberTeacher2);
     model.addAttribute("memberStudents", memberStudents);
     model.addAttribute("memberTypeNo", memberTypeNo);
   }
   
   @GetMapping("detail")
   public void detail(Model model, @RequestParam("no") int no) throws Exception {
-    MemberTeacherStudent detailTeacher1 = memberTeacherStudentDao.detailTeacher(no);
-    System.out.println("tttttttttt>>>>>>>"+detailTeacher1);
-    model.addAttribute("detailTeacher", detailTeacher1);
+    List<MemberTeacherStudent> detailTeacher1 = memberTeacherStudentDao.detailTeacher(no);
+    for (MemberTeacherStudent d: detailTeacher1)
+      System.out.println("tttttttttt>>>>>>>"+d);
+    model.addAttribute("detailTeacher1", detailTeacher1);
   }
   
   

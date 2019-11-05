@@ -74,19 +74,19 @@ public class WebConfig implements WebMvcConfigurer {
     configurer.setUrlPathHelper(helper);
   }
   
-  @Override
-  public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(new LoginCheckInterceptor())
-            .addPathPatterns("/**")
-            .excludePathPatterns("/auth/**")
-            .excludePathPatterns("/join/**");
-
-    registry.addInterceptor(new AuthControllerCheckInterceptor())
-            .addPathPatterns("/auth/**");
-    /*
-    registry.addInterceptor(new Controller04_1_Interceptor1());
-    registry.addInterceptor(new Controller04_1_Interceptor3())
-            .addPathPatterns("/c04_1/**");
-    */
-  }
+//  @Override
+//  public void addInterceptors(InterceptorRegistry registry) {
+//    registry.addInterceptor(new LoginCheckInterceptor())
+//            .addPathPatterns("/**")
+//            .excludePathPatterns("/auth/**")
+//            .excludePathPatterns("/join/**");
+//
+//    registry.addInterceptor(new AuthControllerCheckInterceptor())
+//            .addPathPatterns("/auth/**");
+//    /*
+//    registry.addInterceptor(new Controller04_1_Interceptor1());
+//    registry.addInterceptor(new Controller04_1_Interceptor3())
+//            .addPathPatterns("/c04_1/**");
+//    */
+//  }
 }

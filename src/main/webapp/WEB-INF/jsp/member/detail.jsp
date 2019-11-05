@@ -9,109 +9,108 @@
 </head>
 <body>
 
-<div class="container">
+  <div class="container">
+   <c:if test="${memberTypeNo == 1}">
+          <h2 style="display: inline">학생 상세정보</h2>
+        </c:if> 
+        <c:if test="${memberTypeNo == 3}">
+          <h2 style="display: inline">선생님 상세정보</h2>
+        </c:if> 
 
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active">
-      <%-- <c:if test="${memberTypeNo == 1}">
-        <h2 style="display:inline">학생 상세 정보</h2>
-      </c:if>
-      <c:if test="${memberTypeNo == 3}">
-        <h2 style="display:inline">선생님 상세 정보</h2>
-      </c:if>  --%>
-      </li>
-    </ol>
-    <input type="text" value="${detailTeacher}"/>
-    <c:forEach items="${detailTeacher}" var="member">
-    
-    
-    
-    
-  <div class="tch-profile">
-    <img src="/landing_images/images/AP2.jpg" height="70px" /> 
-    ${member.name}<br>
-    ${member.gender}, ${member.dateOfBirth} 세<br> 
-    <i class="fas fa-check"> </i>자격검증완료 
-    <i class="far fa-envelope"></i> 
-    <a href="http://naver.com"> 선생님께 쪽지 보내기 </a>
-  </div><hr>
-    </c:forEach>
-</div>
-<!-- Container / End -->
 
-  <%-- <div class="information">
-    <div class="info">
-      <h3>기본정보</h3>
-             학교: 한국대학교<br> 
-             전공: 수학과<br> 
-             지역: ${member.addressCity} ${member.addressSuburb}<br>
-             가입일: ${member.registeredDate}<br>
-             ${member.student.schoolType}
-             ${member.student.parents }
-    </div>
 
-    <div class="tch-school-info">
+    <c:forEach items="${detailTeacher1}" var="member">
+      <div class="tch-profile">
+        <div class="card-body">
+          <div class="cardcard mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-3">
+                <img src="/landing_images/images/AP2.jpg"
+                  class="card-img">
+              </div>
+              <div class="col-md-9">
+                <h5 class="card-title">${member.name}</h5>
+                <p class="card-text">
+                <ul>
+                  <li>${member.gender}</li> 
+                  <li>${member.dateOfBirth}</li> 
+                  <li><i class="far fa-check-circle"></i>자격검증완료 </li>
+                  <li><a href="http://naver.com"><i class="far fa-envelope"></i>선생님께 쪽지 보내기</a></li> 
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="info">
+        <h3>기본정보</h3>
+        <ul>
+           <li><i class="fas fa-graduation-cap"></i> 학교: ${member.schools[0].schoolName}</li> 
+           <li>전공: ${member.schools[0].major}</li> 
+           <li>지역: ${member.addressCity} ${member.addressSuburb}</li> 
+           <li>가입일: ${member.registeredDate}</li>
+        </ul>
+      </div>
+      <hr>
+      
+      <div class="tch-school-info">
         <h3>출신학교</h3>
-        <p>한국 중학교 졸업</p>
-        <p>한국 고등학교 졸업</p>
-        <p>한국 대학교 수학과 재학중</p>
+        <ul>
+          <li> ${member.schools[0].schoolName}</li>
+          <li> ${member.schools[0].schoolName}</li>
+        </ul>
     </div>
-
-    <div class="tch-introduce">
+    
+    <div class="tch-intro">
       <h3>자기소개</h3>
-       ${member.teacher.teacherIntro}<br>
-    </div>
-
+       <ul>
+          <li>${member.teachers[0].teacherIntro}</li>
+    </div> 
+    
     <div class="tch-introduce-video">
       <h3>자기소개영상</h3>
-      ${member.teacher.videoAddress}
-    </div> --%>
-
+      <ul>
+       <li>${member.teachers[0].videoAddress}</li>
+    </div>
+      
     <div class="tch-photos">
       <h3>사진</h3>
       <img src="/landing_images/images/hong.png" height="100px" /> 
       <img src="/landing_images/images/Rabbit.png" height="100px" /> 
       <img src="/landing_images/images/small.jpg" height="100px" />
     </div>
-  </div><hr>
+    <hr>
+    
+     <div class="tch-lesson">
+    <h3>과목</h3>
+      <ul>
+        <li>과목: ${member.schoolType} ${member.subjects[0].subjectName}</li>
+      </ul>
+    <h3>과외 가능 요일/시간</h3>
+      <ul>
+        <li>월~금. 오후 7시 ~ 10시</li>
+      </ul>
+    <h3>희망 과외 금액</h3>
+      <ul>
+        <li>${member.lessonSubjects[0].wantedFee}만원</li>
+      </ul>
+  </div>
+  <hr>
+      
+    </c:forEach>
+  </div>
+  <!-- Container / End -->
 
-  <div class="tch-lesson">
-    <div class="tch-lesson-subject">
-      <p>과목: 초등 영어</p>
-      <h3>과외 가능 요일/시간</h3>
-      <p>월~금. 오후 7시 ~ 10시</p>
-    </div>
-    <div class="tch-lesson-fee">
-      <h3>희망 과외 금액</h3>
-      <p>30 ~ 40만원</p>
-    </div>
-  </div><hr>
 
-  <div class="stu-lesson">
-    <div class="stu-lesson-subject">
-      <p>과목: 초등 수학</p>
-      <h3>과외 가능 요일/시간</h3>
-      <p>월~금. 오후 5시 ~ 7시</p>
-    </div>
-    <div class="stu-lesson-fee">
-      <h3>희망 과외 금액</h3>
-      <p>30 ~ 40만원</p>
-    </div>
-    <div class="stu-wanttotch">
-      <h3>선생님께 바라는점</h3>
-      <p>기초부터 탄탄하게 배우고 싶어요!</p>
-    </div>
-  </div><hr>
 
-      <h3>선생님 과외 후기</h3>
-    <div class="review">
-      <img src="/landing_images/images/hong.png" height="70px" />
-            학생1<br>
-            과외과목: 초등수학<br>
-            과외기간: 2018.5 ~ 2019.5<br>
-            선생님이 수업에 열정적입니다. 성적이 많이 올랐어요 ~~<br>
-    </div>
+  <h3>선생님 과외 후기</h3>
+  <div class="review">
+    <img src="/landing_images/images/hong.png" height="70px" /> 학생1<br>
+    과외과목: 초등수학<br> 과외기간: 2018.5 ~ 2019.5<br> 선생님이 수업에 열정적입니다.
+    성적이 많이 올랐어요 ~~<br>
+  </div>
 
   <div class="page-button">
     <button>&lt;</button>
