@@ -16,7 +16,7 @@ public class MemberController {
   
   @Autowired private MemberDao memberDao;
   
-  @GetMapping("list")
+  @GetMapping("list2")
   public void list(Model model,HttpSession session) throws Exception {
     List<Member> members = memberDao.listMember();
     for (Member member : members) {
@@ -24,12 +24,10 @@ public class MemberController {
     }
     model.addAttribute("members", members);
   }
-  
-  @GetMapping("detail")
-  public void detail(HttpSession session, Model model, int no) throws Exception {
-    Member member = memberDao.detailMember(no);
-    model.addAttribute("member", member);
-  }
+  /*
+   * @GetMapping("detail") public void detail(HttpSession session, Model model, int no) throws
+   * Exception { Member member = memberDao.detailMember(no); model.addAttribute("member", member); }
+   */
   
   
 }
