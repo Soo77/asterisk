@@ -67,10 +67,10 @@
     </table>
 
     <div align="right">
-      <c:if test="${sessionScope.memberNo != null and sessionScope.memberNo != 4 and boardTypeNo != 4}">
+      <c:if test="${loginUser.memberTypeNo != 4 and boardTypeNo != 4}">
         <button class="btn btn-info" type="button" onclick="location='form?boardTypeNo=${boardTypeNo}'">글쓰기</button>
       </c:if>
-      <c:if test="${sessionScope.memberNo != null and sessionScope.memberNo == 4}">
+      <c:if test="${loginUser.memberTypeNo == 4}">
         <button class="btn btn-info" type="button" onclick="location='form?boardTypeNo=${boardTypeNo}'">관리자글쓰기</button>
       </c:if>
     </div>

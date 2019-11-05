@@ -177,68 +177,8 @@ border: 1px solid;
         </p>
       </div>
       </div>
-      </form>
+      
       <hr>
-
-      댓글 8<br>
-
-<!--   <div class="container">
-    <label for="content">comment</label>
-    <form name="commentInsertForm">
-      <div class="input-group">
-        <input type="hidden" name="bno" value="${detail.bno}" /> <input
-          type="text" class="form-control" id="content" name="content"
-          placeholder="내용을 입력하세요."> <span
-          class="input-group-btn">
-          <button class="btn btn-default" type="button"
-            name="commentInsertBtn">등록</button>
-        </span>
-      </div>
-    </form>
-  </div> -->
-
-  <div class="container">
-    <div class="commentList">
-      <c:forEach items="${comments}" var="comment">
-        <div>
-        <img src="/upload/board/${comment.profilePhoto}" class="photo2">
-        <input type="text" readonly value="${comment.memberId}">
-        <input type="text" readonly value="${comment.createdDate}">
-        <input type="text" readonly value="${comment.contents}">
-        </div>
-      </c:forEach>
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
 
   <!--     <div id="insertBoardPhotos">
       <input type="file" multiple id="gallery-photo-add" name="fileName">
@@ -268,23 +208,52 @@ border: 1px solid;
       </div>
     </div>
     
-    
+    </form>
 
-      <br>
-      <div class="form-group row">
-        <div class="col">
-          <button id="btnList" type="button" class="btn btn-secondary" onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
-          <c:if test="${board.memberNo == memberNo or sessionScope.memberNo != null and sessionScope.memberNo == 4}">
-            <button id="btnDelete" type="button" class="btn btn-danger my-view-group" data-toggle="modal" data-target="#deleteModal" style="float: right;">삭제</button>
-          </c:if>
-          <c:if test="${board.memberNo == memberNo}">
-            <button id="btnUpdate" type="button" class="btn btn-info" style="float: right;" >수정</button>
-            <button id="btnCancle" type="button" class="btn btn-danger my-view-group" data-toggle="modal" data-target="#cancelModal" style="float: right;">취소</button>
-            <!-- <button id="btnSave" type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal" style="float: right;">등록</button> -->
-            <button id="btnSave" type="button" class="btn btn-info" onclick="add_board()" style="float: right;">등록</button>
-          </c:if>
-        </div>
+  <div class="container">
+    <label for="contents">댓글</label>
+    <form name="commentInsertForm">
+      <div class="input-group">
+        <input type="hidden" name="boardNo" value="${board.boardNo}" />
+        <input type="text" class="form-control" id="contents"
+          name="contents" placeholder="내용을 입력하세요."> <span
+          class="input-group-btn">
+          <button class="btn btn-info" type="button"
+            name="commentInsertBtn">등록</button>
+        </span>
       </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <div class="commentList"></div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col">
+      <button id="btnList" type="button" class="btn btn-secondary"
+        onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
+      <c:if
+        test="${board.memberNo == loginUser.memberNo or loginUser.memberTypeNo == 4}">
+        <button id="btnDelete" type="button"
+          class="btn btn-danger my-view-group" data-toggle="modal"
+          data-target="#deleteModal" style="float: right;">삭제</button>
+      </c:if>
+      <c:if test="${board.memberNo == loginUser.memberNo}">
+        <button id="btnUpdate" type="button" class="btn btn-info"
+          style="float: right;">수정</button>
+        <button id="btnCancle" type="button"
+          class="btn btn-danger my-view-group" data-toggle="modal"
+          data-target="#cancelModal" style="float: right;">취소</button>
+        <!-- <button id="btnSave" type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal" style="float: right;">등록</button> -->
+        <button id="btnSave" type="button" class="btn btn-info"
+          onclick="add_board()" style="float: right;">등록</button>
+      </c:if>
+    </div>
+  </div>
+
+  <br>
+      
     
 <!-- delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -384,7 +353,9 @@ border: 1px solid;
 					imagesPreview(this, 'div.gallery');
 				});
 			}); */
-			
+		</script>
+
+  <script>
 			$(function() {
 				var imagesPreview = function(input, placeToInsertImagePreview) {
 					if (input.files) {
@@ -392,7 +363,9 @@ border: 1px solid;
 						for (i = 0; i < filesAmount; i++) {
 							var reader = new FileReader();
 							reader.onload = function(event) {
-								$($.parseHTML('<img style="height:100px; margin-top:10px;">'))
+								$(
+										$
+												.parseHTML('<img style="height:100px; margin-top:10px;">'))
 										.attr('src', event.target.result)
 										.appendTo(placeToInsertImagePreview);
 							}
@@ -406,125 +379,142 @@ border: 1px solid;
 					$('.upload-name').val('파일' + this.files.length + '개');
 				});
 			});
-			
+
 			function submit_form() {
-			    document.getElementById("form1").submit();
-			   }    
-			
+				document.getElementById("form1").submit();
+			}
+
 			function add_board() {
- 				var form = document.frm1;
- 				if (form.title.value.length == 0) {
- 					alert("제목을 입력하세요.");
- 					form.title.focus();
- 					return;
- 				}
- 				if (form.contents.value.length == 0) {
- 					alert("내용을 입력하세요.");
- 					form.contents.focus();
- 					return;
- 				}
- 				else {
- 					submit_form();
- 				}
- 			}
-			
-			
-			
-			
-			var bno = '${detail.bno}'; //게시글 번호
-			 
-			$('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
-			    var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-			    commentInsert(insertData); //Insert 함수호출(아래)
+				var form = document.frm1;
+				if (form.title.value.length == 0) {
+					alert("제목을 입력하세요.");
+					form.title.focus();
+					return;
+				}
+				if (form.contents.value.length == 0) {
+					alert("내용을 입력하세요.");
+					form.contents.focus();
+					return;
+				} else {
+					submit_form();
+				}
+			}
+		</script>
+
+  <script>
+			var boardNo = '${board.boardNo}'; //게시글 번호
+
+			$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
+				var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+				commentInsert(insertData); //Insert 함수호출(아래)
 			});
-			 
-			 
-			 
+
 			//댓글 목록 
-			function commentList(){
-			    $.ajax({
-			        url : '/comment/list',
-			        type : 'get',
-			        data : {'bno':bno},
-			        success : function(data){
-			            var a =''; 
-			            $.each(data, function(key, value){ 
-			                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-			                a += '<div class="commentInfo'+value.cno+'">'+'댓글번호 : '+value.cno+' / 작성자 : '+value.writer;
-			                a += '<a onclick="commentUpdate('+value.cno+',\''+value.content+'\');"> 수정 </a>';
-			                a += '<a onclick="commentDelete('+value.cno+');"> 삭제 </a> </div>';
-			                a += '<div class="commentContent'+value.cno+'"> <p> 내용 : '+value.content +'</p>';
-			                a += '</div></div>';
-			            });
-			            
-			            $(".commentList").html(a);
-			        }
-			    });
+			function commentList() {
+				$.ajax({
+						url : 'comment/list',
+						type : 'get',
+						data : {
+							'boardNo' : boardNo
+						},
+						success : function(data) {
+							var a = '';
+							$.each(
+										data,
+										function(key, value) {
+											a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+											a += '<div class="commentInfo'+value.commentNo+'">'
+													+ value.memberId
+													+ '          '
+													+ value.createdDate;
+											if (value.memberNo == ${loginUser.memberNo}){
+											a += '<button class="btn btn-outline-info btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
+													+ value.commentNo
+													+ ',\''
+													+ value.contents
+													+ '\');"> 수정 </button>'
+											a += '<button class="btn btn-outline-danger btn-sm" type="button" onclick="commentDelete('
+													+ value.commentNo
+													+ ');"> 삭제 </button>'}
+											a += '</div>';
+											a += '<div class="commentContent'+value.commentNo+'"> <p>'
+													+ value.contents
+													+ '</p>';
+											a += '</div></div>';
+										});
+
+							$(".commentList").html(a);
+						}
+					});
 			}
-			 
+
 			//댓글 등록
-			function commentInsert(insertData){
-			    $.ajax({
-			        url : '/comment/insert',
-			        type : 'post',
-			        data : insertData,
-			        success : function(data){
-			            if(data == 1) {
-			                commentList(); //댓글 작성 후 댓글 목록 reload
-			                $('[name=content]').val('');
-			            }
-			        }
-			    });
+			function commentInsert(insertData) {
+				$.ajax({
+					url : 'comment/add',
+					type : 'post',
+					data : insertData,
+					success : function(data) {
+						if (data == 1) {
+							commentList(); //댓글 작성 후 댓글 목록 reload
+							$('[name=contents]').val('');
+						}
+					}
+				});
 			}
-			 
+			
+
 			//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-			function commentUpdate(cno, content){
-			    var a ='';
-			    
-			    a += '<div class="input-group">';
-			    a += '<input type="text" class="form-control" name="content_'+cno+'" value="'+content+'"/>';
-			    a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+cno+');">수정</button> </span>';
-			    a += '</div>';
-			    
-			    $('.commentContent'+cno).html(a);
-			    
+			function commentUpdate(commentNo, contents) {
+				var a = '';
+
+				a += '<div class="input-group">';
+				a += '<input type="text" class="form-control" name="contents_'+commentNo+'" value="'+contents+'"/>';
+				a += '<span class="input-group-btn"><button class="btn btn-outline-success btn-sm" type="button" onclick="commentUpdateProc('
+						+ commentNo + ');">수정</button> </span>';
+				a += '</div>';
+
+				$('.commentContent' + commentNo).html(a);
+
 			}
-			 
+
 			//댓글 수정
-			function commentUpdateProc(cno){
-			    var updateContent = $('[name=content_'+cno+']').val();
-			    
-			    $.ajax({
-			        url : '/comment/update',
-			        type : 'post',
-			        data : {'content' : updateContent, 'cno' : cno},
-			        success : function(data){
-			            if(data == 1) commentList(bno); //댓글 수정후 목록 출력 
-			        }
-			    });
+			function commentUpdateProc(commentNo) {
+				var updateContent = $('[name=contents_' + commentNo + ']')
+						.val();
+
+				$.ajax({
+					url : 'comment/update',
+					type : 'post',
+					data : {
+						'contents' : updateContent,
+						'commentNo' : commentNo
+					},
+					success : function(data) {
+						if (data == 1)
+							commentList(boardNo); //댓글 수정후 목록 출력 
+					}
+				});
 			}
-			 
+
 			//댓글 삭제 
-			function commentDelete(cno){
-			    $.ajax({
-			        url : '/comment/delete/'+cno,
-			        type : 'post',
-			        success : function(data){
-			            if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
-			        }
-			    });
+			function commentDelete(commentNo) {
+				$.ajax({
+					url : 'comment/delete/' + commentNo,
+					type : 'post',
+					success : function(data) {
+						if (data == 1)
+							commentList(boardNo); //댓글 삭제후 목록 출력 
+					}
+				});
 			}
-			 
-			 
-			 
-			 
-			$(document).ready(function(){
-			    commentList(); //페이지 로딩시 댓글 목록 출력 
+
+			$(document).ready(function() {
+				commentList(); //페이지 로딩시 댓글 목록 출력 
 			});
-			 
+		</script>
 
 
-</script>
 
 </body>
 

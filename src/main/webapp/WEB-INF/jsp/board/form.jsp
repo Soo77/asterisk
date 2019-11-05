@@ -141,78 +141,19 @@ border: 1px solid;
       </div>
     </div>
     
-
-
-    <!--     <div class="row">
-      <div class="col">
-        <div align="center">
-          <button type="button" class="btn btn-outline-info">+</button>
-        </div>
-      </div>
-    </div> -->
-
     <hr>
 
     <div class="row">
       <div class="col">
         <div align="right">
-           <!-- <button id="btnAdd" type="button" class="btn btn-info" data-toggle="modal" data-target="#addModal">등록</button> -->
-           <button id="btnAdd" type="button" class="btn btn-info" onclick="add_board()">등록</button>
-           <button id="btnCancle" type="button" class="btn btn-danger my-view-group" data-toggle="modal" data-target="#cancelModal" style="float: right;">취소</button>
-        </div>
-      </div>
-    </div>
-
-<!--     add Modal-->
-<!--  <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">글쓰기</h5>
-            <button type="button" class="close" data-dismiss="modal"
-              aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">등록하시겠습니까?</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary"
-              data-dismiss="modal">취소</button>
-            <button id="btnSubmit" type="button" class="btn btn-primary"
-              onclick="form_submit()">확인</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- cancel Modal -->
-    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"
-      aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">취소</h5>
-            <button type="button" class="close" data-dismiss="modal"
-              aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">취소하시겠습니까?</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary"
-              data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary"
-              onclick="location='list?boardTypeNo=${boardTypeNo}'">확인</button>
-          </div>
+           <button id="btnAdd" type="button" class="btn btn-info">등록</button>
+           <button id="btnCancle" type="button" class="btn btn-danger my-view-group" style="float: right;">취소</button>
         </div>
       </div>
     </div>
 
   </form> 
 
-
-            
 <!--     <div class="row">
       <div id="insertBoardPhotos">
         <c:forEach begin="1" end="6">
@@ -223,9 +164,6 @@ border: 1px solid;
       </div>
     </div>  -->
     
-
-    
-
   <!--   <div id='content'>
     <h1>글쓰기</h1>
 
@@ -246,85 +184,58 @@ border: 1px solid;
       <button>등록</button>
     </form>
   </div>  -->
-
+  <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   
   <script type="text/javascript">
-
-/*  		$(function() {
-		    // Multiple images preview in browser
-		    var imagesPreview = function(input, placeToInsertImagePreview) {
-		        if (input.files) {
-		            var filesAmount = input.files.length;
-		            for (i = 0; i < filesAmount; i++) {
-		                var reader = new FileReader();
-		                reader.onload = function(event) {
-		                    $($.parseHTML('<img style="width:20%; height:70%; margin-top:10px;">' + "<a href=\"#\" value=\""
-                                    + i
-                                    + "\" onclick=\"deletePreview(this)\">"
-                                    + "x" + "</a>")).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-		                }
-		                reader.readAsDataURL(input.files[i]);
-		            }
-		        }
-		    };
-
-		    $('#gallery-photo-add').on('change', function() {
-		        imagesPreview(this, 'div.gallery');
-		    });
+  var cancleButton = document.querySelector('#btnCancle');
+  cancleButton.addEventListener('click', function() {
+	  swal({
+		  title: "취소",
+		  text: "취소하시겠습니까?",
+		  icon: "warning",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			  location.href = "list?boardTypeNo=" + ${boardTypeNo};
+		  } else {
+		  }
 		});
-		
-		function deletePreview(obj) {
-            $(".gallery").remove();
-            resizeHeight();
-        }  */
-        
-        
-/*         var g_count =1;
-        $(document).ready(function(){
-            $("#list").on("click",function(e){
-                e.preventDefault();
-                fn_openBoardList();
-            })
-            $("#write").on("click",function(e){
-                e.preventDefault();
-                fn_writeBoard();
-            })
-            $("a[name='delete']").on("click",function(e){
-                e.preventDefault();
-                fn_fileDelete($(this));
-            })
-            $("#add").on("click",function(e){
-                e.preventDefault();
-                fn_fileAdd();
-            })
-        });
-         
-         
-        function fn_openBoardList(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/sample/openBoardList.do'/>");
-            comSubmit.submit();
-        }
-         
-        function fn_writeBoard(){
-            var comSubmit = new ComSubmit("frm");
-            comSubmit.setUrl("<c:url value='/sample/writeBoard.do'/>");
-            comSubmit.submit();
-        }
-        function fn_fileDelete(obj){
-            obj.parent().remove();
-        }
-        function fn_fileAdd(){
-            var str = "<p><input type='file' name='file_"+(g_count++)+"'/><a href='#this' name='delete' class='btn'>삭제하기</a></p> ";
-            $("#fileDiv").append(str);
-             
-            $("a[name='delete']").on("click",function(e){
-                e.preventDefault();
-                fn_fileDelete($(this));         
-            })
-        } */
-
+	});
+  
+  var addButton = document.querySelector('#btnAdd');
+  addButton.addEventListener('click', function() {
+	  var form = document.frm1;
+			if (form.title.value.length == 0) {
+				swal("제목을 입력하세요.");
+				form.title.focus();
+				return;
+			}
+			if (form.contents.value.length == 0) {
+				swal("내용을 입력하세요.");
+				form.contents.focus();
+				return;
+			}
+			else {
+				swal({
+					  title: "글쓰기",
+					  text: "등록하시겠습니까?",
+					  buttons: true,
+					  dangerMode: true,
+					})
+					.then((willDelete) => {
+					  if (willDelete) {
+					    swal("등록되었습니다.", {
+					      icon: "success",
+					    });
+					    document.getElementById("form1").submit();
+					  } else {
+					  }
+					});
+			}
+	});
 
 			$(function() {
 				var imagesPreview = function(input, placeToInsertImagePreview) {
@@ -347,29 +258,7 @@ border: 1px solid;
 					$('.upload-name').val('파일' + this.files.length + '개');
 				});
 			});
-        
-    
-			function submit_form() {
-				document.getElementById("form1").submit();
-			}
 
- 			function add_board() {
- 				var form = document.frm1;
- 				if (form.title.value.length == 0) {
- 					alert("제목을 입력하세요.");
- 					form.title.focus();
- 					return;
- 				}
- 				if (form.contents.value.length == 0) {
- 					alert("내용을 입력하세요.");
- 					form.contents.focus();
- 					return;
- 				}
- 				else {
- 					submit_form();
- 				}
- 			}
-			
 		</script>
   
 </body>

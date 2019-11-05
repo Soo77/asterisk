@@ -5,10 +5,9 @@ import com.ast.eom.domain.Comment;
 
 public interface CommentService {
   List<Comment> list(int boardNo) throws Exception;
-//  Board get(int no) throws Exception;
-//  void insert(Board board) throws Exception;
-//  void update(Board board) throws Exception;
-//  void delete(int no) throws Exception;
+  int insert(Comment comment) throws Exception;
+  int update(Comment comment) throws Exception;
+  int delete(int commentNo) throws Exception;
 }
 
 

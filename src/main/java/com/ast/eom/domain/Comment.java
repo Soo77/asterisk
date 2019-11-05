@@ -13,12 +13,19 @@ public class Comment {
   private Date createdDate;
   private String memberId;
   private String profilePhoto;
+  private int commentCnt;
   
   @Override
   public String toString() {
     return "Comment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", memberNo=" + memberNo
         + ", contents=" + contents + ", createdDate=" + createdDate + ", memberId=" + memberId
-        + ", profilePhoto=" + profilePhoto + "]";
+        + ", profilePhoto=" + profilePhoto + ", commentCnt=" + commentCnt + "]";
+  }
+  public int getCommentCnt() {
+    return commentCnt;
+  }
+  public void setCommentCnt(int commentCnt) {
+    this.commentCnt = commentCnt;
   }
   public int getCommentNo() {
     return commentNo;

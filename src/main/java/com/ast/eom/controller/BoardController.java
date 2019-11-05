@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.ast.eom.domain.Board;
 import com.ast.eom.domain.Comment;
+import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Pagination;
 import com.ast.eom.service.BoardService;
 import com.ast.eom.service.CommentService;
@@ -34,7 +37,8 @@ public class BoardController {
       Board board,
       MultipartFile[] fileName,
       HttpSession session) throws Exception {
-    int memberNo = (Integer) session.getAttribute("memberNo");
+    Member member = (Member) session.getAttribute("loginUser");
+    int memberNo = member.getMemberNo();
     board.setMemberNo(memberNo);
     board.setFiles(fileWriter.getFiles(fileName));
     boardService.insert(board);
@@ -49,7 +53,6 @@ public class BoardController {
       @RequestParam(defaultValue = "1") int curPage,
       @RequestParam(defaultValue = "") String searchType,
       @RequestParam(defaultValue = "") String keyword) throws Exception {
-    session.setAttribute("memberNo", 4);
     
     List<Board> boards = boardService.list(boardTypeNo, searchType, keyword);
     int listCnt = boards.size();
@@ -65,12 +68,8 @@ public class BoardController {
   
   @GetMapping("detail")
   public void detail(HttpSession session, Model model, int no) throws Exception {
-    session.setAttribute("memberNo", 4);
     Board board = boardService.get(no);
-    List<Comment> comments = commentService.list(no);
     model.addAttribute("board", board);
-    model.addAttribute("comments", comments);
-    
   }
   
   @PostMapping("update")
@@ -87,10 +86,43 @@ public class BoardController {
     return "redirect:list?boardTypeNo=" + board.getBoardTypeNo();
   }
   
-//  @GetMapping("ohora")
-//  @ResponseBody
-//  public String ohora(int no) {
-//    return no+"+111";
-//  }
+  @GetMapping("comment/list")
+  @ResponseBody
+  private List<Comment> commentList(int boardNo) throws Exception{
+      return commentService.list(boardNo);
+  }
   
+  @PostMapping("comment/add")
+  @ResponseBody
+  public int commentAdd(
+      HttpSession session,
+      @RequestParam int boardNo,
+      @RequestParam String contents) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    int memberNo = member.getMemberNo();
+    Comment comment = new Comment();
+    comment.setBoardNo(boardNo);;
+    comment.setContents(contents);
+    comment.setMemberNo(memberNo);
+    
+    return commentService.insert(comment);
+  }
+  
+  @RequestMapping("comment/update")
+  @ResponseBody
+  private int cmmentUpdate(@RequestParam int commentNo, @RequestParam String contents) throws Exception{
+      
+      Comment comment = new Comment();
+      comment.setCommentNo(commentNo);
+      comment.setContents(contents);
+      
+      return commentService.update(comment);
+  }
+  
+  @RequestMapping("comment/delete/{commentNo}")
+  @ResponseBody
+  private int commentDelete(@PathVariable int commentNo) throws Exception{
+      return commentService.delete(commentNo);
+  }
+
 }

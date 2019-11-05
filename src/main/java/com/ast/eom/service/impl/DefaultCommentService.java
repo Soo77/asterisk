@@ -17,51 +17,18 @@ public class DefaultCommentService implements CommentService {
     return commentDao.findAll(boardNo);
   }
   
-//  @Override
-//  public Board get(int no) throws Exception {
-//    Board board = boardDao.findWithFilesBy(no);
-//    if (board == null) {
-//      throw new Exception("해당 번호의 데이터가 없습니다!");
-//    } 
-//    boardDao.increaseViewCount(no);
-//    return board;
-//  }
-//
-//  @Transactional
-//  @Override
-//  public void insert(Board board) throws Exception {
-////    if (board.getFiles().size() == 0) {
-////      throw new Exception("사진 파일 없음!");
-////    }
-//    boardDao.insert(board);
-//    if (board.getFiles().size() > 0) {
-//      for (BoardFile file : board.getFiles()) {
-//        file.setBoardNo(board.getBoardNo());
-//        boardFileDao.insert(file);
-//      }
-//    }
-//  }
-//  
-//  @Override
-//  public void update(Board board) throws Exception {
-////    if (board.getFiles().size() == 0) {
-////      throw new Exception("사진 파일 없음!");
-////    }
-//    boardDao.update(board);
-//    if (board.getFiles().size() > 0) {
-////      boardFileDao.deleteAll(board.getBoardNo());
-//      for (BoardFile file : board.getFiles()) {
-//        file.setBoardNo(board.getBoardNo());
-//        boardFileDao.insert(file);
-//      }
-//    }
-//  }
-//  
-//  @Override
-//  public void delete(int no) throws Exception {
-//    if (boardDao.findBy(no) == null)
-//      throw new Exception("해당 데이터가 없습니다.");
-//    boardFileDao.deleteAll(no);
-//    boardDao.delete(no);
-//  }
+  @Override
+  public int insert(Comment comment) throws Exception {
+    return commentDao.insert(comment);
+  }
+  
+  @Override
+  public int update(Comment comment) throws Exception {
+    return commentDao.update(comment);
+  }
+  
+  @Override
+  public int delete(int commentNo) throws Exception {
+    return commentDao.delete(commentNo);
+  }
 }

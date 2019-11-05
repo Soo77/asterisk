@@ -11,106 +11,35 @@
     <result column="conts" property="contents" />
     <result column="cdt" property="createdDate" />
     <result column="id" property="memberId" />
+    <result column="commentCnt" property="commentCnt" />
     <result column="profile_photo" property="profilePhoto" />
   </resultMap>
   
-  <select id="commentCount" parameterType="int" resultType="int">
-    select
-      count(*)
-    from comment
-    where board_no=${boardNo}
-  </select>
-  
   <select id="findAll" parameterType="int" resultMap="CommentMap">
-    select c.*, m.id, m.profile_photo
+    select c.*, m.id, m.profile_photo, count(*) over() as commentCnt
     from comment c
     inner join member m on c.mem_no=m.mem_no
-    where board_no=${boardNo}
+    where board_no=#{boardNo}
   </select>
   
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-<!--   <select id="findAllBy" resultMap="BoardMap">
-      select b.board_no, b.board_type_no, b.titl, b.cdt, b.vw_cnt, m.id
-      from board b
-      inner join member m on b.mem_no=m.mem_no
-      where b.board_type_no = #{boardTypeNo}
-      <if test="searchType != null">
-         <if test="searchType == 'title'.toString()">
-            and b.titl like CONCAT('%', #{keyword}, '%')
-         </if>
-         <if test="searchType == 'writer'.toString()">
-            and m.id like CONCAT('%', #{keyword}, '%')
-         </if>
-      </if>
-      order by b.board_no desc
-   </select>
-  
-  <select id="findBy" parameterType="int" resultMap="BoardMap">
-    select
-    b.board_no, b.titl, m.id, b.cdt, b.vw_cnt, b.conts,
-    b.board_type_no
-    from board b
-    inner join member m on b.mem_no=m.mem_no
-    where b.board_no=#{haha}
-  </select>
-
-  <select id="findWithFilesBy" parameterType="int"
-    resultMap="BoardWithFilesMap">
-    select
-    b.board_no,
-    b.board_type_no,
-    b.mem_no,
-    b.titl,
-    b.conts,
-    b.cdt,
-    b.vw_cnt,
-    m.id,
-    f.file_no,
-    f.file_name
-    from
-    board b
-    left outer join board_file f on b.board_no=f.board_no
-    left outer join member m on b.mem_no=m.mem_no
-    where
-    b.board_no=#{value}
-  </select>
-
-  <update id="increaseViewCount" parameterType="int">
-    update board set
-    vw_cnt = vw_cnt + 1
-    where board_no=#{value}
-  </update>
-
-  <insert id="insert" parameterType="Board"
-    useGeneratedKeys="true" keyColumn="board_no" keyProperty="boardNo">
-    insert into board(board_type_no, mem_no, titl, conts, cdt)
-    values(${boardTypeNo}, ${memberNo}, #{title}, #{contents}, now())
+  <insert id="insert" parameterType="Comment"
+   useGeneratedKeys="true" keyColumn="cmt_no" keyProperty="commentNo">
+   insert into comment(board_no, mem_no, conts, cdt)
+   values(#{boardNo}, #{memberNo}, #{contents}, now())
   </insert>
 
-  <update id="update" parameterType="Board">
-    update board set
-    titl=#{title},
+  <update id="update" parameterType="Comment">
+    update comment set
     conts=#{contents}
-    where board_no=#{boardNo}
+    where cmt_no=#{commentNo}
   </update>
-
-  <delete id="delete" parameterType="int">
-    delete from board
-    where
-    board_no=#{haha}
-  </delete> -->
   
+  <delete id="delete" parameterType="int">
+    delete from comment where cmt_no=#{commentNo}
+  </delete>
+  
+  <delete id="deleteAll" parameterType="int">
+    delete from comment where board_no=#{boardNo}
+  </delete>
 
 </mapper>
