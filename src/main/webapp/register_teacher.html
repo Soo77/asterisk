@@ -158,7 +158,7 @@
                         <option value="2016">2016년</option>
                       </select>
                     </div>
-                    <div class="col-4" style="padding:5px;">
+                    <div class="col-4"  style="padding:5px;">
                       <select class="custom-select" id="inputMonth" style="width:100%">
                         <option selected>1월</option>
                         <option value="2">2월</option>
@@ -166,7 +166,7 @@
                         <option value="4">4월</option>
                       </select>
                     </div>
-                    <div class="col-4" style="padding:5px;">
+                    <div class="col-4"  style="padding:5px;">
                       <select class="custom-select" id="inputDay" style="width:100%">
                         <option selected>1일</option>
                         <option value="2">2일</option>
@@ -185,14 +185,14 @@
                 <form class="form-group row">
                   <label for="phone" class="col-4 col-form-label">휴대전화</label>
                   <div class="form-inline col-8">
-                    <div class="col-4" style="padding:5px;">
-                      <input class="form-control" type="text" value="010" id="phone-number1" style="width:100%">
+                    <div class="col-4"  style="padding:5px;">
+                      <input class="form-control" type="text" value="010" id="phone-number1"  style="width:100%">
                     </div>
-                    <div class="col-4" style="padding:5px;">
-                      <input class="form-control" type="text" value="0000" id="phone-number2" style="width:100%">
+                    <div class="col-4"  style="padding:5px;">
+                      <input class="form-control" type="text" value="0000" id="phone-number2"  style="width:100%">
                     </div>
-                    <div class="col-4" style="padding:5px;">
-                      <input class="form-control" type="text" value="0000" id="phone-number3" style="width:100%">
+                    <div class="col-4"  style="padding:5px;">
+                      <input class="form-control" type="text" value="0000" id="phone-number3"  style="width:100%">
                     </div>
                   </div>
                 </form>
@@ -215,94 +215,74 @@
                   </div>
                 </form>
                 <form class="form-group row">
-                  <label for="class" class="col-4 col-form-label">원하는 과목</label>
+                  <label for="user-name" class="col-4 col-form-label">고등학교명</label>
                   <div class="col-8">
-                    <select class="custom-select" id="inputClass" style="width:100%">
-                      <option selected>국어</option>
-                      <option value="English">영어</option>
-                      <option value="Math">수학</option>
-                      <option value="Science">과학</option>
+                    <input class="form-control" type="text" value="HighSchool" id="inputHighSchool">
+                  </div>
+                </form>
+                <form class="form-group row">
+                  <label for="user-name" class="col-4 col-form-label">대학교명</label>
+                  <div class="col-8">
+                    <input class="form-control" type="text" value="University" id="inputUniversity">
+                  </div>
+                </form>
+                <form class="form-group row">
+                  <label for="inputMajor" class="col-4 col-form-label">전공</label>
+                  <div class="col-8">
+                    <input class="form-control" type="text" value="Major" id="inputMajor">
+                  </div>
+                </form>
+                <form class="form-inline">
+                  <label for="certification" class="col-4 col-form-label mb-2">재직/졸업증명서</label>
+                  <div class="input-group col-8 mb-2">
+                    <input class="form-cnotrol" type="text" placeholder="File Name" id="certification" readonly>
+                    <button type="submit" class="btn btn-block text-white" style="width:90px; background-color: #1abc9c;">파일첨부</button>
+                  </div>
+                </form>
+                <form class="form-inline">
+                  <label for="certification" class="col-4 col-form-label mb-2">과외신고서</label>
+                  <div class="input-group col-8 mb-2">
+                    <input class="form-cnotrol" type="text" placeholder="File Name" id="certification" readonly>
+                    <button type="submit" class="btn btn-block text-white" style="width:90px; background-color: #1abc9c;">파일첨부</button>
+                  </div>
+                </form>
+                <form class="form-group row">
+                  <label for="account" class="col-4 col-form-label">은행명/계좌번호</label>
+                  <div class="col-8">
+                    <select class="custom-select" id="inputAccount" style="width:100%">
+                      <option selected>국민은행</option>
+                      <option value="Shinhan">신한은행</option>
+                      <option value="Woori">우리은행</option>
+                      <option value="KEBHana">KEB하나은행</option>
                     </select>
                   </div>
                 </form>
                 <form class="form-group row">
-                  <label for="address1" class="col-4 col-form-label">과외 가능 요일</label>
+                  <label for="accountnumber" class="col-4 col-form-label"> </label>
                   <div class="col-8">
+                    <input class="form-control" type="text" value="AccountNumber" id="inputAccountNumber">
                   </div>
                 </form>
                 <form class="form-group row">
-                  <label for="address1" class="col-1 col-form-label"></label>
-                  <div class="col-11">      
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" name="" id="checkbox1" value="option1">
-                        월
-                      </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" name="" id="checkbox2" value="option2">
-                        화
-                      </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" name="" id="checkbox3" value="option3">
-                        수
-                      </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" name="" id="checkbox4" value="option4">
-                        목
-                      </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="" id="checkbox5" value="option5">
-                          금
-                      </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="" id="checkbox6" value="option6">
-                          토
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="" id="checkbox7" value="option7">
-                          일
-                      </label>
-                    </div>
-                  </div>
-                </form>
-                <form class="form-group row">
-                  <label for="address1" class="col-4 col-form-label">과외 가능 시간</label>
-                  <div class="form-inline col-8">
-                    <div class="col-5">
-                      <select class="custom-select" id="inputBeginTime" style="width:100%">
-                        <option selected>00:00</option>
-                        <option value="1">01:00</option>
-                        <option value="2">02:00</option>
-                        <option value="3">03:00</option>
-                      </select>
-                    </div>
-                    <div class="col-2">~</div>
-                    <div class="col-5">
-                      <select class="custom-select" id="inputEndTime" style="width:100%">
-                        <option selected>00:00</option>
-                        <option value="1">01:00</option>
-                        <option value="2">02:00</option>
-                        <option value="3">03:00</option>
-                      </select>
-                    </div>
-                  </div>
-                </form>
-                <form class="form-group row">
-                  <label for="forteacher" class="col-6 col-form-label">선생님에게 바라는 것</label>
+                  <label for="forteacher" class="col-6 col-form-label">자기소개</label>
                   <div class="col-6"></div>
-                  <input type="text" class="form-control " id="forteacher" style="width:500px; height:300px;">
+                  <input type="text" class="form-control " id="forteacher" style="width:500px; height:200px;">
+                </form>
+                <form class="form-inline">
+                  <label for="photoslist" class="col-2 col-form-label mb-2 mx-auto">사진</label>
+                  <div class="input-group col-10 mb-2">
+                    <input type="image" class="form-control" id="photo" src="./WEB-INF/images/photo2.png" style="width:50px; height:50px;">
+                    <input type="image" class="form-control" id="photo" src="./WEB-INF/images/photo2.png" style="width:50px; height:50px;">
+                    <input type="image" class="form-control" id="photo" src="./WEB-INF/images/photo2.png" style="width:50px; height:50px;">
+                    <button type="submit" class="btn btn-block text-white" style="width:100px; background-color: #1abc9c;">사진 등록</button>
+                  </div>
+                </form>
+                <form class="form-inline">
+                  <label for="animation" class="col-3 col-form-label mb-2">동영상</label>
+                  <div class="input-group col-9 mb-2">
+                    <input class="form-cnotrol mx-auto" type="text" placeholder="File Name" id="animation" readonly>
+                    <button type="submit" class="btn btn-block text-white" style="width:100px; background-color: #1abc9c;">링크 등록</button>
+                  </div>
                 </form>
                 <p></p>
                 <form class="form-group row">
