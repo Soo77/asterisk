@@ -30,8 +30,17 @@
     <result column="ref_amount" property="refundAmount" />
     <result column="sub_name" property="subjectName" />
     <collection resultMap="MemberMap" property="member" />
-    <collection resultMap="CLCMap" property="clc" />
+    <collection resultMap="CLCMap" property="clcs" />
     <collection resultMap="SubjectMap" property="subject" />
+    <collection resultMap="CurriculumMap" property="curriculum" />
+  </resultMap>
+  
+  <resultMap type="Curriculum" id="CurriculumMap">
+    <id column="lesson_no" property="lessonNo"/>
+    <result column="curr_lesson_dt" property="currentLessonDay"/>
+    <result column="curr_lesson_st" property="currentLessonStartTime"/>
+    <result column="curr_lesson_et" property="currentLessonEndTime"/>
+    <result column="total_hr" property="totalHours"/>
   </resultMap>
   
   <resultMap type="Subject" id="SubjectMap">
@@ -59,10 +68,52 @@
   
   <resultMap type="CurriculumLessonContents" id="CLCMap">
       <id column="curr_lesson_no" property="curriculumLessonNo"/>
-      <result column="curr_no" property="curriculumNo"/>
+      <result column="lesson_no" property="lessonNo"/>
       <result column="lesson_conts" property="lessonContents"/>
       <result column="lesson_days" property="lessonDays"/>
   </resultMap>
+  
+  <sql id="lessonColumn">
+    select 
+			l.lesson_no,
+			l.tch_no,
+			l.std_no,
+			l.sub_no,
+			l.lesson_desc,
+			l.lesson_fee,
+			l.lesson_stat,
+			l.std_lesson_stop,
+			l.tch_lesson_stop,
+			l.sdt,
+			l.edt,
+			l.tch_review,
+			l.std_review,
+			l.tch_eval,
+			l.payment,
+			l.pay_day,
+			l.cal_date,
+			l.cal_stat,
+			l.std_stop_reason,
+			l.tch_stop_reason,
+			l.ref_stat,
+			l.ref_date,
+			l.ref_amount
+  </sql>
+  
+  <sql id="curriculumColumn">
+    c.lesson_no,
+		c.curr_lesson_dt,
+		c.curr_lesson_st,
+		c.curr_lesson_et,
+		c.total_hr
+  </sql>
+  
+  <sql id="clcColumn">
+    cl.curr_lesson_no,
+		cl.lesson_no,
+		cl.lesson_conts,
+		cl.lesson_days
+  </sql>
 
     <select id="findAllTeacherBy" resultMap="LessonMap">
 			select s.sch_type_no, l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
@@ -78,11 +129,21 @@
 			left outer join member m on l.std_no = m.mem_no
     </select>
     
-     <select id="findAllCurrBy" parameterType="int" resultMap="LessonMap">
-      select l.sdt, l.edt, cl.curr_lesson_no, cl.curr_no, cl.lesson_conts, cl.lesson_days
+     <select id="findCurrBy" parameterType="int" resultMap="LessonMap">
+			select c.curr_lesson_dt, c.curr_lesson_st, c.curr_lesson_et, l.sdt, l.edt, cl.curr_lesson_no, cl.lesson_no, cl.lesson_conts, cl.lesson_days
+			from lesson l
+			inner join curriculum c on l.lesson_no = c.lesson_no
+			inner join curr_lesson_conts cl on c.lesson_no = cl.lesson_no
+			where l.lesson_no = #{haha}
+    </select>
+    
+    <select id="findBy" resultMap="LessonMap">
+      <include refid="lessonColumn"/>,
+      <include refid="curriculumColumn"/>,
+      <include refid="clcColumn"/>,
       from lesson l 
-      inner join curriculum c  on l.lesson_no = c.lesson_no
-      inner join curr_lesson_conts cl on cl.curr_no = c.curr_no
+      inner join curriculum c on l.lesson_no = c.lesson_no
+      inner join curr_lesson_conts cl on c.lesson_no = cl.lesson_no
       where l.lesson_no = #{haha}
     </select>
   

@@ -10,7 +10,7 @@ public interface LessonService {
   void update(Lesson lesson) throws Exception;
   void delete(int no) throws Exception;
   
-  List<Lesson> currList(int lessonNo) throws Exception;
+  Lesson lessonDetail(int lessonNo) throws Exception;
 }
 
 

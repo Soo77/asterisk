@@ -8,26 +8,17 @@
 <title>수업 내용</title>
 </head>
 <body>
-<h1>수업내용</h1>
+<h1>수업내용111</h1>
 
-<c:set var="i" value="0"/>
-<c:forEach items="${lessons}" var="lesson">
-<c:if test="${i == 0}">
-수업시작일: ${lesson.startDate} 수업종료일: ${lesson.endDate} 수업요일/시간: <br>
-</c:if>
-<c:set var="i" value="${i + 1}"/>
-</c:forEach>
+수업시작일: ${lesson.startDate}&ensp; 수업종료일: ${lesson.endDate}&ensp;
+수업요일: ${lesson.curriculum.currentLessonDay}c
+시간: ${lesson.curriculum.currentLessonStartTime} ~ ${lesson.curriculum.currentLessonEndTime} <br>
+<c:forEach items="${lesson.clcs}" var="clc">
 
-<c:forEach items="${lessons}" var="lesson">
 <div>
-<%-- <td>번호: ${lesson.clc.curriculumLessonNo}<br></td> 
-<td>수업번호: ${lesson.clc.curriculumNo}<br></td>  --%>
-
-
-내용: ${lesson.clc.lessonContents}&ensp;
-수업일: ${lesson.clc.lessonDays}<br> 
+내용: ${clc.lessonContents}&ensp;
+수업일: ${clc.lessonDays}<br> 
 </div>
 </c:forEach>
-
 </body>
 </html>  

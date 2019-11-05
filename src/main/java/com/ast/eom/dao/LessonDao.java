@@ -11,5 +11,5 @@ public interface LessonDao {
   int update(Lesson lesson) throws Exception;
   int delete(int no) throws Exception;
   
-  List<Lesson> findAllCurrBy(int lessonNo) throws Exception;
+  Lesson findCurrBy(int lessonNo) throws Exception;
 }

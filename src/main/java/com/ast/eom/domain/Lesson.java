@@ -36,10 +36,10 @@ public class Lesson {
   private int refundAmount;
   
   private Member member;
-  private CurriculumLessonContents clc;
+  private List<CurriculumLessonContents> clcs;
+  private Curriculum curriculum;
   private Subject subject;
   private String subjectName;
-  
   
   private List<Member> members;
   private List<Curriculum> curriculums;
@@ -56,9 +56,10 @@ public class Lesson {
         + ", payDay=" + payDay + ", calculationDay=" + calculationDay + ", calculationState="
         + calculationState + ", studentStopReason=" + studentStopReason + ", teacherStopReason="
         + teacherStopReason + ", refundState=" + refundState + ", refundDate=" + refundDate
-        + ", refundAmount=" + refundAmount + ", member=" + member + ", clc=" + clc
-        + ", subjectName=" + subjectName + ", members=" + members + ", curriculums=" + curriculums
-        + ", dayLessons=" + dayLessons + "]";
+        + ", refundAmount=" + refundAmount + ", member=" + member + ", clcs=" + clcs
+        + ", curriculum=" + curriculum + ", subject=" + subject + ", subjectName=" + subjectName
+        + ", members=" + members + ", curriculums=" + curriculums + ", dayLessons=" + dayLessons
+        + "]";
   }
   public int getLessonNo() {
     return lessonNo;
@@ -228,17 +229,23 @@ public class Lesson {
   public void setSubjectName(String subjectName) {
     this.subjectName = subjectName;
   }
-  public CurriculumLessonContents getClc() {
-    return clc;
+  public List<CurriculumLessonContents> getClcs() {
+    return clcs;
   }
-  public void setClc(CurriculumLessonContents clc) {
-    this.clc = clc;
+  public void setClcs(List<CurriculumLessonContents> clcs) {
+    this.clcs = clcs;
   }
   public Subject getSubject() {
     return subject;
   }
   public void setSubject(Subject subject) {
     this.subject = subject;
+  }
+  public Curriculum getCurriculum() {
+    return curriculum;
+  }
+  public void setCurriculum(Curriculum curriculum) {
+    this.curriculum = curriculum;
   }
   
   

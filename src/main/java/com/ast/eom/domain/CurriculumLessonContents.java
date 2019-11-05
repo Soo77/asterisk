@@ -2,26 +2,22 @@ package com.ast.eom.domain;
 
 public class CurriculumLessonContents {
   private int curriculumLessonNo;
-  private int curriculumNo;
+  private int lessonNo;
   private String lessonContents;
   private int lessonDays;
   
+
+
   @Override
   public String toString() {
-    return "CurriculumLessonContents [curriculumLessonNo=" + curriculumLessonNo + ", curriculumNo=" + curriculumNo
-        + ", lessonContents=" + lessonContents + ", lessonDays=" + lessonDays + "]";
+    return "CurriculumLessonContents [curriculumLessonNo=" + curriculumLessonNo + ", lessonNo="
+        + lessonNo + ", lessonContents=" + lessonContents + ", lessonDays=" + lessonDays + "]";
   }
   public int getCurriculumLessonNo() {
     return curriculumLessonNo;
   }
   public void setCurriculumLessonNo(int curriculumLessonNo) {
     this.curriculumLessonNo = curriculumLessonNo;
-  }
-  public int getCurriculumNo() {
-    return curriculumNo;
-  }
-  public void setCurriculumNo(int curriculumNo) {
-    this.curriculumNo = curriculumNo;
   }
   public String getLessonContents() {
     return lessonContents;
@@ -35,4 +31,11 @@ public class CurriculumLessonContents {
   public void setLessonDays(int lessonDays) {
     this.lessonDays = lessonDays;
   }
+  public int getLessonNo() {
+    return lessonNo;
+  }
+  public void setLessonNo(int lessonNo) {
+    this.lessonNo = lessonNo;
+  }
+  
 }

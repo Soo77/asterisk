@@ -58,8 +58,8 @@ public class DefaultLessonService implements LessonService {
   }
 
   @Override
-  public List<Lesson> currList(int lessonNo) throws Exception {
-    return lessonDao.findAllCurrBy(lessonNo);
+  public Lesson lessonDetail(int lessonNo) throws Exception {
+    return lessonDao.findCurrBy(lessonNo);
 
   }
 }
