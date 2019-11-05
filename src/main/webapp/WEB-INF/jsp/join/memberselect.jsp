@@ -26,9 +26,9 @@
   </style>
 </head>
 
-<div class="container">
+<div class="container" style="height:600px; overflow-y: scroll;">
 
-  <div class="row" style="height:600px;">
+  <div class="row">
     <div class="col-1">
     </div>
     <div class="col-10 mt-5">

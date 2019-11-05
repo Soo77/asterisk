@@ -146,13 +146,21 @@
           <div class="form-group row">
             <label for="inputHighSchool" class="col-sm-2 col-form-label">고등학교</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputHighSchool" value="bit-high-school" readonly>
+            <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
+              <c:if test="${school.schoolTypeNo eq 3}">
+                <input type="text" class="form-control" id="inputHighSchool" value="${school.schoolName}" readonly>
+              </c:if>
+            </c:forEach>
             </div>
           </div>
           <div class="form-group row">
             <label for="inputUniversity" class="col-sm-2 col-form-label">대학교</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputUniversity" value="비트대학교" readonly>
+              <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
+                <c:if test="${school.schoolTypeNo eq 4}">
+                  <input type="text" class="form-control" id="inputUniversity" value="${school.schoolName}" readonly>
+                </c:if>
+              </c:forEach>
             </div>
           </div>
 
