@@ -15,20 +15,27 @@
   <resultMap type="Member" id="MemberMap">
   <result column="mem_no" property="memberNo"></result>
   </resultMap>
+  
+  <select id="detail" parameterType="int" resultMap="MessageMap">
+     select *from message where sender=#{memberNo}
+  </select>
 	
 	<select id="messageDetail" parameterType="int" resultMap="MessageMap">
-	   select *from message where sender=#{memberNo}
+	   select *from message where sender=#{memberNo} and receiver=#{receiverNo}
 	</select>
 	
 	<select id="messageList" parameterType="int" resultMap="MemberMap">
-     select distinct m.name, m.mem_no from member m inner join message s on m.mem_no = s.receiver where s.sender=#{memberNo}
+     select distinct m.name, m.mem_no from member m inner 
+     join message s on m.mem_no = s.receiver 
+     where s.sender=#{memberNo} or s.receiver=#{memberNo} 
+     order by s.message_no desc
   </select>
 	
 	<insert id="messageIn" parameterType="Message">
      insert into
      message(message_no,sender,receiver,message_conts,send_date,is_read)
      values
-     (#{messageNo},1,4,#{messageContents},now(),#{isRead})
+     (#{messageNo},#{senderNo},#{receiverNo},#{messageContents},now(),#{isRead})
   </insert>
 
 </mapper>

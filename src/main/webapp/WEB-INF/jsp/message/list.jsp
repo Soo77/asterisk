@@ -18,11 +18,6 @@
 	<div id="showList"></div>
 	<br>
 	<br>
-	<h2>
-		<input type="text" id="messageConts" name="messageConts"
-			placeholder="내용을 입력">
-		<button id="messageIn" name="messageIn">입력</button>
-	</h2>
 
 	<script>
 		$(document).ready(function() {
