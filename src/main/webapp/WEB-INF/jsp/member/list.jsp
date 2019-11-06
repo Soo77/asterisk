@@ -5,12 +5,9 @@
 <html lang="en">
 
 <head>
-<title>찾기 list</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 </head>
 <style>
-
-
 .btn.btn-primary.gender {
   width:48%;
 }
@@ -20,10 +17,10 @@
 }
 
 .btn.btn-primary.lesson-fee {
-  width:100%;
+  width:48%;
 }
 
-.btn.btn-primary.search {
+.btn.btn-primary.btn-round {
   width:60%;
   left:20%;
   margin-top:20px;
@@ -33,16 +30,11 @@
   padding-left:50px;
 }
 
-.col-lg-3.col.md-4 {
-  padding-bottom:20px
+.container {
+  padding-bottom:30px;
+  padding-top:30px;
 }
-
-
-
-
 </style>
-
-
 
 <body>
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
@@ -177,7 +169,7 @@
               </div>
             
             <div class="button search">
-             <button class="btn btn-primary search">조건검색</button>
+            <button class="btn btn-primary btn-round">조건 검색</button>
             </div>
             
           
