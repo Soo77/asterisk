@@ -22,6 +22,12 @@ public class MessageController {
   @GetMapping("list")
   public void list() throws Exception {
   }
+  
+  @GetMapping("findmember")
+  public void findmember(Model model) throws Exception {
+    List<Member> member = messageDao.findmember();
+    model.addAttribute("findMember", member);
+  }
 
   @GetMapping("detail")
   public List<Message> detail(Model model, int memberNo) throws Exception {
@@ -45,12 +51,16 @@ public class MessageController {
 
   @PostMapping("messageDetail")
   @ResponseBody
-  public List<Message> messageDetail(int receiverNo, int memberNo) throws Exception {
-    System.out.println(memberNo);
+  public List<Message> messageDetail(int senderNo, int receiverNo) throws Exception {
+    System.out.println(senderNo);
     System.out.println(receiverNo);
     
-    List<Message> message = messageDao.messageDetail(receiverNo, memberNo);
-    return message;
+    Message message = new Message();
+    message.setSenderNo(senderNo);
+    message.setReceiverNo(receiverNo);
+    
+    List<Message> messageList = messageDao.messageDetail(message);
+    return messageList;
   }
 
   @PostMapping("messagein")
