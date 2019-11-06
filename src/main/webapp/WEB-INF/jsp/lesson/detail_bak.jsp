@@ -1,48 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<!DOCTYPE html>
+<html>
 <head>
-<!--   <style>
+<meta charset="UTF-8">
+<title>수업 내용</title>
+  <style>
     #content{
       margin-left: 0px; 
       margin-right: 500px;
     }
-  </style> -->
-<!--       <style>
-      label[for="basic-url1"] {
-/*         position: relative; */
-        margin-top: 1000px; 
-      } 
-      
-      label[for="c"] {
-        position: relative; 
-        top: -1.5px; 
-      }
-    </style> -->
+  </style>
 </head>
+<body>
 
-
-  <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <div class="brand text-center">
-            <h1>Your title here</h1>
-            <h3 class="title text-center">Subtitle</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="main main-raised">
-    <div class="container pt-4 pb-4">
-      
 <div id='content'>
-<h1 style="
-  margin-bottom: 20px;
-">수업내용</h1>
+<h1>수업내용</h1>
+
 <%-- 수업시작일: <input name="lessonconts" type="text" class="form-control" id="testinput1" value="${lesson.startDate}">
 수업종료일: <input name="lessonconts" type="text" class="form-control" id="testinput1" value="${lesson.endDate}"> --%>
 
@@ -51,28 +26,28 @@
     <div class="row">
       <div class="col-lg-3 col-sm-4">
         <label for="basic-url1">수업시작일</label>
-        <div class="form-group has-default bmd-form-group pt-0">
+        <div class="form-group has-default bmd-form-group">
           <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular"
             value="${lesson.startDate}">
         </div>
       </div>
       <div class="col-lg-3 col-sm-4">
       <label for="basic-url2">수업종료일</label>
-        <div class="form-group has-default bmd-form-group pt-0">
+        <div class="form-group has-default bmd-form-group">
           <input name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular"
             value="${lesson.endDate}">
         </div>
       </div>
       <div class="col-lg-3 col-sm-4">
       <label for="basic-url3">수업시작시간</label>
-        <div class="form-group has-default bmd-form-group pt-0">
+        <div class="form-group has-default bmd-form-group">
           <input name="st" id="basic-url3" type="time" class="form-control" placeholder="Regular"
             value="${lesson.curriculum.curriculumLessonStartTime}">
         </div>
       </div>
       <div class="col-lg-3 col-sm-4">
       <label for="basic-url4">수업종료시간</label>
-        <div class="form-group has-default bmd-form-group pt-0 pb-5">
+        <div class="form-group has-default bmd-form-group">
           <input name="et" id="basic-url4" type="time" class="form-control" placeholder="Regular"
             value="${lesson.curriculum.curriculumLessonEndTime}"> 
         </div>
@@ -102,7 +77,7 @@
 </c:forEach>
 </tbody>
 </table>
-<button class="btn btn-primary">변경</button>
+<button>변경</button>
 </form>
 </div>
 
@@ -124,5 +99,5 @@
  
     });
 </script> -->
-    </div>
-  </div>
+</body>
+</html>  
