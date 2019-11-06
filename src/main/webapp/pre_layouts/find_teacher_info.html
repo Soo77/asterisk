@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>엄과외</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      
+      .container{
+        padding:0;
+      }
+
+      .row {
+        margin:0;
+      }
+
+      a {
+        color: #ffffff;
+      }
+
+    </style>
+
+    <script src="https://kit.fontawesome.com/c5804f7418.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="./WEB-INF/images/eomtutor.png" alt="main brand"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <ul class="navbar-nav ml-auto ml-md-0">
+          <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-comments fa-2x" style="color: #1abc9c"></i>
+              <span class="badge badge-danger">1+</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+              <a class="dropdown-item" href="#">쪽지함</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user-circle fa-2x" style="color: #1abc9c"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+              
+              <a class="dropdown-item" href="#">회원 정보</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" style="display:flex">
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav bg-secondary text-white text-center" style="width: 225px; background-color: gray;">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <span></span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+            <i class="fas fa-user p-2" style="color: #1abc9c"> </i>
+            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">나의 과외</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="fas fa-users p-2" style="color: #1abc9c"></i>
+            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">선생님 찾기</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-clipboard-list p-2" style="color: #1abc9c"></i>
+            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">게시판</span>
+          </a>
+          <div class="dropdown-menu" style="background-color:#1abc9c" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item text-center" href="#">공지사항</a>
+            <a class="dropdown-item text-center" href="#">공부상담</a>
+            <a class="dropdown-item text-center" href="#">입시상담</a>
+            <a class="dropdown-item text-center" href="#">문제풀이</a>
+          </div>
+        </li>
+      </ul>
+      
+      <div id="content-wrapper" style="overflow-x:hidden;">
+        <div class="row-fluid" style="width:900px;height:650px;">
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+              <h4><b>선생님 상세 정보</b></h4>
+              <hr>
+              <div class="form-group row" style="width:100%;">
+                <div class="col-2">
+                  <img src="./WEB-INF/images/photo_small.png">
+                </div>
+                <div class="col-3">
+                  <label for="teacher_nameinfo" class="col-form-label">라이언</br>남자, 23세</label></br>
+                  <i class="far fa-check-circle" style="color: #1abc9c"></i>
+                  <label for="teacher_nameinfo" class="col-form-label">자격검증완료</label>
+                </div>
+                <div class="col-1">  
+                  <i class="fas fa-comments fa-2x" style="color: #1abc9c"></i>
+                </div>
+                <div class="col-5">
+                  <label for="message_teacher" class="col-form-label align-middle">선생님에게 쪽지 보내기</label>
+                </div>
+              </div>
+              <hr>
+              <div class="form-group">
+                <label for="basic_info" class="col-form-label"><b>기본정보</b></label></br>
+                <i class="col-1 fas fa-graduation-cap" style="color: #1abc9c"></i>
+                <label for="school_info" class="col-form-label">학교: 한국대학교</label></br>
+                <i class="col-1 fas fa-pencil-alt" style="color: #1abc9c"></i>
+                <label for="school_info" class="col-form-label">전공: 수학과</label></br>
+                <i class="col-1 fas fa-map-marker-alt" style="color: #1abc9c"></i>
+                <label for="area_info" class="col-form-label">지역: 서울 강남구</label></br>
+                <i class="col-1 far fa-user" style="color: #1abc9c"></i>
+                <label for="school_info" class="col-form-label">가입일: 2018. 5.29</label>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <div class="col-6">
+                  <label for="basic_info" class="col-form-label"><b>출신학교</b></label></br>
+                  <label for="basic_info" class="col-form-label">&nbsp한국 중학교 졸업</label></br>
+                  <label for="basic_info" class="col-form-label">&nbsp한국 고등학교 졸업</label></br>
+                  <label for="basic_info" class="col-form-label">&nbsp한국대학교 수학과 재학중</label></br>  
+                </div>
+                <div class="col-6">
+                  <label for="basic_info" class="col-form-label"><b>자기소개</b></label></br>
+                  <label for="basic_info" class="col-form-label">&nbsp안녕하세요.</br> 한국대학교 수학과 라이언입니다.</br> 성실히 수업하겠습니다.</label></br>
+                </div>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <div class="col-8">
+                  <label for="basic_info" class="col-form-label"><b>동영상</b></label>
+                </div>
+                <div class="col-4">
+                    <label for="basic_info" class="col-form-label"><b>사진</b></label>
+                </div>
+              </div>
+              <hr>
+              <div class="form-group row">
+                <div class="col-6">
+                  <label for="basic_info" class="col-form-label"><b>원하는 과목</b></label></br>
+                  <label for="basic_info" class="col-form-label">&nbsp중등 수학</label></br>
+                  <label for="basic_info" class="col-form-label"><b>과외 가능 요일/시간</b></label></br>
+                  <label for="basic_info" class="col-form-label">&nbsp월,수,금. 오후7시~9시</label></br>
+                  <label for="basic_info" class="col-form-label"><b>희망 과외 금액</b></label></br>
+                  <label for="basic_info" class="col-form-label">&nbsp30만원~40만원</label></br>  
+                </div>
+                <div class="col-6">
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    
+    <!-- Footer -->
+    <div class="container">
+      <div class="row bg-dark text-white" style="display:flex">
+        <div class="col-3 py-3">
+          <a class="btn btn-dark d-block text-left" href="#" role="button" style="font-size:12px">회사소개</a>
+          <a class="btn btn-dark d-block text-left" href="#" role="button" style="font-size:12px">이용약관</a>
+          <a class="btn btn-dark d-block text-left" href="#" role="button" style="font-size:12px">개인정보 취급방침</a>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4">
+          <div class="row-3">
+            <p> </p>
+          </div>
+          <div class="row-3 mx-auto d-block text-center">
+            <i class="fab fa-facebook-f fa-1.5x p-2" style="color: #1abc9c"></i>
+            <i class="fab fa-twitter fa-1.5x p-2" style="color: #1abc9c"></i>
+            <i class="fab fa-youtube fa-1.5x p-2" style="color: #1abc9c"></i>
+            <i class="fab fa-blogger-b fa-1.5x p-2" style="color: #1abc9c"></i>
+            <i class="fab fa-line fa-1.5x p-2" style="color: #1abc9c"></i>
+          </div>
+          <div class="row-3 text-center">
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-2 mw-100">
+              <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria_label="Search" aria-describedby="basic-addon1">
+                <div class="input-group-append">
+                  <button class="btn btn-light" type="button"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row-3">
+            <p class="m-0 text-center text-white" style="font-size:10px">Copyright &copy; Your Website 2019</p>
+          </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3 py-3 d-none d-sm-block">
+          <p style="font-size:12px">
+            엄과외(주)</br>
+            서울특별시 서초구 서초동 서초대로 74길 33</br>
+            TEL: 02-123-4567 / FAX:02-765-4321</br>
+            EMAIL: support@eomcs.co.kr</br>
+            대표이사: 비트비트</br>
+            사업자등록번호: 110-11-123456</br>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

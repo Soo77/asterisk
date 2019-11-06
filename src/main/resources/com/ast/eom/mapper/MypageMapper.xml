@@ -49,6 +49,7 @@
     <result column="tch_intro" property="teacherIntro"/>
     <result column="appr_stat" property="approvementState"/>
     <result column="vid_addr" property="videoAddress"/>
+    <collection resultMap="SchoolMap" property="schools"/>
   </resultMap>
   
   <resultMap type="School" id="SchoolMap">
@@ -73,14 +74,15 @@
 
   <select id="getTeacher" parameterType="int" resultMap="TeacherMap">
     select *
-    from teacher
-    where tch_no = #{no};
+    from teacher t
+    inner join school s on t.tch_no = s.tch_no
+    where t.tch_no = #{no};
   </select>
 
   <select id="getSchools" parameterType="int" resultMap="SchoolMap">
     select *
     from school
-    where tch_no = #{no};
+    where t.tch_no = #{no};
   </select>
 <!--
   <select id="getStudent" parameterType="int" resultMap="MemberMap">
