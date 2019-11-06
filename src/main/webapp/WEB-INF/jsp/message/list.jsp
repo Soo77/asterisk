@@ -15,9 +15,12 @@
 </style>
 </head>
 <body>
+<h2>쪽지 보내기</h2>
+<button id="findMember" onclick="findmember()">회원목록</button>
 	<div id="showList"></div>
 	<br>
 	<br>
+	
 
 	<script>
 		$(document).ready(function() {
@@ -45,5 +48,14 @@
 			});
 		}
 	</script>
+	
+	<script>
+	  function findmember(){
+          var url = "findmember";
+          var option = "width = 500, height = 500, top = 100, left = 200, location = yes"
+          window.open(url, "", option);
+		};
+	</script>
+	
 </body>
 </html>
