@@ -1,65 +1,94 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%> -->
 
 <head>
-  <!-- Bootstrap core CSS -->
-  <style>
-    .container {
-      padding: 0;
-    }
-
-    .row {
-      margin: 0;
-    }
-
-    .card-login {
-      max-width: 25rem;
-    }
-  </style>
+  <!-- <link rel='stylesheet' -->
+  <!--   href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' -->
+  <!--   integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' -->
+  <!--   crossorigin='anonymous'> -->
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="/assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="/assets/demo/demo.css" rel="stylesheet" />
+  <script type="text/JavaScript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 
 </head>
-<script src="https://kit.fontawesome.com/c5804f7418.js" crossorigin="anonymous"></script>
 
 <div class="container">
-  <form action='login' method='post' class="form-signin">
-    <div class="row" style="height:650px;">
-      <div class="card card-login mx-auto my-auto" style="width: 20rem;">
-        <div class="card-header text-center">로그인</div>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="text" id="id" name="id" class="form-control" placeholder="ID" required autofocus>
-              </div>
+  <div class="row">
+    <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+      <div class="card card-login">
+        <form class="form" method="" action="">
+          <div class="card-header card-header-primary text-center">
+            <h4 class="card-title">Login</h4>
+            <div class="social-line">
+              <a href="#pablo" class="btn btn-just-icon btn-link">
+                <i class="fa fa-facebook-square"></i>
+              </a>
+              <a href="#pablo" class="btn btn-just-icon btn-link">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a href="#pablo" class="btn btn-just-icon btn-link">
+                <i class="fa fa-google-plus"></i>
+              </a>
             </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type='password' name='pw' class="form-control" placeholder="암호" required>
+          </div>
+          <p class="description text-center">Or Be Classical</p>
+          <div class="card-body">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="material-icons">face</i>
+                </span>
               </div>
+              <input type="text" class="form-control" placeholder="First Name...">
             </div>
-            <div class="form-group">
-              <div class="checkbox form-check-inline">
-                <label>
-                  <input type="checkbox" id="idmemory" value="아이디 기억">
-                  아이디 기억
-                </label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="material-icons">mail</i>
+                </span>
               </div>
+              <input type="email" class="form-control" placeholder="Email...">
             </div>
-            <a href="/app/join/registration" style="text-decoration: none;"><button type="button"
-                class="btn btn-block text-white mb-2" style="background-color: #1abc9c">회원가입</button></a>
-            <button class="btn btn-block text-white" style="background-color: #1abc9c">로그인</button>
-            <a class="btn btn-block text-white" href="index.html" style="background-color: #1abc9c">ID/PassWord 찾기</a>
-          </form>
-        </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="material-icons">lock_outline</i>
+                </span>
+              </div>
+              <input type="password" class="form-control" placeholder="Password...">
+            </div>
+          </div>
+          <div class="footer text-center">
+            <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 </div>
-</form>
 
-<!-- Bootstrap core JavaScript -->
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-
-
+<!--   Core JS Files   -->
+<script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+<script src="/assets/js/plugins/moment.min.js"></script>
+<!--  Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+<script src="/assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
 <!--   아이디 기억 -->
 <script>
 

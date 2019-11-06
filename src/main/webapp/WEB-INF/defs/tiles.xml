@@ -5,7 +5,7 @@
 <tiles-definitions>
 
   <!-- 레이아웃을 정의하는 기본 템플릿을 설정한다. -->
-  <definition template="/WEB-INF/tiles/template.jsp" name="base">
+<!--   <definition template="/WEB-INF/tiles/template.jsp" name="base">
     <put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
     <put-attribute name="stylesheet" value="/WEB-INF/tiles/stylesheet.jsp"/>
     <put-attribute name="menu" value="/WEB-INF/tiles/menu.jsp"/>
@@ -13,14 +13,12 @@
     <put-attribute name="javascript" value="/WEB-INF/tiles/my_javascript.jsp"/>
     <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
   </definition>
-  
-  
+   -->
   <definition template="/WEB-INF/tiles/template2.jsp" name="base2">
     <put-attribute name="header2" value="/WEB-INF/tiles/header2.jsp"/>
     <put-attribute name="footer2" value="/WEB-INF/tiles/footer2.jsp"/>
-    <put-attribute name="stylesheet" value="/WEB-INF/tiles/stylesheet.jsp"/>
-    <put-attribute name="modal" value="/WEB-INF/tiles/modal.jsp"/>
-    <put-attribute name="javascript" value="/WEB-INF/tiles/javascript.jsp"/>
+    <put-attribute name="stylesheet3" value="/WEB-INF/tiles/stylesheet3.jsp"/>
+    <put-attribute name="javascript3" value="/WEB-INF/tiles/javascript3.jsp"/>
   </definition>
   
   <definition template="/WEB-INF/tiles/template3.jsp" name="base3">
@@ -31,16 +29,16 @@
   </definition>
   
   
-  
   <definition name="auth/*" extends="base2">
-    <put-attribute name="body" value="/WEB-INF/jsp/auth/{1}.jsp"/>
+    <put-attribute name="body2" value="/WEB-INF/jsp/auth/{1}.jsp"/>
   </definition>
+<!--   
   
   
   <definition name="join/*" extends="base2">
     <put-attribute name="body" value="/WEB-INF/jsp/join/{1}.jsp"/>
   </definition>
-  
+   -->
   <!-- 페이지 컨트롤러의 요청 핸들러가 리턴한 뷰 URL이 */* 형식일 때, 다음의 템플릿 설정을 사용하여 JSP를 실행한다. -->
   <definition name="*/*" extends="base3">
     <put-attribute name="body3" value="/WEB-INF/jsp/{1}/{2}.jsp"/>
