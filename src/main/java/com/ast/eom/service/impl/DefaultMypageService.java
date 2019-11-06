@@ -3,6 +3,8 @@ package com.ast.eom.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,15 +17,19 @@ public class DefaultMypageService implements MypageService {
   
   @Autowired
   private MypageDao mypageDao;
+  private HttpSession session;
   
-  @Override
-  public Member getTempMember(int no) throws Exception {
-    return mypageDao.findBy(no);
+  public DefaultMypageService(HttpSession session) {
+    this.session = session;
   }
-  
 
   @Override
   public Map<String, Object> getMemberInfoMapBy(Member member) throws Exception {
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    
+    String[] mypageEmail = loginUser.getEmail().split("@");
+    session.setAttribute("mypageEmail", mypageEmail);
+    
     Map<String, Object> memberInfoMap = new HashMap<>();
     
     int memberTypeNo = member.getMemberTypeNo();
@@ -37,6 +43,7 @@ public class DefaultMypageService implements MypageService {
       
     } else if (memberTypeNo == 3) {
       memberInfoMap.put("teacher", mypageDao.getTeacher(memberNo));
+      
     } else {
       throw new Exception("오류 발생!");
       

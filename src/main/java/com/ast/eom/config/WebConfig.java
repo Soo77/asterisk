@@ -14,14 +14,13 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.util.UrlPathHelper;
-
 import com.ast.eom.interceptor.AuthControllerCheckInterceptor;
 import com.ast.eom.interceptor.LoginCheckInterceptor;
 
 @ComponentScan("com.ast.eom")
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
-  
+
   // multipart/form-data를 처리할 때
   @Bean
   public MultipartResolver multipartResolver() {
@@ -35,28 +34,27 @@ public class WebConfig implements WebMvcConfigurer {
     mr.setMaxUploadSizePerFile(5000000);
     return mr;
   }
-  
+
   // 기본 ViewResolver 대체할 때
   @Bean
   public ViewResolver viewResolver() {
-    InternalResourceViewResolver vr = new InternalResourceViewResolver(
-        "/WEB-INF/jsp/", ".jsp");
+    InternalResourceViewResolver vr = new InternalResourceViewResolver("/WEB-INF/jsp/", ".jsp");
     vr.setOrder(2);
     return vr;
   }
-  
+
   @Bean
   public ViewResolver tilesViewResolver() {
     UrlBasedViewResolver vr = new UrlBasedViewResolver();
-    
+
     // Tiles 설정에 따라 템플릿을 실행하는 뷰 처리기 등록.
     // => TilesConfigurer 객체를 찾아 설정 정보를 얻는다.
     vr.setViewClass(TilesView.class);
-    
+
     vr.setOrder(1); // 기존 뷰리졸버 보다 Tiles를 먼저 적용하기
     return vr;
   }
-  
+
   // Tiles 설정 정보를 다루는 객체
   @Bean
   public TilesConfigurer tilesConfigurer() {
@@ -64,29 +62,28 @@ public class WebConfig implements WebMvcConfigurer {
     configurer.setDefinitions("/WEB-INF/defs/tiles.xml");
     return configurer;
   }
-  
+
   // @MatrixVariable 사용할 때
   @Override
   public void configurePathMatch(PathMatchConfigurer configurer) {
     UrlPathHelper helper = new UrlPathHelper();
     helper.setRemoveSemicolonContent(false);
-    
+
     configurer.setUrlPathHelper(helper);
   }
-  
+
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(new LoginCheckInterceptor())
-            .addPathPatterns("/**")
-            .excludePathPatterns("/auth/**")
-            .excludePathPatterns("/join/**");
 
-    registry.addInterceptor(new AuthControllerCheckInterceptor())
-            .addPathPatterns("/auth/**");
+//    registry.addInterceptor(new LoginCheckInterceptor()).addPathPatterns("/**")
+//        .excludePathPatterns("/auth/**").excludePathPatterns("/join/**");
+//
+//    registry.addInterceptor(new AuthControllerCheckInterceptor()).addPathPatterns("/auth/**");
+
+
     /*
-    registry.addInterceptor(new Controller04_1_Interceptor1());
-    registry.addInterceptor(new Controller04_1_Interceptor3())
-            .addPathPatterns("/c04_1/**");
-    */
+     * registry.addInterceptor(new Controller04_1_Interceptor1()); registry.addInterceptor(new
+     * Controller04_1_Interceptor3()) .addPathPatterns("/c04_1/**");
+     */
   }
 }

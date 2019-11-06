@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
 
 <head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
   <style>
     #mypage-form {
       padding: 0px 20px 0px 20px;
@@ -40,102 +44,89 @@
       text-align: right;
     }
   </style>
-  
 </head>
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 ml-auto mr-auto">
-        <div class="brand text-center">
-          <h1>Your title here</h1>
-          <h3 class="title text-center">Subtitle</h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="main main-raised">
-  <div class="container">
+<body>
+
+  <div class="contatiner">
     <div class="row-fluid">
       <div class="col">
         <form id="mypage-form">
-
-          <div class="form-group">
-            <label for="inputId">아이디</label>
-            <input type="text" class="form-control" id="inputId" value="${loginUser.id}" readonly>
+          <div class="form-group row">
+            <label for="inputId" class="col-sm-2 col-form-label">아이디</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputId" value="${loginUser.id}" readonly>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="inputPassword">비밀번호</label>
-            <input type="password" class="form-control" id="inputPassword">
+          <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword">
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="inputPasswordCheck">비밀번호확인</label>
-            <input type="password" class="form-control" id="inputPasswordCheck">
+          <div class="form-group row">
+            <label for="inputPasswordCheck" class="col-sm-2 col-form-label">비밀번호확인</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPasswordCheck">
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="inputEmail">이메일</label>
-            <div class="row">
-              <div class="col">
-                <input type="text" class="form-control" id="inputEmail" value="${email[0]}">
-              </div>
-              <div class="col">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">@</div>
-                  </div>
-                  <input type="text" class="form-control" id="inputEmail2" value="${email[1]}">
+
+
+          <div class="form-group row">
+            <label for="inputEmail" class="col-sm-2 col-form-label">이메일</label>
+            <div class="col-sm-5">
+              <input type="text" class="form-control mb-2" id="inputEmail" value="${email[0]}">
+            </div>
+            <div class="col-sm-5">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
                 </div>
+                <input type="text" class="form-control" id="inputEmail2" value="${email[1]}">
               </div>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="inputDateOfBirth">생년월일</label>
-            <input type="date" class="form-control" id="inputDateOfBirth" value='${loginUser.dateOfBirth}'>
+          <div class="form-group row">
+            <label for="inputDateOfBirth" class="col-sm-2 col-form-label">생년월일</label>
+            <div class="col-sm-10">
+              <input type="date" class="form-control" id="inputDateOfBirth" value='${loginUser.dateOfBirth}'>
+            </div>
           </div>
 
-          <div class="form-row">
-              <div class="col-sm-11">
-                <input type="text" class="form-control" placeholder="First name">
-              </div>
-              <div class="col-sm-1">
-                <button class="btn btn-outline-success" type="button" id="addressSearchButton">주소검색</button>
-              </div>
-            </div>
-
-          <div class="form-group">
-            <label for="inputAddress">주소</label>
-            <div class="row">
-              <div class="col">
-                <input type="text" id="inputAddress" class="form-control" readonly value="${loginUser.addressCity}">
-              </div>
-              <div class="col">
-                <button class="btn btn-outline-success" type="button" id="addressSearchButton">주소검색</button>
+          <div class="form-group row" style="margin-bottom: 0px;">
+            <label for="inputAddress" class="col-sm-2 col-form-label">주소</label>
+            <div class="col-sm-10">
+              <div class="input-group mb-2">
+                <input type="text" id="inputAddress" class="form-control" readonly aria-label="Recipient's username"
+                  aria-describedby="button-addon2" value="${loginUser.addressCity}">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-success" type="button" id="addressSearchButton">주소검색</button>
+                </div>
               </div>
             </div>
           </div>
 
           <div class="form-group row">
             <label for="inputAddress2" id="address2-label" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm">
+            <div class="col-sm-10">
               <input type="text" class="form-control" id="inputAddress2" value="${loginUser.addressSuburb}" readonly>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="inputTel" class="col-sm col-form-label">전화번호</label>
-            <div class="col-sm">
+            <label for="inputTel" class="col-sm-2 col-form-label">전화번호</label>
+            <div class="col-sm-10">
               <input type="text" class="form-control" id="inputTel" value="${loginUser.tel}">
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="inputBankName" class="col-sm col-form-label">은행명</label>
-            <div class="col-sm">
+            <label for="inputBankName" class="col-sm-2 col-form-label">은행명</label>
+            <div class="col-sm-10">
               <select id="inputBankName" class="form-control">
                 <option selected>은행선택</option>
                 <option>국민은행</option>
@@ -146,15 +137,15 @@
           </div>
 
           <div class="form-group row">
-            <label for="inputAccountNo" class="col-sm col-form-label">계좌번호</label>
-            <div class="col-sm">
+            <label for="inputAccountNo" class="col-sm-2 col-form-label">계좌번호</label>
+            <div class="col-sm-10">
               <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}">
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="inputHighSchool" class="col-sm col-form-label">고등학교</label>
-            <div class="col-sm">
+            <label for="inputHighSchool" class="col-sm-2 col-form-label">고등학교</label>
+            <div class="col-sm-10">
               <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
                 <c:if test="${school.schoolTypeNo eq 3}">
                   <input type="text" class="form-control" id="inputHighSchool" value="${school.schoolName}" readonly>
@@ -163,8 +154,8 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputUniversity" class="col-sm col-form-label">대학교</label>
-            <div class="col-sm">
+            <label for="inputUniversity" class="col-sm-2 col-form-label">대학교</label>
+            <div class="col-sm-10">
               <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
                 <c:if test="${school.schoolTypeNo eq 4}">
                   <input type="text" class="form-control" id="inputUniversity" value="${school.schoolName}" readonly>
@@ -310,29 +301,32 @@
       </form>
     </div>
   </div>
-</div>
 
-<!-- 
-<script>
-  window.onload = () => {
-    console.log('${memberInfoMap.teacher}');
-    console.log('${memberInfoMap.teacher.bankName}');
-  };
-</script>
- -->
+  <script>
+    window.onload = () => {
+      console.log('${memberInfoMap.teacher}');
+      console.log('${memberInfoMap.teacher.bankName}');
+    };
+  </script>
 
-<!-- 희망과목 추가 버튼 -->
-<script>
-  let subjectAddButton = document.getElementsByClassName('subjectAddButton');
-  subjectAddButton[0].addEventListener('click', () => {
-    let wantedSubjects = document.getElementsByClassName('wantedSubjects');
-    let wantedSubjectTemplate = wantedSubjects[0].cloneNode(true);
 
-    wantedSubjectTemplate.setAttribute('id', 'wantedTest');
-    // wantedSubectLabel.innerHTML = 'test';
-    wantedSubjects[0].parentNode.insertBefore(wantedSubjectTemplate, wantedSubjects[0].nextSibling);
+  <!-- 희망과목 추가 버튼 -->
+  <script>
+    let subjectAddButton = document.getElementsByClassName('subjectAddButton');
+    subjectAddButton[0].addEventListener('click', () => {
+      let wantedSubjects = document.getElementsByClassName('wantedSubjects');
+      let wantedSubjectTemplate = wantedSubjects[0].cloneNode(true);
 
-    let wantedSubectLabel = document.querySelector('#wantedTest > div:nth-child(1) > label');
-    wantedSubectLabel.innerHTML = '희망과목2';
-  });
-</script>
+      wantedSubjectTemplate.setAttribute('id', 'wantedTest');
+      // wantedSubectLabel.innerHTML = 'test';
+      wantedSubjects[0].parentNode.insertBefore(wantedSubjectTemplate, wantedSubjects[0].nextSibling);
+
+      let wantedSubectLabel = document.querySelector('#wantedTest > div:nth-child(1) > label');
+      wantedSubectLabel.innerHTML = '희망과목2';
+    });
+  </script>
+
+
+</body>
+
+</html>

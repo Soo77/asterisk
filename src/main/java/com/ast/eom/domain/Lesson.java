@@ -9,8 +9,8 @@ public class Lesson {
   private int lessonNo;
   private int teacherNo;
   private int studentNo;
-  private int subjectNo;
   private String lessonDescription;
+  private int subjectNo;
   private int lessonFee;
   private int lessonState;
   private boolean studentLessonStop;
@@ -35,21 +35,43 @@ public class Lesson {
   private Date refundDate;
   private int refundAmount;
   
+  private CurriculumLessonContents clc;
+  
+  private Member member;
+  private List<CurriculumLessonContents> clcs;
+  private Curriculum curriculum;
+  private Subject subject;
+  private String subjectName;
+  
+  private List<Member> members;
   private List<Curriculum> curriculums;
   private List<DayLesson> dayLessons;
   
   @Override
   public String toString() {
-    return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo + ", subjectNo="
-        + subjectNo + ", lessonDescription=" + lessonDescription + ", lessonFee=" + lessonFee + ", lessonState="
-        + lessonState + ", studentLessonStop=" + studentLessonStop + ", teacherLessonStop=" + teacherLessonStop
-        + ", startDate=" + startDate + ", endDate=" + endDate + ", teacherReview=" + teacherReview + ", studentReview="
-        + studentReview + ", teacherEvaluation=" + teacherEvaluation + ", paymentMethod=" + paymentMethod + ", payDay="
-        + payDay + ", calculationDay=" + calculationDay + ", calculationState=" + calculationState
-        + ", studentStopReason=" + studentStopReason + ", teacherStopReason=" + teacherStopReason + ", refundState="
-        + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount + ", curriculums=" + curriculums
-        + ", dayLessons=" + dayLessons + "]";
+    return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo
+        + ", lessonDescription=" + lessonDescription + ", subjectNo=" + subjectNo + ", lessonFee="
+        + lessonFee + ", lessonState=" + lessonState + ", studentLessonStop=" + studentLessonStop
+        + ", teacherLessonStop=" + teacherLessonStop + ", startDate=" + startDate + ", endDate="
+        + endDate + ", teacherReview=" + teacherReview + ", studentReview=" + studentReview
+        + ", teacherEvaluation=" + teacherEvaluation + ", paymentMethod=" + paymentMethod
+        + ", payDay=" + payDay + ", calculationDay=" + calculationDay + ", calculationState="
+        + calculationState + ", studentStopReason=" + studentStopReason + ", teacherStopReason="
+        + teacherStopReason + ", refundState=" + refundState + ", refundDate=" + refundDate
+        + ", refundAmount=" + refundAmount + ", clc=" + clc + ", member=" + member + ", clcs="
+        + clcs + ", curriculum=" + curriculum + ", subject=" + subject + ", subjectName="
+        + subjectName + ", members=" + members + ", curriculums=" + curriculums + ", dayLessons="
+        + dayLessons + "]";
   }
+
+  public CurriculumLessonContents getClc() {
+    return clc;
+  }
+
+  public void setClc(CurriculumLessonContents clc) {
+    this.clc = clc;
+  }
+
   public int getLessonNo() {
     return lessonNo;
   }
@@ -200,4 +222,43 @@ public class Lesson {
   public void setDayLessons(List<DayLesson> dayLessons) {
     this.dayLessons = dayLessons;
   }
+  public List<Member> getMembers() {
+    return members;
+  }
+  public void setMembers(List<Member> members) {
+    this.members = members;
+  }
+  public Member getMember() {
+    return member;
+  }
+  public void setMember(Member member) {
+    this.member = member;
+  }
+  public String getSubjectName() {
+    return subjectName;
+  }
+  public void setSubjectName(String subjectName) {
+    this.subjectName = subjectName;
+  }
+  public List<CurriculumLessonContents> getClcs() {
+    return clcs;
+  }
+  public void setClcs(List<CurriculumLessonContents> clcs) {
+    this.clcs = clcs;
+  }
+  public Subject getSubject() {
+    return subject;
+  }
+  public void setSubject(Subject subject) {
+    this.subject = subject;
+  }
+  public Curriculum getCurriculum() {
+    return curriculum;
+  }
+  public void setCurriculum(Curriculum curriculum) {
+    this.curriculum = curriculum;
+  }
+  
+  
+  
 }

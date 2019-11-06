@@ -21,13 +21,13 @@ public class MypageController {
   
   @GetMapping("detail")
   public void detail(HttpSession session) throws Exception {
-    
     Member loginUser = (Member) session.getAttribute("loginUser");
     Map<String, Object> memberInfoMap = mypageService.getMemberInfoMapBy(loginUser);
     
-    session.setAttribute("memberInfoMap", memberInfoMap);
+    for (String key : memberInfoMap.keySet()) {
+      System.out.println(memberInfoMap.get(key));
+    }
     
-    String[] email = loginUser.getEmail().split("@");
-    session.setAttribute("email", email);
+    session.setAttribute("memberInfoMap", memberInfoMap);
   }
 }
