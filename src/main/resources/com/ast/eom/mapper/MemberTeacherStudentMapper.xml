@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.MemberTeacherStudentDao">
+
+	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+	<resultMap type="MemberTeacherStudent" id="MemberTeacherStudentMap">
+		<id column="mem_no" property="memberNo" />
+		<result column="reg_date" property="registeredDate" />
+		<result column="mem_type_no" property="memberTypeNo" />
+		<result column="gender" property="gender" />
+		<result column="dob" property="dateOfBirth" />
+		<result column="name" property="name" />
+		<result column="addr_city" property="addressCity" />
+		<result column="addr_sub" property="addressSuburb" />
+		<result column="profile_photo" property="profilePhoto"/>
+		<result column="tch_photo" property="teacherPhoto"/>
+		<result column="sch_type" property="schoolType"/>
+		<collection resultMap="SchoolMap" property="schools"/>
+		<collection resultMap="SubjectMap" property="subjects"/>
+		<collection resultMap="SubjectMap" property="teachers"/>
+		<collection resultMap="SubjectMap" property="lessonSubjects"/>
+	</resultMap>
+	
+	<resultMap type="School" id="SchoolMap">
+		<id column="sch_no" property="schoolNo"/>
+		<result column="tch_no" property="teacherNo"/>
+		<result column="sch_type_no" property="schoolTypeNo"/>
+		<result column="sch_name" property="schoolName"/>
+		<result column="certi" property="certificate"/>
+		<result column="grad" property="isGraduated"/>
+		<result column="mdt" property="modifiedDate"/>
+		<result column="major" property="major"/>
+		<result column="confirm" property="isConfirmed"/>
+		<result column="grad_date" property="graduatedDate"/>
+	</resultMap>
+	
+	<resultMap type="Subject" id="SubjectMap">
+		<id column="sub_no" property="subjectNo" />
+		<result column="sch_type_no" property="schoolTypeNo" />
+		<result column="sub_name" property="subjectName" />
+	</resultMap>
+	
+	<resultMap type="Teacher" id="TeacherMap">
+    <id column="tch_no" property="teacherNo"/>
+    <result column="acc_no" property="accountNo"/>
+    <result column="bank_name" property="bankName"/>
+    <result column="lesson_certi" property="lessonCertificate"/>
+    <result column="tch_intro" property="teacherIntro"/>
+    <result column="appr_stat" property="approvementState"/>
+    <result column="vid_addr" property="videoAddress"/>
+  </resultMap>
+  
+  <resultMap type="LessonSubject" id="LessonSubjectMap">
+    <id column="lesson_sub_no" property="lessonSubjectNo"/>
+    <result column="tch_no" property="teacherNo"/>
+    <result column="sub_no" property="subjectNo"/>
+    <result column="sub_conts" property="subjectContents"/>
+    <result column="rdt" property="registeredDate"/>
+    <result column="wanted_fee" property="wantedFee"/>
+  </resultMap>
+
+	<select id="listTeacher" resultMap="MemberTeacherStudentMap">
+			select
+	 		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, tp.tch_photo, s.sch_name, s.sch_type_no
+			from
+	  		member m
+			left outer join teacher t on m.mem_no = t.tch_no
+			left outer join teacher_photo tp on t.tch_no = tp.tch_no
+			left outer join school s on t.tch_no = s.tch_no
+			where s.sch_type_no = 4 and m.mem_type_no = #{m.mem_type_no}
+     
+   </select>
+   
+   <select id="listTeacher2" resultMap="MemberTeacherStudentMap">
+			select
+			t.tch_no, ls.sub_conts, sub.sub_name, st.sch_type
+			from
+	  		lesson_subject ls
+	  	left outer join teacher t on t.tch_no = ls.tch_no
+			left outer join subject sub on ls.sub_no = sub.sch_type_no
+			left outer join school_type st on sub.sch_type_no = st.sch_type_no
+   </select>
+   
+   <select id="listStudent" resultMap="MemberTeacherStudentMap">
+	    select
+	    m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, sub.sub_name, st.sch_type
+	    from
+	      member m
+	    left outer join student stu on m.mem_no= stu.std_no
+	    left outer join wanted_lesson wl on stu.std_no = wl.std_no
+	    left outer join subject sub on wl.sub_no = sub.sub_no
+	    left outer join school_type st on sub.sch_type_no = st.sch_type_no
+	    where m.mem_type_no = #{m.mem_type_no}
+   </select>
+   
+    <select id="detailTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
+			select
+			m.mem_no, m.name, m.gender, m.dob, m.profile_photo, m.addr_city, m.addr_sub, m.reg_date, 
+			s.sch_name, s.major, s.confirm, t.tch_intro, t.vid_addr, ls.wanted_fee,
+			sub.sub_name, st.sch_type 
+			 from
+			   member m
+			left outer join teacher t on m.mem_no = t.tch_no
+	    left outer join school s on t.tch_no = s.tch_no
+	    left outer join lesson_subject ls on t.tch_no = ls.tch_no
+	    left outer join subject sub on ls.sub_no = sub.sub_no
+	    left outer join school_type st on sub.sch_type_no = st.sch_type_no
+	    where s.sch_type_no= #{sch_type_no}
+    </select>
+	
+	
+	
+	
+	
+
+</mapper>
