@@ -13,19 +13,6 @@ row {
   margin-bottom: 15px;
 }
 
-.btn-secondary:not (:disabled ):not (.disabled ):active, .btn-secondary:not
-	 (:disabled ):not (.disabled ).active, .show>.btn-secondary.dropdown-toggle
-  {
-  color: black;
-  background-color: #ffffff;
-  border-color: #00afa0;
-}
-
-.btn-outline-info {
-  color: black;
-  background-color: : #ffffff;
-  border-color: #00afa0;
-}
 
 .sidemenubar {
   font-size: 16px;
@@ -331,10 +318,19 @@ row {
           });
     </script>
     
-    
-
-
-
+<script>
+  var test = {
+    boardNo: 1
+  };
+  $.ajax({
+    url: '/member/ohora',
+    method: 'get',
+    data: "boardNo="+1,
+    success(ohora) {
+      console.log(ohora.name);
+    }
+  });
+</script>
 </body>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 </html>
