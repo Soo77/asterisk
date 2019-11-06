@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.ast.eom.dao.BoardDao;
 import com.ast.eom.dao.BoardFileDao;
+import com.ast.eom.dao.CommentDao;
 import com.ast.eom.domain.Board;
 import com.ast.eom.domain.BoardFile;
 import com.ast.eom.service.BoardService;
@@ -16,6 +17,7 @@ public class DefaultBoardService implements BoardService {
 
   @Resource private BoardDao boardDao;
   @Resource private BoardFileDao boardFileDao;
+  @Resource private CommentDao commentDao;
 
   @Override
   public List<Board> list(int boardTypeNo, String searchType, String keyword) throws Exception {
@@ -71,6 +73,7 @@ public class DefaultBoardService implements BoardService {
     if (boardDao.findBy(no) == null)
       throw new Exception("해당 데이터가 없습니다.");
     boardFileDao.deleteAll(no);
+    commentDao.deleteAll(no);
     boardDao.delete(no);
   }
 }
