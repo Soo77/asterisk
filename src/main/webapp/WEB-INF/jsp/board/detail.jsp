@@ -1,357 +1,331 @@
-<!--
- =========================================================
- * Material Kit - v2.0.6
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/material-kit
- * Copyright 2019 Creative Tim (http://www.creative-tim.com)
-   Licensed under MIT (https://github.com/creativetimofficial/material-kit/blob/master/LICENSE.md)
-
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
-  <title>Hello, world!</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- Material Kit CSS -->
-  <link href="/assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
+  <link rel='stylesheet' href='/css/myboard.css'>
   <style>
-#insertBoardPhotos {
-  display: none;
-}
-
-#btnSave {
-  display: none;
-}
-
-#btnCancle {
-  display: none;  
-}
-
-.photo1 {
-  height: 120px;
-}
-
-.photo2 {
-  height: 100px;
-  margin: 2px;
-}
-
-.filebox label {
-  display: inline-block;
-  padding: .5em .75em;
-  color: #ffffff;
-  font-size: inherit;
-  line-height: normal;
-  vertical-align: middle;
-  background-color: #00AFA0;
-  cursor: pointer;
-  border: 1px solid #ebebeb;
-  border-bottom-color: #e2e2e2;
-  border-radius: .25em;
-}
-
-.filebox input[type="file"] { /* 파일 필드 숨기기 */
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-/* named upload */
-.filebox .upload-name {
-  display: inline-block;
-  padding: .5em .75em; /* label의 패딩값과 일치 */
-  font-size: inherit;
-  font-family: inherit;
-  line-height: normal;
-  vertical-align: middle;
-  background-color: #f5f5f5;
-  border: 1px solid #ebebeb;
-  border-bottom-color: #e2e2e2;
-  border-radius: .25em;
-  -webkit-appearance: none; /* 네이티브 외형 감추기 */
-  -moz-appearance: none;
-  appearance: none;
-}
-
-
-.form-group .col-1{
-  padding-right: 5px;
-}
-
-.form-group .col{
-  padding-left: 5px;
-}
-.form-group .col-3{
-  padding-left: 5px;
-}
-
-.form-group .col-1 .form-control {
-  background-color: #C98AFF;
-  color: #ffffff;
-  border-radius: 5px / 5px;
-  text-align: center;
-}
-
-.form-group .col-3 .form-control {
-  padding : 0 0 0 10px;
-}
-
-.form-group .col-12 .form-control {
-  padding : 0 10px 0 10px;
-}
-
-.wrap {
-    width: 100%;
-    position: relative;
-    display: inline-block;
-}
-.wrap textarea {
-    resize: none;
-}
-.wrap span {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-}
-
-#counter {
-  background: #E3C4FF;
-  border-radius: 0.5em;
-  padding: 0 .5em 0 .5em;
-  font-size: 0.75em;
-}
-
-/* div{
-border: 1px solid;
-} */
-</style>
+    #insertBoardPhotos {
+      display: none;
+    }
+    
+    #btnSave {
+      display: none;
+    }
+    
+    #btnCancle {
+      display: none;
+    }
+    
+    .photo1 {
+      height: 120px;
+    }
+    
+    .photo2 {
+      height: 100px;
+      margin: 2px;
+    }
+    
+    .filebox label {
+      display: inline-block;
+      padding: .5em .75em;
+      color: #ffffff;
+      font-size: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #00AFA0;
+      cursor: pointer;
+      border: 1px solid #ebebeb;
+      border-bottom-color: #e2e2e2;
+      border-radius: .25em;
+    }
+    
+    .filebox input[type="file"] { /* 파일 필드 숨기기 */
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+    
+    /* named upload */
+    .filebox .upload-name {
+      display: inline-block;
+      padding: .5em .75em; /* label의 패딩값과 일치 */
+      font-size: inherit;
+      font-family: inherit;
+      line-height: normal;
+      vertical-align: middle;
+      background-color: #f5f5f5;
+      border: 1px solid #ebebeb;
+      border-bottom-color: #e2e2e2;
+      border-radius: .25em;
+      -webkit-appearance: none; /* 네이티브 외형 감추기 */
+      -moz-appearance: none;
+      appearance: none;
+    }
+    
+    .col-1 {
+      padding-right: 5px;
+    }
+    
+    .col {
+      padding-left: 5px;
+    }
+    
+    .col-3 {
+      padding-left: 5px;
+    }
+    
+    .col-1 .form-control {
+      background-color: #C98AFF;
+      color: #ffffff;
+      border-radius: 5px/5px;
+      text-align: center;
+    }
+    
+    .col .form-control {
+      padding: 10px;
+    }
+    
+    .col-3 .form-control {
+      padding: 10px;
+    }
+    
+    .col-12 .form-control {
+      padding: 10px;
+    }
+    
+    .col-10 .form-control {
+      padding: 10px;
+    }
+    
+    .comment .col-1 {
+      padding: 5px;
+    }
+    
+    .comment .col-11 {
+      padding: 5px;
+    }
+    
+    #wrap {
+      width: 100%;
+      position: relative;
+      display: inline-block;
+    }
+    
+    #wrap textarea {
+      width: 100%;
+      resize: none;
+    }
+    
+    #wrap span {
+      position: absolute;
+      bottom: 20px;
+      right: 10px;
+    }
+    
+    #counter {
+      background: #E3C4FF;
+      border-radius: 0.5em;
+      padding: 0 .5em 0 .5em;
+      font-size: 0.75em;
+    }
+    
+    #commentAdd {
+      float: right;
+    }
+    
+    /* div{
+    border: 1px solid;
+    } */
+  </style>
 </head>
 
-<body>
-  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
-    <div class="container">
-      <div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/material-kit/index.html">
-          Material Kit </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="material-icons">apps</i> Template
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <div class="brand text-center">
-            <h1>Your title here</h1>
-            <h3 class="title text-center">Subtitle</h3>
-          </div>
+<div class="page-header header-filter" data-parallax="true"
+  style="background-image: url('assets/img/bg3.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="brand text-center">
+          <h1>Your title here</h1>
+          <h3 class="title text-center">Subtitle</h3>
         </div>
       </div>
     </div>
   </div>
-  <div class="main main-raised">
-    <div class="container">
-      <!-- <div class="section text-center"> -->
-        <div class="title">
-    <c:if test="${board.boardTypeNo == 1}">
-      <h1 style="display: inline">질문게시판 ㅣ</h1>
-      <h2 style="display: inline">공부상담</h2>
-    </c:if>
-    <c:if test="${board.boardTypeNo == 2}">
-      <h1 style="display: inline">질문게시판 ㅣ</h1>
-      <h2 style="display: inline">입시상담</h2>
-    </c:if>
-    <c:if test="${board.boardTypeNo == 3}">
-      <h1 style="display: inline">질문게시판 ㅣ</h1>
-      <h2 style="display: inline">문제풀이</h2>
-    </c:if>
-    <c:if test="${board.boardTypeNo == 4}">
-      <h1 style="display: inline">공지사항</h1>
-    </c:if>
-  </div>
-
-  <hr>
-
-  <form id="form1" name="frm1" action='update' method='post'
-    enctype='multipart/form-data'>
-    <input type="hidden" name="boardTypeNo" value="${board.boardTypeNo}">
-    <input type="hidden" name="boardNo" value="${board.boardNo}">
-    <br>
-
-    <div class="form-group row">
-      <div class="col-1">
-        <input type="button" class="form-control disabled" value="제목">
-      </div>
-      <div class="col">
-        <input type="text" readonly class="form-control" id="inputTitle"
-          name="title" value="${board.title}">
-      </div>
+</div>
+<div class="main main-raised">
+  <div class="container">
+    <!-- <div class="section text-center"> -->
+    <div class="title">
+      <c:if test="${board.boardTypeNo == 1}">
+        <h1 style="display: inline">질문게시판 ㅣ</h1>
+        <h2 style="display: inline">공부상담</h2>
+      </c:if>
+      <c:if test="${board.boardTypeNo == 2}">
+        <h1 style="display: inline">질문게시판 ㅣ</h1>
+        <h2 style="display: inline">입시상담</h2>
+      </c:if>
+      <c:if test="${board.boardTypeNo == 3}">
+        <h1 style="display: inline">질문게시판 ㅣ</h1>
+        <h2 style="display: inline">문제풀이</h2>
+      </c:if>
+      <c:if test="${board.boardTypeNo == 4}">
+        <h1 style="display: inline">공지사항</h1>
+      </c:if>
     </div>
 
     <hr>
 
-    <div class="form-group row">
-      <div class="col-1">
-        <input type="button" class="form-control disabled" value="작성자">
-      </div>
-      <div class="col-3">
-        <input type="text" readonly class="form-control" name="id"
-          value="${board.memberId}">
-      </div>
-
-      <div class="col-1">
-        <input type="button" class="form-control disabled" value="작성일">
-      </div>
-      <div class="col-3">
-        <input type="text" readonly class="form-control"
-          name="createdDate" value="${board.createdDate}">
-      </div>
-
-      <div class="col-1">
-        <input type="button" class="form-control disabled" value="조회수">
-      </div>
-      <div class="col-3">
-        <input type="text" readonly class="form-control"
-          name="viewCount" value="${board.viewCount}">
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="form-group row">
-        <div class="col-12">
-          <textarea id="inputContents" class="form-control"
-            name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
-        </div>
-      </div>
-
-      <div id="boardFiles">
-        <p>
-          <c:forEach items="${board.files}" var="file">
-            <img src='/upload/board/${file.fileName}' class='photo2'
-              onerror="this.style.display='none'" alt=''>
-          </c:forEach>
-        </p>
-      </div>
-    </div>
-
-    <hr>
-
-    <div id="insertBoardPhotos">
-      <div class="row">
-        <div class="col">
-          <div class="filebox">
-            <input class="upload-name" disabled="disabled"> <label
-              for="gallery-photo-add">파일선택</label> <input type="file"
-              multiple id="gallery-photo-add" name="fileName">
-          </div>
-        </div>
-      </div>
+    <form id="form1" name="frm1" action='update' method='post'
+      enctype='multipart/form-data'>
+      <input type="hidden" name="boardTypeNo"
+        value="${board.boardTypeNo}"> <input type="hidden"
+        name="boardNo" value="${board.boardNo}"> <br>
 
       <div class="row">
+        <div class="col-1">
+          <input type="button" class="form-control disabled" value="제목">
+        </div>
         <div class="col">
-          <div class="gallery"></div>
+          <input type="text" readonly class="form-control"
+            id="inputTitle" name="title" value="${board.title}">
         </div>
       </div>
 
       <hr>
-    </div>
 
-  </form>
+      <div class="row">
+        <div class="col-1">
+          <input type="button" class="form-control disabled" value="작성자">
+        </div>
+        <div class="col-3">
+          <input type="text" readonly class="form-control" name="id"
+            value="${board.memberId}">
+        </div>
 
-  <c:if test="${board.boardTypeNo != 4}">
-    <div class="container">
-      <label for="contents">댓글2</label>
-      <form name="commentInsertForm">
+        <div class="col-1">
+          <input type="button" class="form-control disabled" value="작성일">
+        </div>
+        <div class="col-3">
+          <input type="text" readonly class="form-control"
+            name="createdDate" value="${board.createdDate}">
+        </div>
+
+        <div class="col-1">
+          <input type="button" class="form-control disabled" value="조회수">
+        </div>
+        <div class="col-3">
+          <input type="text" readonly class="form-control"
+            name="viewCount" value="${board.viewCount}">
+        </div>
+      </div>
+      
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+          <textarea id="inputContents" class="form-control"
+            name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
+        </div>  
+      </div>
+
+        <div id="boardFiles">
+          <p>
+            <c:forEach items="${board.files}" var="file">
+              <img src='/upload/board/${file.fileName}' class='photo2'
+                onerror="this.style.display='none'" alt=''>
+            </c:forEach>
+          </p>
+        </div>
+
+      <hr>
+
+      <div id="insertBoardPhotos">
+        <div class="row">
+          <div class="col">
+            <div class="filebox">
+              <input class="upload-name" disabled="disabled"> <label
+                for="gallery-photo-add">파일선택</label> <input type="file"
+                multiple id="gallery-photo-add" name="fileName">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="gallery"></div>
+          </div>
+        </div>
+
+        <hr>
+      </div>
+
+    </form>
+
+    <c:if test="${board.boardTypeNo != 4}">
+      <div class="container">
+        <label for="commentContents">댓글</label>
+        <form class="comment" name="commentInsertForm">
           <input type="hidden" name="boardNo" value="${board.boardNo}" />
           <div class="row">
             <div class="col-1">
-              <img src="/upload/join/${loginUser.profilePhoto}" onError="javascript:src='/upload/join/default.png'" alt="" class="img-raised rounded-circle img-fluid">
+              <img src="/upload/join/${loginUser.profilePhoto}"
+                onError="javascript:src='/upload/join/default.png'"
+                alt="" class="img-raised rounded-circle img-fluid">
             </div>
-            <div class="col-10">
-              <div class="wrap">
-                <textarea class="form-control" id="commentContents"
-                name="contents" rows="3" maxlength="300" placeholder="내용을 입력하세요."></textarea>
+            <div class="col-11" id="wrap">
+                <textarea class="comment-form-control" id="commentContents"
+                  name="commentContents" rows="5" maxlength="300"
+                  placeholder="내용을 입력하세요."></textarea>
                 <span id="counter">0/300</span>
-              </div>
-            </div>
-            <div class="col-1">
-              <button class="btn btn-primary btn-sm" type="button"
-                name="commentInsertBtn" style="float: right;">등록</button>
             </div>
           </div>
-      </form>
-    </div>
-    <br>
+          <div class="row" id="commentAdd">
+            <button class="btn btn-primary btn-sm" type="button"
+              name="commentInsertBtn">등록</button>
+          </div>
+        </form>
+      </div>
+      <br>
 
-    <div class="container">
-      <div class="commentList"></div>
-    </div>
-    <hr>
-  </c:if>
+      <div class="container">
+        <div class="commentList"></div>
+      </div>
+      <hr>
+    </c:if>
 
-  <div class="form-group row">
-    <div class="col">
-      <button id="btnList" type="button" class="btn"
-        onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
-      <c:if
-        test="${board.memberNo == loginUser.memberNo or loginUser.memberTypeNo == 4}">
-        <button id="btnDelete" type="button"
-          class="btn btn-danger my-view-group" style="float: right;">삭제</button>
-      </c:if>
-      <c:if test="${board.memberNo == loginUser.memberNo}">
-        <button id="btnUpdate" type="button" class="btn btn-primary"
-          style="float: right;">수정</button>
-        <button id="btnCancle" type="button"
-          class="btn btn-danger my-view-group" style="float: right;">취소</button>
-        <button id="btnSave" type="button" class="btn btn-primary"
-          style="float: right;">등록</button>
-      </c:if>
-    </div>
-  </div>
-
-  <br>
+    <div class="form-group row">
+      <div class="col">
+        <button id="btnList" type="button" class="btn"
+          onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
+        <c:if
+          test="${board.memberNo == loginUser.memberNo or loginUser.memberTypeNo == 4}">
+          <button id="btnDelete" type="button"
+            class="btn btn-danger my-view-group" style="float: right;">삭제</button>
+        </c:if>
+        <c:if test="${board.memberNo == loginUser.memberNo}">
+          <button id="btnUpdate" type="button" class="btn btn-primary"
+            style="float: right;">수정</button>
+          <button id="btnCancle" type="button"
+            class="btn btn-danger my-view-group" style="float: right;">취소</button>
+          <button id="btnSave" type="button" class="btn btn-primary"
+            style="float: right;">등록</button>
+        </c:if>
       </div>
     </div>
-  <!-- </div> -->
-  
-  <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script>
+
+    <br>
+  </div>
+</div>
+
+<!-- <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script> -->
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
+<script>
   		// button event, sweetalert
   		
       var UpdateButton = document.querySelector('#btnUpdate');
@@ -434,7 +408,7 @@ border: 1px solid;
       });
   </script>
 
-  <script>
+<script>
       // file upload
       
       $(function() {
@@ -463,7 +437,7 @@ border: 1px solid;
       
   </script>
 
-  <script>
+<script>
       // comment
       
       var boardNo = '${board.boardNo}'; //게시글 번호
@@ -483,9 +457,9 @@ border: 1px solid;
       // 댓글 글자수 제한
       $(function() {
             $('#commentContents').keyup(function (e){
-                var content = $(this).val();
-                $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
-                $('#counter').html(content.length + '/300');
+                var commentContents = $(this).val();
+                $(this).height(((commentContents.split('\n').length + 1) * 1.5) + 'em');
+                $('#counter').html(commentContents.length + '/300');
             });
             $('#commentContents').keyup();
       });
@@ -545,9 +519,14 @@ border: 1px solid;
                             
                             
                         a += '<div class="row"> <div class="col-1">'
-                        a += '<img src="/upload/join/' + ${loginUser.profilePhoto} +'"'
-                        a += 'onError="javascript:src=' + "'" + '/upload/join/default.png' + "'"
-                        a += 'alt="" class="img-raised rounded-circle img-fluid">'
+                        if (value.profilePhoto == null) {
+                          a += '<img src="/upload/join/default.png"'
+                          a += ' alt="" class="img-raised rounded-circle img-fluid">'
+                        } else {
+                        	a += '<img src="/upload/join/' + value.profilePhoto +'"'
+                          a += 'onError="javascript:src=' + "'" + '/upload/join/default.png' + "'"
+                          a += 'alt="" class="img-raised rounded-circle img-fluid">'
+                        }
                         a += '</div>'
                         a += '<div class="col-1">'
                         a += '<div class="commentInfo'+value.commentNo+'">'
@@ -561,14 +540,26 @@ border: 1px solid;
                           a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
                               + value.commentNo
                               + ',\''
-                              + value.contents
+                              + value.commentContents
                               + '\');"> 수정 </button>'
                         }
                         
                         a += '</div>';
-                        a += '<div class="commentContent'+value.commentNo+'" style="word-break:break-all;">'
-                            + value.contents;
+                        a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
+                            + value.commentContents;
                         a += '</div>' + value.createdDate + '</div>';
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+
                       });
 
                 $(".commentList").html(a);
@@ -585,7 +576,7 @@ border: 1px solid;
           success : function(data) {
             if (data == 1) {
               commentList(); //댓글 작성 후 댓글 목록 reload
-              $('[name=contents]').val('');
+              $('[name=commentContents]').val('');
             }
           }
         });
@@ -593,29 +584,29 @@ border: 1px solid;
       
 
       //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
-      function commentUpdate(commentNo, contents) {
+      function commentUpdate(commentNo, commentContents) {
         var a = '';
 
         a += '<div class="input-group">';
-        a += '<input type="text" class="form-control" name="contents_'+commentNo+'" value="'+contents+'"/>';
+        a += '<input type="text" class="form-control" name="commentContents_'+commentNo+'" value="'+commentContents+'"/>';
         a += '<span class="input-group-btn"><button class="btn btn-outline-success btn-sm" type="button" onclick="commentUpdateProc('
             + commentNo + ');">수정</button> </span>';
         a += '</div>';
 
-        $('.commentContent' + commentNo).html(a);
+        $('.commentContents' + commentNo).html(a);
 
       }
 
       //댓글 수정
       function commentUpdateProc(commentNo) {
-        var updateContent = $('[name=contents_' + commentNo + ']')
+        var updateContent = $('[name=commentContents_' + commentNo + ']')
             .val();
 
         $.ajax({
           url : 'comment/update',
           type : 'post',
           data : {
-            'contents' : updateContent,
+            'commentContents' : updateContent,
             'commentNo' : commentNo
           },
           success : function(data) {
@@ -641,6 +632,3 @@ border: 1px solid;
         commentList(); //페이지 로딩시 댓글 목록 출력 
       });
     </script>
-</body>
-
-</html>

@@ -8,7 +8,7 @@
     <id column="cmt_no" property="commentNo" />
     <result column="board_no" property="boardNo" />
     <result column="mem_no" property="memberNo" />
-    <result column="conts" property="contents" />
+    <result column="conts" property="commentContents" />
     <result column="cdt" property="createdDate" />
     <result column="id" property="memberId" />
     <result column="commentCnt" property="commentCnt" />
@@ -25,12 +25,12 @@
   <insert id="insert" parameterType="Comment"
    useGeneratedKeys="true" keyColumn="cmt_no" keyProperty="commentNo">
    insert into comment(board_no, mem_no, conts, cdt)
-   values(#{boardNo}, #{memberNo}, #{contents}, now())
+   values(#{boardNo}, #{memberNo}, #{commentContents}, now())
   </insert>
 
   <update id="update" parameterType="Comment">
     update comment set
-    conts=#{contents}
+    conts=#{commentContents}
     where cmt_no=#{commentNo}
   </update>
   
