@@ -16,7 +16,7 @@
 }
 
 #btnCancle {
-  display: none;
+  display: none;  
 }
 
 .photo1 {
@@ -27,6 +27,61 @@
   height: 100px;
   margin: 2px;
 }
+
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #ffffff;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #00AFA0;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* named upload */
+.filebox .upload-name {
+  display: inline-block;
+  padding: .5em .75em; /* label의 패딩값과 일치 */
+  font-size: inherit;
+  font-family: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.content {
+  border: solid 1px #00AFA0;
+  padding: 10px 10px 10px 10px;
+}
+
+.col-1 .form-control {
+  background-color: #00AFA0;
+  color: #ffffff;
+}
+
+
+
+
 
 /* div{
 border: 1px solid;
@@ -55,53 +110,97 @@ border: 1px solid;
 
   <hr>
 
-    <form id="form1" action='update' method='post' enctype='multipart/form-data'>
-      <input type="hidden" name="boardTypeNo" value="${board.boardTypeNo}">
-      <input type="hidden" name="boardNo" value="${board.boardNo}"> <br>
-      
+  <form id="form1" name="frm1" action='update' method='post'
+    enctype='multipart/form-data'>
+    <input type="hidden" name="boardTypeNo" value="${board.boardTypeNo}">
+    <input type="hidden" name="boardNo" value="${board.boardNo}">
+    <br>
+
+    <div class="form-group row">
+      <div class="col-1">
+        <input type="text" readonly class="form-control" value="제목"
+          style="width: 80px">
+      </div>
+      <div class="col">
+        <input type="text" readonly class="form-control" id="inputTitle"
+          name="title" value="${board.title}">
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-group row">
+      <div class="col-1">
+        <input type="text" readonly class="form-control" value="작성자"
+          style="width: 80px">
+      </div>
+      <div class="col-3">
+        <input type="text" readonly class="form-control" name="id"
+          value="${board.memberId}">
+      </div>
+
+      <div class="col-1">
+        <input type="text" readonly class="form-control" value="작성일"
+          style="width: 80px">
+      </div>
+      <div class="col-3">
+        <input type="text" readonly class="form-control"
+          name="createdDate" value="${board.createdDate}">
+      </div>
+
+      <div class="col-1">
+        <input type="text" readonly class="form-control" value="조회"
+          style="width: 80px">
+      </div>
+      <div class="col-3">
+        <input type="text" readonly class="form-control"
+          name="viewCount" value="${board.viewCount}">
+      </div>
+    </div>
+
+    <div class="content">
       <div class="form-group row">
-        <label>제목</label>
         <div class="col">
-          <input type="text" readonly class="form-control" id="inputTitle" name="title" value="${board.title}">
+          <textarea id="inputContents" class="form-control"
+            name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
         </div>
+      </div>
+
+      <hr>
+
+      <div id="boardFiles">
+        <p>
+          <c:forEach items="${board.files}" var="file">
+            <img src='/upload/board/${file.fileName}' class='photo2'
+              onerror="this.style.display='none'" alt=''>
+          </c:forEach>
+        </p>
+      </div>
       </div>
       
       <hr>
-      
-      <div class="form-group row">
-        <label>작성자</label>
-        <div class="col">
-          <input type="text" readonly class="form-control" name="name" value="${board.memberName}">
-        </div>
-        
-        <label>작성일</label>
-        <div class="col">
-          <input type="text" readonly class="form-control" name="createdDate" value="${board.createdDate}">
-        </div>
-        
-        <label>조회수</label>
-        <div class="col">
-          <input type="text" readonly class="form-control" name="viewCount" value="${board.viewCount}">
-        </div>
-      </div>
-      
-      <div class="form-group row">
-        <label>내용</label>
-        <div class="col">
-        <textarea id="inputContents" class="form-control" name="contents" rows="10" style="resize: none;" readonly>${board.contents}</textarea>
-        </div>
-      </div>
 
-       <div id="boardFiles">
-          <p>
-            <c:forEach items="${board.files}" var="file">
-              <img src='/upload/board/${file.fileName}' class='photo2' onerror="this.style.display='none'" alt=''>
-            </c:forEach>
-          </p>
-      </div> 
-
-    <div id="insertBoardPhotos">
+  <!--     <div id="insertBoardPhotos">
       <input type="file" multiple id="gallery-photo-add" name="fileName">
+      <div class="row">
+        <div class="col">
+          <div class="gallery"></div>
+        </div>
+      </div>
+    </div> -->
+    
+    <div id="insertBoardPhotos">
+      <div class="row">
+        <div class="col">
+          <div class="filebox"> 
+          <input class="upload-name" disabled="disabled">
+          <label for="gallery-photo-add">파일선택</label> 
+          <input type="file" multiple id="gallery-photo-add" name="fileName">
+          </div>
+        </div>
+      </div>
+        
+      <!-- <input type="file" multiple id="gallery-photo-add" name="fileName"> -->
       <div class="row">
         <div class="col">
           <div class="gallery"></div>
@@ -109,22 +208,52 @@ border: 1px solid;
       </div>
     </div>
     
-    <hr> 
-      
-      <div class="form-group row">
-        <div class="col">
-          <button id="btnList" type="button" class="btn btn-secondary" onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
-          <c:if test="${board.memberNo == memberNo or sessionScope.memberNo != null and sessionScope.memberNo == 4}">
-            <button id="btnDelete" type="button" class="btn btn-danger my-view-group" data-toggle="modal" data-target="#deleteModal" style="float: right;">삭제</button>
-          </c:if>
-          <c:if test="${board.memberNo == memberNo}">
-            <button id="btnUpdate" type="button" class="btn btn-info" style="float: right;" >수정</button>
-            <button id="btnCancle" type="button" class="btn btn-danger my-view-group" data-toggle="modal" data-target="#cancelModal" style="float: right;">취소</button>
-            <button id="btnSave" type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal" style="float: right;">등록</button>
-          </c:if>
-        </div>
+    </form>
+
+  <div class="container">
+    <label for="contents">댓글</label>
+    <form name="commentInsertForm">
+      <div class="input-group">
+        <input type="hidden" name="boardNo" value="${board.boardNo}" />
+        <input type="text" class="form-control" id="contents"
+          name="contents" placeholder="내용을 입력하세요."> <span
+          class="input-group-btn">
+          <button class="btn btn-info" type="button"
+            name="commentInsertBtn">등록</button>
+        </span>
       </div>
     </form>
+  </div>
+
+  <div class="container">
+    <div class="commentList"></div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col">
+      <button id="btnList" type="button" class="btn btn-secondary"
+        onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
+      <c:if
+        test="${board.memberNo == loginUser.memberNo or loginUser.memberTypeNo == 4}">
+        <button id="btnDelete" type="button"
+          class="btn btn-danger my-view-group" data-toggle="modal"
+          data-target="#deleteModal" style="float: right;">삭제</button>
+      </c:if>
+      <c:if test="${board.memberNo == loginUser.memberNo}">
+        <button id="btnUpdate" type="button" class="btn btn-info"
+          style="float: right;">수정</button>
+        <button id="btnCancle" type="button"
+          class="btn btn-danger my-view-group" data-toggle="modal"
+          data-target="#cancelModal" style="float: right;">취소</button>
+        <!-- <button id="btnSave" type="button" class="btn btn-info" data-toggle="modal" data-target="#updateModal" style="float: right;">등록</button> -->
+        <button id="btnSave" type="button" class="btn btn-info"
+          onclick="add_board()" style="float: right;">등록</button>
+      </c:if>
+    </div>
+  </div>
+
+  <br>
+      
     
 <!-- delete Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -148,7 +277,7 @@ border: 1px solid;
 </div>
 
 <!-- update Modal -->
-<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -166,7 +295,7 @@ border: 1px solid;
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- cancel Modal -->
 <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -204,7 +333,7 @@ border: 1px solid;
 				boardPhotos.style.display = 'inline';
 			});
 			
-			$(function() {
+			/* $(function() {
 				var imagesPreview = function(input, placeToInsertImagePreview) {
 					if (input.files) {
 						var filesAmount = input.files.length;
@@ -223,12 +352,169 @@ border: 1px solid;
 				$('#gallery-photo-add').on('change', function() {
 					imagesPreview(this, 'div.gallery');
 				});
+			}); */
+		</script>
+
+  <script>
+			$(function() {
+				var imagesPreview = function(input, placeToInsertImagePreview) {
+					if (input.files) {
+						var filesAmount = input.files.length;
+						for (i = 0; i < filesAmount; i++) {
+							var reader = new FileReader();
+							reader.onload = function(event) {
+								$(
+										$
+												.parseHTML('<img style="height:100px; margin-top:10px;">'))
+										.attr('src', event.target.result)
+										.appendTo(placeToInsertImagePreview);
+							}
+							reader.readAsDataURL(input.files[i]);
+						}
+					}
+				};
+
+				$('#gallery-photo-add').on('change', function() {
+					imagesPreview(this, 'div.gallery');
+					$('.upload-name').val('파일' + this.files.length + '개');
+				});
 			});
+
+			function submit_form() {
+				document.getElementById("form1").submit();
+			}
+
+			function add_board() {
+				var form = document.frm1;
+				if (form.title.value.length == 0) {
+					alert("제목을 입력하세요.");
+					form.title.focus();
+					return;
+				}
+				if (form.contents.value.length == 0) {
+					alert("내용을 입력하세요.");
+					form.contents.focus();
+					return;
+				} else {
+					submit_form();
+				}
+			}
+		</script>
+
+  <script>
+			var boardNo = '${board.boardNo}'; //게시글 번호
+
+			$('[name=commentInsertBtn]').click(function() { //댓글 등록 버튼 클릭시 
+				var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+				commentInsert(insertData); //Insert 함수호출(아래)
+			});
+
+			//댓글 목록 
+			function commentList() {
+				$.ajax({
+						url : 'comment/list',
+						type : 'get',
+						data : {
+							'boardNo' : boardNo
+						},
+						success : function(data) {
+							var a = '';
+							$.each(
+										data,
+										function(key, value) {
+											a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+											a += '<div class="commentInfo'+value.commentNo+'">'
+													+ value.memberId
+													+ '          '
+													+ value.createdDate;
+											if (value.memberNo == ${loginUser.memberNo}){
+											a += '<button class="btn btn-outline-info btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
+													+ value.commentNo
+													+ ',\''
+													+ value.contents
+													+ '\');"> 수정 </button>'
+											a += '<button class="btn btn-outline-danger btn-sm" type="button" onclick="commentDelete('
+													+ value.commentNo
+													+ ');"> 삭제 </button>'}
+											a += '</div>';
+											a += '<div class="commentContent'+value.commentNo+'"> <p>'
+													+ value.contents
+													+ '</p>';
+											a += '</div></div>';
+										});
+
+							$(".commentList").html(a);
+						}
+					});
+			}
+
+			//댓글 등록
+			function commentInsert(insertData) {
+				$.ajax({
+					url : 'comment/add',
+					type : 'post',
+					data : insertData,
+					success : function(data) {
+						if (data == 1) {
+							commentList(); //댓글 작성 후 댓글 목록 reload
+							$('[name=contents]').val('');
+						}
+					}
+				});
+			}
 			
-			function form_submit() {
-			    document.getElementById("form1").submit();
-			   }    
-</script>
+
+			//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+			function commentUpdate(commentNo, contents) {
+				var a = '';
+
+				a += '<div class="input-group">';
+				a += '<input type="text" class="form-control" name="contents_'+commentNo+'" value="'+contents+'"/>';
+				a += '<span class="input-group-btn"><button class="btn btn-outline-success btn-sm" type="button" onclick="commentUpdateProc('
+						+ commentNo + ');">수정</button> </span>';
+				a += '</div>';
+
+				$('.commentContent' + commentNo).html(a);
+
+			}
+
+			//댓글 수정
+			function commentUpdateProc(commentNo) {
+				var updateContent = $('[name=contents_' + commentNo + ']')
+						.val();
+
+				$.ajax({
+					url : 'comment/update',
+					type : 'post',
+					data : {
+						'contents' : updateContent,
+						'commentNo' : commentNo
+					},
+					success : function(data) {
+						if (data == 1)
+							commentList(boardNo); //댓글 수정후 목록 출력 
+					}
+				});
+			}
+
+			//댓글 삭제 
+			function commentDelete(commentNo) {
+				$.ajax({
+					url : 'comment/delete/' + commentNo,
+					type : 'post',
+					success : function(data) {
+						if (data == 1)
+							commentList(boardNo); //댓글 삭제후 목록 출력 
+					}
+				});
+			}
+
+			$(document).ready(function() {
+				commentList(); //페이지 로딩시 댓글 목록 출력 
+			});
+		</script>
+
+
 
 </body>
 

@@ -1,7 +1,7 @@
 package com.ast.eom.domain;
 
 public class Pagination {
-  private int pageSize = 3;
+  private int pageSize = 10;
   private int rangeSize = 10;
   private int curPage = 1;
   private int curRange = 1;
