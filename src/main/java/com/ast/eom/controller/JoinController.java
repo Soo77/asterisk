@@ -57,7 +57,13 @@ public class JoinController implements Runnable {
   @GetMapping("form")
   public void form() {
   }
-
+  
+  @GetMapping("registration")
+  public void registration() {}
+  
+  @GetMapping("memberselect")
+  public void memberselect() {}
+  
   // 선생님 회원가입
   @PostMapping("teacherjoin")
   public String teacherjoin(Member member, 

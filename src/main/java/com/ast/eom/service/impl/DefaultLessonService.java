@@ -56,4 +56,10 @@ public class DefaultLessonService implements LessonService {
       throw new Exception("해당 데이터가 없습니다.");
     lessonDao.delete(no);
   }
+
+  @Override
+  public Lesson lessonDetail(int lessonNo) throws Exception {
+    return lessonDao.findCurrBy(lessonNo);
+
+  }
 }

@@ -14,10 +14,15 @@
 
 </head>
 
-<body>
-
-  <tiles:insertAttribute name="body"/>
-
+<body id="page-top">
+  <tiles:insertAttribute name="header2"/>
+  
+  <div id="wrapper">
+    <div id="content-wrapper" style="padding-bottom: 0;">
+      <tiles:insertAttribute name="body"/>
+    </div>
+  </div>
+  <tiles:insertAttribute name="footer2"/>
   <tiles:insertAttribute name="modal"/>
   <tiles:insertAttribute name="javascript"/>
 

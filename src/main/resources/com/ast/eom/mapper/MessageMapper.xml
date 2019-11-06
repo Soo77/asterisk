@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.MessageDao">
+  <resultMap type="Message" id="MessageMap">
+    <result column="message_no" property="messageNo"></result>
+    <result column="sender" property="senderNo"></result>
+    <result column="receiver" property="receiverNo"></result>
+    <result column="message_conts" property="messageContents"></result>
+    <result column="send_date" property="sendDate"></result>
+    <result column="is_read" property="isRead"></result>
+  </resultMap>
+  
+  <resultMap type="Member" id="MemberMap">
+  <result column="mem_no" property="memberNo"></result>
+  </resultMap>
+  
+  <select id="detail" parameterType="int" resultMap="MessageMap">
+     select *from message where sender=#{memberNo}
+  </select>
+	
+	<select id="messageDetail" parameterType="int" resultMap="MessageMap">
+	   select *from message where sender=#{memberNo} and receiver=#{receiverNo}
+	</select>
+	
+	<select id="messageList" parameterType="int" resultMap="MemberMap">
+     select distinct m.name, m.mem_no from member m inner 
+     join message s on m.mem_no = s.receiver 
+     where s.sender=#{memberNo} or s.receiver=#{memberNo} 
+     order by s.message_no desc
+  </select>
+	
+	<insert id="messageIn" parameterType="Message">
+     insert into
+     message(message_no,sender,receiver,message_conts,send_date,is_read)
+     values
+     (#{messageNo},#{senderNo},#{receiverNo},#{messageContents},now(),#{isRead})
+  </insert>
+
+</mapper>
