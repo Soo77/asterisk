@@ -97,12 +97,12 @@ public class BoardController {
   public int commentAdd(
       HttpSession session,
       @RequestParam int boardNo,
-      @RequestParam String contents) throws Exception {
+      @RequestParam String commentContents) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     int memberNo = member.getMemberNo();
     Comment comment = new Comment();
     comment.setBoardNo(boardNo);;
-    comment.setContents(contents);
+    comment.setCommentContents(commentContents);
     comment.setMemberNo(memberNo);
     
     return commentService.insert(comment);
@@ -110,11 +110,11 @@ public class BoardController {
   
   @RequestMapping("comment/update")
   @ResponseBody
-  private int cmmentUpdate(@RequestParam int commentNo, @RequestParam String contents) throws Exception{
+  private int cmmentUpdate(@RequestParam int commentNo, @RequestParam String commentContents) throws Exception{
       
       Comment comment = new Comment();
       comment.setCommentNo(commentNo);
-      comment.setContents(contents);
+      comment.setCommentContents(commentContents);
       
       return commentService.update(comment);
   }

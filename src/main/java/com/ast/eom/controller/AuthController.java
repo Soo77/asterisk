@@ -59,7 +59,7 @@ public class AuthController implements Runnable {
     }
     session.setAttribute("loginUser", member);
     System.out.println(member);
-    return "redirect:../auth/loginsuccess";
+    return "redirect:../member/list?memberTypeNo=1";
   }
 
   @GetMapping("logout")
