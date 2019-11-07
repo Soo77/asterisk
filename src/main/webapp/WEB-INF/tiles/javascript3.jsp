@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+  <!-- sweetalert -->
+  <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  
   <!-- Bootstrap core JavaScript-->
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

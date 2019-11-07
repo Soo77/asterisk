@@ -68,7 +68,6 @@ public class JoinController implements Runnable {
   @PostMapping("teacherjoin")
   public String teacherjoin(Member member, 
       MultipartFile filePath,
-      int memberTypeNo,
       String birthyy, String birthmm, String birthdd, 
       String mail, 
       String accountno, String bankname, String teacherintro, 
@@ -81,7 +80,7 @@ public class JoinController implements Runnable {
     member.setEmail(emailAddress);
     member.setDateOfBirth(testdob);
 //    member.getMemberType().setMemberTypeNo(memberTypeNo);
-    member.setMemberTypeNo(memberTypeNo);
+    member.setMemberTypeNo(3);
     //멤버 타입 수정함 MemberType
 
     Map<String, Object> params = new HashMap<>();
@@ -119,7 +118,6 @@ public class JoinController implements Runnable {
   @PostMapping("parentsjoin")
   public String parentsjoin(Member member, 
       MultipartFile filePath,
-      int memberTypeNo,
       String birthyy, String birthmm, String birthdd, 
       String mail) 
           throws Exception {
@@ -130,7 +128,7 @@ public class JoinController implements Runnable {
     member.setEmail(emailAddress);
     member.setDateOfBirth(testdob);
     //   member.getMemberType().setMemberTypeNo(memberTypeNo);
-    member.setMemberTypeNo(memberTypeNo);
+    member.setMemberTypeNo(2);
     //멤버 타입 수정함 MemberType
 
     Map<String, Object> params = new HashMap<>();
@@ -159,7 +157,6 @@ public class JoinController implements Runnable {
   @PostMapping("studentjoin")
   public String studentjoin(Member member, 
       MultipartFile filePath,
-      int memberTypeNo,
       String birthyy, String birthmm, String birthdd, 
       String mail) 
           throws Exception {
@@ -170,7 +167,7 @@ public class JoinController implements Runnable {
     member.setEmail(emailAddress);
     member.setDateOfBirth(testdob);
     //  member.getMemberType().setMemberTypeNo(memberTypeNo);
-    member.setMemberTypeNo(memberTypeNo);
+    member.setMemberTypeNo(1);
     //멤버 타입 수정함 MemberType
 
     Map<String, Object> params = new HashMap<>();

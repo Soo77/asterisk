@@ -120,14 +120,6 @@ body {
       <img id="view_file" src="#" width="400px" height="200px" />
 
       <table>
-        <tr>
-          <td id="title">회원구분</td>
-          <td><select name="memberTypeNo">
-              <option value="" selected disabled>회원 구분</option>
-              <option value="1">student</option>
-          </select>
-        </tr>
-
 
         <tr>
           <td id="title">아이디</td>
@@ -215,11 +207,39 @@ body {
       </select><br>
       
       과외 가능 요일
-      <input type="checkbox">일<input type="checkbox">월<input type="checkbox">화
-      <input type="checkbox">수<input type="checkbox">목<input type="checkbox">금
-      <input type="checkbox">토<br>
-      
-      과외 가능 시간
+			<div class="form-check">
+				<label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" value=""> 일 <span
+					class="form-check-sign"> <span class="check"></span>
+				</span>
+				</label> <label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" value=""> 월 <span
+					class="form-check-sign"> <span class="check"></span>
+				</span>
+				</label> <label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" value=""> 화 <span
+					class="form-check-sign"> <span class="check"></span>
+				</span>
+				</label> <label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" value=""> 수 <span
+					class="form-check-sign"> <span class="check"></span>
+				</span>
+				</label> <label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" value=""> 목 <span
+					class="form-check-sign"> <span class="check"></span>
+				</span>
+				</label> <label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" value=""> 금 <span
+					class="form-check-sign"> <span class="check"></span>
+				</span>
+				</label> <label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" value=""> 토 <span
+					class="form-check-sign"> <span class="check"></span>
+				</span>
+				</label>
+			</div>
+			
+			과외 가능 시간
       <select>
          <option>12:00</option>
          <option>13:00</option>
