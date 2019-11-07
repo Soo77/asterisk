@@ -80,7 +80,7 @@
     }
     
     .col-1 .form-control {
-      background-color: #C98AFF;
+      background-color: #9c27b0;
       color: #ffffff;
       border-radius: 5px/5px;
       text-align: center;
@@ -138,6 +138,10 @@
       float: right;
     }
     
+    .page-header {
+      height: 300px;
+    }
+    
     /* div{
     border: 1px solid;
     } */
@@ -150,8 +154,21 @@
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
-          <h1>Your title here</h1>
-          <h3 class="title text-center">Subtitle</h3>
+          <c:if test="${board.boardTypeNo == 1}">
+            <h1>질문게시판</h1>
+            <h3>공부상담</h3>
+          </c:if>
+          <c:if test="${board.boardTypeNo == 2}">
+            <h1>질문게시판</h1>
+            <h3>입시상담</h3>
+          </c:if>
+          <c:if test="${board.boardTypeNo == 3}">
+            <h1>질문게시판</h1>
+            <h3>문제풀이</h3>
+          </c:if>
+          <c:if test="${board.boardTypeNo == 4}">
+            <h1>공지사항</h1>
+          </c:if>
         </div>
       </div>
     </div>
@@ -159,32 +176,12 @@
 </div>
 <div class="main main-raised">
   <div class="container">
-    <!-- <div class="section text-center"> -->
-    <div class="title">
-      <c:if test="${board.boardTypeNo == 1}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">공부상담</h2>
-      </c:if>
-      <c:if test="${board.boardTypeNo == 2}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">입시상담</h2>
-      </c:if>
-      <c:if test="${board.boardTypeNo == 3}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">문제풀이</h2>
-      </c:if>
-      <c:if test="${board.boardTypeNo == 4}">
-        <h1 style="display: inline">공지사항</h1>
-      </c:if>
-    </div>
-
-    <hr>
-
+    <div class="boardDetail pt-3">
     <form id="form1" name="frm1" action='update' method='post'
       enctype='multipart/form-data'>
       <input type="hidden" name="boardTypeNo"
         value="${board.boardTypeNo}"> <input type="hidden"
-        name="boardNo" value="${board.boardNo}"> <br>
+        name="boardNo" value="${board.boardNo}">
 
       <div class="row">
         <div class="col-1">
@@ -317,6 +314,7 @@
         </c:if>
       </div>
     </div>
+    </div>
 
     <br>
   </div>
@@ -326,116 +324,122 @@
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <script>
-  		// button event, sweetalert
-  		
-      var UpdateButton = document.querySelector('#btnUpdate');
-      UpdateButton.addEventListener('click', function() {
-        UpdateButton.style.display = 'none';
-        document.querySelector('.container').style.display = 'none';
-        document.querySelector('#btnDelete').style.display = 'none';
-        document.querySelector('#btnList').style.display = 'none';
-        document.querySelector('#btnSave').style.display = 'inline';
-        document.querySelector('#btnCancle').style.display = 'inline';
-        document.querySelector('#inputTitle').readOnly = false;
-        document.querySelector('#inputContents').readOnly = false;
-        var boardPhotos = document.querySelector('#insertBoardPhotos');
-        boardPhotos.style.display = 'inline';
-      });
+  // 수정
+  var UpdateButton = document.querySelector('#btnUpdate');
+  UpdateButton.addEventListener('click', function() {
+    UpdateButton.style.display = 'none';
+    document.querySelector('.container').style.display = 'none';
+    document.querySelector('#btnDelete').style.display = 'none';
+    document.querySelector('#btnList').style.display = 'none';
+    document.querySelector('#btnSave').style.display = 'inline';
+    document.querySelector('#btnCancle').style.display = 'inline';
+    document.querySelector('#inputTitle').readOnly = false;
+    document.querySelector('#inputContents').readOnly = false;
+    var boardPhotos = document.querySelector('#insertBoardPhotos');
+    boardPhotos.style.display = 'inline';
+  });
+</script>
 
-      var cancleButton = document.querySelector('#btnCancle');
-        cancleButton.addEventListener('click', function() {
-          swal({
-            title: "취소",
-            text: "취소하시겠습니까?",
-            icon: "warning",
+<script>
+  // 수정 취소
+  var cancleButton = document.querySelector('#btnCancle');
+  cancleButton.addEventListener('click', function() {
+    swal({
+      title: "취소",
+      text: "취소하시겠습니까?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        location.href = "detail?no=" + ${board.boardNo};
+      } else {
+      }
+    });
+  });
+</script>
+
+<script>
+  // 수정 완료
+  var saveButton = document.querySelector('#btnSave');
+  saveButton.addEventListener('click', function() {
+    var form = document.frm1;
+      if (form.title.value.length == 0) {
+        swal("제목을 입력하세요.");
+        form.title.focus();
+        return;
+      }
+      if (form.contents.value.length == 0) {
+        swal("내용을 입력하세요.");
+        form.contents.focus();
+        return;
+      }
+      else {
+        swal({
+            title: "수정",
+            text: "등록하시겠습니까?",
             buttons: true,
-            dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
-              location.href = "detail?no=" + ${board.boardNo};
+              swal("등록되었습니다.", {
+                icon: "success",
+              });
+              document.getElementById("form1").submit();
             } else {
             }
           });
-        });
-        
-      var saveButton = document.querySelector('#btnSave');
-      saveButton.addEventListener('click', function() {
-        var form = document.frm1;
-          if (form.title.value.length == 0) {
-            swal("제목을 입력하세요.");
-            form.title.focus();
-            return;
-          }
-          if (form.contents.value.length == 0) {
-            swal("내용을 입력하세요.");
-            form.contents.focus();
-            return;
-          }
-          else {
-            swal({
-                title: "수정",
-                text: "등록하시겠습니까?",
-                buttons: true,
-              })
-              .then((willDelete) => {
-                if (willDelete) {
-                  swal("등록되었습니다.", {
-                    icon: "success",
-                  });
-                  document.getElementById("form1").submit();
-                } else {
-                }
-              });
-          }
-      });
-      
-      var deleteButton = document.querySelector('#btnDelete');
-      deleteButton.addEventListener('click', function() {
-        swal({
-          title: "삭제",
-          text: "삭제하시겠습니까?",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            location.href = "delete?no=" + ${board.boardNo};
-          } else {
-          }
-        });
-      });
-  </script>
+      }
+  });
+</script>
 
 <script>
-      // file upload
-      
-      $(function() {
-        var imagesPreview = function(input, placeToInsertImagePreview) {
-          if (input.files) {
-            var filesAmount = input.files.length;
-            for (i = 0; i < filesAmount; i++) {
-              var reader = new FileReader();
-              reader.onload = function(event) {
-                $(
-                    $
-                        .parseHTML('<img style="height:100px; margin-top:10px;">'))
-                    .attr('src', event.target.result)
-                    .appendTo(placeToInsertImagePreview);
-              }
-              reader.readAsDataURL(input.files[i]);
-            }
-          }
-        };
+  // 게시글 삭제
+  var deleteButton = document.querySelector('#btnDelete');
+  deleteButton.addEventListener('click', function() {
+    swal({
+      title: "삭제",
+      text: "삭제하시겠습니까?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        location.href = "delete?no=" + ${board.boardNo};
+      } else {
+      }
+    });
+  });
+</script>
 
-        $('#gallery-photo-add').on('change', function() {
-          imagesPreview(this, 'div.gallery');
-          $('.upload-name').val('파일' + this.files.length + '개');
-        });
-      });
-      
-  </script>
+<script>
+  // 파일 업로드
+  $(function() {
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+      if (input.files) {
+        var filesAmount = input.files.length;
+        for (i = 0; i < filesAmount; i++) {
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            $(
+                $
+                    .parseHTML('<img style="height:100px; margin-top:10px;">'))
+                .attr('src', event.target.result)
+                .appendTo(placeToInsertImagePreview);
+          }
+          reader.readAsDataURL(input.files[i]);
+        }
+      }
+    };
+  
+    $('#gallery-photo-add').on('change', function() {
+      imagesPreview(this, 'div.gallery');
+      $('.upload-name').val('파일' + this.files.length + '개');
+    });
+  });
+</script>
 
 <script>
       // comment

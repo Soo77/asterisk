@@ -24,7 +24,7 @@
       font-size: inherit;
       line-height: normal;
       vertical-align: middle;
-      background-color: #00AFA0;
+      background-color: #9c27b0;
       cursor: pointer;
       border: 1px solid #ebebeb;
       border-bottom-color: #e2e2e2;
@@ -58,6 +58,14 @@
       appearance: none;
     }
     
+    .page-header {
+      height: 300px;
+    }
+    
+    #form1 {
+      padding-top: 3px;
+    }
+    
     /* div{
     border: 1px solid;
     } */
@@ -70,8 +78,22 @@
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
-          <h1>Your title here</h1>
-          <h3 class="title text-center">Subtitle</h3>
+          <c:if test="${boardTypeNo == 1}">
+            <h1>글쓰기</h1>
+            <h3>공부상담</h3>
+          </c:if>
+          <c:if test="${boardTypeNo == 2}">
+            <h1>글쓰기</h1>
+            <h3>입시상담</h3>
+          </c:if>
+          <c:if test="${boardTypeNo == 3}">
+            <h1>글쓰기</h1>
+            <h3>문제풀이</h3>
+          </c:if>
+          <c:if test="${boardTypeNo == 4}">
+            <h1>글쓰기</h1>
+            <h3>공지사항</h3>
+          </c:if>
         </div>
       </div>
     </div>
@@ -79,49 +101,40 @@
 </div>
 <div class="main main-raised">
   <div class="container">
-    <!-- <div class="section text-center"> -->
-    <div class="title">
-      <c:if test="${boardTypeNo == 1}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">공부상담</h2>
-      </c:if>
-      <c:if test="${boardTypeNo == 2}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">입시상담</h2>
-      </c:if>
-      <c:if test="${boardTypeNo == 3}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">문제풀이</h2>
-      </c:if>
-      <c:if test="${boardTypeNo == 4}">
-        <h1 style="display: inline">공지사항</h1>
-      </c:if>
-    </div>
-
-    <hr>
-
     <form id="form1" name="frm1" action='add' method=post
       enctype='multipart/form-data'>
-      <div class="row">
+<!--       <div class="row">
         <div class="col" align="center">
           <h2
             style="background-color: #00AFA0; border-color: #00AFA0; color: #ffffff;">글쓰기</h2>
         </div>
-      </div>
+      </div> -->
 
-      <div class="row">
+<!--       <div class="row">
         <div class="col">
           <input type="text" class="form-control" id="inputTitle"
             name='title' placeholder="글 제목"> <input
             type="hidden" name="boardTypeNo" value="${boardTypeNo}">
         </div>
+      </div> -->
+      
+      <input type="hidden" name="boardTypeNo" value="${boardTypeNo}">
+      
+      <div class="form-group bmd-form-group">
+        <label class="bmd-label-static">제목</label>
+        <input type="text" class="form-control"  id="inputTitle" name='title' >
       </div>
 
-      <div class="row">
+<!--       <div class="row">
         <div class="col">
           <textarea class="form-control" name='contents' rows="10"
             style="resize: none;" placeholder="내용을 입력해주세요"></textarea>
         </div>
+      </div> -->
+      
+      <div class="form-group bmd-form-group">
+        <label for="exampleFormControlTextarea1">내용</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="30" style="resize: none;"></textarea>
       </div>
 
       <hr>
