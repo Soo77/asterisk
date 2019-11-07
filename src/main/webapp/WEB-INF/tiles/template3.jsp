@@ -13,6 +13,11 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <tiles:insertAttribute name="stylesheet3"/>
+  <style>
+    .page-header {
+      height: 300px;
+    }
+  </style>
 </head>
 
 <body>
