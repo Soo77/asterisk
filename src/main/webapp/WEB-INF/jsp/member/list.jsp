@@ -30,10 +30,6 @@
   padding-left:50px;
 }
 
-.container {
-  padding-bottom:30px;
-  padding-top:30px;
-}
 </style>
 
 <body>
@@ -180,27 +176,25 @@
         <div class="col-lg-9 col-md-8">
 
           <c:if test="${memberTypeNo eq 3}">
-            <c:forEach items="${memberTeacher}" varStatus="status">
-              <a href="detail?no=${memberTeacher[status.index].memberNo}">
+            <c:forEach items="${memberTeacher}" var="member">
+              <a href="detail?no=${member.memberNo}">
                 <div class="card-body">
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                        <%-- <img
-                    src="${memberTeacherStudents[status.index].teacherPhoto}"
-                    class="card-img"> --%>
+                        <%-- <img src="${member.teacherPhoto}" class="card-img"> --%>
                         <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
                       </div>
                       <div class="col-md-9">
                       <h3 class="title">
-                        <span class="tim-note">${memberTeacher[status.index].name}</span></h3>
+                        <span class="tim-note">${member.name}</span></h3>
                       <h4><span class="tim-note">
-                          ${memberTeacher[status.index].schools[0].schoolName}/
-                          ${memberTeacher[status.index].gender}/
-                          ${memberTeacher[status.index].addressCity}
-                          ${memberTeacher[status.index].addressSuburb}/
-                          ${memberTeacher2[status.index].schoolType}/
-                          ${memberTeacher2[status.index].subjects[0].subjectName}
+                          ${member.schools[0].schoolName}/
+                          ${member.gender}/
+                          ${member.addressCity}
+                          ${member.addressSuburb}/
+                          ${member.schoolType}/
+                          ${member.subjects[0].subjectName}
                       </span></h4>
                       </div>
                     </div>

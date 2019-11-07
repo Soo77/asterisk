@@ -7,8 +7,6 @@ public interface MemberTeacherStudentService {
 
   List<MemberTeacherStudent> listTeacher(int memberTypeNo) throws Exception;
 
-  List<MemberTeacherStudent> listTeacher2() throws Exception;
-
   List<MemberTeacherStudent> listStudent(int memberTypeNo) throws Exception;
 
   List<MemberTeacherStudent> detailTeacher(int no) throws Exception;
