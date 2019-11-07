@@ -21,62 +21,78 @@
   <link href="/assets/demo/demo.css" rel="stylesheet" />
   <script type="text/JavaScript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 
+<style>
+  .this-center{
+    text-align: center;
+    padding-top: 0px !important;
+  }
+  .card-login .card-body {
+    padding: 1.25rem;
+  }
+</style>
 </head>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-      <div class="card card-login">
-        <form class="form" method="" action="">
-          <div class="card-header card-header-primary text-center">
-            <h4 class="card-title">Login</h4>
-            <div class="social-line">
-              <a href="#pablo" class="btn btn-just-icon btn-link">
-                <i class="fa fa-facebook-square"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link">
-                <i class="fa fa-google-plus"></i>
-              </a>
-            </div>
-          </div>
-          <p class="description text-center">Or Be Classical</p>
-          <div class="card-body">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="material-icons">face</i>
-                </span>
+<!--     요기부터 -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+          <div class="card card-login">
+            <form action='login' method='post' class="form">
+              <div class="card-header card-header-primary text-center">
+                <h4 class="card-title">로그인</h4>
               </div>
-              <input type="text" class="form-control" placeholder="First Name...">
-            </div>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="material-icons">mail</i>
-                </span>
-              </div>
-              <input type="email" class="form-control" placeholder="Email...">
-            </div>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="material-icons">lock_outline</i>
-                </span>
-              </div>
-              <input type="password" class="form-control" placeholder="Password...">
-            </div>
-          </div>
-          <div class="footer text-center">
-            <a href="#pablo" class="btn btn-primary btn-link btn-wd btn-lg">Get Started</a>
-          </div>
-        </form>
+              
+					<div class="card-body">
+
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"> <i class="material-icons">face</i>
+								</span>
+							</div>
+							<input type='text' id='id' name='id' value=''
+								class="form-control" placeholder="아이디" required autofocus>
+						</div>
+
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text"> <i class="material-icons">lock_outline</i>
+								</span>
+							</div>
+							<input type='password' name='pw' class="form-control"
+								placeholder="암호" required>
+						</div>
+
+            <div class="form-check this-center">
+							<label class="form-check-label"> 
+								<input class="form-check-input" type="checkbox" id="idmemory"
+									value="아이디 기억">아이디 기억 
+								<span class="form-check-sign">
+									<span class="check"></span>
+								</span>
+							</label>
+							</div>
+
+						<div class="this-center">
+							<div class="description">
+								<button class="btn btn-primary">로그인</button>
+								<a href="/app/join/form">
+									<button type="button" class="btn btn-primary">회원가입</button>
+								</a>
+							</div>
+						</div>
+						<div class="text-center">
+						  <br>
+							<a href="../auth/findid">아이디 찾기</a><br> 
+							<a href="../auth/findpw">비밀번호 찾기</a>
+						</div>
+					</div>
+				</form>
+            
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!--       요기까지 -->
 
 <!--   Core JS Files   -->
 <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
