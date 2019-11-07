@@ -30,6 +30,11 @@
   padding-left:50px;
 }
 
+.listpage {
+  padding-top:40px;
+  padding-bottom:40px;
+}
+
 </style>
 
 <body>
@@ -50,6 +55,7 @@
       <!-- <div class="section text-center">
          <h2 class="title">Your main section here</h2>
        </div> -->
+       <div class="listpage">
       <c:if test="${memberTypeNo == 1}">
          <h2 class="title">
           <span class="tim-note">학생 찾기</span></h2>
@@ -176,14 +182,16 @@
         <div class="col-lg-9 col-md-8">
 
           <c:if test="${memberTypeNo eq 3}">
-            <c:forEach items="${memberTeacher}" var="member">
+            <c:forEach items="${memberList}" var="member">
               <a href="detail?no=${member.memberNo}">
                 <div class="card-body">
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                        <%-- <img src="${member.teacherPhoto}" class="card-img"> --%>
-                        <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                        <img src="${member.teacherPhoto}" width="130" alt="Thumbnail Image" 
+                        class="img-raised rounded-circle img-fluid" 
+                        onError="this.src='/landing_images/images/default.jpg'">
+                        <!-- <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid"> -->
                       </div>
                       <div class="col-md-9">
                       <h3 class="title">
@@ -206,13 +214,15 @@
           </c:if>
 
           <c:if test="${memberTypeNo eq 1}">
-            <c:forEach items="${memberStudents}" var="member">
+            <c:forEach items="${memberList}" var="member">
               <a href="detail?no=${member.memberNo}">
                 <div class="card-body">
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                        <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                      <img src="${member.teacherPhoto}" width="130" alt="Thumbnail Image" 
+                        class="img-raised rounded-circle img-fluid" 
+                        onError="this.src='/landing_images/images/default.jpg'">
                       </div>
                       <div class="col-md-9">
                         <h3 class="title">
@@ -238,6 +248,7 @@
       </div>
       <!-- row / End -->
     </div>
+   </div>
   </div>
 
   <script type="text/javascript">

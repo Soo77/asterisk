@@ -10,10 +10,3 @@ public interface MemberTeacherStudentDao {
   List<MemberTeacherStudent> detailTeacher(int no) throws Exception;
 }
 
-
-
-
-
-
-
-

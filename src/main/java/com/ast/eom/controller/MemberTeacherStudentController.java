@@ -20,21 +20,17 @@ public class MemberTeacherStudentController {
   @GetMapping("list")
   public void list(Model model, int memberTypeNo) throws Exception {
     
-    List<MemberTeacherStudent> memberTeacher = memberTeacherStudentService.listTeacher(memberTypeNo);
-    List<MemberTeacherStudent> memberStudents = memberTeacherStudentService.listStudent(memberTypeNo);
-    for (MemberTeacherStudent memberTeacherStudent : memberTeacher) {
+    List<MemberTeacherStudent> memberList = memberTeacherStudentService.list(memberTypeNo);
+    for (MemberTeacherStudent memberTeacherStudent : memberList) {
       System.out.println(memberTeacherStudent);
     }
-    model.addAttribute("memberTeacher", memberTeacher);
-    model.addAttribute("memberStudents", memberStudents);
+    model.addAttribute("memberList", memberList);
     model.addAttribute("memberTypeNo", memberTypeNo);
   }
   
   @GetMapping("detail")
   public void detail(Model model, @RequestParam("no") int no) throws Exception {
-    List<MemberTeacherStudent> detailTeacher1 = memberTeacherStudentService.detailTeacher(no);
-    for (MemberTeacherStudent d: detailTeacher1)
-      System.out.println("tttttttttt>>>>>>>"+d);
+    List<MemberTeacherStudent> detailTeacher1 = memberTeacherStudentService.get(no);
     model.addAttribute("detailTeacher1", detailTeacher1);
   }
   
