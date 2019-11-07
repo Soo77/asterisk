@@ -2,125 +2,133 @@
   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>선생님 상세 정보</title>
-</head>
-<body>
+<html lang="en">
+<style>
+.card-body {
+  float:left;
+}
 
-<div class="container">
+</style>
 
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item active">
-      <%-- <c:if test="${memberTypeNo == 1}">
-        <h2 style="display:inline">학생 상세 정보</h2>
-      </c:if>
-      <c:if test="${memberTypeNo == 3}">
-        <h2 style="display:inline">선생님 상세 정보</h2>
-      </c:if>  --%>
-      </li>
-    </ol>
-    <input type="text" value="${detailTeacher}"/>
-    <c:forEach items="${detailTeacher}" var="member">
+<body class="profile-page sidebar-collapse">
+  <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/city-profile.jpg');"></div>
+  <div class="main main-raised">
+    <div class="profile-content">
+      <div class="container">
+       <c:forEach items="${detailTeacher1}" var="member">
+        <div class="row">
+          <div class="col-md-6 ml-auto mr-auto">
+            <div class="profile">
+              <div class="avatar">
+                <img src="/landing_images/images/hong.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+              </div>
+              <div class="name">
+                <h2 class="title">${member.name}</h2>
+                <h5>${member.gender}, ${member.dateOfBirth}</h5>
+                <h5><i class="far fa-check-circle"></i>  인증 완료</h5>
+                <a href="#pablo" class="btn btn-just-icon btn-link btn-message"><i class="far fa-comment-dots"></i></a>
+                <a href="http://www.naver.com" class="btn btn-just-icon btn-link btn-photo"><i class="far fa-image"></i></a>
+                <a href="http://www.youtube.com" class="btn btn-just-icon btn-link btn-video"><i class="fab fa-youtube"></i></a>
+              </div>
+             <hr>
+            </div>
+          </div>
+        </div>
+        
+        <div class="description text-center">
+        <div class="info">
+         <h3>기본정보</h3>
+		           학교: ${member.schools[0].schoolName}<br>
+		           전공: ${member.schools[0].major}<br>
+		           지역: ${member.addressCity} ${member.addressSuburb}<br>
+		           가입일: ${member.registeredDate}<br>
+        </div>
+		    <hr>
+      
+	      <div class="tch-school-info">
+	        <h3>출신학교</h3>
+	         ${member.schools[0].schoolName}<br>
+	         ${member.schools[0].schoolName}<br>
+	      </div>
+	      <hr>
+	      
+	      <div class="tch-lesson">
+        <h3>과목</h3>
+                과목: ${member.schoolType} ${member.subjects[0].subjectName}<br><br>
+          
+        <h3>과외 가능 요일/시간</h3>
+                월~금. 오후 7시 ~ 10시<br><br>
+                
+        <h3>희망 과외 금액</h3>
+          ${member.lessonSubjects[0].wantedFee} 원<br><br>
+        </div>
+        <hr>
     
+		    <div class="tch-intro">
+		      <h3>자기소개</h3>
+		       ${member.teachers[0].teacherIntro}
+		    </div>
+		     
     
-    
-    
-  <div class="tch-profile">
-    <img src="/landing_images/images/AP2.jpg" height="70px" /> 
-    ${member.name}<br>
-    ${member.gender}, ${member.dateOfBirth} 세<br> 
-    <i class="fas fa-check"> </i>자격검증완료 
-    <i class="far fa-envelope"></i> 
-    <a href="http://naver.com"> 선생님께 쪽지 보내기 </a>
-  </div><hr>
-    </c:forEach>
-</div>
-<!-- Container / End -->
-
-  <%-- <div class="information">
-    <div class="info">
-      <h3>기본정보</h3>
-             학교: 한국대학교<br> 
-             전공: 수학과<br> 
-             지역: ${member.addressCity} ${member.addressSuburb}<br>
-             가입일: ${member.registeredDate}<br>
-             ${member.student.schoolType}
-             ${member.student.parents }
-    </div>
-
-    <div class="tch-school-info">
-        <h3>출신학교</h3>
-        <p>한국 중학교 졸업</p>
-        <p>한국 고등학교 졸업</p>
-        <p>한국 대학교 수학과 재학중</p>
-    </div>
-
-    <div class="tch-introduce">
-      <h3>자기소개</h3>
-       ${member.teacher.teacherIntro}<br>
-    </div>
-
-    <div class="tch-introduce-video">
-      <h3>자기소개영상</h3>
-      ${member.teacher.videoAddress}
-    </div> --%>
-
-    <div class="tch-photos">
-      <h3>사진</h3>
-      <img src="/landing_images/images/hong.png" height="100px" /> 
-      <img src="/landing_images/images/Rabbit.png" height="100px" /> 
-      <img src="/landing_images/images/small.jpg" height="100px" />
-    </div>
-  </div><hr>
-
-  <div class="tch-lesson">
-    <div class="tch-lesson-subject">
-      <p>과목: 초등 영어</p>
-      <h3>과외 가능 요일/시간</h3>
-      <p>월~금. 오후 7시 ~ 10시</p>
-    </div>
-    <div class="tch-lesson-fee">
-      <h3>희망 과외 금액</h3>
-      <p>30 ~ 40만원</p>
-    </div>
-  </div><hr>
-
-  <div class="stu-lesson">
-    <div class="stu-lesson-subject">
-      <p>과목: 초등 수학</p>
-      <h3>과외 가능 요일/시간</h3>
-      <p>월~금. 오후 5시 ~ 7시</p>
-    </div>
-    <div class="stu-lesson-fee">
-      <h3>희망 과외 금액</h3>
-      <p>30 ~ 40만원</p>
-    </div>
-    <div class="stu-wanttotch">
-      <h3>선생님께 바라는점</h3>
-      <p>기초부터 탄탄하게 배우고 싶어요!</p>
-    </div>
-  </div><hr>
-
+		    <div class="tch-introduce-video">
+		      <h3>자기소개영상</h3>
+		       <div class="iframe-container">
+	           <iframe class="embed-responsive-item" height="300" width="500" src="https://www.youtube.com/embed/l502xg11uNM" 
+	           frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+	           <%--  ${member.teachers[0].videoAddress} --%>
+		       </div>
+		    </div>
+		    <hr>
+      
       <h3>선생님 과외 후기</h3>
-    <div class="review">
-      <img src="/landing_images/images/hong.png" height="70px" />
-            학생1<br>
-            과외과목: 초등수학<br>
-            과외기간: 2018.5 ~ 2019.5<br>
-            선생님이 수업에 열정적입니다. 성적이 많이 올랐어요 ~~<br>
+			  <div class="card">
+			     <div class="card-header card-header-text card-header-primary">
+			       <div class="card-text">
+			         <h4 class="card-title">학생 1</h4>
+			       </div>
+			     </div>
+			     <div class="card-body">
+					       과외과목: 초등수학<br> 
+					       과외기간: 2018.5 ~ 2019.5<br> 
+					       선생님이 수업에 열정적입니다. 성적이 많이 올랐어요 ~~<br>
+			     </div>
+			    </div>
+        </div>
+        <!-- description text-center end -->
+        
+	        <div class="tab-content tab-space">
+	          <div class="tab-pane active text-center gallery" id="studio">
+	            <div class="row">
+	              <div class="col-md-3 ml-auto">
+	                <img src="/landing_images/images/hong.png" class="rounded">
+	                <img src="/landing_images/images/hong.png" class="rounded">
+	              </div>
+	              <div class="col-md-3 mr-auto">
+	                <img src="/landing_images/images/hong.png" class="rounded">
+	                <img src="/landing_images/images/hong.png" class="rounded">
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+        </c:forEach>
+      </div>
+      <!-- Container / End -->
     </div>
-
-  <div class="page-button">
-    <button>&lt;</button>
-    <button>1</button>
-    <button>&gt;</button>
   </div>
-
-
-
-
+ 
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="../assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="../assets/js/plugins/moment.min.js"></script>
+  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+  <script src="../assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
 </body>
+
 </html>

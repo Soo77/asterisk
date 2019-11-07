@@ -27,11 +27,11 @@
 		});
 
 		function list() {
-			console.log(${loginUser.memberNo}+ "sadsad");
+			console.log(${loginUser.memberNo}+ "sadsad"+${receiverNo});
 			$.ajax({
 				url : 'messageDetail',
 				type : 'post',
-				data : "memberNo=" + ${loginUser.memberNo} + "&receiverNo=" + ${receiverNo},
+				data : "senderNo=" + ${loginUser.memberNo} + "&receiverNo=" + ${receiverNo},
 				success : function(data) {
 					
 					for ( var i = 0 in data) {
@@ -54,7 +54,9 @@
 				}
 			});
 		}
+		</script>
 
+  <script>
 		$("#messageIn").click(function() {
 				var messageConts = document.getElementById("messageConts").value;
 					$.ajax({

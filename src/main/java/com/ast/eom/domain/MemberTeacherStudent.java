@@ -25,6 +25,7 @@ public class MemberTeacherStudent {
   private List<LessonSubject> lessonSubjects;
   private List<School> schools;
   private List<Subject> subjects;
+  private List<Lesson> lessons;
   
   
   @Override
@@ -34,7 +35,8 @@ public class MemberTeacherStudent {
         + ", name=" + name + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb
         + ", profilePhoto=" + profilePhoto + ", teacherPhoto=" + teacherPhoto + ", schoolType="
         + schoolType + ", teachers=" + teachers + ", lessonSubjects=" + lessonSubjects
-        + ", schools=" + schools + ", subjects=" + subjects + "]";
+        + ", schools=" + schools + ", subjects=" + subjects + ", lessons=" + lessons
+         + "]";
   }
   public int getMemberNo() {
     return memberNo;
@@ -125,5 +127,11 @@ public class MemberTeacherStudent {
   }
   public void setSubjects(List<Subject> subjects) {
     this.subjects = subjects;
+  }
+  public List<Lesson> getLessons() {
+    return lessons;
+  }
+  public void setLessons(List<Lesson> lessons) {
+    this.lessons = lessons;
   }
 }
