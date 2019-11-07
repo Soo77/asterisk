@@ -20,6 +20,7 @@
     from comment c
     inner join member m on c.mem_no=m.mem_no
     where board_no=#{boardNo}
+    order by cdt desc
   </select>
   
   <insert id="insert" parameterType="Comment"
