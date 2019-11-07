@@ -153,6 +153,7 @@
     <set>
       <if test="curriculum.curriculumLessonStartTime != null">c.curr_lesson_st=#{curriculum.curriculumLessonStartTime},</if> 
       <if test="curriculum.curriculumLessonEndTime != null">c.curr_lesson_et=#{curriculum.curriculumLessonEndTime},</if> 
+      <if test="curriculum.curriculumLessonDay != null">c.curr_lesson_dt=#{curriculum.curriculumLessonDay},</if> 
       <if test="startDate != null">l.sdt=#{startDate},</if> 
       <if test="endDate != null">l.edt=#{endDate}</if> 
     </set>

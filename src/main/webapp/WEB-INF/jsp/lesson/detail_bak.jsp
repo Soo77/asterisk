@@ -13,7 +13,7 @@
     }
   </style>
 </head>
-<body>
+<body> 
 
 <div id='content'>
 <h1>수업내용</h1>

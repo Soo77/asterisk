@@ -1,26 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript" charset="UTF-8"> </script>
+
+<script language="javascript">
+function checking(){
+if(document.all['chk'].checked == true)
+{
+for(i=1; i<8;i++){
+document.all['OPTI_'+i].checked = true;
+}
+}
+else if(document.all['chk'].checked == false)
+{
+for(i=1; i<8;i++){
+document.all['OPTI_'+i].checked = false;
+}
+}
+return;
+}
+</script>
+
 
 
 <head>
-<!--   <style>
-    #content{
-      margin-left: 0px; 
-      margin-right: 500px;
-    }
-  </style> -->
-<!--       <style>
-      label[for="basic-url1"] {
-/*         position: relative; */
-        margin-top: 1000px; 
-      } 
-      
-      label[for="c"] {
-        position: relative; 
-        top: -1.5px; 
-      }
-    </style> -->
+
 </head>
 
 
@@ -40,7 +44,7 @@
     <div class="container pt-4 pb-4">
       
 <div id='content'>
-<h1 style="
+<h1 style="font-family: 'Nanum Gothic'; 
   margin-bottom: 20px;
 ">수업내용</h1>
 <%-- 수업시작일: <input name="lessonconts" type="text" class="form-control" id="testinput1" value="${lesson.startDate}">
@@ -72,12 +76,99 @@
       </div>
       <div class="col-lg-3 col-sm-4">
       <label for="basic-url4">수업종료시간</label>
-        <div class="form-group has-default bmd-form-group pt-0 pb-5">
+        <div class="form-group has-default bmd-form-group pt-0"> 
           <input name="et" id="basic-url4" type="time" class="form-control" placeholder="Regular"
             value="${lesson.curriculum.curriculumLessonEndTime}"> 
         </div>
       </div>
-    </div>
+    </div> 
+    
+<!--     <label for="basic-url5">수업요일</label>
+      -->
+
+<label for="basic-url5">수업요일</label>
+ <div class="pb-5" id="basic-url5">
+ <div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id='OPTI_1' name='weekArr' value="1"> 일
+    <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+  </label>
+</div>
+ <div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id='OPTI_2' name='weekArr' value="2"> 월
+    <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+  </label>
+</div>
+ <div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id='OPTI_3' name='weekArr' value="3"> 화
+    <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+  </label>
+</div>
+ <div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id='OPTI_4' name='weekArr' value="4"> 수
+    <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+  </label>
+</div>
+ <div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id='OPTI_5' name='weekArr' value="5"> 목
+    <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+  </label>
+</div>
+ <div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id='OPTI_6' name='weekArr' value="6"> 금
+    <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+  </label>
+</div>
+ <div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" id='OPTI_7' name='weekArr' value="7"> 토
+    <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+  </label>
+</div>
+ <div class="form-check form-check-inline">
+  <label class="form-check-label">
+    <input class="form-check-input" type="checkbox" name="chk" onclick="javascript:checking()">전체선택
+    <span class="form-check-sign">
+        <span class="check"></span>
+    </span>
+  </label>
+</div>
+</div>
+
+<script>
+    let day = '${lesson.curriculum.curriculumLessonDay}';
+    console.log(day); 
+    let array = day.split(""); 
+    for (var i=0; i<array.length; i++){ 
+      console.log(array[i]); 
+      if (array[i]==1) { 
+        console.log('test');
+        $("input:checkbox[id='OPTI_"+(i+1)+"']").prop("checked", true);
+      }  
+    }   
+</script> 
+
+ 
+                
 <table id="table" class='table table-hover'>
 <thead>
 <tr>

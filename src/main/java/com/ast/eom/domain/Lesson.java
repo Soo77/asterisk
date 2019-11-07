@@ -42,11 +42,14 @@ public class Lesson {
   private Curriculum curriculum;
   private Subject subject;
   private String subjectName;
+  private String dayintoWord;
   
   private List<Member> members;
   private List<Curriculum> curriculums;
   private List<DayLesson> dayLessons;
   
+
+
   @Override
   public String toString() {
     return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo
@@ -60,8 +63,8 @@ public class Lesson {
         + teacherStopReason + ", refundState=" + refundState + ", refundDate=" + refundDate
         + ", refundAmount=" + refundAmount + ", clc=" + clc + ", member=" + member + ", clcs="
         + clcs + ", curriculum=" + curriculum + ", subject=" + subject + ", subjectName="
-        + subjectName + ", members=" + members + ", curriculums=" + curriculums + ", dayLessons="
-        + dayLessons + "]";
+        + subjectName + ", dayintoWord=" + dayintoWord + ", members=" + members + ", curriculums="
+        + curriculums + ", dayLessons=" + dayLessons + "]";
   }
 
   public CurriculumLessonContents getClc() {
@@ -257,6 +260,14 @@ public class Lesson {
   }
   public void setCurriculum(Curriculum curriculum) {
     this.curriculum = curriculum;
+  }
+
+  public String getDayintoWord() {
+    return dayintoWord;
+  }
+
+  public void setDayintoWord(String dayintoWord) {
+    this.dayintoWord = dayintoWord;
   }
   
   
