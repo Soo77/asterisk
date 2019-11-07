@@ -8,7 +8,8 @@ public interface LessonDao {
   List<Lesson> findAllStudentBy() throws Exception;
   Lesson findBy(int no) throws Exception;
   int insert(Lesson lesson) throws Exception;
-  int update(Lesson lesson) throws Exception;
+  int updateContentsAndDays(Lesson lesson) throws Exception;
+  int updateDateAndTime(Lesson lesson) throws Exception;
   int delete(int no) throws Exception;
   
   Lesson findCurrBy(int lessonNo) throws Exception;
