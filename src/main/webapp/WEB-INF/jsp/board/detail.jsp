@@ -23,6 +23,7 @@
     
     .photo2 {
       height: 100px;
+      width: 100px;
       margin: 2px;
     }
     
@@ -80,7 +81,7 @@
     }
     
     .col-1 .form-control {
-      background-color: #C98AFF;
+      background-color: #9c27b0;
       color: #ffffff;
       border-radius: 5px/5px;
       text-align: center;
@@ -138,6 +139,10 @@
       float: right;
     }
     
+    .page-header {
+      height: 300px;
+    }
+    
     /* div{
     border: 1px solid;
     } */
@@ -150,8 +155,21 @@
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
-          <h1>Your title here</h1>
-          <h3 class="title text-center">Subtitle</h3>
+          <c:if test="${board.boardTypeNo == 1}">
+            <h1>질문게시판</h1>
+            <h3>공부상담</h3>
+          </c:if>
+          <c:if test="${board.boardTypeNo == 2}">
+            <h1>질문게시판</h1>
+            <h3>입시상담</h3>
+          </c:if>
+          <c:if test="${board.boardTypeNo == 3}">
+            <h1>질문게시판</h1>
+            <h3>문제풀이</h3>
+          </c:if>
+          <c:if test="${board.boardTypeNo == 4}">
+            <h1>공지사항</h1>
+          </c:if>
         </div>
       </div>
     </div>
@@ -159,32 +177,12 @@
 </div>
 <div class="main main-raised">
   <div class="container">
-    <!-- <div class="section text-center"> -->
-    <div class="title">
-      <c:if test="${board.boardTypeNo == 1}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">공부상담</h2>
-      </c:if>
-      <c:if test="${board.boardTypeNo == 2}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">입시상담</h2>
-      </c:if>
-      <c:if test="${board.boardTypeNo == 3}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">문제풀이</h2>
-      </c:if>
-      <c:if test="${board.boardTypeNo == 4}">
-        <h1 style="display: inline">공지사항</h1>
-      </c:if>
-    </div>
-
-    <hr>
-
+    <div class="boardDetail pt-3">
     <form id="form1" name="frm1" action='update' method='post'
       enctype='multipart/form-data'>
       <input type="hidden" name="boardTypeNo"
         value="${board.boardTypeNo}"> <input type="hidden"
-        name="boardNo" value="${board.boardNo}"> <br>
+        name="boardNo" value="${board.boardNo}">
 
       <div class="row">
         <div class="col-1">
@@ -267,6 +265,7 @@
     </form>
 
     <c:if test="${board.boardTypeNo != 4}">
+    <div class="cmt">
       <div class="container">
         <label for="commentContents">댓글</label>
         <form class="comment" name="commentInsertForm">
@@ -296,6 +295,7 @@
         <div class="commentList"></div>
       </div>
       <hr>
+    </div>
     </c:if>
 
     <div class="form-group row">
@@ -317,6 +317,7 @@
         </c:if>
       </div>
     </div>
+    </div>
 
     <br>
   </div>
@@ -326,116 +327,122 @@
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <script>
-  		// button event, sweetalert
-  		
-      var UpdateButton = document.querySelector('#btnUpdate');
-      UpdateButton.addEventListener('click', function() {
-        UpdateButton.style.display = 'none';
-        document.querySelector('.container').style.display = 'none';
-        document.querySelector('#btnDelete').style.display = 'none';
-        document.querySelector('#btnList').style.display = 'none';
-        document.querySelector('#btnSave').style.display = 'inline';
-        document.querySelector('#btnCancle').style.display = 'inline';
-        document.querySelector('#inputTitle').readOnly = false;
-        document.querySelector('#inputContents').readOnly = false;
-        var boardPhotos = document.querySelector('#insertBoardPhotos');
-        boardPhotos.style.display = 'inline';
-      });
+  // 수정
+  var UpdateButton = document.querySelector('#btnUpdate');
+  UpdateButton.addEventListener('click', function() {
+    UpdateButton.style.display = 'none';
+    document.querySelector('.cmt').style.display = 'none';
+    document.querySelector('#btnDelete').style.display = 'none';
+    document.querySelector('#btnList').style.display = 'none';
+    document.querySelector('#btnSave').style.display = 'inline';
+    document.querySelector('#btnCancle').style.display = 'inline';
+    document.querySelector('#inputTitle').readOnly = false;
+    document.querySelector('#inputContents').readOnly = false;
+    var boardPhotos = document.querySelector('#insertBoardPhotos');
+    boardPhotos.style.display = 'inline';
+  });
+</script>
 
-      var cancleButton = document.querySelector('#btnCancle');
-        cancleButton.addEventListener('click', function() {
-          swal({
-            title: "취소",
-            text: "취소하시겠습니까?",
-            icon: "warning",
+<script>
+  // 수정 취소
+  var cancleButton = document.querySelector('#btnCancle');
+  cancleButton.addEventListener('click', function() {
+    swal({
+      title: "취소",
+      text: "취소하시겠습니까?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        location.href = "detail?no=" + ${board.boardNo};
+      } else {
+      }
+    });
+  });
+</script>
+
+<script>
+  // 수정 완료
+  var saveButton = document.querySelector('#btnSave');
+  saveButton.addEventListener('click', function() {
+    var form = document.frm1;
+      if (form.title.value.length == 0) {
+        swal("제목을 입력하세요.");
+        form.title.focus();
+        return;
+      }
+      if (form.contents.value.length == 0) {
+        swal("내용을 입력하세요.");
+        form.contents.focus();
+        return;
+      }
+      else {
+        swal({
+            title: "수정",
+            text: "등록하시겠습니까?",
             buttons: true,
-            dangerMode: true,
           })
           .then((willDelete) => {
             if (willDelete) {
-              location.href = "detail?no=" + ${board.boardNo};
+              swal("등록되었습니다.", {
+                icon: "success",
+              });
+              document.getElementById("form1").submit();
             } else {
             }
           });
-        });
-        
-      var saveButton = document.querySelector('#btnSave');
-      saveButton.addEventListener('click', function() {
-        var form = document.frm1;
-          if (form.title.value.length == 0) {
-            swal("제목을 입력하세요.");
-            form.title.focus();
-            return;
-          }
-          if (form.contents.value.length == 0) {
-            swal("내용을 입력하세요.");
-            form.contents.focus();
-            return;
-          }
-          else {
-            swal({
-                title: "수정",
-                text: "등록하시겠습니까?",
-                buttons: true,
-              })
-              .then((willDelete) => {
-                if (willDelete) {
-                  swal("등록되었습니다.", {
-                    icon: "success",
-                  });
-                  document.getElementById("form1").submit();
-                } else {
-                }
-              });
-          }
-      });
-      
-      var deleteButton = document.querySelector('#btnDelete');
-      deleteButton.addEventListener('click', function() {
-        swal({
-          title: "삭제",
-          text: "삭제하시겠습니까?",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            location.href = "delete?no=" + ${board.boardNo};
-          } else {
-          }
-        });
-      });
-  </script>
+      }
+  });
+</script>
 
 <script>
-      // file upload
-      
-      $(function() {
-        var imagesPreview = function(input, placeToInsertImagePreview) {
-          if (input.files) {
-            var filesAmount = input.files.length;
-            for (i = 0; i < filesAmount; i++) {
-              var reader = new FileReader();
-              reader.onload = function(event) {
-                $(
-                    $
-                        .parseHTML('<img style="height:100px; margin-top:10px;">'))
-                    .attr('src', event.target.result)
-                    .appendTo(placeToInsertImagePreview);
-              }
-              reader.readAsDataURL(input.files[i]);
-            }
-          }
-        };
+  // 게시글 삭제
+  var deleteButton = document.querySelector('#btnDelete');
+  deleteButton.addEventListener('click', function() {
+    swal({
+      title: "삭제",
+      text: "삭제하시겠습니까?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        location.href = "delete?no=" + ${board.boardNo};
+      } else {
+      }
+    });
+  });
+</script>
 
-        $('#gallery-photo-add').on('change', function() {
-          imagesPreview(this, 'div.gallery');
-          $('.upload-name').val('파일' + this.files.length + '개');
-        });
-      });
-      
-  </script>
+<script>
+  // 파일 업로드
+  $(function() {
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+      if (input.files) {
+        var filesAmount = input.files.length;
+        for (i = 0; i < filesAmount; i++) {
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            $(
+                $
+                    .parseHTML('<img style="height:100px; width:100px; margin:2px;">'))
+                .attr('src', event.target.result)
+                .appendTo(placeToInsertImagePreview);
+          }
+          reader.readAsDataURL(input.files[i]);
+        }
+      }
+    };
+  
+    $('#gallery-photo-add').on('change', function() {
+      imagesPreview(this, 'div.gallery');
+      $('.upload-name').val('파일' + this.files.length + '개');
+    });
+  });
+</script>
 
 <script>
       // comment
@@ -465,7 +472,7 @@
       });
 
       //댓글 목록 
-      function commentList() {
+/*        function commentList() {
         $.ajax({
             url : 'comment/list',
             type : 'get',
@@ -499,9 +506,9 @@
               $(".commentList").html(a);
             }
           });
-      } 
-
-/*       function commentList() {
+      }   */
+      
+       function commentList() {
           $.ajax({
               url : 'comment/list',
               type : 'get',
@@ -513,56 +520,101 @@
                 $.each(
                       data,
                       function(key, value) {
-                        a += '<div class="commentArea" style="border-top:1px solid darkgray; padding: 10px;">';
-                            
-                            
-                        a += '<div class="row"> <div class="col-1">';
-                        if (value.profilePhoto == null) {
-                          a += '<img src="/upload/join/default.png"';
-                          a += ' alt="" class="img-raised rounded-circle img-fluid">';
-                        } else {
-                        	a += '<img src="/upload/join/' + value.profilePhoto +'"';
-                          a += 'onError="javascript:src=' + "'" + '/upload/join/default.png' + "'";
-                          a += 'alt="" class="img-raised rounded-circle img-fluid"> </div>';
-                        }
-                        a += '<div class="col-1">';
+                        a += '<div class="commentArea" style="border-bottom:1px solid darkgray; padding:10px;">';
+                        if (value.memberNo == ${loginUser.memberNo}){
+                            a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
+                                + value.commentNo
+                                + ');"> 삭제 </button>'
+                            a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
+                                + value.commentNo
+                                + ',\''
+                                + value.commentContents
+                                + '\');"> 수정 </button>'
+                          }
+                        a += '<div class="createdDate'+value.commentNo+'">' + value.createdDate + '</div>';
                         a += '<div class="commentInfo'+value.commentNo+'">'
                             + value.memberId + '</div>'
-                            +'</div>';
-                        
-                        if (value.memberNo == ${loginUser.memberNo}){
-                          a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
-                              + value.commentNo
-                              + ');"> 삭제 </button>';
-                          a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
-                              + value.commentNo
-                              + ',\''
-                              + value.commentContents
-                              + '\');"> 수정 </button>';
-                        }
-                        
-                        a += '</div>';
                         a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
-                            + value.commentContents;
-                        a += '</div>' + value.createdDate + '</div>';
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-
+                            + value.commentContents + '</div>'
+                        a += '</div>'
                       });
 
                 $(".commentList").html(a);
               }
             });
-        } */
+        }   
+
+/*         function commentList() {
+          $.ajax({
+              url : 'comment/list',
+              type : 'get',
+              data : {
+                'boardNo' : boardNo
+              },
+              success : function(data) {
+                var a = '';
+                $.each(
+                      data,
+                      function(key, value) {
+                          a += '<div class="commentArea" style="border-top:1px solid darkgray; padding: 10px;">';
+                              
+                              a += '<div class="row">';
+                              
+                              a += '<div class="col-2">';
+                              if (value.profilePhoto == null) {
+                                a += '<img src="/upload/join/default.png"';
+                                a += ' alt="" class="img-raised rounded-circle img-fluid">';
+                              } else {
+                              	a += '<img src="/upload/join/'+value.profilePhoto+'"';
+                                a += 'onError="javascript:src='+"'" + '/upload/join/default.png'+"'";
+                                a += ' alt="" class="img-raised rounded-circle img-fluid">';
+                              }
+                              a += '</div>';
+                              
+                              a += '<div class="col-10">';
+                            	a += '<div class="row">';
+                            	a += '<div class="createdDate'+value.commentNo+'">'+value.createdDate;
+                            	a += '</div>';
+                            	a += '</div>';
+                              a += '<div class="row">';
+                              a += '<div class="commentInfo'+value.commentNo+'">'+value.memberId;
+                              a += '</div>';
+                              a += '</div>';
+                              a += '<div class="row">;
+                              a += '<div class="commentContents'+value.commentNo+'"' + 'style="word-break:break-all;">'+value.commentContents;
+                              a += '</div>';
+                              a += '</div>';
+                              a += '</div>';
+                              
+                            	a += '</div>';
+                            	
+                              a += '<div class="row">';
+                              
+                              if (value.memberNo == ${loginUser.memberNo}){
+                                a += '<div class="col">';
+                                a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
+                                    + value.commentNo
+                                    + ');"> 삭제 </button>';
+                                a +=  '</div>';
+                                
+                                a += '<div class="col">';
+                                a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
+                                    + value.commentNo
+                                    + ',\'
+                                    + value.commentContents
+                                    + '\');"> 수정 </button>';
+                                a += '</div>';
+                              }
+                              a += '</div>';
+                              
+                              a += '</div>';
+
+                      });
+
+                $(".commentList").html(a);
+              }
+            }); 
+        }  */
       
       //댓글 등록
       function commentInsert(insertData) {

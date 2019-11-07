@@ -13,9 +13,14 @@
       margin: 2px;
     }
     
+    .page-header {
+      height: 300px;
+    }
+    
     /* div{
     border: 1px solid;
     } */
+    
   </style>
 </head>
 
@@ -25,8 +30,21 @@
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
-          <h1>Your title here</h1>
-          <h3 class="title text-center">Subtitle</h3>
+          <c:if test="${boardTypeNo == 1}">
+            <h1>질문게시판</h1>
+            <h3>공부상담</h3>
+          </c:if>
+          <c:if test="${boardTypeNo == 2}">
+            <h1>질문게시판</h1>
+            <h3>입시상담</h3>
+          </c:if>
+          <c:if test="${boardTypeNo == 3}">
+            <h1>질문게시판</h1>
+            <h3>문제풀이</h3>
+          </c:if>
+          <c:if test="${boardTypeNo == 4}">
+            <h1>공지사항</h1>
+          </c:if>
         </div>
       </div>
     </div>
@@ -34,27 +52,7 @@
 </div>
 <div class="main main-raised">
   <div class="container">
-    <!-- <div class="section text-center"> -->
-    <div class="title">
-      <c:if test="${boardTypeNo == 1}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">공부상담</h2>
-      </c:if>
-      <c:if test="${boardTypeNo == 2}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">입시상담</h2>
-      </c:if>
-      <c:if test="${boardTypeNo == 3}">
-        <h1 style="display: inline">질문게시판 ㅣ</h1>
-        <h2 style="display: inline">문제풀이</h2>
-      </c:if>
-      <c:if test="${boardTypeNo == 4}">
-        <h1 style="display: inline">공지사항</h1>
-      </c:if>
-    </div>
-
-    <br>
-
+  <div class="boardList pt-3">
     <table class='table table-hover'>
       <thead>
         <tr>
@@ -140,6 +138,7 @@
         <button class="btn btn-primary btn-round btn-sm"
           name="btnSearch" id="btnSearch">검색</button>
       </div>
+    </div>
     </div>
   </div>
 </div>
