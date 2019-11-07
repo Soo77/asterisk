@@ -23,6 +23,7 @@
     
     .photo2 {
       height: 100px;
+      width: 100px;
       margin: 2px;
     }
     
@@ -264,6 +265,7 @@
     </form>
 
     <c:if test="${board.boardTypeNo != 4}">
+    <div class="cmt">
       <div class="container">
         <label for="commentContents">댓글</label>
         <form class="comment" name="commentInsertForm">
@@ -293,6 +295,7 @@
         <div class="commentList"></div>
       </div>
       <hr>
+    </div>
     </c:if>
 
     <div class="form-group row">
@@ -328,7 +331,7 @@
   var UpdateButton = document.querySelector('#btnUpdate');
   UpdateButton.addEventListener('click', function() {
     UpdateButton.style.display = 'none';
-    document.querySelector('.container').style.display = 'none';
+    document.querySelector('.cmt').style.display = 'none';
     document.querySelector('#btnDelete').style.display = 'none';
     document.querySelector('#btnList').style.display = 'none';
     document.querySelector('#btnSave').style.display = 'inline';
@@ -425,7 +428,7 @@
           reader.onload = function(event) {
             $(
                 $
-                    .parseHTML('<img style="height:100px; margin-top:10px;">'))
+                    .parseHTML('<img style="height:100px; width:100px; margin:2px;">'))
                 .attr('src', event.target.result)
                 .appendTo(placeToInsertImagePreview);
           }
@@ -469,7 +472,7 @@
       });
 
       //댓글 목록 
-      function commentList() {
+/*        function commentList() {
         $.ajax({
             url : 'comment/list',
             type : 'get',
@@ -503,9 +506,9 @@
               $(".commentList").html(a);
             }
           });
-      } 
-
-/*       function commentList() {
+      }   */
+      
+       function commentList() {
           $.ajax({
               url : 'comment/list',
               type : 'get',
@@ -517,56 +520,101 @@
                 $.each(
                       data,
                       function(key, value) {
-                        a += '<div class="commentArea" style="border-top:1px solid darkgray; padding: 10px;">';
-                            
-                            
-                        a += '<div class="row"> <div class="col-1">';
-                        if (value.profilePhoto == null) {
-                          a += '<img src="/upload/join/default.png"';
-                          a += ' alt="" class="img-raised rounded-circle img-fluid">';
-                        } else {
-                        	a += '<img src="/upload/join/' + value.profilePhoto +'"';
-                          a += 'onError="javascript:src=' + "'" + '/upload/join/default.png' + "'";
-                          a += 'alt="" class="img-raised rounded-circle img-fluid"> </div>';
-                        }
-                        a += '<div class="col-1">';
+                        a += '<div class="commentArea" style="border-bottom:1px solid darkgray; padding:10px;">';
+                        if (value.memberNo == ${loginUser.memberNo}){
+                            a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
+                                + value.commentNo
+                                + ');"> 삭제 </button>'
+                            a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
+                                + value.commentNo
+                                + ',\''
+                                + value.commentContents
+                                + '\');"> 수정 </button>'
+                          }
+                        a += '<div class="createdDate'+value.commentNo+'">' + value.createdDate + '</div>';
                         a += '<div class="commentInfo'+value.commentNo+'">'
                             + value.memberId + '</div>'
-                            +'</div>';
-                        
-                        if (value.memberNo == ${loginUser.memberNo}){
-                          a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
-                              + value.commentNo
-                              + ');"> 삭제 </button>';
-                          a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
-                              + value.commentNo
-                              + ',\''
-                              + value.commentContents
-                              + '\');"> 수정 </button>';
-                        }
-                        
-                        a += '</div>';
                         a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
-                            + value.commentContents;
-                        a += '</div>' + value.createdDate + '</div>';
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-
+                            + value.commentContents + '</div>'
+                        a += '</div>'
                       });
 
                 $(".commentList").html(a);
               }
             });
-        } */
+        }   
+
+/*         function commentList() {
+          $.ajax({
+              url : 'comment/list',
+              type : 'get',
+              data : {
+                'boardNo' : boardNo
+              },
+              success : function(data) {
+                var a = '';
+                $.each(
+                      data,
+                      function(key, value) {
+                          a += '<div class="commentArea" style="border-top:1px solid darkgray; padding: 10px;">';
+                              
+                              a += '<div class="row">';
+                              
+                              a += '<div class="col-2">';
+                              if (value.profilePhoto == null) {
+                                a += '<img src="/upload/join/default.png"';
+                                a += ' alt="" class="img-raised rounded-circle img-fluid">';
+                              } else {
+                              	a += '<img src="/upload/join/'+value.profilePhoto+'"';
+                                a += 'onError="javascript:src='+"'" + '/upload/join/default.png'+"'";
+                                a += ' alt="" class="img-raised rounded-circle img-fluid">';
+                              }
+                              a += '</div>';
+                              
+                              a += '<div class="col-10">';
+                            	a += '<div class="row">';
+                            	a += '<div class="createdDate'+value.commentNo+'">'+value.createdDate;
+                            	a += '</div>';
+                            	a += '</div>';
+                              a += '<div class="row">';
+                              a += '<div class="commentInfo'+value.commentNo+'">'+value.memberId;
+                              a += '</div>';
+                              a += '</div>';
+                              a += '<div class="row">;
+                              a += '<div class="commentContents'+value.commentNo+'"' + 'style="word-break:break-all;">'+value.commentContents;
+                              a += '</div>';
+                              a += '</div>';
+                              a += '</div>';
+                              
+                            	a += '</div>';
+                            	
+                              a += '<div class="row">';
+                              
+                              if (value.memberNo == ${loginUser.memberNo}){
+                                a += '<div class="col">';
+                                a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
+                                    + value.commentNo
+                                    + ');"> 삭제 </button>';
+                                a +=  '</div>';
+                                
+                                a += '<div class="col">';
+                                a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
+                                    + value.commentNo
+                                    + ',\'
+                                    + value.commentContents
+                                    + '\');"> 수정 </button>';
+                                a += '</div>';
+                              }
+                              a += '</div>';
+                              
+                              a += '</div>';
+
+                      });
+
+                $(".commentList").html(a);
+              }
+            }); 
+        }  */
       
       //댓글 등록
       function commentInsert(insertData) {

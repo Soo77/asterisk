@@ -9,7 +9,7 @@ public class Comment {
   private int boardNo;
   private int memberNo;
   private String commentContents;
-  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd H:mm a")
+  @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
   private Date createdDate;
   private String memberId;
   private String profilePhoto;

@@ -232,7 +232,7 @@
           for (i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
             reader.onload = function(event) {
-              $($.parseHTML('<img style="height:100px; margin-top:10px;">'))
+              $($.parseHTML('<img style="height:100px; width:100px; margin:2px;">'))
                   .attr('src', event.target.result)
                   .appendTo(placeToInsertImagePreview);
             }
