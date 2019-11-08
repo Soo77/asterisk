@@ -44,10 +44,13 @@ public class DefaultLessonService implements LessonService {
   }
   
   @Override
-  public void update(Lesson lesson) throws Exception {
-
-    lessonDao.update(lesson);
-
+  public void updateContentsAndDays(Lesson lesson) throws Exception {
+    lessonDao.updateContentsAndDays(lesson);
+  }
+  
+  @Override
+  public void updateDateAndTime(Lesson lesson) throws Exception {
+    lessonDao.updateDateAndTime(lesson);
   }
   
   @Override

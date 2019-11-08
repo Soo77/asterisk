@@ -76,9 +76,10 @@ public class WebConfig implements WebMvcConfigurer {
   public void addInterceptors(InterceptorRegistry registry) {
 
     registry.addInterceptor(new LoginCheckInterceptor()).addPathPatterns("/**")
-        .excludePathPatterns("/auth/**").excludePathPatterns("/join/**");
+        .excludePathPatterns("/auth/**").excludePathPatterns("/join/**")
+        .excludePathPatterns("/loginCheck");
 
-    registry.addInterceptor(new AuthControllerCheckInterceptor()).addPathPatterns("/auth/**");
+    registry.addInterceptor(new AuthControllerCheckInterceptor()).addPathPatterns("/auth/form");
 
 
     /*

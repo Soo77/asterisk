@@ -7,7 +7,8 @@ public interface LessonService {
   List<Lesson> list(int memberTypeNo) throws Exception;
   Lesson get(int no) throws Exception;
   void insert(Lesson lesson) throws Exception;
-  void update(Lesson lesson) throws Exception;
+  void updateContentsAndDays(Lesson lesson) throws Exception;
+  void updateDateAndTime(Lesson lesson) throws Exception;
   void delete(int no) throws Exception;
   
   Lesson lessonDetail(int lessonNo) throws Exception;

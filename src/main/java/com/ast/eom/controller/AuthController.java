@@ -66,7 +66,7 @@ public class AuthController implements Runnable {
   public String logout(HttpSession session) 
       throws Exception {
     session.invalidate();
-    return "redirect:form";
+    return "redirect:/index.html";
   }
 
   // 아이디 찾기
