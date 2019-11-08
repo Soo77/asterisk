@@ -4,7 +4,7 @@
 <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
   <div class="container">
     <div class="navbar-translate">
-      <a class="navbar-brand my-logo" href="/index.html">
+      <a class="navbar-brand my-logo" href="/">
         Eom-Tutor</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -69,6 +69,9 @@
 </nav>
 
 
+<!-- sweetalert -->
+<script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
+
 <!--   Core JS Files   -->
 <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
 <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
@@ -80,6 +83,7 @@
 <script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="/assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
+
 
 <script>
   $.ajax({

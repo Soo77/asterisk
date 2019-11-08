@@ -7,7 +7,7 @@
 <html lang="en">
 
 <head>
-  <title>Hello, world!</title>
+  <title>Eom-Tutor</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
@@ -24,7 +24,6 @@
   <tiles:insertAttribute name="header3"/>
   <tiles:insertAttribute name="body3"/>
   <tiles:insertAttribute name="footer3"/>
-  <tiles:insertAttribute name="javascript3"/>
 </body>
 
 </html>
