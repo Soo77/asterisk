@@ -96,10 +96,11 @@
 
     <form method="post" action="studentjoin" name="userInfo"
       enctype="multipart/form-data" onsubmit="return checkValue()">
-      <input type="image" id="view_file" style="width:150px; height:150px;">
+      
+      <input type="image" id="view_file" class="rounded-circle img-fluid" style="width:150px; height:150px;">
       <label for="exampleInput1" class="bmd-label-floating">프로필 사진</label><br>
       <input type='file' class="text-white" id='filePath' name='filePath'> 
-
+      
       <div class="form-group bmd-form-group">
         <label for="exampleInput1" class="bmd-label-floating">아이디</label> 
         <input type="email" class="form-control" name="id" id="id" maxlength="50"> 
