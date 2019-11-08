@@ -80,7 +80,7 @@
 
 	<select id="listTeacher" resultMap="MemberTeacherStudentMap">
 		 select
-		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, tp.tch_photo, s.sch_name, s.sch_type_no,
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, m.profile_photo, tp.tch_photo, s.sch_name, s.sch_type_no,
 		t.tch_no, t.appr_stat, ls.sub_conts, sub.sub_name, st.sch_type
 		from
 		member m

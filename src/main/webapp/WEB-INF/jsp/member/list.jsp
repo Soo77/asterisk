@@ -198,7 +198,7 @@
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                        <img src="${member.teacherPhoto}" width="130" alt="Thumbnail Image" 
+                        <img src="${member.profilePhoto}" width="130" alt="Thumbnail Image" 
                         class="img-raised rounded-circle img-fluid" 
                         onError="this.src='/landing_images/images/default.jpg'">
                         <!-- <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid"> -->
@@ -230,7 +230,7 @@
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                      <img src="${member.teacherPhoto}" width="130" alt="Thumbnail Image" 
+                      <img src="${member.profilePhoto}" width="130" alt="Thumbnail Image" 
                         class="img-raised rounded-circle img-fluid" 
                         onError="this.src='/landing_images/images/default.jpg'">
                       </div>
