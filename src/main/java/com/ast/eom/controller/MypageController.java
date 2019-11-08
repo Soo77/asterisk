@@ -21,8 +21,7 @@ public class MypageController {
   
   @GetMapping("detail")
   public void detail(HttpSession session) throws Exception {
-    Member loginUser = (Member) session.getAttribute("loginUser");
-    Map<String, Object> memberInfoMap = mypageService.getMemberInfoMapBy(loginUser);
+    Map<String, Object> memberInfoMap = mypageService.getMemberInfoMap();
     
     for (String key : memberInfoMap.keySet()) {
       System.out.println(memberInfoMap.get(key));

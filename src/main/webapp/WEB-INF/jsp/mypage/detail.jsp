@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
-  <link href="/css/mypage.css" rel="stylesheet" />
   <link href="/assets/demo/demo.css" rel="stylesheet" />
   <style>
     #mypage-form {
@@ -76,7 +75,7 @@
   
 </head>
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -126,14 +125,14 @@
             <label for="inputEmail">이메일</label>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" id="inputEmail" value="${email[0]}">
+                <input type="text" class="form-control" id="inputEmail" value="${mypageEmail[0]}">
               </div>
               <div class="col">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                   </div>
-                  <input type="text" class="form-control" id="inputEmail2" value="${email[1]}">
+                  <input type="text" class="form-control" id="inputEmail2" value="${mypageEmail[1]}">
                 </div>
               </div>
             </div>
@@ -164,7 +163,7 @@
             <input type="text" class="form-control" id="inputTel" value="${loginUser.tel}">
           </div>
 
-
+          <!-- 선생님 페이지 수정 중인 항목 -->
           <div class="form-group">
             <label for="inputBankName">은행명</label>
             <select class="form-control selectpicker" data-style="btn btn-link" id="inputBankName">
@@ -198,6 +197,7 @@
             </c:forEach>
           </div>
 
+          <!-- 선생님, 학생 페이지 수정 중인 항목 -->
           <div class="form-group row wantedSubjects">
             <div class="col-sm-2 form-group">
               <label for="inputSubject" class="wantedSubjectLabel col-form-label">희망과목</label>&nbsp;&nbsp;
@@ -235,7 +235,7 @@
             <div class="subjectCheckboxDiv">
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="checkboxSunday" value="option1"> 일
+                  <input class="form-check-input" type="checkbox" id="OPTI_1" value="option1"> 일
                   <span class="form-check-sign">
                     <span class="check"></span>
                 </span>
@@ -243,7 +243,7 @@
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="checkboxMonday" value="option1"> 월
+                <input class="form-check-input" type="checkbox" id="OPTI_2" value="option1"> 월
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
@@ -251,7 +251,7 @@
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="checkboxTuesday" value="option1"> 화
+                <input class="form-check-input" type="checkbox" id="OPTI_3" value="option1"> 화
                 <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -259,7 +259,7 @@
               </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="checkboxWednesday" value="option1"> 수
+                <input class="form-check-input" type="checkbox" id="OPTI_4" value="option1"> 수
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
@@ -267,7 +267,7 @@
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="checkboxThursday" value="option1"> 목
+                <input class="form-check-input" type="checkbox" id="OPTI_5" value="option1"> 목
                 <span class="form-check-sign">
                     <span class="check"></span>
                 </span>
@@ -275,7 +275,7 @@
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="checkboxFriday" value="option1"> 금
+                <input class="form-check-input" type="checkbox" id="OPTI_6" value="option1"> 금
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
@@ -283,7 +283,7 @@
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" id="checkboxSaturday" value="option1"> 토
+                <input class="form-check-input" type="checkbox" id="OPTI_7" value="option1"> 토
                 <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -294,22 +294,23 @@
 
           <div class="form-group">
             <label for="subject-start-time">과외 시작시간</label><br>
-            <input type='time' value='18:00' id="subject-start-time" class="form-control" />
+            <input type='time' value='${loginUser.lessonStartTime}' id="subject-start-time" class="form-control" />
           </div>
 
           <div class="form-group">
             <label for="subject-end-time">과외 종료시간</label><br>
-            <input type='time' value='20:00' id="subject-end-time" class="form-control" />
+            <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control" />
           </div>
 
+          <!-- 학생 정보 수정 중-->
           <div class="form-group">
             <label for="inputRequirements">과외 희망사항</label>
-            <textarea class="form-control" id="inputRequirements" rows="8"></textarea>
+            <textarea class="form-control" id="inputRequirements" rows="8" ></textarea>
           </div>
 
           <div class="form-group">
             <label for="inputIntro">자기소개</label>
-            <textarea class="form-control" id="inputIntro" rows="8"></textarea>
+            <textarea class="form-control" id="inputIntro" rows="8" value="${memberInfoMap.teacher.teacherIntro}"></textarea>
           </div>
 
           <div class="form-group">
@@ -368,25 +369,26 @@
   </div>
 </div>
 
-<!-- 
-<script>
-  window.onload = () => {
-    console.log('${memberInfoMap.teacher}');
-    console.log('${memberInfoMap.teacher.bankName}');
-  };
-</script>
- -->
-
-<script>
-  console.log($('my-lesson-btn'));
-</script>
-
+<!-- 나의 과외 버튼 -->
 <script>
   let myLessonBtn = document.getElementsByClassName('my-lesson-btn')[0];
   myLessonBtn.addEventListener('click', (event) => {
     event.preventDefault();
+    location.href = '/app/lesson/list?memberTypeNo=${loginUser.memberTypeNo}';
   });
+  
 </script>
+
+<!-- 수업 요일 체크박스 로딩 -->
+<script>
+  let day = '${loginUser.lessonDays}';
+  let array = day.split(""); 
+  for (var i=0; i<array.length; i++){ 
+    if (array[i]==1) { 
+      $("input:checkbox[id='OPTI_"+(i+1)+"']").prop("checked", true);
+    }  
+  }   
+</script> 
 
 <!-- 희망과목 추가 버튼 -->
 <script>
