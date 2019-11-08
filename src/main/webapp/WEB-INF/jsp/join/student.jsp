@@ -65,181 +65,200 @@
 	}
 </script>
 <style>
-#view_file {
-	display: none;
-}
+ #view_file {
+/* 	display: none; */
+  width: 150px; 
+  height: 150px;"
+} 
 
 #mail {
 	display: none;
 }
-
 </style>
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 <body>
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
-          <div class="brand text-center">
-            <h1>Your title here</h1>
-            <h3 class="title text-center">Subtitle</h3>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="main main-raised">
-    <div class="container">
-    <div class="col-md-6">
-    <b><font size="6" color="gray">학생 회원가입</font></b><br> <br>
+	<div class="page-header header-filter" data-parallax="true"
+		style="background-image: url('assets/img/bg3.jpg')">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 ml-auto mr-auto">
+					<div class="brand text-center">
+						<h1>타이틀</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <form method="post" action="studentjoin" name="userInfo"
-      enctype="multipart/form-data" onsubmit="return checkValue()">
-      
-      <input type="image" id="view_file" class="rounded-circle img-fluid" style="width:150px; height:150px;">
-      <label for="exampleInput1" class="bmd-label-floating">프로필 사진</label><br>
-      <input type='file' class="text-white" id='filePath' name='filePath'> 
-      
-      <div class="form-group bmd-form-group">
-        <label for="exampleInput1" class="bmd-label-floating">아이디</label> 
-        <input type="email" class="form-control" name="id" id="id" maxlength="50"> 
-        <div class="redch" id="id_check"></div>
-      </div>
-      
-        <label for="exampleInput1" class="bmd-label-floating">비밀번호</label>
-        <input type="password" class="form-control" name="password" id="pw"
-        maxlength="50">
-        <label for="exampleInput1" class="bmd-label-floating">비밀번호 확인</label>
-        <input type="password" class="form-control" name="okpw" id="okpw" maxlength="50">
-        <div class="redch" id="pw_check"></div>
+	<form method="post" action="studentjoin" name="userInfo"
+		enctype="multipart/form-data" onsubmit="return checkValue()">
+		<div class="main main-raised profile-page">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="col">
+						<div class="row">
+							<div class="col-md-6 ml-auto mr-auto">
+								<div class="profile">
+									<div class="avatar">
+										<img src="/images/photo.png" alt="Circle Image"
+											id="view_file" class="img-raised rounded-circle img-fluid">
+									</div>
+									<div class="name">
+										<h2 class="title">프로필 사진</h2>
+											<input type='file' class="text-white btn btn-rose btn-sm"
+											id='filePath' name='filePath'>
+									</div>
+								</div>
+							</div>
+						</div>
 
-      <div class="form-group bmd-form-group">
-        <label for="exampleInput1" class="bmd-label-floating">이름</label>
-        <input type="text" class="form-control" name="name" id="name" maxlength="50">
-      </div>
+						<div>
+							<b><font size="6" color="gray">학생 회원가입</font></b><br> <br>
 
-      <div class="form-check">
-      <label for="exampleInput1" class="bmd-label-floating">성별</label><br>
-        <label class="form-check-label"> 
-        <input class="form-check-input" type="radio" name="gender" value="M"> 남&ensp;
-        <span class="circle"> 
-          <span class="check"></span>
-        </span>
-        </label>
-        <label class="form-check-label"> 
-        <input class="form-check-input" type="radio" name="gender" value="F"> 여
-        <span class="circle"> 
-          <span class="check"></span>
-        </span>
-        </label>
-      </div>
+							<div class="form-group bmd-form-group">
+								<label for="exampleInput1" class="bmd-label-floating">아이디</label>
+								<input type="email" class="form-control" name="id" id="id"
+									maxlength="50">
+								<div class="redch" id="id_check"></div>
+							</div>
 
-      <div class="col-md-3">
-      <label for="exampleInput1" class="bmd-label-floating">생년월일</label><br>
-        <select name="birthyy" id="YEAR" title="년도" class="form-control select w80"></select> 
-        <select name="birthmm" id="MONTH" title="월" class="form-control select w80"></select> 
-        <select name="birthdd" id="DAY" title="일" class="form-control select w80"></select><br>
-        </div>
-        
-      <label for="exampleInput1" class="bmd-label-floating">이메일</label><br>
-      <div id=mailselect>
-        <input type="text" class="form-control" name="email" id="email" maxlength="50" placeholder="이메일">
-        @ 
-        <input type="text" class="form-control" name="mail" id="mail" value=""> 
-        <select name="mail2" id="mail2" class="form-control">
-          <option selected disabled>메일 선택</option>
-          <option value="naver.com">naver.com</option>
-          <option value="daum.net">daum.net</option>
-          <option value="gmail.com">gmail.com</option>
-          <option value="nate.com">nate.com</option>
-          <option value="">직접 입력</option>
-        </select>
-      </div>
-      <div class="redch" id="email_check"></div>
-      
-      <div class="form-group bmd-form-group">
-        <label for="exampleInput1" class="bmd-label-floating">휴대전화</label>
-        <input type="tel" class="form-control" name="tel" id="tel" maxlength="11">
-        <div class="redch" id="tel_check"></div>
-      </div>
+							<label for="exampleInput1" class="bmd-label-floating">비밀번호</label>
+							<input type="password" class="form-control" name="password"
+								id="pw" maxlength="50"> <label for="exampleInput1"
+								class="bmd-label-floating">비밀번호 확인</label> <input
+								type="password" class="form-control" name="okpw" id="okpw"
+								maxlength="50">
+							<div class="redch" id="pw_check"></div>
 
-      <input type="text" class="form-control" name="addressCity" id="sido" placeholder="주소"> 
-      <input type="text" class="form-control" name="addressSuburb" id="sigungu" placeholder="상세주소"> 
-      <input type="button" class="btn btn-rose btn-sm" onclick="execDaumPostcode()" value="주소 찾기"><br>
-      <br> 
-      
-      
-      
-      
-      원하는 과목<br>
-      <select name="subject" class="form-control">
-        <optgroup label="초등학교">
-          <option value="수학">수학</option>
-          <option value="영어">영어</option>
-        </optgroup>
-        <optgroup label="중학교">
-          <option value="수학">수학</option>
-          <option value="영어">영어</option>
-        </optgroup>
-        <optgroup label="고등학교">
-          <option value="수학">수학</option>
-          <option value="영어">영어</option>
-        </optgroup>
-      </select><br> 과외 가능 요일
-      <div class="form-check">
-        <label class="form-check-label"> <input
-          class="form-check-input" type="checkbox" value=""> 일 <span
-          class="form-check-sign"> <span class="check"></span>
-        </span>
-        </label> <label class="form-check-label"> <input
-          class="form-check-input" type="checkbox" value=""> 월 <span
-          class="form-check-sign"> <span class="check"></span>
-        </span>
-        </label> <label class="form-check-label"> <input
-          class="form-check-input" type="checkbox" value=""> 화 <span
-          class="form-check-sign"> <span class="check"></span>
-        </span>
-        </label> <label class="form-check-label"> <input
-          class="form-check-input" type="checkbox" value=""> 수 <span
-          class="form-check-sign"> <span class="check"></span>
-        </span>
-        </label> <label class="form-check-label"> <input
-          class="form-check-input" type="checkbox" value=""> 목 <span
-          class="form-check-sign"> <span class="check"></span>
-        </span>
-        </label> <label class="form-check-label"> <input
-          class="form-check-input" type="checkbox" value=""> 금 <span
-          class="form-check-sign"> <span class="check"></span>
-        </span>
-        </label> <label class="form-check-label"> <input
-          class="form-check-input" type="checkbox" value=""> 토 <span
-          class="form-check-sign"> <span class="check"></span>
-        </span>
-        </label>
-      </div>
+							<div class="form-group bmd-form-group">
+								<label for="exampleInput1" class="bmd-label-floating">이름</label>
+								<input type="text" class="form-control" name="name" id="name"
+									maxlength="50">
+							</div>
 
-      과외 가능 시간 <select>
-        <option>12:00</option>
-        <option>13:00</option>
-        <option>14:00</option>
-      </select> ~ <select>
-        <option>15:00</option>
-        <option>16:00</option>
-        <option>17:00</option>
-      </select><br> 선생님께 바라는 것<br>
-      <textarea rows="10" cols="30" class="form-control"></textarea>
-      <br>
+							<div class="form-check">
+								<label for="exampleInput1" class="bmd-label-floating">성별</label><br>
+								<label class="form-check-label"> <input
+									class="form-check-input" type="radio" name="gender" value="M">
+									남&ensp; <span class="circle"> <span class="check"></span>
+								</span>
+								</label> <label class="form-check-label"> <input
+									class="form-check-input" type="radio" name="gender" value="F">
+									여 <span class="circle"> <span class="check"></span>
+								</span>
+								</label>
+							</div>
 
-      <button type="submit" class="btn btn-rose btn-sm" id="submit">가입</button>
-      <input id="cancelbtn" class="btn btn-rose btn-sm" type="button" value="취소">
+							<div class="col-md-3">
+								<label for="exampleInput1" class="bmd-label-floating">생년월일</label><br>
+								<select name="birthyy" id="YEAR" title="년도"
+									class="form-control select w80"></select> 
+									<select name="birthmm" id="MONTH" title="월"
+									class="form-control select w80"></select> 
+									<select name="birthdd" id="DAY" title="일"
+									class="form-control select w80"></select><br>
+							</div>
 
-    </form>
-    </div>
-  </div>
-      </div>
-  
-	
+							<label for="exampleInput1" class="bmd-label-floating">이메일</label><br>
+							<div id=mailselect>
+								<input type="text" class="form-control" name="email" id="email"
+									maxlength="50" placeholder="이메일"> @ <input type="text"
+									class="form-control" name="mail" id="mail" value=""> <select
+									name="mail2" id="mail2" class="form-control">
+									<option selected disabled>메일 선택</option>
+									<option value="naver.com">naver.com</option>
+									<option value="daum.net">daum.net</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="nate.com">nate.com</option>
+									<option value="">직접 입력</option>
+								</select>
+							</div>
+							<div class="redch" id="email_check"></div>
+
+							<div class="form-group bmd-form-group">
+								<label for="exampleInput1" class="bmd-label-floating">휴대전화</label>
+								<input type="tel" class="form-control" name="tel" id="tel"
+									maxlength="11">
+								<div class="redch" id="tel_check"></div>
+							</div>
+
+							<input type="text" class="form-control" name="addressCity"
+								id="sido" placeholder="주소"> <input type="text"
+								class="form-control" name="addressSuburb" id="sigungu"
+								placeholder="상세주소"> <input type="button"
+								class="btn btn-rose btn-sm" onclick="execDaumPostcode()"
+								value="주소 찾기"><br> <br> 원하는 과목<br> <select
+								name="subject" class="form-control">
+								<optgroup label="초등학교">
+									<option value="수학">수학</option>
+									<option value="영어">영어</option>
+								</optgroup>
+								<optgroup label="중학교">
+									<option value="수학">수학</option>
+									<option value="영어">영어</option>
+								</optgroup>
+								<optgroup label="고등학교">
+									<option value="수학">수학</option>
+									<option value="영어">영어</option>
+								</optgroup>
+							</select><br> 과외 가능 요일
+							<div class="form-check">
+								<label class="form-check-label"> <input
+									class="form-check-input" type="checkbox" value=""> 일 <span
+									class="form-check-sign"> <span class="check"></span>
+								</span>
+								</label> <label class="form-check-label"> <input
+									class="form-check-input" type="checkbox" value=""> 월 <span
+									class="form-check-sign"> <span class="check"></span>
+								</span>
+								</label> <label class="form-check-label"> <input
+									class="form-check-input" type="checkbox" value=""> 화 <span
+									class="form-check-sign"> <span class="check"></span>
+								</span>
+								</label> <label class="form-check-label"> <input
+									class="form-check-input" type="checkbox" value=""> 수 <span
+									class="form-check-sign"> <span class="check"></span>
+								</span>
+								</label> <label class="form-check-label"> <input
+									class="form-check-input" type="checkbox" value=""> 목 <span
+									class="form-check-sign"> <span class="check"></span>
+								</span>
+								</label> <label class="form-check-label"> <input
+									class="form-check-input" type="checkbox" value=""> 금 <span
+									class="form-check-sign"> <span class="check"></span>
+								</span>
+								</label> <label class="form-check-label"> <input
+									class="form-check-input" type="checkbox" value=""> 토 <span
+									class="form-check-sign"> <span class="check"></span>
+								</span>
+								</label>
+							</div>
+
+							과외 가능 시간 <select>
+								<option>12:00</option>
+								<option>13:00</option>
+								<option>14:00</option>
+							</select> ~ <select>
+								<option>15:00</option>
+								<option>16:00</option>
+								<option>17:00</option>
+							</select><br> 선생님께 바라는 것<br>
+							<textarea rows="10" cols="30" class="form-control"></textarea>
+							<br>
+
+							<button type="submit" class="btn btn-rose btn-sm" id="submit">가입</button>
+							<input id="cancelbtn" class="btn btn-rose btn-sm" type="button"
+								value="취소">
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
 
 	<!--  생년월일 -->
 	<script>

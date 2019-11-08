@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>가입 화면</title>
 <script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+  src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
     
         // 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
@@ -63,145 +63,134 @@
         }
     </script>
 <style>
+body {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
 #view_file {
-	/*  display: none; */
-	width: 150px;
-	height: 150px;
-	"
+	display: none;
 }
 
 #mail {
-	display: none;
+  display: none;
+}
+
+#content{
+  margin: auto;
 }
 </style>
 </head>
 <body>
-	<div class="page-header header-filter" data-parallax="true"
-		style="background-image: url('assets/img/bg3.jpg')">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto">
-					<div class="brand text-center">
-						<h1>타이틀</h1>
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="content">
+		<br> <br> <b><font size="6" color="gray">학부모 회원가입</font></b> <br>
+		<br> <br>
+
+		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
+		<form method="post" action="parentsjoin" name="userInfo"
+			enctype="multipart/form-data" onsubmit="return checkValue()">
+
+			프로필 사진: <input type='file' id='filePath' name='filePath'>
+			<img id="view_file" src="#" width="400px" height="200px" />
+
+			<table>
+				<tr>
+					<td id="title">회원구분</td>
+					<td><select name="memberTypeNo">
+					<option value="" selected disabled>회원 구분</option>
+							<option value="2">parents</option>
+					</select>
+				</tr>
+
+
+				<tr>
+					<td id="title">아이디</td>
+					<td><input type="text" class="redch" name="id" id="id" maxlength="50">
+						<div id="id_check">아이디는 4~12자의 영문과 숫자로만 입력</div></td>
+				</tr>
+
+				<tr>
+					<td id="title">비밀번호</td>
+					<td><input type="password" class="redch" name="password" id="pw"
+						maxlength="50" class="pwchange"></td>
+				</tr>
+
+				<tr>
+					<td id="title">비밀번호 확인</td>
+					<td><input type="password" class="redch" name="okpw" id="okpw"
+						maxlength="50" class="pwchange">
+						<div id="pw_check">비밀번호는 4~12자의 영문과 숫자로만 입력</div></td>
+				</tr>
+
+				<tr>
+					<td id="title">이름</td>
+					<td><input type="text" name="name" id="name" maxlength="50"></td>
+				</tr>
+
+				<tr>
+					<td id="title">성별</td>
+					<td><input type="radio" name="gender" value="M" checked>남 <input
+						type="radio" name="gender" value="F">여</td>
+				</tr>
+
+				<tr>
+          <td id="title">생년월일</td>
+          <td>
+            <select name="birthyy" id="YEAR" title="년도" class="select w80"></select> 
+            <select name="birthmm" id="MONTH" title="월" class="select w80"></select>
+            <select name="birthdd" id="DAY" title="일" class="select w80"></select>
+          </td>
+        </tr>
+
+				<tr>
+					<td id="title">이메일</td>
+					<td>
+					<div id=mailselect>
+					<input type="text" class="redch" name="email" id="email" maxlength="50">@
+						<input type="text" name="mail" id="mail" value="">
+						<select name="mail2" id="mail2">
+						  <option selected disabled>메일 선택</option>
+							<option value="naver.com">naver.com</option>
+							<option value="daum.net">daum.net</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="">직접 입력</option>
+					</select>
 					</div>
-				</div>
-			</div>
-		</div>
+					<div id="email_check"></div></td>
+				</tr>
+
+				<tr>
+					<td id="title">휴대전화</td>
+					<td><input type="text" class="redch" name="tel" id="tel"/>
+					<div id="tel_check"></div></td>
+				</tr>
+
+			</table>
+			
+			<input type="text" name="addressCity" id="sido"placeholder="주소">
+			<input type="text" name="addressSuburb" id="sigungu"placeholder="상세주소">
+			<input type="button" onclick="execDaumPostcode()" value="주소 찾기"><br><br>
+			
+			자녀 아이디
+			<input type="text" id="textverify">
+			<button type="button" id="verify" onclick="verify2()">인증하기</button><br>
+			<div id="checkverify"></div>
+			
+			<button type="submit" id="submit">가입</button>
+			<input id="cancelbtn" type="button" value="취소">
+
+		</form>
 	</div>
-
-	<form method="post" action="studentjoin" name="userInfo"
-		enctype="multipart/form-data" onsubmit="return checkValue()">
-		<div class="main main-raised profile-page">
-			<div class="container">
-				<div class="row-fluid">
-					<div class="col">
-						<div class="row">
-							<div class="col-md-6 ml-auto mr-auto">
-								<div class="profile">
-									<div class="avatar">
-										<img src="/images/photo.png" alt="Circle Image" id="view_file"
-											class="img-raised rounded-circle img-fluid">
-									</div>
-									<div class="name">
-										<h2 class="title">프로필 사진</h2>
-										<input type='file' class="text-white btn btn-rose btn-sm"
-											id='filePath' name='filePath'>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div>
-							<b><font size="6" color="gray">학부모 회원가입</font></b><br> <br>
-
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">아이디</label>
-								<input type="email" class="form-control" name="id" id="id"
-									maxlength="50">
-								<div class="redch" id="id_check"></div>
-							</div>
-
-							<label for="exampleInput1" class="bmd-label-floating">비밀번호</label>
-							<input type="password" class="form-control" name="password"
-								id="pw" maxlength="50"> <label for="exampleInput1"
-								class="bmd-label-floating">비밀번호 확인</label> <input
-								type="password" class="form-control" name="okpw" id="okpw"
-								maxlength="50">
-							<div class="redch" id="pw_check"></div>
-
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">이름</label>
-								<input type="text" class="form-control" name="name" id="name"
-									maxlength="50">
-							</div>
-
-							<div class="form-check">
-								<label for="exampleInput1" class="bmd-label-floating">성별</label><br>
-								<label class="form-check-label"> <input
-									class="form-check-input" type="radio" name="gender" value="M">
-									남&ensp; <span class="circle"> <span class="check"></span>
-								</span>
-								</label> <label class="form-check-label"> <input
-									class="form-check-input" type="radio" name="gender" value="F">
-									여 <span class="circle"> <span class="check"></span>
-								</span>
-								</label>
-							</div>
-
-							<div class="col-md-3">
-								<label for="exampleInput1" class="bmd-label-floating">생년월일</label><br>
-								<select name="birthyy" id="YEAR" title="년도"
-									class="form-control select w80"></select> <select
-									name="birthmm" id="MONTH" title="월"
-									class="form-control select w80"></select> <select
-									name="birthdd" id="DAY" title="일"
-									class="form-control select w80"></select><br>
-							</div>
-
-							<div id=mailselect>
-								<input type="text" class="form-control" name="email" id="email"
-									maxlength="50" placeholder="이메일"> @ <input type="text"
-									class="form-control" name="mail" id="mail" value=""> <select
-									name="mail2" id="mail2" class="form-control">
-									<option selected disabled>메일 선택</option>
-									<option value="naver.com">naver.com</option>
-									<option value="daum.net">daum.net</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="">직접 입력</option>
-								</select>
-							</div>
-							<div class="redch" id="email_check"></div>
-
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">휴대전화</label>
-								<input type="tel" class="form-control" name="tel" id="tel"
-									maxlength="11">
-								<div class="redch" id="tel_check"></div>
-							</div>
-
-							<input type="text" name="addressCity" id="sido" placeholder="주소">
-							<input type="text" name="addressSuburb" id="sigungu"
-								placeholder="상세주소"> <input type="button" class="btn btn-rose btn-sm"
-								onclick="execDaumPostcode()" value="주소 찾기"><br>
-							<br> 자녀 아이디 <input type="text" id="textverify">
-							<button type="button" class="btn btn-rose btn-sm" 
-							id="verify" onclick="verify2()">인증하기</button>
-							<br>
-							<div id="checkverify"></div>
-
-							<button type="submit" class="btn btn-rose btn-sm" id="submit">가입</button>
-							<input id="cancelbtn" class="btn btn-rose btn-sm" type="button" value="취소">
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-
-	<!-- 	생년월일 -->
+	
+<!-- 	생년월일 -->
 	<script>
     $(document).ready(function(){
         setDateBox();
@@ -233,7 +222,7 @@
     }
 	</script>
 
-	<!-- 취소 -->
+  <!-- 취소 -->
 	<script>
     var cbtn = document.querySelector("#cancelbtn");
     cbtn.addEventListener("click", function(){
@@ -314,7 +303,7 @@
 </script>
 
 	<!-- 비밀번호 유효성 -->
-	<script>
+  <script>
   $("#pw").blur(function() {
         var idpwtest = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,12}$/
         var pw = document.getElementById("pw").value;
@@ -347,9 +336,9 @@
         }
     });
     </script>
-
-	<!--     비밀번호 확인 -->
-	<script>
+    
+<!--     비밀번호 확인 -->
+    <script>
     $("#okpw").blur(function() {
       var idpwtest = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,12}$/
       var pw = document.getElementById("pw").value;
@@ -383,8 +372,8 @@
         });
     </script>
 
-	<!--   이메일 확인 -->
-	<script>
+<!--   이메일 확인 -->
+  <script>
   $("#mailselect").change(function() {
 	    var dp = document.getElementById("mail");
 	    dp.style.display = "block";
@@ -441,16 +430,16 @@
 	            }
 	      });
   </script>
-
-	<!--     메일 선택 -->
-	<script>
+  
+<!--     메일 선택 -->
+  <script>
   $("#mail2").change(function() {
       document.getElementById("mail").value = document.getElementById("mail2").value;
       });
   </script>
 
-	<!--   휴대전화 중복 -->
-	<script>
+<!--   휴대전화 중복 -->
+  <script>
   $("#tel").blur(function() {
     var tel = $('#tel').val();
 var teltest = /^[0-9]{11}$/;
@@ -495,9 +484,9 @@ var teltest = /^[0-9]{11}$/;
         }
     });
   </script>
-
-	<!--     자녀 아이디 인증 -->
-	<script>
+    
+<!--     자녀 아이디 인증 -->
+    <script>
     function verify2() {
         var id = $('#textverify').val();
         $.ajax({
@@ -528,6 +517,6 @@ var teltest = /^[0-9]{11}$/;
           });
         }
     </script>
-	<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
+<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
 </body>
 </html>
