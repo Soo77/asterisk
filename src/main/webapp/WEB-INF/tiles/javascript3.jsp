@@ -10,13 +10,6 @@
   <!-- Core plugin JavaScript-->
   <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="/js/sb-admin.min.js"></script>
-
-  <!-- Demo scripts for this page-->
-  <script src="/js/demo/datatables-demo.js"></script>
-  <!-- <script src="js/demo/chart-area-demo.js"></script> -->
-
     <!--   Core JS Files   -->
     <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
     <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
