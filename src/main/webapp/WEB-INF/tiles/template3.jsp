@@ -24,6 +24,7 @@
   <tiles:insertAttribute name="header3"/>
   <tiles:insertAttribute name="body3"/>
   <tiles:insertAttribute name="footer3"/>
+  <tiles:insertAttribute name="javascript3"/>
 </body>
 
 </html>
