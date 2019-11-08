@@ -152,16 +152,13 @@
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
           <c:if test="${board.boardTypeNo == 1}">
-            <h1>질문게시판</h1>
-            <h3>공부상담</h3>
+            <h1>공부상담</h1>
           </c:if>
           <c:if test="${board.boardTypeNo == 2}">
-            <h1>질문게시판</h1>
-            <h3>입시상담</h3>
+            <h1>입시상담</h1>
           </c:if>
           <c:if test="${board.boardTypeNo == 3}">
-            <h1>질문게시판</h1>
-            <h3>문제풀이</h3>
+            <h1>문제풀이</h1>
           </c:if>
           <c:if test="${board.boardTypeNo == 4}">
             <h1>공지사항</h1>
@@ -317,7 +314,6 @@
   </div>
 </div>
 
-<!-- <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script> -->
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <script>
