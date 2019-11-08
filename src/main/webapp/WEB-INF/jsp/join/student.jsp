@@ -19,6 +19,7 @@
 		for (var i = 0; i < va.length; i++) {
 			if (va[i].style.color == "red") {
 				va[i].focus();
+				console.log(va[i]);
 				return false;
 			}
 		}
@@ -107,7 +108,7 @@
 									</div>
 									<div class="name">
 										<h2 class="title">프로필 사진</h2>
-											<input type='file' class="text-white btn btn-rose btn-sm"
+											<input type='file' class="text-white btn btn-primary btn-sm"
 											id='filePath' name='filePath'>
 									</div>
 								</div>
@@ -117,80 +118,107 @@
 						<div>
 							<b><font size="6" color="gray">학생 회원가입</font></b><br> <br>
 
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">아이디</label>
-								<input type="email" class="form-control" name="id" id="id"
+							<div class="form-group">
+								<label for="id">아이디</label>
+								<input type="text" class="form-control" name="id" id="id"
 									maxlength="50">
 								<div class="redch" id="id_check"></div>
 							</div>
 
-							<label for="exampleInput1" class="bmd-label-floating">비밀번호</label>
+              <div class="form-group">
+							<label for="pw">비밀번호</label>
 							<input type="password" class="form-control" name="password"
-								id="pw" maxlength="50"> <label for="exampleInput1"
-								class="bmd-label-floating">비밀번호 확인</label> <input
-								type="password" class="form-control" name="okpw" id="okpw"
+								id="pw" maxlength="50">
+							</div> 
+								
+								<div class="form-group">
+								<label for="okpw">비밀번호 확인</label> 
+								<input type="password" class="form-control" name="okpw" id="okpw"
 								maxlength="50">
+								</div>
 							<div class="redch" id="pw_check"></div>
 
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">이름</label>
+							<div class="form-group">
+								<label for="name">이름</label>
 								<input type="text" class="form-control" name="name" id="name"
 									maxlength="50">
 							</div>
 
 							<div class="form-check">
-								<label for="exampleInput1" class="bmd-label-floating">성별</label><br>
-								<label class="form-check-label"> <input
-									class="form-check-input" type="radio" name="gender" value="M">
-									남&ensp; <span class="circle"> <span class="check"></span>
-								</span>
-								</label> <label class="form-check-label"> <input
-									class="form-check-input" type="radio" name="gender" value="F">
-									여 <span class="circle"> <span class="check"></span>
-								</span>
-								</label>
-							</div>
+                <label for="exampleInput1" class="bmd-label-floating">성별</label><br>
+                <label class="form-check-label"> <input
+                  class="form-check-input" type="radio" name="gender" value="M">
+                  남&ensp; <span class="circle"> <span class="check"></span>
+                </span>
+                </label> <label class="form-check-label"> <input
+                  class="form-check-input" type="radio" name="gender" value="F">
+                  여 <span class="circle"> <span class="check"></span>
+                </span>
+                </label>
+              </div>
+							
+							<div class="form-group">
+                <label for="YEAR">생년월일</label>
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <Input type="date" name="birthDay" 
+                    id="YEAR" class="form-control select w80"> 
+                  </div>
+                </div>
+              </div>
 
-							<div class="col-md-3">
-								<label for="exampleInput1" class="bmd-label-floating">생년월일</label><br>
-								<select name="birthyy" id="YEAR" title="년도"
-									class="form-control select w80"></select> 
-									<select name="birthmm" id="MONTH" title="월"
-									class="form-control select w80"></select> 
-									<select name="birthdd" id="DAY" title="일"
-									class="form-control select w80"></select><br>
-							</div>
 
-							<label for="exampleInput1" class="bmd-label-floating">이메일</label><br>
-							<div id=mailselect>
-								<input type="text" class="form-control" name="email" id="email"
-									maxlength="50" placeholder="이메일"> @ <input type="text"
-									class="form-control" name="mail" id="mail" value=""> <select
-									name="mail2" id="mail2" class="form-control">
-									<option selected disabled>메일 선택</option>
-									<option value="naver.com">naver.com</option>
-									<option value="daum.net">daum.net</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="">직접 입력</option>
-								</select>
+							<div class="form-group bmd-form-group">
+								<label for="email">이메일</label>
+									<div id="mailselect">
+											<div class="input-group">
+												<input type="text" class="form-control" name="email"
+													id="email" maxlength="50">
+												<div class="input-group-text">@</div>
+												<input type="text" class="form-control" name="mail"
+													id="mail" value=""> 
+													<select name="mail2" id="mail2" class="form-control">
+													<option selected disabled>메일 선택</option>
+													<option value="naver.com">naver.com</option>
+													<option value="daum.net">daum.net</option>
+													<option value="gmail.com">gmail.com</option>
+													<option value="nate.com">nate.com</option>
+													<option value="">직접 입력</option>
+												</select>
+											</div>
+									</div>
 							</div>
 							<div class="redch" id="email_check"></div>
 
 							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">휴대전화</label>
+								<label for="tel">휴대전화</label>
 								<input type="tel" class="form-control" name="tel" id="tel"
 									maxlength="11">
 								<div class="redch" id="tel_check"></div>
 							</div>
+							
+							<div class="form-row">
+								<div class="col-sm-11">
+									<span class="bmd-form-group is-filled"> 
+									<input type="text" class="form-control" name="addressCity" 
+									id="sido" placeholder="주소">
+									</span>
+								</div>
+								<div class="col-sm-1 addr-search-btn-div">
+									<input type="button" class="btn btn-primary btn-sm"
+										onclick="execDaumPostcode()" value="주소검색"><br>
+								</div>
+							</div>
+							<div class="form-group pt-1 bmd-form-group is-filled">
+								<label for="inputAddress2" id="address2-label"
+									class="col-sm-2 col-form-label bmd-label-static"></label> 
+									<input type="text" class="form-control" name="addressSuburb"
+									id="sigungu" placeholder="상세주소">
+							</div>
 
-							<input type="text" class="form-control" name="addressCity"
-								id="sido" placeholder="주소"> <input type="text"
-								class="form-control" name="addressSuburb" id="sigungu"
-								placeholder="상세주소"> <input type="button"
-								class="btn btn-rose btn-sm" onclick="execDaumPostcode()"
-								value="주소 찾기"><br> <br> 원하는 과목<br> <select
-								name="subject" class="form-control">
+              <div class="form-group">
+							<label for="subject">원하는 과목</label>
+								<select	name="subject" id="subject" class="form-control">
 								<optgroup label="초등학교">
 									<option value="수학">수학</option>
 									<option value="영어">영어</option>
@@ -203,7 +231,10 @@
 									<option value="수학">수학</option>
 									<option value="영어">영어</option>
 								</optgroup>
-							</select><br> 과외 가능 요일
+							</select>
+							</div>
+							
+							<label>과외 가능 요일</label>
 							<div class="form-check">
 								<label class="form-check-label"> <input
 									class="form-check-input" type="checkbox" value=""> 일 <span
@@ -236,20 +267,20 @@
 								</label>
 							</div>
 
-							과외 가능 시간 <select>
-								<option>12:00</option>
-								<option>13:00</option>
-								<option>14:00</option>
-							</select> ~ <select>
-								<option>15:00</option>
-								<option>16:00</option>
-								<option>17:00</option>
-							</select><br> 선생님께 바라는 것<br>
-							<textarea rows="10" cols="30" class="form-control"></textarea>
-							<br>
+							<label>과외 가능 시간</label>
+              <div class="form-row">
+                <div class="col-sm-8">
+                  <Input type="time" name="startTime"> ~ <Input type="time" name="endTime"> 
+                </div>
+              </div>
+							
+							<div class="form-group">
+							<label for="teacherhope">선생님께 바라는 것</label>
+							<textarea rows="10" cols="30" class="form-control" id="teacherhope"></textarea>
+							</div>
 
-							<button type="submit" class="btn btn-rose btn-sm" id="submit">가입</button>
-							<input id="cancelbtn" class="btn btn-rose btn-sm" type="button"
+							<button type="submit" class="btn btn-primary btn-sm" id="submit">가입</button>
+							<input id="cancelbtn" class="btn btn-primary btn-sm" type="button"
 								value="취소">
 
 						</div>
@@ -259,41 +290,6 @@
 			</div>
 		</div>
 	</form>
-
-	<!--  생년월일 -->
-	<script>
-		$(document).ready(function() {
-			setDateBox();
-		});
-
-		// select box 연도 , 월 표시
-		function setDateBox() {
-			var dt = new Date();
-			var year = "";
-			var com_year = dt.getFullYear();
-			// 발행 뿌려주기
-			$("#YEAR").append("<option value=''>년도</option>");
-			// 올해 기준으로 -1년부터 +5년을 보여준다.
-			for (var y = (com_year - 118); y <= (com_year); y++) {
-				$("#YEAR").append(
-						"<option value='"+ y +"'>" + y + " 년" + "</option>");
-			}
-			// 월 뿌려주기(1월부터 12월)
-			var month;
-			$("#MONTH").append("<option value=''>월</option>");
-			for (var i = 1; i <= 12; i++) {
-				$("#MONTH").append(
-						"<option value='"+ i +"'>" + i + " 월" + "</option>");
-			}
-
-			var day;
-			$("#DAY").append("<option value=''>일</option>");
-			for (var i = 1; i <= 31; i++) {
-				$("#DAY").append(
-						"<option value='"+ i +"'>" + i + " 일" + "</option>");
-			}
-		}
-	</script>
 
 	<!-- 취소 -->
 	<script>

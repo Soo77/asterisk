@@ -89,7 +89,7 @@
 		</div>
 	</div>
 
-	<form method="post" action="studentjoin" name="userInfo"
+	<form method="post" action="parentsjoin" name="userInfo"
 		enctype="multipart/form-data" onsubmit="return checkValue()">
 		<div class="main main-raised profile-page">
 			<div class="container">
@@ -114,23 +114,28 @@
 						<div>
 							<b><font size="6" color="gray">학부모 회원가입</font></b><br> <br>
 
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">아이디</label>
+							<div class="form-group">
+								<label for="id" class="bmd-label-floating">아이디</label>
 								<input type="email" class="form-control" name="id" id="id"
 									maxlength="50">
 								<div class="redch" id="id_check"></div>
 							</div>
 
-							<label for="exampleInput1" class="bmd-label-floating">비밀번호</label>
+              <div class="form-group">
+							<label for="pw" class="bmd-label-floating">비밀번호</label>
 							<input type="password" class="form-control" name="password"
-								id="pw" maxlength="50"> <label for="exampleInput1"
-								class="bmd-label-floating">비밀번호 확인</label> <input
-								type="password" class="form-control" name="okpw" id="okpw"
+								id="pw" maxlength="50"> 
+								</div>
+								
+								<div class="form-group">
+								<label for="okpw"	class="bmd-label-floating">비밀번호 확인</label> 
+								<input type="password" class="form-control" name="okpw" id="okpw"
 								maxlength="50">
 							<div class="redch" id="pw_check"></div>
+							</div>
 
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">이름</label>
+							<div class="form-group">
+								<label for="name" class="bmd-label-floating">이름</label>
 								<input type="text" class="form-control" name="name" id="name"
 									maxlength="50">
 							</div>
@@ -148,50 +153,79 @@
 								</label>
 							</div>
 
-							<div class="col-md-3">
-								<label for="exampleInput1" class="bmd-label-floating">생년월일</label><br>
-								<select name="birthyy" id="YEAR" title="년도"
-									class="form-control select w80"></select> <select
-									name="birthmm" id="MONTH" title="월"
-									class="form-control select w80"></select> <select
-									name="birthdd" id="DAY" title="일"
-									class="form-control select w80"></select><br>
-							</div>
+							<div class="form-group">
+	              <label for="YEAR">생년월일</label>
+	              <div class="form-row">
+		              <div class="col-md-6">
+		                <Input type="date" name="birthDay" id="YEAR" class="form-control select w80"> 
+		              </div>
+	              </div>
+              </div>
 
-							<div id=mailselect>
-								<input type="text" class="form-control" name="email" id="email"
-									maxlength="50" placeholder="이메일"> @ <input type="text"
-									class="form-control" name="mail" id="mail" value=""> <select
-									name="mail2" id="mail2" class="form-control">
-									<option selected disabled>메일 선택</option>
-									<option value="naver.com">naver.com</option>
-									<option value="daum.net">daum.net</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="">직접 입력</option>
-								</select>
-							</div>
-							<div class="redch" id="email_check"></div>
+							<div class="form-group">
+                <label for="email" class="bmd-label-floating">이메일</label>
+                  <div id="mailselect">
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="email"
+                          id="email" maxlength="50">
+                        <div class="input-group-text">@</div>
+                        <input type="text" class="form-control" name="mail"
+                          id="mail" value=""> 
+                          <select name="mail2" id="mail2" class="form-control">
+                          <option selected disabled>메일 선택</option>
+                          <option value="naver.com">naver.com</option>
+                          <option value="daum.net">daum.net</option>
+                          <option value="gmail.com">gmail.com</option>
+                          <option value="nate.com">nate.com</option>
+                          <option value="">직접 입력</option>
+                        </select>
+                      </div>
+                  </div>
+                <div class="redch" id="email_check"></div>
+              </div>
 
 							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">휴대전화</label>
+								<label for="tel" class="bmd-label-floating">휴대전화</label>
 								<input type="tel" class="form-control" name="tel" id="tel"
 									maxlength="11">
 								<div class="redch" id="tel_check"></div>
 							</div>
 
-							<input type="text" name="addressCity" id="sido" placeholder="주소">
-							<input type="text" name="addressSuburb" id="sigungu"
-								placeholder="상세주소"> <input type="button" class="btn btn-rose btn-sm"
-								onclick="execDaumPostcode()" value="주소 찾기"><br>
-							<br> 자녀 아이디 <input type="text" id="textverify">
-							<button type="button" class="btn btn-rose btn-sm" 
-							id="verify" onclick="verify2()">인증하기</button>
-							<br>
-							<div id="checkverify"></div>
-
-							<button type="submit" class="btn btn-rose btn-sm" id="submit">가입</button>
-							<input id="cancelbtn" class="btn btn-rose btn-sm" type="button" value="취소">
+							<div class="form-row">
+                <div class="col-sm-11">
+                  <span class="bmd-form-group is-filled"> 
+                  <input type="text" class="form-control" name="addressCity" 
+                  id="sido" placeholder="주소">
+                  </span>
+                </div>
+                <div class="col-sm-1 addr-search-btn-div">
+                  <input type="button" class="btn btn-primary btn-sm"
+                    onclick="execDaumPostcode()" value="주소검색">
+                </div>
+              </div>
+              <div class="form-group pt-1 bmd-form-group is-filled">
+                <label for="inputAddress2" id="address2-label"
+                  class="col-sm-2 col-form-label bmd-label-static"></label> 
+                  <input type="text" class="form-control" name="addressSuburb"
+                  id="sigungu" placeholder="상세주소">
+              </div>
+							
+								<div class="form-row">
+                    <div class="col-sm-11">
+                      <div class="form-group">
+                      <label for="textverify" class="bmd-label-floating">자녀 아이디</label>
+                      <input type="text" class="form-control" id="textverify">
+                      </div>
+                     </div>
+                      <div class="col-sm-1">
+                        <button type="button" class="btn btn-rose btn-sm" 
+                        id="verify" onclick="verify2()">인증하기</button>
+                      </div>
+                    <div class="redch" id="checkverify"></div>
+                </div>
+								
+								<button type="submit" class="btn btn-rose btn-sm" id="submit">가입</button>
+								<input id="cancelbtn" class="btn btn-rose btn-sm" type="button" value="취소">
 
 						</div>
 
