@@ -24,16 +24,15 @@ public class DefaultMypageService implements MypageService {
   }
 
   @Override
-  public Map<String, Object> getMemberInfoMapBy(Member member) throws Exception {
+  public Map<String, Object> getMemberInfoMap() throws Exception {
     Member loginUser = (Member) session.getAttribute("loginUser");
     
     String[] mypageEmail = loginUser.getEmail().split("@");
     session.setAttribute("mypageEmail", mypageEmail);
-    
     Map<String, Object> memberInfoMap = new HashMap<>();
     
-    int memberTypeNo = member.getMemberTypeNo();
-    int memberNo = member.getMemberNo();
+    int memberTypeNo = loginUser.getMemberTypeNo();
+    int memberNo = loginUser.getMemberNo();
     
     if (memberTypeNo == 1) {
       memberInfoMap.put("student", mypageDao.getStudent(memberNo));

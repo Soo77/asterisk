@@ -19,6 +19,9 @@
     <result column="profile_photo" property="profilePhoto"/>
     <result column="email_checked" property="userEmailChecked"/>
     <result column="activation_key" property="activationKey"/>
+    <result column="curr_lesson_dt" property="lessonDays"/>
+    <result column="curr_lesson_st" property="lessonStartTime"/>
+    <result column="curr_lesson_et" property="lessonEndTime"/>
     <collection resultMap="MemberTypeMap" property="memberType"/>
   </resultMap>
   
