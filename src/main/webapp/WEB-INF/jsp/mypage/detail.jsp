@@ -4,6 +4,7 @@
 
 <head>
   <link href="/css/mypage.css" rel="stylesheet" />
+  <link href="/assets/demo/demo.css" rel="stylesheet" />
   <style>
     #mypage-form {
       padding: 0px 20px 0px 20px;
@@ -80,18 +81,31 @@
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
-          <h1>Your title here</h1>
-          <h3 class="title text-center">Subtitle</h3>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="main main-raised">
+<div class="main main-raised profile-page">
   <div class="container">
     <div class="row-fluid">
       <div class="col">
         <form id="mypage-form">
+          
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                  <div class="profile">
+                    <div class="avatar">
+                      <img src="/assets/img/faces/christian.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                    </div>
+                    <div class="name">
+                      <h3 class="title">${loginUser.name}</h3>
+                      <h6>Designer</h6>
+                      <button class="btn btn-primary btn-sm my-lesson-btn">나의 과외</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
           <div class="form-group">
             <label for="inputId">아이디</label>
@@ -362,6 +376,17 @@
   };
 </script>
  -->
+
+<script>
+  console.log($('my-lesson-btn'));
+</script>
+
+<script>
+  let myLessonBtn = document.getElementsByClassName('my-lesson-btn')[0];
+  myLessonBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+  });
+</script>
 
 <!-- 희망과목 추가 버튼 -->
 <script>
