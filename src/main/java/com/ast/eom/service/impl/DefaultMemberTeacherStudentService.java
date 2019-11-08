@@ -12,26 +12,26 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
 
   @Autowired
   private MemberTeacherStudentDao memberTeacherStudentDao;
-
+  
   @Override
-  public List<MemberTeacherStudent> listTeacher(int memberTypeNo) throws Exception {
-    return memberTeacherStudentDao.listTeacher(memberTypeNo);
+  public List<MemberTeacherStudent> get(int no) throws Exception {
+    List<MemberTeacherStudent> memberTeacherStudent = memberTeacherStudentDao.detailTeacher(no);
+    return memberTeacherStudent;
   }
-
+  
+  
   @Override
-  public List<MemberTeacherStudent> listTeacher2() throws Exception {
-    return memberTeacherStudentDao.listTeacher2();
+  public List<MemberTeacherStudent> list(int memberTypeNo) throws Exception {
+    List<MemberTeacherStudent> memberList = null;
+    if (memberTypeNo == 1) {
+      memberList = memberTeacherStudentDao.listStudent(memberTypeNo);
+    } else if (memberTypeNo == 3) {
+      memberList = memberTeacherStudentDao.listTeacher(memberTypeNo);
+    }
+    
+    return memberList;
   }
-
-  @Override
-  public List<MemberTeacherStudent> listStudent(int memberTypeNo) throws Exception {
-    return memberTeacherStudentDao.listStudent(memberTypeNo);
-  }
-
-  @Override
-  public List<MemberTeacherStudent> detailTeacher(int no) throws Exception {
-    return memberTeacherStudentDao.detailTeacher(no);
-  }
+  
   
   
 }

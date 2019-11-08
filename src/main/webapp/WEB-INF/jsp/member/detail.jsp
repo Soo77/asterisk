@@ -20,7 +20,8 @@
           <div class="col-md-6 ml-auto mr-auto">
             <div class="profile">
               <div class="avatar">
-                <img src="/landing_images/images/hong.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                <img src="${member.teacherPhoto}" alt="Circle Image" class="img-raised rounded-circle img-fluid" 
+                onError="this.src='/landing_images/images/default.jpg'">
               </div>
               <div class="name">
                 <h2 class="title">${member.name}</h2>
@@ -57,7 +58,8 @@
                 과목: ${member.schoolType} ${member.subjects[0].subjectName}<br><br>
           
         <h3>과외 가능 요일/시간</h3>
-                월~금. 오후 7시 ~ 10시<br><br>
+                ${member.curriculums[0].curriculumLessonDay} 
+                ${member.curriculums[0].curriculumLessonStartTime} ~ ${member.curriculums[0].curriculumLessonEndTime}  <br><br>
                 
         <h3>희망 과외 금액</h3>
           ${member.lessonSubjects[0].wantedFee} 원<br><br>
@@ -90,7 +92,7 @@
 			     <div class="card-body">
 					       과외과목: 초등수학<br> 
 					       과외기간: 2018.5 ~ 2019.5<br> 
-					       선생님이 수업에 열정적입니다. 성적이 많이 올랐어요 ~~<br>
+					   ${member.lessons[0].teacherReview}<br>
 			     </div>
 			    </div>
         </div>

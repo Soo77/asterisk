@@ -58,14 +58,6 @@
       appearance: none;
     }
     
-    .page-header {
-      height: 300px;
-    }
-    
-    #form1 {
-      padding-top: 3px;
-    }
-    
     /* div{
     border: 1px solid;
     } */
@@ -100,7 +92,7 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container">
+  <div class="container p-5">
     <form id="form1" name="frm1" action='add' method=post
       enctype='multipart/form-data'>
 <!--       <div class="row">
@@ -110,14 +102,6 @@
         </div>
       </div> -->
 
-<!--       <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" id="inputTitle"
-            name='title' placeholder="글 제목"> <input
-            type="hidden" name="boardTypeNo" value="${boardTypeNo}">
-        </div>
-      </div> -->
-      
       <input type="hidden" name="boardTypeNo" value="${boardTypeNo}">
       
       <div class="form-group bmd-form-group">
@@ -125,13 +109,6 @@
         <input type="text" class="form-control"  id="inputTitle" name='title' >
       </div>
 
-<!--       <div class="row">
-        <div class="col">
-          <textarea class="form-control" name='contents' rows="10"
-            style="resize: none;" placeholder="내용을 입력해주세요"></textarea>
-        </div>
-      </div> -->
-      
       <div class="form-group bmd-form-group">
         <label for="exampleFormControlTextarea1">내용</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="30" style="resize: none;"></textarea>
@@ -171,7 +148,6 @@
   </div>
 </div>
   
-  <!-- <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script> -->
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <script type="text/javascript">

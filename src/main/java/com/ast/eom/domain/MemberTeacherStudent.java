@@ -26,7 +26,7 @@ public class MemberTeacherStudent {
   private List<School> schools;
   private List<Subject> subjects;
   private List<Lesson> lessons;
-  
+  private List<Curriculum>curriculums;
   
   @Override
   public String toString() {
@@ -36,7 +36,7 @@ public class MemberTeacherStudent {
         + ", profilePhoto=" + profilePhoto + ", teacherPhoto=" + teacherPhoto + ", schoolType="
         + schoolType + ", teachers=" + teachers + ", lessonSubjects=" + lessonSubjects
         + ", schools=" + schools + ", subjects=" + subjects + ", lessons=" + lessons
-         + "]";
+        + ", curriculums=" + curriculums + "]";
   }
   public int getMemberNo() {
     return memberNo;
@@ -133,5 +133,11 @@ public class MemberTeacherStudent {
   }
   public void setLessons(List<Lesson> lessons) {
     this.lessons = lessons;
+  }
+  public List<Curriculum> getCurriculums() {
+    return curriculums;
+  }
+  public void setCurriculums(List<Curriculum> curriculums) {
+    this.curriculums = curriculums;
   }
 }

@@ -8,6 +8,16 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 </head>
 <style>
+.btn.btn-primary {
+    color: #fff;
+    background-color: #9c27b0;
+    border-color: #9c27b0;
+    box-shadow: 
+    0 2px 2px 0 rgba(156, 39, 176, 0.14), 
+    0 3px 1px -2px rgba(156, 39, 176, 0.2), 
+    0 1px 5px 0 rgba(156, 39, 176, 0.12) inset;
+   /*  box-shadow:200px 0 0 0 rgba(0,0,0,0.5) inset; */
+}
 .btn.btn-primary.gender {
   width:48%;
 }
@@ -30,10 +40,12 @@
   padding-left:50px;
 }
 
-.container {
-  padding-bottom:30px;
-  padding-top:30px;
+.listpage {
+  padding-top:40px;
+  padding-bottom:40px;
 }
+
+
 </style>
 
 <body>
@@ -42,8 +54,14 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
-            <h1>Your title here</h1>
-            <h3 class="title text-center">Subtitle</h3>
+            <c:if test="${memberTypeNo == 1}">
+             <h1 class="title">
+              <span class="tim-note">학생 찾기</span></h1>
+            </c:if>
+            <c:if test="${memberTypeNo == 3}">
+              <h1 class="title">
+                <span class="tim-note">선생님 찾기</span></h1>
+            </c:if>
           </div>
         </div>
       </div>
@@ -54,14 +72,8 @@
       <!-- <div class="section text-center">
          <h2 class="title">Your main section here</h2>
        </div> -->
-      <c:if test="${memberTypeNo == 1}">
-         <h2 class="title">
-          <span class="tim-note">학생 찾기</span></h2>
-      </c:if>
-      <c:if test="${memberTypeNo == 3}">
-        <h2 class="title">
-          <span class="tim-note">선생님 찾기</span></h2>
-      </c:if>
+       <div class="listpage">
+      
       <!-- DataTables -->
       <div class="row">
 
@@ -76,17 +88,17 @@
                 <select class="custom-select" name="gugun1" id="gugun1">
                 </select>
               </div>
-
+              
               <h4><span class="tim-note">성별</span></h4>
               <div class="form-check">
                 <label class="btn btn-primary gender">
-                  <input class="form-check-input" type="radio" name="gender" id="gender_man" value="0"> 남자
+                  <input class="form-check-input" type="checkbox" name="gender" id="gender_man" value="0"> 남자
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary gender">
-                  <input class="form-check-input" type="radio" name="gender" id="gender_woman" value="1"> 여자
+                  <input class="form-check-input" type="checkbox" name="gender" id="gender_woman" value="1"> 여자
                   <span class="circle">
                     <span class="check"></span>
                   </span>
@@ -180,27 +192,27 @@
         <div class="col-lg-9 col-md-8">
 
           <c:if test="${memberTypeNo eq 3}">
-            <c:forEach items="${memberTeacher}" varStatus="status">
-              <a href="detail?no=${memberTeacher[status.index].memberNo}">
+            <c:forEach items="${memberList}" var="member">
+              <a href="detail?no=${member.memberNo}">
                 <div class="card-body">
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                        <%-- <img
-                    src="${memberTeacherStudents[status.index].teacherPhoto}"
-                    class="card-img"> --%>
-                        <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                        <img src="${member.teacherPhoto}" width="130" alt="Thumbnail Image" 
+                        class="img-raised rounded-circle img-fluid" 
+                        onError="this.src='/landing_images/images/default.jpg'">
+                        <!-- <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid"> -->
                       </div>
                       <div class="col-md-9">
                       <h3 class="title">
-                        <span class="tim-note">${memberTeacher[status.index].name}</span></h3>
+                        <span class="tim-note">${member.name}</span></h3>
                       <h4><span class="tim-note">
-                          ${memberTeacher[status.index].schools[0].schoolName}/
-                          ${memberTeacher[status.index].gender}/
-                          ${memberTeacher[status.index].addressCity}
-                          ${memberTeacher[status.index].addressSuburb}/
-                          ${memberTeacher2[status.index].schoolType}/
-                          ${memberTeacher2[status.index].subjects[0].subjectName}
+                          ${member.schools[0].schoolName}/
+                          ${member.gender}/
+                          ${member.addressCity}
+                          ${member.addressSuburb}/
+                          ${member.schoolType}/
+                          ${member.subjects[0].subjectName}
                       </span></h4>
                       </div>
                     </div>
@@ -212,13 +224,15 @@
           </c:if>
 
           <c:if test="${memberTypeNo eq 1}">
-            <c:forEach items="${memberStudents}" var="member">
+            <c:forEach items="${memberList}" var="member">
               <a href="detail?no=${member.memberNo}">
                 <div class="card-body">
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                        <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                      <img src="${member.teacherPhoto}" width="130" alt="Thumbnail Image" 
+                        class="img-raised rounded-circle img-fluid" 
+                        onError="this.src='/landing_images/images/default.jpg'">
                       </div>
                       <div class="col-md-9">
                         <h3 class="title">
@@ -244,6 +258,7 @@
       </div>
       <!-- row / End -->
     </div>
+   </div>
   </div>
 
   <script type="text/javascript">
@@ -382,9 +397,12 @@
       }
     });
   </script>
+  
+
+  
 
 </body>
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
 
 
 </html>

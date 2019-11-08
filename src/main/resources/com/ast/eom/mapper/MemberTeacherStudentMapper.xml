@@ -22,6 +22,7 @@
 	    <collection resultMap="LessonSubjectMap" property="lessonSubjects"/>
 	    <collection resultMap="SubjectMap" property="subjects"/>
 	    <collection resultMap="LessonMap" property="lessons"/>
+	    <collection resultMap="CurriculumMap" property="curriculums"/>
 	</resultMap>
 	
 	<resultMap type="Lesson" id="LessonMap">
@@ -29,6 +30,13 @@
 		<result column="tch_no" property="teacherNo"/>
 		<result column="tch_review" property="teacherReview"/>
 		<result column="tch_eval" property="teacherEvaluation"/>
+	</resultMap>
+	
+	<resultMap type="Curriculum" id="CurriculumMap">
+		<id column="lesson_no" property="lessonNo"/>
+		<result column="curr_lesson_dt" property="curriculumLessonDay"/>
+		<result column="curr_lesson_st" property="curriculumLessonStartTime"/>
+		<result column="curr_lesson_et" property="curriculumLessonEndTime"/>
 	</resultMap>
 	
 	<resultMap type="School" id="SchoolMap">
@@ -71,25 +79,18 @@
   </resultMap>
 
 	<select id="listTeacher" resultMap="MemberTeacherStudentMap">
-			select
-	 		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, tp.tch_photo, s.sch_name, s.sch_type_no
-			from
-	  		member m
-			left outer join teacher t on m.mem_no = t.tch_no
-			left outer join teacher_photo tp on t.tch_no = tp.tch_no
-			left outer join school s on t.tch_no = s.tch_no
-			where s.sch_type_no = 4 and m.mem_type_no = #{m.mem_type_no}
-     
-   </select>
-   
-   <select id="listTeacher2" resultMap="MemberTeacherStudentMap">
-			select
-			t.tch_no, ls.sub_conts, sub.sub_name, st.sch_type
-			from
-	  		lesson_subject ls
-	  	left outer join teacher t on t.tch_no = ls.tch_no
-			left outer join subject sub on ls.sub_no = sub.sch_type_no
-			left outer join school_type st on sub.sch_type_no = st.sch_type_no
+		 select
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, tp.tch_photo, s.sch_name, s.sch_type_no,
+		t.tch_no, t.appr_stat, ls.sub_conts, sub.sub_name, st.sch_type
+		from
+		member m
+		left outer join teacher t on m.mem_no = t.tch_no
+		left outer join teacher_photo tp on t.tch_no = tp.tch_no
+		left outer join school s on t.tch_no = s.tch_no
+		left outer join lesson_subject ls on t.tch_no = ls.tch_no
+		left outer join subject sub on ls.sub_no = sub.sch_type_no
+		left outer join school_type st on sub.sch_type_no = st.sch_type_no
+		where t.appr_stat = 1 and m.mem_type_no = #{m.mem_type_no}
    </select>
    
    <select id="listStudent" resultMap="MemberTeacherStudentMap">
@@ -108,7 +109,7 @@
 		select
 		m.mem_no, m.name, m.gender, m.dob, m.profile_photo, m.addr_city, m.addr_sub, m.reg_date, 
 		s.sch_name, s.major, s.confirm, t.tch_intro, t.vid_addr, ls.wanted_fee,
-		sub.sub_name, st.sch_type, cur.curr_lesson_dt, cur.curr_lesson_st, cur.curr_lesson_et,l.tch_review, l.tch_eval 
+		sub.sub_name, st.sch_type, cur.curr_lesson_dt, cur.curr_lesson_st, cur.curr_lesson_et,l.tch_review, l.tch_eval
 		 from
 		   member m
 		left outer join teacher t on m.mem_no = t.tch_no
