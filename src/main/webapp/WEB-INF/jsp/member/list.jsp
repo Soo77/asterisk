@@ -8,6 +8,16 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 </head>
 <style>
+.btn.btn-primary {
+    color: #fff;
+    background-color: #9c27b0;
+    border-color: #9c27b0;
+    box-shadow: 
+    0 2px 2px 0 rgba(156, 39, 176, 0.14), 
+    0 3px 1px -2px rgba(156, 39, 176, 0.2), 
+    0 1px 5px 0 rgba(156, 39, 176, 0.12) inset;
+   /*  box-shadow:200px 0 0 0 rgba(0,0,0,0.5) inset; */
+}
 .btn.btn-primary.gender {
   width:48%;
 }
@@ -34,6 +44,7 @@
   padding-top:40px;
   padding-bottom:40px;
 }
+
 
 </style>
 
@@ -78,17 +89,17 @@
                 <select class="custom-select" name="gugun1" id="gugun1">
                 </select>
               </div>
-
+              
               <h4><span class="tim-note">성별</span></h4>
               <div class="form-check">
                 <label class="btn btn-primary gender">
-                  <input class="form-check-input" type="radio" name="gender" id="gender_man" value="0"> 남자
+                  <input class="form-check-input" type="checkbox" name="gender" id="gender_man" value="0"> 남자
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary gender">
-                  <input class="form-check-input" type="radio" name="gender" id="gender_woman" value="1"> 여자
+                  <input class="form-check-input" type="checkbox" name="gender" id="gender_woman" value="1"> 여자
                   <span class="circle">
                     <span class="check"></span>
                   </span>
@@ -387,6 +398,9 @@
       }
     });
   </script>
+  
+
+  
 
 </body>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
