@@ -81,7 +81,7 @@
 	<select id="listTeacher" resultMap="MemberTeacherStudentMap">
 		 select
 		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, tp.tch_photo, s.sch_name, s.sch_type_no,
-		t.tch_no, ls.sub_conts, sub.sub_name, st.sch_type
+		t.tch_no, t.appr_stat, ls.sub_conts, sub.sub_name, st.sch_type
 		from
 		member m
 		left outer join teacher t on m.mem_no = t.tch_no
@@ -90,7 +90,7 @@
 		left outer join lesson_subject ls on t.tch_no = ls.tch_no
 		left outer join subject sub on ls.sub_no = sub.sch_type_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
-		where s.sch_type_no = 4 and m.mem_type_no = #{m.mem_type_no}
+		where t.appr_stat = 1 and m.mem_type_no = #{m.mem_type_no}
    </select>
    
    <select id="listStudent" resultMap="MemberTeacherStudentMap">

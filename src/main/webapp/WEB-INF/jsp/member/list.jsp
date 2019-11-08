@@ -54,8 +54,14 @@
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
-            <h1>Your title here</h1>
-            <h3 class="title text-center">Subtitle</h3>
+            <c:if test="${memberTypeNo == 1}">
+             <h1 class="title">
+              <span class="tim-note">학생 찾기</span></h1>
+            </c:if>
+            <c:if test="${memberTypeNo == 3}">
+              <h1 class="title">
+                <span class="tim-note">선생님 찾기</span></h1>
+            </c:if>
           </div>
         </div>
       </div>
@@ -67,14 +73,7 @@
          <h2 class="title">Your main section here</h2>
        </div> -->
        <div class="listpage">
-      <c:if test="${memberTypeNo == 1}">
-         <h2 class="title">
-          <span class="tim-note">학생 찾기</span></h2>
-      </c:if>
-      <c:if test="${memberTypeNo == 3}">
-        <h2 class="title">
-          <span class="tim-note">선생님 찾기</span></h2>
-      </c:if>
+      
       <!-- DataTables -->
       <div class="row">
 
