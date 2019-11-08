@@ -33,7 +33,7 @@ return;
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
-            <h1>수업내용</h1>
+            <h1>새 커리큘럼 등록</h1>
           </div>
         </div>
       </div>
@@ -50,34 +50,30 @@ return;
 수업종료일: <input name="lessonconts" type="text" class="form-control" id="testinput1" value="${lesson.endDate}"> --%>
 
 <%--     수업요일: ${lesson.curriculum.curriculumLessonDay} --%>
-<form action='update' method='post'>
+<form action='currAdd' method='post'>
     <div class="row">
       <div class="col-lg-3 col-sm-4">
         <label for="basic-url1">수업시작일</label>
         <div class="form-group has-default bmd-form-group pt-0">
-          <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular"
-            value="${lesson.startDate}">
+          <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular">
         </div>
       </div>
       <div class="col-lg-3 col-sm-4">
       <label for="basic-url2">수업종료일</label>
         <div class="form-group has-default bmd-form-group pt-0">
-          <input name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular"
-            value="${lesson.endDate}">
+          <input name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular">
         </div>
       </div>
       <div class="col-lg-3 col-sm-4">
       <label for="basic-url3">수업시작시간</label>
         <div class="form-group has-default bmd-form-group pt-0">
-          <input name="st" id="basic-url3" type="time" class="form-control" placeholder="Regular"
-            value="${lesson.curriculum.curriculumLessonStartTime}">
+          <input name="st" id="basic-url3" type="time" class="form-control" placeholder="Regular">
         </div>
       </div>
       <div class="col-lg-3 col-sm-4">
       <label for="basic-url4">수업종료시간</label>
         <div class="form-group has-default bmd-form-group pt-0"> 
-          <input name="et" id="basic-url4" type="time" class="form-control" placeholder="Regular"
-            value="${lesson.curriculum.curriculumLessonEndTime}"> 
+          <input name="et" id="basic-url4" type="time" class="form-control" placeholder="Regular"> 
         </div>
       </div>
     </div> 
@@ -177,12 +173,12 @@ return;
 </thead>
 <tbody>
 <c:forEach items="${lesson.clcs}" var="clc">
-<input type="hidden" name="curriculumLessonNo" value="${clc.curriculumLessonNo}">
+<input type="hidden" name="curriculumLessonNo">
     <tr>
-      <th scope="row"><input name="lessonconts" type="text" class="form-control" id="testinput1" value="${clc.lessonContents}"></th>
+      <th scope="row"><input name="lessonconts" type="text" class="form-control" id="testinput1"></th>
       <td>
         <div class="input-group mb-3">
-          <input name="lessondays" type="text" class="form-control" id="testinput2" value="${clc.lessonDays}">
+          <input name="lessondays" type="text" class="form-control" id="testinput2">
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">일</span>
           </div>
@@ -192,7 +188,7 @@ return;
 </c:forEach>
 </tbody>
 </table>
-<button class="btn btn-primary">변경</button>
+<button class="btn btn-primary">등록</button>
 </form>
 </div>
 

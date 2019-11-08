@@ -24,12 +24,14 @@
   <title>
     Eom-Tutor
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
   <!-- 엄과외 커스텀 CSS -->
   <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="/assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
@@ -45,12 +47,14 @@
 </head>
 
 <body class="landing-page sidebar-collapse">
-  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100" id="sectionsNav">
+  <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100"
+    id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand my-logo" href="/">
           Eom-Tutor</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+          aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
           <span class="navbar-toggler-icon"></span>
@@ -59,22 +63,22 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item my-login-menu-item">
+          <li class="nav-item my-login-menu-item my-login-li" style="display: none;">
             <a class="nav-link" href="/app/auth/form">
               로그인
             </a>
           </li>
-          <li class="nav-item my-loggedin-menu-item">
+          <li class="nav-item my-loggedin-menu-item my-teacher-li" style="display: none;">
             <a class="nav-link" href="/app/member/list?memberTypeNo=3">
               선생님 찾기
             </a>
           </li>
-          <li class="nav-item my-loggedin-menu-item">
+          <li class="nav-item my-loggedin-menu-item my-student-li" style="display: none;">
             <a class="nav-link" href="/app/member/list?memberTypeNo=1">
               학생 찾기
             </a>
           </li>
-          <li class="dropdown nav-item my-loggedin-menu-item">
+          <li class="dropdown nav-item my-loggedin-menu-item my-board-li" style="display: none;">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
               게시판
             </a>
@@ -93,11 +97,9 @@
               </a>
             </div>
           </li>
-          <li class="dropdown nav-item my-loggedin-menu-item">
-            <a href="#" class="dropdown-toggle nav-link my-loggedin-user" data-toggle="dropdown">
-              홍길동
-            </a>
-            <div class="dropdown-menu dropdown-with-icons" style="overflow-y: hidden;">
+          <li class="dropdown nav-item my-loggedin-menu-item my-login-user-li" style="display: none;">
+            <a href="#" class="dropdown-toggle nav-link my-loggedin-user" data-toggle="dropdown"></a>
+            <div class="dropdown-menu dropdown-with-icons dropdown-menu-right" style="overflow-y: hidden;">
               <a href="/app/mypage/detail" class="dropdown-item">
                 <i class="material-icons">layers</i> 마이페이지
               </a>
@@ -115,9 +117,10 @@
       <div class="row">
         <div class="col-md-6">
           <h1 class="title">선생님과 학생을 위한 과외매칭 플랫폼</h1>
-          <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
+          <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text
+            here. Add here all the information that can make you or your product create the first impression.</h4>
           <br>
-          <a href="/app/join/registration" class="btn btn-danger btn-raised btn-lg">
+          <a href="/app/join/form" class="btn btn-danger btn-raised btn-lg">
             시작하기
           </a>
         </div>
@@ -130,7 +133,9 @@
         <div class="row">
           <div class="col-md-8 ml-auto mr-auto">
             <h2 class="title">Let&apos;s talk product</h2>
-            <h5 class="description">This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn&apos;t scroll to get here. Add a button if you want the user to see more.</h5>
+            <h5 class="description">This is the paragraph where you can write more details about your product. Keep you
+              user engaged by providing meaningful information. Remember that by this time, the user is curious,
+              otherwise he wouldn&apos;t scroll to get here. Add a button if you want the user to see more.</h5>
           </div>
         </div>
         <div class="features">
@@ -154,7 +159,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="info" >
+              <div class="info">
                 <div class="icon icon-danger">
                   <i class="far fa-address-card"></i>
                 </div>
@@ -173,14 +178,16 @@
               <div class="team-player">
                 <div class="card card-plain">
                   <div class="col-md-6 ml-auto mr-auto">
-                    <img src="/assets/img/faces/avatar.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                    <img src="/assets/img/faces/avatar.jpg" alt="Thumbnail Image"
+                      class="img-raised rounded-circle img-fluid">
                   </div>
                   <h4 class="card-title">Gigi Hadid
                     <br>
                     <small class="card-description text-muted">Model</small>
                   </h4>
                   <div class="card-body">
-                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                    <p class="card-description">You can write here details about one of your team members. You can give
+                      more details about what they do. Feel free to add some
                       <a href="#">links</a> for people to be able to follow them outside the site.</p>
                   </div>
                   <div class="card-footer justify-content-center">
@@ -195,14 +202,16 @@
               <div class="team-player">
                 <div class="card card-plain">
                   <div class="col-md-6 ml-auto mr-auto">
-                    <img src="/assets/img/faces/christian.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                    <img src="/assets/img/faces/christian.jpg" alt="Thumbnail Image"
+                      class="img-raised rounded-circle img-fluid">
                   </div>
                   <h4 class="card-title">Christian Louboutin
                     <br>
                     <small class="card-description text-muted">Designer</small>
                   </h4>
                   <div class="card-body">
-                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                    <p class="card-description">You can write here details about one of your team members. You can give
+                      more details about what they do. Feel free to add some
                       <a href="#">links</a> for people to be able to follow them outside the site.</p>
                   </div>
                   <div class="card-footer justify-content-center">
@@ -216,14 +225,16 @@
               <div class="team-player">
                 <div class="card card-plain">
                   <div class="col-md-6 ml-auto mr-auto">
-                    <img src="/assets/img/faces/kendall.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+                    <img src="/assets/img/faces/kendall.jpg" alt="Thumbnail Image"
+                      class="img-raised rounded-circle img-fluid">
                   </div>
                   <h4 class="card-title">Kendall Jenner
                     <br>
                     <small class="card-description text-muted">Model</small>
                   </h4>
                   <div class="card-body">
-                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some
+                    <p class="card-description">You can write here details about one of your team members. You can give
+                      more details about what they do. Feel free to add some
                       <a href="#">links</a> for people to be able to follow them outside the site.</p>
                   </div>
                   <div class="card-footer justify-content-center">
@@ -288,24 +299,32 @@
 
   <script>
     $.ajax({
-      url:'/app/loginCheck',
-      type:'get',
-      success: function(result) {
+      url: '/app/loginCheck',
+      type: 'get',
+      success: function (result) {
         if (result.signIn == true) {
-          let loginMenu = document.getElementsByClassName('my-login-menu-item')[0];
+          let teacherLi = document.getElementsByClassName('my-teacher-li')[0];
+          let studentLi = document.getElementsByClassName('my-student-li')[0];
+          let boardsLi = document.getElementsByClassName('my-board-li')[0];
+          let loginUserLi = document.getElementsByClassName('my-login-user-li')[0];
           let loginUserName = document.getElementsByClassName('my-loggedin-user')[0];
-          loginMenu.style.display = 'none';
-          loginUserName.innerHTML = result.loginUserName;
-          
-        } else {
-          let loggedinMenu = document.getElementsByClassName('my-loggedin-menu-item');
-          for (let menu of loggedinMenu) {
-            menu.style.display = 'none';
+
+          if (result.loginUserMemberType != 1) {
+            studentLi.style.display = 'inline-block';
           }
-          
+          if (result.loginUserMemberType != 3) {
+            teacherLi.style.display = 'inline-block';
+          }
+          boardsLi.style.display = 'inline-block';
+          loginUserLi.style.display = 'inline-block';
+          loginUserName.innerHTML = result.loginUserName;
+
+        } else {
+          let loginLi = document.getElementsByClassName('my-login-li')[0];
+          loginLi.style.display = 'inline-block';
+
         }
       }
-
     });
   </script>
 </body>

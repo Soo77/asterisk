@@ -15,7 +15,7 @@
   <tiles:insertAttribute name="stylesheet3"/>
   <style>
     .page-header {
-      height: 300px;
+      height: 400px;
     }
   </style>
 </head>
