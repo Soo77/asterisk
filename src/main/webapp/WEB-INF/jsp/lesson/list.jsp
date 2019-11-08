@@ -6,14 +6,14 @@
 <style>
 </style>
 </head>
+    
  
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
-            <h1>Your title here</h1>
-            <h3 class="title text-center">Subtitle</h3>
+            <h1>수업 리스트</h1>
           </div>
         </div>
       </div>
@@ -23,7 +23,10 @@
     <div class="container">
       <div class="section text-center">
 
-<h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1>
+    <c:if test="${loginUser.memberTypeNo eq 3}">
+      <a href="currAdd" class="btn btn-primary " style="float: right;margin-bottom: 15px;">새 커리큘럼 등록</a>  
+    </c:if>
+<!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> -->
 <c:forEach items="${lessons}" var="lesson">
 
   <div class="card">
@@ -34,8 +37,9 @@
       <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}" alt="Raised Image" class="img-raised rounded img-fluid">
      </div> 
      </c:when>
-      <c:otherwise> <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}"  class="card-img-top img-fluid" style="display:none;"> </c:otherwise>
-    </c:choose>
+      <c:otherwise> <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}"  class="card-img-top img-fluid" style="display:none;"> 
+      </c:otherwise>
+    </c:choose> 
     <div style="font-family: 'Nanum Gothic';" class="card-body">
       <h5 style="font-family: 'Nanum Gothic';" class="card-title">수업번호: ${lesson.lessonNo} </h5>
       <p class="card-text">
@@ -61,6 +65,11 @@
             시작일: ${lesson.startDate}&ensp;종료일: ${lesson.endDate}
       </p>
 <!--       <a href="detail.jsp"  class="btn btn-primary">상세보기</a> -->
+
+       <c:if test="${lesson.member.name eq NULL}">
+<!--        <button class="btn btn-primary">결제 대기중<div class="ripple-container"></div></button>&ensp;&ensp;&ensp; -->
+       <button type="button" class="btn btn-default">결제 대기중</button>&ensp;&ensp;&ensp;
+       </c:if>
        <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">상세보기</a> 
       </div>
     </div>
