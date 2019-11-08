@@ -24,6 +24,9 @@ public class Member {
   private String profilePhoto;
   private boolean userEmailChecked;
   private String activationKey;
+  private String lessonDays;
+  private String lessonStartTime;
+  private String lessonEndTime;
   
   private Teacher teacher;
   private Parents parents;
@@ -35,16 +38,41 @@ public class Member {
   private List<Board> boards;
   private List<Notice> notices;
   private List<Comment> comments;
-  
+
   @Override
   public String toString() {
     return "Member [memberNo=" + memberNo + ", memberTypeNo=" + memberTypeNo + ", registeredDate=" + registeredDate
         + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", id=" + id + ", email=" + email + ", name=" + name
         + ", password=" + password + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb + ", tel="
         + tel + ", profilePhoto=" + profilePhoto + ", userEmailChecked=" + userEmailChecked + ", activationKey="
-        + activationKey + ", teacher=" + teacher + ", parents=" + parents + ", student=" + student + ", memberType="
+        + activationKey + ", lessonDays=" + lessonDays + ", lessonStartTime=" + lessonStartTime + ", lessonEndTime="
+        + lessonEndTime + ", teacher=" + teacher + ", parents=" + parents + ", student=" + student + ", memberType="
         + memberType + ", sentMessages=" + sentMessages + ", receivedMessages=" + receivedMessages + ", boards="
         + boards + ", notices=" + notices + ", comments=" + comments + "]";
+  }
+
+  public String getLessonDays() {
+    return lessonDays;
+  }
+
+  public void setLessonDays(String lessonDays) {
+    this.lessonDays = lessonDays;
+  }
+
+  public String getLessonStartTime() {
+    return lessonStartTime;
+  }
+
+  public void setLessonStartTime(String lessonStartTime) {
+    this.lessonStartTime = lessonStartTime;
+  }
+
+  public String getLessonEndTime() {
+    return lessonEndTime;
+  }
+
+  public void setLessonEndTime(String lessonEndTime) {
+    this.lessonEndTime = lessonEndTime;
   }
 
   public boolean isUserEmailChecked() {
