@@ -13,10 +13,6 @@
       margin: 2px;
     }
     
-    .page-header {
-      height: 300px;
-    }
-    
     /* div{
     border: 1px solid;
     } */
@@ -51,8 +47,7 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container">
-  <div class="boardList pt-3">
+  <div class="container p-5">
     <table class='table table-hover'>
       <thead>
         <tr>
@@ -138,7 +133,6 @@
         <button class="btn btn-primary btn-round btn-sm"
           name="btnSearch" id="btnSearch">검색</button>
       </div>
-    </div>
     </div>
   </div>
 </div>

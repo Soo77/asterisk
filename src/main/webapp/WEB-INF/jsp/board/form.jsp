@@ -58,14 +58,6 @@
       appearance: none;
     }
     
-    .page-header {
-      height: 300px;
-    }
-    
-    #form1 {
-      padding-top: 3px;
-    }
-    
     /* div{
     border: 1px solid;
     } */
@@ -100,7 +92,7 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container">
+  <div class="container p-5">
     <form id="form1" name="frm1" action='add' method=post
       enctype='multipart/form-data'>
 <!--       <div class="row">

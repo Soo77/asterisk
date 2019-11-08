@@ -139,10 +139,6 @@
       float: right;
     }
     
-    .page-header {
-      height: 300px;
-    }
-    
     /* div{
     border: 1px solid;
     } */
@@ -176,8 +172,7 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container">
-    <div class="boardDetail pt-3">
+  <div class="container p-5">
     <form id="form1" name="frm1" action='update' method='post'
       enctype='multipart/form-data'>
       <input type="hidden" name="boardTypeNo"
@@ -221,24 +216,24 @@
             name="viewCount" value="${board.viewCount}">
         </div>
       </div>
-      
+
       <hr>
 
       <div class="row">
         <div class="col-12">
           <textarea id="inputContents" class="form-control"
             name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
-        </div>  
+        </div>
       </div>
 
-        <div id="boardFiles">
-          <p>
-            <c:forEach items="${board.files}" var="file">
-              <img src='/upload/board/${file.fileName}' class='photo2'
-                onerror="this.style.display='none'" alt=''>
-            </c:forEach>
-          </p>
-        </div>
+      <div id="boardFiles">
+        <p>
+          <c:forEach items="${board.files}" var="file">
+            <img src='/upload/board/${file.fileName}' class='photo2'
+              onerror="this.style.display='none'" alt=''>
+          </c:forEach>
+        </p>
+      </div>
 
       <hr>
 
@@ -265,37 +260,37 @@
     </form>
 
     <c:if test="${board.boardTypeNo != 4}">
-    <div class="cmt">
-      <div class="container">
-        <label for="commentContents">댓글</label>
-        <form class="comment" name="commentInsertForm">
-          <input type="hidden" name="boardNo" value="${board.boardNo}" />
-          <div class="row">
-            <div class="col-1">
-              <img src="/upload/join/${loginUser.profilePhoto}"
-                onError="javascript:src='/upload/join/default.png'"
-                alt="" class="img-raised rounded-circle img-fluid">
-            </div>
-            <div class="col-11" id="wrap">
-                <textarea class="comment-form-control" id="commentContents"
-                  name="commentContents" rows="5" maxlength="300"
-                  placeholder="내용을 입력하세요."></textarea>
+      <div class="cmt">
+        <div class="container">
+          <label for="commentContents">댓글</label>
+          <form class="comment" name="commentInsertForm">
+            <input type="hidden" name="boardNo" value="${board.boardNo}" />
+            <div class="row">
+              <div class="col-1">
+                <img src="/upload/join/${loginUser.profilePhoto}"
+                  onError="javascript:src='/upload/join/default.png'"
+                  alt="" class="img-raised rounded-circle img-fluid">
+              </div>
+              <div class="col-11" id="wrap">
+                <textarea class="comment-form-control"
+                  id="commentContents" name="commentContents" rows="5"
+                  maxlength="300" placeholder="내용을 입력하세요."></textarea>
                 <span id="counter">0/300</span>
+              </div>
             </div>
-          </div>
-          <div class="row" id="commentAdd">
-            <button class="btn btn-primary btn-sm" type="button"
-              name="commentInsertBtn">등록</button>
-          </div>
-        </form>
-      </div>
-      <br>
+            <div class="row" id="commentAdd">
+              <button class="btn btn-primary btn-sm" type="button"
+                name="commentInsertBtn">등록</button>
+            </div>
+          </form>
+        </div>
+        <br>
 
-      <div class="container">
-        <div class="commentList"></div>
+        <div class="container">
+          <div class="commentList"></div>
+        </div>
+        <hr>
       </div>
-      <hr>
-    </div>
     </c:if>
 
     <div class="form-group row">
@@ -316,7 +311,6 @@
             style="float: right;">등록</button>
         </c:if>
       </div>
-    </div>
     </div>
 
     <br>
