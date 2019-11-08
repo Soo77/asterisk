@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>가입 화면</title>
 <script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+  src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     
         // 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
@@ -58,219 +58,200 @@
         }
     </script>
 <style>
+body {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
 #view_file {
-	/*  display: none; */
-	width: 150px;
-	height: 150px;
-	"
+	display: none;
+}
+
+#content{
+  margin: auto;
 }
 
 #mail {
-	display: none;
+  display: none;
 }
 </style>
 </head>
 <body>
-	<div class="page-header header-filter" data-parallax="true"
-		style="background-image: url('assets/img/bg3.jpg')">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto">
-					<div class="brand text-center">
-						<h1>타이틀</h1>
+	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
+	<div id="content">
+		<br> <br> <b><font size="6" color="gray">선생님 회원가입</font></b> <br>
+		<br> <br>
+
+		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
+		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
+		<form method="post" action="teacherjoin" name="userInfo"
+			enctype="multipart/form-data" onsubmit="return checkValue()">
+
+			프로필 사진: <input type='file' id='filePath' name='filePath'>
+			<img id="view_file" src="#" width="400px" height="200px" />
+
+			<table>
+				<tr>
+					<td id="title">회원구분</td>
+					<td><select name="memberTypeNo">
+					<option value="" selected disabled>회원 구분</option>
+							<option value="3">teacher</option>
+					</select>
+				</tr>
+
+
+				<tr>
+					<td id="title">아이디</td>
+					<td><input type="text" class="redch" name="id" id="id" maxlength="12">
+      <div id="id_check">아이디는 4~12자의 영문과 숫자로만 입력</div></td>
+				</tr>
+
+				<tr>
+					<td id="title">비밀번호</td>
+					<td><input type="password" class="redch" name="password" id="pw"
+						maxlength="12"></td>
+				</tr>
+
+				<tr>
+					<td id="title">비밀번호 확인</td>
+					<td><input type="password" name="okpw" id="okpw"
+						maxlength="12" class="redch">
+						<div id="pw_check">비밀번호는 4~12자의 영문과 숫자로만 입력</div></td>
+				</tr>
+
+				<tr>
+					<td id="title">이름</td>
+					<td><input type="text" name="name" id="name" maxlength="50"></td>
+				</tr>
+
+				<tr>
+					<td id="title">성별</td>
+					<td><input type="radio" name="gender" value="M" checked>남 <input
+						type="radio" name="gender" value="F">여</td>
+				</tr>
+
+				<tr>
+          <td id="title">생년월일</td>
+          <td>
+            <select name="birthyy" id="YEAR" title="년도" class="select w80"></select> 
+            <select name="birthmm" id="MONTH" title="월" class="select w80"></select>
+            <select name="birthdd" id="DAY" title="일" class="select w80"></select>
+          </td>
+        </tr>
+
+				<tr>
+					<td id="title">이메일</td>
+					<td>
+					<div id=mailselect>
+					<input type="text" class="redch" name="email" id="email" maxlength="50">@
+						<input type="text" name="mail" id="mail" value="">
+						<select name="mail2" id="mail2">
+						  <option selected disabled>메일 선택</option>
+							<option value="naver.com">naver.com</option>
+							<option value="daum.net">daum.net</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="">직접 입력</option>
+					</select>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+					<div id="email_check"></div></td>
+				</tr>
 
-	<form method="post" action="studentjoin" name="userInfo"
-		enctype="multipart/form-data" onsubmit="return checkValue()">
-		<div class="main main-raised profile-page">
-			<div class="container">
-				<div class="row-fluid">
-					<div class="col">
-						<div class="row">
-							<div class="col-md-6 ml-auto mr-auto">
-								<div class="profile">
-									<div class="avatar">
-										<img src="/images/photo.png" alt="Circle Image" id="view_file"
-											class="img-raised rounded-circle img-fluid">
-									</div>
-									<div class="name">
-										<h2 class="title">프로필 사진</h2>
-										<input type='file' class="text-white btn btn-rose btn-sm"
-											id='filePath' name='filePath'>
-									</div>
-								</div>
-							</div>
-						</div>
+				<tr>
+					<td id="title">휴대전화</td>
+					<td><input type="text" name="tel" id="tel" class="redch"/>
+					<div id="tel_check"></div></td>
+				</tr>
 
-						<div>
-							<b><font size="6" color="gray">학부모 회원가입</font></b><br> <br>
+			</table>
+			
+			<input type="text" name="addressCity" id="sido"placeholder="주소">
+			<input type="text" name="addressSuburb" id="sigungu"placeholder="상세주소">
+			<input type="button" onclick="execDaumPostcode()" value="주소 찾기"><br><br>
+			
+			고등학교명
+			<input type="text"><br>
+			대학교명
+      <input type="text"><br>
+            전공
+      <input type="text"><br>
+      
+            과외 신고서
+      <input type='file' name="lessoncertificate">
+<!--       <img id="view_file" src="#" width="400px" height="200px" /> -->
+      <br>
+      
+            전문 과목
+      <select name="subject">
+         <optgroup label="초등학교">
+           <option value="수학">수학</option>
+           <option value="영어">영어</option>
+         </optgroup>
+         <optgroup label="중학교">
+           <option value="수학">수학</option>
+           <option value="영어">영어</option>
+         </optgroup>
+         <optgroup label="고등학교">
+           <option value="수학">수학</option>
+           <option value="영어">영어</option>
+         </optgroup>
+      </select><br>
+      
+            과외 가능 요일
+      <input type="checkbox">일<input type="checkbox">월<input type="checkbox">화
+      <input type="checkbox">수<input type="checkbox">목<input type="checkbox">금
+      <input type="checkbox">토<br>
+      
+            과외 가능 시간
+      <select>
+         <option>12:00</option>
+         <option>13:00</option>
+         <option>14:00</option>
+      </select>
+      ~
+      <select>
+         <option>15:00</option>
+         <option>16:00</option>
+         <option>17:00</option>
+      </select><br>
+      
+            수업료
+      <input type="text">만원<br>
+      
+            은행명/계좌번호<br>
+      <select name="bankname">
+         <option value="국민은행">국민은행</option>
+         <option value="신한은행">신한은행</option>
+      </select><br>
+      <input type="text" name="accountno" id="accountno" class="redch"><br>
+      <div id="ac_check"></div><br>
+      
+            자기소개<br>
+      <textarea rows="10" cols="30" name="teacherintro"></textarea><br>
+			
+			<button type="submit" id="submit">가입</button>
+			<input id="cancelbtn" type="button" value="취소">
 
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">아이디</label>
-								<input type="email" class="form-control" name="id" id="id"
-									maxlength="50">
-								<div class="redch" id="id_check"></div>
-							</div>
-
-							<label for="exampleInput1" class="bmd-label-floating">비밀번호</label>
-							<input type="password" class="form-control" name="password"
-								id="pw" maxlength="50"> <label for="exampleInput1"
-								class="bmd-label-floating">비밀번호 확인</label> <input
-								type="password" class="form-control" name="okpw" id="okpw"
-								maxlength="50">
-							<div class="redch" id="pw_check"></div>
-
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">이름</label>
-								<input type="text" class="form-control" name="name" id="name"
-									maxlength="50">
-							</div>
-
-							<div class="form-check">
-								<label for="exampleInput1" class="bmd-label-floating">성별</label><br>
-								<label class="form-check-label"> <input
-									class="form-check-input" type="radio" name="gender" value="M">
-									남&ensp; <span class="circle"> <span class="check"></span>
-								</span>
-								</label> <label class="form-check-label"> <input
-									class="form-check-input" type="radio" name="gender" value="F">
-									여 <span class="circle"> <span class="check"></span>
-								</span>
-								</label>
-							</div>
-
-							<div class="col-md-3">
-								<label for="exampleInput1" class="bmd-label-floating">생년월일</label><br>
-								<select name="birthyy" id="YEAR" title="년도"
-									class="form-control select w80"></select> <select
-									name="birthmm" id="MONTH" title="월"
-									class="form-control select w80"></select> <select
-									name="birthdd" id="DAY" title="일"
-									class="form-control select w80"></select><br>
-							</div>
-
-							<div id=mailselect>
-								<input type="text" class="form-control" name="email" id="email"
-									maxlength="50" placeholder="이메일"> @ <input type="text"
-									class="form-control" name="mail" id="mail" value=""> <select
-									name="mail2" id="mail2" class="form-control">
-									<option selected disabled>메일 선택</option>
-									<option value="naver.com">naver.com</option>
-									<option value="daum.net">daum.net</option>
-									<option value="gmail.com">gmail.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="">직접 입력</option>
-								</select>
-							</div>
-							<div class="redch" id="email_check"></div>
-
-							<div class="form-group bmd-form-group">
-								<label for="exampleInput1" class="bmd-label-floating">휴대전화</label>
-								<input type="tel" class="form-control" name="tel" id="tel"
-									maxlength="11">
-								<div class="redch" id="tel_check"></div>
-							</div>
-
-							<input type="text" name="addressCity" id="sido" placeholder="주소">
-							<input type="text" name="addressSuburb" id="sigungu"
-								placeholder="상세주소"> <input type="button"
-								class="btn btn-rose btn-sm" onclick="execDaumPostcode()"
-								value="주소 찾기"><br> <br> 자녀 아이디 <input
-								type="text" id="textverify">
-							<button type="button" class="btn btn-rose btn-sm" id="verify"
-								onclick="verify2()">인증하기</button>
-							<br>
-							<div id="checkverify"></div>
-							
-							<br> 고등학교명 <input type="text"><br> 대학교명 <input
-								type="text"><br> 전공 <input type="text"><br>
-
-							과외 신고서 <br><input type='file' class="text-white btn btn-rose btn-sm" 
-							name="lessoncertificate">
-							<!--       <img id="view_file" src="#" width="400px" height="200px" /> -->
-							<br> 전문 과목 <select name="subject" class="form-control">
-								<optgroup label="초등학교">
-									<option value="수학">수학</option>
-									<option value="영어">영어</option>
-								</optgroup>
-								<optgroup label="중학교">
-									<option value="수학">수학</option>
-									<option value="영어">영어</option>
-								</optgroup>
-								<optgroup label="고등학교">
-									<option value="수학">수학</option>
-									<option value="영어">영어</option>
-								</optgroup>
-							</select><br> 
-							과외 가능 요일 
-							<div class="form-check">
-                <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" value=""> 일 <span
-                  class="form-check-sign"> <span class="check"></span>
-                </span>
-                </label> <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" value=""> 월 <span
-                  class="form-check-sign"> <span class="check"></span>
-                </span>
-                </label> <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" value=""> 화 <span
-                  class="form-check-sign"> <span class="check"></span>
-                </span>
-                </label> <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" value=""> 수 <span
-                  class="form-check-sign"> <span class="check"></span>
-                </span>
-                </label> <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" value=""> 목 <span
-                  class="form-check-sign"> <span class="check"></span>
-                </span>
-                </label> <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" value=""> 금 <span
-                  class="form-check-sign"> <span class="check"></span>
-                </span>
-                </label> <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" value=""> 토 <span
-                  class="form-check-sign"> <span class="check"></span>
-                </span>
-                </label>
-              </div>
-
-							과외 가능 시간 <select class="form-control">
-								<option>12:00</option>
-								<option>13:00</option>
-								<option>14:00</option>
-							</select> ~ <select class="form-control">
-								<option>15:00</option>
-								<option>16:00</option>
-								<option>17:00</option>
-							</select><br> 
-							수업료 <input type="text" >만원<br> 은행명/계좌번호<br>
-							<select name="bankname">
-								<option value="국민은행">국민은행</option>
-								<option value="신한은행">신한은행</option>
-							</select><br> <input type="text" name="accountno" id="accountno"
-								class="redch"><br>
-							<div id="ac_check"></div>
-							<br> 자기소개<br>
-							<textarea rows="10" cols="30" name="teacherintro"></textarea>
-							<br>
-
-							<button type="submit" class="btn btn-rose btn-sm" id="submit">가입</button>
-							<input id="cancelbtn" class="btn btn-rose btn-sm" type="button" value="취소">
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</form>
-
-	<!-- 	생년월일 -->
+		</form>
+  </div>
+ <!--  <script>
+    function red_check(){
+      var va = $(".redch");
+      var cd = va.css('color');
+        if(cd == "rgb(255, 0, 0)"){
+          va[0].focus();
+          console.log(va[0]);
+          return false;
+        }
+    }
+  </script> -->
+	
+<!-- 	생년월일 -->
 	<script>
     $(document).ready(function(){
         setDateBox();
@@ -302,7 +283,7 @@
     }
 	</script>
 
-	<!-- 취소 -->
+  <!-- 취소 -->
 	<script>
     var cbtn = document.querySelector("#cancelbtn");
     cbtn.addEventListener("click", function(){
@@ -416,9 +397,9 @@
         }
     });
     </script>
-
-	<!--     비밀번호 확인 -->
-	<script>
+    
+<!--     비밀번호 확인 -->
+    <script>
     $("#okpw").blur(function() {
     	var idpwtest = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,12}$/
       var pw = document.getElementById("pw").value;
@@ -452,8 +433,8 @@
         });
     </script>
 
-	<!--   이메일 확인 -->
-	<script>
+<!--   이메일 확인 -->
+  <script>
   $("#mailselect").change(function() {
 	    var dp = document.getElementById("mail");
 	    dp.style.display = "block";
@@ -510,16 +491,16 @@
 				    }
 	    });
   </script>
-
-	<!--     메일 선택 -->
-	<script>
+  
+<!--     메일 선택 -->
+  <script>
   $("#mail2").change(function() {
       document.getElementById("mail").value = document.getElementById("mail2").value;
       });
   </script>
 
-	<!--   휴대전화 중복 -->
-	<script>
+<!--   휴대전화 중복 -->
+  <script>
   $("#tel").blur(function() {
     var tel = $('#tel').val();
 	  var teltest = /^[0-9]{11}$/;
@@ -564,9 +545,9 @@
     	  }
     });
     </script>
-
-	<!--   계좌 중복 -->
-	<script>
+    
+<!--   계좌 중복 -->
+  <script>
   $("#accountno").blur(function() {
 	  var ac = document.getElementById("accountno").value;
 	  var actest = /^[0-9]{4,}$/
@@ -603,6 +584,6 @@
 		    }
 	  });
   </script>
-	<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
+<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
 </body>
 </html>
