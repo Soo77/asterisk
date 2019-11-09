@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>이미지 자르기 예제</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    /* 비교를 위한 원래 이미지를 가로 300px로 리사이징 */
+    .my-horizontal-origin, .my-vertical-origin {
+      max-width: 300px;
+    }
+
+    /*이미지 크기가 넘어가면 crop 하는 부분*/
+    .my-horizontal, .my-vertical {
+      object-fit: cover;
+    }
+
+    /* 아래의 4개는 부트스트랩에서 지원하는 5단계의 해상도별 반응형 css 적용*/
+    /* Small devices (landscape phones, 576px and up) */
+    @media (min-width: 576px) {
+      .my-horizontal, .my-vertical {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      .my-horizontal, .my-vertical {
+        width: 200px;
+        height: 200px;
+      }
+    }
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+      .my-horizontal, .my-vertical {
+        width: 400px;
+        height: 400px;
+      }
+    }
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+      .my-horizontal, .my-vertical {
+        width: 600px;
+        height: 600px;
+      }
+    }
+
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <img src="images/horizontal-long-img.jpg" class="img-thumbnail my-horizontal-origin"><br>
+        <img src="images/horizontal-long-img.jpg" class="img-thumbnail my-horizontal"><br>
+        <img src="images/vertical-long-img.jpg" class="img-thumbnail my-vertical-origin"><br>
+        <img src="images/vertical-long-img.jpg" class="img-thumbnail my-vertical">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
