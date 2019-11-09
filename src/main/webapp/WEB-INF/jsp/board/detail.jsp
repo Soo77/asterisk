@@ -34,7 +34,7 @@
       font-size: inherit;
       line-height: normal;
       vertical-align: middle;
-      background-color: #00AFA0;
+      background-color: #9c27b0;
       cursor: pointer;
       border: 1px solid #ebebeb;
       border-bottom-color: #e2e2e2;
@@ -66,6 +66,10 @@
       -webkit-appearance: none; /* 네이티브 외형 감추기 */
       -moz-appearance: none;
       appearance: none;
+    }
+    
+    .row {
+      margin: 5px;
     }
     
     .col-1 {
@@ -136,7 +140,7 @@
     }
     
     #commentAdd {
-      float: right;
+      text-align: right;
     }
     
     /* div{
@@ -223,38 +227,61 @@
         </div>
       </div>
 
-      <div id="boardFiles">
-        <p>
-          <c:forEach items="${board.files}" var="file">
-            <img src='/upload/board/${file.fileName}' class='photo2'
-              onerror="this.style.display='none'" alt=''>
-          </c:forEach>
-        </p>
+      <div class="row">
+        <div id="boardFiles">
+          <p>
+            <c:forEach items="${board.files}" var="file">
+              <img src='/upload/board/${file.fileName}' class='photo2'
+                onerror="this.style.display='none'" alt=''>
+            </c:forEach>
+          </p>
+        </div>
       </div>
 
-      <hr>
-
-      <div id="insertBoardPhotos">
-        <div class="row">
-          <div class="col">
-            <div class="filebox">
-              <input class="upload-name" disabled="disabled"> <label
-                for="gallery-photo-add">파일선택</label> <input type="file"
-                multiple id="gallery-photo-add" name="fileName">
+      <div class="row">
+        <div id="insertBoardPhotos">
+          <hr>
+          <div class="row">
+            <div class="col">
+              <div class="filebox">
+                <input class="upload-name" disabled="disabled"> <label
+                  for="gallery-photo-add">파일선택</label> <input type="file"
+                  multiple id="gallery-photo-add" name="fileName">
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col">
+              <div class="gallery"></div>
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col">
-            <div class="gallery"></div>
-          </div>
-        </div>
-
-        <hr>
       </div>
 
     </form>
+    
+    <div class="form-group row">
+      <div class="col">
+        <button id="btnList" type="button" class="btn"
+          onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
+        <c:if
+          test="${board.memberNo == loginUser.memberNo or loginUser.memberTypeNo == 4}">
+          <button id="btnDelete" type="button"
+            class="btn btn-danger my-view-group" style="float: right;">삭제</button>
+        </c:if>
+        <c:if test="${board.memberNo == loginUser.memberNo}">
+          <button id="btnUpdate" type="button" class="btn btn-primary"
+            style="float: right;">수정</button>
+          <button id="btnCancle" type="button"
+            class="btn btn-danger my-view-group" style="float: right;">취소</button>
+          <button id="btnSave" type="button" class="btn btn-primary"
+            style="float: right;">등록</button>
+        </c:if>
+      </div>
+    </div>
+    
+    <hr>
 
     <c:if test="${board.boardTypeNo != 4}">
       <div class="cmt">
@@ -276,41 +303,20 @@
               </div>
             </div>
             <div class="row" id="commentAdd">
+                <div class="col">
               <button class="btn btn-primary btn-sm" type="button"
                 name="commentInsertBtn">등록</button>
+                </div>
             </div>
           </form>
         </div>
-        <br>
 
         <div class="container">
           <div class="commentList"></div>
         </div>
-        <hr>
       </div>
     </c:if>
 
-    <div class="form-group row">
-      <div class="col">
-        <button id="btnList" type="button" class="btn"
-          onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
-        <c:if
-          test="${board.memberNo == loginUser.memberNo or loginUser.memberTypeNo == 4}">
-          <button id="btnDelete" type="button"
-            class="btn btn-danger my-view-group" style="float: right;">삭제</button>
-        </c:if>
-        <c:if test="${board.memberNo == loginUser.memberNo}">
-          <button id="btnUpdate" type="button" class="btn btn-primary"
-            style="float: right;">수정</button>
-          <button id="btnCancle" type="button"
-            class="btn btn-danger my-view-group" style="float: right;">취소</button>
-          <button id="btnSave" type="button" class="btn btn-primary"
-            style="float: right;">등록</button>
-        </c:if>
-      </div>
-    </div>
-
-    <br>
   </div>
 </div>
 

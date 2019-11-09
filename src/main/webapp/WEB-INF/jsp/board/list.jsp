@@ -45,6 +45,47 @@
 </div>
 <div class="main main-raised">
   <div class="container p-5">
+    <input type='hidden' name='boardTypeNo' value='${boardTypeNo}'>
+
+    <div class="form-group row justify-content-center">
+      <div class="w100" style="padding-right: 10px">
+        <select class="form-control form-control-sm" name="searchType"
+          id="searchType">
+          <option value="title">제목</option>
+          <option value="writer">작성자</option>
+        </select>
+      </div>
+      <div class="w300" style="padding-right: 10px">
+        <input type="text" class="form-control form-control-sm"
+          name="keyword" id="keyword">
+      </div>
+      <div>
+        <button class="btn btn-primary btn-round btn-sm"
+          name="btnSearch" id="btnSearch">검색</button>
+      </div>
+    </div>
+    
+    <div class="btn-toolbar justify-content-between" role="toolbar">
+      <div class="btn-group btn-group-sm" role="group">
+        <c:if test="${loginUser.memberTypeNo != 4 and boardTypeNo != 4}">
+          <a href="form?boardTypeNo=${boardTypeNo}"
+            class="btn btn-primary">글쓰기</a>
+        </c:if>
+        <c:if test="${loginUser.memberTypeNo == 4}">
+          <a href="form?boardTypeNo=${boardTypeNo}"
+            class="btn btn-primary">관리자글쓰기</a>
+        </c:if>
+      </div>
+      <div class="input-group">
+        <select id="pageSize" class="form-control">
+          <option value="3">3</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+    </div>
+
     <table class='table table-hover'>
       <thead>
         <tr>
@@ -70,7 +111,7 @@
       </tbody>
     </table>
 
-    <div align="right">
+<!--     <div align="right">
       <c:if test="${loginUser.memberTypeNo != 4 and boardTypeNo != 4}">
         <button class="btn btn-primary" type="button"
           onclick="location='form?boardTypeNo=${boardTypeNo}'">글쓰기</button>
@@ -79,13 +120,13 @@
         <button class="btn btn-primary" type="button"
           onclick="location='form?boardTypeNo=${boardTypeNo}'">관리자글쓰기</button>
       </c:if>
-    </div>
+    </div> -->
 
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <c:if test="${pagination.curPage ne 1}">
           <li class="page-item"><a class="page-link"
-            href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.prevPage}&searchType=${searchType}&keyword=${keyword}">&laquo;</a>
+            href="list?boardTypeNo=${boardTypeNo}&pageSize=${pageSize}&amp;curPage=${pagination.prevPage}&searchType=${searchType}&keyword=${keyword}">&laquo;</a>
           </li>
         </c:if>
 
@@ -95,12 +136,12 @@
             <c:when test="${pageNum eq  pagination.curPage}">
               <li class="page-item active" aria-current="page"><a
                 class="page-link"
-                href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
+                href="list?boardTypeNo=${boardTypeNo}&pageSize=${pageSize}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:when>
             <c:otherwise>
               <li class="page-item"><a class="page-link"
                 style="color: #000000;"
-                href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
+                href="list?boardTypeNo=${boardTypeNo}&pageSize=${pageSize}&amp;curPage=${pageNum}&searchType=${searchType}&keyword=${keyword}">${pageNum}</a></li>
             </c:otherwise>
           </c:choose>
         </c:forEach>
@@ -108,29 +149,11 @@
         <c:if
           test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
           <li class="page-item"><a class="page-link"
-            href="list?boardTypeNo=${boardTypeNo}&amp;curPage=${pagination.nextPage}&searchType=${searchType}&keyword=${keyword}">&raquo;</a></li>
+            href="list?boardTypeNo=${boardTypeNo}&pageSize=${pageSize}&amp;curPage=${pagination.nextPage}&searchType=${searchType}&keyword=${keyword}">&raquo;</a></li>
         </c:if>
       </ul>
     </nav>
-    <br> <input type='hidden' name='boardTypeNo'
-      value='${boardTypeNo}'>
-    <div class="form-group row justify-content-center">
-      <div class="w100" style="padding-right: 10px">
-        <select class="form-control form-control-sm" name="searchType"
-          id="searchType">
-          <option value="title">제목</option>
-          <option value="writer">작성자</option>
-        </select>
-      </div>
-      <div class="w300" style="padding-right: 10px">
-        <input type="text" class="form-control form-control-sm"
-          name="keyword" id="keyword">
-      </div>
-      <div>
-        <button class="btn btn-primary btn-round btn-sm"
-          name="btnSearch" id="btnSearch">검색</button>
-      </div>
-    </div>
+    
   </div>
 </div>
 
@@ -140,10 +163,22 @@
   <script>
     $(document).on('click', '#btnSearch', function(e){
       e.preventDefault();
-      var url = "list?boardTypeNo=" + ${boardTypeNo}
+      var url = "list?boardTypeNo=" + ${boardTypeNo};
+      url = url + "&pageSize=" + ${pageSize};
       url = url + "&curPage=1";
       url = url + "&searchType=" + $('#searchType').val();
       url = url + "&keyword=" + $('#keyword').val();
       location.href = url;
     })
+  </script>
+  
+  <script>
+    (function() {
+  	  $('#pageSize').val('${pageSize}')
+  	})();
+  
+  
+  	$('#pageSize').change((e) => {
+  	  location.href = "list?boardTypeNo=" + ${boardTypeNo} + "&pageSize=" + $(e.target).val();
+  	});
   </script>
