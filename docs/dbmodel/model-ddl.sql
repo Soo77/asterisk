@@ -84,9 +84,10 @@ CREATE UNIQUE INDEX UIX_teacher
 
 -- 학생
 CREATE TABLE student (
-  std_no      INTEGER NOT NULL, -- 학생번호
-  parents_no  INTEGER NULL,     -- 학부모번호
-  sch_type_no INTEGER NULL      -- 학교유형번호
+  std_no         INTEGER NOT NULL, -- 학생번호
+  parents_no     INTEGER NULL,     -- 학부모번호
+  sch_type_no    INTEGER NULL,     -- 학교유형번호
+  req_to_teacher TEXT    NULL      -- 선생님께바라는점
 );
 
 -- 학생
