@@ -14,7 +14,11 @@
     }
 
     /*이미지 크기가 넘어가면 crop 하는 부분*/
+    /*아래의 @media에서 small devices의 해상도가 576px 이상이므로*/
+    /*그 이하의 해상도에서는 여기서 설정한 이미지 사이즈가 적용된다.*/
     .my-horizontal, .my-vertical {
+      width: 50px;
+      height: 50px;
       object-fit: cover;
     }
 
