@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
+<nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100"
+id="sectionsNav">
   <div class="container">
     <div class="navbar-translate">
       <a class="navbar-brand my-logo" href="/">
@@ -16,22 +17,22 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item my-login-menu-item">
+        <li class="nav-item my-login-menu-item my-login-li" style="display: none;">
           <a class="nav-link" href="/app/auth/form">
             로그인
           </a>
         </li>
-        <li class="nav-item my-loggedin-menu-item">
+        <li class="nav-item my-loggedin-menu-item my-teacher-li" style="display: none;">
           <a class="nav-link" href="/app/member/list?memberTypeNo=3">
             선생님 찾기
           </a>
         </li>
-        <li class="nav-item my-loggedin-menu-item">
+        <li class="nav-item my-loggedin-menu-item my-student-li" style="display: none;">
           <a class="nav-link" href="/app/member/list?memberTypeNo=1">
             학생 찾기
           </a>
         </li>
-        <li class="dropdown nav-item my-loggedin-menu-item">
+        <li class="dropdown nav-item my-loggedin-menu-item my-board-li" style="display: none;">
           <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
             게시판
           </a>
@@ -50,11 +51,9 @@
             </a>
           </div>
         </li>
-        <li class="dropdown nav-item my-loggedin-menu-item">
-          <a href="#" class="dropdown-toggle nav-link my-loggedin-user" data-toggle="dropdown">
-            홍길동
-          </a>
-          <div class="dropdown-menu dropdown-with-icons" style="overflow-y: hidden;">
+        <li class="dropdown nav-item my-loggedin-menu-item my-login-user-li" style="display: none;">
+          <a href="#" class="dropdown-toggle nav-link my-loggedin-user" data-toggle="dropdown"></a>
+          <div class="dropdown-menu dropdown-with-icons dropdown-menu-right" style="overflow-y: hidden;">
             <a href="/app/mypage/detail" class="dropdown-item">
               <i class="material-icons">layers</i> 마이페이지
             </a>
@@ -68,37 +67,45 @@
   </div>
 </nav>
 
-  <!--   Core JS Files   -->
-  <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-  <script src="/assets/js/plugins/moment.min.js"></script>
-  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-  <script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
-  <script src="/assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
+<script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 
+<script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+<script src="/assets/js/plugins/moment.min.js"></script>
+<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
+<script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
+<script src="/assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
 <script>
   $.ajax({
     url: '/app/loginCheck',
     type: 'get',
     success: function (result) {
       if (result.signIn == true) {
-        let loginMenu = document.getElementsByClassName('my-login-menu-item')[0];
+        let teacherLi = document.getElementsByClassName('my-teacher-li')[0];
+        let studentLi = document.getElementsByClassName('my-student-li')[0];
+        let boardsLi = document.getElementsByClassName('my-board-li')[0];
+        let loginUserLi = document.getElementsByClassName('my-login-user-li')[0];
         let loginUserName = document.getElementsByClassName('my-loggedin-user')[0];
-        loginMenu.style.display = 'none';
+
+        if (result.loginUserMemberType != 1) {
+          studentLi.style.display = 'inline-block';
+        }
+        if (result.loginUserMemberType != 3) {
+          teacherLi.style.display = 'inline-block';
+        }
+        boardsLi.style.display = 'inline-block';
+        loginUserLi.style.display = 'inline-block';
         loginUserName.innerHTML = result.loginUserName;
 
       } else {
-        let loggedinMenu = document.getElementsByClassName('my-loggedin-menu-item');
-        for (let menu of loggedinMenu) {
-          menu.style.display = 'none';
-        }
+        let loginLi = document.getElementsByClassName('my-login-li')[0];
+        loginLi.style.display = 'inline-block';
 
       }
     }
-
   });
 </script>

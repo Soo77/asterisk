@@ -84,9 +84,10 @@ CREATE UNIQUE INDEX UIX_teacher
 
 -- 학생
 CREATE TABLE student (
-  std_no      INTEGER NOT NULL, -- 학생번호
-  parents_no  INTEGER NULL,     -- 학부모번호
-  sch_type_no INTEGER NULL      -- 학교유형번호
+  std_no         INTEGER NOT NULL, -- 학생번호
+  parents_no     INTEGER NULL,     -- 학부모번호
+  sch_type_no    INTEGER NULL,     -- 학교유형번호
+  req_to_teacher TEXT    NULL      -- 선생님께바라는점
 );
 
 -- 학생
@@ -318,10 +319,10 @@ CREATE TABLE school (
   tch_no      INTEGER      NOT NULL, -- 선생님번호
   sch_type_no INTEGER      NOT NULL, -- 학교유형번호
   sch_name    VARCHAR(30)  NOT NULL, -- 학교명
-  certi       VARCHAR(255) NOT NULL, -- 증명서
   grad        BOOLEAN      NOT NULL DEFAULT false, -- 졸업유무
   mdt         DATETIME     NOT NULL, -- 변경일
   major       VARCHAR(50)  NULL,     -- 전공
+  certi       VARCHAR(255) NULL,     -- 증명서
   confirm     BOOLEAN      NULL     DEFAULT false, -- 검증여부
   grad_date   DATETIME     NULL      -- 졸업일
 );

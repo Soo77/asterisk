@@ -36,10 +36,6 @@
         display: none;
       }
     }
-/* 
-    .modification-button-div {
-      text-align: right;
-    } */
 
     #addressSearchButton {
       margin-top: 2px;
@@ -71,6 +67,14 @@
       font-size: 0.875rem;
     }
 
+    .fa-square, .fa-check-square, .student-ID-span, .tutor-certi-span {
+      display: none;
+    }
+    
+    .my-lesson-btn, .studentDisplay, .teacherDisplay, .parentsDisplay {
+      display: none;
+    }
+
   </style>
   
 </head>
@@ -98,8 +102,19 @@
                       <img src="/assets/img/faces/christian.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
                     </div>
                     <div class="name">
-                      <h3 class="title">${loginUser.name}</h3>
-                      <h6>Designer</h6>
+                      <h3 class="title mb-2">${loginUser.name}</h3>
+                      <h6>
+                        <i class="far fa-square student-ID-unchecked"></i><i class="far fa-check-square student-ID-checked"></i>
+                        <span class="student-ID-span">
+                          학생증 인증&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <i class="far fa-square tutor-certi-unchecked"></i><i class="far fa-check-square tutor-certi-checked"></i>
+                        <span class="tutor-certi-span">
+                          신고서 인증&nbsp;&nbsp;&nbsp;
+                        </span>
+                      </h6>
+                      <h6></h6>
+                      <button class="btn btn-primary btn-sm my-message-btn">쪽지함</button>
                       <button class="btn btn-primary btn-sm my-lesson-btn">나의 과외</button>
                     </div>
                   </div>
@@ -164,7 +179,7 @@
           </div>
 
           <!-- 선생님 페이지 수정 중인 항목 -->
-          <div class="form-group">
+          <div class="form-group teacherDisplay">
             <label for="inputBankName">은행명</label>
             <select class="form-control selectpicker" data-style="btn btn-link" id="inputBankName">
               <option selected>은행선택</option>
@@ -175,12 +190,12 @@
             </select>
           </div>
 
-          <div class="form-group">
+          <div class="form-group teacherDisplay">
             <label for="inputAccountNo">계좌번호</label>
             <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}">
           </div>
 
-          <div class="form-group">
+          <div class="form-group teacherDisplay">
             <label for="inputHighSchool">고등학교</label>
             <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
               <c:if test="${school.schoolTypeNo eq 3}">
@@ -188,12 +203,14 @@
               </c:if>
             </c:forEach>
           </div>
-          <div class="form-group">
+          <div class="form-group teacherDisplay">
             <label for="inputUniversity">대학교</label>
             <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
               <c:if test="${school.schoolTypeNo eq 4}">
+                <c:set var="teacherUniversityConfirmation" value="${school.confirmed}"/>
                 <input type="text" class="form-control" id="inputUniversity" value="${school.schoolName}" readonly>
               </c:if>
+              
             </c:forEach>
           </div>
 
@@ -226,11 +243,11 @@
               </select>
             </div>
           </div>
-          <div class="subjectAddButtonDiv mb-3">
+          <div class="subjectAddButtonDiv mb-3 teacherDisplay studentDisplay">
             <button type="button" class="btn btn-outline-success subjectAddButton">추가</button>
           </div>
 
-          <div class="form-group">
+          <div class="form-group teacherDisplay studentDisplay">
             <label for="inputSubjectDay">과외가능 요일</label>
             <div class="subjectCheckboxDiv">
               <div class="form-check form-check-inline">
@@ -292,40 +309,40 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group teacherDisplay studentDisplay">
             <label for="subject-start-time">과외 시작시간</label><br>
             <input type='time' value='${loginUser.lessonStartTime}' id="subject-start-time" class="form-control" />
           </div>
 
-          <div class="form-group">
+          <div class="form-group teacherDisplay studentDisplay">
             <label for="subject-end-time">과외 종료시간</label><br>
             <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control" />
           </div>
 
           <!-- 학생 정보 수정 중-->
-          <div class="form-group">
+          <div class="form-group studentDisplay">
             <label for="inputRequirements">과외 희망사항</label>
-            <textarea class="form-control" id="inputRequirements" rows="8" ></textarea>
+            <textarea class="form-control" id="inputRequirements" rows="8" >${memberInfoMap.student.requirementsToTeacher}</textarea>
           </div>
 
-          <div class="form-group">
+          <div class="form-group teacherDisplay">
             <label for="inputIntro">자기소개</label>
-            <textarea class="form-control" id="inputIntro" rows="8" value="${memberInfoMap.teacher.teacherIntro}"></textarea>
+            <textarea class="form-control" id="inputIntro" rows="8">${memberInfoMap.teacher.teacherIntro}</textarea>
           </div>
 
-          <div class="form-group">
-            <label for="inputIntroVideo">자기소개동영상</label>
-            <input type="text" class="form-control" id="inputIntroVideo" value="https://www.youtube.com/watch?v=eEXNY-fNZtc">
+          <div class="form-group teacherDisplay">
+            <label for="inputIntroVideo">자기소개 동영상 주소</label>
+            <input type="text" class="form-control" id="inputIntroVideo" value="${memberInfoMap.teacher.videoAddress}">
           </div>
 
-          <div class="form-group row childId">
+          <div class="form-group row childId parentsDisplay">
             <div class="col-sm-2">
               <label for="inputChildId" class="wantedSubjectLabel col-form-label">자녀아이디</label>&nbsp;&nbsp;
               <div class="d-inline-flex">
                 <button type="button" class="btn btn-outline-success btn-sm"><strong>&minus;</strong></button>
               </div>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-10 parentsDisplay">
 
                 <div class="form-row">
                   <div class="col-sm-11">
@@ -345,12 +362,12 @@
               </div> -->
             </div>
           </div>
-          <div class="childAddButtonDiv mb-3">
+          <div class="childAddButtonDiv mb-3 parentsDisplay">
             <button type="button" class="btn btn-outline-success childAddButton">추가</button>
           </div>
 
 
-          <div class="form-check kakaotalkDiv">
+          <div class="form-check kakaotalkDiv parentsDisplay">
             <label class="form-check-label">
                 <input id="kakaotalkCheckbox" class="form-check-input" type="checkbox" value="">
                 과외 내용을 카톡으로 수신
@@ -369,6 +386,83 @@
   </div>
 </div>
 
+<!-- 값 테스트용 출력 (디버깅 이후 지울 것)-->
+<script>
+  console.log('${memberInfoMap.teacher}');
+  console.log('${memberInfoMap.parents}');
+  console.log('${memberInfoMap.student}');
+</script>
+
+<!-- 학생증, 신고서 인증 체크박스 -->
+<script>
+  if ('${loginUser.memberTypeNo}' == 3) {
+    if ('${teacherUniversityConfirmation}' == 'true') {
+      let studentIdchecked = document.getElementsByClassName('student-ID-checked')[0];
+      studentIdchecked.style.display = 'inline-block';
+    } else if ('${teacherUniversityConfirmation}' == 'false' || '${teacherUniversityConfirmation}' == '') {
+      let studentIdUnchecked = document.getElementsByClassName('student-ID-unchecked')[0];
+      studentIdUnchecked.style.display = 'inline-block';
+    }
+
+    if ('${memberInfoMap.teacher.approvementState}' == 'true') {
+      let tutorCertichecked = document.getElementsByClassName('tutor-certi-checked')[0];
+      tutorCertichecked.style.display = 'inline-block';
+    } else if ('${memberInfoMap.teacher.approvementState}' == 'false' || '${teacherUniversityConfirmation}' == '') {
+      let tutorCertiUnchecked = document.getElementsByClassName('tutor-certi-unchecked')[0];
+      tutorCertiUnchecked.style.display = 'inline-block';
+    }
+  }
+</script>
+
+<!-- 선생님으로 로그인 시에 보여야 하는 항목만 출력-->
+<script>
+  if ('${loginUser.memberTypeNo}' == 3) {
+    let studentIdSpan = document.getElementsByClassName('student-ID-span')[0];
+    let tutorCertiSpan = document.getElementsByClassName('tutor-certi-span')[0];
+    let myLessonBtnDisplay = document.getElementsByClassName('my-lesson-btn')[0];
+    let teacherDisplay = document.getElementsByClassName('teacherDisplay');
+
+    studentIdSpan.style.display = 'inline-block';
+    tutorCertiSpan.style.display = 'inline-block';
+    myLessonBtnDisplay.style.display = 'inline-block';
+
+    for (let td of teacherDisplay)
+      td.style.display = 'block';
+  }
+</script>
+
+<!-- 학생으로 로그인 시에 보여야 하는 항목만 출력-->
+<script>
+  if ('${loginUser.memberTypeNo}' == 1) {
+    let myLessonBtnDisplay = document.getElementsByClassName('my-lesson-btn')[0];
+    let studentDisplay = document.getElementsByClassName('studentDisplay');
+
+    myLessonBtnDisplay.style.display = 'inline-block';
+
+    for (let sd of studentDisplay)
+      sd.style.display = 'block';
+  }
+</script>
+
+<!-- 학부모로 로그인 시에 보여야 하는 항목만 출력-->
+<script>
+  if ('${loginUser.memberTypeNo}' == 2) {
+    let parentsDisplay = document.getElementsByClassName('parentsDisplay');
+
+    for (let pd of parentsDisplay)
+      pd.style.display = 'block';
+  }
+</script>
+
+<!-- 쪽지함 버튼 -->
+<script>
+  let myMessageBtn = document.getElementsByClassName('my-message-btn')[0];
+  myMessageBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+  });
+  
+</script>
+
 <!-- 나의 과외 버튼 -->
 <script>
   let myLessonBtn = document.getElementsByClassName('my-lesson-btn')[0];
@@ -378,6 +472,14 @@
   });
   
 </script>
+
+<!-- 카톡 수신여부 체크박스 로딩 -->
+<script>
+  let kakaotalk = '${memberInfoMap.parents.kakaotalk}';
+  if (kakaotalk == 'true') {
+    $("input:checkbox[id='kakaotalkCheckbox']").prop("checked", true);
+  }
+</script> 
 
 <!-- 수업 요일 체크박스 로딩 -->
 <script>

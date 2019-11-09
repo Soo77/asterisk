@@ -9,11 +9,11 @@ public class School {
   private int teacherNo;
   private String schoolName;
   private String certificate;
-  private boolean isGraduated;
+  private boolean graduated;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date modifiedDate;
   private String major;
-  private boolean isConfirmed;
+  private boolean confirmed;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date graduatedDate;
   
@@ -24,8 +24,8 @@ public class School {
   @Override
   public String toString() {
     return "School [schoolNo=" + schoolNo + ", teacherNo=" + teacherNo + ", schoolName="
-        + schoolName + ", certificate=" + certificate + ", isGraduated=" + isGraduated
-        + ", modifiedDate=" + modifiedDate + ", major=" + major + ", isConfirmed=" + isConfirmed
+        + schoolName + ", certificate=" + certificate + ", graduated=" + graduated
+        + ", modifiedDate=" + modifiedDate + ", major=" + major + ", confirmed=" + confirmed
         + ", graduatedDate=" + graduatedDate + ", schoolType=" + schoolType + ", schoolTypeNo="
         + schoolTypeNo + "]";
   }
@@ -54,10 +54,10 @@ public class School {
     this.certificate = certificate;
   }
   public boolean isGraduated() {
-    return isGraduated;
+    return graduated;
   }
-  public void setGraduated(boolean isGraduated) {
-    this.isGraduated = isGraduated;
+  public void setGraduated(boolean graduated) {
+    this.graduated = graduated;
   }
   public Date getModifiedDate() {
     return modifiedDate;
@@ -72,10 +72,10 @@ public class School {
     this.major = major;
   }
   public boolean isConfirmed() {
-    return isConfirmed;
+    return confirmed;
   }
-  public void setConfirmed(boolean isConfirmed) {
-    this.isConfirmed = isConfirmed;
+  public void setConfirmed(boolean confirmed) {
+    this.confirmed = confirmed;
   }
   public Date getGraduatedDate() {
     return graduatedDate;

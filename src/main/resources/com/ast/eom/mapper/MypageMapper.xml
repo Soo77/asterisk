@@ -30,20 +30,6 @@
     <result column="mem_type_name" property="memberTypeName"/>
   </resultMap>
   
-<!--   
-  <resultMap type="Student" id="StuentMap">
-    <id column="std_no" property="studentNo"/>
-    <result column="parents_no" property="parentsNo"/>
-    <result column="bank_name" property="bankName"/>
-    <collection resultMap="SchoolTypeMap" property="schoolType"/>
-  </resultMap>
-  
-   -->
-  <resultMap type="SchoolType" id="SchoolTypeMap">
-    <id column="sch_type_no" property="schoolTypeNo"/>
-    <result column="sch_type" property="schoolType"/>
-  </resultMap>
-  
   <resultMap type="Teacher" id="TeacherMap">
     <id column="tch_no" property="teacherNo"/>
     <result column="acc_no" property="accountNo"/>
@@ -61,13 +47,39 @@
     <result column="sch_type_no" property="schoolTypeNo"/>
     <result column="sch_name" property="schoolName"/>
     <result column="certi" property="certificate"/>
-    <result column="grad" property="isGraduated"/>
+    <result column="grad" property="graduated"/>
     <result column="mdt" property="modifiedDate"/>
     <result column="major" property="major"/>
-    <result column="confirm" property="isConfirmed"/>
+    <result column="confirm" property="confirmed"/>
     <result column="grad_date" property="graduatedDate"/>
   </resultMap>
   
+  <resultMap type="Student" id="StudentMap">
+    <id column="std_no" property="studentNo"/>
+    <result column="parents_no" property="parentsNo"/>
+    <result column="req_to_teacher" property="requirementsToTeacher"/>
+    <collection resultMap="WantedLessonMap" property="wantedLessons"/>
+    <collection resultMap="SchoolTypeMap" property="schoolType"/>
+  </resultMap>
+
+  <resultMap type="WantedLesson" id="WantedLessonMap">
+    <id column="wtd_lesson_no" property="wantedLessonNo"/>
+    <result column="std_no" property="studentNo"/>
+    <result column="sub_no" property="subjectNo"/>
+    <result column="req" property="requirements"/>
+    <result column="rdt" property="registeredDate"/>
+  </resultMap>
+
+  <resultMap type="SchoolType" id="SchoolTypeMap">
+    <id column="sch_type_no" property="schoolTypeNo"/>
+    <result column="sch_type" property="schoolType"/>
+  </resultMap>
+
+  <resultMap type="Parents" id="ParentsMap">
+    <id column="parents_no" property="parentsNo"/>
+    <result column="kakaotalk" property="kakaotalk"/>
+    <collection resultMap="StudentMap" property="students"/>
+  </resultMap>
   
   <select id="findBy" parameterType="int" resultMap="MemberMap">
     select *
@@ -78,26 +90,29 @@
   <select id="getTeacher" parameterType="int" resultMap="TeacherMap">
     select *
     from teacher t
-    inner join school s on t.tch_no = s.tch_no
-    where t.tch_no = #{no};
+    left outer join school s on t.tch_no = s.tch_no
+    where t.tch_no = #{no}
   </select>
 
   <select id="getSchools" parameterType="int" resultMap="SchoolMap">
     select *
     from school
-    where t.tch_no = #{no};
+    where t.tch_no = #{no}
   </select>
-<!--
-  <select id="getStudent" parameterType="int" resultMap="MemberMap">
+  
+  <select id="getStudent" parameterType="int" resultMap="StudentMap">
     select *
-    from student
-    where std_no = #{no}
+    from student s
+    inner join school_type st on s.sch_type_no = st.sch_type_no
+    left outer join wanted_lesson wl on s.std_no = wl.std_no
+    where s.std_no = #{no}
   </select>
 
-  <select id="getParents" parameterType="int" resultMap="MemberMap">
+  <select id="getParents" parameterType="int" resultMap="ParentsMap">
     select *
-    from parents
-    where paretns_no = #{no}
-  </select> -->
+    from parents p
+    left outer join student s on p.parents_no = s.parents_no
+    where p.parents_no = #{no};
+  </select>
   
 </mapper>

@@ -40,6 +40,9 @@ VALUES(3, now(), 'F', '2019-08-08', 'cho11', 'cho@test.com', 'cho', password('11
 INSERT INTO member(mem_type_no, reg_date, gender, dob, id, email, name, pwd, addr_city, addr_sub, tel, profile_photo)
 VALUES(3, now(), 'M', '2019-09-09', 'yim11', 'yim@test.com', 'yim', password('1111'), 'Seoul', 'Seocho', '1111-0000', 'i.gif');
 
+-- 회원 쪽 과외 요일 및 시간 데이터 수정
+UPDATE member SET curr_lesson_dt='1010101', curr_lesson_st='18:00', curr_lesson_et='20:00';
+
 -- 학부모
 INSERT INTO parents(parents_no, kakaotalk)
 VALUES (1, false);
@@ -211,3 +214,4 @@ INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
 VALUES (2, 'blah blah2', 1);
 INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
 VALUES (3, 'blah blah3', 3);
+
