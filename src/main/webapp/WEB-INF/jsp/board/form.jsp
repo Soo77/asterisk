@@ -4,6 +4,10 @@
 
 <head>
   <style>
+    #boardAddAndCancle {
+      text-align: right;
+    }
+    
     .photo1 {
       height: 120px;
     }
@@ -92,7 +96,7 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container p-5">
+  <div class="container p-3">
     <form id="form1" name="frm1" action='add' method=post
       enctype='multipart/form-data'>
 <!--       <div class="row">
@@ -104,14 +108,22 @@
 
       <input type="hidden" name="boardTypeNo" value="${boardTypeNo}">
       
-      <div class="form-group bmd-form-group">
-        <label class="bmd-label-static">제목</label>
-        <input type="text" class="form-control"  id="inputTitle" name='title' >
+      <div class="row">
+        <div class="col">
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-static">제목</label>
+            <input type="text" class="form-control"  id="inputTitle" name='title' >
+          </div>
+        </div>
       </div>
-
-      <div class="form-group bmd-form-group">
-        <label for="exampleFormControlTextarea1">내용</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="30" style="resize: none;"></textarea>
+    
+      <div class="row">
+          <div class="col">
+          <div class="form-group bmd-form-group">
+            <label for="exampleFormControlTextarea1">내용</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="30" style="resize: none;"></textarea>
+          </div>
+        </div>
       </div>
 
       <hr>
@@ -136,10 +148,10 @@
 
       <div class="row">
         <div class="col">
-          <div align="right">
-            <button id="btnAdd" type="button" class="btn btn-info">등록</button>
+          <div id="boardAddAndCancle">
+            <button id="btnAdd" type="button" class="btn btn-primary">등록</button>
             <button id="btnCancle" type="button"
-              class="btn btn-danger my-view-group" style="float: right;">취소</button>
+              class="btn btn-danger my-view-group">취소</button>
           </div>
         </div>
       </div>

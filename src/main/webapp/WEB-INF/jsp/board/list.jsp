@@ -44,13 +44,14 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container p-5">
+  <div class="container p-3">
     <input type='hidden' name='boardTypeNo' value='${boardTypeNo}'>
 
     <div class="form-group row justify-content-center">
       <div class="w100" style="padding-right: 10px">
         <select class="form-control form-control-sm" name="searchType"
           id="searchType">
+          <option value="titleContents">제목+내용</option>
           <option value="title">제목</option>
           <option value="writer">작성자</option>
         </select>
@@ -78,10 +79,10 @@
       </div>
       <div class="input-group">
         <select id="pageSize" class="form-control">
-          <option value="3">3</option>
-          <option value="8">8</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
+          <option value="3">3개씩</option>
+          <option value="8">8개씩</option>
+          <option value="10">10개씩</option>
+          <option value="20">20개씩</option>
         </select>
       </div>
     </div>
@@ -110,17 +111,6 @@
         </c:forEach>
       </tbody>
     </table>
-
-<!--     <div align="right">
-      <c:if test="${loginUser.memberTypeNo != 4 and boardTypeNo != 4}">
-        <button class="btn btn-primary" type="button"
-          onclick="location='form?boardTypeNo=${boardTypeNo}'">글쓰기</button>
-      </c:if>
-      <c:if test="${loginUser.memberTypeNo == 4}">
-        <button class="btn btn-primary" type="button"
-          onclick="location='form?boardTypeNo=${boardTypeNo}'">관리자글쓰기</button>
-      </c:if>
-    </div> -->
 
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
@@ -175,6 +165,8 @@
   <script>
     (function() {
   	  $('#pageSize').val('${pageSize}')
+  	  $('#searchType').val('${searchType}')
+  	  $('#keyword').val('${keyword}')
   	})();
   
   
