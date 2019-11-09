@@ -39,10 +39,14 @@
       inner join member m on b.mem_no=m.mem_no
       where b.board_type_no = #{boardTypeNo}
       <if test="searchType != null">
-         <if test="searchType == 'title'.toString()">
+         <if test="searchType == 'titleContents'.toString() and keyword != null and keyword != ''">
+            and b.titl like CONCAT('%', #{keyword}, '%')
+            or b.conts like CONCAT('%', #{keyword}, '%')
+         </if>
+         <if test="searchType == 'title'.toString() and keyword != null and keyword != ''">
             and b.titl like CONCAT('%', #{keyword}, '%')
          </if>
-         <if test="searchType == 'writer'.toString()">
+         <if test="searchType == 'writer'.toString() and keyword != null and keyword != ''">
             and m.id like CONCAT('%', #{keyword}, '%')
          </if>
       </if>

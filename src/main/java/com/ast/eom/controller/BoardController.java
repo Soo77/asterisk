@@ -52,7 +52,7 @@ public class BoardController {
       Model model,
       @RequestParam(defaultValue = "20") int pageSize,
       @RequestParam(defaultValue = "1") int curPage,
-      @RequestParam(defaultValue = "") String searchType,
+      @RequestParam(defaultValue = "titleContents") String searchType,
       @RequestParam(defaultValue = "") String keyword) throws Exception {
     
     List<Board> boards = boardService.list(boardTypeNo, searchType, keyword);
@@ -63,9 +63,9 @@ public class BoardController {
     model.addAttribute("listCnt", listCnt);
     model.addAttribute("pagination", pagination);
     model.addAttribute("boardTypeNo", boardTypeNo);
+    model.addAttribute("pageSize", pageSize);
     model.addAttribute("searchType", searchType);
     model.addAttribute("keyword", keyword);
-    model.addAttribute("pageSize", pageSize);
   }
   
   @GetMapping("detail")
