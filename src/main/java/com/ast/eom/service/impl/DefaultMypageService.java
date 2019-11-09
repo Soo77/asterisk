@@ -44,7 +44,7 @@ public class DefaultMypageService implements MypageService {
       memberInfoMap.put("teacher", mypageDao.getTeacher(memberNo));
       
     } else {
-      throw new Exception("오류 발생!");
+      throw new Exception("DB에서 회원정보를 가져오던 중 오류 발생!");
       
     }
     

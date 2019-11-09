@@ -388,7 +388,9 @@
 
 <!-- 값 테스트용 출력 (디버깅 이후 지울 것)-->
 <script>
+  console.log('${memberInfoMap.teacher}');
   console.log('${memberInfoMap.parents}');
+  console.log('${memberInfoMap.student}');
 </script>
 
 <!-- 학생증, 신고서 인증 체크박스 -->
@@ -474,8 +476,9 @@
 <!-- 카톡 수신여부 체크박스 로딩 -->
 <script>
   let kakaotalk = '${memberInfoMap.parents.kakaotalk}';
-  if (kakaotalk == 'true')
+  if (kakaotalk == 'true') {
     $("input:checkbox[id='kakaotalkCheckbox']").prop("checked", true);
+  }
 </script> 
 
 <!-- 수업 요일 체크박스 로딩 -->
