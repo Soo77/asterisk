@@ -40,6 +40,22 @@
     <result column="vid_addr" property="videoAddress"/>
     <collection resultMap="SchoolMap" property="schools"/>
   </resultMap>
+
+  <resultMap type="LessonSubject" id="LessonSubjectMap">
+    <id column="lesson_sub_no" property="lessonSubjectNo"/>
+    <result column="tch_no" property="teacherNo"/>
+    <result column="sub_no" property="subjectNo"/>
+    <result column="sub_conts" property="subjectContents"/>
+    <result column="rdt" property="registeredDate"/>
+    <result column="wanted_fee" property="wantedFee"/>
+    <collection resultMap="SubjectMap" property="subjects"/>
+  </resultMap>
+
+  <resultMap type="Subject" id="SubjectMap">
+    <id column="sub_no" property="subjectNo"/>
+    <result column="sub_name" property="subjectName"/>
+    <result column="sch_type_no" property="schoolTypeNo"/>
+  </resultMap>
   
   <resultMap type="School" id="SchoolMap">
     <id column="sch_no" property="schoolNo"/>
@@ -68,6 +84,8 @@
     <result column="sub_no" property="subjectNo"/>
     <result column="req" property="requirements"/>
     <result column="rdt" property="registeredDate"/>
+    <result column="wanted_fee" property="wantedFee"/>
+    <collection resultMap="SubjectMap" property="subjects"/>
   </resultMap>
 
   <resultMap type="SchoolType" id="SchoolTypeMap">
@@ -94,10 +112,10 @@
     where t.tch_no = #{no}
   </select>
 
-  <select id="getSchools" parameterType="int" resultMap="SchoolMap">
-    select *
-    from school
-    where t.tch_no = #{no}
+  <select id="getLessonSubjects" parameterType="int" resultMap="LessonSubjectMap">
+    select * from lesson_subject ls
+    inner join subject s on ls.sub_no = s.sub_no
+    where tch_no=#{no};
   </select>
   
   <select id="getStudent" parameterType="int" resultMap="StudentMap">
@@ -108,11 +126,26 @@
     where s.std_no = #{no}
   </select>
 
+  <select id="getWantedLessons" parameterType="int" resultMap="WantedLessonMap">
+    select * from wanted_lesson wl
+    inner join subject s on wl.sub_no = s.sub_no
+    where std_no=#{no};
+  </select>
+
   <select id="getParents" parameterType="int" resultMap="ParentsMap">
     select *
     from parents p
     left outer join student s on p.parents_no = s.parents_no
-    where p.parents_no = #{no};
+    where p.parents_no = #{no}
+  </select>
+
+  <select id="getChildrenIdAndName" parameterType="map" resultMap="MemberMap">
+    select mem_no, id, name
+    from member
+    where 
+    <foreach collection="list" item="no" separator="or">
+      mem_no = #{no.value}
+    </foreach>
   </select>
   
 </mapper>
