@@ -300,7 +300,8 @@ CREATE TABLE wanted_lesson (
   std_no        INTEGER  NOT NULL, -- 학생번호
   sub_no        INTEGER  NOT NULL, -- 과목번호
   req           TEXT     NOT NULL, -- 선생님께바라는점
-  rdt           DATETIME NOT NULL  -- 등록일
+  rdt           DATETIME NOT NULL, -- 등록일
+  wanted_fee    INTEGER  NULL      -- 희망수업료
 );
 
 -- 과외희망(희망과목)

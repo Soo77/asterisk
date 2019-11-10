@@ -168,20 +168,20 @@ INSERT INTO subject(sch_type_no, sub_name)
 VALUES (3, 'math');
 
 -- 과외희망(희망과목) (FK: std_no, sub_no)
-INSERT INTO wanted_lesson(std_no, sub_no, req, rdt)
-VALUES (4, 1, 'requirement1', now());
-INSERT INTO wanted_lesson(std_no, sub_no, req, rdt)
-VALUES (5, 2, 'requirement2', now());
-INSERT INTO wanted_lesson(std_no, sub_no, req, rdt)
-VALUES (6, 3, 'requirement3', now());
+INSERT INTO wanted_lesson(std_no, sub_no, req, rdt, wanted_fee)
+VALUES (4, 1, 'requirement1', now(), 2);
+INSERT INTO wanted_lesson(std_no, sub_no, req, rdt, wanted_fee)
+VALUES (5, 2, 'requirement2', now(), 1);
+INSERT INTO wanted_lesson(std_no, sub_no, req, rdt, wanted_fee)
+VALUES (6, 3, 'requirement3', now(), 3);
 
 -- 과외과목(희망과목) (FK: tch_no, sub_no)
 INSERT INTO lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
-VALUES (7, 1, 'This lesson will make you the best Korean speaker', now(), 300000);
+VALUES (7, 1, 'This lesson will make you the best Korean speaker', now(), 1);
 INSERT INTO lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
-VALUES (8, 2, "Try this lesson! It never make you disappointed", now(), 350000);
+VALUES (8, 2, "Try this lesson! It never make you disappointed", now(), 2);
 INSERT INTO lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
-VALUES (9, 3, 'Wanna be a best mathematcian? This is for you babe!', now(), 400000);
+VALUES (9, 3, 'Wanna be a best mathematcian? This is for you babe!', now(), 3);
 
 -- 수업 (FK: tch_no, stud_no, sub_no)
 INSERT INTO lesson(tch_no, sub_no, lesson_desc, lesson_fee, sdt, edt)
