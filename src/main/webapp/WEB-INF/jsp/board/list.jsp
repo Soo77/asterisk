@@ -9,10 +9,6 @@
       margin: 2px;
     }
     
-    /* div{
-    border: 1px solid;
-    } */
-    
   </style>
 </head>
 

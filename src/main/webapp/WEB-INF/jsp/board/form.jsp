@@ -58,9 +58,6 @@
       appearance: none;
     }
     
-    /* div{
-    border: 1px solid;
-    } */
   </style>
 </head>
 
@@ -95,12 +92,6 @@
   <div class="container p-3">
     <form id="form1" name="frm1" action='add' method=post
       enctype='multipart/form-data'>
-<!--       <div class="row">
-        <div class="col" align="center">
-          <h2
-            style="background-color: #00AFA0; border-color: #00AFA0; color: #ffffff;">글쓰기</h2>
-        </div>
-      </div> -->
 
       <input type="hidden" name="boardTypeNo" value="${boardTypeNo}">
       

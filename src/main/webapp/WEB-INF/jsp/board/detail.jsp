@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
-  <!-- <link rel='stylesheet' href='/css/myboard.css'> -->
   <style>
     #boardButton {
       text-align: right;
@@ -79,53 +78,6 @@
       appearance: none;
     }
 
-/*     .row {
-      margin: 5px;
-    }
-    
-    .col-1 {
-      padding-right: 5px;
-    }
-    
-    .col {
-      padding-left: 5px;
-    }
-    
-    .col-3 {
-      padding-left: 5px;
-    } 
-    
-    .col-1 .form-control {
-      background-color: #9c27b0;
-      color: #ffffff;
-      border-radius: 5px/5px;
-      text-align: center;
-    } */
-    
-/*     .col .form-control {
-      padding: 10px;
-    }
-    
-    .col-3 .form-control {
-      padding: 10px;
-    }
-    
-    .col-12 .form-control {
-      padding: 10px;
-    }
-    
-    .col-10 .form-control {
-      padding: 10px;
-    }
-    
-    .comment .col-1 {
-      padding: 5px;
-    }
-    
-    .comment .col-11 {
-      padding: 5px;
-    } */
-    
     .cmt {
       padding: 20px;
     }
@@ -134,38 +86,33 @@
      text-align: center;
     }
     
-    /*이미지 크기가 넘어가면 crop 하는 부분*/
-    /*아래의 @media에서 small devices의 해상도가 576px 이상이므로*/
-    /*그 이하의 해상도에서는 여기서 설정한 이미지 사이즈가 적용된다.*/
     .my-comment-img {
       width: 30px;
       height: 30px;
       object-fit: cover;
     }
-    
-    /* 아래의 4개는 부트스트랩에서 지원하는 5단계의 해상도별 반응형 css 적용*/
-    /* Small devices (landscape phones, 576px and up) */
+
     @media (min-width: 576px) {
       .my-comment-img {
         width: 50px;
         height: 50px;
       }
     }
-    /* Medium devices (tablets, 768px and up) */
+
     @media (min-width: 768px) {
       .my-comment-img {
         width: 70px;
         height: 70px;
       }
     }
-    /* Large devices (desktops, 992px and up) */
+
     @media (min-width: 992px) {
       .my-comment-img {
         width: 100px;
         height: 100px;
       }
     }
-    /* Extra large devices (large desktops, 1200px and up) */
+
     @media (min-width: 1200px) {
       .my-comment-img {
         width: 125px;
@@ -199,9 +146,6 @@
       font-size: 0.75em;
     }
     
-    /* div{
-    border: 1px solid;
-    } */
   </style>
 </head>
 
@@ -236,13 +180,6 @@
         name="boardNo" value="${board.boardNo}">
 
       <div class="row">
-<!--         <div class="col-1">
-          <input type="button" class="form-control" value="제목">
-        </div>
-        <div class="col">
-          <input type="text" readonly class="form-control"
-            id="inputTitle" name="title" value="${board.title}">
-        </div> -->
         
         <div class="col">
           <div class="form-group">
@@ -253,30 +190,6 @@
       </div>
 
       <div class="row">
-<!--         <div class="col-1">
-          <input type="button" class="form-control" value="작성자">
-        </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control" name="id"
-            value="${board.memberId}">
-        </div>
-
-        <div class="col-1">
-          <input type="button" class="form-control" value="작성일">
-        </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control"
-            name="createdDate" value="${board.createdDate}">
-        </div>
-
-        <div class="col-1">
-          <input type="button" class="form-control" value="조회수">
-        </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control"
-            name="viewCount" value="${board.viewCount}">
-        </div> -->
-        
         
         <div class="col">
           <div class="form-group">
@@ -319,17 +232,6 @@
           </div>
         </div>
       </div>
-
-      <!--       <div class="row">
-        <div id="boardFiles">
-          <p>
-            <c:forEach items="${board.files}" var="file">
-              <img src='/upload/board/${file.fileName}' class='photo2'
-                onerror="this.style.display='none'" alt=''>
-            </c:forEach>
-          </p>
-        </div>
-      </div> -->
 
         <div id="insertBoardPhotos">
           <hr>
@@ -672,4 +574,4 @@
       $(document).ready(function() {
         commentList(); //페이지 로딩시 댓글 목록 출력 
       });
-    </script>
+</script>
