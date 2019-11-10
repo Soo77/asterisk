@@ -8,10 +8,6 @@
       text-align: right;
     }
     
-    .photo1 {
-      height: 120px;
-    }
-    
     .photo2 {
       height: 100px;
       margin: 2px;
