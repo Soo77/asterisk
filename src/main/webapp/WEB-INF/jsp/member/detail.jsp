@@ -15,7 +15,6 @@
   box-shadow: none;
 }
 </style>
-
 <body class="profile-page sidebar-collapse">
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/city-profile.jpg');"></div>
   <div class="main main-raised">
@@ -27,7 +26,7 @@
               <div class="profile">
                 <div class="avatar">
                   <img src="${member.teacherPhoto}" alt="Circle Image" class="img-raised rounded-circle img-fluid"
-                    onError="this.src='/landing_images/images/default.jpg'">
+                    onError="this.src='/upload/join/default.png'">
                 </div>
                 <div class="name">
                   <h2 class="title">${member.name}</h2>
@@ -59,8 +58,16 @@
                 </ul>
               </div>
             </div>
-
           <div class="tch-school">
+          <input type="hidden" id="memberTypeNo" value="${member.memberTypeNo}">
+          <script>
+              var memberTypeNo = $("#memberTypeNo").val();
+              $(document).ready(function(){
+                  if(memberTypeNo == 1) {
+                    $(".tch-school").hide();
+                  }
+              });
+          </script>
             <div class="tch-school title">
               <h3>출신학교</h3>
             </div>

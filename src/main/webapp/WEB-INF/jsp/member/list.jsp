@@ -89,6 +89,24 @@
                 </select>
               </div>
               
+              <ul class="nav nav-pills nav-pills-icons" role="tablist">
+                <!--
+                                color-classes: "nav-pills-primary", 
+                                "nav-pills-info", "nav-pills-success", 
+                                "nav-pills-warning","nav-pills-danger"
+                            -->
+                <li class="nav-item">
+                  <a class="nav-link active show" href="#dashboard-1" role="tab" data-toggle="tab" aria-selected="true">
+                    Dashboard
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab" aria-selected="false">
+                    Schedule
+                  </a>
+                </li>
+              </ul>
+              
               <h4><span class="tim-note">성별</span></h4>
               <div class="form-check">
                 <label class="btn btn-primary gender">
@@ -190,6 +208,15 @@
         <!-- Sidebar / End -->
         <!-- contents ================================================== -->
         <div class="col-lg-9 col-md-8">
+        
+        <div class="input-group">
+			    <select id="pageSize">
+			      <option value="3">3</option>
+			      <option value="8">8</option>
+			      <option value="10">10</option>
+			      <option value="20">20</option>
+			    </select>
+			  </div>
 
           <c:if test="${memberTypeNo eq 3}">
             <c:forEach items="${memberList}" var="member">
@@ -200,7 +227,7 @@
                       <div class="col-md-3">
                         <img src="${member.profilePhoto}" width="130" alt="Thumbnail Image" 
                         class="img-raised rounded-circle img-fluid" 
-                        onError="this.src='/landing_images/images/default.jpg'">
+                        onError="this.src='/upload/join/default.png'">
                         <!-- <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid"> -->
                       </div>
                       <div class="col-md-9">
@@ -232,7 +259,7 @@
                       <div class="col-md-3">
                       <img src="${member.profilePhoto}" width="130" alt="Thumbnail Image" 
                         class="img-raised rounded-circle img-fluid" 
-                        onError="this.src='/landing_images/images/default.jpg'">
+                        onError="this.src='/upload/join/default.png'">
                       </div>
                       <div class="col-md-9">
                         <h3 class="title">
@@ -251,6 +278,26 @@
               <hr>
             </c:forEach>
           </c:if>
+          
+          <nav aria-label="Page navigation example">
+					  <ul class="pagination">
+					    <li class="page-item" data-page="prev">
+					      <a class="page-link" href="#">
+					        <span aria-hidden="true">&laquo;</span> 
+					      </a>
+					    </li>
+					<c:forEach begin="${beginPage}" end="${endPage}" var="page">
+					    <li class="page-item" data-page="${page}">
+					      <a class="page-link" ${page != pageNo ? "href=#" : ""}>${page}</a>
+					    </li>
+					</c:forEach>
+					    <li class="page-item" data-page="next">
+					      <a class="page-link" href="#">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>
 
         </div>
         <!-- contents / End -->
@@ -260,6 +307,40 @@
     </div>
    </div>
   </div>
+  
+  <script>
+(function() {
+  $('#pageSize').val('${pageSize}')
+})();
+
+$('#pageSize').change((e) => {
+  location.href = "list?pageSize=" + $(e.target).val();
+});
+
+var currentPage = ${pageNo};
+
+$('.page-item').click((e) => {
+  e.preventDefault();
+  // e.currentTarget? 리스너가 호출될 때, 그 리스너가 등록된 태그를 가르킨다.
+  // e.target? 이벤트가 발생된 원천 태그이다. 
+  //var page = e.currentTarget.getAttribute('data-page');
+  var page = $(e.currentTarget).attr('data-page');
+  if (page == "prev") {
+    if (currentPage == 1)
+      return;
+    location.href = "list?pageNo=" + (currentPage - 1) + "&pageSize=" + ${pageSize};
+    
+  } else if (page == "next") {
+    if (currentPage >= ${totalPage})
+      return
+    location.href = "list?pageNo=" + (currentPage + 1) + "&pageSize=" + ${pageSize};
+  
+  } else {
+    location.href = "list?pageNo=" + page + "&pageSize=" + ${pageSize};
+  }
+});
+
+</script>
 
   <script type="text/javascript">
     $('document')

@@ -1,5 +1,6 @@
 package com.ast.eom.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,17 +22,30 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
   
   
   @Override
-  public List<MemberTeacherStudent> list(int memberTypeNo) throws Exception {
+  public List<MemberTeacherStudent> list(int memberTypeNo, int pageNo, int pageSize) throws Exception {
+
+    HashMap<String,Object> param = new HashMap<>();
+    param.put("memberTypeNo", memberTypeNo);
+    param.put("offset", (pageNo - 1) * pageSize);
+    param.put("pageSize", pageSize);
+
     List<MemberTeacherStudent> memberList = null;
-    if (memberTypeNo == 1) {
-      memberList = memberTeacherStudentDao.listStudent(memberTypeNo);
-    } else if (memberTypeNo == 3) {
-      memberList = memberTeacherStudentDao.listTeacher(memberTypeNo);
-    }
     
+    if (memberTypeNo == 1) {
+      memberList = memberTeacherStudentDao.listStudent(param);
+    } else if (memberTypeNo == 3) {
+      memberList = memberTeacherStudentDao.listTeacher(param);
+    }
+    System.out.println("param"+ param);
     return memberList;
   }
   
+  
+    @Override
+    public int size(int memberTypeNo) throws Exception {
+      return memberTeacherStudentDao.countAll(memberTypeNo);
+    }
+   
   
   
 }
