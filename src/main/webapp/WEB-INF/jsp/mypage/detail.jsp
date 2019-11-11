@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <head>
   <link href="/assets/demo/demo.css" rel="stylesheet" />
@@ -141,8 +140,9 @@
             <div class="col-md-6 ml-auto mr-auto">
               <div class="profile">
                 <div class="avatar">
-                  <img src="/assets/img/faces/christian.jpg" alt="Circle Image"
-                    class="img-raised rounded-circle img-fluid">
+                  <img src="/upload/join/${loginUser.profilePhoto}" alt="Circle Image"
+                    class="img-raised rounded-circle img-fluid profile-photo">
+                  <input id="profile-photo-upload" type="file" hidden>
                 </div>
                 <div class="name">
                   <h3 class="title mb-2">${loginUser.name}</h3>
@@ -155,7 +155,7 @@
                     <i class="far fa-square tutor-certi-unchecked"></i><i
                       class="far fa-check-square tutor-certi-checked"></i>
                     <span class="tutor-certi-span">
-                      신고서 인증&nbsp;&nbsp;&nbsp;
+                      신고서 인증
                     </span>
                   </h6>
                   <h6></h6>
@@ -244,6 +244,19 @@
             <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}">
           </div>
 
+          <div class="form-group row teacherDisplay">
+            <div class="col">
+              <div class="d-flex">
+                <div class="col" style="flex-basis:80%; border: 1px solid powderblue;">
+                  test1
+                </div>
+                <div class="col" style="flex-basis:20%; border: 1px solid powderblue;">
+                  test2
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="form-group teacherDisplay">
             <label for="inputHighSchool">고등학교</label>
             <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
@@ -263,7 +276,6 @@
             </c:forEach>
           </div>
 
-          <!-- 선생님, 학생 페이지 수정 중인 항목 템플릿! -->
           <div class="form-group row wantedSubjects subjectTemplate">
             <div class="col-sm-2 mt-1 mb-0 form-group">
               <label for="inputSubject" class="wantedSubjectLabel col-form-label">희망과목</label>&nbsp;&nbsp;
@@ -367,7 +379,6 @@
             <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control" />
           </div>
 
-          <!-- 학생 정보 수정 중-->
           <div class="form-group studentDisplay">
             <label for="inputRequirements">과외 희망사항</label>
             <textarea class="form-control" id="inputRequirements"
@@ -384,9 +395,7 @@
             <input type="text" class="form-control" id="inputIntroVideo" value="${memberInfoMap.teacher.videoAddress}">
           </div>
 
-
-
-          <div class="form-group row childId pt-1 childIdTemplate">
+          <div class="form-group row childId mb-2 pt-1 childIdTemplate">
             <div class="col-sm-2 mb-0 form-group">
               <label for="inputChildId" class="childIdLabel">자녀ID</label>&nbsp;&nbsp;
               <button type="button"
@@ -434,6 +443,37 @@
   console.log('${memberInfoMap.parents}');
   console.log('${memberInfoMap.student}');
   console.log('${memberInfoMap.wantedLessons}');
+</script>
+
+<!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
+<script>
+  console.log('test');
+  let profilePhotoImg = document.getElementsByClassName('profile-photo')[0];
+  let profileFileInput = document.getElementById('profile-photo-upload');
+
+  profileFileInput.addEventListener('change', (e) => {
+    let get_file = e.target.files;
+    let reader = new FileReader();
+
+    reader.onload = (function (aImg) {
+      return function (e) {
+        // 현재 프로필 이미지 경로를 바꿈
+        aImg.src = e.target.result;
+      }
+    })(profilePhotoImg);
+
+    reader.readAsDataURL(get_file[0]);
+    profilePhotoImg.src = get_file[0].name;
+  });
+
+  // '사진변경' 버튼을 누르면 profileFileInput을 누르도록 이벤트를 전달
+  profilePhotoImg.addEventListener('click', () => {
+    let clickPhotoChangeBtn = new MouseEvent('click', {
+      bubbles: true, cancelable: true, view: window
+    });
+
+    document.getElementById('profile-photo-upload').dispatchEvent(clickPhotoChangeBtn);
+  });
 </script>
 
 <!-- 학생증, 신고서 인증 체크박스 -->
@@ -609,8 +649,7 @@
 <!-- 선생님 희망과목에 초기값 세팅 -->
 <script>
   if ('${loginUser.memberTypeNo}' == 3) {
-    //fn:은 jstl의 라이브러리 이므로 import 하는 것 잊지 말것
-    for (let i = 0; i < '${fn:length(memberInfoMap.lessonSubjects)}'; i++) {
+    for (let i = 0; i < myTeacherLessonSubjects.length; i++) {
       let addedSubjectObject = addSubjectNode();
       let options = addedSubjectObject.childNodes[3].childNodes;
 
@@ -647,7 +686,7 @@
 <script>
   if ('${loginUser.memberTypeNo}' == 1) {
     //fn:은 jstl의 라이브러리 이므로 import 하는 것 잊지 말것
-    for (let i = 0; i < '${fn:length(memberInfoMap.wantedLessons)}'; i++) {
+    for (let i = 0; i < myStudentLessonSubjects.length; i++) {
       let addedSubjectObject = addSubjectNode();
       let options = addedSubjectObject.childNodes[3].childNodes;
 
@@ -662,14 +701,10 @@
   }
 </script>
 
-
-
-
 <!-- 자녀ID 제거 버튼 초기 세팅-->
 <script>
   let removeChildIdButton = document.getElementsByClassName('remove-childId-button')[0];
 
-  // 희망과목을 0개 이하로 지울 수 없게 방지하는 카운트 설정
   let childIdCount = 0;
 
   let addRemoveChildIdEventTo = function (thisBtn) {
@@ -684,7 +719,6 @@
     });
   }
 
-  // 희망과목 삭제 버튼에 이벤트 등록
   addRemoveChildIdEventTo(removeChildIdButton);
 
 </script>
@@ -694,21 +728,16 @@
   let childAddButton = document.getElementsByClassName('childAddButton')[0];
 
   let addChildIdNode = function () {
-    // 페이지 로딩 시에 기존에 만들어둔 원본 wantedSubjects를 복사하여 템플릿으로 보관
     let childrendId = document.getElementsByClassName('childId');
     let childIdTemplate = childrendId[0].cloneNode(true);
 
-    // 원본 wantedSubjects div에서 subjectTemplate를 제거하여 템플릿은 정상적으로 화면에 보이게 설정
-    childIdTemplate.setAttribute('class', 'form-group row childId pt-1');
+    childIdTemplate.setAttribute('class', 'form-group row childId mb-2 pt-1');
 
-    // 희망과목의 부모 노드 중에서 가장 마지막 자식의 앞에 준비해둔 wantedSubjectTemplate를 insert
     childrendId[0].parentNode.insertBefore(childIdTemplate, childrendId[childrendId.length - 1].nextSibling);
     childIdCount++;
 
-    // 새로 생긴 과목의 제거 버튼에 추가로 이벤트 리스너를 등록
     addRemoveChildIdEventTo(childIdTemplate.childNodes[1].childNodes[3]);
 
-    // 새로 과목을 추가한 후 나중에 값을 세팅할 것을 대비해 이 템플릿을 리턴
     return childIdTemplate;
   }
 
@@ -720,26 +749,28 @@
 
 <!-- 학부모 자녀아이디의 값을 가져와 스크립트용 리스트에 넣는 부분 -->
 <script>
+  if ('${loginUser.memberTypeNo}' == 2) {
+    var myParentsChildrenId = new Array();
+  }
+</script>
+<c:forEach items="${memberInfoMap.parents.students}" var="student">
+  <script>
     if ('${loginUser.memberTypeNo}' == 2) {
-      var myParentsChildrenId = new Array();
+      myParentsChildrenId.push('${student.id}');
     }
   </script>
-  <c:forEach items="${memberInfoMap.parents.students}" var="student">
-    <script>
-      if ('${loginUser.memberTypeNo}' == 2) {
-        myParentsChildrenId.push('${student.id}');
-      }
-    </script>
-  </c:forEach>
-  
-  <script>
+</c:forEach>
+
+<script>
+  if ('${loginUser.memberTypeNo}' == 2) {
     for (let i = 0; i < myParentsChildrenId.length; i++) {
       let addedChildIdObject = addChildIdNode();
       let childIdInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[1];
 
       childIdInput.value = myParentsChildrenId[i];
     }
-  </script>
+  }
+</script>
 
 
 <!-- 다음 주소 찾기 라이브러리-->
