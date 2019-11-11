@@ -61,8 +61,11 @@ public class MemberTeacherStudentController {
 
   @GetMapping("detail")
   public void detail(Model model, @RequestParam("no") int no) throws Exception {
-    List<MemberTeacherStudent> detailTeacher1 = memberTeacherStudentService.get(no);
-    model.addAttribute("detailTeacher1", detailTeacher1);
+    List<MemberTeacherStudent> detailStudent = memberTeacherStudentService.get(no);
+    List<MemberTeacherStudent> detailTeacher = memberTeacherStudentService.get2(no);
+    
+    model.addAttribute("detailStudent", detailStudent);
+    model.addAttribute("detailTeacher", detailTeacher);
   }
 
   @GetMapping("ohora")

@@ -16,8 +16,20 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
   
   @Override
   public List<MemberTeacherStudent> get(int no) throws Exception {
-    List<MemberTeacherStudent> memberTeacherStudent = memberTeacherStudentDao.detailTeacher(no);
-    return memberTeacherStudent;
+    
+    List<MemberTeacherStudent> detailStudent = memberTeacherStudentDao.detailStudent(no);
+    
+    return detailStudent;
+    
+  }
+  
+  @Override
+  public List<MemberTeacherStudent> get2 (int no) throws Exception {
+    
+    List<MemberTeacherStudent> detailTeacher = memberTeacherStudentDao.detailTeacher(no);
+    
+    return detailTeacher;
+    
   }
   
   

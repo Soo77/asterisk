@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class MemberTeacherStudent {
 
   private int memberNo;
+  private int memberTypeNo;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date registeredDate;
-  private int memberTypeNo;
   private String gender;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date dateOfBirth;
@@ -17,44 +17,41 @@ public class MemberTeacherStudent {
   private String addressCity;
   private String addressSuburb;
   private String profilePhoto;
+  private String lessonDays;
+  private String lessonStartTime;
+  private String lessonEndTime;
+  
+  private String memberTypeName;
+  
   private String teacherPhoto;
 
   private String schoolType;
   
+  private String subjectName;
+  
   private List<Teacher> teachers;
   private List<LessonSubject> lessonSubjects;
   private List<School> schools;
-  private List<Subject> subjects;
   private List<Lesson> lessons;
-  private List<Curriculum>curriculums;
+  private List<Student> students;
   
-  @Override
-  public String toString() {
-    return "MemberTeacherStudent [memberNo=" + memberNo + ", registeredDate=" + registeredDate
-        + ", memberTypeNo=" + memberTypeNo + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth
-        + ", name=" + name + ", addressCity=" + addressCity + ", addressSuburb=" + addressSuburb
-        + ", profilePhoto=" + profilePhoto + ", teacherPhoto=" + teacherPhoto + ", schoolType="
-        + schoolType + ", teachers=" + teachers + ", lessonSubjects=" + lessonSubjects
-        + ", schools=" + schools + ", subjects=" + subjects + ", lessons=" + lessons
-        + ", curriculums=" + curriculums + "]";
-  }
   public int getMemberNo() {
     return memberNo;
   }
   public void setMemberNo(int memberNo) {
     this.memberNo = memberNo;
   }
-  public Date getRegisteredDate() {
-    return registeredDate;
-  }
-  public void setRegisteredDate(Date registeredDate) {
-    this.registeredDate = registeredDate;
-  }
   public int getMemberTypeNo() {
     return memberTypeNo;
   }
   public void setMemberTypeNo(int memberTypeNo) {
     this.memberTypeNo = memberTypeNo;
+  }
+  public Date getRegisteredDate() {
+    return registeredDate;
+  }
+  public void setRegisteredDate(Date registeredDate) {
+    this.registeredDate = registeredDate;
   }
   public String getGender() {
     return gender;
@@ -92,6 +89,30 @@ public class MemberTeacherStudent {
   public void setProfilePhoto(String profilePhoto) {
     this.profilePhoto = profilePhoto;
   }
+  public String getLessonDays() {
+    return lessonDays;
+  }
+  public void setLessonDays(String lessonDays) {
+    this.lessonDays = lessonDays;
+  }
+  public String getLessonStartTime() {
+    return lessonStartTime;
+  }
+  public void setLessonStartTime(String lessonStartTime) {
+    this.lessonStartTime = lessonStartTime;
+  }
+  public String getLessonEndTime() {
+    return lessonEndTime;
+  }
+  public void setLessonEndTime(String lessonEndTime) {
+    this.lessonEndTime = lessonEndTime;
+  }
+  public String getMemberTypeName() {
+    return memberTypeName;
+  }
+  public void setMemberTypeName(String memberTypeName) {
+    this.memberTypeName = memberTypeName;
+  }
   public String getTeacherPhoto() {
     return teacherPhoto;
   }
@@ -103,6 +124,12 @@ public class MemberTeacherStudent {
   }
   public void setSchoolType(String schoolType) {
     this.schoolType = schoolType;
+  }
+  public String getSubjectName() {
+    return subjectName;
+  }
+  public void setSubjectName(String subjectName) {
+    this.subjectName = subjectName;
   }
   public List<Teacher> getTeachers() {
     return teachers;
@@ -122,22 +149,32 @@ public class MemberTeacherStudent {
   public void setSchools(List<School> schools) {
     this.schools = schools;
   }
-  public List<Subject> getSubjects() {
-    return subjects;
-  }
-  public void setSubjects(List<Subject> subjects) {
-    this.subjects = subjects;
-  }
   public List<Lesson> getLessons() {
     return lessons;
   }
   public void setLessons(List<Lesson> lessons) {
     this.lessons = lessons;
   }
-  public List<Curriculum> getCurriculums() {
-    return curriculums;
+  public List<Student> getStudents() {
+    return students;
   }
-  public void setCurriculums(List<Curriculum> curriculums) {
-    this.curriculums = curriculums;
+  public void setStudents(List<Student> students) {
+    this.students = students;
   }
+  @Override
+  public String toString() {
+    return "MemberTeacherStudent [memberNo=" + memberNo + ", memberTypeNo=" + memberTypeNo
+        + ", registeredDate=" + registeredDate + ", gender=" + gender + ", dateOfBirth="
+        + dateOfBirth + ", name=" + name + ", addressCity=" + addressCity + ", addressSuburb="
+        + addressSuburb + ", profilePhoto=" + profilePhoto + ", lessonDays=" + lessonDays
+        + ", lessonStartTime=" + lessonStartTime + ", lessonEndTime=" + lessonEndTime
+        + ", memberTypeName=" + memberTypeName + ", teacherPhoto=" + teacherPhoto + ", schoolType="
+        + schoolType + ", subjectName=" + subjectName + ", teachers=" + teachers
+        + ", lessonSubjects=" + lessonSubjects + ", schools=" + schools + ", lessons=" + lessons
+        + ", students=" + students + "]";
+  }
+  
+  
+  
+  
 }

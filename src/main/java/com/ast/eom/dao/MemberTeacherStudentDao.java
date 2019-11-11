@@ -9,6 +9,7 @@ public interface MemberTeacherStudentDao {
   List<MemberTeacherStudent> listTeacher(HashMap<String, Object> param) throws Exception;
   List<MemberTeacherStudent> listStudent(HashMap<String, Object> param) throws Exception;
   List<MemberTeacherStudent> detailTeacher(int no) throws Exception;
+  List<MemberTeacherStudent> detailStudent(int no) throws Exception;
   int countAll(int memberTypeNo) throws Exception; 
 }
 

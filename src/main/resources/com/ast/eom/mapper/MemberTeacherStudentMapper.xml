@@ -8,40 +8,34 @@
 	<resultMap type="MemberTeacherStudent"
 		id="MemberTeacherStudentMap">
 		<id column="mem_no" property="memberNo" />
-		<result column="reg_date" property="registeredDate" />
 		<result column="mem_type_no" property="memberTypeNo" />
+		<result column="reg_date" property="registeredDate" />
 		<result column="gender" property="gender" />
 		<result column="dob" property="dateOfBirth" />
 		<result column="name" property="name" />
 		<result column="addr_city" property="addressCity" />
 		<result column="addr_sub" property="addressSuburb" />
 		<result column="profile_photo" property="profilePhoto" />
+		<result column="curr_lesson_dt" property="lessonDays" />
+		<result column="curr_lesson_st" property="lessonStartTime" />
+		<result column="curr_lesson_et" property="lessonEndTime" />
+		<result column="mem_type_name" property="memberTypeName"/>
 		<result column="tch_photo" property="teacherPhoto" />
 		<result column="sch_type" property="schoolType" />
+		<result column="sub_name" property="subjectName" />
 		<collection resultMap="TeacherMap" property="teachers" />
+		<collection resultMap="LessonSubjectMap" property="lessonSubjects" />
 		<collection resultMap="SchoolMap" property="schools" />
-		<collection resultMap="LessonSubjectMap"
-			property="lessonSubjects" />
-		<collection resultMap="SubjectMap" property="subjects" />
 		<collection resultMap="LessonMap" property="lessons" />
-		<collection resultMap="CurriculumMap"
-			property="curriculums" />
+		<collection resultMap="StudentMap" property="students" />
 	</resultMap>
 
 	<resultMap type="Lesson" id="LessonMap">
 		<id column="lesson_no" property="lessonNo" />
 		<result column="tch_no" property="teacherNo" />
 		<result column="tch_review" property="teacherReview" />
+		<result column="std_review" property="studentReview" />
 		<result column="tch_eval" property="teacherEvaluation" />
-	</resultMap>
-
-	<resultMap type="Curriculum" id="CurriculumMap">
-		<id column="lesson_no" property="lessonNo" />
-		<result column="curr_lesson_dt" property="curriculumLessonDay" />
-		<result column="curr_lesson_st"
-			property="curriculumLessonStartTime" />
-		<result column="curr_lesson_et"
-			property="curriculumLessonEndTime" />
 	</resultMap>
 
 	<resultMap type="School" id="SchoolMap">
@@ -49,29 +43,22 @@
 		<result column="tch_no" property="teacherNo" />
 		<result column="sch_type_no" property="schoolTypeNo" />
 		<result column="sch_name" property="schoolName" />
-		<result column="certi" property="certificate" />
+		<!-- <result column="certi" property="certificate" /> -->
 		<result column="grad" property="isGraduated" />
-		<result column="mdt" property="modifiedDate" />
+		<!-- <result column="mdt" property="modifiedDate" /> -->
 		<result column="major" property="major" />
-		<result column="confirm" property="confirmed" />
-		<result column="grad_date" property="graduatedDate" />
-	</resultMap>
-
-	<resultMap type="Subject" id="SubjectMap">
-		<id column="sub_no" property="subjectNo" />
-		<result column="sch_type_no" property="schoolTypeNo" />
-		<result column="sub_name" property="subjectName" />
+		<!-- <result column="confirm" property="confirmed" />
+		<result column="grad_date" property="graduatedDate" /> -->
 	</resultMap>
 
 	<resultMap type="Teacher" id="TeacherMap">
 		<id column="tch_no" property="teacherNo" />
-		<result column="acc_no" property="accountNo" />
+		<!-- <result column="acc_no" property="accountNo" />
 		<result column="bank_name" property="bankName" />
-		<result column="lesson_certi" property="lessonCertificate" />
+		<result column="lesson_certi" property="lessonCertificate" /> -->
 		<result column="tch_intro" property="teacherIntro" />
 		<result column="appr_stat" property="approvementState" />
 		<result column="vid_addr" property="videoAddress" />
-
 	</resultMap>
 
 	<resultMap type="LessonSubject" id="LessonSubjectMap">
@@ -79,18 +66,21 @@
 		<result column="tch_no" property="teacherNo" />
 		<result column="sub_no" property="subjectNo" />
 		<result column="sub_conts" property="subjectContents" />
-		<result column="rdt" property="registeredDate" />
+		<!-- <result column="rdt" property="registeredDate" /> -->
+		<result column="wanted_fee" property="wantedFee" />
+	</resultMap>
+	
+	<resultMap type="Student" id="StudentMap">
+		<id column="std_no" property="studentNo" />
+		<result column="req_to_teacher" property="requirementsToTeacher" />
 		<result column="wanted_fee" property="wantedFee" />
 	</resultMap>
 
 	<select id="listTeacher" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub,
-		m.profile_photo, tp.tch_photo, s.sch_name, s.sch_type_no,
-		t.tch_no,
-		t.appr_stat, ls.sub_conts, sub.sub_name, st.sch_type
-		from
-		member m
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, m.profile_photo, 
+		s.sch_name, t.tch_no, t.appr_stat, sub.sub_name, st.sch_type
+		from member m
 		left outer join teacher t on m.mem_no = t.tch_no
 		left outer join teacher_photo tp on t.tch_no = tp.tch_no
 		left outer join school s on t.tch_no = s.tch_no
@@ -103,7 +93,7 @@
 
 	<select id="listStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub,
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, m.profile_photo,
 		sub.sub_name, st.sch_type
 		from
 		member m
@@ -117,21 +107,35 @@
 
 	<select id="detailTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.mem_type_no, m.name, m.gender, m.dob, m.profile_photo,
-		m.addr_city, m.addr_sub, m.reg_date,
-		s.sch_name, s.major, s.confirm, t.tch_intro, t.vid_addr, ls.wanted_fee,
-		sub.sub_name, st.sch_type, cur.curr_lesson_dt, cur.curr_lesson_st,
-		cur.curr_lesson_et,l.tch_review, l.tch_eval
+		m.mem_no, m.mem_type_no, m.reg_date, m.gender, m.dob, m.name, 
+		m.addr_city, m.addr_sub, m.profile_photo, m.curr_lesson_dt, m.curr_lesson_st, m.curr_lesson_et,
+		tp.tch_photo, t.tch_intro, t.vid_addr, ls.wanted_fee, ls.sub_conts,s.sch_name, s.major, 
+		st.sch_type, sub.sub_name, l.tch_review, l.tch_eval
 		from
 		member m
 		left outer join teacher t on m.mem_no = t.tch_no
+		left outer join teacher_photo tp on t.tch_no = tp.tch_no
 		left outer join school s on t.tch_no = s.tch_no
 		left outer join lesson_subject ls on t.tch_no = ls.tch_no
 		left outer join subject sub on ls.sub_no = sub.sub_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
 		left outer join lesson l on t.tch_no = l.tch_no
-		left outer join curriculum
-		cur on l.lesson_no = cur.lesson_no
+		where m.mem_no= #{mem_no}
+	</select>
+	
+	<select id="detailStudent" parameterType="int" resultMap="MemberTeacherStudentMap">
+		select
+		m.mem_no, m.mem_type_no, m.reg_date, m.gender, m.dob, m.name, m.addr_city, m.addr_sub, m.profile_photo,
+		m.curr_lesson_dt, m.curr_lesson_st, m.curr_lesson_et, mt.mem_type_name,
+		stu.req_to_teacher, st.sch_type, sub.sub_name, l.std_review, wl.wanted_fee
+		from
+		member m
+		left outer join member_type mt on m.mem_type_no = mt.mem_type_no
+		left outer join student stu on m.mem_no = stu.std_no
+		left outer join lesson l on stu.std_no = l.std_no
+		left outer join wanted_lesson wl on stu.std_no = wl.std_no
+		left outer join subject sub on wl.sub_no = sub.sub_no
+		left outer join school_type st on sub.sch_type_no = st.sch_type_no
 		where m.mem_no= #{mem_no}
 	</select>
 

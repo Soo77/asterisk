@@ -225,10 +225,9 @@
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                        <img src="${member.profilePhoto}" width="130" alt="Thumbnail Image" 
+                        <img src="/upload/join/${member.profilePhoto}" width="130" alt="Thumbnail Image" 
                         class="img-raised rounded-circle img-fluid" 
                         onError="this.src='/upload/join/default.png'">
-                        <!-- <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid"> -->
                       </div>
                       <div class="col-md-9">
                       <h3 class="title">
@@ -239,7 +238,7 @@
                           ${member.addressCity}
                           ${member.addressSuburb}/
                           ${member.schoolType}/
-                          ${member.subjects[0].subjectName}
+                          ${member.subjectName}
                       </span></h4>
                       </div>
                     </div>
@@ -257,7 +256,7 @@
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                      <img src="${member.profilePhoto}" width="130" alt="Thumbnail Image" 
+                      <img src="/upload/join/${member.profilePhoto}" width="130" alt="Thumbnail Image" 
                         class="img-raised rounded-circle img-fluid" 
                         onError="this.src='/upload/join/default.png'">
                       </div>
@@ -268,7 +267,7 @@
                         ${member.gender}/
                         ${membe.addressCity} ${member.addressSuburb}/
                         ${member.schoolType}/
-                        ${member.subjects[0].subjectName}
+                        ${member.subjectName}
                         </span></h4>
                       </div>
                     </div>
@@ -478,6 +477,7 @@ $('.page-item').click((e) => {
       }
     });
   </script>
+  
   
 
   
