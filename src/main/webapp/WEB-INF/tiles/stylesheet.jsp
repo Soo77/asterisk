@@ -14,3 +14,7 @@
 
   <link href="/css/common.css" rel="stylesheet">
   <link href="/css/common2.css" rel="stylesheet">
+  
+  <link href="./assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="./assets/demo/demo.css" rel="stylesheet" />

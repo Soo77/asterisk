@@ -23,7 +23,7 @@
   </style>
 </head>
 
-<body class="sidebar-collapse">
+<body>
   <tiles:insertAttribute name="header3"/>
   <tiles:insertAttribute name="body3"/>
   <tiles:insertAttribute name="footer3"/>
