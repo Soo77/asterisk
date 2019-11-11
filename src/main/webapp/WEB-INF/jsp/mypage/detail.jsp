@@ -44,7 +44,7 @@
       padding-right: 15px;
     }
 
-    #childLessonButton {
+    .childLessonButton {
       margin-top: 2px;
       padding-left: 15px;
       padding-right: 15px;
@@ -111,6 +111,10 @@
     }
 
     .subjectTemplate {
+      display: none;
+    }
+
+    .childIdTemplate {
       display: none;
     }
   </style>
@@ -382,19 +386,19 @@
 
 
 
-          <div class="form-group row">
-            <div class="col-sm-2 mt-1 mb-0 form-group">
-              <label for="inputChildId" class="childIdLabel">자녀아이디</label>&nbsp;&nbsp;
+          <div class="form-group row childId pt-1 childIdTemplate">
+            <div class="col-sm-2 mb-0 form-group">
+              <label for="inputChildId" class="childIdLabel">자녀ID</label>&nbsp;&nbsp;
               <button type="button"
                 class="btn btn-outline-primary btn-sm px-3 mb-1 remove-childId-button"><strong>&minus;</strong></button>
             </div>
-            <div class="col-sm-10 d-flex">
+            <div class="col-sm-10 mt-1 d-flex">
               <div class="flex-item pr-1" style="flex-basis: 93%;">
                 <input type="text" class="form-control" readonly value="hong111">
               </div>
               <div class="flex-item" style="flex-basis: 7%;">
                 <input type="hidden" value="4">
-                <button class="btn btn-sm btn-outline-primary" type="button" id="childLessonButton">과외현황</button>
+                <button class="btn btn-sm btn-outline-primary childLessonButton" type="button">과외현황</button>
               </div>
             </div>
           </div>
@@ -658,6 +662,62 @@
   }
 </script>
 
+
+
+
+<!-- 자녀ID 제거 버튼 초기 세팅-->
+<script>
+  let removeChildIdButton = document.getElementsByClassName('remove-childId-button')[0];
+
+  // 희망과목을 0개 이하로 지울 수 없게 방지하는 카운트 설정
+  let childIdCount = 0;
+
+  let addRemoveChildIdEventTo = function (thisBtn) {
+    thisBtn.addEventListener('click', (event) => {
+      if (childIdCount == 1)
+        return;
+
+      let thisChildIdNode = thisBtn.parentNode.parentNode;
+      thisChildIdNode.parentNode.removeChild(thisChildIdNode);
+
+      childIdCount--;
+    });
+  }
+
+  // 희망과목 삭제 버튼에 이벤트 등록
+  addRemoveChildIdEventTo(removeChildIdButton);
+
+</script>
+
+<!-- 자녀ID 추가 버튼 -->
+<script>
+  let childAddButton = document.getElementsByClassName('childAddButton')[0];
+
+  let addChildIdNode = function () {
+    // 페이지 로딩 시에 기존에 만들어둔 원본 wantedSubjects를 복사하여 템플릿으로 보관
+    let childrendId = document.getElementsByClassName('childId');
+    let childIdTemplate = childrendId[0].cloneNode(true);
+
+    // 원본 wantedSubjects div에서 subjectTemplate를 제거하여 템플릿은 정상적으로 화면에 보이게 설정
+    childIdTemplate.setAttribute('class', 'form-group row childId pt-1');
+
+    // 희망과목의 부모 노드 중에서 가장 마지막 자식의 앞에 준비해둔 wantedSubjectTemplate를 insert
+    childrendId[0].parentNode.insertBefore(childIdTemplate, childrendId[childrendId.length - 1].nextSibling);
+    childIdCount++;
+
+    // 새로 생긴 과목의 제거 버튼에 추가로 이벤트 리스너를 등록
+    addRemoveChildIdEventTo(childIdTemplate.childNodes[1].childNodes[3]);
+
+    // 새로 과목을 추가한 후 나중에 값을 세팅할 것을 대비해 이 템플릿을 리턴
+    return childIdTemplate;
+  }
+
+  childAddButton.addEventListener('click', () => {
+    addChildIdNode();
+  });
+
+</script>
+
 <!-- 학부모 자녀아이디의 값을 가져와 스크립트용 리스트에 넣는 부분 -->
 <script>
     if ('${loginUser.memberTypeNo}' == 2) {
@@ -671,11 +731,14 @@
       }
     </script>
   </c:forEach>
-
+  
   <script>
-    // 작업 중..... 자녀 아이디 추가 버튼 작업도 할 것
-    for (ci of myParentsChildrenId)
-     console.log(ci);
+    for (let i = 0; i < myParentsChildrenId.length; i++) {
+      let addedChildIdObject = addChildIdNode();
+      let childIdInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[1];
+
+      childIdInput.value = myParentsChildrenId[i];
+    }
   </script>
 
 
