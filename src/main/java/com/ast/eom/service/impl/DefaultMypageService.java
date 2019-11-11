@@ -1,6 +1,8 @@
 package com.ast.eom.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.ast.eom.dao.MypageDao;
 import com.ast.eom.domain.Member;
+import com.ast.eom.domain.Parents;
+import com.ast.eom.domain.Student;
 import com.ast.eom.service.MypageService;
 
 @Service
@@ -35,16 +39,34 @@ public class DefaultMypageService implements MypageService {
     int memberNo = loginUser.getMemberNo();
     
     if (memberTypeNo == 1) {
+      
       memberInfoMap.put("student", mypageDao.getStudent(memberNo));
+      memberInfoMap.put("wantedLessons", mypageDao.getWantedLessons(memberNo));
       
     } else if (memberTypeNo == 2) {
-      memberInfoMap.put("parents", mypageDao.getParents(memberNo));
+      Parents parents = mypageDao.getParents(memberNo);
+      List<Student> children = parents.getStudents();
+      List<Integer> childrenNo = new ArrayList<>();
+      for (Student child : children) {
+        childrenNo.add(child.getStudentNo());
+      }
+      
+      List<Member> member = mypageDao.getChildrenIdAndName(childrenNo);
+      for (int i = 0; i < children.size(); i++) {
+        children.get(i).setId(member.get(i).getId());
+        children.get(i).setName(member.get(i).getName());
+      }
+      parents.setStudents(children);
+      
+      memberInfoMap.put("parents", parents);
       
     } else if (memberTypeNo == 3) {
+      
       memberInfoMap.put("teacher", mypageDao.getTeacher(memberNo));
+      memberInfoMap.put("lessonSubjects", mypageDao.getLessonSubjects(memberNo));
       
     } else {
-      throw new Exception("오류 발생!");
+      throw new Exception("DB에서 회원정보를 가져오던 중 오류 발생!");
       
     }
     

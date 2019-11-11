@@ -40,6 +40,9 @@ VALUES(3, now(), 'F', '2019-08-08', 'cho11', 'cho@test.com', 'cho', password('11
 INSERT INTO member(mem_type_no, reg_date, gender, dob, id, email, name, pwd, addr_city, addr_sub, tel, profile_photo)
 VALUES(3, now(), 'M', '2019-09-09', 'yim11', 'yim@test.com', 'yim', password('1111'), 'Seoul', 'Seocho', '1111-0000', 'i.gif');
 
+-- 회원 쪽 과외 요일 및 시간 데이터 수정
+UPDATE member SET curr_lesson_dt='1010101', curr_lesson_st='18:00', curr_lesson_et='20:00';
+
 -- 학부모
 INSERT INTO parents(parents_no, kakaotalk)
 VALUES (1, false);
@@ -165,20 +168,20 @@ INSERT INTO subject(sch_type_no, sub_name)
 VALUES (3, 'math');
 
 -- 과외희망(희망과목) (FK: std_no, sub_no)
-INSERT INTO wanted_lesson(std_no, sub_no, req, rdt)
-VALUES (4, 1, 'requirement1', now());
-INSERT INTO wanted_lesson(std_no, sub_no, req, rdt)
-VALUES (5, 2, 'requirement2', now());
-INSERT INTO wanted_lesson(std_no, sub_no, req, rdt)
-VALUES (6, 3, 'requirement3', now());
+INSERT INTO wanted_lesson(std_no, sub_no, req, rdt, wanted_fee)
+VALUES (4, 1, 'requirement1', now(), 2);
+INSERT INTO wanted_lesson(std_no, sub_no, req, rdt, wanted_fee)
+VALUES (5, 2, 'requirement2', now(), 1);
+INSERT INTO wanted_lesson(std_no, sub_no, req, rdt, wanted_fee)
+VALUES (6, 3, 'requirement3', now(), 3);
 
 -- 과외과목(희망과목) (FK: tch_no, sub_no)
 INSERT INTO lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
-VALUES (7, 1, 'This lesson will make you the best Korean speaker', now(), 300000);
+VALUES (7, 1, 'This lesson will make you the best Korean speaker', now(), 1);
 INSERT INTO lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
-VALUES (8, 2, "Try this lesson! It never make you disappointed", now(), 350000);
+VALUES (8, 2, "Try this lesson! It never make you disappointed", now(), 2);
 INSERT INTO lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
-VALUES (9, 3, 'Wanna be a best mathematcian? This is for you babe!', now(), 400000);
+VALUES (9, 3, 'Wanna be a best mathematcian? This is for you babe!', now(), 3);
 
 -- 수업 (FK: tch_no, stud_no, sub_no)
 INSERT INTO lesson(tch_no, sub_no, lesson_desc, lesson_fee, sdt, edt)
@@ -211,3 +214,4 @@ INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
 VALUES (2, 'blah blah2', 1);
 INSERT INTO curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
 VALUES (3, 'blah blah3', 3);
+

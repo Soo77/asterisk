@@ -14,7 +14,8 @@ public class Pagination {
   private int prevPage;
   private int nextPage;
   
-  public Pagination(int listCnt, int curPage) {
+  public Pagination(int listCnt, int curPage, int pageSize) {
+    setPageSize(pageSize);
     setCurPage(curPage);
     setListCnt(listCnt);
     
