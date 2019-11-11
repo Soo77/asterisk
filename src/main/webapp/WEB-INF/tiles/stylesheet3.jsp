@@ -12,12 +12,3 @@
 <link href="/assets/css/material-kit.css?v=2.0.6" rel="stylesheet" />
 <!-- CSS Just for demo purpose, don't include it in your project -->
 <!-- <link href="/assets/demo/demo.css" rel="stylesheet" /> -->
-
-
-<!-- 동그란 사진 길이가 길면 자르기-->
-<style>
-  .img-raised.rounded-circle.img-fluid {
-    height: 160px;
-    object-fit: cover;
-  }
-</style>

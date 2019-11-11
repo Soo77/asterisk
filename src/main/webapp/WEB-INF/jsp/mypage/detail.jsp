@@ -5,10 +5,15 @@
 <head>
   <link href="/assets/demo/demo.css" rel="stylesheet" />
   <style>
+    /* 동그란 사진 길이가 길면 자르기 */
+    .img-raised.rounded-circle.img-fluid {
+      height: 160px;
+      object-fit: cover;
+    }
     #mypage-form {
       padding: 0px 20px 0px 20px;
     }
-
+    
     @media (max-width: 575.98px) {
       #mypage-form {
         padding: 0;
@@ -115,6 +120,87 @@
 
     .childIdTemplate {
       display: none;
+    }
+
+    .my-images {
+      width: 16.3rem;
+
+    }
+
+    .my-teacher-images {
+      max-height: 16.3rem;
+      object-fit: cover;
+    }
+
+    @media (min-width: 576px) {
+      .my-images {
+        max-width: 28rem;
+      }
+      .my-teacher-images {
+        max-height: 28rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      .my-images {
+        max-width: 18.2rem;
+      }
+
+      .my-teacher-images {
+        max-height: 18.2rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+      .my-images {
+        max-width: 25rem;
+      }
+
+      .my-teacher-images {
+        max-height: 25rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+      .my-images {
+        max-width: 15rem;
+      }
+      .my-teacher-images {
+        max-width: 15rem;
+        max-height: 15rem;
+        object-fit: cover;
+      }
+    }
+
+
+
+    .card-body {
+      font-size: 16px;
+      color: #9c27b0;
+    }
+
+    .photo-add-div {
+      border-top: 1px solid #d2d2d2;
+      border-right: 1px solid #d2d2d2;
+      border-bottom: 1px solid #9c27b0;
+      border-left: 1px solid #d2d2d2;
+      border-top-left-radius: 0.35rem;
+      border-top-right-radius: 0.35rem;
+    }
+
+    .photo-add-button {
+      color: #9c27b0;
+      border-right: 1px solid #9c27b0 !important;
+      border-left: 1px solid #9c27b0;
+      border-bottom: 1px solid #9c27b0;
+      border-bottom-left-radius: 0.35rem;
+      border-bottom-right-radius: 0.35rem;
     }
   </style>
 
@@ -246,13 +332,66 @@
 
           <div class="form-group row teacherDisplay">
             <div class="col">
-              <div class="d-flex">
-                <div class="col" style="flex-basis:80%; border: 1px solid powderblue;">
-                  test1
+              <label for="inputPhotos" class="mb-3">사진 업로드</label>
+              <div class="d-flex photo-add-div">
+                <div class="col image-wrapper text-center">
+                  <div class="card my-images" style="display: inline-block;">
+                    <img class="card-img-top my-teacher-images"
+                      src="/upload/teacher_photo/a.jpg"
+                      alt="Card image cap">
+                    <div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0"
+                      style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">
+                      <button type="button" class="btn btn-outline-primary mx-0 my-0"
+                        style="flex-basis: 100%; box-shadow: none; border: 0;">
+                        삭제
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card my-images" style="display: inline-block;">
+                    <img class="card-img-top my-teacher-images"
+                      src="/upload/teacher_photo/b.jpg"
+                      alt="Card image cap">
+                    <div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0"
+                      style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">
+                      <button type="button" class="btn btn-outline-primary mx-0 my-0"
+                        style="flex-basis: 100%; box-shadow: none; border: 0;">
+                        삭제
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card my-images" style="display: inline-block;">
+                    <img class="card-img-top my-teacher-images"
+                      src="/upload/teacher_photo/c.jpg"
+                      alt="Card image cap">
+                    <div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0"
+                      style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">
+                      <button type="button" class="btn btn-outline-primary mx-0 my-0"
+                        style="flex-basis: 100%; box-shadow: none; border: 0;">
+                        삭제
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card my-images" style="display: inline-block;">
+                    <img class="card-img-top my-teacher-images"
+                      src="/upload/teacher_photo/d.jpg"
+                      alt="Card image cap">
+                    <div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0"
+                      style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">
+                      <button type="button" class="btn btn-outline-primary mx-0 my-0"
+                        style="flex-basis: 100%; box-shadow: none; border: 0;">
+                        삭제
+                      </button>
+                    </div>
+                  </div>
+
                 </div>
-                <div class="col" style="flex-basis:20%; border: 1px solid powderblue;">
-                  test2
-                </div>
+              </div>
+              <div class="d-flex photo-add-button btn btn-outline-primary mx-0 my-0 px-0 py-0"
+                style="border-top-left-radius: 0; border-top-right-radius: 0; border-top-width: 0px;">
+                <button type="button" class="btn btn-outline-primary mx-0 my-0"
+                  style="flex-basis: 100%; box-shadow: none; border: 0;">
+                  사진 등록
+                </button>
               </div>
             </div>
           </div>
@@ -447,7 +586,6 @@
 
 <!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
 <script>
-  console.log('test');
   let profilePhotoImg = document.getElementsByClassName('profile-photo')[0];
   let profileFileInput = document.getElementById('profile-photo-upload');
 
