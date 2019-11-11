@@ -193,11 +193,11 @@ VALUES (9, 6, 3, "World's best Mathematics lesson", 400000, '2019-3-3', '2019-4-
 
 -- 일별수업! (FK: lesson_no)
 INSERT INTO day_lesson(lesson_no, lesson_date, lesson_start_hr, lesson_end_hr, lesson_summ, lesson_eval)
-VALUES (1, now(), 17, 18, 'Beauty of Korean', "Horrible");
+VALUES (1, now(), '16:00', '18:00', 'Beauty of Korean', "Horrible");
 INSERT INTO day_lesson(lesson_no, lesson_date, lesson_start_hr, lesson_end_hr, lesson_summ, lesson_eval)
-VALUES (2, now(), 17, 18, 'Beauty of Korean', "He didn't listen to me");
+VALUES (2, now(), '16:00', '18:00', 'Beauty of Korean', "He didn't listen to me");
 INSERT INTO day_lesson(lesson_no, lesson_date, lesson_start_hr, lesson_end_hr, lesson_summ, lesson_eval)
-VALUES (3, now(), 17, 18, 'Beauty of Korean', "KNOCK KNOCK");
+VALUES (3, now(), '16:00', '18:00', 'Beauty of Korean', "KNOCK KNOCK");
 
 -- 커리큘럼 (FK: lesson_no)
 INSERT INTO curriculum(lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)

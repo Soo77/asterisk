@@ -160,8 +160,8 @@ CREATE TABLE lesson (
   lesson_desc     TEXT     NOT NULL, -- 수업소개
   lesson_fee      INTEGER  NOT NULL, -- 수업료
   lesson_stat     INTEGER  NOT NULL DEFAULT 0, -- 수업상태
-  std_lesson_stop BOOLEAN  NOT NULL DEFAULT false, -- 학생수업중단신청여부
-  tch_lesson_stop BOOLEAN  NOT NULL DEFAULT false, -- 선생님수업중단신청여부
+  std_lesson_stop BOOLEAN  NULL DEFAULT false, -- 학생수업중단신청여부
+  tch_lesson_stop BOOLEAN  NULL DEFAULT false, -- 선생님수업중단신청여부
   sdt             DATETIME NOT NULL, -- 시작일
   edt             DATETIME NOT NULL, -- 종료일
   tch_review      TEXT     NULL,     -- 선생님후기내용
@@ -256,13 +256,13 @@ ALTER TABLE member
 
 -- 일별수업
 CREATE TABLE day_lesson (
-  day_lesson_no   INTEGER  NOT NULL, -- 일별수업번호
-  lesson_no       INTEGER  NOT NULL, -- 수업번호
-  lesson_date     DATETIME NOT NULL, -- 수업일
-  lesson_start_hr INTEGER  NOT NULL, -- 수업시작시간
-  lesson_end_hr   INTEGER  NOT NULL, -- 수업종료시간
-  lesson_summ     TEXT     NOT NULL, -- 수업내용정리
-  lesson_eval     TEXT     NOT NULL  -- 수업평가
+  day_lesson_no   INTEGER      NOT NULL, -- 일별수업번호
+  lesson_no       INTEGER      NOT NULL, -- 수업번호
+  lesson_date     DATETIME     NOT NULL, -- 수업일
+  lesson_start_hr VARCHAR(255) NOT NULL, -- 수업시작시간
+  lesson_end_hr   VARCHAR(255) NOT NULL, -- 수업종료시간
+  lesson_summ     TEXT         NOT NULL, -- 수업내용정리
+  lesson_eval     TEXT         NOT NULL  -- 수업평가
 );
 
 -- 일별수업

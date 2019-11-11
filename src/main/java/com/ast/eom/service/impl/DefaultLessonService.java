@@ -54,6 +54,16 @@ public class DefaultLessonService implements LessonService {
   }
   
   @Override
+  public void addContentsAndDays(Lesson lesson) throws Exception {
+    lessonDao.addContentsAndDays(lesson);
+  }
+  
+  @Override
+  public void deleteContentsAndDays(int currLessonNo) throws Exception {
+    lessonDao.deleteContentsAndDays(currLessonNo);
+  }
+  
+  @Override
   public void delete(int no) throws Exception {
     if (lessonDao.findBy(no) == null)
       throw new Exception("해당 데이터가 없습니다.");
