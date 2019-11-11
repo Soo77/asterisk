@@ -123,12 +123,13 @@
     }
 
     .my-images {
-      width: 16.3rem;
+      max-width: 16.3rem;
 
     }
 
     .my-teacher-images {
-      max-height: 16.3rem;
+      width: 16.3rem;
+      height: 16.3rem;
       object-fit: cover;
     }
 
@@ -137,7 +138,8 @@
         max-width: 28rem;
       }
       .my-teacher-images {
-        max-height: 28rem;
+        width: 28rem;
+        height: 28rem;
         object-fit: cover;
       }
     }
@@ -149,7 +151,8 @@
       }
 
       .my-teacher-images {
-        max-height: 18.2rem;
+        width: 18.2rem;
+        height: 18.2rem;
         object-fit: cover;
       }
     }
@@ -161,7 +164,8 @@
       }
 
       .my-teacher-images {
-        max-height: 25rem;
+        width: 25rem;
+        height: 25rem;
         object-fit: cover;
       }
     }
@@ -172,8 +176,8 @@
         max-width: 15rem;
       }
       .my-teacher-images {
-        max-width: 15rem;
-        max-height: 15rem;
+        width: 15rem;
+        height: 15rem;
         object-fit: cover;
       }
     }
@@ -584,36 +588,6 @@
   console.log('${memberInfoMap.wantedLessons}');
 </script>
 
-<!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
-<script>
-  let profilePhotoImg = document.getElementsByClassName('profile-photo')[0];
-  let profileFileInput = document.getElementById('profile-photo-upload');
-
-  profileFileInput.addEventListener('change', (e) => {
-    let get_file = e.target.files;
-    let reader = new FileReader();
-
-    reader.onload = (function (aImg) {
-      return function (e) {
-        // 현재 프로필 이미지 경로를 바꿈
-        aImg.src = e.target.result;
-      }
-    })(profilePhotoImg);
-
-    reader.readAsDataURL(get_file[0]);
-    profilePhotoImg.src = get_file[0].name;
-  });
-
-  // '사진변경' 버튼을 누르면 profileFileInput을 누르도록 이벤트를 전달
-  profilePhotoImg.addEventListener('click', () => {
-    let clickPhotoChangeBtn = new MouseEvent('click', {
-      bubbles: true, cancelable: true, view: window
-    });
-
-    document.getElementById('profile-photo-upload').dispatchEvent(clickPhotoChangeBtn);
-  });
-</script>
-
 <!-- 학생증, 신고서 인증 체크박스 -->
 <script>
   if ('${loginUser.memberTypeNo}' == 3) {
@@ -674,6 +648,154 @@
       pd.style.display = 'block';
   }
 </script>
+
+<!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
+<script>
+  let profilePhotoImg = document.getElementsByClassName('profile-photo')[0];
+  let profileFileInput = document.getElementById('profile-photo-upload');
+
+  profileFileInput.addEventListener('change', (e) => {
+    let get_file = e.target.files;
+    let reader = new FileReader();
+
+    reader.onload = (function (aImg) {
+      return function (e) {
+        // 현재 프로필 이미지 경로를 바꿈
+        aImg.src = e.target.result;
+      }
+    })(profilePhotoImg);
+
+    reader.readAsDataURL(get_file[0]);
+    profilePhotoImg.src = get_file[0].name;
+  });
+
+  // '사진변경' 버튼을 누르면 profileFileInput을 누르도록 이벤트를 전달
+  profilePhotoImg.addEventListener('click', () => {
+    let clickPhotoChangeBtn = new MouseEvent('click', {
+      bubbles: true, cancelable: true, view: window
+    });
+
+    document.getElementById('profile-photo-upload').dispatchEvent(clickPhotoChangeBtn);
+  });
+</script>
+
+
+
+
+
+
+
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!요거 수정해야함!!!!!!!!!!!!!!!!!!!!! -->
+<!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
+<script>
+  let profilePhotoImg = document.getElementsByClassName('profile-photo')[0];
+  let profileFileInput = document.getElementById('profile-photo-upload');
+
+  profileFileInput.addEventListener('change', (e) => {
+    let get_file = e.target.files;
+    let reader = new FileReader();
+
+    reader.onload = (function (aImg) {
+      return function (e) {
+        // 현재 프로필 이미지 경로를 바꿈
+        aImg.src = e.target.result;
+      }
+    })(profilePhotoImg);
+
+    reader.readAsDataURL(get_file[0]);
+    profilePhotoImg.src = get_file[0].name;
+  });
+
+  // '사진변경' 버튼을 누르면 profileFileInput을 누르도록 이벤트를 전달
+  profilePhotoImg.addEventListener('click', () => {
+    let clickPhotoChangeBtn = new MouseEvent('click', {
+      bubbles: true, cancelable: true, view: window
+    });
+
+    document.getElementById('profile-photo-upload').dispatchEvent(clickPhotoChangeBtn);
+  });
+</script>
+
+<!-- 자녀ID 제거 버튼 초기 세팅-->
+<script>
+  let removeChildIdButton = document.getElementsByClassName('remove-childId-button')[0];
+
+  let childIdCount = 0;
+
+  let addRemoveChildIdEventTo = function (thisBtn) {
+    thisBtn.addEventListener('click', (event) => {
+      if (childIdCount == 1)
+        return;
+
+      let thisChildIdNode = thisBtn.parentNode.parentNode;
+      thisChildIdNode.parentNode.removeChild(thisChildIdNode);
+
+      childIdCount--;
+    });
+  }
+
+  addRemoveChildIdEventTo(removeChildIdButton);
+
+</script>
+
+<!-- 자녀ID 추가 버튼 -->
+<script>
+  let childAddButton = document.getElementsByClassName('childAddButton')[0];
+
+  let addChildIdNode = function () {
+    let childrendId = document.getElementsByClassName('childId');
+    let childIdTemplate = childrendId[0].cloneNode(true);
+
+    childIdTemplate.setAttribute('class', 'form-group row childId mb-2 pt-1');
+
+    childrendId[0].parentNode.insertBefore(childIdTemplate, childrendId[childrendId.length - 1].nextSibling);
+    childIdCount++;
+
+    addRemoveChildIdEventTo(childIdTemplate.childNodes[1].childNodes[3]);
+
+    return childIdTemplate;
+  }
+
+  childAddButton.addEventListener('click', () => {
+    addChildIdNode();
+  });
+
+</script>
+
+<!-- 학부모 자녀아이디의 값을 가져와 스크립트용 리스트에 넣는 부분 -->
+<script>
+  if ('${loginUser.memberTypeNo}' == 2) {
+    var myParentsChildrenId = new Array();
+  }
+</script>
+<c:forEach items="${memberInfoMap.parents.students}" var="student">
+  <script>
+    if ('${loginUser.memberTypeNo}' == 2) {
+      myParentsChildrenId.push('${student.id}');
+    }
+  </script>
+</c:forEach>
+
+<script>
+  if ('${loginUser.memberTypeNo}' == 2) {
+    for (let i = 0; i < myParentsChildrenId.length; i++) {
+      let addedChildIdObject = addChildIdNode();
+      let childIdInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[1];
+
+      childIdInput.value = myParentsChildrenId[i];
+    }
+  }
+</script>
+
+
+
+
+
+
+
+
+
 
 <!-- 쪽지함 버튼 -->
 <script>
