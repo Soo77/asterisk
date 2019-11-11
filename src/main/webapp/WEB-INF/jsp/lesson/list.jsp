@@ -66,15 +66,22 @@
       </p>
 <!--       <a href="detail.jsp"  class="btn btn-primary">상세보기</a> -->
 
-       <c:if test="${lesson.member.name eq NULL}">
+      <c:choose>
+        <c:when test="${lesson.member.name eq NULL and loginUser.memberTypeNo eq 3}">
+          <button class="btn btn-primary">학생 초대<div class="ripple-container"></div></button>&ensp;&ensp;&ensp;
+        </c:when>
+        <c:when test="${loginUser.memberTypeNo eq 1 and lesson.calculationState eq 0}">
+          <button type="button" class="btn btn-default">결제 대기중</button>&ensp;&ensp;&ensp;
+        </c:when>
+      </c:choose>
+       
 <!--        <button class="btn btn-primary">결제 대기중<div class="ripple-container"></div></button>&ensp;&ensp;&ensp; -->
-       <button type="button" class="btn btn-default">결제 대기중</button>&ensp;&ensp;&ensp;
-       </c:if>
+
        <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">상세보기</a> 
       </div>
     </div>
   </div>
-</c:forEach>
+</c:forEach> 
 
       </div>
     </div>

@@ -160,8 +160,8 @@ CREATE TABLE lesson (
   lesson_desc     TEXT     NOT NULL, -- 수업소개
   lesson_fee      INTEGER  NOT NULL, -- 수업료
   lesson_stat     INTEGER  NOT NULL DEFAULT 0, -- 수업상태
-  std_lesson_stop BOOLEAN  NOT NULL DEFAULT false, -- 학생수업중단신청여부
-  tch_lesson_stop BOOLEAN  NOT NULL DEFAULT false, -- 선생님수업중단신청여부
+  std_lesson_stop BOOLEAN  NULL DEFAULT false, -- 학생수업중단신청여부
+  tch_lesson_stop BOOLEAN  NULL DEFAULT false, -- 선생님수업중단신청여부
   sdt             DATETIME NOT NULL, -- 시작일
   edt             DATETIME NOT NULL, -- 종료일
   tch_review      TEXT     NULL,     -- 선생님후기내용

@@ -9,6 +9,8 @@ public interface LessonService {
   void insert(Lesson lesson) throws Exception;
   void updateContentsAndDays(Lesson lesson) throws Exception;
   void updateDateAndTime(Lesson lesson) throws Exception;
+  void addContentsAndDays(Lesson lesson) throws Exception;
+  void deleteContentsAndDays(int currLessonNo) throws Exception;
   void delete(int no) throws Exception;
   
   Lesson lessonDetail(int lessonNo) throws Exception;
