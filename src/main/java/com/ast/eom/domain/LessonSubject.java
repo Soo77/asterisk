@@ -15,8 +15,6 @@ public class LessonSubject {
   
   private List<Subject> subjects;
   
-  
-  
   @Override
   public String toString() {
     return "LessonSubject [lessonSubjectNo=" + lessonSubjectNo + ", teacherNo=" + teacherNo

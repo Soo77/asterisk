@@ -3,8 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
-  <!-- <link rel='stylesheet' href='/css/myboard.css'> -->
   <style>
+    #boardButton {
+      text-align: right;
+    }
+    
     #insertBoardPhotos {
       display: none;
     }
@@ -17,14 +20,21 @@
       display: none;
     }
     
-    .photo1 {
-      height: 120px;
+    #btnCommentAdd {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    
+    #commentUpdateAndDelete {
+      text-align: right;
     }
     
     .photo2 {
-      height: 100px;
-      width: 100px;
+      height: 150px;
+      width: 150px;
       margin: 2px;
+      object-fit: cover;
     }
     
     .filebox label {
@@ -34,7 +44,7 @@
       font-size: inherit;
       line-height: normal;
       vertical-align: middle;
-      background-color: #00AFA0;
+      background-color: #9c27b0;
       cursor: pointer;
       border: 1px solid #ebebeb;
       border-bottom-color: #e2e2e2;
@@ -67,58 +77,59 @@
       -moz-appearance: none;
       appearance: none;
     }
-    
-    .col-1 {
-      padding-right: 5px;
+
+    .cmt {
+      padding: 20px;
     }
     
-    .col {
-      padding-left: 5px;
+    .comment-img {
+     text-align: center;
     }
     
-    .col-3 {
-      padding-left: 5px;
+    .my-comment-img {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
     }
-    
-    .col-1 .form-control {
-      background-color: #9c27b0;
-      color: #ffffff;
-      border-radius: 5px/5px;
-      text-align: center;
+
+    @media (min-width: 576px) {
+      .my-comment-img {
+        width: 50px;
+        height: 50px;
+      }
     }
-    
-    .col .form-control {
-      padding: 10px;
+
+    @media (min-width: 768px) {
+      .my-comment-img {
+        width: 70px;
+        height: 70px;
+      }
     }
-    
-    .col-3 .form-control {
-      padding: 10px;
+
+    @media (min-width: 992px) {
+      .my-comment-img {
+        width: 100px;
+        height: 100px;
+      }
     }
-    
-    .col-12 .form-control {
-      padding: 10px;
+
+    @media (min-width: 1200px) {
+      .my-comment-img {
+        width: 125px;
+        height: 125px;
+      }
     }
-    
-    .col-10 .form-control {
-      padding: 10px;
-    }
-    
-    .comment .col-1 {
-      padding: 5px;
-    }
-    
-    .comment .col-11 {
-      padding: 5px;
-    }
-    
+
     #wrap {
       width: 100%;
+      height: 100%;
       position: relative;
       display: inline-block;
     }
     
     #wrap textarea {
       width: 100%;
+      height: 100%;
       resize: none;
     }
     
@@ -135,13 +146,6 @@
       font-size: 0.75em;
     }
     
-    #commentAdd {
-      float: right;
-    }
-    
-    /* div{
-    border: 1px solid;
-    } */
   </style>
 </head>
 
@@ -169,148 +173,140 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container p-5">
-    <form id="form1" name="frm1" action='update' method='post'
-      enctype='multipart/form-data'>
+  <div class="container p-3">
+    <form id="form1" name="frm1" action='update' method='post' enctype='multipart/form-data'>
       <input type="hidden" name="boardTypeNo"
         value="${board.boardTypeNo}"> <input type="hidden"
         name="boardNo" value="${board.boardNo}">
 
       <div class="row">
-        <div class="col-1">
-          <input type="button" class="form-control disabled" value="제목">
-        </div>
+        
         <div class="col">
-          <input type="text" readonly class="form-control"
-            id="inputTitle" name="title" value="${board.title}">
+          <div class="form-group">
+            <label for="inputTitle">제목</label>
+            <input type="text" class="form-control" id="inputTitle" name="title" value="${board.title}" readonly>
+          </div>
         </div>
       </div>
-
-      <hr>
 
       <div class="row">
-        <div class="col-1">
-          <input type="button" class="form-control disabled" value="작성자">
-        </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control" name="id"
-            value="${board.memberId}">
-        </div>
-
-        <div class="col-1">
-          <input type="button" class="form-control disabled" value="작성일">
-        </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control"
-            name="createdDate" value="${board.createdDate}">
+        
+        <div class="col">
+          <div class="form-group">
+            <label for="id">작성자</label>
+            <input type="text" class="form-control" id="id" value="${board.memberId}" readonly>
+          </div>
         </div>
 
-        <div class="col-1">
-          <input type="button" class="form-control disabled" value="조회수">
+        <div class="col">
+          <div class="form-group">
+            <label for="createdDate">작성일</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" value="${board.createdDate}" readonly>
+          </div>
         </div>
-        <div class="col-3">
-          <input type="text" readonly class="form-control"
-            name="viewCount" value="${board.viewCount}">
+
+        <div class="col">
+          <div class="form-group">
+            <label for="viewCount">조회수</label>
+            <input type="text" class="form-control" id="viewCount" name="viewCount" value="${board.viewCount}" readonly>
+          </div>
         </div>
+        
       </div>
-
-      <hr>
-
+      
       <div class="row">
         <div class="col-12">
           <textarea id="inputContents" class="form-control"
             name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
         </div>
       </div>
-
-      <div id="boardFiles">
-        <p>
-          <c:forEach items="${board.files}" var="file">
-            <img src='/upload/board/${file.fileName}' class='photo2'
-              onerror="this.style.display='none'" alt=''>
-          </c:forEach>
-        </p>
+  
+      <div class="row">
+        <div class="col">
+          <label for="boardFile">첨부파일</label>
+          <div class="boardFile" id="boardFile">
+            <c:forEach items="${board.files}" var="file">
+              <img src='/upload/board/${file.fileName}' class='photo2'
+                onerror="this.style.display='none'" alt=''>
+            </c:forEach>
+          </div>
+        </div>
       </div>
 
-      <hr>
-
-      <div id="insertBoardPhotos">
-        <div class="row">
-          <div class="col">
-            <div class="filebox">
-              <input class="upload-name" disabled="disabled"> <label
-                for="gallery-photo-add">파일선택</label> <input type="file"
-                multiple id="gallery-photo-add" name="fileName">
+        <div id="insertBoardPhotos">
+          <hr>
+          <div class="row">
+            <div class="col">
+              <div class="filebox">
+                <input class="upload-name" disabled="disabled"> <label
+                  for="gallery-photo-add">파일선택</label> <input type="file"
+                  multiple="multiple" id="gallery-photo-add" name="fileName">
+              </div>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col">
+              <div class="gallery"></div>
             </div>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col">
-            <div class="gallery"></div>
-          </div>
-        </div>
-
-        <hr>
-      </div>
-
     </form>
-
-    <c:if test="${board.boardTypeNo != 4}">
+    
+    <hr>
+    
+    <div class="form-group row" id="boardButton">
+      <div class="col">
+        <c:if test="${board.memberNo == loginUser.memberNo}">
+          <button id="btnUpdate" type="button" class="btn btn-primary">수정</button>
+          <button id="btnSave" type="button" class="btn btn-primary">수정완료</button>
+          <button id="btnCancle" type="button"
+            class="btn btn-danger my-view-group">수정취소</button>
+        </c:if>
+        <c:if
+          test="${board.memberNo == loginUser.memberNo or loginUser.memberTypeNo == 4}">
+          <button id="btnDelete" type="button"
+            class="btn btn-danger my-view-group">삭제</button>
+        </c:if>
+        <button id="btnList" type="button" class="btn"
+          onclick="location='list?boardTypeNo=${board.boardTypeNo}'">목록</button>
+      </div>
+    </div>
+    
+    <hr>
+    
+     <c:if test="${board.boardTypeNo != 4}">
       <div class="cmt">
         <div class="container">
           <label for="commentContents">댓글</label>
-          <form class="comment" name="commentInsertForm">
+          <form name="commentInsertForm">
             <input type="hidden" name="boardNo" value="${board.boardNo}" />
             <div class="row">
-              <div class="col-1">
+              <div class="col-2 p-1 comment-img">
                 <img src="/upload/join/${loginUser.profilePhoto}"
                   onError="javascript:src='/upload/join/default.png'"
-                  alt="" class="img-raised rounded-circle img-fluid">
-              </div>
-              <div class="col-11" id="wrap">
-                <textarea class="comment-form-control"
-                  id="commentContents" name="commentContents" rows="5"
+                  alt="" class="img-raised rounded-circle img-fluid my-comment-img">
+              </div>t
+              <div class="col-9 p-1" id="wrap">
+                <textarea id="commentContents" name="commentContents" rows="5"
                   maxlength="300" placeholder="내용을 입력하세요."></textarea>
                 <span id="counter">0/300</span>
               </div>
-            </div>
-            <div class="row" id="commentAdd">
-              <button class="btn btn-primary btn-sm" type="button"
-                name="commentInsertBtn">등록</button>
+              <div class="col-1 p-1" id="commentAdd">
+                <button class="btn btn-primary btn-sm" type="button"
+                  name="commentInsertBtn" id="btnCommentAdd">등록</button>
+              </div>
             </div>
           </form>
         </div>
-        <br>
 
         <div class="container">
           <div class="commentList"></div>
         </div>
-        <hr>
       </div>
     </c:if>
 
-    <div class="form-group row">
-      <div class="col">
-        <button id="btnList" type="button" class="btn"
-          onclick="location='list?boardTypeNo=${board.boardTypeNo}'">글목록</button>
-        <c:if
-          test="${board.memberNo == loginUser.memberNo or loginUser.memberTypeNo == 4}">
-          <button id="btnDelete" type="button"
-            class="btn btn-danger my-view-group" style="float: right;">삭제</button>
-        </c:if>
-        <c:if test="${board.memberNo == loginUser.memberNo}">
-          <button id="btnUpdate" type="button" class="btn btn-primary"
-            style="float: right;">수정</button>
-          <button id="btnCancle" type="button"
-            class="btn btn-danger my-view-group" style="float: right;">취소</button>
-          <button id="btnSave" type="button" class="btn btn-primary"
-            style="float: right;">등록</button>
-        </c:if>
-      </div>
-    </div>
-
-    <br>
   </div>
 </div>
 
@@ -418,7 +414,7 @@
           reader.onload = function(event) {
             $(
                 $
-                    .parseHTML('<img style="height:100px; width:100px; margin:2px;">'))
+                    .parseHTML('<img style="height:150px; width:150px; margin:2px; object-fit: cover;">'))
                 .attr('src', event.target.result)
                 .appendTo(placeToInsertImagePreview);
           }
@@ -432,7 +428,9 @@
       $('.upload-name').val('파일' + this.files.length + '개');
     });
   });
+
 </script>
+
 
 <script>
       // comment
@@ -462,43 +460,7 @@
       });
 
       //댓글 목록 
-/*        function commentList() {
-        $.ajax({
-            url : 'comment/list',
-            type : 'get',
-            data : {
-              'boardNo' : boardNo
-            },
-            success : function(data) {
-              var a = '';
-              $.each(
-                    data,
-                    function(key, value) {
-                      a += '<div class="commentArea" style="border-bottom:1px solid darkgray; padding:10px;">';
-                      if (value.memberNo == ${loginUser.memberNo}){
-                          a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
-                              + value.commentNo
-                              + ');"> 삭제 </button>'
-                          a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
-                              + value.commentNo
-                              + ',\''
-                              + value.commentContents
-                              + '\');"> 수정 </button>'
-                        }
-                      a += '<div class="createdDate'+value.commentNo+'">' + value.createdDate + '</div>';
-                      a += '<div class="commentInfo'+value.commentNo+'">'
-                          + value.memberId + '</div>'
-                      a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
-                          + value.commentContents + '</div>'
-                      a += '</div>'
-                    });
-
-              $(".commentList").html(a);
-            }
-          });
-      }   */
-      
-       function commentList() {
+      function commentList() {
           $.ajax({
               url : 'comment/list',
               type : 'get',
@@ -511,100 +473,43 @@
                       data,
                       function(key, value) {
                         a += '<div class="commentArea" style="border-bottom:1px solid darkgray; padding:10px;">';
-                        if (value.memberNo == ${loginUser.memberNo}){
-                            a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
-                                + value.commentNo
-                                + ');"> 삭제 </button>'
-                            a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
-                                + value.commentNo
-                                + ',\''
-                                + value.commentContents
-                                + '\');"> 수정 </button>'
-                          }
+                        a += '<div class="row">';
+                        a += '<div class="col-1">';
+                        if (value.profilePhoto == null) {
+                            a += '<img src="/upload/join/default.png"';
+                            a += ' alt="" class="img-raised rounded-circle img-fluid">';
+                        } else {
+                          	a += '<img src="/upload/join/' + value.profilePhoto+'"';
+                            a += ' class="img-raised rounded-circle img-fluid">';
+                        }
+                        a += '</div>';
+                        a += '<div class="col-11">'
                         a += '<div class="createdDate'+value.commentNo+'">' + value.createdDate + '</div>';
                         a += '<div class="commentInfo'+value.commentNo+'">'
                             + value.memberId + '</div>'
                         a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
                             + value.commentContents + '</div>'
+                        if (value.memberNo == ${loginUser.memberNo}){
+                        	  a += '<div id="commentUpdateAndDelete">'
+                            a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
+                                + value.commentNo
+                                + ',\''
+                                + value.commentContents
+                                + '\');"> 수정 </button>'
+                            a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" onclick="commentDelete('
+                                + value.commentNo
+                                + ');"> 삭제 </button>'
+                            a += '</div>'
+                          }
                         a += '</div>'
+                      	  a += '</div>'
+                      		  a += '</div>'
                       });
 
                 $(".commentList").html(a);
               }
             });
         }   
-
-/*         function commentList() {
-          $.ajax({
-              url : 'comment/list',
-              type : 'get',
-              data : {
-                'boardNo' : boardNo
-              },
-              success : function(data) {
-                var a = '';
-                $.each(
-                      data,
-                      function(key, value) {
-                          a += '<div class="commentArea" style="border-top:1px solid darkgray; padding: 10px;">';
-                              
-                              a += '<div class="row">';
-                              
-                              a += '<div class="col-2">';
-                              if (value.profilePhoto == null) {
-                                a += '<img src="/upload/join/default.png"';
-                                a += ' alt="" class="img-raised rounded-circle img-fluid">';
-                              } else {
-                              	a += '<img src="/upload/join/'+value.profilePhoto+'"';
-                                a += 'onError="javascript:src='+"'" + '/upload/join/default.png'+"'";
-                                a += ' alt="" class="img-raised rounded-circle img-fluid">';
-                              }
-                              a += '</div>';
-                              
-                              a += '<div class="col-10">';
-                            	a += '<div class="row">';
-                            	a += '<div class="createdDate'+value.commentNo+'">'+value.createdDate;
-                            	a += '</div>';
-                            	a += '</div>';
-                              a += '<div class="row">';
-                              a += '<div class="commentInfo'+value.commentNo+'">'+value.memberId;
-                              a += '</div>';
-                              a += '</div>';
-                              a += '<div class="row">;
-                              a += '<div class="commentContents'+value.commentNo+'"' + 'style="word-break:break-all;">'+value.commentContents;
-                              a += '</div>';
-                              a += '</div>';
-                              a += '</div>';
-                              
-                            	a += '</div>';
-                            	
-                              a += '<div class="row">';
-                              
-                              if (value.memberNo == ${loginUser.memberNo}){
-                                a += '<div class="col">';
-                                a += '<button class="btn btn-outline-danger btn-round btn-sm" id="commentDelete" type="button" style="float: right;" onclick="commentDelete('
-                                    + value.commentNo
-                                    + ');"> 삭제 </button>';
-                                a +=  '</div>';
-                                
-                                a += '<div class="col">';
-                                a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" style="float: right;" onclick="commentUpdate('
-                                    + value.commentNo
-                                    + ',\'
-                                    + value.commentContents
-                                    + '\');"> 수정 </button>';
-                                a += '</div>';
-                              }
-                              a += '</div>';
-                              
-                              a += '</div>';
-
-                      });
-
-                $(".commentList").html(a);
-              }
-            }); 
-        }  */
       
       //댓글 등록
       function commentInsert(insertData) {
@@ -621,7 +526,6 @@
         });
       }
       
-
        //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
       function commentUpdate(commentNo, commentContents) {
         var a = '';
@@ -629,8 +533,8 @@
         a += '<div>';
         a += '<textarea class="form-control" name="commentContents_'+commentNo+'" rows="3" maxlength="300">' + commentContents + '</textarea>';
         a += '</div>';
-        a += '<div> <button class="btn btn-outline-success btn-sm" type="button" onclick="commentUpdateProc('
-            + commentNo + ');">수정</button> </div>';
+        a += '<div> <button class="btn btn-outline-success btn-round btn-sm" type="button" onclick="commentUpdateProc('
+            + commentNo + ');">수정완료</button> </div>';
 
         $('.commentContents' + commentNo).html(a);
 
@@ -670,4 +574,4 @@
       $(document).ready(function() {
         commentList(); //페이지 로딩시 댓글 목록 출력 
       });
-    </script>
+</script>

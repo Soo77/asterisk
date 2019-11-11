@@ -17,7 +17,7 @@
 
 <body class="login-page sidebar-collapse">
   <tiles:insertAttribute name="header2"/>
-  <div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
+  <div class="page-header header-filter" style="background-image: url('/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
 	  <tiles:insertAttribute name="body2"/>
 	  <tiles:insertAttribute name="footer2"/>
   </div>

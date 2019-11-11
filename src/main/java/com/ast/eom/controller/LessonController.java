@@ -1,7 +1,6 @@
 package com.ast.eom.controller;
 
 import java.sql.Date;
-import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,8 @@ public class LessonController {
   
   @GetMapping("list")
   public void tchList(Model model, int memberTypeNo) throws Exception {
+    System.out.println(memberTypeNo); 
+    
       List<Lesson> lessons = lessonService.list(memberTypeNo);
       model.addAttribute("lessons", lessons);
   }
@@ -129,5 +130,11 @@ public class LessonController {
     }
     
     return "redirect:detail?lessonNo="+garoNo;
+  }
+  
+  
+  @GetMapping("currAdd")
+  public void currAdd(Model model) throws Exception {
+    
   }
 }

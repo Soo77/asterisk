@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ast.eom.domain.Member;
 import com.ast.eom.service.MypageService;
 
 @Controller
@@ -22,11 +21,6 @@ public class MypageController {
   @GetMapping("detail")
   public void detail(HttpSession session) throws Exception {
     Map<String, Object> memberInfoMap = mypageService.getMemberInfoMap();
-    
-    for (String key : memberInfoMap.keySet()) {
-      System.out.println(memberInfoMap.get(key));
-    }
-    
     session.setAttribute("memberInfoMap", memberInfoMap);
   }
 }

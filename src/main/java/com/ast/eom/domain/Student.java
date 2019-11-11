@@ -5,6 +5,8 @@ import java.util.List;
 public class Student extends Member {
   private int studentNo;
   private int parentsNo;
+  private String requirementsToTeacher;
+  private int wantedFee;
   
   private SchoolType schoolType;
 
@@ -15,9 +17,21 @@ public class Student extends Member {
   
   @Override
   public String toString() {
-    return "Student [studentNo=" + studentNo + ", parentsNo=" + parentsNo + ", schoolType=" + schoolType + ", lessons="
-        + lessons + ", wantedLessons=" + wantedLessons + ", schools=" + schools + ", lessonSubjects=" + lessonSubjects
-        + "]";
+    return "Student [studentNo=" + studentNo + ", parentsNo=" + parentsNo + ", requirementsToTeacher="
+        + requirementsToTeacher + ", wantedFee=" + wantedFee + ", schoolType=" + schoolType + ", lessons=" + lessons
+        + ", wantedLessons=" + wantedLessons + ", schools=" + schools + ", lessonSubjects=" + lessonSubjects + "]";
+  }
+  public int getWantedFee() {
+    return wantedFee;
+  }
+  public void setWantedFee(int wantedFee) {
+    this.wantedFee = wantedFee;
+  }
+  public String getRequirementsToTeacher() {
+    return requirementsToTeacher;
+  }
+  public void setRequirementsToTeacher(String requirementsToTeacher) {
+    this.requirementsToTeacher = requirementsToTeacher;
   }
   public int getStudentNo() {
     return studentNo;

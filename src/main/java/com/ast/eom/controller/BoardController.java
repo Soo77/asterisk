@@ -50,18 +50,20 @@ public class BoardController {
       int boardTypeNo,
       HttpSession session,
       Model model,
+      @RequestParam(defaultValue = "20") int pageSize,
       @RequestParam(defaultValue = "1") int curPage,
-      @RequestParam(defaultValue = "") String searchType,
+      @RequestParam(defaultValue = "titleContents") String searchType,
       @RequestParam(defaultValue = "") String keyword) throws Exception {
     
     List<Board> boards = boardService.list(boardTypeNo, searchType, keyword);
     int listCnt = boards.size();
-    Pagination pagination = new Pagination(listCnt, curPage);
+    Pagination pagination = new Pagination(listCnt, curPage, pageSize);
     
     model.addAttribute("boards", boards);
     model.addAttribute("listCnt", listCnt);
     model.addAttribute("pagination", pagination);
     model.addAttribute("boardTypeNo", boardTypeNo);
+    model.addAttribute("pageSize", pageSize);
     model.addAttribute("searchType", searchType);
     model.addAttribute("keyword", keyword);
   }

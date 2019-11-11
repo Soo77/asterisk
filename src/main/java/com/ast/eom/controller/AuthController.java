@@ -58,8 +58,14 @@ public class AuthController implements Runnable {
       return "redirect:../auth/loginfail";
     }
     session.setAttribute("loginUser", member);
-    System.out.println(member);
-    return "redirect:../member/list?memberTypeNo=1";
+    
+    if (member.getMemberTypeNo() == 1 || member.getMemberTypeNo() == 2)
+      return "redirect:../member/list?memberTypeNo=3";
+    else if (member.getMemberTypeNo() == 3)
+      return "redirect:../member/list?memberTypeNo=1";
+    else
+      throw new Exception("로그인 중 오류 발생!");
+    
   }
 
   @GetMapping("logout")

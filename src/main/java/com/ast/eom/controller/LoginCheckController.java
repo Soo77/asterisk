@@ -23,6 +23,7 @@ public class LoginCheckController {
     Map<String, Object> loginCheck = new HashMap<>();
     if (loginUser != null) {
       loginCheck.put("signIn", true);
+      loginCheck.put("loginUserMemberType", loginUser.getMemberTypeNo());
       loginCheck.put("loginUserName", loginUser.getName());
     } else {
       loginCheck.put("signIn", false);
