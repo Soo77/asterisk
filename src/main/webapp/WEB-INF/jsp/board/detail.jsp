@@ -310,8 +310,6 @@
   </div>
 </div>
 
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-
 <script>
   // 수정
   var UpdateButton = document.querySelector('#btnUpdate');

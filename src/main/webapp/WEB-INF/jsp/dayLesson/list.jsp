@@ -7,13 +7,18 @@
   <!--Google Fonts-->
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   
-    <!--Simple Cale Calender CSS-->
-  <link rel="stylesheet" href="css/simple-calendar.css">
+  <!--Simple Cale Calender CSS-->
+  <link rel="stylesheet" href="/css/simple-calendar.css">
+  
+  <!--Simple Calender Js-->
+  <script src="/js/jquery.simple-calendar.js"></script>
+
   <style>
     #myBtnDetail {
       text-align: right;
     }
   </style>
+  
 </head>
 
 <div class="page-header header-filter" data-parallax="true"
@@ -30,9 +35,7 @@
 </div>
 <div class="main main-raised">
   <div class="container p-3">
-    <div id="container" class="calendar-container">
-    </div>
-    
+    <div id="container" class="calendar-container"></div>
     <hr>
 
     <div class="progress-container progress-primary">
@@ -48,30 +51,31 @@
       <div class="card">
         <div class="card-body">
           <div class="row">
-            <div class="col">수업일 : ${dayLesson.lessonDate}</div>
-            <div class="col">수업시간 : ${dayLesson.lessonStartHour} ~ ${dayLesson.lessonEndHour}</div>
+            수업일 : <div class="col" id="lessonDate_${i.index}">${dayLesson.lessonDate}</div>
+            수업시간 : <div class="col" id="lessonDate_${i.index}">${dayLesson.lessonStartHour} ~ ${dayLesson.lessonEndHour}</div>
           </div>
           <hr>
           <div class="row">
-            <div class="col">${dayLesson.lessonSummary}</div>
+            <div class="col" id="lessonSummary_${i.index}">${dayLesson.lessonSummary}</div>
+            <input type='hidden' id="lessonEvaluation_${i.index}" value='${dayLesson.lessonEvaluation}'>
           </div>
           <div class="row" id="myBtnDetail">
+            <div class="col">
             <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary"
-                data-toggle="modal" data-target="#detailModal">
+              <button type="button" class="btn btn-primary btn-sm .modal-param"
+                data-toggle="modal" data-target="#detailModal" data-unique="${i.index}">
                 상세보기</button>
-                
-                <button id="myBtn" class="myBtn" onclick="ShowModal('${i.index}')">Open Modal</button>
+            </div>
           </div>
-          
         </div>
       </div>
     </c:forEach>
+    
   </div>
 </div>
 
 
-                <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="detailModal" tabindex="-1"
   role="dialog" aria-labelledby="detailModalLabel"
   aria-hidden="true">
@@ -88,13 +92,12 @@
         <div class="row">
           <label for="lessonSummary">수업 내용 정리</label>
           <textarea id="lessonSummary" class="form-control"
-name="lessonSummary" rows="10" style="resize: none;">${dayLesson.lessonSummary}</textarea>
+          name="lessonSummary" rows="10" style="resize: none;"></textarea>
         </div>
         <div class="row">
           <label for="lessonEvaluation">수업 평가</label>
           <textarea id="lessonEvaluation" class="form-control"
-name="lessonEvaluation" rows="5" style="resize: none;">${dayLesson.lessonEvaluation}</textarea>
-        
+          name="lessonEvaluation" rows="5" style="resize: none;"></textarea>
         </div>
       </div>
       <div class="modal-footer">
@@ -106,38 +109,27 @@ name="lessonEvaluation" rows="5" style="resize: none;">${dayLesson.lessonEvaluat
   </div>
 </div>
 
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-
-
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
-<!--jQuery js-->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-  <!--Simple Calender Js-->
-<script src="js/jquery.simple-calendar.js"></script>
-  
+<script src="/js/jquery.simple-calendar.js"></script>
 <script>
-  $(document).ready(function(){
-  	  
-  	$("#container").simpleCalendar();
-  
-  });
-  
-  $("#container").simpleCalendar({
-      //Defaults options below
-      //string of months starting from january
-      months: ['january','february','march','april','may','june','july','august','september','october','november','december'],
-      days: ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'], //string of days starting from sunday
-      minDate : "YYYY-MM-DD",         // minimum date
-      maxDate : "YYYY-MM-DD",         // maximum date
-      insertEvent: true,              // can insert events
-      displayEvent: true,             // display existing event
-      fixedStartDay: true,            // Week begin always by monday
-      event: [],                      // List of events
-      insertCallback : function(){}   // Callback when an event is added to the calendar
-  });
+	$(document).ready(function() {
+		$("#container").simpleCalendar({
+			fixedStartDay : false
+		});
+	});
+</script>
+
+<script>
+	$(".modal-param").on('click', function() {
+		var key = $(this).attr('data-unique');
+		var summary = $("#lessonSummary_" + key).text();
+		console.log("summary=====>" + summary);
+		$("#lessonSummary").val(summary);
+		var evaluation = $("#lessonEvaluation_" + key).text();
+		console.log("evaluation=====>" + evaluation);
+    $("#lessonEvaluation").val(evaluation);
+	})
 </script>
 
 

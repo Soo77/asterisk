@@ -139,9 +139,6 @@
   </div>
 </div>
 
-
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-
   <script>
     $(document).on('click', '#btnSearch', function(e){
       e.preventDefault();
