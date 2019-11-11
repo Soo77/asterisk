@@ -10,6 +10,8 @@ public interface LessonDao {
   int insert(Lesson lesson) throws Exception;
   int updateContentsAndDays(Lesson lesson) throws Exception;
   int updateDateAndTime(Lesson lesson) throws Exception;
+  int addContentsAndDays(Lesson lesson) throws Exception;
+  int deleteContentsAndDays(int currLessonNo) throws Exception;
   int delete(int no) throws Exception;
   
   Lesson findCurrBy(int lessonNo) throws Exception;

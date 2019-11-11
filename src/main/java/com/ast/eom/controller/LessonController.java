@@ -23,7 +23,7 @@ public class LessonController {
   
   
   @GetMapping("list")
-  public void tchList(Model model, int memberTypeNo) throws Exception {
+  public void list(Model model, int memberTypeNo) throws Exception {
     System.out.println(memberTypeNo); 
     
       List<Lesson> lessons = lessonService.list(memberTypeNo);
@@ -93,14 +93,16 @@ public class LessonController {
       int[] curriculumLessonNo,
       String[] lessonconts,
       int[] lessondays,
-      Date sdt, Date edt, String st, String et
-      , String[] weekArr
-      ) throws Exception {
+      Date sdt, Date edt, String st, String et,
+      String[] weekArr,
+      String[] deletedCurriculumLessonNo) throws Exception {
 
+    System.out.println(lessonconts.length);
     StringBuilder sb = new StringBuilder();
+    // lesson 요일 변경
     sb.append("0000000");
     for(int i = 0; i < weekArr.length; i++) {
-      sb.setCharAt(Integer.parseInt(weekArr[i])-1, '1');
+      sb.setCharAt(Integer.parseInt(weekArr[i])-1, '1'); 
     } 
     
     int garoNo = (int) session.getAttribute("garo");//lessonNo 써서 다시 detail로 돌아가려고
@@ -116,6 +118,8 @@ public class LessonController {
     lesson2.setCurriculum(curr2);
     lessonService.updateDateAndTime(lesson2);
     
+
+    
     for (int i = 0; i < lessonconts.length; i++) {
       Lesson lesson = new Lesson();
       CurriculumLessonContents clc = new CurriculumLessonContents();
@@ -126,7 +130,24 @@ public class LessonController {
       clc.setLessonDays(lessondays[i]);
       lesson.setCurriculum(curr);
       lesson.setClc(clc);
-      lessonService.updateContentsAndDays(lesson);
+
+      if (clc.getCurriculumLessonNo() == 0) {
+        // 컨텐츠와 날짜 입력하는 메소드
+        System.out.println(lesson);
+        lessonService.addContentsAndDays(lesson);
+      } else {
+        lessonService.updateContentsAndDays(lesson);
+        
+      }
+      if (deletedCurriculumLessonNo != null) {
+        for(String d : deletedCurriculumLessonNo) {
+          System.out.println("값: " + d);
+          int num = Integer.parseInt(d);
+          lessonService.deleteContentsAndDays(num);
+        } 
+      }
+      
+      
     }
     
     return "redirect:detail?lessonNo="+garoNo;

@@ -160,7 +160,7 @@
 		where l.lesson_no = #{lessonNo}
   </update>
   
-    <update id="updateContentsAndDays" parameterType="Lesson">
+  <update id="updateContentsAndDays" parameterType="Lesson">
     update  curr_lesson_conts
     <set>
       <if test="clc.lessonContents != null">lesson_conts=#{clc.lessonContents},</if> 
@@ -169,6 +169,16 @@
     where curr_lesson_no = #{clc.curriculumLessonNo}
   </update>
   
-  </mapper>
+  <insert id="addContentsAndDays" parameterType="Lesson">
+    insert into curr_lesson_conts(lesson_no, lesson_conts, lesson_days)
+    values(#{lessonNo}, #{clc.lessonContents}, #{clc.lessonDays});
+  </insert>
   
-  
+  <delete id="deleteContentsAndDays" parameterType="int">
+    delete from curr_lesson_conts
+		where
+		curr_lesson_no=#{haha}
+  </delete>
+
+
+</mapper>
