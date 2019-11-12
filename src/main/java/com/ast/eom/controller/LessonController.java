@@ -155,7 +155,16 @@ public class LessonController {
   
   
   @GetMapping("currAdd")
-  public void currAdd(Model model) throws Exception {
+  public void currAdd(
+      HttpSession session,
+      int[] curriculumLessonNo,
+      String[] lessonconts,
+      int[] lessondays,
+      Date sdt, Date edt, String st, String et,
+      String[] weekArr,
+      String[] deletedCurriculumLessonNo) throws Exception {
+    
+    
     
   }
 }
