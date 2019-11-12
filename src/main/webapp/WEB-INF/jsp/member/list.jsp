@@ -89,23 +89,6 @@
                 </select>
               </div>
               
-              <ul class="nav nav-pills nav-pills-icons" role="tablist">
-                <!--
-                                color-classes: "nav-pills-primary", 
-                                "nav-pills-info", "nav-pills-success", 
-                                "nav-pills-warning","nav-pills-danger"
-                            -->
-                <li class="nav-item">
-                  <a class="nav-link active show" href="#dashboard-1" role="tab" data-toggle="tab" aria-selected="true">
-                    Dashboard
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab" aria-selected="false">
-                    Schedule
-                  </a>
-                </li>
-              </ul>
               
               <h4><span class="tim-note">성별</span></h4>
               <div class="form-check">
@@ -217,6 +200,7 @@
 			      <option value="20">20</option>
 			    </select>
 			  </div>
+			  
 
           <c:if test="${memberTypeNo eq 3}">
             <c:forEach items="${memberList}" var="member">
@@ -230,16 +214,16 @@
                         onError="this.src='/upload/join/default.png'">
                       </div>
                       <div class="col-md-9">
-                      <h3 class="title">
-                        <span class="tim-note">${member.name}</span></h3>
-                      <h4><span class="tim-note">
+                      <h5 class="title">
+                        <span class="tim-note">${member.name}</span></h5>
+                      <h5><span class="tim-note">
                           ${member.schools[0].schoolName}/
                           ${member.gender}/
                           ${member.addressCity}
                           ${member.addressSuburb}/
                           ${member.schoolType}/
                           ${member.subjectName}
-                      </span></h4>
+                      </span></h5>
                       </div>
                     </div>
                   </div>
@@ -261,14 +245,14 @@
                         onError="this.src='/upload/join/default.png'">
                       </div>
                       <div class="col-md-9">
-                        <h3 class="title">
-                        <span class="tim-note">${member.name}</span></h3>
-                        <h4><span class="tim-note">
+                        <h5 class="title">
+                        <span class="tim-note">${member.name}</span></h5>
+                        <h5><span class="tim-note">
                         ${member.gender}/
                         ${membe.addressCity} ${member.addressSuburb}/
                         ${member.schoolType}/
                         ${member.subjectName}
-                        </span></h4>
+                        </span></h5>
                       </div>
                     </div>
                   </div>
@@ -478,12 +462,6 @@ $('.page-item').click((e) => {
     });
   </script>
   
-  
-
-  
 
 </body>
-<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
-
-
 </html>

@@ -1,10 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <style>
+img, video { 
+display: inline-block; 
+width: auto\9 !important; /* ie8 */ 
+width: auto !important; 
+max-width: 100%; 
+height: auto !important; 
+} 
+
+.video-container { 
+position: relative; 
+height: 0; 
+padding-top: 30px; 
+padding-bottom: 56.25%; 
+overflow: hidden; 
+} 
+
+.video-container iframe,.video-container object,.video-container embed { 
+position: absolute; 
+top: 0; 
+left: 0; 
+width: 100%; 
+height: 100%; 
+}
 
 .card-body {
   float: left;
@@ -30,6 +54,7 @@ ul li::before {
 } */ */
 
 </style>
+
 <body class="profile-page sidebar-collapse">
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/city-profile.jpg');"></div>
   <div class="main main-raised">
@@ -39,156 +64,228 @@ ul li::before {
             <div class="col-md-6 ml-auto mr-auto">
               <div class="profile">
               
+                  <!-- 선생님 프로필 top -->
                  <c:forEach items="${detailTeacher}" var="member">
              <c:if test="${member.memberTypeNo eq 3}">
+             
                 <div class="avatar">
                   <img src="/upload/join/${member.profilePhoto}" alt="Circle Image" class="img-raised rounded-circle img-fluid"
                     onError="this.src='/upload/join/default.png'">
                 </div>
+                
                 <div class="name">
-                  <h2 class="title">${member.name}</h2>
-                  <h5>${member.gender},${member.dateOfBirth}</h5>
-                  <h5><i class="fas fa-check-circle"></i> 인증 완료</h5>
+                  <h3 class="title">${member.name}</h3>
+                  
+                  <div class="age">
+                  <c:set var="birth" value="${member.dateOfBirth}" />
+					        <!-- 현재년도 가져오기 -->
+					        <c:set var="now" value="<%=new java.util.Date()%>" />
+					        <c:set var="sysYear">
+					          <fmt:formatDate value="${now}" pattern="yyyy" />
+					        </c:set>
+					        <c:set var="year" value="${fn:substring(sysYear,0,4)}" />
+					        <c:set var="birthyear" value="${fn:substring(birth,0,4)}" />
+					        <c:set var="age" value="${year-birthyear+1}" />
+                  </div>
+                  
+                  <div class="age_gender">
+                  <h5>${member.gender}, ${age} 세</h5>
+                  </div>
+                  
+				        <div class="confirmed">
+				                  <h5><i class="fas fa-check-circle"></i> 인증 완료</h5>
+				        </div>
+				        
+                  <div class="menu button">
                   <a href="#pablo" class="btn btn-just-icon btn-link btn-message">
                     <i class="far fa-comment-dots"></i></a> 
                   <a href="http://www.naver.com" class="btn btn-just-icon btn-link btn-photo">
                     <i class="far fa-image"></i></a> 
                   <a href="http://www.youtube.com" class="btn btn-just-icon btn-link btn-video">
                     <i class="fab fa-youtube"></i></a>
+                  </div>
+                  
                 </div>
                 </c:if>
                 </c:forEach>
                 
+                <!-- 학생 프로필 top -->
                 <c:forEach items="${detailStudent}" var="member">
              <c:if test="${member.memberTypeNo eq 1}">
+             
                 <div class="avatar">
                   <img src="/upload/join/${member.profilePhoto}" alt="Circle Image" class="img-raised rounded-circle img-fluid"
                     onError="this.src='/upload/join/default.png'">
                 </div>
+                
                 <div class="name">
-                  <h2 class="title">${member.name}</h2>
-                  <h5>${member.gender},${member.dateOfBirth}</h5>
+                  <h3 class="title">${member.name}</h3>
+                  
+                  <div class="age">
+                  <c:set var="birth" value="${member.dateOfBirth}" />
+                  <!-- 현재년도 가져오기 -->
+                  <c:set var="now" value="<%=new java.util.Date()%>" />
+                  <c:set var="sysYear">
+                    <fmt:formatDate value="${now}" pattern="yyyy" />
+                  </c:set>
+                  <c:set var="year" value="${fn:substring(sysYear,0,4)}" />
+                  <c:set var="birthyear" value="${fn:substring(birth,0,4)}" />
+                  <c:set var="age" value="${year-birthyear+1}" />
+                  </div>
+                  
+                  <div class="age_gender">
+                  <h5>${member.gender}, ${age} 세</h5>
+                  </div>
+                  
                   <a href="#pablo" class="btn btn-just-icon btn-link btn-message">
                     <i class="far fa-comment-dots"></i></a> 
+                    
                 </div>
                 </c:if>
                 </c:forEach>
                 
               </div>
+              <!-- profile end -->
              <hr>
             </div>
           </div>
+          <!-- row end -->
 
           <div class="description text-left">
           
+          <!-- 선생님 프로필 bottom -->
           <c:forEach items="${detailTeacher}" var="member">
           <c:if test="${member.memberTypeNo eq 3}">
+            
+            
             <div class="information">
-              <div class="information title">
-                <h3>기본정보</h3>
-              </div>
-              <div class="information contents">
-                <ul class="school">
-                  <li>학교: ${member.schools[0].schoolName}</li>
-                  <li>전공: ${member.schools[0].major}</li> 
-                  <li>지역: ${member.addressCity} ${member.addressSuburb}</li>
-                  <li>가입일: ${member.registeredDate}</li>
-                </ul>
-              </div>
-            </div>
-          <div class="tch-school">
-            <div class="tch-school title">
-              <h3>출신학교</h3>
-            </div>
-            <div class="tch-school contents">
+            <div class="row">
+              <div class="col-lg-6 col-sm-6">
+              <label class="information main">기본 정보</label>
+              <div class="main-info-body">
               <ul>
-                <li>${member.schools[0].schoolName}</li>
-              </ul>
+                  <li class="school">학교: ${member.schools[0].schoolName}</li>
+                  <li class="major">전공: ${member.schools[0].major}</li>
+                  <li class="address">지역: ${member.addressCity} ${member.addressSuburb}</li>
+                  <li class="registeredDate">가입일: ${member.registeredDate}</li></ul>
+                  </div>
+              </div>
+              
+              <div class="col-lg-6 col-sm-6">
+              <label class="information sub">추가 정보</label><br>
+              <div class="sub-info-body">
+              <ul>
+                  <li class="preschool">출신 학교: ${member.schools[0].schoolName}</li>
+                  <li class="subject">과목: ${member.schoolType} ${member.subjectName}</li>
+                  </ul>
+              </div>
+              </div>
             </div>
-          </div>
+            <!-- row end -->
+            </div><hr>
 
-          <div class="lesson-subject">
-            <div class="lesson-subject title">
-              <h3>과목</h3>
-            </div>
-            <div class="lesson-subject contents">
-              <ul>
-                <li>${member.schoolType} ${member.subjectName}</li>
-              </ul>
-            </div>
-          </div> 
 
           <div class="lesson-time">
-            <div class="lesson-time title">
-              <h3>과외 가능 요일/시간</h3>
-            </div>
+            <label class="lesson-time-title">과외 가능 요일/시간</label>
             <div class="lesson-time contents">
-              <ul>
-               <li>${member.lessonDays}</li>
-               <li>${member.lessonStartTime} ~
-                ${member.lessonEndTime}</li>
-              </ul>
+            <ul>
+            <li>
+              <div class="lesson-time days">
+                   <c:set var="week" value="${member.lessonDays}"/>
+                    <c:set var="sun" value="${fn:substring(week,0,1)}"/>
+                    <c:set var="mon" value="${fn:substring(week,1,2)}"/>
+                    <c:set var="tue" value="${fn:substring(week,2,3)}"/>
+                    <c:set var="wed" value="${fn:substring(week,3,4)}"/>
+                    <c:set var="thu" value="${fn:substring(week,4,5)}"/>
+                    <c:set var="fri" value="${fn:substring(week,5,6)}"/>
+                    <c:set var="sat" value="${fn:substring(week,6,7)}"/>
+                      <c:if test="${sun == '1'}">
+                                            일요일
+                      </c:if>
+                      <c:if test="${mon == '1'}">
+                                            월요일
+                      </c:if>
+                      <c:if test="${tue == '1'}">
+                                            화요일
+                      </c:if>
+                      <c:if test="${wed == '1'}">
+                                            수요일
+                      </c:if>
+                      <c:if test="${thu == '1'}">
+                                            목요일
+                      </c:if>
+                      <c:if test="${fri == '1'}">
+                                            금요일
+                      </c:if>
+                      <c:if test="${sat == '1'}">
+                                            토요일
+                      </c:if>
+                    </div></li>
+                    
+                  <li>  <div class="lesson-time times">
+               ${member.lessonStartTime} ~
+                ${member.lessonEndTime}
+              </div></li></ul>
             </div>
           </div>
           
+          
           <div class="lesson-fee">
-            <div class="lesson-fee title">
-              <h3>희망 과외 금액</h3>
-            </div>
+              <label class="lesson-fee title">희망 과외 금액</label>
             <div class="lesson-fee contents">
               <ul>
-                <c:if test="${member.students[0].wantedFee == 1}">
+                <c:if test="${member.lessonSubjects[0].wantedFee == 1}">
                   <li>20만원 이하</li>
                 </c:if>
-                <c:if test="${member.students[0].wantedFee == 2}">
+                <c:if test="${member.lessonSubjects[0].wantedFee == 2}">
                   <li>20만원~30만원</li>
                 </c:if>
-                <c:if test="${member.students[0].wantedFee == 3}">
+                <c:if test="${member.lessonSubjects[0].wantedFee == 3}">
                   <li>30만원~40만원</li>
                 </c:if>
-                <c:if test="${member.students[0].wantedFee == 4}">
+                <c:if test="${member.lessonSubjects[0].wantedFee == 4}">
                   <li>40만원 이상</li>
                 </c:if>
               </ul>
             </div>
-          </div>
-
+          </div><hr>
+          
+          
           <div class="tch-intro">
-            <div class="tch-intro title">
-              <h3>자기소개</h3>
-            </div>
+              <label class="tch-intro title">자기소개</label>
             <div class="tch-intro contents">
-             <ul>
-              <li>${member.teachers[0].teacherIntro}<br>
-              ${member.lessonSubjects[0].subjectContents}</li>
-             </ul>
+              ${member.teachers[0].teacherIntro}<br>
+              ${member.lessonSubjects[0].subjectContents}
             </div>
+            </div><hr>
             
-            <div class="tch-intro photo">
-              <div class="tab-pane active text-center gallery" id="studio">
-                <div class="row">
-                  <div class="col-md-3 ml-auto">
-                    <img src="${member.teacherPhoto}" class="rounded"> 
-                    <img  src="${member.teacherPhoto}" class="rounded">
-                  </div>
-                  <div class="col-md-3 mr-auto">
-                    <img src="${member.teacherPhoto}" class="rounded"> 
-                    <img src="/landing_images/images/hong.png" class="rounded">
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
+					
+					<div class="media">
+              <label class="media title">미디어</label>
+					</div>
+					
+					<div class="card-deck">
+  <div class="card">
+    <img src="/upload/join/${member.teacherPhoto}" class="card-img-top" alt="...">
+  </div>
+  <div class="card">
+    <img src="/upload/join/${member.teacherPhoto}" class="card-img-top" alt="...">
+  </div>
+</div>
+<br><br><br>
+
+<div class="video-container"> 
+<iframe width="640" height="480" src="https://www.youtube.com/embed/5w0SKw5oBPg" frameborder="0" allowfullscreen>
+</iframe> 
+</div><hr>
             
           <div class="teacher-review">
-            <div class="teacher-review title">
-              <h3>선생님 과외 후기</h3>
-            </div>
+              <label class="teacher-review title">선생님 후기</label>
             <div class="teacher-review contents">
              <div class="card">
               <div class="card-header card-header-text card-header-primary">
                 <div class="card-text">
-                  <h4 class="card-title">학생 1</h4>
+                  <h5 class="card-title">학생 1</h5>
                 </div>
               </div>
               <div class="card-body">
@@ -198,72 +295,89 @@ ul li::before {
               </div>
              </div>
             </div>
-           </div>
+           </div><br><br>
+           
          </c:if>
         </c:forEach>
+        <!-- 선생님 프로필 bottom end-->
         
+        <!-- 학생 프로필 bottom -->
         <c:forEach items="${detailStudent}" var="member">
           <c:if test="${member.memberTypeNo eq 1}">
+          
+            
             <div class="information">
-              <div class="information title">
-                <h3>기본정보</h3>
-              </div>
-              <div class="information contents">
-                <ul class="school">
-                  <li>학교: ${member.schoolType} ${member.memberTypeName}</li>
-                  <li>지역: ${member.addressCity} ${member.addressSuburb}</li>
-                  <li>가입일: ${member.registeredDate}</li>
-                </ul>
-              </div>
-            </div>
-
-          <div class="lesson-subject">
-            <div class="lesson-subject title">
-              <h3>과목</h3>
-            </div>
-            <div class="lesson-subject contents">
+            <div class="row">
+              <div class="col-lg-6 col-sm-6">
+              <label class="information main">기본 정보</label>
+              <div class="main-info-body">
               <ul>
-                <li>${member.schoolType} ${member.subjectName}</li>
-              </ul>
+                  <li class="school">학교: ${member.schoolType} ${member.memberTypeName}</li>
+                  <li class="address">지역: ${member.addressCity} ${member.addressSuburb}</li>
+                  <li class="registeredDate">가입일: ${member.registeredDate}</li></ul>
+                  </div>
+              </div>
+              
+              <div class="col-lg-6 col-sm-6">
+              <label class="information sub">추가 정보</label><br>
+              <div class="sub-info-body">
+              <ul>
+                  <li class="subject">과목: ${member.schoolType} ${member.subjectName}</li>
+                  </ul>
+              </div>
+              </div>
             </div>
-          </div> 
-
-          <div class="lesson-time">
-            <div class="lesson-time title">
-              <h3>과외 가능 요일/시간</h3>
-            </div>
+            <!-- row end -->
+            </div><hr>
+            
+            
+            <div class="lesson-time">
+            <label class="lesson-time-title">과외 가능 요일/시간</label>
             <div class="lesson-time contents">
-              <input type="hidden" id=days name=days value="${member.lessonDays}"/>
-               <div class="sun">
-                  <input type="text" id='DAY_1' name="1">
-              </div>
-               <div>
-                  <input type="text" id='DAY_2' name="2">
-              </div>
-               <div>
-                  <input  type="text" id='DAY_3' name="3">
-              </div>
-               <div>
-                  <input type="text" id='DAY_4' name="4">
-              </div>
-               <div>
-                  <input type="text" id='DAY_5' name="5">
-              </div>
-               <div>
-                  <input type="text" id='DAY_6' name="6">
-              </div>
-               <div>
-                  <input type="text" id='DAY_7' name="7">
-              </div> 
+            <ul>
+            <li>
+              <div class="lesson-time days">
+                   <c:set var="week" value="${member.lessonDays}"/>
+                    <c:set var="sun" value="${fn:substring(week,0,1)}"/>
+                    <c:set var="mon" value="${fn:substring(week,1,2)}"/>
+                    <c:set var="tue" value="${fn:substring(week,2,3)}"/>
+                    <c:set var="wed" value="${fn:substring(week,3,4)}"/>
+                    <c:set var="thu" value="${fn:substring(week,4,5)}"/>
+                    <c:set var="fri" value="${fn:substring(week,5,6)}"/>
+                    <c:set var="sat" value="${fn:substring(week,6,7)}"/>
+                      <c:if test="${sun == '1'}">
+                                            일요일
+                      </c:if>
+                      <c:if test="${mon == '1'}">
+                                            월요일
+                      </c:if>
+                      <c:if test="${tue == '1'}">
+                                            화요일
+                      </c:if>
+                      <c:if test="${wed == '1'}">
+                                            수요일
+                      </c:if>
+                      <c:if test="${thu == '1'}">
+                                            목요일
+                      </c:if>
+                      <c:if test="${fri == '1'}">
+                                            금요일
+                      </c:if>
+                      <c:if test="${sat == '1'}">
+                                            토요일
+                      </c:if>
+                    </div></li>
+                    
+                  <li>  <div class="lesson-time times">
                ${member.lessonStartTime} ~
                 ${member.lessonEndTime}
+              </div></li></ul>
             </div>
           </div>
-          
+            
+            
           <div class="lesson-fee">
-            <div class="lesson-fee title">
-              <h3>희망 과외 금액</h3>
-            </div>
+              <label class="lesson-fee title">희망 과외 금액</label>
             <div class="lesson-fee contents">
               <ul>
                 <c:if test="${member.students[0].wantedFee == 1}">
@@ -280,22 +394,20 @@ ul li::before {
                 </c:if>
               </ul>
             </div>
-          </div>
+          </div><hr>
 
             <div class="stu_wanted">
-            <div class="stu_wanted title">
-              <h3>선생님께 바라는점</h3>
-            </div>
+            <label class="stu_wanted title">선생님께 바라는 점</label>
             <div class="stu_wanted contents">
               ${member.students[0].requirementsToTeacher}<br>
             </div>
           </div>
           <hr>
           
-          <div class="student-review">
-            <div class="student-review title">
-              <h3>학생 과외 후기</h3>
-            </div>
+          
+          
+				<div class="student-review">
+            <label class="student-review title">학생 후기</label>
             <div class="student-review contents">
              <div class="card">
               <div class="card-header card-header-text card-header-primary">
@@ -310,20 +422,7 @@ ul li::before {
               </div>
              </div>
             </div>
-           </div>
-           
-           
-           
-           
- 
-  
- 
-           
-           
-           
-           
-           
-           
+           </div><br><br>
            
            
          </c:if>
@@ -335,32 +434,6 @@ ul li::before {
       <!-- Container / End -->
     </div>
   </div>
-  
-  
-  
-  
-     <script>
-  var day = $('#days').val();
-  console.log(day); 
-  var array = day.split(""); 
-  for (var i=0; i<array.length; i++){ 
-    console.log(array[i]); 
-    if (array[i]==1) { 
-      console.log('test');
-      $("input:text[id='DAY_"+(i+1)+"']").val(true);
-    }  
-  }   
-</script> 
-           
-
-  
-  
-  
-  
-  
-  
-  
 
 </body>
-
 </html>
