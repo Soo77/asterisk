@@ -47,7 +47,7 @@
       </div>
     </div>
     
-    <input type="text" name="lessonNo" value="${lessonNo}">
+    <input type="hidden" name="lessonNo" value="${memberInfoMap.teacherLessons[1].lessonNo}">
     <div class="dayLessonList">
     
     </div>
@@ -79,7 +79,7 @@
 </div>
 
 <!-- Modal -->
-<!--  <div class="modal fade" id="detailModal" tabindex="-1"
+  <div class="modal fade" id="detailModal" tabindex="-1"
   role="dialog" aria-labelledby="detailModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -124,9 +124,8 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="/js/jquery.simple-calendar.js"></script>
 
 <script>
@@ -139,8 +138,7 @@ $(document).ready(function() {
 </script>
 <script>
 	
-  var lessonNo = '${lessonNo}';
-	console.log("=====>" lessonNo);
+  var lessonNo = Number('${memberInfoMap.teacherLessons[1].lessonNo}');
 
 	function loadData() { 
   $.ajax({
@@ -150,20 +148,28 @@ $(document).ready(function() {
         'lessonNo' : lessonNo
       },
       success : function(data) {
-    	  var a = '';
-          $.each(
+        var a = '';
+
+        var tempdayLessonNo = '';
+        var tempSummary = '';
+        var tempEvaluation = '';
+
+        var thisNode = '';
+        
+        $.each(
                 data,
                 function(key, value) {
+                  a='';
                 	a += '<div class="card">';
                 	a += '<div class="card-body">';
                 	a += '<div class="row">';
-            			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo '">' + value.lessonDate + '</div>';
+            			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDate + '</div>';
             			a += '수업시간 : <div class="col" id="lessonTime_' + value.dayLessonNo + '">' + value.lessonStartHour + '~' + value.lessonEndHour + '</div>';
             			a += '</div>';
           				a += '<hr>';
         					a += '<div class="row">';
-      						a += '<div class="col" id="lessonSummary_' + value.dayLessonNo + '">' + value.lessonSummary + '</div>';
-      						a += '<input type="hidden" id="lessonEvaluation_' + value.dayLessonNo + 'value="' + value.lessonEvaluation + '">';
+      						a += '<div class="col" id="lessonSummary_' + value.dayLessonNo + '"></div>';
+      						a += "<input type='hidden' id='lessonEvaluation_" + value.dayLessonNo + "' value=''>";
       						a += '</div>';
     							a += '<div class="row" id="myBtnDetail">';
   								a += '<div class="col">';
@@ -171,9 +177,17 @@ $(document).ready(function() {
 									a += '</div>';
 									a += '</div>';
 									a += '</div>';
-									a += '</div>';
+                  a += '</div>';
+
+                  $(".dayLessonList").append(a);
+
+                  thisNode = document.getElementById('lessonSummary_'+value.dayLessonNo);
+                  thisNode.innerHTML = value.lessonSummary;
+                  thisNode = document.getElementById('lessonEvaluation_'+value.dayLessonNo);
+                  thisNode.setAttribute('value', value.lessonEvaluation);
+
                 });
-          $(".dayLessonList").html(a);
+
       }
   });
 }
