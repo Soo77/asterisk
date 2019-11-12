@@ -15,7 +15,7 @@
     padding: 5px 10px;
     background: #B5E8E2;
     border: 1px solid #d2d6de;
-    margin: 5px 0 0 50px;
+    margin-top: 5px;
     color: #444;
 	 }
 	 
@@ -26,7 +26,7 @@
     padding: 5px 10px;
     background: #FACBBA;
     border: 1px solid #d2d6de;
-    margin: 5px 0 0 50px;
+    margin-top: 5px;
     color: #444;
     text-align: right;
     margin-left: 200px;
@@ -41,7 +41,7 @@
 	<br>
 	<br>
 	<div class="form-row">
-   <div class="col-sm-3">
+   <div class="col-sm-5">
 		<input type="text" id="messageConts" name="messageConts"
 			class="form-control" placeholder="내용을 입력">
 		</div>
@@ -50,10 +50,10 @@
 	
 	<script>
     $(document).ready(function() {
-      list();
+      detail();
     });
 
-    function list() {
+    function detail() {
       $.ajax({
         url : 'messageDetail',
         type : 'post',

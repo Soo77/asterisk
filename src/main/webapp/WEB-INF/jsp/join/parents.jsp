@@ -63,6 +63,11 @@
         }
     </script>
 <style>
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
 #view_file {
 	/*  display: none; */
 	width: 150px;
@@ -104,8 +109,10 @@
 									</div>
 									<div class="name">
 										<h2 class="title">프로필 사진</h2>
-										<input type='file' class="text-white btn btn-rose btn-sm"
-											id='filePath' name='filePath'>
+										<div class="filebox">
+                      <label for="filePath" class="btn btn-primary btn-sm">파일선택</label> 
+                      <input type="file" id='filePath' name='filePath'>
+                    </div>
 									</div>
 								</div>
 							</div>

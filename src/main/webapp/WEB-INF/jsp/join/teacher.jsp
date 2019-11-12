@@ -58,11 +58,15 @@
         }
     </script>
 <style>
-#view_file {
-  /*  display: none; */
-  width: 150px;
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+#view_lessonFile {
+  display: none;
+  width: 200px;
   height: 150px;
-  "
 }
 
 #mail {
@@ -99,8 +103,10 @@
                   </div>
                   <div class="name">
                     <h2 class="title">프로필 사진</h2>
-                    <input type='file' class="text-white btn btn-rose btn-sm"
-                      id='filePath' name='filePath'>
+                    <div class="filebox">
+                      <label for="filePath" class="btn btn-primary btn-sm">파일선택</label> 
+                      <input type="file" id='filePath' name='filePath'>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -199,19 +205,19 @@
                   id="sigungu" placeholder="상세주소">
               </div> 
                 
-	                <div class="form-row">
-	                  <div class="col-sm-11">
-			                <div class="form-group">
-	                    <label for="textverify" class="bmd-label-floating">자녀 아이디</label>
-	                    <input type="text" class="form-control" id="textverify">
-			                </div>
-	                   </div>
-                    <div class="redch" id="checkverify"></div>
-		                  <div class="col-sm-1">
-		                    <button type="button" class="btn btn-rose btn-sm" 
-		                    id="verify" onclick="verify2()">인증하기</button>
-	                    </div>
-                  </div>
+              <div class="form-row">
+                <div class="col-sm-11">
+	                <div class="form-group">
+	                  <label for="textverify" class="bmd-label-floating">자녀 아이디</label>
+	                  <input type="text" class="form-control" id="textverify">
+	                </div>
+                </div>
+                 <div class="redch" id="checkverify"></div>
+                 <div class="col-sm-1">
+                   <button type="button" class="btn btn-rose btn-sm" 
+                   id="verify" onclick="verify2()">인증하기</button>
+                 </div>
+               </div>
               
               <div class="form-group">
               <label for="highschool" class="bmd-label-floating">고등학교명</label> 
@@ -229,8 +235,11 @@
               </div>
               
               <label class="bmd-label-floating">과외 신고서</label><br>
-              <input type='file' class="text-white btn btn-rose btn-sm" 
-              name="lessoncertificate">
+              <img id="view_lessonFile">
+              <div class="filebox">
+                <label for="lessoncertificate" class="btn btn-primary btn-sm">파일선택</label> 
+                <input type="file" id='lessoncertificate' name='lessoncertificate'>
+              </div>
              
               <div class="form-group"> 
               <label class="bmd-label-floating">전문 과목</label>
@@ -399,6 +408,23 @@
             reader.readAsDataURL(input.files[0]);
         }
         var dp = document.getElementById("view_file");
+        dp.style.display = "block";
+        
+    });
+   </script>
+   
+   <!-- 과외 신고서-->
+  <script>
+    $("#lessoncertificate").change(function() {
+        var input = document.getElementById("lessoncertificate");
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#view_lessonFile').attr('src', e.target.result);
+                }
+            reader.readAsDataURL(input.files[0]);
+        }
+        var dp = document.getElementById("view_lessonFile");
         dp.style.display = "block";
         
     });

@@ -6,10 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>가입 화면</title>
-<link rel='stylesheet'
-	href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-	integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
-	crossorigin='anonymous'>
 <script type="text/JavaScript"
 	src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
@@ -66,6 +62,11 @@
 	}
 </script>
 <style>
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
  #view_file {
 /* 	display: none; */
   width: 150px; 
@@ -108,8 +109,10 @@
 									</div>
 									<div class="name">
 										<h2 class="title">프로필 사진</h2>
-											<input type='file' class="text-white btn btn-primary btn-sm"
-											id='filePath' name='filePath'>
+										<div class="filebox">
+                      <label for="filePath" class="btn btn-primary btn-sm">파일선택</label> 
+                      <input type="file" id='filePath' name='filePath'>
+                    </div>
 									</div>
 								</div>
 							</div>
