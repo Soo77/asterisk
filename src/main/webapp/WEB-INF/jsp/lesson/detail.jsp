@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"
   charset="UTF-8"> </script>
-
 <head>
 </head>
 
@@ -150,8 +149,10 @@
             </c:forEach>
           </tbody> 
         </table>
-        <input type="button" class="btn btn-primary lessonConts-add-button" value="추가">
-        <button class="btn btn-primary">변경</button>
+        <div style="text-align: right;">
+          <input type="button" class="btn btn-primary lessonConts-add-button" value="추가">  
+          <button class="btn btn-primary">변경</button>
+        </div>
       </form>
     </div>
 
@@ -221,17 +222,19 @@
 <!-- 테이블의 열 삭제하려고 -->
 <script>
   let deletedCurriculumNoList = new Array();
+  
 function deleteRow(btn) {
   var row = btn.parentNode.parentNode.parentNode;
   console.log(row);
 
   let hiddenLessonNoHtml = '';
-  hiddenLessonNoHtml += '<input type="text" name="deletedCurriculumLessonNo" value="'+row.getAttribute('id')+'">';
+  hiddenLessonNoHtml += '<input type="hidden" name="deletedCurriculumLessonNo" value="'+row.getAttribute('id')+'">';
   $('form').prepend(hiddenLessonNoHtml);
   
+  if ($('tbody > tr').length == 1) {
+    return;
+  }
   row.parentNode.removeChild(row);
-  
-  
 }
 </script>
 
