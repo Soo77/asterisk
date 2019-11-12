@@ -43,19 +43,12 @@
 		<result column="tch_no" property="teacherNo" />
 		<result column="sch_type_no" property="schoolTypeNo" />
 		<result column="sch_name" property="schoolName" />
-		<!-- <result column="certi" property="certificate" /> -->
 		<result column="grad" property="isGraduated" />
-		<!-- <result column="mdt" property="modifiedDate" /> -->
 		<result column="major" property="major" />
-		<!-- <result column="confirm" property="confirmed" />
-		<result column="grad_date" property="graduatedDate" /> -->
 	</resultMap>
 
 	<resultMap type="Teacher" id="TeacherMap">
 		<id column="tch_no" property="teacherNo" />
-		<!-- <result column="acc_no" property="accountNo" />
-		<result column="bank_name" property="bankName" />
-		<result column="lesson_certi" property="lessonCertificate" /> -->
 		<result column="tch_intro" property="teacherIntro" />
 		<result column="appr_stat" property="approvementState" />
 		<result column="vid_addr" property="videoAddress" />
@@ -66,7 +59,6 @@
 		<result column="tch_no" property="teacherNo" />
 		<result column="sub_no" property="subjectNo" />
 		<result column="sub_conts" property="subjectContents" />
-		<!-- <result column="rdt" property="registeredDate" /> -->
 		<result column="wanted_fee" property="wantedFee" />
 	</resultMap>
 	
@@ -88,7 +80,6 @@
 		left outer join subject sub on ls.sub_no = sub.sch_type_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
 		where t.appr_stat = 1 and m.mem_type_no = #{memberTypeNo}
-		limit #{offset}, #{pageSize}
 	</select>
 
 	<select id="listStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
@@ -102,7 +93,6 @@
 		left outer join subject sub on wl.sub_no = sub.sub_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
 		where m.mem_type_no = #{memberTypeNo}
-		limit #{offset}, #{pageSize}
 	</select>
 
 	<select id="detailTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
@@ -139,9 +129,7 @@
 		where m.mem_no= #{mem_no}
 	</select>
 
-	<select id="countAll" resultType="int">
-		select count(*) from member where mem_type_no = #{memberTypeNo}
-	</select>
+	
 
 
 

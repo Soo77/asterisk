@@ -34,30 +34,41 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
   
   
   @Override
-  public List<MemberTeacherStudent> list(int memberTypeNo, int pageNo, int pageSize) throws Exception {
-
-    HashMap<String,Object> param = new HashMap<>();
-    param.put("memberTypeNo", memberTypeNo);
-    param.put("offset", (pageNo - 1) * pageSize);
-    param.put("pageSize", pageSize);
-
-    List<MemberTeacherStudent> memberList = null;
+  public List<MemberTeacherStudent> list(int memberTypeNo) throws Exception {
     
-    if (memberTypeNo == 1) {
-      memberList = memberTeacherStudentDao.listStudent(param);
-    } else if (memberTypeNo == 3) {
-      memberList = memberTeacherStudentDao.listTeacher(param);
-    }
-    System.out.println("param"+ param);
-    return memberList;
+    HashMap<String, Object> params = new HashMap<>();
+    
+    /*
+     * List<MemberTeacherStudent> memberList = null;
+     * 
+     * if (memberTypeNo == 1) { memberList = memberTeacherStudentDao.listStudent(memberTypeNo); }
+     * else if (memberTypeNo == 3) { memberList = memberTeacherStudentDao.listTeacher(memberTypeNo);
+     * }
+     */
+      
+      params.put("memberTypeNo", memberTypeNo);
+    /* params.put("memberList", memberList); */
+      
+    return memberTeacherStudentDao.listTeacher(params);
   }
   
-  
-    @Override
-    public int size(int memberTypeNo) throws Exception {
-      return memberTeacherStudentDao.countAll(memberTypeNo);
-    }
-   
-  
+  @Override
+  public List<MemberTeacherStudent> list2(int memberTypeNo) throws Exception {
+    
+    HashMap<String, Object> params = new HashMap<>();
+    
+    /*
+     * List<MemberTeacherStudent> memberList = null;
+     * 
+     * if (memberTypeNo == 1) { memberList = memberTeacherStudentDao.listStudent(memberTypeNo); }
+     * else if (memberTypeNo == 3) { memberList = memberTeacherStudentDao.listTeacher(memberTypeNo);
+     * }
+     */
+      
+      params.put("memberTypeNo", memberTypeNo);
+    /* params.put("memberList", memberList); */
+      
+    return memberTeacherStudentDao.listStudent(params);
+  }
   
 }
