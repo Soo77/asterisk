@@ -181,16 +181,28 @@
     values(#{lessonNo}, #{clc.lessonContents}, #{clc.lessonDays});
   </insert>
 
-  <insert id="addLesson" parameterType="Lesson">
+  <insert id="addLesson" parameterType="Lesson"
+    useGeneratedKeys="true"
+    keyColumn="lesson_no"
+    keyProperty="lessonNo">
     insert into lesson (tch_no, sub_no, lesson_desc, lesson_fee, sdt, edt)
     values (#{teacherNo}, #{subjectNo}, #{lessonDescription}, #{lessonFee}, #{startDate}, #{startDate});
   </insert>
   
-  <insert id="addCurriculum" parameterType="Curriculum">
+  <insert id="addCurriculum" parameterType="Lesson" >
     insert into curriculum (lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
-    values (#{lessonNo}, #{curriculumLessonDay}, #{curriculumLessonStartTime}, #{curriculumLessonEndTime});
+    values (#{lessonNo}, #{curriculum.curriculumLessonDay}, #{curriculum.curriculumLessonStartTime}, #{curriculum.curriculumLessonEndTime});
   </insert>
   
-
+  <select id="findSubNo" parameterType="map" resultType="int">
+	  SELECT
+		  s.sub_no
+		FROM
+		  subject s
+		INNER JOIN
+		  school_type st ON s.sch_type_no = st.sch_type_no
+		WHERE
+		  st.sch_type_no = #{schoolTypeNo} AND s.sub_name = #{subjectName};
+  </select>
 
 </mapper>
