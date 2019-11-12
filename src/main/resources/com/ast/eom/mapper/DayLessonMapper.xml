@@ -20,5 +20,18 @@
       where lesson_no=#{lessonNo}
       order by day_lesson_no desc
   </select>
+  
+  <select id="findBy" parameterType="int" resultMap="DayLessonMap">
+    select *
+    from day_lesson
+    where day_lesson_no=#{dayLessonNo}
+  </select>
+  
+  <update id="update" parameterType="DayLesson">
+    update day_lesson set
+      lesson_summ=#{lessonSummary}
+      lesson_eval=#{lessonEvaluation}
+    where day_lesson_no=#{day_lesson_no}
+  </update>
 
 </mapper>

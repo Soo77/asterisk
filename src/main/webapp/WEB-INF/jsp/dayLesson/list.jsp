@@ -22,12 +22,12 @@
 </head>
 
 <div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('assets/img/bg3.jpg')">
+  style="background-image: url('/assets/img/bg3.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
-          <h1>과외진행현황</h1>
+          <h1>과외 진행현황</h1>
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
 </div>
 <div class="main main-raised">
   <div class="container p-3">
-    <div id="container" class="calendar-container"></div>
+    <div id="container" class="calendar-container p-5"></div>
     <hr>
 
     <div class="progress-container progress-primary">
@@ -46,13 +46,13 @@
           aria-valuemax="100" style="width: 30%;"></div>
       </div>
     </div>
-
-    <c:forEach items="${dayLessons}" var="dayLesson" varStatus="i">
+    
+     <c:forEach items="${dayLessons}" var="dayLesson" varStatus="i">
       <div class="card">
         <div class="card-body">
           <div class="row">
             수업일 : <div class="col" id="lessonDate_${i.index}">${dayLesson.lessonDate}</div>
-            수업시간 : <div class="col" id="lessonDate_${i.index}">${dayLesson.lessonStartHour} ~ ${dayLesson.lessonEndHour}</div>
+            수업시간 : <div class="col" id="lessonTime_${i.index}">${dayLesson.lessonStartHour} ~ ${dayLesson.lessonEndHour}</div>
           </div>
           <hr>
           <div class="row">
@@ -61,10 +61,9 @@
           </div>
           <div class="row" id="myBtnDetail">
             <div class="col">
-            <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary btn-sm .modal-param"
-                data-toggle="modal" data-target="#detailModal" data-unique="${i.index}">
-                상세보기</button>
+              <button type="button" class="btn btn-primary btn-sm .modal-param" 
+              data-toggle="modal" data-target="#detailModal"
+               data-unique="${i.index}" onclick="setModal(${i.index})">상세보기 </button>
             </div>
           </div>
         </div>
@@ -74,9 +73,8 @@
   </div>
 </div>
 
-
 <!-- Modal -->
-<div class="modal fade" id="detailModal" tabindex="-1"
+ <div class="modal fade" id="detailModal" tabindex="-1"
   role="dialog" aria-labelledby="detailModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -90,14 +88,28 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <label for="lessonSummary">수업 내용 정리</label>
-          <textarea id="lessonSummary" class="form-control"
-          name="lessonSummary" rows="10" style="resize: none;"></textarea>
+          <div class="col">
+            <label for="lessonDate">수업일</label>
+            <div class="col" id="modalLessonDate">${dayLesson.lessonDate}</div>
+          </div>
+          <div class="col">
+            <label for="lessonTime">수업 시간</label>
+            <div class="col" id="modalLessonTime"></div>
+          </div>
         </div>
         <div class="row">
-          <label for="lessonEvaluation">수업 평가</label>
-          <textarea id="lessonEvaluation" class="form-control"
-          name="lessonEvaluation" rows="5" style="resize: none;"></textarea>
+          <div class="col">
+            <label for="lessonSummary">수업 내용 정리</label>
+            <textarea id="modalLessonSummary" class="form-control"
+            name="lessonSummary" rows="10" style="resize: none;"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="lessonEvaluation">수업 평가</label>
+            <textarea id="modalLessonEvaluation" class="form-control"
+            name="lessonEvaluation" rows="5" style="resize: none;"></textarea>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -108,7 +120,6 @@
     </div>
   </div>
 </div>
-
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="/js/jquery.simple-calendar.js"></script>
@@ -121,16 +132,18 @@
 </script>
 
 <script>
-	$(".modal-param").on('click', function() {
-		var key = $(this).attr('data-unique');
-		var summary = $("#lessonSummary_" + key).text();
-		console.log("summary=====>" + summary);
-		$("#lessonSummary").val(summary);
-		var evaluation = $("#lessonEvaluation_" + key).text();
-		console.log("evaluation=====>" + evaluation);
-    $("#lessonEvaluation").val(evaluation);
-	})
+  function setModal(key) {
+	  var lessonDate = $("#lessonDate_" + key).text();
+	    $("#modalLessonDate").text(lessonDate);
+	    
+    var lessonTime = $("#lessonTime_" + key).text();
+    $("#modalLessonTime").text(lessonTime);
+    
+    var summary = $("#lessonSummary_" + key).text();
+    $("#modalLessonSummary").val(summary);
+    
+    var evaluation = $("#lessonEvaluation_" + key).val();
+    $("#modalLessonEvaluation").val(evaluation);
+  }
 </script>
-
-
 
