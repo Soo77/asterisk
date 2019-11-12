@@ -47,12 +47,7 @@
       </div>
     </div>
     
-    <input type="text" name="lessonNo" value="${lessonNo}">
-    <div class="dayLessonList">
-    
-    </div>
-    
-<!--      <c:forEach items="${dayLessons}" var="dayLesson" varStatus="i">
+     <c:forEach items="${dayLessons}" var="dayLesson" varStatus="i">
       <div class="card">
         <div class="card-body">
           <div class="row">
@@ -73,13 +68,13 @@
           </div>
         </div>
       </div>
-    </c:forEach> -->
+    </c:forEach>
     
   </div>
 </div>
 
 <!-- Modal -->
-<!--  <div class="modal fade" id="detailModal" tabindex="-1"
+ <div class="modal fade" id="detailModal" tabindex="-1"
   role="dialog" aria-labelledby="detailModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -124,69 +119,22 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="/js/jquery.simple-calendar.js"></script>
-
 <script>
-$(document).ready(function() {
-	$("#container").simpleCalendar({
-		fixedStartDay : false
-	});
-	
-});
-</script>
-<script>
-	
-  var lessonNo = '${lessonNo}';
-	console.log("=====>" lessonNo);
-
-	function loadData() { 
-  $.ajax({
-      url : 'dayLesson/list',
-      type : 'get',
-      data : {
-        'lessonNo' : lessonNo
-      },
-      success : function(data) {
-    	  var a = '';
-          $.each(
-                data,
-                function(key, value) {
-                	a += '<div class="card">';
-                	a += '<div class="card-body">';
-                	a += '<div class="row">';
-            			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo '">' + value.lessonDate + '</div>';
-            			a += '수업시간 : <div class="col" id="lessonTime_' + value.dayLessonNo + '">' + value.lessonStartHour + '~' + value.lessonEndHour + '</div>';
-            			a += '</div>';
-          				a += '<hr>';
-        					a += '<div class="row">';
-      						a += '<div class="col" id="lessonSummary_' + value.dayLessonNo + '">' + value.lessonSummary + '</div>';
-      						a += '<input type="hidden" id="lessonEvaluation_' + value.dayLessonNo + 'value="' + value.lessonEvaluation + '">';
-      						a += '</div>';
-    							a += '<div class="row" id="myBtnDetail">';
-  								a += '<div class="col">';
-									a += '<button type="button" class="btn btn-primary btn-sm .modal-param" data-toggle="modal" data-target="#detailModal" data-unique="' + value.dayLessonNo + '"' +  'onclick="setModal(' + value.dayLessonNo + ')">상세보기 </button>';
-									a += '</div>';
-									a += '</div>';
-									a += '</div>';
-									a += '</div>';
-                });
-          $(".dayLessonList").html(a);
-      }
-  });
-}
-
 	$(document).ready(function() {
-		loadData();
+		$("#container").simpleCalendar({
+			fixedStartDay : false
+		});
 	});
 </script>
 
 <script>
   function setModal(key) {
 	  var lessonDate = $("#lessonDate_" + key).text();
-	  $("#modalLessonDate").text(lessonDate);
+	    $("#modalLessonDate").text(lessonDate);
 	    
     var lessonTime = $("#lessonTime_" + key).text();
     $("#modalLessonTime").text(lessonTime);
