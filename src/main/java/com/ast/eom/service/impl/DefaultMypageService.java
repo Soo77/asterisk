@@ -76,4 +76,10 @@ public class DefaultMypageService implements MypageService {
     return memberInfoMap;
   }
 
+  @Override
+  public int update(Member loginUser) {
+    
+    return 1;
+  }
+
 }

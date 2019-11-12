@@ -213,6 +213,7 @@
 
 </head>
 
+<form id="mypage-form" action="update" method="POST" enctype="multipart/form-data">
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('')">
   <div class="container">
     <div class="row">
@@ -227,7 +228,6 @@
   <div class="container">
     <div class="row-fluid">
       <div class="col">
-        <form id="mypage-form" action="asdf">
 
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto">
@@ -235,7 +235,7 @@
                 <div class="avatar">
                   <img src="/upload/join/${loginUser.profilePhoto}" alt="Circle Image"
                     class="img-raised rounded-circle img-fluid profile-photo">
-                  <input id="profile-photo-upload" type="file" hidden>
+                  <input id="profile-photo-upload" type="file" name="profilePhotoName" hidden>
                 </div>
                 <div class="name">
                   <h3 class="title mb-2">${loginUser.name}</h3>
@@ -266,7 +266,7 @@
 
           <div class="form-group">
             <label for="inputPassword">비밀번호</label>
-            <input type="password" class="form-control" id="inputPassword">
+            <input type="password" class="form-control" id="inputPassword" name="password">
           </div>
 
           <div class="form-group">
@@ -278,14 +278,14 @@
             <label for="inputEmail">이메일</label>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" id="inputEmail" value="${mypageEmail[0]}">
+                <input type="text" class="form-control" id="inputEmail" value="${mypageEmail[0]}" name="email1">
               </div>
               <div class="col">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                   </div>
-                  <input type="text" class="form-control" id="inputEmail2" value="${mypageEmail[1]}">
+                  <input type="text" class="form-control" id="inputEmail2" value="${mypageEmail[1]}" name="email2">
                 </div>
               </div>
             </div>
@@ -293,7 +293,7 @@
 
           <div class="form-group">
             <label for="inputDateOfBirth">생년월일</label>
-            <input type="date" class="form-control" id="inputDateOfBirth" value='${loginUser.dateOfBirth}'>
+            <input type="date" class="form-control" id="inputDateOfBirth" value="${loginUser.dateOfBirth}" name="dateOfBirth">
           </div>
 
           <label for="addressSearchButton">주소</label>
@@ -301,7 +301,7 @@
             <div class="col">
               <div class="d-flex">
                 <div class="flex-item pr-1" style="flex-basis: 93%;">
-                  <input type="text" id="inputAddress" class="form-control" readonly value="${loginUser.addressCity}">
+                  <input type="text" id="inputAddress" class="form-control" readonly value="${loginUser.addressCity}" name="addressCity">
                 </div>
                 <div class="flex-item" style="flex-basis: 7%;">
                   <button class="btn btn-sm btn-outline-primary" type="button" id="addressSearchButton">주소검색</button>
@@ -312,29 +312,28 @@
 
           <div class="form-group pt-1">
             <label for="inputAddress2" id="address2-label" class="col-sm-2 col-form-label"></label>
-            <input type="text" class="form-control" id="inputAddress2" value="${loginUser.addressSuburb}" readonly>
+            <input type="text" class="form-control" id="inputAddress2" value="${loginUser.addressSuburb}" readonly name="addressSuburb">
           </div>
 
           <div class="form-group">
             <label for="inputTel">전화번호</label>
-            <input type="text" class="form-control" id="inputTel" value="${loginUser.tel}">
+            <input type="text" class="form-control" id="inputTel" value="${loginUser.tel}" name="tel">
           </div>
 
-          <!-- 선생님 페이지 수정 중인 항목 -->
           <div class="form-group teacherDisplay">
             <label for="inputBankName">은행명</label>
-            <select class="form-control selectpicker" data-style="btn btn-link" id="inputBankName">
+            <select class="form-control selectpicker" data-style="btn btn-link" id="inputBankName" name="bankName">
               <option selected>은행선택</option>
-              <option>국민은행</option>
-              <option>우리은행</option>
-              <option>신한은행</option>
-              <option>카카오뱅크</option>
+              <option value="KB">국민은행</option>
+              <option value="Woori">우리은행</option>
+              <option value="Shinhan">신한은행</option>
+              <option value="kakao">카카오뱅크</option>
             </select>
           </div>
 
           <div class="form-group teacherDisplay">
             <label for="inputAccountNo">계좌번호</label>
-            <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}">
+            <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}" name="accountNo">
           </div>
 
           <div class="form-group teacherDisplay">
@@ -352,7 +351,6 @@
                 <c:set var="teacherUniversityConfirmation" value="${school.confirmed}" />
                 <input type="text" class="form-control" id="inputUniversity" value="${school.schoolName}" readonly>
               </c:if>
-
             </c:forEach>
           </div>
 
@@ -361,7 +359,7 @@
               <label for="inputPhotos" class="mb-3">사진 업로드</label>
               <div class="d-flex photo-add-div">
                 <div id="my-image-wrapper" class="col image-wrapper text-center">
-                  
+
                 </div>
               </div>
               <div class="d-flex photo-add-button btn btn-outline-primary mx-0 my-0 px-0 py-0"
@@ -374,7 +372,6 @@
             </div>
           </div>
 
-          <div></div>
 
           <div class="form-group row wantedSubjects subjectTemplate">
             <div class="col-sm-2 mt-1 mb-0 form-group">
@@ -383,19 +380,19 @@
                 class="btn btn-outline-primary btn-sm px-3 mb-1 remove-subject-button"><strong>&minus;</strong></button>
             </div>
             <div class="col-sm-10 d-flex">
-              <select class="form-control pt-0 mx-1 wantedSubject-school" name="subjectSchool">
+              <select class="form-control pt-0 mx-1 wantedSubject-school" name="schoolTypeNo">
                 <option value=1>초등학교</option>
                 <option value=2>중학교</option>
                 <option value=3>고등학교</option>
               </select>
-              <select class="form-control pt-0 mx-1 wantedSubject-subject" name="subjectName">
+              <select class="form-control pt-0 mx-1 wantedSubject-subject" name="subjectNo">
                 <option value=1>국어</option>
                 <option value=2>영어</option>
                 <option value=3>수학</option>
                 <option value=4>과학</option>
                 <option value=5>사회</option>
               </select>
-              <select class="form-control pt-0 mx-1 wantedSubject-fee" name="subjectFee">
+              <select class="form-control pt-0 mx-1 wantedSubject-fee" name="wantedFee">
                 <option value=1>20만원이하</option>
                 <option value=2>20만원~30만원</option>
                 <option value=3>30만원~40만원</option>
@@ -412,7 +409,7 @@
             <div class="subjectCheckboxDiv">
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_1" value="option1"> 일
+                  <input class="form-check-input" type="checkbox" id="OPTI_1" name="lessonDay" value="sunday"> 일
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -420,7 +417,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_2" value="option1"> 월
+                  <input class="form-check-input" type="checkbox" id="OPTI_2" name="lessonDay" value="monday"> 월
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -428,7 +425,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_3" value="option1"> 화
+                  <input class="form-check-input" type="checkbox" id="OPTI_3" name="lessonDay" value="tuesday"> 화
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -436,7 +433,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_4" value="option1"> 수
+                  <input class="form-check-input" type="checkbox" id="OPTI_4" name="lessonDay" value="wednesday"> 수
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -444,7 +441,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_5" value="option1"> 목
+                  <input class="form-check-input" type="checkbox" id="OPTI_5" name="lessonDay" value="thursday"> 목
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -452,7 +449,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_6" value="option1"> 금
+                  <input class="form-check-input" type="checkbox" id="OPTI_6" name="lessonDay" value="friday"> 금
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -460,7 +457,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_7" value="option1"> 토
+                  <input class="form-check-input" type="checkbox" id="OPTI_7" name="lessonDay" value="saturday"> 토
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -471,12 +468,12 @@
 
           <div class="form-group teacherDisplay studentDisplay">
             <label for="subject-start-time">과외 시작시간</label><br>
-            <input type='time' value='${loginUser.lessonStartTime}' id="subject-start-time" class="form-control" />
+            <input type='time' value='${loginUser.lessonStartTime}' id="subject-start-time" class="form-control" name="lessonStartTime" />
           </div>
 
           <div class="form-group teacherDisplay studentDisplay">
             <label for="subject-end-time">과외 종료시간</label><br>
-            <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control" />
+            <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control" name="lessonEndTime"/>
           </div>
 
           <div class="form-group studentDisplay">
@@ -530,12 +527,12 @@
           <div class="modification-button-div pt-2 pb-2">
             <button class="btn btn-primary">수정</button>
           </div>
+        </div>
       </div>
-      </form>
     </div>
   </div>
-</div>
-
+</form>
+  
 <!-- 값 테스트용 출력 (디버깅 이후 지울 것)-->
 <script>
   //console.log('${memberInfoMap.teacher}');
@@ -543,7 +540,6 @@
   //console.log('${memberInfoMap.parents}');
   //console.log('${memberInfoMap.student}');
   //console.log('${memberInfoMap.wantedLessons}');
-  console.log('test');
 </script>
 
 <c:forEach items="${memberInfoMap.teacherLessons}" var="teacherLesson">
@@ -560,13 +556,13 @@
   if ('${loginUser.memberTypeNo}' == 2) {
     var myParentsChildrenId = new Array();
   }
-  </script>
+</script>
 <c:forEach items="${memberInfoMap.parents.students}" var="student">
   <script>
     if ('${loginUser.memberTypeNo}' == 2) {
       myParentsChildrenId.push('${student.id}');
     }
-    </script>
+  </script>
 </c:forEach>
 
 <script src="/js/mypage/mypage-init.js"></script>
@@ -574,8 +570,8 @@
   let memberTypeNo = Number('${loginUser.memberTypeNo}');
   let teacherUniversityConfirmation = '${teacherUniversityConfirmation}';
   let teacherApprovementState = '${memberInfoMap.teacher.approvementState}';
-  
-  
+
+
   // 나의 과외 버튼 처리
   let myLesson = new MyLesson(memberTypeNo);
   myLesson.addLinkToMyLessonButton();
@@ -615,7 +611,7 @@
 <!-- 선생님 사진들 로딩해서 출력-->
 <script>
   let teacherPhotos = new Array();
-  
+
 </script>
 <c:forEach items="${memberInfoMap.teacherPhotos}" var="photo">
   <script>
@@ -635,76 +631,75 @@
       this.teacherPhotos = teacherPhotos;
     }
 
-    
+    addEventOfDeletionPhoto(thisDeleteButton) {
+      thisDeleteButton.addEventListener('click', () => {
+        if (this.teacherPhotoCount == 1)
+          return;
+        let thisPhotoCard = thisDeleteButton.parentNode;
+
+        thisPhotoCard.parentNode.removeChild(thisPhotoCard);
+        this.teacherPhotoCount--;
+      });
+    }
 
     addTeacherPhotoNode(photoFileName) {
       let html = '';
-      html += '<div class="card my-images mr-1 photo-no-'+this.indexOfPhotos+'" style="display: none;">';
-      html += '<img class="card-img-top my-teacher-images" src="/upload/teacher_photo/'+photoFileName+'" alt="Card image cap">';
+      html += '<div class="card my-images mr-1 photo-no-' + this.indexOfPhotos + '" style="display: none;">';
+      html += '<img class="card-img-top my-teacher-images" src="/upload/teacher_photo/' + photoFileName + '" alt="Card image cap">';
       html += '<div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0" style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">';
       html += '<button type="button" class="btn btn-outline-primary mx-0 my-0" style="flex-basis: 100%; box-shadow: none; border: 0;">';
       html += '삭제';
       html += '</button>';
-      html += '<input type="file" class="photo-file-no'+this.indexOfPhotos+'" hidden>';
       html += '</div>';
+      html += '<input type="text" class="photo-name-no-' + this.indexOfPhotos + '" name="teacherPhotoNames" value="' + photoFileName + '" hidden>';
+      html += '<input type="file" class="photo-file-no' + this.indexOfPhotos + '" name="teacherPhotoFiles">';
       html += '</div>';
 
       $('#my-image-wrapper').append(html);
-      this.teacherPhotoCount++;
 
-      let thisPhotoCard = document.getElementsByClassName('photo-no-'+this.indexOfPhotos)[0];
-      let thisPhoto = document.getElementsByClassName('photo-no-'+this.indexOfPhotos)[0].childNodes[0];
+      let thisPhotoCard = document.getElementsByClassName('photo-no-' + this.indexOfPhotos)[0];
+      let thisPhoto = document.getElementsByClassName('photo-no-' + this.indexOfPhotos)[0].childNodes[0];
+      let thisPhotoName = document.getElementsByClassName('photo-name-no-' + this.indexOfPhotos)[0];
+
       let thisDeleteButton = thisPhotoCard.childNodes[1];
-
       let thisFileInput = document.getElementsByClassName('photo-file-no' + this.indexOfPhotos)[0];
-      let thisFileName;
-      // 삭제 버튼에 이벤트 등록
-      thisDeleteButton.addEventListener('click', () => {
-        if (this.teacherPhotoCount == 1)
-        return;
-        
-        thisPhotoCard.parentNode.removeChild(thisPhotoCard);
-        this.teacherPhotoCount--;
-      });
-      
+
+      this.addEventOfDeletionPhoto(thisDeleteButton);
+
       if (this.initialPhotoLoadingCompleted) {
-        
-        // 파일 업로드를 클릭하도록 이벤트 전달
+        thisFileInput.addEventListener('change', e => {
+          let get_file = e.target.files;
+          let reader = new FileReader();
+
+          reader.onload = ((thisPhoto, thisPhotoCard) => {
+            return (e) => {
+              thisPhotoCard.style.display = 'inline-block';
+              thisPhoto.src = e.target.result;
+            }
+          })(thisPhoto, thisPhotoCard);
+
+          reader.readAsDataURL(get_file[0]);
+          thisPhotoName.value = get_file[0].name;
+        });
+
+        // 사진 등록 버튼을 누르면 파일 업로드를 클릭하도록 이벤트 전달
         let clickPhotoChangeEvent = new MouseEvent('click', {
           bubbles: true, cancelable: true, view: window
         });
         thisFileInput.dispatchEvent(clickPhotoChangeEvent);
-
-        // 파일 업로드
-        thisFileInput.addEventListener('change', e => {
-          let get_file = e.target.files;
-          let reader = new FileReader();
-          
-          reader.onload = (function (aImg) {
-            return function (e) {
-              aImg.src = e.target.result;
-            }
-          })(thisPhoto);
-          
-          reader.readAsDataURL(get_file[0]);
-          thisPhoto.src = get_file[0].name;
-          console.log(thisPhoto.src);
-        });
       }
-      
-      thisPhotoCard.style.display = 'inline-block';
-      this.indexOfPhotos++;
-      
-    }
 
-    addTeacherPhoto() {
-      return null;
+      if (!this.initialPhotoLoadingCompleted)
+        thisPhotoCard.style.display = 'inline-block';
+
+      this.teacherPhotoCount++;
+      this.indexOfPhotos++;
+
     }
 
     addEventToPhotoAddButton() {
       let photoAddButton = document.getElementsByClassName('photo-add-button')[0];
       photoAddButton.addEventListener('click', () => {
-        let addedPhotoName = this.addTeacherPhoto();
         this.addTeacherPhotoNode('c.jpg');
       });
     }
@@ -714,11 +709,11 @@
         this.addTeacherPhotoNode(photoName);
       }
 
-      // this.initialPhotoLoadingCompleted = true;
+      this.initialPhotoLoadingCompleted = true;
 
       this.addEventToPhotoAddButton();
     }
-    
+
 
   }
 
