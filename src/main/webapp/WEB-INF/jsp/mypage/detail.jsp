@@ -5,6 +5,12 @@
 <head>
   <link href="/assets/demo/demo.css" rel="stylesheet" />
   <style>
+    /* 동그란 사진 길이가 길면 자르기 */
+    .img-raised.rounded-circle.img-fluid {
+      height: 160px;
+      object-fit: cover;
+    }
+
     #mypage-form {
       padding: 0px 20px 0px 20px;
     }
@@ -115,6 +121,93 @@
 
     .childIdTemplate {
       display: none;
+    }
+
+    .my-images {
+      max-width: 16.3rem;
+
+    }
+
+    .my-teacher-images {
+      width: 16.3rem;
+      height: 16.3rem;
+      object-fit: cover;
+    }
+
+    @media (min-width: 576px) {
+      .my-images {
+        max-width: 28rem;
+      }
+
+      .my-teacher-images {
+        width: 28rem;
+        height: 28rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      .my-images {
+        max-width: 18.2rem;
+      }
+
+      .my-teacher-images {
+        width: 18.2rem;
+        height: 18.2rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+      .my-images {
+        max-width: 25rem;
+      }
+
+      .my-teacher-images {
+        width: 25rem;
+        height: 25rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+      .my-images {
+        max-width: 15rem;
+      }
+
+      .my-teacher-images {
+        width: 15rem;
+        height: 15rem;
+        object-fit: cover;
+      }
+    }
+
+
+
+    .card-body {
+      font-size: 16px;
+      color: #9c27b0;
+    }
+
+    .photo-add-div {
+      border-top: 1px solid #d2d2d2;
+      border-right: 1px solid #d2d2d2;
+      border-bottom: 1px solid #9c27b0;
+      border-left: 1px solid #d2d2d2;
+      border-top-left-radius: 0.35rem;
+      border-top-right-radius: 0.35rem;
+    }
+
+    .photo-add-button {
+      color: #9c27b0;
+      border-right: 1px solid #9c27b0 !important;
+      border-left: 1px solid #9c27b0;
+      border-bottom: 1px solid #9c27b0;
+      border-bottom-left-radius: 0.35rem;
+      border-bottom-right-radius: 0.35rem;
     }
   </style>
 
@@ -244,19 +337,6 @@
             <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}">
           </div>
 
-          <div class="form-group row teacherDisplay">
-            <div class="col">
-              <div class="d-flex">
-                <div class="col" style="flex-basis:80%; border: 1px solid powderblue;">
-                  test1
-                </div>
-                <div class="col" style="flex-basis:20%; border: 1px solid powderblue;">
-                  test2
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="form-group teacherDisplay">
             <label for="inputHighSchool">고등학교</label>
             <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
@@ -275,6 +355,26 @@
 
             </c:forEach>
           </div>
+
+          <div class="form-group row teacherDisplay">
+            <div class="col">
+              <label for="inputPhotos" class="mb-3">사진 업로드</label>
+              <div class="d-flex photo-add-div">
+                <div id="my-image-wrapper" class="col image-wrapper text-center">
+                  
+                </div>
+              </div>
+              <div class="d-flex photo-add-button btn btn-outline-primary mx-0 my-0 px-0 py-0"
+                style="border-top-left-radius: 0; border-top-right-radius: 0; border-top-width: 0px;">
+                <button type="button" class="btn btn-outline-primary mx-0 my-0"
+                  style="flex-basis: 100%; box-shadow: none; border: 0;">
+                  사진 등록
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div></div>
 
           <div class="form-group row wantedSubjects subjectTemplate">
             <div class="col-sm-2 mt-1 mb-0 form-group">
@@ -438,142 +538,200 @@
 
 <!-- 값 테스트용 출력 (디버깅 이후 지울 것)-->
 <script>
-  console.log('${memberInfoMap.teacher}');
-  console.log('${memberInfoMap.lessonSubjects}');
-  console.log('${memberInfoMap.parents}');
-  console.log('${memberInfoMap.student}');
-  console.log('${memberInfoMap.wantedLessons}');
+  //console.log('${memberInfoMap.teacher}');
+  //console.log('${memberInfoMap.lessonSubjects}');
+  //console.log('${memberInfoMap.parents}');
+  //console.log('${memberInfoMap.student}');
+  //console.log('${memberInfoMap.wantedLessons}');
+  console.log('test');
 </script>
+
+<c:forEach items="${memberInfoMap.teacherLessons}" var="teacherLesson">
+  <script>
+    console.log("${teacherLesson}");
+  </script>
+</c:forEach>
 
 <!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
-<script>
-  console.log('test');
-  let profilePhotoImg = document.getElementsByClassName('profile-photo')[0];
-  let profileFileInput = document.getElementById('profile-photo-upload');
+<script src="/js/mypage/profile-photo.js"></script>
 
-  profileFileInput.addEventListener('change', (e) => {
-    let get_file = e.target.files;
-    let reader = new FileReader();
-
-    reader.onload = (function (aImg) {
-      return function (e) {
-        // 현재 프로필 이미지 경로를 바꿈
-        aImg.src = e.target.result;
-      }
-    })(profilePhotoImg);
-
-    reader.readAsDataURL(get_file[0]);
-    profilePhotoImg.src = get_file[0].name;
-  });
-
-  // '사진변경' 버튼을 누르면 profileFileInput을 누르도록 이벤트를 전달
-  profilePhotoImg.addEventListener('click', () => {
-    let clickPhotoChangeBtn = new MouseEvent('click', {
-      bubbles: true, cancelable: true, view: window
-    });
-
-    document.getElementById('profile-photo-upload').dispatchEvent(clickPhotoChangeBtn);
-  });
-</script>
-
-<!-- 학생증, 신고서 인증 체크박스 -->
-<script>
-  if ('${loginUser.memberTypeNo}' == 3) {
-    if ('${teacherUniversityConfirmation}' == 'true') {
-      let studentIdchecked = document.getElementsByClassName('student-ID-checked')[0];
-      studentIdchecked.style.display = 'inline-block';
-    } else if ('${teacherUniversityConfirmation}' == 'false' || '${teacherUniversityConfirmation}' == '') {
-      let studentIdUnchecked = document.getElementsByClassName('student-ID-unchecked')[0];
-      studentIdUnchecked.style.display = 'inline-block';
-    }
-
-    if ('${memberInfoMap.teacher.approvementState}' == 'true') {
-      let tutorCertichecked = document.getElementsByClassName('tutor-certi-checked')[0];
-      tutorCertichecked.style.display = 'inline-block';
-    } else if ('${memberInfoMap.teacher.approvementState}' == 'false' || '${teacherUniversityConfirmation}' == '') {
-      let tutorCertiUnchecked = document.getElementsByClassName('tutor-certi-unchecked')[0];
-      tutorCertiUnchecked.style.display = 'inline-block';
-    }
-  }
-</script>
-
-<!-- 선생님으로 로그인 시에 보여야 하는 항목만 출력-->
-<script>
-  if ('${loginUser.memberTypeNo}' == 3) {
-    let studentIdSpan = document.getElementsByClassName('student-ID-span')[0];
-    let tutorCertiSpan = document.getElementsByClassName('tutor-certi-span')[0];
-    let myLessonBtnDisplay = document.getElementsByClassName('my-lesson-btn')[0];
-    let teacherDisplay = document.getElementsByClassName('teacherDisplay');
-
-    studentIdSpan.style.display = 'inline-block';
-    tutorCertiSpan.style.display = 'inline-block';
-    myLessonBtnDisplay.style.display = 'inline-block';
-
-    for (let td of teacherDisplay)
-      td.style.display = 'block';
-  }
-</script>
-
-<!-- 학생으로 로그인 시에 보여야 하는 항목만 출력-->
-<script>
-  if ('${loginUser.memberTypeNo}' == 1) {
-    let myLessonBtnDisplay = document.getElementsByClassName('my-lesson-btn')[0];
-    let studentDisplay = document.getElementsByClassName('studentDisplay');
-
-    myLessonBtnDisplay.style.display = 'inline-block';
-
-    for (let sd of studentDisplay)
-      sd.style.display = 'block';
-  }
-</script>
-
-<!-- 학부모로 로그인 시에 보여야 하는 항목만 출력-->
+<!-- 학부모 자녀아이디의 값을 가져와 스크립트용 리스트에 넣는 부분 -->
 <script>
   if ('${loginUser.memberTypeNo}' == 2) {
-    let parentsDisplay = document.getElementsByClassName('parentsDisplay');
-
-    for (let pd of parentsDisplay)
-      pd.style.display = 'block';
+    var myParentsChildrenId = new Array();
   }
-</script>
+  </script>
+<c:forEach items="${memberInfoMap.parents.students}" var="student">
+  <script>
+    if ('${loginUser.memberTypeNo}' == 2) {
+      myParentsChildrenId.push('${student.id}');
+    }
+    </script>
+</c:forEach>
 
-<!-- 쪽지함 버튼 -->
+<script src="/js/mypage/mypage-init.js"></script>
 <script>
-  let myMessageBtn = document.getElementsByClassName('my-message-btn')[0];
-  myMessageBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-  });
+  let memberTypeNo = Number('${loginUser.memberTypeNo}');
+  let teacherUniversityConfirmation = '${teacherUniversityConfirmation}';
+  let teacherApprovementState = '${memberInfoMap.teacher.approvementState}';
+  
+  
+  // 나의 과외 버튼 처리
+  let myLesson = new MyLesson(memberTypeNo);
+  myLesson.addLinkToMyLessonButton();
 
-</script>
-
-<!-- 나의 과외 버튼 -->
-<script>
-  let myLessonBtn = document.getElementsByClassName('my-lesson-btn')[0];
-  myLessonBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    location.href = '/app/lesson/list?memberTypeNo=${loginUser.memberTypeNo}';
-  });
-
-</script>
-
-<!-- 카톡 수신여부 체크박스 로딩 -->
-<script>
-  let kakaotalk = '${memberInfoMap.parents.kakaotalk}';
-  if (kakaotalk == 'true') {
-    $("input:checkbox[id='kakaotalkCheckbox']").prop("checked", true);
+  let mypageInit = new MypageInit(memberTypeNo);
+  if (memberTypeNo == 3) {
+    mypageInit.checkTeacherApprovement(teacherUniversityConfirmation, teacherApprovementState);
   }
-</script>
 
-<!-- 수업 요일 체크박스 로딩 -->
-<script>
+  mypageInit.displayMemberInfo();
+
+  if (memberTypeNo == 2) {
+    mypageInit.setEventToRemoveChildIdButton();
+    mypageInit.addEventToChildIdButton();
+    mypageInit.addParentsChildrenNodes();
+
+    let kakaotalk = '${memberInfoMap.parents.kakaotalk}';
+    // 카톡 수신여부 체크박스 로딩
+    if (kakaotalk == 'true') {
+      $("input:checkbox[id='kakaotalkCheckbox']").prop("checked", true);
+    }
+  }
+
+  // 수업 요일 체크박스 로딩
   let day = '${loginUser.lessonDays}';
   let array = day.split("");
   for (var i = 0; i < array.length; i++) {
     if (array[i] == 1) {
       $("input:checkbox[id='OPTI_" + (i + 1) + "']").prop("checked", true);
     }
-  }   
+  }
 </script>
+
+
+
+
+<!-- 선생님 사진들 로딩해서 출력-->
+<script>
+  let teacherPhotos = new Array();
+  
+</script>
+<c:forEach items="${memberInfoMap.teacherPhotos}" var="photo">
+  <script>
+    if ('${loginUser.memberTypeNo}' == 3) {
+      teacherPhotos.push('${photo.teacherPhoto}');
+    }
+  </script>
+</c:forEach>
+<script>
+  class TeacherPhotoController {
+    teacherPhotos;
+    teacherPhotoCount = 0;
+    indexOfPhotos = 1;
+    initialPhotoLoadingCompleted = false;
+
+    constructor(teacherPhotos) {
+      this.teacherPhotos = teacherPhotos;
+    }
+
+    
+
+    addTeacherPhotoNode(photoFileName) {
+      let html = '';
+      html += '<div class="card my-images mr-1 photo-no-'+this.indexOfPhotos+'" style="display: none;">';
+      html += '<img class="card-img-top my-teacher-images" src="/upload/teacher_photo/'+photoFileName+'" alt="Card image cap">';
+      html += '<div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0" style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">';
+      html += '<button type="button" class="btn btn-outline-primary mx-0 my-0" style="flex-basis: 100%; box-shadow: none; border: 0;">';
+      html += '삭제';
+      html += '</button>';
+      html += '<input type="file" class="photo-file-no'+this.indexOfPhotos+'" hidden>';
+      html += '</div>';
+      html += '</div>';
+
+      $('#my-image-wrapper').append(html);
+      this.teacherPhotoCount++;
+
+      let thisPhotoCard = document.getElementsByClassName('photo-no-'+this.indexOfPhotos)[0];
+      let thisPhoto = document.getElementsByClassName('photo-no-'+this.indexOfPhotos)[0].childNodes[0];
+      let thisDeleteButton = thisPhotoCard.childNodes[1];
+
+      let thisFileInput = document.getElementsByClassName('photo-file-no' + this.indexOfPhotos)[0];
+      let thisFileName;
+      // 삭제 버튼에 이벤트 등록
+      thisDeleteButton.addEventListener('click', () => {
+        if (this.teacherPhotoCount == 1)
+        return;
+        
+        thisPhotoCard.parentNode.removeChild(thisPhotoCard);
+        this.teacherPhotoCount--;
+      });
+      
+      if (this.initialPhotoLoadingCompleted) {
+        
+        // 파일 업로드를 클릭하도록 이벤트 전달
+        let clickPhotoChangeEvent = new MouseEvent('click', {
+          bubbles: true, cancelable: true, view: window
+        });
+        thisFileInput.dispatchEvent(clickPhotoChangeEvent);
+
+        // 파일 업로드
+        thisFileInput.addEventListener('change', e => {
+          let get_file = e.target.files;
+          let reader = new FileReader();
+          
+          reader.onload = (function (aImg) {
+            return function (e) {
+              aImg.src = e.target.result;
+            }
+          })(thisPhoto);
+          
+          reader.readAsDataURL(get_file[0]);
+          thisPhoto.src = get_file[0].name;
+          console.log(thisPhoto.src);
+        });
+      }
+      
+      thisPhotoCard.style.display = 'inline-block';
+      this.indexOfPhotos++;
+      
+    }
+
+    addTeacherPhoto() {
+      return null;
+    }
+
+    addEventToPhotoAddButton() {
+      let photoAddButton = document.getElementsByClassName('photo-add-button')[0];
+      photoAddButton.addEventListener('click', () => {
+        let addedPhotoName = this.addTeacherPhoto();
+        this.addTeacherPhotoNode('c.jpg');
+      });
+    }
+
+    loadInitialTeacherPhotos() {
+      for (let photoName of this.teacherPhotos) {
+        this.addTeacherPhotoNode(photoName);
+      }
+
+      // this.initialPhotoLoadingCompleted = true;
+
+      this.addEventToPhotoAddButton();
+    }
+    
+
+  }
+
+  let teacherPhotoController = new TeacherPhotoController(teacherPhotos);
+  teacherPhotoController.loadInitialTeacherPhotos();
+
+
+</script>
+
+
+
+
+
 
 <!-- 희망과목 제거 버튼 초기 세팅-->
 <script>
@@ -701,90 +859,8 @@
   }
 </script>
 
-<!-- 자녀ID 제거 버튼 초기 세팅-->
-<script>
-  let removeChildIdButton = document.getElementsByClassName('remove-childId-button')[0];
-
-  let childIdCount = 0;
-
-  let addRemoveChildIdEventTo = function (thisBtn) {
-    thisBtn.addEventListener('click', (event) => {
-      if (childIdCount == 1)
-        return;
-
-      let thisChildIdNode = thisBtn.parentNode.parentNode;
-      thisChildIdNode.parentNode.removeChild(thisChildIdNode);
-
-      childIdCount--;
-    });
-  }
-
-  addRemoveChildIdEventTo(removeChildIdButton);
-
-</script>
-
-<!-- 자녀ID 추가 버튼 -->
-<script>
-  let childAddButton = document.getElementsByClassName('childAddButton')[0];
-
-  let addChildIdNode = function () {
-    let childrendId = document.getElementsByClassName('childId');
-    let childIdTemplate = childrendId[0].cloneNode(true);
-
-    childIdTemplate.setAttribute('class', 'form-group row childId mb-2 pt-1');
-
-    childrendId[0].parentNode.insertBefore(childIdTemplate, childrendId[childrendId.length - 1].nextSibling);
-    childIdCount++;
-
-    addRemoveChildIdEventTo(childIdTemplate.childNodes[1].childNodes[3]);
-
-    return childIdTemplate;
-  }
-
-  childAddButton.addEventListener('click', () => {
-    addChildIdNode();
-  });
-
-</script>
-
-<!-- 학부모 자녀아이디의 값을 가져와 스크립트용 리스트에 넣는 부분 -->
-<script>
-  if ('${loginUser.memberTypeNo}' == 2) {
-    var myParentsChildrenId = new Array();
-  }
-</script>
-<c:forEach items="${memberInfoMap.parents.students}" var="student">
-  <script>
-    if ('${loginUser.memberTypeNo}' == 2) {
-      myParentsChildrenId.push('${student.id}');
-    }
-  </script>
-</c:forEach>
-
-<script>
-  if ('${loginUser.memberTypeNo}' == 2) {
-    for (let i = 0; i < myParentsChildrenId.length; i++) {
-      let addedChildIdObject = addChildIdNode();
-      let childIdInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[1];
-
-      childIdInput.value = myParentsChildrenId[i];
-    }
-  }
-</script>
 
 
-<!-- 다음 주소 찾기 라이브러리-->
+<!-- 다음 주소 찾기-->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- 주소 찾기 버튼 이벤트 등록 -->
-<script>
-  let addressSearchButton = document.getElementById('addressSearchButton');
-
-  addressSearchButton.addEventListener('click', function () {
-    new daum.Postcode({
-      oncomplete: function (data) {
-        document.getElementById('inputAddress').value = data.sido;
-        document.getElementById('inputAddress2').value = data.sigungu;
-      }
-    }).open();
-  });
-</script>
+<script src="/js/mypage/daum-addr.js"></script>
