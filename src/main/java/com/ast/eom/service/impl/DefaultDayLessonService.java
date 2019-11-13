@@ -24,7 +24,7 @@ public class DefaultDayLessonService implements DayLessonService {
   }
   
   @Override
-  public void update(DayLesson dayLessonNo) throws Exception {
-    dayLessonDao.update(dayLessonNo);
+  public int update(DayLesson dayLessonNo) throws Exception {
+    return dayLessonDao.update(dayLessonNo);
   }
 }
