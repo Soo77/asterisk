@@ -9,16 +9,16 @@ public class DayLesson {
   private int lessonNo;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date lessonDate;
-  private int lessonStartHour;
-  private int lessonEndHour;
+  private String lessonStartHour;
+  private String lessonEndHour;
   private String lessonSummary;
   private String lessonEvaluation;
   
   @Override
   public String toString() {
-    return "DayLesson [dayLessonNo=" + dayLessonNo + ", lessonNo=" + lessonNo + ", lessonDate=" + lessonDate
-        + ", lessonStartHour=" + lessonStartHour + ", lessonEndHour=" + lessonEndHour + ", lessonSummary="
-        + lessonSummary + ", lessonEvaluation=" + lessonEvaluation + "]";
+    return "DayLesson [dayLessonNo=" + dayLessonNo + ", lessonNo=" + lessonNo + ", lessonDate="
+        + lessonDate + ", lessonStartHour=" + lessonStartHour + ", lessonEndHour=" + lessonEndHour
+        + ", lessonSummary=" + lessonSummary + ", lessonEvaluation=" + lessonEvaluation + "]";
   }
   public int getDayLessonNo() {
     return dayLessonNo;
@@ -38,16 +38,16 @@ public class DayLesson {
   public void setLessonDate(Date lessonDate) {
     this.lessonDate = lessonDate;
   }
-  public int getLessonStartHour() {
+  public String getLessonStartHour() {
     return lessonStartHour;
   }
-  public void setLessonStartHour(int lessonStartHour) {
+  public void setLessonStartHour(String lessonStartHour) {
     this.lessonStartHour = lessonStartHour;
   }
-  public int getLessonEndHour() {
+  public String getLessonEndHour() {
     return lessonEndHour;
   }
-  public void setLessonEndHour(int lessonEndHour) {
+  public void setLessonEndHour(String lessonEndHour) {
     this.lessonEndHour = lessonEndHour;
   }
   public String getLessonSummary() {
