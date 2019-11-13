@@ -43,6 +43,7 @@
 	<div class="form-row">
    <div class="col-sm-5">
 		  <input type="text" id="messageConts" name="messageConts"
+			onKeypress="if(event.keyCode==13) {messageIn();}" 
 			class="form-control" placeholder="내용을 입력">
 		  </div>
 		<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
@@ -80,23 +81,27 @@
 
 <!-- 메세지 입력 -->
   <script>
-		$("#messageIn").click(function() {
-				var messageConts = document.getElementById("messageConts").value;
-					$.ajax({
-						url : 'messagein',
-						type : 'post',
-						data : "senderNo="+${loginUser.memberNo}+"&messageConts=" + 
-						messageConts + "&receiverNo=" + ${receiverNo},
-						success : function(result) {
-              $("#chat").text("");
-              $("#messageConts").val("");
-              detail();
-						},
-						error : function() {
-							console.log("실패");
-						}
-					});
-				});
-	</script>
+    $("#messageIn").click(function() {
+      messageIn();
+    });
+    
+    function messageIn(){
+      var messageConts = document.getElementById("messageConts").value;
+      $.ajax({
+        url : 'messagein',
+        type : 'post',
+        data : "senderNo="+${loginUser.memberNo}+"&messageConts=" + 
+        messageConts + "&receiverNo=" + ${receiverNo},
+        success : function(result) {
+          $("#chat").text("");
+          $("#messageConts").val("");
+          detail();
+        },
+        error : function() {
+          console.log("실패");
+        }
+      });
+    }
+  </script>
 </body>
 </html>
