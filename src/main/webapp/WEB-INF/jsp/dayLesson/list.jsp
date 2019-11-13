@@ -17,6 +17,10 @@
     #myBtnDetail {
       text-align: right;
     }
+    
+    .modal-title {
+      font-weight: bold;
+    }
   </style>
   
 </head>
@@ -103,6 +107,7 @@
             <div class="col" id="modalLessonTime"></div>
           </div>
         </div>
+        <hr>
         <div class="row">
           <div class="col">
             <label for="lessonSummary">수업 내용 정리</label>
@@ -130,13 +135,19 @@
 <script src="/js/jquery.simple-calendar.js"></script>
 
 <script>
-$(document).ready(function() {
-	$("#container").simpleCalendar({
-		fixedStartDay : false
-	});
-	
+$(document).ready(function(){
+	  
+	$("#container").simpleCalendar();
+
 });
+
+$("#container").simpleCalendar({
+    months: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+    days: ['일','월','화','수','목','금','토']
+});
+
 </script>
+
 <script>
 	
   var lessonNo = ${lessonNo};
@@ -240,8 +251,6 @@ $(document).ready(function() {
     
     var lessonEvaluation = $("#lessonEvaluation_" + key).val();
     $("#modalLessonEvaluation").val(lessonEvaluation);
-    
-    console.log(daylessonNo);
   }
 
 
