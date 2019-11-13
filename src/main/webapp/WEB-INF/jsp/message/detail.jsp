@@ -9,7 +9,7 @@
 	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<style>
 	 .chat-left {
-	   width: 200px;
+	  width: 19%;
 	  border-radius: 5px;
     position: relative;
     padding: 5px 10px;
@@ -20,7 +20,7 @@
 	 }
 	 
 	 .chat-right {
-   width: 200px;
+    width: 19%;
     border-radius: 5px;
     position: relative;
     padding: 5px 10px;
@@ -60,13 +60,14 @@
         type : 'post',
         data : "senderNo=" + ${loginUser.memberNo} + "&receiverNo=" + ${receiverNo},
         success : function(data) {
-          
+          console.log(data);
           for ( var i = 0 in data) {
-            if (data[i].receiverNo == ${loginUser.memberNo}) {
-            	let str = '<div class="chat-left">'+data[i].messageContents+'</div>';
+        	  console.log(data[i].receiverNo +"dd"+ ${loginUser.memberNo})
+            if (data[i].senderNo == ${loginUser.memberNo}) {
+            	let str = '<div class="chat-right">'+data[i].messageContents+'</div>';
               $("#chat").append(str);
             } else {
-            	let str = '<div class="chat-right">'+data[i].messageContents+'</div>';
+            	let str = '<div class="chat-left">'+data[i].messageContents+'</div>';
               $("#chat").append(str);
             }
           }
@@ -87,20 +88,25 @@
     
     function messageIn(){
       var messageConts = document.getElementById("messageConts").value;
-      $.ajax({
-        url : 'messagein',
-        type : 'post',
-        data : "senderNo="+${loginUser.memberNo}+"&messageConts=" + 
-        messageConts + "&receiverNo=" + ${receiverNo},
-        success : function(result) {
-          $("#chat").text("");
-          $("#messageConts").val("");
-          detail();
-        },
-        error : function() {
-          console.log("실패");
-        }
-      });
+      
+      if(messageConts == ""){
+    	  return false;
+      } else {
+	      $.ajax({
+	        url : 'messagein',
+	        type : 'post',
+	        data : "senderNo="+${loginUser.memberNo}+"&messageConts=" + 
+	        messageConts + "&receiverNo=" + ${receiverNo},
+	        success : function(result) {
+	          let str = '<div class="chat-right">'+messageConts+'</div>';
+	          $("#chat").append(str);
+	          $("#messageConts").val("");
+	        },
+	        error : function() {
+	          console.log("실패");
+	        }
+	      });
+      }
     }
   </script>
 </body>

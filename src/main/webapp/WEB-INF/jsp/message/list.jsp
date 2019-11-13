@@ -11,11 +11,10 @@
 </head>
 <body>
 <h2>쪽지 보내기</h2>
-<button id="findMember" onclick="findmember()">회원목록</button>
+<i class="fas fa-bell"></i>
 	<div id="showList"></div>
 	<br>
 	<br>
-	<i class="fas fa-bell"></i>
 
 	<script>
 		$(document).ready(function() {
@@ -33,7 +32,7 @@
 						console.log(data[i].name);
 						if("${loginUser.name}"==data[i].name) {
 							var str = '<div>';
-	            str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + "나" + '</a>';
+	            str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + "나에게 쪽지" + '</a>';
 	            str += '</div>';
 						} else {
 							var str = '<div>';
@@ -48,14 +47,6 @@
 				}
 			});
 		}
-	</script>
-	
-	<script>
-	  function findmember(){
-          var url = "findmember";
-          var option = "width = 500, height = 500, top = 100, left = 200, location = yes"
-          window.open(url, "", option);
-		};
 	</script>
 	
 </body>

@@ -22,12 +22,6 @@ public class MessageController {
   @GetMapping("list")
   public void list() throws Exception {
   }
-  
-  @GetMapping("findmember")
-  public void findmember(Model model) throws Exception {
-    List<Member> member = messageDao.findmember();
-    model.addAttribute("findMember", member);
-  }
 
   @GetMapping("detail")
   public List<Message> detail(Model model, int memberNo) throws Exception {
