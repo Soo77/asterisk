@@ -116,14 +116,16 @@
   </sql>
 
     <select id="findAllTeacherBy" resultMap="LessonMap">
-			select s.sch_type_no, l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
+	     <include refid="lessonColumn"/>,
+	     s.sch_type_no, l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
 			from lesson l 
 			inner join subject s on l.sub_no = s.sub_no
 			inner join member m on l.tch_no = m.mem_no
     </select>
     
     <select id="findAllStudentBy" resultMap="LessonMap">
-			select s.sch_type_no, l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
+			<include refid="lessonColumn"/>,
+			s.sch_type_no, l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
 			from lesson l 
 			left outer join subject s on l.sub_no = s.sub_no
 			left outer join member m on l.std_no = m.mem_no
