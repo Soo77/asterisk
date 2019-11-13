@@ -86,35 +86,35 @@
      text-align: center;
     }
     
-    .my-comment-img {
+    #my-comment-img {
       width: 30px;
       height: 30px;
       object-fit: cover;
     }
 
     @media (min-width: 576px) {
-      .my-comment-img {
+      #my-comment-img {
         width: 50px;
         height: 50px;
       }
     }
 
     @media (min-width: 768px) {
-      .my-comment-img {
+      #my-comment-img {
         width: 70px;
         height: 70px;
       }
     }
 
     @media (min-width: 992px) {
-      .my-comment-img {
+      #my-comment-img {
         width: 100px;
         height: 100px;
       }
     }
 
     @media (min-width: 1200px) {
-      .my-comment-img {
+      #my-comment-img {
         width: 125px;
         height: 125px;
       }
@@ -286,7 +286,7 @@
               <div class="col-2 p-1 comment-img">
                 <img src="/upload/join/${loginUser.profilePhoto}"
                   onError="javascript:src='/upload/join/default.png'"
-                  alt="" class="img-raised rounded-circle img-fluid my-comment-img">
+                  alt="" class="img-raised rounded-circle img-fluid my-comment-img" id="my-comment-img">
               </div>
               <div class="col-9 p-1" id="wrap">
                 <textarea id="commentContents" name="commentContents" rows="5"
