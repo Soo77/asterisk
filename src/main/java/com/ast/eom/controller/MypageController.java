@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ast.eom.domain.LessonSubject;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Parents;
 import com.ast.eom.domain.Student;
@@ -28,6 +27,39 @@ public class MypageController {
   @Autowired
   private MypageService mypageService;
   
+  private void supplementInitialMemberInfo(Member member, Member loginUser, String email1, String email2, String[] lessonDay) {
+    member.setMemberNo(loginUser.getMemberNo());
+    member.setMemberTypeNo(loginUser.getMemberTypeNo());
+    member.setEmail(email1+"@"+email2);
+    
+    StringBuilder sb = new StringBuilder();
+    sb.append("0000000");
+    for(int i = 0; i < lessonDay.length; i++) {
+      sb.setCharAt(Integer.parseInt(lessonDay[i]), '1'); 
+    }
+    member.setLessonDays(sb.toString());
+    
+  }
+  
+  private void updateLoginUser(
+      Member loginUser, Member member, HttpSession session) {
+    
+    member.setRegisteredDate(loginUser.getRegisteredDate());
+    member.setGender(loginUser.getGender());
+    member.setDateOfBirth(loginUser.getDateOfBirth());
+    member.setId(loginUser.getId());
+    member.setPassword(null);
+    member.setName(loginUser.getName());
+    member.setAddressCity(loginUser.getAddressCity());
+    member.setUserEmailChecked(loginUser.isUserEmailChecked());
+    member.setActivationKey(loginUser.getActivationKey());
+    if (member.getProfilePhoto() == null)
+      member.setProfilePhoto(loginUser.getProfilePhoto());
+    
+    session.setAttribute("loginUser", member);
+    
+  }
+  
   @GetMapping("detail")
   public void detail(HttpSession session) throws Exception {
     Map<String, Object> memberInfoMap = mypageService.getMemberInfoMap();
@@ -38,28 +70,45 @@ public class MypageController {
   public String update(
       HttpSession session,
       Member member,
-      Student student,
+      String email1,
+      String email2,
       Teacher teacher,
       String[] schoolTypeNo,
       String[] subjectNo,
       String[] wantedFee,
       String[] lessonDay,
-      Parents parents,
       String[] teacherPhotoNames,
       MultipartFile profilePhotoName,
-      MultipartFile[] teacherPhotoFiles) throws Exception {
+      MultipartFile[] teacherPhotoFiles,
+      Student student,
+      Parents parents,
+      String[] childrenId,
+      String kakaoCheck) throws Exception {
     
-    System.out.println("바꿀 유저 : " + member);
-    System.out.println(teacher);
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    supplementInitialMemberInfo(member, loginUser, email1, email2, lessonDay);
+
+    photoWriter.upload(
+        profilePhotoName, teacherPhotoFiles, teacherPhotoNames,
+        member, session);
     
-//    Member loginUser = (Member) session.getAttribute("loginUser");
-//    
-//    photoWriter.upload(
-//        profilePhoto, teacherPhotoFiles, teacherPhotoNames,
-//        loginUser, session);
-//    
-//    mypageService.update(loginUser);
+
+    if (loginUser.getMemberTypeNo() == 1) {
+      
+    } else if (loginUser.getMemberTypeNo() == 2) {
+      
+    } else if (loginUser.getMemberTypeNo() == 3) {
+      teacher.setTeacherNo(loginUser.getMemberNo());
+      System.out.println(member);
+      System.out.println(teacher);
+      
+      mypageService.updateTeacher(
+          member, teacher, schoolTypeNo, subjectNo, wantedFee);
+      
+    }
+    updateLoginUser(loginUser, member, session);
 
     return "redirect:detail";
   }
+
 }

@@ -17,7 +17,7 @@ import com.ast.eom.domain.TeacherPhoto;
 @Controller
 public class MypagePhotoWriter {
   
-  Member loginUser;
+  Member member;
 
   @Autowired
   TeacherPhotoDao teacherPhotoDao;
@@ -31,13 +31,28 @@ public class MypagePhotoWriter {
     teacherPhotosUploadDir = sc.getRealPath("/upload/teacher_photo");
   }
   
+  public void upload(
+      MultipartFile profilePhoto,
+      MultipartFile[] teacherPhotoFiles,
+      String[] teacherPhotoNames,
+      Member member, HttpSession session) throws Exception {
+    
+    this.member = member;
+    
+    uploadProfilePhoto(profilePhoto);
+    if (member.getMemberTypeNo() == 3) {
+      uploadTeacherPhotos(teacherPhotoFiles, teacherPhotoNames, session);
+      
+    }
+  }
+  
   private void uploadProfilePhoto(MultipartFile profilePhoto) throws Exception {
     // 프로필 사진 업로드 구현 완료
     if (!profilePhoto.isEmpty()) {
       String filename = UUID.randomUUID().toString();
       profilePhoto.transferTo(new File(profileUploadDir +"/"+ filename));
       
-      loginUser.setProfilePhoto(filename);
+      member.setProfilePhoto(filename);
     }
   }
 
@@ -49,7 +64,7 @@ public class MypagePhotoWriter {
     if (teacherPhotoFiles == null)
       return;
     
-    int teacherNo = loginUser.getMemberNo();
+    int teacherNo = member.getMemberNo();
     teacherPhotoDao.eraseAllPhotosInAdvanceRelatedTo(teacherNo);
     
     for (int i = 0; i < teacherPhotoFiles.length; i++) {
@@ -71,16 +86,6 @@ public class MypagePhotoWriter {
     
   }
 
-  public void upload(
-      MultipartFile profilePhoto,
-      MultipartFile[] teacherPhotoFiles,
-      String[] teacherPhotoNames,
-      Member loginUser, HttpSession session) throws Exception {
-    
-    this.loginUser = loginUser;
-    
-    uploadProfilePhoto(profilePhoto);
-    uploadTeacherPhotos(teacherPhotoFiles, teacherPhotoNames,session);
-  }
+
 
 }
