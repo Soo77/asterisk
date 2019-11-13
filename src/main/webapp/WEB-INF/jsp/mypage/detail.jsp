@@ -185,7 +185,9 @@
       }
     }
 
-
+    .profile-photo {
+      cursor: pointer;
+    }
 
     .card-body {
       font-size: 16px;
@@ -213,7 +215,6 @@
 
 </head>
 
-<form id="mypage-form" action="update" method="POST" enctype="multipart/form-data">
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('')">
   <div class="container">
     <div class="row">
@@ -228,6 +229,7 @@
   <div class="container">
     <div class="row-fluid">
       <div class="col">
+        <form id="mypage-form" action="update" method="POST" enctype="multipart/form-data">
 
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto">
@@ -293,7 +295,7 @@
 
           <div class="form-group">
             <label for="inputDateOfBirth">생년월일</label>
-            <input type="date" class="form-control" id="inputDateOfBirth" value="${loginUser.dateOfBirth}" name="dateOfBirth">
+            <input type="date" class="form-control" id="inputDateOfBirth" value="${loginUser.dateOfBirth}" readonly>
           </div>
 
           <label for="addressSearchButton">주소</label>
@@ -301,7 +303,8 @@
             <div class="col">
               <div class="d-flex">
                 <div class="flex-item pr-1" style="flex-basis: 93%;">
-                  <input type="text" id="inputAddress" class="form-control" readonly value="${loginUser.addressCity}" name="addressCity">
+                  <input type="text" id="inputAddress" class="form-control" readonly value="${loginUser.addressCity}"
+                    name="addressCity">
                 </div>
                 <div class="flex-item" style="flex-basis: 7%;">
                   <button class="btn btn-sm btn-outline-primary" type="button" id="addressSearchButton">주소검색</button>
@@ -312,7 +315,8 @@
 
           <div class="form-group pt-1">
             <label for="inputAddress2" id="address2-label" class="col-sm-2 col-form-label"></label>
-            <input type="text" class="form-control" id="inputAddress2" value="${loginUser.addressSuburb}" readonly name="addressSuburb">
+            <input type="text" class="form-control" id="inputAddress2" value="${loginUser.addressSuburb}" readonly
+              name="addressSuburb">
           </div>
 
           <div class="form-group">
@@ -333,7 +337,8 @@
 
           <div class="form-group teacherDisplay">
             <label for="inputAccountNo">계좌번호</label>
-            <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}" name="accountNo">
+            <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}"
+              name="accountNo">
           </div>
 
           <div class="form-group teacherDisplay">
@@ -409,7 +414,7 @@
             <div class="subjectCheckboxDiv">
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_1" name="lessonDay" value="sunday"> 일
+                  <input class="form-check-input" type="checkbox" id="OPTI_1" name="lessonDay" value="0"> 일
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -417,7 +422,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_2" name="lessonDay" value="monday"> 월
+                  <input class="form-check-input" type="checkbox" id="OPTI_2" name="lessonDay" value="1"> 월
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -425,7 +430,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_3" name="lessonDay" value="tuesday"> 화
+                  <input class="form-check-input" type="checkbox" id="OPTI_3" name="lessonDay" value="2"> 화
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -433,7 +438,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_4" name="lessonDay" value="wednesday"> 수
+                  <input class="form-check-input" type="checkbox" id="OPTI_4" name="lessonDay" value="3"> 수
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -441,7 +446,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_5" name="lessonDay" value="thursday"> 목
+                  <input class="form-check-input" type="checkbox" id="OPTI_5" name="lessonDay" value="4"> 목
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -449,7 +454,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_6" name="lessonDay" value="friday"> 금
+                  <input class="form-check-input" type="checkbox" id="OPTI_6" name="lessonDay" value="5"> 금
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -457,7 +462,7 @@
               </div>
               <div class="form-check form-check-inline">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" id="OPTI_7" name="lessonDay" value="saturday"> 토
+                  <input class="form-check-input" type="checkbox" id="OPTI_7" name="lessonDay" value="6"> 토
                   <span class="form-check-sign">
                     <span class="check"></span>
                   </span>
@@ -468,28 +473,32 @@
 
           <div class="form-group teacherDisplay studentDisplay">
             <label for="subject-start-time">과외 시작시간</label><br>
-            <input type='time' value='${loginUser.lessonStartTime}' id="subject-start-time" class="form-control" name="lessonStartTime" />
+            <input type='time' value='${loginUser.lessonStartTime}' id="subject-start-time" class="form-control"
+              name="lessonStartTime" />
           </div>
 
           <div class="form-group teacherDisplay studentDisplay">
             <label for="subject-end-time">과외 종료시간</label><br>
-            <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control" name="lessonEndTime"/>
+            <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control"
+              name="lessonEndTime" />
           </div>
 
           <div class="form-group studentDisplay">
             <label for="inputRequirements">과외 희망사항</label>
-            <textarea class="form-control" id="inputRequirements"
-              rows="8">${memberInfoMap.student.requirementsToTeacher}</textarea>
+            <textarea class="form-control" id="inputRequirements" rows="8"
+              name="requirementsToTeacher">${memberInfoMap.student.requirementsToTeacher}</textarea>
           </div>
 
           <div class="form-group teacherDisplay">
             <label for="inputIntro">자기소개</label>
-            <textarea class="form-control" id="inputIntro" rows="8">${memberInfoMap.teacher.teacherIntro}</textarea>
+            <textarea class="form-control" id="inputIntro" rows="8"
+              name="teacherIntro">${memberInfoMap.teacher.teacherIntro}</textarea>
           </div>
 
           <div class="form-group teacherDisplay">
             <label for="inputIntroVideo">자기소개 동영상 주소</label>
-            <input type="text" class="form-control" id="inputIntroVideo" value="${memberInfoMap.teacher.videoAddress}">
+            <input type="text" class="form-control" id="inputIntroVideo" value="${memberInfoMap.teacher.videoAddress}"
+              name="videoAddress">
           </div>
 
           <div class="form-group row childId mb-2 pt-1 childIdTemplate">
@@ -500,7 +509,7 @@
             </div>
             <div class="col-sm-10 mt-1 d-flex">
               <div class="flex-item pr-1" style="flex-basis: 93%;">
-                <input type="text" class="form-control" readonly value="hong111">
+                <input type="text" class="form-control" readonly value="hong111" name="childrenId">
               </div>
               <div class="flex-item" style="flex-basis: 7%;">
                 <input type="hidden" value="4">
@@ -516,7 +525,7 @@
 
           <div class="form-check kakaotalkDiv parentsDisplay">
             <label class="form-check-label">
-              <input id="kakaotalkCheckbox" class="form-check-input" type="checkbox" value="">
+              <input id="kakaotalkCheckbox" class="form-check-input" type="checkbox" name="kakaoCheck">
               과외 내용을 카톡으로 수신
               <span class="form-check-sign">
                 <span class="check"></span>
@@ -527,12 +536,12 @@
           <div class="modification-button-div pt-2 pb-2">
             <button class="btn btn-primary">수정</button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
-</form>
-  
+</div>
+
 <!-- 값 테스트용 출력 (디버깅 이후 지울 것)-->
 <script>
   //console.log('${memberInfoMap.teacher}');

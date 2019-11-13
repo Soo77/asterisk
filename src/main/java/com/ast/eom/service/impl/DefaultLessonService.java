@@ -92,4 +92,9 @@ public class DefaultLessonService implements LessonService {
   public int findSubNo(HashMap<String, Object> param) throws Exception {
     return lessonDao.findSubNo(param);
   }
+
+  @Override
+  public void deleteCurrAndContsAndLesson(int lessonNo) throws Exception {
+    lessonDao.deleteCurrAndContsAndLesson(lessonNo);
+  }
 }

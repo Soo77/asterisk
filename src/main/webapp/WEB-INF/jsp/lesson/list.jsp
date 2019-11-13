@@ -68,32 +68,33 @@
 
       <c:choose>
         <c:when test="${lesson.lessonState eq 0}">
-            <button class="btn btn-primary">학생 초대<div class="ripple-container"></div></button>&ensp;&ensp;&ensp;
+            <button class="btn btn-primary">학생 초대<div class="ripple-container"></div></button>&ensp;&ensp;
         </c:when>
         <c:when test="${lesson.lessonState eq 2}">
-          <button type="button" class="btn">결제 대기중</button>&ensp;&ensp;&ensp;
+          <button type="button" class="btn">결제 대기중</button>&ensp;&ensp;
         </c:when>
         <c:when test="${lesson.lessonState eq 3}">
-          <button type="button" class="btn">중단 요청중</button>&ensp;&ensp;&ensp;
+          <button type="button" class="btn">중단 요청중</button>&ensp;&ensp;
         </c:when>
         <c:when test="${lesson.lessonState eq 4}">
-          <button type="button" class="btn">환불 대기중</button>&ensp;&ensp;&ensp;
+          <button type="button" class="btn">환불 대기중</button>&ensp;&ensp;
         </c:when>
         <c:when test="${lesson.lessonState eq 5}">
-          <button type="button" class="btn">종료된 수업</button>&ensp;&ensp;&ensp;
+          <button type="button" class="btn">종료된 수업</button>&ensp;&ensp;  
         </c:when>
         
       </c:choose>
-       
+        
 <!--        <button class="btn btn-primary">결제 대기중<div class="ripple-container"></div></button>&ensp;&ensp;&ensp; -->
       <c:choose>
        <c:when test="${lesson.lessonState eq 0}">
        <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">수정</a> 
        </c:when>
        <c:otherwise> 
-       <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">상세보기</a> 
+       <a href="../dayLesson/list" class="btn btn-primary">상세보기</a> 
       </c:otherwise>
       </c:choose>
+      
       </div>
     </div>
   </div>

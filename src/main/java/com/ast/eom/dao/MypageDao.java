@@ -1,6 +1,7 @@
 package com.ast.eom.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ast.eom.domain.Lesson;
 import com.ast.eom.domain.LessonSubject;
@@ -24,4 +25,9 @@ public interface MypageDao {
   List<TeacherPhoto> getTeacherPhotos(int memberNo);
   List<Lesson> getLessonsForTeacher(int memberNo);
   List<Lesson> getLessonsForStudent(int memberNo);
+  int updateMember(Member member);
+  int updateTeacher(Teacher teacher);
+  int deleteAllLessonSubjectRelatedTo(int memberNo);
+  int insertLessonSubjectOf(Map<String, Object> teacherInfo);
+  String[] getAllLessonSubjectContentsOf(int memberNo);
 }
