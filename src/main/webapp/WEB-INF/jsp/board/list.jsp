@@ -50,7 +50,7 @@
       </div>
       <div class="w300" style="padding-right: 10px">
         <input type="text" class="form-control form-control-sm"
-          name="keyword" id="keyword">
+          name="keyword" id="keyword" onKeypress="if(event.keyCode==13) {search();}" >
       </div>
       <div>
         <button class="btn btn-primary btn-round btn-sm"
@@ -149,6 +149,17 @@
       url = url + "&keyword=" + $('#keyword').val();
       location.href = url;
     })
+  </script>
+  
+  <script>
+    function search(){
+    	var url = "list?boardTypeNo=" + ${boardTypeNo};
+        url = url + "&pageSize=" + ${pageSize};
+        url = url + "&curPage=1";
+        url = url + "&searchType=" + $('#searchType').val();
+        url = url + "&keyword=" + $('#keyword').val();
+        location.href = url;
+    }
   </script>
   
   <script>
