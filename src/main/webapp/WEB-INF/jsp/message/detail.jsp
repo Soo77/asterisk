@@ -8,8 +8,12 @@
 <script type="text/JavaScript"
 	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<style>
+	 .right{
+	  margin-left: 200px;
+	 }
+	
 	 .chat-left {
-	  width: 19%;
+	  width: 10%;
 	  border-radius: 5px;
     position: relative;
     padding: 5px 10px;
@@ -20,7 +24,7 @@
 	 }
 	 
 	 .chat-right {
-    width: 19%;
+    width: 10%;
     border-radius: 5px;
     position: relative;
     padding: 5px 10px;
@@ -29,8 +33,7 @@
     margin-top: 5px;
     color: #444;
     text-align: right;
-    margin-left: 200px;
-   }
+    }
 	</style>
 </head>
 <body>
@@ -60,15 +63,22 @@
         type : 'post',
         data : "senderNo=" + ${loginUser.memberNo} + "&receiverNo=" + ${receiverNo},
         success : function(data) {
-          console.log(data);
           for ( var i = 0 in data) {
-        	  console.log(data[i].receiverNo +"dd"+ ${loginUser.memberNo})
+        	  
+        	  if(data[i].read==0){
+        		  var mr = "읽지 않음";
+        	  } else {
+        		  mr = "읽음";
+        	  }
+        	  
             if (data[i].senderNo == ${loginUser.memberNo}) {
-            	let str = '<div class="chat-right">'+data[i].messageContents+'</div>';
+            	let str = "<div class='right'>" 
+            	str += '<div class="chat-right">'+data[i].messageContents+'</div>';
+            	str += mr+"</div>"
               $("#chat").append(str);
             } else {
             	let str = '<div class="chat-left">'+data[i].messageContents+'</div>';
-              $("#chat").append(str);
+              $("#chat").append(str+mr);
             }
           }
 
@@ -98,7 +108,9 @@
 	        data : "senderNo="+${loginUser.memberNo}+"&messageConts=" + 
 	        messageConts + "&receiverNo=" + ${receiverNo},
 	        success : function(result) {
-	          let str = '<div class="chat-right">'+messageConts+'</div>';
+	        	let str = "<div class='right'>" 
+	          str += '<div class="chat-right">'+messageConts+'</div>';
+	          str += "읽지 않음"+"</div>"
 	          $("#chat").append(str);
 	          $("#messageConts").val("");
 	        },

@@ -32,17 +32,31 @@
      order by s.message_no desc
   </select>
   
-  <select id="messageRead" parameterType="int" resultMap="MessageMap">
-     select count(is_read), m.name from message s inner
-     join member m on m.mem_no = s.sender
-     where s.receiver=#{memberNo} 
-  </select>
-	
 	<insert id="messageIn" parameterType="Message">
      insert into
      message(message_no,sender,receiver,message_conts,send_date,is_read)
      values
-     (#{messageNo},#{senderNo},#{receiverNo},#{messageContents},now(),#{isRead})
+     (#{messageNo},#{senderNo},#{receiverNo},#{messageContents},now(),#{read})
   </insert>
+  
+  <select id="messageReadShowAll" parameterType="int" resultType="int">
+     select count(is_read) 
+     from message
+     where receiver=#{receiverNo} and 
+     sender not like #{receiverNo} and 
+     is_read like 0;
+  </select>
+	
+  <select id="messageReadShow" parameterType="Message" resultType="int">
+     select count(is_read) 
+     from message
+     where sender=#{senderNo} and receiver=#{receiverNo}
+     and is_read like 0;
+  </select>
+  
+  <update id="messageRead" parameterType="Message">
+    UPDATE message SET is_read=1 
+    WHERE sender=#{receiverNo} and receiver=#{senderNo}
+  </update>
 
 </mapper>

@@ -6,12 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>쪽지</title>
-<script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 <h2>쪽지 보내기</h2>
-<i class="fas fa-bell"></i>
+<i class="fas fa-bell" id="messageReadShowAll"></i>
 	<div id="showList"></div>
 	<br>
 	<br>
@@ -27,19 +25,23 @@
 				type : 'post',
 				data : "memberNo=" + ${loginUser.memberNo},
 				success : function(data) {
-					console.log(data);
+					$("#messageReadShowAll").html(" ${messageReadShowAll}개");
 					for ( var i = 0 in data) {
-						console.log(data[i].name);
 						if("${loginUser.name}"==data[i].name) {
 							var str = '<div>';
 	            str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + "나에게 쪽지" + '</a>';
-	            str += '</div>';
 						} else {
 							var str = '<div>';
 				      str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + data[i].name + '</a>';
-				      str += '</div>';
 						}
-					$("#showList").append(str);
+						
+						if(${messageReadList}[i] != 0){
+							var mrl = " <i class='far fa-bell'> "+${messageReadList}[i]+"</i>"
+						} else {
+							var mrl = "";
+						}
+						
+					$("#showList").append(str+mrl+'</div>');
 					}
 				},
 				error : function() {
