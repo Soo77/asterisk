@@ -147,8 +147,6 @@
   </div>
 </div>
   
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-
 <script type="text/javascript">
     var cancleButton = document.querySelector('#btnCancle');
     cancleButton.addEventListener('click', function() {

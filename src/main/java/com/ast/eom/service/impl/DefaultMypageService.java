@@ -14,6 +14,7 @@ import com.ast.eom.dao.MypageDao;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Parents;
 import com.ast.eom.domain.Student;
+import com.ast.eom.domain.Teacher;
 import com.ast.eom.service.MypageService;
 
 @Service
@@ -75,5 +76,42 @@ public class DefaultMypageService implements MypageService {
     
     return memberInfoMap;
   }
+
+  @Override
+  public int updateTeacher(
+      Member member,
+      Teacher teacher,
+      String[] schoolTypeNo,
+      String[] subjectNo,
+      String[] wantedFee) {
+    
+    mypageDao.updateMember(member);
+    mypageDao.updateTeacher(teacher);
+    
+    int[] thisSubjectNo = new int[schoolTypeNo.length];
+    for (int i = 1; i < schoolTypeNo.length; i++) {
+      int schoolTypeNo2 = Integer.parseInt(schoolTypeNo[i]);
+      int subjectNo2 = Integer.parseInt(subjectNo[i]);
+      thisSubjectNo[i] = (3*(schoolTypeNo2-1)+subjectNo2);
+      System.out.println("과목: " + thisSubjectNo[i]);
+    }
+    
+    Map<String, Object> teacherInfo = new HashMap<>();
+    
+    String[] subjectContents = mypageDao.getAllLessonSubjectContentsOf(member.getMemberNo());
+    mypageDao.deleteAllLessonSubjectRelatedTo(member.getMemberNo());
+    
+    // 화면에 표시할 때 템플릿을 남기게 구현하는 바람에 인덱스가 1부터 시작
+    for (int i = 1; i < schoolTypeNo.length; i++) {
+      teacherInfo.put("teacherNo", member.getMemberNo());
+      teacherInfo.put("subjectNo", thisSubjectNo[i]);
+      teacherInfo.put("subjectContents", subjectContents[i-1]);
+      teacherInfo.put("wantedFee", wantedFee[i]);
+      mypageDao.insertLessonSubjectOf(teacherInfo);
+    }
+    
+    return 1;
+  }
+
 
 }

@@ -200,5 +200,48 @@
     where std_no = #{no};
   </select>
   
+  <update id="updateMember">
+    update member
+    <set>
+      <if test="email != null">email = #{email},</if> 
+      <if test="password != null">pwd = password(#{password}),</if> 
+      <if test="addressCity != null">addr_city=#{addressCity},</if> 
+      <if test="addressSuburb != null">addr_sub=#{addressSuburb},</if> 
+      <if test="tel != null">tel=#{tel},</if> 
+      <if test="profilePhoto != null">profile_photo=#{profilePhoto},</if> 
+      <if test="lessonDays != null">curr_lesson_dt=#{lessonDays},</if> 
+      <if test="lessonStartTime != null">curr_lesson_st=#{lessonStartTime},</if> 
+      <if test="lessonEndTime != null">curr_lesson_et=#{lessonEndTime}</if> 
+    </set>
+    where mem_no = #{memberNo}
+  </update>
+
+  <select id="getAllLessonSubjectContentsOf" parameterType="int" resultType="string">
+    select sub_conts
+    from lesson_subject
+    where tch_no = #{no};
+  </select>
+
+
+  <insert id="insertLessonSubjectOf" parameterType="map">
+    insert into lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
+    values(#{teacherNo},#{subjectNo},#{subjectContents},now(),#{wantedFee})
+  </insert>
+
+  <update id="updateTeacher" parameterType="Teacher">
+    update teacher
+    <set>
+      <if test="accountNo != null">acc_no = #{accountNo},</if> 
+      <if test="bankName != null">bank_name = #{bankName},</if>
+      <if test="teacherIntro != null">tch_intro=#{teacherIntro},</if> 
+      <if test="videoAddress != null">vid_addr=#{videoAddress}</if> 
+    </set>
+    where tch_no = #{teacherNo}
+  </update>
+  
+  <delete id="deleteAllLessonSubjectRelatedTo" parameterType="int">
+    delete from lesson_subject
+    where tch_no = #{no}
+  </delete>
   
 </mapper>
