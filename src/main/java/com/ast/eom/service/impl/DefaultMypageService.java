@@ -42,6 +42,7 @@ public class DefaultMypageService implements MypageService {
       
       memberInfoMap.put("student", mypageDao.getStudent(memberNo));
       memberInfoMap.put("wantedLessons", mypageDao.getWantedLessons(memberNo));
+      memberInfoMap.put("studentLessons", mypageDao.getLessonsForStudent(memberNo));
       
     } else if (memberTypeNo == 2) {
       Parents parents = mypageDao.getParents(memberNo);
@@ -63,7 +64,9 @@ public class DefaultMypageService implements MypageService {
     } else if (memberTypeNo == 3) {
       
       memberInfoMap.put("teacher", mypageDao.getTeacher(memberNo));
+      memberInfoMap.put("teacherLessons", mypageDao.getLessonsForTeacher(memberNo));
       memberInfoMap.put("lessonSubjects", mypageDao.getLessonSubjects(memberNo));
+      memberInfoMap.put("teacherPhotos", mypageDao.getTeacherPhotos(memberNo));
       
     } else {
       throw new Exception("DB에서 회원정보를 가져오던 중 오류 발생!");
@@ -71,6 +74,12 @@ public class DefaultMypageService implements MypageService {
     }
     
     return memberInfoMap;
+  }
+
+  @Override
+  public int update(Member loginUser) {
+    
+    return 1;
   }
 
 }

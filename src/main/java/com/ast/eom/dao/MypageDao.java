@@ -2,12 +2,14 @@ package com.ast.eom.dao;
 
 import java.util.List;
 
+import com.ast.eom.domain.Lesson;
 import com.ast.eom.domain.LessonSubject;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Parents;
 import com.ast.eom.domain.School;
 import com.ast.eom.domain.Student;
 import com.ast.eom.domain.Teacher;
+import com.ast.eom.domain.TeacherPhoto;
 import com.ast.eom.domain.WantedLesson;
 
 public interface MypageDao {
@@ -19,4 +21,7 @@ public interface MypageDao {
   List<LessonSubject> getLessonSubjects(int memberNo);
   List<WantedLesson> getWantedLessons(int memberNo);
   List<Member> getChildrenIdAndName(List<Integer> childrenNo);
+  List<TeacherPhoto> getTeacherPhotos(int memberNo);
+  List<Lesson> getLessonsForTeacher(int memberNo);
+  List<Lesson> getLessonsForStudent(int memberNo);
 }

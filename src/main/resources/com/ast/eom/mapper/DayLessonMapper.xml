@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.DayLessonDao">
+
+  <resultMap type="DayLesson" id="DayLessonMap">
+    <id column="day_lesson_no" property="dayLessonNo" />
+    <result column="lesson_no" property="lessonNo" />
+    <result column="lesson_date" property="lessonDate" />
+    <result column="lesson_start_hr" property="lessonStartHour" />
+    <result column="lesson_end_hr" property="lessonEndHour" />
+    <result column="lesson_summ" property="lessonSummary" />
+    <result column="lesson_eval" property="lessonEvaluation" />
+  </resultMap>
+
+  <select id="findAll" parameterType="int" resultMap="DayLessonMap">
+      select *
+      from day_lesson
+      where lesson_no=#{lessonNo}
+      order by day_lesson_no desc
+  </select>
+  
+  <select id="findBy" parameterType="int" resultMap="DayLessonMap">
+    select *
+    from day_lesson
+    where day_lesson_no=#{dayLessonNo}
+  </select>
+  
+  <update id="update" parameterType="DayLesson">
+    update day_lesson set
+      lesson_summ=#{lessonSummary}
+      lesson_eval=#{lessonEvaluation}
+    where day_lesson_no=#{day_lesson_no}
+  </update>
+
+</mapper>
