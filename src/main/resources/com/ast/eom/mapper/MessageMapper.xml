@@ -16,10 +16,6 @@
   <result column="mem_no" property="memberNo"></result>
   </resultMap>
   
-  <select id="findmember" resultType="Member">
-    select *from member
-  </select>
-  
   <select id="detail" parameterType="int" resultMap="MessageMap">
      select *from message where sender=#{memberNo}
   </select>
