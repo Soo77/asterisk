@@ -47,7 +47,7 @@
       </div>
     </div>
     
-    <input type="hidden" name="lessonNo" value="${memberInfoMap.teacherLessons[1].lessonNo}">
+    <input type="hidden" name="lessonNo" value="${lessonNo}">
     <div class="dayLessonList">
     
     </div>
@@ -138,7 +138,7 @@ $(document).ready(function() {
 </script>
 <script>
 	
-  var lessonNo = Number('${memberInfoMap.teacherLessons[1].lessonNo}');
+  var lessonNo = ${lessonNo};
 
 	function loadData() { 
   $.ajax({
