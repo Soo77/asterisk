@@ -142,16 +142,9 @@
   <script>
     $(document).on('click', '#btnSearch', function(e){
       e.preventDefault();
-      var url = "list?boardTypeNo=" + ${boardTypeNo};
-      url = url + "&pageSize=" + ${pageSize};
-      url = url + "&curPage=1";
-      url = url + "&searchType=" + $('#searchType').val();
-      url = url + "&keyword=" + $('#keyword').val();
-      location.href = url;
+      search()
     })
-  </script>
-  
-  <script>
+
     function search(){
     	var url = "list?boardTypeNo=" + ${boardTypeNo};
         url = url + "&pageSize=" + ${pageSize};
