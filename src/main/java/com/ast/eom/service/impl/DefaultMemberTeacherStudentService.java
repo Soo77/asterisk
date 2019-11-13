@@ -38,16 +38,7 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     
     HashMap<String, Object> params = new HashMap<>();
     
-    /*
-     * List<MemberTeacherStudent> memberList = null;
-     * 
-     * if (memberTypeNo == 1) { memberList = memberTeacherStudentDao.listStudent(memberTypeNo); }
-     * else if (memberTypeNo == 3) { memberList = memberTeacherStudentDao.listTeacher(memberTypeNo);
-     * }
-     */
-      
       params.put("memberTypeNo", memberTypeNo);
-    /* params.put("memberList", memberList); */
       
     return memberTeacherStudentDao.listTeacher(params);
   }
@@ -57,16 +48,7 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     
     HashMap<String, Object> params = new HashMap<>();
     
-    /*
-     * List<MemberTeacherStudent> memberList = null;
-     * 
-     * if (memberTypeNo == 1) { memberList = memberTeacherStudentDao.listStudent(memberTypeNo); }
-     * else if (memberTypeNo == 3) { memberList = memberTeacherStudentDao.listTeacher(memberTypeNo);
-     * }
-     */
-      
       params.put("memberTypeNo", memberTypeNo);
-    /* params.put("memberList", memberList); */
       
     return memberTeacherStudentDao.listStudent(params);
   }
