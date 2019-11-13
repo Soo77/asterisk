@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.TeacherPhotoDao">
+
+  <insert id="insert" parameterType="TeacherPhoto">
+    insert into teacher_photo(tch_no, tch_photo)
+    values(#{teacherNo}, #{teacherPhoto})
+  </insert>
+
+  <delete id="eraseAllPhotosInAdvanceRelatedTo" parameterType="int">
+    delete from teacher_photo
+    where tch_no = #{no}
+  </delete>
+  
+</mapper>

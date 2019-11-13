@@ -287,7 +287,7 @@
                 <img src="/upload/join/${loginUser.profilePhoto}"
                   onError="javascript:src='/upload/join/default.png'"
                   alt="" class="img-raised rounded-circle img-fluid my-comment-img">
-              </div>t
+              </div>
               <div class="col-9 p-1" id="wrap">
                 <textarea id="commentContents" name="commentContents" rows="5"
                   maxlength="300" placeholder="내용을 입력하세요."></textarea>
@@ -309,8 +309,6 @@
 
   </div>
 </div>
-
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
 <script>
   // 수정

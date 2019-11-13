@@ -1,5 +1,6 @@
 package com.ast.eom.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,12 @@ public class DefaultLessonService implements LessonService {
     lessonDao.updateDateAndTime(lesson);
   }
   
+  
+  @Override
+  public void deleteContentsAndDays(int currLessonNo) throws Exception {
+    lessonDao.deleteContentsAndDays(currLessonNo);
+  }
+  
   @Override
   public void delete(int no) throws Exception {
     if (lessonDao.findBy(no) == null)
@@ -64,5 +71,25 @@ public class DefaultLessonService implements LessonService {
   public Lesson lessonDetail(int lessonNo) throws Exception {
     return lessonDao.findCurrBy(lessonNo);
 
+  }
+
+  @Override
+  public void addContentsAndDays(Lesson lesson) throws Exception {
+    lessonDao.addContentsAndDays(lesson);
+  }
+  
+  @Override
+  public void addLesson(Lesson lesson) throws Exception {
+    lessonDao.addLesson(lesson);
+  }
+  
+  @Override
+  public void addCurriculum(Lesson lesson) throws Exception {
+    lessonDao.addCurriculum(lesson);
+  }
+  
+  @Override
+  public int findSubNo(HashMap<String, Object> param) throws Exception {
+    return lessonDao.findSubNo(param);
   }
 }
