@@ -13,6 +13,7 @@ public interface LessonDao {
   int updateDateAndTime(Lesson lesson) throws Exception;
   int deleteContentsAndDays(int currLessonNo) throws Exception;
   int delete(int no) throws Exception;
+  int deleteCurrAndContsAndLesson(int lessonNo) throws Exception;
   
   Lesson findCurrBy(int lessonNo) throws Exception;
 

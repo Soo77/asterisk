@@ -206,5 +206,16 @@
 		WHERE
 		  st.sch_type_no = #{schoolTypeNo} AND s.sub_name = #{subjectName};
   </select>
+  
+  <delete id="deleteCurrAndContsAndLesson">
+    delete from curr_lesson_conts
+		where lesson_no = #{lessonNo};
+		
+		delete from curriculum
+		where lesson_no = #{lessonNo};
+		
+		delete from lesson
+		where lesson_no = #{lessonNo}; 
+  </delete>
 
 </mapper>
