@@ -13,6 +13,7 @@ public interface LessonService {
   void updateDateAndTime(Lesson lesson) throws Exception;
   void deleteContentsAndDays(int currLessonNo) throws Exception;
   void delete(int no) throws Exception;
+  void deleteCurrAndContsAndLesson(int lessonNo) throws Exception;
   
   void addContentsAndDays(Lesson lesson) throws Exception;
   void addLesson(Lesson lesson) throws Exception;

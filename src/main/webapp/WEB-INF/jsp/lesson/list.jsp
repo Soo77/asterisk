@@ -41,9 +41,9 @@
       </c:otherwise>
     </c:choose> 
     <div style="font-family: 'Nanum Gothic';" class="card-body">
-      <h5 style="font-family: 'Nanum Gothic';" class="card-title">수업번호: ${lesson.lessonNo} </h5>
+      <h5 style="font-family: 'Nanum Gothic';" class="card-title">수업번호: ${lesson.lessonNo}</h5>
       <p class="card-text">
-      <c:choose> 
+      <c:choose>  
       <c:when test="${lesson.member.name eq NULL}"> <td>이름: 미정<br></td> </c:when>
       <c:otherwise> <td>이름: ${lesson.member.name}<br></td> </c:otherwise>
       </c:choose>
@@ -67,17 +67,34 @@
 <!--       <a href="detail.jsp"  class="btn btn-primary">상세보기</a> -->
 
       <c:choose>
-        <c:when test="${lesson.member.name eq NULL and loginUser.memberTypeNo eq 3}">
-          <button class="btn btn-primary">학생 초대<div class="ripple-container"></div></button>&ensp;&ensp;&ensp;
+        <c:when test="${lesson.lessonState eq 0}">
+            <button class="btn btn-primary">학생 초대<div class="ripple-container"></div></button>&ensp;&ensp;
         </c:when>
-        <c:when test="${loginUser.memberTypeNo eq 1 and lesson.calculationState eq 0}">
-          <button type="button" class="btn btn-default">결제 대기중</button>&ensp;&ensp;&ensp;
+        <c:when test="${lesson.lessonState eq 2}">
+          <button type="button" class="btn">결제 대기중</button>&ensp;&ensp;
         </c:when>
+        <c:when test="${lesson.lessonState eq 3}">
+          <button type="button" class="btn">중단 요청중</button>&ensp;&ensp;
+        </c:when>
+        <c:when test="${lesson.lessonState eq 4}">
+          <button type="button" class="btn">환불 대기중</button>&ensp;&ensp;
+        </c:when>
+        <c:when test="${lesson.lessonState eq 5}">
+          <button type="button" class="btn">종료된 수업</button>&ensp;&ensp;  
+        </c:when>
+        
       </c:choose>
-       
+        
 <!--        <button class="btn btn-primary">결제 대기중<div class="ripple-container"></div></button>&ensp;&ensp;&ensp; -->
-
-       <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">상세보기</a> 
+      <c:choose>
+       <c:when test="${lesson.lessonState eq 0}">
+       <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">수정</a> 
+       </c:when>
+       <c:otherwise> 
+       <a href="../dayLesson/list" class="btn btn-primary">상세보기</a> 
+      </c:otherwise>
+      </c:choose>
+      
       </div>
     </div>
   </div>

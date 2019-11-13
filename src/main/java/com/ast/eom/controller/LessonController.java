@@ -240,4 +240,15 @@ public class LessonController {
 
     return "redirect:list?memberTypeNo=" + memberTypeNo;
   }
+  
+  
+  
+  
+
+  @PostMapping("deleteAll")
+  public String deleteAll(HttpSession session, int lessonNo) throws Exception {
+    lessonService.deleteCurrAndContsAndLesson(lessonNo);
+    int memberTypeNo = ((Member) session.getAttribute("loginUser")).getMemberTypeNo();
+    return "redirect:list?memberTypeNo=" + memberTypeNo;
+  }
 }

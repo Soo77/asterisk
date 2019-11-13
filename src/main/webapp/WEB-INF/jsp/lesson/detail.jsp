@@ -21,12 +21,17 @@
 <div class="main main-raised">
   <div class="container pt-5 pb-4">
     <div id='content'>
+    <div class="text-right mb-4">
+     <form name="deleteAll" action='deleteAll' method='post'>
+      <input type="hidden" name="lessonNo" value="${lesson.lessonNo}">
+      <button class="btn btn-danger deleteCurrBtn">커리큘럼 삭제</button>
+     </form>
+    </div> 
       <form action='update' method='post'>
         <div class="row">
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">수업시작일</label>
-            <div class="form-group ha
-            s-default bmd-form-group pt-0">
+            <div class="form-group has-default bmd-form-group pt-0">
               <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular"
                 value="${lesson.startDate}">
             </div>
@@ -149,7 +154,8 @@
             </c:forEach>
           </tbody> 
         </table>
-        <div style="text-align: right;">
+
+        <div class="text-right">
           <input type="button" class="btn btn-primary lessonConts-add-button" value="추가">  
           <button class="btn btn-primary">변경</button>
         </div>
@@ -214,7 +220,12 @@
   let lessonContsAddButton = document.getElementsByClassName('lessonConts-add-button')[0];
 
   lessonContsAddButton.addEventListener('click', () => {
-    $('#lesson-table').append(html);
+    if (confirm("정말 추가하시겠습니까??") == true){    //확인
+      $('#lesson-table').append(html);
+    }else{   //취소
+      return false;
+    }
+
   });
 </script>
  
@@ -232,12 +243,19 @@ function deleteRow(btn) {
   $('form').prepend(hiddenLessonNoHtml);
   
   if ($('tbody > tr').length == 1) {
-    return;
+    return; 
   }
   row.parentNode.removeChild(row);
 }
-</script>
-
+</script> 
+ 
 <script>
-
+  let lessonDeleteAllBtn = document.getElementsByClassName('deleteCurrBtn')[0];
+  lessonDeleteAllBtn.addEventListener('click', () => {
+    if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+      document.deleteAll.submit();
+    }else{   //취소
+      return false;
+    }
+  });
 </script>
