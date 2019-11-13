@@ -11,12 +11,12 @@ public class Message {
   private String messageContents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date sendDate;
-  private boolean read;
+  private boolean isRead;
   
   @Override
   public String toString() {
     return "Message [messageNo=" + messageNo + ", senderNo=" + senderNo + ", receiverNo=" + receiverNo
-        + ", messageContents=" + messageContents + ", sendDate=" + sendDate + ", read=" + read + "]";
+        + ", messageContents=" + messageContents + ", sendDate=" + sendDate + ", isRead=" + isRead + "]";
   }
   public int getMessageNo() {
     return messageNo;
@@ -49,10 +49,9 @@ public class Message {
     this.sendDate = sendDate;
   }
   public boolean isRead() {
-    return read;
+    return isRead;
   }
-  public void setRead(boolean read) {
-    this.read = read;
+  public void setRead(boolean isRead) {
+    this.isRead = isRead;
   }
-  
 }

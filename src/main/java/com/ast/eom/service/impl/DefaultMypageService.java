@@ -78,6 +78,11 @@ public class DefaultMypageService implements MypageService {
     
     return memberInfoMap;
   }
+  
+  @Override
+  public int updateMember(Member member) {
+    return mypageDao.updateMember(member);
+  }
 
   @Override
   public int updateTeacher(
@@ -87,7 +92,7 @@ public class DefaultMypageService implements MypageService {
       String[] subjectNo,
       String[] wantedFee) {
     
-    mypageDao.updateMember(member);
+    updateMember(member);
     mypageDao.updateTeacher(teacher);
     
     int[] thisSubjectNo = new int[schoolTypeNo.length];

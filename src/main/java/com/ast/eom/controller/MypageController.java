@@ -94,9 +94,9 @@ public class MypageController {
     
 
     if (loginUser.getMemberTypeNo() == 1) {
-      
+      mypageService.updateMember(member);
     } else if (loginUser.getMemberTypeNo() == 2) {
-      
+      mypageService.updateMember(member);
     } else if (loginUser.getMemberTypeNo() == 3) {
       teacher.setTeacherNo(loginUser.getMemberNo());
       System.out.println(member);
@@ -105,6 +105,8 @@ public class MypageController {
       mypageService.updateTeacher(
           member, teacher, schoolTypeNo, subjectNo, wantedFee);
       
+    } else if (loginUser.getMemberTypeNo() == 4) {
+      mypageService.updateMember(member);
     }
     updateLoginUser(loginUser, member, session);
 
