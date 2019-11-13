@@ -267,7 +267,6 @@ ul li::before {
                 <label class="tch-intro title">자기소개</label>
                 <div class="tch-intro contents">
                   ${member.teachers[0].teacherIntro}<br>
-                  ${member.lessonSubjects[0].subjectContents}
                 </div>
               </div>
               <hr>

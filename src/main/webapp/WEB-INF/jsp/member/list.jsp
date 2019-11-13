@@ -25,9 +25,9 @@
   width: 48%;
 }
 
-.btn.btn-primary.lesson-fee {
+.btn.btn-primary.wantedFee {
   width: 48%;
-}
+} 
 
 .btn.btn-primary.btn-round {
   width: 60%;
@@ -45,28 +45,53 @@
 }
 </style>
 
-<script type="text/javascript">
-function radio_chk() {
-    //라디오 버튼 Name 가져오기
-    var radio_btn = document.getElementsByName("radio_btn");
+<script>
 
-    //라디오 버튼이 체크되었나 확인하기 위한 변수
-    var radio_btn_check = 0;
-    for(var i = 0; i<radio_btn.length; i++){
-        //만약 라디오 버튼이 체크가 되어있다면 true
-        if(radio_btn[i].checked==true){
-            //라디오 버튼 값
-            alert(radio_btn[i].value);
-            //라디오 버튼이 체크되면 radio_btn_check를 1로 만들어준다.
-            radio_btn_check++;
-        }
-    }
-    
-    if(radio_btn_check==0){
-        alert("라디오 버튼을 선택해주세요");
-        return;
-    }
-}
+/* var myFunction = function() {
+  $( "#gender" ).prop( "checked", true );
+} */
+ function myFunction() {
+  
+  $(document).ready(function(){
+    $("#sido1").on("change", function(){
+        console.log($(this).find("option[value='" + $(this).val() + "']").text());
+    });
+});
+ /*  var sidoSelect = document.getElementsByName("sido1");
+
+  for (var i=0; i < sidoSelect.length; i++){
+  	if (sidoSelect[i].checked) console.log(sidoSelect[i].value);
+  }
+  
+  var gugunSelect = document.getElementsByName("gugun1");
+
+  for (var i=0; i < gugunSelect.length; i++){
+  	if (gugunSelect[i].checked) console.log(gugunSelect[i].value);
+  } */
+	
+  var genderRadio = document.getElementsByName("gender");
+
+  for (var i=0; i < genderRadio.length; i++){
+  	if (genderRadio[i].checked) console.log(genderRadio[i].value);
+  }
+  
+  var ageRadio = document.getElementsByName("age");
+
+  for (var i=0; i < ageRadio.length; i++){
+  	if (ageRadio[i].checked) console.log(ageRadio[i].value);
+  }
+  
+  var wantedFeeRadio = document.getElementsByName("wantedFee");
+
+  for (var i=0; i < wantedFeeRadio.length; i++){
+  	if (wantedFeeRadio[i].checked) console.log(wantedFeeRadio[i].value);
+  }
+  
+  
+
+
+  
+} 
 </script>
 
 
@@ -102,6 +127,8 @@ function radio_chk() {
           <!-- Sidebar ================================================== -->
           <div class="col-lg-3 col-md-4">
             <div class="sidemenubar" id="sideMenuBar">
+            <form action='search' method='post'>
+           
               <label class="address title">지역</label>
               <div class="address">
                 <select class="custom-select" name="sido1" id="sido1"/></select> 
@@ -110,26 +137,28 @@ function radio_chk() {
               
               
               <label class="gender title">성별</label>
-              <!-- <div class="form-check"> -->
+              <div class="form-check">
                 <label class="btn btn-primary gender"> 
-                  <input class="form-check-input" type="radio" name="gender" id="gender_man" value="1"> 남자 
+                  <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M"> 남자 
                   <span class="circle"> 
                     <span class="check">
                     </span> 
                   </span> 
                 </label> 
                 <label class="btn btn-primary gender"> 
-                  <input  class="form-check-input" type="radio" name="gender" id="gender_woman" value="2"> 여자 
+                  <input  class="form-check-input" type="radio" name="gender" id="gender_2" value="F"> 여자 
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
-              <!-- </div> -->
+                
+            
+              </div>
 
 
               <label class="age title">나이</label>
-              <!-- <div class="form-check"> -->
+              <div class="form-check">
                 <label class="btn btn-primary age"> 
                 <input class="form-check-input" type="radio" name="age" id="age_1" value="1"> 20 ~ 21 
                   <span class="circle"> 
@@ -172,39 +201,41 @@ function radio_chk() {
                     </span>
                   </span>
                 </label>
-              <!-- </div> -->
+              </div>
+
 
               <label class="lessons_fee title">수업료</label>
-              <!-- <div class="form-check"> -->
-                <label class="btn btn-primary lesson-fee"> 
-                <input class="form-check-input" type="radio" name="wantedFee"  id="lesson_fee_1" value="1"> 20만원 이하 
+              <div class="form-check">
+                <label class="btn btn-primary wantedFee"> 
+                  <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1"> 20만원 이하
                   <span class="circle"> 
                     <span class="check">
-                    </span>
-                  </span>
+                    </span> 
+                  </span> 
                 </label> 
-                <label class="btn btn-primary lesson-fee"> 
-                <input class="form-check-input" type="radio" name="wantedFee" id="lesson_fee_2" value="2"> 20만원~30만원 
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label> 
-                <label class="btn btn-primary lesson-fee"> 
-                <input class="form-check-input" type="radio" name="wantedFee" id="lesson_fee_3" value="3"> 30만원~40만원
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label> 
-                <label class="btn btn-primary lesson-fee"> 
-                <input class="form-check-input" type="radio" name="wantedFee" id="lesson_fee_4" value="4"> 40만원 이상 
+                <label class="btn btn-primary wantedFee"> 
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2"> 20~30 만원
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
-              <!-- </div> -->
+                <label class="btn btn-primary wantedFee"> 
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3"> 30~40 만원
+                  <span class="circle"> 
+                    <span class="check">
+                    </span>
+                  </span>
+                </label>
+                <label class="btn btn-primary wantedFee"> 
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4"> 40만원 이상 
+                  <span class="circle"> 
+                    <span class="check">
+                    </span>
+                  </span>
+                </label>
+              </div>
+
 
               <label class="subject title">과목으로 찾기</label>
               <div class="checkbox-container checkbox-container-four active">
@@ -213,8 +244,10 @@ function radio_chk() {
               </div>
 
               <div class="button search">
-                <button class="btn btn-primary btn-round">조건 검색</button>
+                <button class="btn btn-primary btn-round my-button-yeah" onclick="myFunction()">조건 검색</button>
               </div>
+              
+               </form>
 
             </div>
           </div>
@@ -486,6 +519,13 @@ function radio_chk() {
     });
 </script>
 
+<script>
+  let mySearchButton = document.getElementsByClassName('my-button-yeah')[0];
+  mySearchButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    
+  });
+</script>
 
 </body>
 </html>
