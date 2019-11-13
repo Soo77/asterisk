@@ -146,6 +146,68 @@
       font-size: 0.75em;
     }
     
+    .my-images {
+      max-width: 16.3rem;
+
+    }
+
+    .my-teacher-images {
+      width: 16.3rem;
+      height: 16.3rem;
+      object-fit: cover;
+    }
+
+    @media (min-width: 576px) {
+      .my-images {
+        max-width: 28rem;
+      }
+
+      .my-teacher-images {
+        width: 28rem;
+        height: 28rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      .my-images {
+        max-width: 18.2rem;
+      }
+
+      .my-teacher-images {
+        width: 18.2rem;
+        height: 18.2rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Large devices (desktops, 992px and up) */
+    @media (min-width: 992px) {
+      .my-images {
+        max-width: 25rem;
+      }
+
+      .my-teacher-images {
+        width: 25rem;
+        height: 25rem;
+        object-fit: cover;
+      }
+    }
+
+    /* Extra large devices (large desktops, 1200px and up) */
+    @media (min-width: 1200px) {
+      .my-images {
+        max-width: 15rem;
+      }
+
+      .my-teacher-images {
+        width: 15rem;
+        height: 15rem;
+        object-fit: cover;
+      }
+    }
+    
   </style>
 </head>
 
@@ -233,24 +295,45 @@
         </div>
       </div>
 
-        <div id="insertBoardPhotos">
-          <hr>
-          <div class="row">
-            <div class="col">
-              <div class="filebox">
-                <input class="upload-name" disabled="disabled"> <label
-                  for="gallery-photo-add">파일선택</label> <input type="file"
-                  multiple="multiple" id="gallery-photo-add" name="fileName">
-              </div>
-            </div>
-          </div>
-  
-          <div class="row">
-            <div class="col">
-              <div class="gallery"></div>
+      <div id="insertBoardPhotos">
+        <hr>
+        <div class="row">
+          <div class="col">
+            <div class="filebox">
+              <input class="upload-name" disabled="disabled"> <label
+                for="gallery-photo-add">파일선택</label> <input type="file"
+                multiple="multiple" id="gallery-photo-add"
+                name="fileName">
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="gallery"></div>
+          </div>
+        </div>
+      </div>
+
+      <!--       <div id="insertBoardPhotos">
+        <div class="form-group row teacherDisplay">
+          <div class="col">
+            <label for="inputPhotos" class="mb-3">사진 업로드</label>
+            <div class="d-flex photo-add-div">
+              <div id="my-image-wrapper"
+                class="col image-wrapper text-center"></div>
+            </div>
+            <div
+              class="d-flex photo-add-button btn btn-outline-primary mx-0 my-0 px-0 py-0"
+              style="border-top-left-radius: 0; border-top-right-radius: 0; border-top-width: 0px;">
+              <button type="button"
+                class="btn btn-outline-primary mx-0 my-0"
+                style="flex-basis: 100%; box-shadow: none; border: 0;">
+                사진 등록</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
 
     </form>
     
@@ -309,6 +392,117 @@
 
   </div>
 </div>
+
+<!-- <script>
+  let teacherPhotos = new Array();
+
+</script>
+<c:forEach items="${board.files}" var="photo">
+  <script>
+      teacherPhotos.push('${photo.fileName}');
+  </script>
+</c:forEach>
+<script>
+  class TeacherPhotoController {
+    teacherPhotos;
+    teacherPhotoCount = 0;
+    indexOfPhotos = 1;
+    initialPhotoLoadingCompleted = false;
+
+    constructor(teacherPhotos) {
+      this.teacherPhotos = teacherPhotos;
+    }
+
+    addEventOfDeletionPhoto(thisDeleteButton) {
+      thisDeleteButton.addEventListener('click', () => {
+        if (this.teacherPhotoCount == 1)
+          return;
+        let thisPhotoCard = thisDeleteButton.parentNode;
+
+        thisPhotoCard.parentNode.removeChild(thisPhotoCard);
+        this.teacherPhotoCount--;
+      });
+    }
+
+    addTeacherPhotoNode(photoFileName) {
+      let html = '';
+      html += '<div class="card my-images mr-1 photo-no-' + this.indexOfPhotos + '" style="display: none;">';
+      html += '<img class="card-img-top my-teacher-images" src="/upload/board' + photoFileName + '" alt="Card image cap">';
+      html += '<div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0" style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">';
+      html += '<button type="button" class="btn btn-outline-primary mx-0 my-0" style="flex-basis: 100%; box-shadow: none; border: 0;">';
+      html += '삭제';
+      html += '</button>';
+      html += '</div>';
+      html += '<input type="text" class="photo-name-no-' + this.indexOfPhotos + '" name="teacherPhotoNames" value="' + photoFileName + '" hidden>';
+      html += '<input type="file" class="photo-file-no' + this.indexOfPhotos + '" name="fileName">';
+      html += '</div>';
+
+      $('#my-image-wrapper').append(html);
+
+      let thisPhotoCard = document.getElementsByClassName('photo-no-' + this.indexOfPhotos)[0];
+      let thisPhoto = document.getElementsByClassName('photo-no-' + this.indexOfPhotos)[0].childNodes[0];
+      let thisPhotoName = document.getElementsByClassName('photo-name-no-' + this.indexOfPhotos)[0];
+
+      let thisDeleteButton = thisPhotoCard.childNodes[1];
+      let thisFileInput = document.getElementsByClassName('photo-file-no' + this.indexOfPhotos)[0];
+
+      this.addEventOfDeletionPhoto(thisDeleteButton);
+
+      if (this.initialPhotoLoadingCompleted) {
+        thisFileInput.addEventListener('change', e => {
+          let get_file = e.target.files;
+          let reader = new FileReader();
+
+          reader.onload = ((thisPhoto, thisPhotoCard) => {
+            return (e) => {
+              thisPhotoCard.style.display = 'inline-block';
+              thisPhoto.src = e.target.result;
+            }
+          })(thisPhoto, thisPhotoCard);
+
+          reader.readAsDataURL(get_file[0]);
+          thisPhotoName.value = get_file[0].name;
+        });
+
+        let clickPhotoChangeEvent = new MouseEvent('click', {
+          bubbles: true, cancelable: true, view: window
+        });
+        thisFileInput.dispatchEvent(clickPhotoChangeEvent);
+      }
+
+      if (!this.initialPhotoLoadingCompleted)
+        thisPhotoCard.style.display = 'inline-block';
+
+      this.teacherPhotoCount++;
+      this.indexOfPhotos++;
+
+    }
+
+    addEventToPhotoAddButton() {
+      let photoAddButton = document.getElementsByClassName('photo-add-button')[0];
+      photoAddButton.addEventListener('click', () => {
+        this.addTeacherPhotoNode('c.jpg');
+      });
+    }
+
+    loadInitialTeacherPhotos() {
+      for (let photoName of this.teacherPhotos) {
+        this.addTeacherPhotoNode(photoName);
+      }
+
+      this.initialPhotoLoadingCompleted = true;
+
+      this.addEventToPhotoAddButton();
+    }
+
+
+  }
+
+  let teacherPhotoController = new TeacherPhotoController(teacherPhotos);
+  teacherPhotoController.loadInitialTeacherPhotos();
+
+
+</script> -->
 
 <script>
   // 수정
@@ -482,9 +676,9 @@
                         }
                         a += '</div>';
                         a += '<div class="col-11">'
-                        a += '<div class="createdDate'+value.commentNo+'">' + value.createdDate + '</div>';
-                        a += '<div class="commentInfo'+value.commentNo+'">'
+                        a += '<div class="commentInfo'+value.commentNo+'" style="display: inline-block; margin-right: 10px; font-weight: bold;">'
                             + value.memberId + '</div>'
+                        a += '<div class="createdDate'+value.commentNo+'" style="display: inline-block; font-size: 80%">' + value.createdDate + '</div>';
                         a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
                             + value.commentContents + '</div>'
                         if (value.memberNo == ${loginUser.memberNo}){
