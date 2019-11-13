@@ -32,12 +32,14 @@ public class MypageController {
     member.setMemberTypeNo(loginUser.getMemberTypeNo());
     member.setEmail(email1+"@"+email2);
     
-    StringBuilder sb = new StringBuilder();
-    sb.append("0000000");
-    for(int i = 0; i < lessonDay.length; i++) {
-      sb.setCharAt(Integer.parseInt(lessonDay[i]), '1'); 
+    if (lessonDay != null) {
+      StringBuilder sb = new StringBuilder();
+      sb.append("0000000");
+      for(int i = 0; i < lessonDay.length; i++) {
+        sb.setCharAt(Integer.parseInt(lessonDay[i]), '1'); 
+      }
+      member.setLessonDays(sb.toString());
     }
-    member.setLessonDays(sb.toString());
     
   }
   
