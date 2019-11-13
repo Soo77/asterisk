@@ -39,7 +39,7 @@ public class JoinController implements Runnable {
   String uploadDir;
 
   public JoinController(ServletContext sc) {
-    uploadDir = sc.getRealPath("/upload");
+    uploadDir = sc.getRealPath("/upload/join");
   }
 
   @GetMapping("student")
@@ -68,17 +68,14 @@ public class JoinController implements Runnable {
   @PostMapping("teacherjoin")
   public String teacherjoin(Member member, 
       MultipartFile filePath,
-      String birthyy, String birthmm, String birthdd, 
-      String mail, 
+      Date birthDay, String mail, 
       String accountno, String bankname, String teacherintro, 
       MultipartFile lessoncertificate) 
           throws Exception {
 
     String emailAddress = member.getEmail() + "@" + mail;
-    String dob = birthyy + "-" + birthmm + "-" + birthdd;
-    Date testdob = Date.valueOf(dob);
     member.setEmail(emailAddress);
-    member.setDateOfBirth(testdob);
+    member.setDateOfBirth(birthDay);
 //    member.getMemberType().setMemberTypeNo(memberTypeNo);
     member.setMemberTypeNo(3);
     //멤버 타입 수정함 MemberType
@@ -118,20 +115,15 @@ public class JoinController implements Runnable {
   @PostMapping("parentsjoin")
   public String parentsjoin(Member member, 
       MultipartFile filePath,
-      String birthyy, String birthmm, String birthdd, 
-      String mail) 
+      Date birthDay, String mail) 
           throws Exception {
 
     String emailAddress = member.getEmail() + "@" + mail;
-    String dob = birthyy + "-" + birthmm + "-" + birthdd;
-    Date testdob = Date.valueOf(dob);
     member.setEmail(emailAddress);
-    member.setDateOfBirth(testdob);
+    member.setDateOfBirth(birthDay);
     //   member.getMemberType().setMemberTypeNo(memberTypeNo);
     member.setMemberTypeNo(2);
     //멤버 타입 수정함 MemberType
-
-    Map<String, Object> params = new HashMap<>();
 
     if (!filePath.isEmpty()) {
       String filename = UUID.randomUUID().toString();
@@ -157,20 +149,15 @@ public class JoinController implements Runnable {
   @PostMapping("studentjoin")
   public String studentjoin(Member member, 
       MultipartFile filePath,
-      String birthyy, String birthmm, String birthdd, 
-      String mail) 
+      Date birthDay, String mail) 
           throws Exception {
 
     String emailAddress = member.getEmail() + "@" + mail;
-    String dob = birthyy + "-" + birthmm + "-" + birthdd;
-    Date testdob = Date.valueOf(dob);
     member.setEmail(emailAddress);
-    member.setDateOfBirth(testdob);
+    member.setDateOfBirth(birthDay);
     //  member.getMemberType().setMemberTypeNo(memberTypeNo);
     member.setMemberTypeNo(1);
     //멤버 타입 수정함 MemberType
-
-    Map<String, Object> params = new HashMap<>();
 
     if (!filePath.isEmpty()) {
       String filename = UUID.randomUUID().toString();

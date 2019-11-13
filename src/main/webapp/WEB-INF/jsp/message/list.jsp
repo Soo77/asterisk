@@ -8,11 +8,6 @@
 <title>쪽지</title>
 <script type="text/JavaScript"
 	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<style>
-#showmy {
-	margin-left: 50px;
-}
-</style>
 </head>
 <body>
 <h2>쪽지 보내기</h2>
@@ -20,7 +15,7 @@
 	<div id="showList"></div>
 	<br>
 	<br>
-	
+	<i class="fas fa-bell"></i>
 
 	<script>
 		$(document).ready(function() {
@@ -36,9 +31,15 @@
 					console.log(data);
 					for ( var i = 0 in data) {
 						console.log(data[i].name);
-						var str = '<TR>';
-			      str += '<TD>' + "<a href='detail?memberNo="+data[i].memberNo+"'>" + data[i].name + '</a>' +'</TD>';
-			      str += '</TR>';
+						if("${loginUser.name}"==data[i].name) {
+							var str = '<div>';
+	            str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + "나" + '</a>';
+	            str += '</div>';
+						} else {
+							var str = '<div>';
+				      str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + data[i].name + '</a>';
+				      str += '</div>';
+						}
 					$("#showList").append(str);
 					}
 				},
