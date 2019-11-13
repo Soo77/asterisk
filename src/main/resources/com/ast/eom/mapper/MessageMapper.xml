@@ -9,7 +9,7 @@
     <result column="receiver" property="receiverNo"></result>
     <result column="message_conts" property="messageContents"></result>
     <result column="send_date" property="sendDate"></result>
-    <result column="is_read" property="isRead"></result>
+    <result column="is_read" property="read"></result>
   </resultMap>
   
   <resultMap type="Member" id="MemberMap">
@@ -34,6 +34,12 @@
      join message s on m.mem_no = s.receiver 
      where s.sender=#{memberNo} or s.receiver=#{memberNo} 
      order by s.message_no desc
+  </select>
+  
+  <select id="messageRead" parameterType="int" resultMap="MessageMap">
+     select count(is_read), m.name from message s inner
+     join member m on m.mem_no = s.sender
+     where s.receiver=#{memberNo} 
   </select>
 	
 	<insert id="messageIn" parameterType="Message">

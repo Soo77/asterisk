@@ -40,9 +40,12 @@ public class MessageController {
 
   @PostMapping("memberlist")
   @ResponseBody
-  public List<Member> memberlist(int memberNo) throws Exception {
+  public List<Member> memberlist(Model model, int memberNo) throws Exception {
     List<Member> message = messageDao.messageList(memberNo);
-    System.out.println(memberNo);
+    
+//    int messageNotRead = messageDao.messageRead(memberNo);
+//    model.addAttribute("messageNotRead", messageNotRead);
+    
     for (Member m : message) {
       System.out.println(m);
     }

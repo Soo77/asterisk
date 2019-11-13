@@ -42,9 +42,9 @@
 	<br>
 	<div class="form-row">
    <div class="col-sm-5">
-		<input type="text" id="messageConts" name="messageConts"
+		  <input type="text" id="messageConts" name="messageConts"
 			class="form-control" placeholder="내용을 입력">
-		</div>
+		  </div>
 		<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
 	</div>
 	
@@ -77,44 +77,6 @@
       });
     }
     </script>
-	
-<!-- 메세지 리스트 -->
-	<!-- <script>
-		$(document).ready(function() {
-			list();
-		});
-
-		function list() {
-			console.log(${loginUser.memberNo}+ "sadsad"+${receiverNo});
-			$.ajax({
-				url : 'messageDetail',
-				type : 'post',
-				data : "senderNo=" + ${loginUser.memberNo} + "&receiverNo=" + ${receiverNo},
-				success : function(data) {
-					
-					for ( var i = 0 in data) {
-						  let std = '<div class="whopeople">'+"${loginUser.name}"+'</div>';
-							var str = '<div class="whochat'+i+' chat-bubble">';
-							str += data[i].messageContents + '</div>';
-							$("#chat").append(std+str);
-					}
-					
-					for ( var i = 0 in data) {
-						if (data[i].receiverNo == ${loginUser.memberNo}) {
-							$(".whochat"+i).css("margin-left","0px");
-						} else {
-					      $(".whochat"+i).css("margin-left","200px");
-					      $(".whochat"+i).css("text-align","right");
-						}
-					}
-
-				},
-				error : function() {
-					console.log("실패");
-				}
-			});
-		}
-		</script> -->
 
 <!-- 메세지 입력 -->
   <script>
@@ -128,7 +90,7 @@
 						success : function(result) {
               $("#chat").text("");
               $("#messageConts").val("");
-              list();
+              detail();
 						},
 						error : function() {
 							console.log("실패");
