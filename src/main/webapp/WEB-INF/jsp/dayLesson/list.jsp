@@ -92,10 +92,11 @@
         </button>
       </div>
       <div class="modal-body">
+      <input type="hidden" id="modalDayLessonNo" value="">
         <div class="row">
           <div class="col">
             <label for="lessonDate">수업일</label>
-            <div class="col" id="modalLessonDate">${dayLesson.lessonDate}</div>
+            <div class="col" id="modalLessonDate"></div>
           </div>
           <div class="col">
             <label for="lessonTime">수업 시간</label>
@@ -120,7 +121,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
           data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="dayLessonUpdate()">Save</button>
       </div>
     </div>
   </div>
@@ -140,76 +141,109 @@ $(document).ready(function() {
 	
   var lessonNo = ${lessonNo};
 
-	function loadData() { 
-  $.ajax({
-      url : 'dayLesson/list',
-      type : 'get',
+  // 일별 과외 진행현황 리스트
+	function dayLessonList() { 
+    $.ajax({
+        url : 'dayLesson/list',
+        type : 'get',
+        data : {
+          'lessonNo' : lessonNo
+        },
+        success : function(data) {
+          var a = '';
+  
+          var tempdayLessonNo = '';
+          var tempSummary = '';
+          var tempEvaluation = '';
+  
+          var thisNode = '';
+          
+          $.each(
+                  data,
+                  function(key, value) {
+                    a='';
+                  	a += '<div class="card">';
+                  	a += '<div class="card-body">';
+                  	a += "<input type='hidden' id='dayLessonNo_" + value.dayLessonNo + "' value='" + value.dayLessonNo + "'>";
+                  	a += '<div class="row">';
+              			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDate + '</div>';
+              			a += '수업시간 : <div class="col" id="lessonTime_' + value.dayLessonNo + '">' + value.lessonStartHour + '~' + value.lessonEndHour + '</div>';
+              			a += '</div>';
+            				a += '<hr>';
+          					a += '<div class="row">';
+        						a += '<div class="col" id="lessonSummary_' + value.dayLessonNo + '"></div>';
+        						a += "<input type='hidden' id='lessonEvaluation_" + value.dayLessonNo + "' value=''>";
+        						a += '</div>';
+      							a += '<div class="row" id="myBtnDetail">';
+    								a += '<div class="col">';
+  									a += '<button type="button" class="btn btn-primary btn-sm .modal-param" data-toggle="modal" data-target="#detailModal" data-unique="' + value.dayLessonNo + '"' +  'onclick="setModal(' + value.dayLessonNo + ')">상세보기 </button>';
+  									a += '</div>';
+  									a += '</div>';
+  									a += '</div>';
+                    a += '</div>';
+  
+                    $(".dayLessonList").append(a);
+  
+                    thisNode = document.getElementById('dayLessonNo_'+value.dayLessonNo);
+                    thisNode.setAttribute('value', value.dayLessonNo);
+                    thisNode = document.getElementById('lessonSummary_'+value.dayLessonNo);
+                    thisNode.innerHTML = value.lessonSummary;
+                    thisNode = document.getElementById('lessonEvaluation_'+value.dayLessonNo);
+                    thisNode.setAttribute('value', value.lessonEvaluation);
+  
+                  });
+  
+        }
+    });
+  }
+  
+
+	// 일별 과외 진행현황 수정
+  function dayLessonUpdate() {
+	  var dayLessonNo = $("#modalDayLessonNo").val();
+	  var updateLessonSummary = $("#modalLessonSummary").val();
+	  var updateLessonEvaluation = $("#modalLessonEvaluation").val();
+
+    $.ajax({
+      url : 'dayLesson/update',
+      type : 'post',
       data : {
-        'lessonNo' : lessonNo
+    	  'dayLessonNo' : dayLessonNo,
+  		  'lessonSummary' : updateLessonSummary,
+  		  'lessonEvaluation' : updateLessonEvaluation
       },
       success : function(data) {
-        var a = '';
-
-        var tempdayLessonNo = '';
-        var tempSummary = '';
-        var tempEvaluation = '';
-
-        var thisNode = '';
-        
-        $.each(
-                data,
-                function(key, value) {
-                  a='';
-                	a += '<div class="card">';
-                	a += '<div class="card-body">';
-                	a += '<div class="row">';
-            			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDate + '</div>';
-            			a += '수업시간 : <div class="col" id="lessonTime_' + value.dayLessonNo + '">' + value.lessonStartHour + '~' + value.lessonEndHour + '</div>';
-            			a += '</div>';
-          				a += '<hr>';
-        					a += '<div class="row">';
-      						a += '<div class="col" id="lessonSummary_' + value.dayLessonNo + '"></div>';
-      						a += "<input type='hidden' id='lessonEvaluation_" + value.dayLessonNo + "' value=''>";
-      						a += '</div>';
-    							a += '<div class="row" id="myBtnDetail">';
-  								a += '<div class="col">';
-									a += '<button type="button" class="btn btn-primary btn-sm .modal-param" data-toggle="modal" data-target="#detailModal" data-unique="' + value.dayLessonNo + '"' +  'onclick="setModal(' + value.dayLessonNo + ')">상세보기 </button>';
-									a += '</div>';
-									a += '</div>';
-									a += '</div>';
-                  a += '</div>';
-
-                  $(".dayLessonList").append(a);
-
-                  thisNode = document.getElementById('lessonSummary_'+value.dayLessonNo);
-                  thisNode.innerHTML = value.lessonSummary;
-                  thisNode = document.getElementById('lessonEvaluation_'+value.dayLessonNo);
-                  thisNode.setAttribute('value', value.lessonEvaluation);
-
-                });
-
+        if (data == 1)
+        	dayLessonList(lessonNo);
       }
-  });
-}
+    });
+  }
 
 	$(document).ready(function() {
-		loadData();
+		dayLessonList();
 	});
 </script>
 
 <script>
-  function setModal(key) {
+	function setModal(key) {
+	  var daylessonNo = $("#dayLessonNo_" + key).val();
+	  $("#modalDayLessonNo").val(daylessonNo);
+	    
 	  var lessonDate = $("#lessonDate_" + key).text();
 	  $("#modalLessonDate").text(lessonDate);
 	    
     var lessonTime = $("#lessonTime_" + key).text();
     $("#modalLessonTime").text(lessonTime);
     
-    var summary = $("#lessonSummary_" + key).text();
-    $("#modalLessonSummary").val(summary);
+    var lessonSummary = $("#lessonSummary_" + key).text();
+    $("#modalLessonSummary").val(lessonSummary);
     
-    var evaluation = $("#lessonEvaluation_" + key).val();
-    $("#modalLessonEvaluation").val(evaluation);
+    var lessonEvaluation = $("#lessonEvaluation_" + key).val();
+    $("#modalLessonEvaluation").val(lessonEvaluation);
+    
+    console.log(daylessonNo);
   }
+
+
 </script>
 
