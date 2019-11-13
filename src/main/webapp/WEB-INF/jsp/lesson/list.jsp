@@ -91,7 +91,7 @@
        <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">수정</a> 
        </c:when>
        <c:otherwise> 
-       <a href="../dayLesson/list" class="btn btn-primary">상세보기</a> 
+       <a href="../dayLesson/list?lessonNo=${lesson.lessonNo}" class="btn btn-primary">상세보기</a> 
       </c:otherwise>
       </c:choose>
       

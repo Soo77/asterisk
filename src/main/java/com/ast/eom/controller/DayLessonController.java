@@ -22,8 +22,7 @@ public class DayLessonController {
 
   @SuppressWarnings("unchecked")
   @GetMapping("list")
-  public void list(HttpSession session, Model model) throws Exception {
-    int lessonNo = 4;
+  public void list(HttpSession session, Model model, int lessonNo) throws Exception {
     List<DayLesson> dayLessons = dayLessonService.list(lessonNo);
     model.addAttribute("dayLessons", dayLessons);
     model.addAttribute("lessonNo", lessonNo);
@@ -50,7 +49,6 @@ public class DayLessonController {
   @GetMapping("dayLesson/list")
   @ResponseBody
   public List<DayLesson> list(int lessonNo) throws Exception {
-//    int lessonNo = 4;
     System.out.println(lessonNo);
     return dayLessonService.list(lessonNo);
   }
