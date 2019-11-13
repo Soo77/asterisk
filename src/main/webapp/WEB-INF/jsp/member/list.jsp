@@ -45,6 +45,32 @@
 }
 </style>
 
+<script type="text/javascript">
+function radio_chk() {
+    //라디오 버튼 Name 가져오기
+    var radio_btn = document.getElementsByName("radio_btn");
+
+    //라디오 버튼이 체크되었나 확인하기 위한 변수
+    var radio_btn_check = 0;
+    for(var i = 0; i<radio_btn.length; i++){
+        //만약 라디오 버튼이 체크가 되어있다면 true
+        if(radio_btn[i].checked==true){
+            //라디오 버튼 값
+            alert(radio_btn[i].value);
+            //라디오 버튼이 체크되면 radio_btn_check를 1로 만들어준다.
+            radio_btn_check++;
+        }
+    }
+    
+    if(radio_btn_check==0){
+        alert("라디오 버튼을 선택해주세요");
+        return;
+    }
+}
+</script>
+
+
+
 <body>
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('')">
     <div class="container">
@@ -81,10 +107,10 @@
                 <select class="custom-select" name="sido1" id="sido1"/></select> 
                 <select class="custom-select" name="gugun1" id="gugun1"></select>
               </div>
-
-
+              
+              
               <label class="gender title">성별</label>
-              <div class="form-check">
+              <!-- <div class="form-check"> -->
                 <label class="btn btn-primary gender"> 
                   <input class="form-check-input" type="radio" name="gender" id="gender_man" value="1"> 남자 
                   <span class="circle"> 
@@ -99,11 +125,11 @@
                     </span>
                   </span>
                 </label>
-              </div>
+              <!-- </div> -->
 
 
               <label class="age title">나이</label>
-              <div class="form-check">
+              <!-- <div class="form-check"> -->
                 <label class="btn btn-primary age"> 
                 <input class="form-check-input" type="radio" name="age" id="age_1" value="1"> 20 ~ 21 
                   <span class="circle"> 
@@ -146,10 +172,10 @@
                     </span>
                   </span>
                 </label>
-              </div>
+              <!-- </div> -->
 
               <label class="lessons_fee title">수업료</label>
-              <div class="form-check">
+              <!-- <div class="form-check"> -->
                 <label class="btn btn-primary lesson-fee"> 
                 <input class="form-check-input" type="radio" name="wantedFee"  id="lesson_fee_1" value="1"> 20만원 이하 
                   <span class="circle"> 
@@ -178,7 +204,7 @@
                     </span>
                   </span>
                 </label>
-              </div>
+              <!-- </div> -->
 
               <label class="subject title">과목으로 찾기</label>
               <div class="checkbox-container checkbox-container-four active">
@@ -197,8 +223,8 @@
           <!-- contents ================================================== -->
           <div class="col-lg-9 col-md-8">
             <div class="row">
-              <div class="col-lg-10 col-sm10"></div>
-              <div class="col-lg-2 col-sm-2">
+              <div class="col-lg-10 col-md-10 col-sm-10"></div>
+              <div class="col-lg-2 col-md-2 col-sm-2">
                 <div class="input-group">
                   <select class="custom-select custom-select-sm" id="pageSize">
                     <option value="2">2</option>
