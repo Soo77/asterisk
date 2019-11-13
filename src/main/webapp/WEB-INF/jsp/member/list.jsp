@@ -47,7 +47,6 @@
 
 
 </style>
-
 <body>
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
     <div class="container">
@@ -78,9 +77,9 @@
       <div class="row">
 
         <!-- Sidebar ================================================== -->
+        
         <div class="col-lg-3 col-md-4">
           <div class="sidemenubar" id="sideMenuBar">
-            
             <h4><span class="tim-note">지역</span></h4>
               <div class="address">
                 <select class="custom-select" name="sido1" id="sido1">
@@ -89,108 +88,91 @@
                 </select>
               </div>
               
-              <ul class="nav nav-pills nav-pills-icons" role="tablist">
-                <!--
-                                color-classes: "nav-pills-primary", 
-                                "nav-pills-info", "nav-pills-success", 
-                                "nav-pills-warning","nav-pills-danger"
-                            -->
-                <li class="nav-item">
-                  <a class="nav-link active show" href="#dashboard-1" role="tab" data-toggle="tab" aria-selected="true">
-                    Dashboard
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#schedule-1" role="tab" data-toggle="tab" aria-selected="false">
-                    Schedule
-                  </a>
-                </li>
-              </ul>
               
               <h4><span class="tim-note">성별</span></h4>
-              <div class="form-check">
-                <label class="btn btn-primary gender">
-                  <input class="form-check-input" type="checkbox" name="gender" id="gender_man" value="0"> 남자
+              <!-- <div class="form-check"> -->
+               <label class="btn btn-primary gender">
+                  <input class="form-check-input" type="radio" name="gender" id="gender_man" value="1"> 남자
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary gender">
-                  <input class="form-check-input" type="checkbox" name="gender" id="gender_woman" value="1"> 여자
+                  <input class="form-check-input" type="radio" name="gender" id="gender_woman" value="2"> 여자
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
-              </div>
+             <!--  </div> -->
             
             
               <h4><span class="tim-note">나이</span></h4>
-              <div class="form-check">
+              <!-- <div class="form-check"> -->
                 <label class="btn btn-primary age">
-                  <input class="form-check-input" type="radio" name="age" id="age_20and21" value="20,21"> 20 ~ 21
+                  <input class="form-check-input" type="radio" name="age" id="age_1" value="1"> 20 ~ 21
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary age">
-                  <input class="form-check-input" type="radio" name="age" id="age_22and23" value="22,23"> 22 ~ 23
+                  <input class="form-check-input" type="radio" name="age" id="age_2" value="2"> 22 ~ 23
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary age">
-                  <input class="form-check-input" type="radio" name="age" id="age_24and25" value="24,25"> 24 ~ 25
+                  <input class="form-check-input" type="radio" name="age" id="age_3" value="3"> 24 ~ 25
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary age">
-                  <input class="form-check-input" type="radio" name="age" id="age_26and27" value="26,27"> 26 ~ 27
+                  <input class="form-check-input" type="radio" name="age" id="age_4" value="4"> 26 ~ 27
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary age">
-                  <input class="form-check-input" type="radio" name="age" id="age_28and29" value="28,29"> 28 ~ 29
+                  <input class="form-check-input" type="radio" name="age" id="age_5" value="5"> 28 ~ 29
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary age">
-                  <input class="form-check-input" type="radio" name="age" id="age_30" value="30"> 30 이상
+                  <input class="form-check-input" type="radio" name="age" id="age_6" value="6"> 30 이상
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
-              </div>
+              <!-- </div> -->
             
               <h4><span class="tim-note">수업료</span></h4>
-              <div class="form-check">
+              <!-- <div class="form-check"> -->
                 <label class="btn btn-primary lesson-fee">
-                  <input class="form-check-input" type="radio" name="lesson_fee" id="lesson_fee_20" value="20"> 20만원 까지
+                  <input class="form-check-input" type="radio" name="wantedFee" id="lesson_fee_1" value="1"> 20만원 이하
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary lesson-fee">
-                  <input class="form-check-input" type="radio" name="lesson_fee" id="lesson_fee_30" value="30"> 30만원 까지
+                  <input class="form-check-input" type="radio" name="wantedFee" id="lesson_fee_2" value="2"> 20만원~30만원
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary lesson-fee">
-                  <input class="form-check-input" type="radio" name="lesson_fee" id="lesson_fee_40" value="40"> 40만원 까지
+                  <input class="form-check-input" type="radio" name="wantedFee" id="lesson_fee_3" value="3"> 30만원~40만원
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
                 <label class="btn btn-primary lesson-fee">
-                  <input class="form-check-input" type="radio" name="lesson_fee" id="lesson_fee_50" value="50"> 50만원 까지
+                  <input class="form-check-input" type="radio" name="wantedFee" id="lesson_fee_4" value="4"> 40만원 이상
                   <span class="circle">
                     <span class="check"></span>
                   </span>
                 </label>
-              </div>
+              <!-- </div> -->
             
               <h4><span class="tim-note">과목으로 찾기</span></h4>
               <div class="checkbox-container checkbox-container-four active">
@@ -202,21 +184,23 @@
             <button class="btn btn-primary btn-round">조건 검색</button>
             </div>
             
-          
           </div>
         </div>
         <!-- Sidebar / End -->
         <!-- contents ================================================== -->
         <div class="col-lg-9 col-md-8">
         
-        <div class="input-group">
-			    <select id="pageSize">
-			      <option value="3">3</option>
-			      <option value="8">8</option>
-			      <option value="10">10</option>
-			      <option value="20">20</option>
-			    </select>
-			  </div>
+        <div class="btn-toolbar justify-content-between" role="toolbar">
+      <div class="input-group">
+        <select id="pageSize" class="form-control">
+          <option value="3">3개씩</option>
+          <option value="8">8개씩</option>
+          <option value="10">10개씩</option>
+          <option value="20">20개씩</option>
+        </select>
+      </div>
+    </div>
+			  
 
           <c:if test="${memberTypeNo eq 3}">
             <c:forEach items="${memberList}" var="member">
@@ -225,22 +209,21 @@
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                        <img src="${member.profilePhoto}" width="130" alt="Thumbnail Image" 
+                        <img src="/upload/join/${member.profilePhoto}" width="130" alt="Thumbnail Image" 
                         class="img-raised rounded-circle img-fluid" 
                         onError="this.src='/upload/join/default.png'">
-                        <!-- <img src="/landing_images/images/hong.png" width="130" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid"> -->
                       </div>
                       <div class="col-md-9">
-                      <h3 class="title">
-                        <span class="tim-note">${member.name}</span></h3>
-                      <h4><span class="tim-note">
+                      <h5 class="title">
+                        <span class="tim-note">${member.name}</span></h5>
+                      <h5><span class="tim-note">
                           ${member.schools[0].schoolName}/
                           ${member.gender}/
                           ${member.addressCity}
                           ${member.addressSuburb}/
                           ${member.schoolType}/
-                          ${member.subjects[0].subjectName}
-                      </span></h4>
+                          ${member.subjectName}
+                      </span></h5>
                       </div>
                     </div>
                   </div>
@@ -257,19 +240,19 @@
                   <div class="cardcard mb-3">
                     <div class="row no-gutters">
                       <div class="col-md-3">
-                      <img src="${member.profilePhoto}" width="130" alt="Thumbnail Image" 
+                      <img src="/upload/join/${member.profilePhoto}" width="130" alt="Thumbnail Image" 
                         class="img-raised rounded-circle img-fluid" 
                         onError="this.src='/upload/join/default.png'">
                       </div>
                       <div class="col-md-9">
-                        <h3 class="title">
-                        <span class="tim-note">${member.name}</span></h3>
-                        <h4><span class="tim-note">
+                        <h5 class="title">
+                        <span class="tim-note">${member.name}</span></h5>
+                        <h5><span class="tim-note">
                         ${member.gender}/
                         ${membe.addressCity} ${member.addressSuburb}/
                         ${member.schoolType}/
-                        ${member.subjects[0].subjectName}
-                        </span></h4>
+                        ${member.subjectName}
+                        </span></h5>
                       </div>
                     </div>
                   </div>
@@ -280,24 +263,36 @@
           </c:if>
           
           <nav aria-label="Page navigation example">
-					  <ul class="pagination">
-					    <li class="page-item" data-page="prev">
-					      <a class="page-link" href="#">
-					        <span aria-hidden="true">&laquo;</span> 
-					      </a>
-					    </li>
-					<c:forEach begin="${beginPage}" end="${endPage}" var="page">
-					    <li class="page-item" data-page="${page}">
-					      <a class="page-link" ${page != pageNo ? "href=#" : ""}>${page}</a>
-					    </li>
-					</c:forEach>
-					    <li class="page-item" data-page="next">
-					      <a class="page-link" href="#">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
-					  </ul>
-					</nav>
+      <ul class="pagination justify-content-center">
+        <c:if test="${pagination.curPage ne 1}">
+          <li class="page-item"><a class="page-link"
+            href="list?memberTypeNo=${memberTypeNo}&pageSize=${pageSize}&amp;curPage=${pagination.prevPage}">&laquo;</a>
+          </li>
+        </c:if>
+
+        <c:forEach var="pageNum" begin="${pagination.startPage }"
+          end="${pagination.endPage }">
+          <c:choose>
+            <c:when test="${pageNum eq  pagination.curPage}">
+              <li class="page-item active" aria-current="page"><a
+                class="page-link"
+                href="list?memberTypeNo=${memberTypeNo}&pageSize=${pageSize}&amp;curPage=${pageNum}">${pageNum}</a></li>
+            </c:when>
+            <c:otherwise>
+              <li class="page-item"><a class="page-link"
+                style="color: #000000;"
+                href="list?memberTypeNo=${memberTypeNo}&pageSize=${pageSize}&amp;curPage=${pageNum}">${pageNum}</a></li>
+            </c:otherwise>
+          </c:choose>
+        </c:forEach>
+
+        <c:if
+          test="${pagination.curPage ne pagination.pageCnt && pagination.pageCnt > 0}">
+          <li class="page-item"><a class="page-link"
+            href="list?memberTypeNo=${memberTypeNo}&pageSize=${pageSize}&amp;curPage=${pagination.nextPage}">&raquo;</a></li>
+        </c:if>
+      </ul>
+    </nav>
 
         </div>
         <!-- contents / End -->
@@ -480,10 +475,5 @@ $('.page-item').click((e) => {
   </script>
   
 
-  
-
 </body>
-<!-- <script src="/node_modules/jquery/dist/jquery.min.js"></script> -->
-
-
 </html>
