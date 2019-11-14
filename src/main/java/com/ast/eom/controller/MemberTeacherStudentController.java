@@ -1,12 +1,14 @@
 package com.ast.eom.controller;
 
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import com.ast.eom.domain.MemberTeacherStudent;
 import com.ast.eom.domain.Pagination;
 import com.ast.eom.service.MemberTeacherStudentService;
@@ -52,6 +54,32 @@ public class MemberTeacherStudentController {
     model.addAttribute("detailStudent", detailStudent);
     model.addAttribute("detailTeacher", detailTeacher);
   }
+  
+  @RequestMapping("search")
+  public String search(HttpServletRequest request, Model model) throws Exception {
+    
+    String sido1 = "";
+    String gugun1 = "";
+    String gender = "";
+    String age = "";
+    String wantedFee = "";
+    String school1 = "";
+    String subject1 = "";
+    
+    sido1 = request.getParameter("sido1");
+    gugun1 = request.getParameter("gugun1");
+    gender = request.getParameter("gender");
+    age = request.getParameter("age");
+    wantedFee = request.getParameter("wantedFee");
+    school1 = request.getParameter("school1");
+    subject1 = request.getParameter("subject1");
+    
+   
+    
+    return "";
+  }
+ 
+  
   
   /*
    * @GetMapping("ohora")

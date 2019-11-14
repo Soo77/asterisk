@@ -44,6 +44,14 @@
   padding-bottom: 40px;
 }
 </style>
+<script>
+function myFunction(){
+	var select1=[];
+	var f = document.form1;
+	f.action="search";
+	f.submit();
+}
+</script>
 
 
 <body>
@@ -77,26 +85,26 @@
           <!-- Sidebar ================================================== -->
           <div class="col-lg-3 col-md-4">
             <div class="sidemenubar" id="sideMenuBar">
-            <form action='search' method='post'>
+            <form name="form1" id="form1" method="post">
            
               <label class="address title">지역</label>
               <div class="address">
-                <select class="custom-select" name="sido1" id="sido1" onchange="select_value(this)"></select> 
-                <select class="custom-select" name="gugun1" id="gugun1" onchange="select_value(this)"></select>
+                <select class="custom-select" name="sido1" id="sido1"></select> 
+                <select class="custom-select" name="gugun1" id="gugun1"></select>
               </div>
               
               
               <label class="gender title">성별</label>
               <div class="form-check" >
                 <label class="btn btn-primary gender"> 
-                  <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M" onclick="genderselect(this)"> 남자 
+                  <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M"> 남자 
                   <span class="circle"> 
                     <span class="check">
                     </span> 
                   </span> 
                 </label> 
                 <label class="btn btn-primary gender"> 
-                  <input  class="form-check-input" type="radio" name="gender" id="gender_2" value="F" onclick="genderselect(this)"> 여자 
+                  <input  class="form-check-input" type="radio" name="gender" id="gender_2" value="F"> 여자 
                   <span class="circle"> 
                     <span class="check">
                     </span>
@@ -110,42 +118,42 @@
               <label class="age title">나이</label>
               <div class="form-check">
                 <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_1" value="1" onclick="ageselect(this)"> 20 ~ 21 
+                <input class="form-check-input" type="radio" name="age" id="age_1" value="1"> 20 ~ 21 
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label> 
                 <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_2" value="2" onclick="ageselect(this)"> 22 ~ 23 
+                <input class="form-check-input" type="radio" name="age" id="age_2" value="2"> 22 ~ 23 
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label> 
                 <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_3" value="3" onclick="ageselect(this)"> 24 ~ 25 
+                <input class="form-check-input" type="radio" name="age" id="age_3" value="3"> 24 ~ 25 
                   <span  class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label> 
                 <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_4" value="4" onclick="ageselect(this)"> 26 ~ 27 
+                <input class="form-check-input" type="radio" name="age" id="age_4" value="4"> 26 ~ 27 
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label> 
                 <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_5" value="5" onclick="ageselect(this)"> 28 ~ 29 
+                <input class="form-check-input" type="radio" name="age" id="age_5" value="5"> 28 ~ 29 
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label> 
                 <label class="btn btn-primary age"> 
-                <input  class="form-check-input" type="radio" name="age" id="age_6" value="6" onclick="ageselect(this)"> 30 이상 
+                <input  class="form-check-input" type="radio" name="age" id="age_6" value="6"> 30 이상 
                   <span class="circle">
                     <span class="check">
                     </span>
@@ -157,28 +165,28 @@
               <label class="lessons_fee title">수업료</label>
               <div class="form-check">
                 <label class="btn btn-primary wantedFee"> 
-                  <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1" onclick="wantedFeeselect"> 20만원 이하
+                  <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1"> 20만원 이하
                   <span class="circle"> 
                     <span class="check">
                     </span> 
                   </span> 
                 </label> 
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2" onclick="wantedFeeselect"> 20~30 만원
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2"> 20~30 만원
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3" onclick="wantedFeeselect"> 30~40 만원
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3"> 30~40 만원
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4" onclick="wantedFeeselect"> 40만원 이상 
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4"> 40만원 이상 
                   <span class="circle"> 
                     <span class="check">
                     </span>
@@ -189,8 +197,8 @@
 
               <label class="subject title">과목으로 찾기</label>
               <div class="checkbox-container checkbox-container-four active">
-                <select class="custom-select" name="school1" id="school1" onchange="select_value(this)"></select> 
-                <select class="custom-select" name="subject1" id="subject1" onchange="select_value(this)"></select>
+                <select class="custom-select" name="school1" id="school1"></select> 
+                <select class="custom-select" name="subject1" id="subject1"></select>
               </div>
 
               <div class="button search">
@@ -498,9 +506,21 @@
   var select_value = function (select_obj){
   var selected_index = select_obj.selectedIndex;
   var selected_value = select_obj.options[selected_index].value;
-  
   console.log(selected_value);
+  
+  $.ajax({
+	  url:"/ajaxList",
+	  type:"POST",
+	  data: selected_value,
+	  success: function(result){
+		  alert(result + "성공");
+	  },
+	  error: function(result){
+		  alert(result + "오류");
+	  }
+  });
 };
+
 </script>
 
 
