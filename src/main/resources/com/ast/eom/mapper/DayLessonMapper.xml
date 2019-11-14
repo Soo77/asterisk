@@ -29,9 +29,9 @@
   
   <update id="update" parameterType="DayLesson">
     update day_lesson set
-      lesson_summ=#{lessonSummary}
+      lesson_summ=#{lessonSummary},
       lesson_eval=#{lessonEvaluation}
-    where day_lesson_no=#{day_lesson_no}
+    where day_lesson_no=#{dayLessonNo}
   </update>
 
 </mapper>

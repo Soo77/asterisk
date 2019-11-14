@@ -69,12 +69,19 @@ public class DefaultMypageService implements MypageService {
       memberInfoMap.put("lessonSubjects", mypageDao.getLessonSubjects(memberNo));
       memberInfoMap.put("teacherPhotos", mypageDao.getTeacherPhotos(memberNo));
       
+    } else if (memberTypeNo == 4) {
+      
     } else {
       throw new Exception("DB에서 회원정보를 가져오던 중 오류 발생!");
       
     }
     
     return memberInfoMap;
+  }
+  
+  @Override
+  public int updateMember(Member member) {
+    return mypageDao.updateMember(member);
   }
 
   @Override
@@ -85,7 +92,7 @@ public class DefaultMypageService implements MypageService {
       String[] subjectNo,
       String[] wantedFee) {
     
-    mypageDao.updateMember(member);
+    updateMember(member);
     mypageDao.updateTeacher(teacher);
     
     int[] thisSubjectNo = new int[schoolTypeNo.length];

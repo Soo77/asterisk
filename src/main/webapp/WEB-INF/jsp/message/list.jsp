@@ -6,21 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>쪽지</title>
-<script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<style>
-#showmy {
-	margin-left: 50px;
-}
-</style>
 </head>
 <body>
 <h2>쪽지 보내기</h2>
-<button id="findMember" onclick="findmember()">회원목록</button>
+<i class="fas fa-bell" id="messageReadShowAll"></i>
 	<div id="showList"></div>
 	<br>
 	<br>
-	
 
 	<script>
 		$(document).ready(function() {
@@ -33,13 +25,23 @@
 				type : 'post',
 				data : "memberNo=" + ${loginUser.memberNo},
 				success : function(data) {
-					console.log(data);
+					$("#messageReadShowAll").html(" ${messageReadShowAll}개");
 					for ( var i = 0 in data) {
-						console.log(data[i].name);
-						var str = '<TR>';
-			      str += '<TD>' + "<a href='detail?memberNo="+data[i].memberNo+"'>" + data[i].name + '</a>' +'</TD>';
-			      str += '</TR>';
-					$("#showList").append(str);
+						if("${loginUser.name}"==data[i].name) {
+							var str = '<div>';
+	            str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + "나에게 쪽지" + '</a>';
+						} else {
+							var str = '<div>';
+				      str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + data[i].name + '</a>';
+						}
+						
+						if(${messageReadList}[i] != 0){
+							var mrl = " <i class='far fa-bell'> "+${messageReadList}[i]+"</i>"
+						} else {
+							var mrl = "";
+						}
+						
+					$("#showList").append(str+mrl+'</div>');
 					}
 				},
 				error : function() {
@@ -47,14 +49,6 @@
 				}
 			});
 		}
-	</script>
-	
-	<script>
-	  function findmember(){
-          var url = "findmember";
-          var option = "width = 500, height = 500, top = 100, left = 200, location = yes"
-          window.open(url, "", option);
-		};
 	</script>
 	
 </body>

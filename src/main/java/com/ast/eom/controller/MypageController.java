@@ -32,12 +32,14 @@ public class MypageController {
     member.setMemberTypeNo(loginUser.getMemberTypeNo());
     member.setEmail(email1+"@"+email2);
     
-    StringBuilder sb = new StringBuilder();
-    sb.append("0000000");
-    for(int i = 0; i < lessonDay.length; i++) {
-      sb.setCharAt(Integer.parseInt(lessonDay[i]), '1'); 
+    if (lessonDay != null) {
+      StringBuilder sb = new StringBuilder();
+      sb.append("0000000");
+      for(int i = 0; i < lessonDay.length; i++) {
+        sb.setCharAt(Integer.parseInt(lessonDay[i]), '1'); 
+      }
+      member.setLessonDays(sb.toString());
     }
-    member.setLessonDays(sb.toString());
     
   }
   
@@ -94,9 +96,9 @@ public class MypageController {
     
 
     if (loginUser.getMemberTypeNo() == 1) {
-      
+      mypageService.updateMember(member);
     } else if (loginUser.getMemberTypeNo() == 2) {
-      
+      mypageService.updateMember(member);
     } else if (loginUser.getMemberTypeNo() == 3) {
       teacher.setTeacherNo(loginUser.getMemberNo());
       System.out.println(member);
@@ -105,6 +107,8 @@ public class MypageController {
       mypageService.updateTeacher(
           member, teacher, schoolTypeNo, subjectNo, wantedFee);
       
+    } else if (loginUser.getMemberTypeNo() == 4) {
+      mypageService.updateMember(member);
     }
     updateLoginUser(loginUser, member, session);
 

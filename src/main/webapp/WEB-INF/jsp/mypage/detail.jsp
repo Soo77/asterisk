@@ -254,7 +254,7 @@
                     </span>
                   </h6>
                   <h6></h6>
-                  <button class="btn btn-primary btn-sm my-message-btn">쪽지함</button>
+                  <button id="popMessage" class="btn btn-primary btn-sm my-message-btn">쪽지함</button>
                   <button class="btn btn-primary btn-sm my-lesson-btn">나의 과외</button>
                 </div>
               </div>
@@ -556,6 +556,19 @@
     console.log("${teacherLesson}");
   </script>
 </c:forEach>
+
+<!-- 쪽지함 팝업 -->
+<script>
+  $("#popMessage").on('click', function() {
+    popMessage();
+  });
+ 
+  function popMessage(){
+    var url = "/app/message/list";
+    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    window.open(url, "쪽지목록" ,option);
+  }
+</script>
 
 <!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
 <script src="/js/mypage/profile-photo.js"></script>

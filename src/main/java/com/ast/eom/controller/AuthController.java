@@ -63,6 +63,8 @@ public class AuthController implements Runnable {
       return "redirect:../member/list?memberTypeNo=3";
     else if (member.getMemberTypeNo() == 3)
       return "redirect:../member/list?memberTypeNo=1";
+    else if (member.getMemberTypeNo() == 4)
+      return "redirect:/";
     else
       throw new Exception("로그인 중 오류 발생!");
     
