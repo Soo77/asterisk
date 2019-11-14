@@ -14,6 +14,10 @@
   <script src="/js/jquery.simple-calendar.js"></script>
 
   <style>
+    #dayLessonAdd {
+      text-align: right;
+    }
+    
     #myBtnDetail {
       text-align: right;
     }
@@ -41,7 +45,11 @@
   <div class="container p-3">
     <div id="container" class="calendar-container p-5"></div>
     <hr>
-
+    
+    <div id="dayLessonAdd">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" onclick="resetModal()">추가</button>
+    </div>
+    
     <div class="progress-container progress-primary">
       <span class="progress-badge">남은 일수</span>
       <div class="progress">
@@ -51,7 +59,6 @@
       </div>
     </div>
     
-    <input type="hidden" name="lessonNo" value="${lessonNo}">
     <div class="dayLessonList">
     
     </div>
@@ -82,8 +89,9 @@
   </div>
 </div>
 
+
 <!-- Modal -->
-  <div class="modal fade" id="detailModal" tabindex="-1"
+  <div class="modal fade" id="Modal" tabindex="-1"
   role="dialog" aria-labelledby="detailModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -96,18 +104,41 @@
         </button>
       </div>
       <div class="modal-body">
-      <input type="hidden" id="modalDayLessonNo" value="">
+        <input name="dayLessonNo" type="hidden" id="modalDayLessonNo" value="">
+      <form name="dayLessonInsertForm">
+        <input name="lessonNo" type="hidden" id="modalLessonNo" value="${dayLessons[0].lessonNo}">
         <div class="row">
-          <div class="col">
-            <label for="lessonDate">수업일</label>
+           <div class="col">
+<!--            <label for="modalLessonDate">수업일</label>
             <div class="col" id="modalLessonDate"></div>
           </div>
           <div class="col">
-            <label for="lessonTime">수업 시간</label>
+            <label for="modalLessonTime">수업 시간</label>
             <div class="col" id="modalLessonTime"></div>
           </div>
+        </div> -->
+        <label for="modalLessonDate">수업일</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonDate" id="modalLessonDate" type="date" class="form-control" placeholder="Regular" value="">
+            </div>
         </div>
-        <hr>
+        </div>
+        <div class="row">
+          <div class="col">
+<!--             <label for="lessonTime">수업 시간</label>
+            <div class="col" id="modalLessonTime"></div> -->
+            <label for="modalLessonStartHour">수업시작시간</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonStartHour" id="modalLessonStartHour" type="time" class="form-control" placeholder="Regular" value="">
+            </div>
+          </div>
+          <div class="col">
+            <label for="modalLessonEndHour">수업종료시간</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonEndHour" id="modalLessonEndHour" type="time" class="form-control" placeholder="Regular" value="">
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col">
             <label for="lessonSummary">수업 내용 정리</label>
@@ -122,11 +153,14 @@
             name="lessonEvaluation" rows="5" style="resize: none;"></textarea>
           </div>
         </div>
+      </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary"
           data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="dayLessonUpdate()">Save</button>
+        <button type="button" id="btnUpdate" class="btn btn-primary" data-dismiss="modal" onclick="dayLessonUpdate()">저장</button>
+        <button type="button" id="btnAdd" class="btn btn-primary" name="dayLessonInsertBtn">추가</button>
+        <button type="button" id="btnDelete" class="btn btn-primary" name="dayLessonDeleteBtn" onclick="dayLessonDelete()">삭제</button>
       </div>
     </div>
   </div>
@@ -135,23 +169,44 @@
 <script src="/js/jquery.simple-calendar.js"></script>
 
 <script>
-$(document).ready(function(){
+ $(document).ready(function(){
 	  
 	$("#container").simpleCalendar();
 
-});
+	});
 
-$("#container").simpleCalendar({
-    months: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    days: ['일','월','화','수','목','금','토']
-});
+  $("#container").simpleCalendar({
+      months: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+      days: ['일','월','화','수','목','금','토']
+  });
 
 </script>
 
 <script>
 	
-  var lessonNo = ${lessonNo};
-
+  var lessonNo = '${dayLessons[0].lessonNo}';
+  console.log(lessonNo);
+  
+  // 일별 과외 진행현황 등록 버튼 클릭시 
+  $('[name=dayLessonInsertBtn]').click(function() {
+    var modalLessonDate = document.querySelector('#modalLessonDate');
+    var modalLessonStartHour = document.querySelector('#modalLessonStartHour');
+    var modalLessonEndHour = document.querySelector('#modalLessonEndHour');
+    var modalLessonSummary = document.querySelector('#modalLessonSummary');
+    var modalLessonEvaluation = document.querySelector('#modalLessonEvaluation');
+    
+    if (modalLessonDate.value.length > 0 &&
+    		modalLessonStartHour.value.length > 0 &&
+    		modalLessonEndHour.value.length > 0 &&
+    		modalLessonSummary.value.length > 0 &&
+    		modalLessonEvaluation.value.length > 0) {
+      var insertData = $('[name=dayLessonInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+      dayLessonInsert(insertData); //Insert 함수호출(아래)
+    } else {
+      swal("모두 입력하세요.");
+    }
+  });
+  
   // 일별 과외 진행현황 리스트
 	function dayLessonList() { 
     $.ajax({
@@ -178,7 +233,8 @@ $("#container").simpleCalendar({
                   	a += "<input type='hidden' id='dayLessonNo_" + value.dayLessonNo + "' value='" + value.dayLessonNo + "'>";
                   	a += '<div class="row">';
               			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDate + '</div>';
-              			a += '수업시간 : <div class="col" id="lessonTime_' + value.dayLessonNo + '">' + value.lessonStartHour + '~' + value.lessonEndHour + '</div>';
+              			a += '수업시작시간 : <div class="col" id="lessonStartHour_' + value.dayLessonNo + '">' + value.lessonStartHour + '</div>';
+              			a += '수업종료시간 : <div class="col" id="lessonEndHour_' + value.dayLessonNo + '">' + value.lessonEndHour + '</div>';
               			a += '</div>';
             				a += '<hr>';
           					a += '<div class="row">';
@@ -187,7 +243,7 @@ $("#container").simpleCalendar({
         						a += '</div>';
       							a += '<div class="row" id="myBtnDetail">';
     								a += '<div class="col">';
-  									a += '<button type="button" class="btn btn-primary btn-sm .modal-param" data-toggle="modal" data-target="#detailModal" data-unique="' + value.dayLessonNo + '"' +  'onclick="setModal(' + value.dayLessonNo + ')">상세보기 </button>';
+  									a += '<button type="button" class="btn btn-primary btn-sm .modal-param" data-toggle="modal" data-target="#Modal" data-unique="' + value.dayLessonNo + '"' +  'onclick="setModal(' + value.dayLessonNo + ')">상세보기 </button>';
   									a += '</div>';
   									a += '</div>';
   									a += '</div>';
@@ -208,27 +264,69 @@ $("#container").simpleCalendar({
     });
   }
   
+  // 일별 과외 진행현황 추가
+    function dayLessonInsert(insertData) {
+/*     	var dayLessonNo = $("#modalDayLessonNo").val();
+  		var dayLessonNo = $("#modalDayLessonNo").val();
+  		var dayLessonNo = $("#modalDayLessonNo").val();
+  		var updateLessonSummary = $("#modalLessonSummary").val();
+  		var updateLessonEvaluation = $("#modalLessonEvaluation").val(); */
+  	$.ajax({
+			url : 'dayLesson/add',
+			type : 'post',
+			data : insertData,
+/* 				'dayLessonNo' : dayLessonNo,
+				'lessonNo' : updateLessonSummary,
+				'lessonDate' : lessonDate,
+				'lessonStartHour' : lessonStartHour,
+				'lessonEndHour' : lessonEndHour,
+				'lessonSummary' : lessonSummary,
+				'lessonEvaluation' : lessonEvaluation */
+			success : function(data) {
+				if (data == 1) {
+					/*$('#Modal').modal('hide');*/
+					location.href = "list?lessonNo=" + lessonNo;
+				}
+			}
+		});
+	}
 
 	// 일별 과외 진행현황 수정
-  function dayLessonUpdate() {
-	  var dayLessonNo = $("#modalDayLessonNo").val();
-	  var updateLessonSummary = $("#modalLessonSummary").val();
-	  var updateLessonEvaluation = $("#modalLessonEvaluation").val();
+	function dayLessonUpdate() {
+		var dayLessonNo = $("#modalDayLessonNo").val();
+		var updateLessonSummary = $("#modalLessonSummary").val();
+		var updateLessonEvaluation = $("#modalLessonEvaluation").val();
 
-    $.ajax({
-      url : 'dayLesson/update',
-      type : 'post',
-      data : {
-    	  'dayLessonNo' : dayLessonNo,
-  		  'lessonSummary' : updateLessonSummary,
-  		  'lessonEvaluation' : updateLessonEvaluation
-      },
-      success : function(data) {
-        if (data == 1)
-        	dayLessonList(lessonNo);
-      }
-    });
-  }
+		$.ajax({
+			url : 'dayLesson/update',
+			type : 'post',
+			data : {
+				'dayLessonNo' : dayLessonNo,
+				'lessonSummary' : updateLessonSummary,
+				'lessonEvaluation' : updateLessonEvaluation
+			},
+			success : function(data) {
+				if (data == 1)
+					location.href = "list?lessonNo=" + lessonNo;
+			}
+		});
+	}
+	
+	// 일별 과외 진행현황 삭제
+    function dayLessonDelete() {
+    	var dayLessonNo = $("#modalDayLessonNo").val();
+      $.ajax({
+        url : 'dayLesson/delete/' + dayLessonNo,
+        type : 'post',
+        data : {
+    			'dayLessonNo' : dayLessonNo,
+    		},
+        success : function(data) {
+          if (data == 1)
+        	  location.href = "list?lessonNo=" + lessonNo;
+        }
+      });
+    }
 
 	$(document).ready(function() {
 		dayLessonList();
@@ -236,15 +334,41 @@ $("#container").simpleCalendar({
 </script>
 
 <script>
+	function resetModal() {
+		var updateButton = document.querySelector('#btnUpdate');
+		updateButton.style.display = 'none';
+		var addButton = document.querySelector('#btnAdd');
+		addButton.style.display = 'inline';
+		var addButton = document.querySelector('#btnDelete');
+		addButton.style.display = 'none';
+		
+    $("#modalDayLessonNo").val('');
+    $("#modalLessonDate").val('');
+    $("#modalLessonStartHour").val('');
+    $("#modalLessonEndHour").val('');
+    $("#modalLessonSummary").val('');
+    $("#modalLessonEvaluation").val('');
+  }
+  
 	function setModal(key) {
+		var addButton = document.querySelector('#btnAdd');
+		addButton.style.display = 'none';
+		var updateButton = document.querySelector('#btnUpdate');
+		updateButton.style.display = 'inline';
+		var addButton = document.querySelector('#btnDelete');
+		addButton.style.display = 'inline';
+		
 	  var daylessonNo = $("#dayLessonNo_" + key).val();
 	  $("#modalDayLessonNo").val(daylessonNo);
 	    
 	  var lessonDate = $("#lessonDate_" + key).text();
-	  $("#modalLessonDate").text(lessonDate);
+	  $("#modalLessonDate").val(lessonDate);
 	    
-    var lessonTime = $("#lessonTime_" + key).text();
-    $("#modalLessonTime").text(lessonTime);
+    var lessonStartHour = $("#lessonStartHour_" + key).text();
+    $("#modalLessonStartHour").val(lessonStartHour);
+    
+    var lessonEndHour = $("#lessonEndHour_" + key).text();
+    $("#modalLessonEndHour").val(lessonEndHour);
     
     var lessonSummary = $("#lessonSummary_" + key).text();
     $("#modalLessonSummary").val(lessonSummary);
@@ -252,7 +376,5 @@ $("#container").simpleCalendar({
     var lessonEvaluation = $("#lessonEvaluation_" + key).val();
     $("#modalLessonEvaluation").val(lessonEvaluation);
   }
-
-
 </script>
 

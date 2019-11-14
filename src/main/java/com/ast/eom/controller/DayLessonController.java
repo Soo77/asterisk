@@ -1,11 +1,14 @@
 package com.ast.eom.controller;
 
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,18 +34,37 @@ public class DayLessonController {
 //    }
   }
   
-  @GetMapping("detail")
-  public void detail(Model model, int dayLessonNo) throws Exception {
-    DayLesson dayLesson = dayLessonService.get(dayLessonNo);
-    model.addAttribute("dayLesson", dayLesson);
-  }
+//  @GetMapping("detail")
+//  public void detail(Model model, int dayLessonNo) throws Exception {
+//    DayLesson dayLesson = dayLessonService.get(dayLessonNo);
+//    model.addAttribute("dayLesson", dayLesson);
+//  }
 
   
   @GetMapping("dayLesson/list")
   @ResponseBody
   public List<DayLesson> list(int lessonNo) throws Exception {
-    System.out.println(lessonNo);
     return dayLessonService.list(lessonNo);
+  }
+  
+  @PostMapping("dayLesson/add")
+  @ResponseBody
+  public int commentAdd(
+      @RequestParam int lessonNo,
+      @RequestParam Date lessonDate,
+      @RequestParam String lessonStartHour,
+      @RequestParam String lessonEndHour,
+      @RequestParam String lessonSummary,
+      @RequestParam String lessonEvaluation) throws Exception {
+    DayLesson dayLesson = new DayLesson();
+    dayLesson.setLessonNo(lessonNo);
+    dayLesson.setLessonDate(lessonDate);
+    dayLesson.setLessonStartHour(lessonStartHour);
+    dayLesson.setLessonEndHour(lessonEndHour);
+    dayLesson.setLessonSummary(lessonSummary);
+    dayLesson.setLessonEvaluation(lessonEvaluation);
+    
+    return dayLessonService.insert(dayLesson);
   }
 
   @RequestMapping("dayLesson/update")
@@ -55,7 +77,12 @@ public class DayLessonController {
     dayLesson.setLessonEvaluation(lessonEvaluation);
     return dayLessonService.update(dayLesson);
   }
-
+  
+  @RequestMapping("dayLesson/delete/{dayLessonNo}")
+  @ResponseBody
+  private int delete(@PathVariable int dayLessonNo) throws Exception{
+      return dayLessonService.delete(dayLessonNo);
+  }
 
 }
 
