@@ -103,6 +103,13 @@
       border-radius: .25rem;
     }
 
+    #inputRequirements {
+      background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+        linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+      border: 0.5px solid #d2d2d2;
+      border-radius: .25rem;
+    }
+
     .wantedSubject-school {
       flex-basis: 40%;
     }
@@ -547,7 +554,7 @@
   //console.log('${memberInfoMap.teacher}');
   //console.log('${memberInfoMap.lessonSubjects}');
   //console.log('${memberInfoMap.parents}');
-  //console.log('${memberInfoMap.student}');
+  console.log('${memberInfoMap.student}');
   //console.log('${memberInfoMap.wantedLessons}');
 </script>
 
@@ -702,6 +709,7 @@
 
           reader.readAsDataURL(get_file[0]);
           thisPhotoName.value = get_file[0].name;
+          document.getElementById('my-image-wrapper').style.height = 'auto';
         });
 
         // 사진 등록 버튼을 누르면 파일 업로드를 클릭하도록 이벤트 전달
@@ -741,7 +749,8 @@
 
   let teacherPhotoController = new TeacherPhotoController(teacherPhotos);
   teacherPhotoController.loadInitialTeacherPhotos();
-
+  if (teacherPhotoController.teacherPhotoCount == 0)
+    document.getElementById('my-image-wrapper').style.height = '343px';
 
 </script>
 

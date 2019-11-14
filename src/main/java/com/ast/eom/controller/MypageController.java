@@ -93,23 +93,23 @@ public class MypageController {
     photoWriter.upload(
         profilePhotoName, teacherPhotoFiles, teacherPhotoNames,
         member, session);
-    
 
     if (loginUser.getMemberTypeNo() == 1) {
       mypageService.updateMember(member);
+      
     } else if (loginUser.getMemberTypeNo() == 2) {
       mypageService.updateMember(member);
+      
     } else if (loginUser.getMemberTypeNo() == 3) {
       teacher.setTeacherNo(loginUser.getMemberNo());
-      System.out.println(member);
-      System.out.println(teacher);
-      
       mypageService.updateTeacher(
           member, teacher, schoolTypeNo, subjectNo, wantedFee);
       
     } else if (loginUser.getMemberTypeNo() == 4) {
       mypageService.updateMember(member);
+      
     }
+    
     updateLoginUser(loginUser, member, session);
 
     return "redirect:detail";

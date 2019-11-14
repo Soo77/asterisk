@@ -9,6 +9,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -16,6 +17,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.ast.eom.domain.Member;
+import com.ast.eom.domain.Parents;
+import com.ast.eom.domain.WantedLesson;
 import com.ast.eom.service.JoinService;
 
 @Controller
@@ -70,21 +75,28 @@ public class JoinController implements Runnable {
       MultipartFile filePath,
       Date birthDay, String mail, 
       String accountno, String bankname, String teacherintro, 
-      MultipartFile lessoncertificate) 
+      MultipartFile lessoncertificate,
+      String[] lessonDay,
+      String highSchoolName, String universityName, String major,
+      String subjectNo, String wantedFeeAmount)
           throws Exception {
+    
+    if (lessonDay != null) {
+      StringBuilder sb = new StringBuilder();
+      sb.append("0000000");
+      for(int i = 0; i < lessonDay.length; i++) {
+        sb.setCharAt(Integer.parseInt(lessonDay[i]), '1'); 
+      }
+      member.setLessonDays(sb.toString());
+    }
 
     String emailAddress = member.getEmail() + "@" + mail;
     member.setEmail(emailAddress);
     member.setDateOfBirth(birthDay);
-//    member.getMemberType().setMemberTypeNo(memberTypeNo);
     member.setMemberTypeNo(3);
-    //멤버 타입 수정함 MemberType
+
 
     Map<String, Object> params = new HashMap<>();
-    params.put("accountNo", accountno);
-    params.put("bankName", bankname);
-    params.put("teacherIntro", teacherintro);
-
     if (!lessoncertificate.isEmpty()) {
       String filename = UUID.randomUUID().toString();
       lessoncertificate.transferTo(new File(uploadDir + "/" + filename));
@@ -100,9 +112,43 @@ public class JoinController implements Runnable {
     String key = new TempKey().getKey(50, false);
     this.key = key;
     member.setActivationKey(key);
-
+    
+    joinService.insertForStudentAndTeacher(member);
+    
+    params.put("teacherNo", member.getMemberNo());
+    params.put("accountNo", accountno);
+    params.put("bankName", bankname);
+    params.put("teacherIntro", teacherintro);
+    
     joinService.teacherInsert(params);
-    joinService.insert(member);
+    Map<String, Object> schoolParams = new HashMap<>();
+    schoolParams.put("teacherNo", member.getMemberNo());
+    schoolParams.put("highSchool", highSchoolName);
+    schoolParams.put("university", universityName);
+    schoolParams.put("major", major);
+    
+    joinService.teacherSchoolsInsert(schoolParams);
+    
+    int wantedFeeAmountInt = Integer.parseInt(wantedFeeAmount);
+    if (wantedFeeAmountInt >= 40) {
+      wantedFeeAmountInt = 4;
+      
+    } else if (wantedFeeAmountInt >= 30) {
+      wantedFeeAmountInt = 3;
+      
+    } else if (wantedFeeAmountInt >= 20) {
+      wantedFeeAmountInt = 2;
+      
+    } else {
+      wantedFeeAmountInt = 1;
+    }
+
+    Map<String, Object> subjectParams = new HashMap<>();
+    subjectParams.put("teacherNo", member.getMemberNo());
+    subjectParams.put("subjectNo", subjectNo);
+    subjectParams.put("wantedFee", wantedFeeAmountInt);
+    
+    joinService.teacherSubjectInsert(subjectParams);
 
     this.emailAddress = emailAddress;
     executorService = Executors.newCachedThreadPool();
@@ -115,15 +161,14 @@ public class JoinController implements Runnable {
   @PostMapping("parentsjoin")
   public String parentsjoin(Member member, 
       MultipartFile filePath,
-      Date birthDay, String mail) 
+      Date birthDay, String mail,
+      String studentId) 
           throws Exception {
 
     String emailAddress = member.getEmail() + "@" + mail;
     member.setEmail(emailAddress);
     member.setDateOfBirth(birthDay);
-    //   member.getMemberType().setMemberTypeNo(memberTypeNo);
     member.setMemberTypeNo(2);
-    //멤버 타입 수정함 MemberType
 
     if (!filePath.isEmpty()) {
       String filename = UUID.randomUUID().toString();
@@ -135,8 +180,14 @@ public class JoinController implements Runnable {
     this.key = key;
     member.setActivationKey(key);
 
-//    joinService.parentsInsert(params);
     joinService.insert(member);
+    Parents joinedParents = new Parents();
+    joinedParents.setParentsNo(member.getMemberNo());
+    joinService.parentsInsert(joinedParents);
+    Map<String, Object> parentsMap = new HashMap<>();
+    parentsMap.put("parentsNo", joinedParents.getParentsNo());
+    parentsMap.put("studentId", studentId);
+    joinService.bindStudentAndParents(parentsMap);
 
     this.emailAddress = emailAddress;
     executorService = Executors.newCachedThreadPool();
@@ -149,15 +200,24 @@ public class JoinController implements Runnable {
   @PostMapping("studentjoin")
   public String studentjoin(Member member, 
       MultipartFile filePath,
-      Date birthDay, String mail) 
+      Date birthDay, String mail,
+      String[] lessonDay, String requirementsToTeacher,
+      WantedLesson wantedLesson) 
           throws Exception {
+    
+    if (lessonDay != null) {
+      StringBuilder sb = new StringBuilder();
+      sb.append("0000000");
+      for(int i = 0; i < lessonDay.length; i++) {
+        sb.setCharAt(Integer.parseInt(lessonDay[i]), '1'); 
+      }
+      member.setLessonDays(sb.toString());
+    }
 
     String emailAddress = member.getEmail() + "@" + mail;
     member.setEmail(emailAddress);
     member.setDateOfBirth(birthDay);
-    //  member.getMemberType().setMemberTypeNo(memberTypeNo);
     member.setMemberTypeNo(1);
-    //멤버 타입 수정함 MemberType
 
     if (!filePath.isEmpty()) {
       String filename = UUID.randomUUID().toString();
@@ -168,9 +228,16 @@ public class JoinController implements Runnable {
     String key = new TempKey().getKey(50, false);
     this.key = key;
     member.setActivationKey(key);
+    
+    joinService.insertForStudentAndTeacher(member);
 
-//    joinService.studentInsert(params);
-    joinService.insert(member);
+    Map<String, Object> params = new HashMap<>();
+    params.put("studentNo",member.getMemberNo());
+    params.put("requirementsToTeacher",requirementsToTeacher);
+    joinService.studentInsert(params);
+    
+    wantedLesson.setStudentNo(member.getMemberNo());
+    joinService.wantedLessonFotStudentInsert(wantedLesson);
 
     this.emailAddress = emailAddress;
     executorService = Executors.newCachedThreadPool();
