@@ -299,8 +299,8 @@ CREATE TABLE wanted_lesson (
   wtd_lesson_no INTEGER  NOT NULL, -- 과외희망번호
   std_no        INTEGER  NOT NULL, -- 학생번호
   sub_no        INTEGER  NOT NULL, -- 과목번호
-  req           TEXT     NOT NULL, -- 선생님께바라는점
   rdt           DATETIME NOT NULL, -- 등록일
+  req           TEXT     NULL,     -- 선생님께바라는점
   wanted_fee    INTEGER  NULL      -- 희망수업료
 );
 
@@ -343,8 +343,8 @@ CREATE TABLE lesson_subject (
   lesson_sub_no INTEGER  NOT NULL, -- 과외과목번호
   tch_no        INTEGER  NOT NULL, -- 선생님번호
   sub_no        INTEGER  NOT NULL, -- 과목번호
-  sub_conts     TEXT     NOT NULL, -- 과외내용
   rdt           DATETIME NOT NULL, -- 등록일
+  sub_conts     TEXT     NULL,     -- 과외내용
   wanted_fee    INTEGER  NULL      -- 희망수업료
 );
 
