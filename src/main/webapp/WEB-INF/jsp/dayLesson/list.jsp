@@ -77,32 +77,10 @@
       </c:if>
     </div>
 
+    <!-- 일별 과외 진행현황 리스트 -->
     <div class="dayLessonList">
     
     </div>
-    
-<!--      <c:forEach items="${dayLessons}" var="dayLesson" varStatus="i">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            수업일 : <div class="col" id="lessonDate_${i.index}">${dayLesson.lessonDate}</div>
-            수업시간 : <div class="col" id="lessonTime_${i.index}">${dayLesson.lessonStartHour} ~ ${dayLesson.lessonEndHour}</div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col" id="lessonSummary_${i.index}">${dayLesson.lessonSummary}</div>
-            <input type='hidden' id="lessonEvaluation_${i.index}" value='${dayLesson.lessonEvaluation}'>
-          </div>
-          <div class="row" id="myBtnDetail">
-            <div class="col">
-              <button type="button" class="btn btn-primary btn-sm .modal-param" 
-              data-toggle="modal" data-target="#detailModal"
-               data-unique="${i.index}" onclick="setModal(${i.index})">상세보기 </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </c:forEach> -->
     
   </div>
 </div>
@@ -127,14 +105,6 @@
         <input name="lessonNo" type="hidden" id="modalLessonNo" value="${lessonNo}">
         <div class="row">
            <div class="col">
-<!--            <label for="modalLessonDate">수업일</label>
-            <div class="col" id="modalLessonDate"></div>
-          </div>
-          <div class="col">
-            <label for="modalLessonTime">수업 시간</label>
-            <div class="col" id="modalLessonTime"></div>
-          </div>
-        </div> -->
         <label for="modalLessonDate">수업일</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="lessonDate" id="modalLessonDate" type="date" class="form-control" placeholder="Regular" value="">
@@ -143,8 +113,6 @@
         </div>
         <div class="row">
           <div class="col">
-<!--             <label for="lessonTime">수업 시간</label>
-            <div class="col" id="modalLessonTime"></div> -->
             <label for="modalLessonStartHour">수업시작시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="lessonStartHour" id="modalLessonStartHour" type="time" class="form-control" placeholder="Regular" value="">
@@ -367,7 +335,18 @@
   		updateButton.style.display = 'inline';
   		var addButton = document.querySelector('#btnDelete');
   		addButton.style.display = 'inline';
-		}
+		} else {
+			var sdt = document.querySelector('#modalLessonDate');
+			sdt.readOnly = true;
+			var sh = document.querySelector('#modalLessonStartHour');
+			sh.readOnly = true;
+      var eh = document.querySelector('#modalLessonEndHour');
+      eh.readOnly = true;
+      var summary = document.querySelector('#modalLessonSummary');
+      summary.readOnly = true;
+      var ev = document.querySelector('#modalLessonEvaluation');
+      ev.readOnly = true;
+    }
 		
 	  var daylessonNo = $("#dayLessonNo_" + key).val();
 	  $("#modalDayLessonNo").val(daylessonNo);
