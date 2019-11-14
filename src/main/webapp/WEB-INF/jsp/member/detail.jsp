@@ -41,20 +41,22 @@ img, video {
   box-shadow: none;
 }
 
-/*  ul ul.school {
+ ul.maininfo, ul.subinfo {
   list-style: none;
   padding-left: 15px;
 }
 
-ul li::before {
-  content: "\f041"; 
-  color: #9c27b0; 
-  display: inline-block;
-  vertical-align: middle;
-  padding: 0px 5px 6px 0px;
-} */
-*
-/
+*.icon-purple {
+  color: #9c27b0
+}
+
+ul li i {
+    vertical-align: middle;
+}
+
+
+ 
+
 </style>
 
 <body class="profile-page sidebar-collapse">
@@ -175,11 +177,11 @@ ul li::before {
                   <div class="col-lg-6 col-sm-6">
                     <label class="information main">기본 정보</label>
                     <div class="main-info-body">
-                      <ul>
-                        <li class="school">학교: ${member.schools[0].schoolName}</li>
-                        <li class="major">전공: ${member.schools[0].major}</li>
-                        <li class="address">지역: ${member.addressCity} ${member.addressSuburb}</li>
-                        <li class="registeredDate">가입일: ${member.registeredDate}</li>
+                      <ul class="maininfo">
+                        <li class="school"><i class="material-icons">school</i> 학교: ${member.schools[0].schoolName}</li>
+                        <li class="major"><i class="material-icons">work</i> 전공: ${member.schools[0].major}</li>
+                        <li class="address"><i class="material-icons">where_to_vote</i> 지역: ${member.addressCity} ${member.addressSuburb}</li>
+                        <li class="registeredDate"><i class="material-icons">person</i> 가입일: ${member.registeredDate}</li>
                       </ul>
                     </div>
                   </div>
@@ -187,9 +189,9 @@ ul li::before {
                   <div class="col-lg-6 col-sm-6">
                     <label class="information sub">추가 정보</label><br>
                     <div class="sub-info-body">
-                      <ul>
-                        <li class="preschool">출신 학교: ${member.schools[0].schoolName}</li>
-                        <li class="subject">과목: ${member.schoolType} ${member.subjectName}</li>
+                      <ul class="subinfo">
+                        <li class="preschool"><i class="material-icons">school</i> 출신 학교: ${member.schools[0].schoolName}</li>
+                        <li class="subject"><i class="material-icons">menu_book</i> 과목: ${member.schoolType} ${member.subjectName}</li>
                       </ul>
                     </div>
                   </div>
