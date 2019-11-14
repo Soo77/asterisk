@@ -1,48 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원가입</title>
-<link rel='stylesheet'
-  href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-  integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
-  crossorigin='anonymous'>
-  <style>
-    .btn{
-  display: inline-block;
-    font-weight: 400;
-    color: #212529;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color 
-    .15s ease-in-out,box-shadow .15s ease-in-out;
-    width: 300px;
-    margin-top: 10%;
-    
-}
+<!-- 
+    <style>
+      .card {
+        z-index: 2;
+      }
+      .my-wrapper {
+        background-color: rgba(199, 199, 199, 30);
+        border: 1px solid grey;
+        border-radius: 0.35rem;
 
-.btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-}
-  </style>
-</head>
-<body>
+        display: flex;
+
+      }
+    </style> -->
+
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg7.jpg')">
+</div>
+<div class="main main-raised">
+  <div class="container">
+    <div class="section text-center">
+      <div class="container">
+        <div class="my-wrapper">
+          <div class="row text-center">
+            <div class="col">
+              <div class="card text-center" style="width: 20rem;">
+                <div class="card-body">
+                  <h4 class="card-title">학생으로 시작</h4>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="../join/student" class="btn btn-primary">회원가입</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card text-center" style="width: 20rem;">
+                <div class="card-body">
+                  <h4 class="card-title">선생님으로 시작</h4>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="../join/teacher" class="btn btn-primary">회원가입</a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card text-center" style="width: 20rem;">
+                <div class="card-body">
+                  <h4 class="card-title">학부모로 시작</h4>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="../join/parents" class="btn btn-primary">회원가입</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    
+
+<!-- 
 <a href="../join/student"><button class="btn btn-primary">학생 가입</button></a>
 <a href="../join/parents"><button class="btn btn-primary">학부모 가입</button></a>
-<a href="../join/teacher"><button class="btn btn-primary">선생님 가입</button></a>
-</body>
-</html>
+<a href="../join/teacher"><button class="btn btn-primary">선생님 가입</button></a> -->
