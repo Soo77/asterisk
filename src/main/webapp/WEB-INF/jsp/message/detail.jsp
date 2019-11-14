@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 	 }
 	
 	 .chat-left {
-	  width: 40%;
+	  width: 50%;
 	  border-radius: 5px;
     position: relative;
     padding: 5px 10px;
@@ -29,7 +30,7 @@
 	 }
 	 
 	 .chat-right {
-    width: 70%;
+    width: 140%;
     border-radius: 5px;
     position: relative;
     padding: 5px 10px;
@@ -43,60 +44,41 @@
 </head>
 <body>
 <h2>쪽지함</h2>
-	<br>
-	<br>
-	<div id="chat"></div>
-	<br>
-	<br>
-	
-	<div>
-	  <div class="messageRow">
+	<div class="messageRow">
+
+		<c:forEach var="messageList" items="${messageList}">
+			<c:choose>
+				<c:when test="${messageList.read eq false}">
+					<c:set var="read" value="읽지않음" />
+				</c:when>
+				<c:otherwise>
+					<c:set var="read" value="읽음" />
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when test="${loginUser.memberNo eq messageList.senderNo}">
+					<div class='right'>
+						<div class="chat-right">${messageList.messageContents}</div>
+						${read}
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="chat-left">${messageList.messageContents}</div>
+	           ${read}
+	         </c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<div id="chat"></div>
+
 		<input type="text" id="messageConts" name="messageConts"
-		onKeypress="if(event.keyCode==13) {messageIn();}" 
-		class="form-control" placeholder="내용을 입력">
-	  </div>
-		<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
+			onKeypress="if(event.keyCode==13) {messageIn();}"
+			class="form-control" placeholder="내용을 입력">
 	</div>
-	
-	<script>
-    $(document).ready(function() {
-      detail();
-    });
+	<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
 
-    function detail() {
-      $.ajax({
-        url : 'messageDetail',
-        type : 'post',
-        data : "senderNo=" + ${loginUser.memberNo} + "&receiverNo=" + ${receiverNo},
-        success : function(data) {
-          for ( var i = 0 in data) {
-        	  
-        	  if(data[i].read==0){
-        		  var mr = "읽지 않음";
-        	  } else {
-        		  mr = "읽음";
-        	  }
-        	  
-            if (data[i].senderNo == ${loginUser.memberNo}) {
-            	let str = "<div class='right'>" 
-            	str += '<div class="chat-right">'+data[i].messageContents+'</div>';
-            	str += mr+"</div>"
-              $("#chat").append(str);
-            } else {
-            	let str = '<div class="chat-left">'+data[i].messageContents+'</div>';
-              $("#chat").append(str+mr);
-            }
-          }
-
-        },
-        error : function() {
-          console.log("실패");
-        }
-      });
-    }
-    </script>
-
-<!-- 메세지 입력 -->
+	<!-- 메세지 입력 -->
   <script>
     $("#messageIn").click(function() {
       messageIn();
@@ -127,5 +109,6 @@
       }
     }
   </script>
+  
 </body>
 </html>
