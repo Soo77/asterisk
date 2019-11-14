@@ -11,7 +11,7 @@
 <link href="/assets/css/material-kit.min.css?v=2.0.6" rel="stylesheet" />
 </head>
 <body>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" id="modalBtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   쪽지함
 </button>
 <i class="fas fa-bell"></i>
@@ -31,30 +31,25 @@
   </div>
 </div>
 
-<div id="ohora" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-      </div>
-        <h2>쪽지 보내기</h2>
-        <button id="findMember" onclick="findmember()">회원목록2</button>
-          <div id="showList"></div>
-          <br>
-          <br>
-    </div>
-  </div>
-</div>
+<button type="button" id="popMessage" class="btn btn-primary">
+  쪽지함 팝업
+</button>
 
 <script>
-$(".btn").on('click', function() {
+$("#modalBtn").on('click', function() {
     list();
   });
   
 $("#btntest").on('click', function() {
     detail();
   });
+  
+$("#popMessage").on('click', function() {
+	  popMessage();
+  });
+</script>
 
+<script>
   function list() {
     $.ajax({
       url : '/app/message/memberlist',
@@ -75,7 +70,9 @@ $("#btntest").on('click', function() {
       }
     });
   }
-  
+</script>
+
+<script>
   function detail() {
 	  consol.log("dd");
       $.ajax({
@@ -100,6 +97,14 @@ $("#btntest").on('click', function() {
         }
       });
     }
+</script>
+
+<script>
+  function popMessage(){
+	  var url = "/app/message/list";
+    var option = "width = 500, height = 500, top = 100, left = 200, location = yes"
+    window.open(url, "쪽지목록" ,option);
+  }
 </script>
 
 <!--   Core JS Files   -->

@@ -8,12 +8,17 @@
 <script type="text/JavaScript"
 	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<style>
+	.messageRow{
+	 width:60%;
+	 display: inline-block;
+	}
+	
 	 .right{
 	  margin-left: 200px;
 	 }
 	
 	 .chat-left {
-	  width: 10%;
+	  width: 40%;
 	  border-radius: 5px;
     position: relative;
     padding: 5px 10px;
@@ -24,7 +29,7 @@
 	 }
 	 
 	 .chat-right {
-    width: 10%;
+    width: 70%;
     border-radius: 5px;
     position: relative;
     padding: 5px 10px;
@@ -43,12 +48,13 @@
 	<div id="chat"></div>
 	<br>
 	<br>
-	<div class="form-row">
-   <div class="col-sm-5">
-		  <input type="text" id="messageConts" name="messageConts"
-			onKeypress="if(event.keyCode==13) {messageIn();}" 
-			class="form-control" placeholder="내용을 입력">
-		  </div>
+	
+	<div>
+	  <div class="messageRow">
+		<input type="text" id="messageConts" name="messageConts"
+		onKeypress="if(event.keyCode==13) {messageIn();}" 
+		class="form-control" placeholder="내용을 입력">
+	  </div>
 		<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
 	</div>
 	
