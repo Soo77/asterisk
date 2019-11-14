@@ -14,6 +14,12 @@
     <result column="lesson_eval" property="lessonEvaluation" />
   </resultMap>
 
+<!--   <select id="findBy" parameterType="int" resultMap="DayLessonMap">
+    select *
+    from day_lesson
+    where day_lesson_no=#{dayLessonNo}
+  </select> -->
+  
   <select id="findAll" parameterType="int" resultMap="DayLessonMap">
       select *
       from day_lesson
@@ -21,11 +27,11 @@
       order by day_lesson_no desc
   </select>
   
-  <select id="findBy" parameterType="int" resultMap="DayLessonMap">
-    select *
-    from day_lesson
-    where day_lesson_no=#{dayLessonNo}
-  </select>
+  <insert id="insert" parameterType="DayLesson"
+   useGeneratedKeys="true" keyColumn="day_lesson_no" keyProperty="dayLessonNo">
+   insert into day_lesson(lesson_no, lesson_date, lesson_start_hr, lesson_end_hr, lesson_summ, lesson_eval)
+   values(#{lessonNo}, #{lessonDate}, #{lessonStartHour}, #{lessonEndHour}, #{lessonSummary}, #{lessonEvaluation})
+  </insert>
   
   <update id="update" parameterType="DayLesson">
     update day_lesson set
@@ -33,5 +39,9 @@
       lesson_eval=#{lessonEvaluation}
     where day_lesson_no=#{dayLessonNo}
   </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from day_lesson where day_lesson_no=#{dayLessonNo}
+  </delete>
 
 </mapper>
