@@ -46,19 +46,37 @@
     <div id="container" class="calendar-container p-5"></div>
     <hr>
     
-    <div id="dayLessonAdd">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" onclick="resetModal()">추가</button>
-    </div>
-    
-    <div class="progress-container progress-primary">
-      <span class="progress-badge">남은 일수</span>
-      <div class="progress">
-        <div class="progress-bar progress-bar-primary"
-          role="progressbar" aria-valuenow="30" aria-valuemin="0"
-          aria-valuemax="100" style="width: 30%;"></div>
+    <div class="row">
+      <div class="col">
+        <div class="progress-container progress-primary">
+          <span class="progress-badge">남은 일수</span>
+          <div class="progress">
+            <div class="progress-bar progress-bar-primary"
+              role="progressbar" aria-valuenow="30" aria-valuemin="0"
+              aria-valuemax="100" style="width: 30%;"></div>
+          </div>
+        </div>
       </div>
     </div>
-    
+
+    <div class="row">
+      <div class="col">
+        <div>
+          <a href="../lesson/list?memberTypeNo=${loginUser.memberTypeNo}"
+            class="btn btn-primary" id="lessonList">수업목록</a>
+        </div>
+      </div>
+      <c:if test="${loginUser.memberTypeNo == 3}">
+        <div class="col">
+          <div id="dayLessonAdd">
+            <button type="button" class="btn btn-primary"
+              data-toggle="modal" data-target="#Modal"
+              onclick="resetModal()">추가</button>
+          </div>
+        </div>
+      </c:if>
+    </div>
+
     <div class="dayLessonList">
     
     </div>
@@ -106,7 +124,7 @@
       <div class="modal-body">
         <input name="dayLessonNo" type="hidden" id="modalDayLessonNo" value="">
       <form name="dayLessonInsertForm">
-        <input name="lessonNo" type="hidden" id="modalLessonNo" value="${dayLessons[0].lessonNo}">
+        <input name="lessonNo" type="hidden" id="modalLessonNo" value="${lessonNo}">
         <div class="row">
            <div class="col">
 <!--            <label for="modalLessonDate">수업일</label>
@@ -156,11 +174,12 @@
       </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary"
-          data-dismiss="modal">Close</button>
-        <button type="button" id="btnUpdate" class="btn btn-primary" data-dismiss="modal" onclick="dayLessonUpdate()">저장</button>
-        <button type="button" id="btnAdd" class="btn btn-primary" name="dayLessonInsertBtn">추가</button>
-        <button type="button" id="btnDelete" class="btn btn-primary" name="dayLessonDeleteBtn" onclick="dayLessonDelete()">삭제</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <c:if test="${loginUser.memberTypeNo == 3}">
+          <button type="button" id="btnUpdate" class="btn btn-primary" data-dismiss="modal" onclick="dayLessonUpdate()">저장</button>
+          <button type="button" id="btnAdd" class="btn btn-primary" name="dayLessonInsertBtn">추가</button>
+          <button type="button" id="btnDelete" class="btn btn-primary" name="dayLessonDeleteBtn" onclick="dayLessonDelete()">삭제</button>
+        </c:if>
       </div>
     </div>
   </div>
@@ -184,8 +203,7 @@
 
 <script>
 	
-  var lessonNo = '${dayLessons[0].lessonNo}';
-  console.log(lessonNo);
+  var lessonNo = '${lessonNo}';
   
   // 일별 과외 진행현황 등록 버튼 클릭시 
   $('[name=dayLessonInsertBtn]').click(function() {
@@ -200,8 +218,8 @@
     		modalLessonEndHour.value.length > 0 &&
     		modalLessonSummary.value.length > 0 &&
     		modalLessonEvaluation.value.length > 0) {
-      var insertData = $('[name=dayLessonInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-      dayLessonInsert(insertData); //Insert 함수호출(아래)
+      var insertData = $('[name=dayLessonInsertForm]').serialize();
+      dayLessonInsert(insertData);
     } else {
       swal("모두 입력하세요.");
     }
@@ -266,25 +284,14 @@
   
   // 일별 과외 진행현황 추가
     function dayLessonInsert(insertData) {
-/*     	var dayLessonNo = $("#modalDayLessonNo").val();
-  		var dayLessonNo = $("#modalDayLessonNo").val();
-  		var dayLessonNo = $("#modalDayLessonNo").val();
-  		var updateLessonSummary = $("#modalLessonSummary").val();
-  		var updateLessonEvaluation = $("#modalLessonEvaluation").val(); */
   	$.ajax({
 			url : 'dayLesson/add',
 			type : 'post',
 			data : insertData,
-/* 				'dayLessonNo' : dayLessonNo,
-				'lessonNo' : updateLessonSummary,
-				'lessonDate' : lessonDate,
-				'lessonStartHour' : lessonStartHour,
-				'lessonEndHour' : lessonEndHour,
-				'lessonSummary' : lessonSummary,
-				'lessonEvaluation' : lessonEvaluation */
 			success : function(data) {
 				if (data == 1) {
-					/*$('#Modal').modal('hide');*/
+/* 					$('#Modal').modal('hide');
+					dayLessonList(); */
 					location.href = "list?lessonNo=" + lessonNo;
 				}
 			}
@@ -335,12 +342,14 @@
 
 <script>
 	function resetModal() {
-		var updateButton = document.querySelector('#btnUpdate');
-		updateButton.style.display = 'none';
-		var addButton = document.querySelector('#btnAdd');
-		addButton.style.display = 'inline';
-		var addButton = document.querySelector('#btnDelete');
-		addButton.style.display = 'none';
+		if (${loginUser.memberTypeNo == 3}) {
+  		var updateButton = document.querySelector('#btnUpdate');
+  		updateButton.style.display = 'none';
+  		var addButton = document.querySelector('#btnAdd');
+  		addButton.style.display = 'inline';
+  		var addButton = document.querySelector('#btnDelete');
+  		addButton.style.display = 'none';
+    }
 		
     $("#modalDayLessonNo").val('');
     $("#modalLessonDate").val('');
@@ -351,12 +360,14 @@
   }
   
 	function setModal(key) {
-		var addButton = document.querySelector('#btnAdd');
-		addButton.style.display = 'none';
-		var updateButton = document.querySelector('#btnUpdate');
-		updateButton.style.display = 'inline';
-		var addButton = document.querySelector('#btnDelete');
-		addButton.style.display = 'inline';
+		if (${loginUser.memberTypeNo == 3}) {
+  		var addButton = document.querySelector('#btnAdd');
+  		addButton.style.display = 'none';
+  		var updateButton = document.querySelector('#btnUpdate');
+  		updateButton.style.display = 'inline';
+  		var addButton = document.querySelector('#btnDelete');
+  		addButton.style.display = 'inline';
+		}
 		
 	  var daylessonNo = $("#dayLessonNo_" + key).val();
 	  $("#modalDayLessonNo").val(daylessonNo);
