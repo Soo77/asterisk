@@ -37,7 +37,6 @@
       <div class="row">
         <div class="col-lg-4 col-md-6 ml-auto mr-auto">
           <div class="card card-login">
-            <form action='login' method='post' class="form">
               <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">로그인</h4>
               </div>
@@ -58,9 +57,10 @@
 								<span class="input-group-text"> <i class="material-icons">lock_outline</i>
 								</span>
 							</div>
-							<input type='password' name='pw' class="form-control"
-								placeholder="암호" required>
+							<input type='password' id="pw" name='pw' class="form-control"
+								onKeypress="if(event.keyCode==13) {loginBtn();}" placeholder="암호" required>
 						</div>
+						<div id="loginCheck" class="this-center"></div>
 
             <div class="form-check this-center">
 							<label class="form-check-label"> 
@@ -74,7 +74,7 @@
 
 						<div class="this-center">
 							<div class="description">
-								<button class="btn btn-primary">로그인</button>
+								<button id="loginBtn" class="btn btn-primary">로그인</button>
 								<a href="/app/join/form">
 									<button type="button" class="btn btn-primary">회원가입</button>
 								</a>
@@ -86,7 +86,6 @@
 							<a href="../auth/findpw">비밀번호 찾기</a>
 						</div>
 					</div>
-				</form>
             
         </div>
       </div>
@@ -105,9 +104,40 @@
 <script src="/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="/assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
+
+<!-- 로그인 확인 -->
+<script>
+  $("#loginBtn").click(function(){
+	  loginBtn();
+  });
+  
+  function loginBtn(){
+	  var id = document.getElementById("id").value;
+	  var pw = document.getElementById("pw").value;
+		$.ajax({
+		    url : 'login',
+		    data : "id="+id+"&pw="+pw,
+		    success : function(result) {
+		    	if(result.memberTypeNo == null){
+			    	$("#loginCheck").text("가입되지 않은 정보입니다");
+			    	$("#loginCheck").css("color","red");
+		    	} else if(result.memberTypeNo == 1 || result.memberTypeNo == 2){
+		    		location.href="../member/list?memberTypeNo=3";
+		    	} else if(result.memberTypeNo == 3){
+		    		location.href="../member/list?memberTypeNo=1";
+		    	} else{
+		    		location.href="/";
+		    	}
+		    },
+		    error : function() {
+		      console.log("실패");
+		    }
+		});
+	}
+</script>
+
 <!--   아이디 기억 -->
 <script>
-
   $(document).ready(function () {
     var userInputId = getCookie("userInputId");//저장된 쿠기값 가져오기
     var eq = document.getElementById("id");
@@ -164,5 +194,4 @@
     }
     return unescape(cookieValue);
   }
-
 </script>
