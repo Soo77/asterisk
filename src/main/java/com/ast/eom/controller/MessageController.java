@@ -22,49 +22,42 @@ public class MessageController {
   MessageDao messageDao;
 
   @GetMapping("list")
-  public void list() throws Exception {
-  }
+  public void list(HttpSession session, Model model) throws Exception {
+    Member member = (Member)session.getAttribute("loginUser");
+    model.addAttribute("messageReadShowAll", messageDao.messageReadShowAll(member.getMemberNo()));
 
-  @GetMapping("detail")
-  public List<Message> detail(Model model, int memberNo) throws Exception {
-    List<Message> message = messageDao.detail(memberNo);
-    model.addAttribute("receiverNo", memberNo);
-    return message;
-  }
-
-  @PostMapping("memberlist")
-  @ResponseBody
-  public List<Member> memberlist(HttpSession session, int memberNo) throws Exception {
-    List<Member> message = messageDao.messageList(memberNo);
-    session.setAttribute("messageReadShowAll", messageDao.messageReadShowAll(memberNo));
-    
+    List<Member> message = messageDao.messageList(member.getMemberNo());
+    model.addAttribute("messageMem", message);
+    model.addAttribute("messageListSize", message.size());
     Message messageReadShow = new Message();
     ArrayList<Integer> messageReadList = new ArrayList<>();
     
     for(int i=0; i<message.toArray().length; i++) {
       messageReadShow.setSenderNo(message.get(i).getMemberNo());
-      messageReadShow.setReceiverNo(memberNo);
+      messageReadShow.setReceiverNo(member.getMemberNo());
       
-      if(memberNo == message.get(i).getMemberNo()) {
+      if(member.getMemberNo() == message.get(i).getMemberNo()) {
         messageReadList.add(0);
       } else {
         messageReadList.add(messageDao.messageReadShow(messageReadShow));
       }
     }
-    session.setAttribute("messageReadList", messageReadList);
-    return message;
+    model.addAttribute("messageReadList", messageReadList);
   }
 
-  @PostMapping("messageDetail")
-  @ResponseBody
-  public List<Message> messageDetail(int senderNo, int receiverNo) throws Exception {
+  @GetMapping("detail")
+  public void detail(HttpSession session, Model model, int memberNo) throws Exception {
+    messageDao.detail(memberNo);
+    model.addAttribute("receiverNo", memberNo);
+    
+    Member member = (Member)session.getAttribute("loginUser");
     Message message = new Message();
-    message.setSenderNo(senderNo);
-    message.setReceiverNo(receiverNo);
-
-    List<Message> messageList = messageDao.messageDetail(message);
+    
+    message.setSenderNo(member.getMemberNo());
+    message.setReceiverNo(memberNo);
+    
+    model.addAttribute("messageList", messageDao.messageDetail(message));
     messageDao.messageRead(message);
-    return messageList;
   }
 
   @PostMapping("messagein")

@@ -44,8 +44,9 @@ public class AuthController implements Runnable {
   public void loginfail() {
   }
 
-  @PostMapping("login")
-  public String login(HttpSession session, String id, String pw) 
+  @GetMapping("login")
+  @ResponseBody
+  public Member login(HttpSession session, String id, String pw) 
       throws Exception {
 
     Map<String, String> params = new HashMap<>();
@@ -53,21 +54,9 @@ public class AuthController implements Runnable {
     params.put("pw", pw);
 
     Member member = authService.login(params);
-
-    if (member == null) {
-      return "redirect:../auth/loginfail";
-    }
     session.setAttribute("loginUser", member);
     
-    if (member.getMemberTypeNo() == 1 || member.getMemberTypeNo() == 2)
-      return "redirect:../member/list?memberTypeNo=3";
-    else if (member.getMemberTypeNo() == 3)
-      return "redirect:../member/list?memberTypeNo=1";
-    else if (member.getMemberTypeNo() == 4)
-      return "redirect:/";
-    else
-      throw new Exception("로그인 중 오류 발생!");
-    
+    return member;
   }
 
   @GetMapping("logout")
