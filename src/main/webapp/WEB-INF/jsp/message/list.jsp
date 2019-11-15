@@ -8,48 +8,39 @@
 <title>쪽지</title>
 </head>
 <body>
-<h2>쪽지 보내기</h2>
-<i class="fas fa-bell" id="messageReadShowAll"></i>
-	<div id="showList"></div>
-	<br>
-	<br>
+	<h2>쪽지 보내기</h2>
+	<i class="fas fa-bell" id="messageReadShowAll">
+		${messageReadShowAll}개</i>
 
-	<script>
-		$(document).ready(function() {
-			list();
-		});
+	<div id="showList">
 
-		function list() {
-			$.ajax({
-				url : 'memberlist',
-				type : 'post',
-				data : "memberNo=" + ${loginUser.memberNo},
-				success : function(data) {
-					$("#messageReadShowAll").html(" ${messageReadShowAll}개");
-					for ( var i = 0 in data) {
-						if("${loginUser.name}"==data[i].name) {
-							var str = '<div>';
-	            str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + "나에게 쪽지" + '</a>';
-						} else {
-							var str = '<div>';
-				      str += "<a href='detail?memberNo="+data[i].memberNo+"'>" + data[i].name + '</a>';
-						}
-						
-						if(${messageReadList}[i] != 0){
-							var mrl = " <i class='far fa-bell'> "+${messageReadList}[i]+"</i>"
-						} else {
-							var mrl = "";
-						}
-						
-					$("#showList").append(str+mrl+'</div>');
-					}
-				},
-				error : function() {
-					console.log("실패");
-				}
-			});
-		}
-	</script>
-	
+		<c:forEach begin="0" end="${messageListSize-1}" var="i">
+			<c:choose>
+				<c:when test="${messageReadList[i] ne 0}">
+					<c:set var="bell" value="<i class='far fa-bell'>${messageReadList[i]}</i>"></c:set>
+				</c:when>
+
+				<c:otherwise>
+					<c:set var="bell" value=""></c:set>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when test="${loginUser.name eq messageMem[i].name}">
+					<a href=detail?memberNo=${messageMem[i].memberNo}>나에게 쪽지</a>
+					${bell}
+					<br>
+				</c:when>
+
+				<c:otherwise>
+					<a href=detail?memberNo=${messageMem[i].memberNo}>${messageMem[i].name}</a>
+					${bell}
+					<br>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+	</div>
+
 </body>
 </html>

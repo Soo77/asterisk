@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ast.eom.dao.JoinDao;
 import com.ast.eom.domain.Member;
+import com.ast.eom.domain.Parents;
+import com.ast.eom.domain.WantedLesson;
 import com.ast.eom.service.JoinService;
 
 @Service
@@ -31,9 +33,13 @@ public class DefaultJoinService implements JoinService {
 
   //학부모 회원가입
   @Override
-  public int parentsInsert(Map<String, Object> params) 
-      throws Exception {
-    return joinDao.parentsInsert(params);
+  public int parentsInsert(Parents joinedParents) throws Exception {
+    return joinDao.parentsInsert(joinedParents);
+  }
+  
+  @Override
+  public int bindStudentAndParents(Map<String, Object> parentsMap) {
+    return joinDao.bindStudentAndParents(parentsMap);
   }
 
   //학생 회원가입
@@ -67,5 +73,25 @@ public class DefaultJoinService implements JoinService {
   @Override
   public int checkOverAccountNo(String accountno) throws Exception {
     return joinDao.checkOverAccountNo(accountno);
+  }
+
+  @Override
+  public int insertForStudentAndTeacher(Member member) {
+    return joinDao.insertForStudentAndTeacher(member);
+  }
+  
+  @Override
+  public int wantedLessonFotStudentInsert(WantedLesson wantedLesson) {
+    return joinDao.wantedLessonFotStudentInsert(wantedLesson);
+  }
+  
+  @Override
+  public int teacherSchoolsInsert(Map<String, Object> schoolParams) {
+    return joinDao.teacherSchoolsInsert(schoolParams);
+  }
+  
+  @Override
+  public int teacherSubjectInsert(Map<String, Object> subjectParams) {
+    return joinDao.teacherSubjectInsert(subjectParams);
   }
 }

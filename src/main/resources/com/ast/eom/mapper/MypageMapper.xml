@@ -155,7 +155,7 @@
   <select id="getStudent" parameterType="int" resultMap="StudentMap">
     select *
     from student s
-    inner join school_type st on s.sch_type_no = st.sch_type_no
+    left outer join school_type st on s.sch_type_no = st.sch_type_no
     left outer join wanted_lesson wl on s.std_no = wl.std_no
     where s.std_no = #{no}
   </select>

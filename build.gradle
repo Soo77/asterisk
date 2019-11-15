@@ -67,7 +67,10 @@ dependencies {
     compile group: 'javax.mail', name: 'mail', version: '1.4.7'
     
     // Tiles
-	compile group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+    compile group: 'org.apache.tiles', name: 'tiles-jsp', version: '3.0.8'
+    
+    // Spring-web-socket
+    compile group: 'org.springframework', name: 'spring-websocket', version: '5.2.1.RELEASE'
     
     implementation 'com.google.guava:guava:27.1-jre'
     testImplementation 'junit:junit:4.12'

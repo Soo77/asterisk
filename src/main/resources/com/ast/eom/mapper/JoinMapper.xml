@@ -4,32 +4,66 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ast.eom.dao.JoinDao">
 	
-	<insert id="insert" parameterType="Member">
+	<insert id="insert" parameterType="Member"
+    useGeneratedKeys="true"
+    keyColumn="mem_no"
+    keyProperty="memberNo">
     insert into
     member(mem_type_no,reg_date,gender,dob,id,email,name,pwd,addr_city,addr_sub,tel,profile_photo,activation_key)
     values
     (#{memberTypeNo},now(),#{gender},#{dateOfBirth},#{id},#{email},#{name},password(#{password}),#{addressCity},#{addressSuburb},#{tel},#{profilePhoto},#{activationKey})
   </insert>
   
-  <insert id="teacherInsert" parameterType="Map">
+	<insert id="insertForStudentAndTeacher" parameterType="Member"
+    useGeneratedKeys="true"
+    keyColumn="mem_no"
+    keyProperty="memberNo">
     insert into
-    teacher(acc_no,bank_name,lesson_certi,tch_intro)
+    member(mem_type_no,reg_date,gender,dob,id,email,name,pwd,addr_city,addr_sub,tel,profile_photo,activation_key,curr_lesson_dt,curr_lesson_st,curr_lesson_et)
     values
-    (#{accountNo},#{bankName},#{lessonCertificate},#{teacherIntro})
+    (#{memberTypeNo},now(),#{gender},#{dateOfBirth},#{id},#{email},#{name},password(#{password}),#{addressCity},#{addressSuburb},#{tel},#{profilePhoto},#{activationKey},#{lessonDays},#{lessonStartTime},#{lessonEndTime})
   </insert>
   
-  <insert id="parentsInsert" parameterType="Map">
+  <insert id="teacherInsert" parameterType="Map">
     insert into
-    parents(acc_no,bank_name,lesson_certi,tch_intro)
+    teacher(tch_no,acc_no,bank_name,lesson_certi,tch_intro)
     values
-    (#{accountNo},#{bankName},#{lessonCertificate},#{teacherIntro})
+    (#{teacherNo},#{accountNo},#{bankName},#{lessonCertificate},#{teacherIntro})
+  </insert>
+
+  <insert id="teacherSchoolsInsert" parameterType="Map">
+    insert into school(tch_no, sch_type_no, sch_name, mdt)
+    values(#{teacherNo}, 3, #{highSchool}, now());
+
+    insert into school(tch_no, sch_type_no, sch_name, mdt, major)
+    values(#{teacherNo}, 4, #{university}, now(), #{major});
+  </insert>
+
+  <insert id="teacherSubjectInsert" parameterType="Map">
+    insert into lesson_subject(tch_no, sub_no, rdt, wanted_fee)
+    values(#{teacherNo}, #{subjectNo}, now(), #{wantedFee});
+  </insert>
+  
+  <insert id="parentsInsert" parameterType="Parents"
+    useGeneratedKeys="true"
+    keyColumn="parents_no"
+    keyProperty="parentsNo">
+    insert into parents(parents_no)
+    values(#{parentsNo})
   </insert>
   
   <insert id="studentInsert" parameterType="Map">
     insert into
-    student(acc_no,bank_name,lesson_certi,tch_intro)
+    student(std_no,req_to_teacher)
     values
-    (#{accountNo},#{bankName},#{lessonCertificate},#{teacherIntro})
+    (#{studentNo},#{requirementsToTeacher})
+  </insert>
+
+  <insert id="wantedLessonFotStudentInsert" parameterType="WantedLesson">
+    insert into
+    wanted_lesson(std_no,sub_no,rdt)
+    values
+    (#{studentNo},#{subjectNo},now())
   </insert>
   
 <!--   아이디 중복 -->
@@ -54,6 +88,13 @@
   
   <update id="updateCheck" parameterType="String" >
       UPDATE member SET userEmailChecked = 1 WHERE activation_key = #{activationKey}
+  </update>
+  
+  <update id="bindStudentAndParents" parameterType="Map">
+    update member m
+    inner join student s on m.mem_no = s.std_no
+    set s.parents_no =#{parentsNo}
+    where m.id = #{studentId};
   </update>
 
 </mapper>
