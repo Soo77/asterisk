@@ -20,7 +20,7 @@ public class MessageController {
 
   @Autowired
   MessageDao messageService;
-
+  
   @GetMapping("list")
   public void list(HttpSession session, Model model) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
@@ -69,5 +69,23 @@ public class MessageController {
     message.setMessageContents(messageConts);
 
     return messageService.messageIn(message);
+  }
+  
+  @GetMapping("studentFind")
+  public void studentFind() {
+  }
+  
+  @Autowired
+  MessageDao messageDao;
+  
+  @PostMapping("searchStd")
+  @ResponseBody
+  public List<Member> searchStd(String id) throws Exception {
+    return messageDao.searchStd(id);
+  }
+  
+  @PostMapping("invitation")
+  public void invitation(int memberNo) throws Exception {
+    System.out.println(memberNo);
   }
 }

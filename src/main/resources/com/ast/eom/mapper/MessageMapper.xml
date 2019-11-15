@@ -13,7 +13,10 @@
   </resultMap>
   
   <resultMap type="Member" id="MemberMap">
-  <result column="mem_no" property="memberNo"></result>
+    <result column="mem_no" property="memberNo"></result>
+    <result column="dob" property="dateOfBirth"></result>
+    <result column="addr_city" property="addressCity"></result>
+    <result column="addr_sub" property="addressSuburb"></result>
   </resultMap>
   
   <select id="detail" parameterType="int" resultMap="MessageMap">
@@ -58,5 +61,9 @@
     UPDATE message SET is_read=1 
     WHERE sender=#{receiverNo} and receiver=#{senderNo}
   </update>
+  
+  <select id="searchStd" parameterType="String" resultMap="MemberMap">
+    select *from member where id like CONCAT('%',#{id},'%')
+  </select>
 
 </mapper>
