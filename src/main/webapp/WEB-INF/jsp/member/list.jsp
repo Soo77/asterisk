@@ -86,6 +86,7 @@ function myFunction(){
           <div class="col-lg-3 col-md-4">
             <div class="sidemenubar" id="sideMenuBar">
             <form name="form1" id="form1" method="post">
+            <input type="hidden" name="memTypeNo" value="${memberTypeNo}">
            
               <label class="address title">지역</label>
               <div class="address">
@@ -97,14 +98,14 @@ function myFunction(){
               <label class="gender title">성별</label>
               <div class="form-check" >
                 <label class="btn btn-primary gender"> 
-                  <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M"> 남자 
-                  <span class="circle"> 
+                  <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M" onclick="genderselect(this)"> 남자 
+                  <span class="circle">
                     <span class="check">
                     </span> 
                   </span> 
                 </label> 
                 <label class="btn btn-primary gender"> 
-                  <input  class="form-check-input" type="radio" name="gender" id="gender_2" value="F"> 여자 
+                  <input  class="form-check-input" type="radio" name="gender" id="gender_2" value="F" onclick="genderselect(this)"> 여자 
                   <span class="circle"> 
                     <span class="check">
                     </span>
@@ -116,77 +117,37 @@ function myFunction(){
 
 
               <label class="age title">나이</label>
-              <div class="form-check">
-                <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_1" value="1"> 20 ~ 21 
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label> 
-                <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_2" value="2"> 22 ~ 23 
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label> 
-                <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_3" value="3"> 24 ~ 25 
-                  <span  class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label> 
-                <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_4" value="4"> 26 ~ 27 
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label> 
-                <label class="btn btn-primary age"> 
-                <input class="form-check-input" type="radio" name="age" id="age_5" value="5"> 28 ~ 29 
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label> 
-                <label class="btn btn-primary age"> 
-                <input  class="form-check-input" type="radio" name="age" id="age_6" value="6"> 30 이상 
-                  <span class="circle">
-                    <span class="check">
-                    </span>
-                  </span>
-                </label>
+              <div class="age-check">
+                <input type="text" id="age_1"> ~
+                <input type="text" id="age_2">
               </div>
 
 
               <label class="lessons_fee title">수업료</label>
               <div class="form-check">
                 <label class="btn btn-primary wantedFee"> 
-                  <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1"> 20만원 이하
+                  <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1" onclick="wantedFeeselect(this)"> 20만원 이하
                   <span class="circle"> 
                     <span class="check">
                     </span> 
                   </span> 
                 </label> 
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2"> 20~30 만원
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2" onclick="wantedFeeselect(this)"> 20~30 만원
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3"> 30~40 만원
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3" onclick="wantedFeeselect(this)"> 30~40 만원
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4"> 40만원 이상 
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4" onclick="wantedFeeselect(this)"> 40만원 이상 
                   <span class="circle"> 
                     <span class="check">
                     </span>
@@ -197,12 +158,12 @@ function myFunction(){
 
               <label class="subject title">과목으로 찾기</label>
               <div class="checkbox-container checkbox-container-four active">
-                <select class="custom-select" name="school1" id="school1"></select> 
-                <select class="custom-select" name="subject1" id="subject1"></select>
+                <select class="custom-select" name="school1" id="school1" onchange="schoolselect(this)"></select> 
+                <select class="custom-select" name="subject1" id="subject1" onchange="subjectselect()"></select>
               </div>
 
               <div class="button search">
-                <button class="btn btn-primary btn-round my-button-yeah" onclick="myFunction()">조건 검색</button>
+                <button class="btn btn-primary btn-round my-button-yeah">조건 검색</button>
               </div>
               
                </form>
@@ -482,15 +443,9 @@ function myFunction(){
   var genderselect = function (select_obj) {
     var genderRadio= document.getElementsByName("gender");
     for (var i=0; i < genderRadio.length; i++){
-      if (genderRadio[i].checked) console.log(genderRadio[i].value);
-    }
-  }
-</script>
-<script>
-  var ageselect = function (select_obj) {
-    var ageRadio = document.getElementsByName("age");
-    for (var i=0; i < ageRadio.length; i++){
-      if (ageRadio[i].checked) console.log(ageRadio[i].value);
+      if (genderRadio[i].checked) {
+        return genderRadio[i].value;
+      }
     }
   }
 </script>
@@ -498,20 +453,78 @@ function myFunction(){
   var wantedFeeselect = function (select_obj) {
     var wantedFeeRadio = document.getElementsByName("wantedFee");
     for (var i=0; i < wantedFeeRadio.length; i++){
-      if (wantedFeeRadio[i].checked) console.log(wantedFeeRadio[i].value);
+      if (wantedFeeRadio[i].checked) {
+        return wantedFeeRadio[i].value;
+      }
     }
   }
 </script>
 <script>
+  var sidoselect = document.getElementById('sido1');
+  var sidoValue;
+  
+  sidoselect.addEventListener('change', (event) => {
+    let sido = event.target.value;
+    
+    if (sido.startsWith('충청') ||
+        sido.startsWith('전라') ||
+        sido.startsWith('경상')) {
+      sidoValue = sido.substring(0,3);
+      console.log(sidoValue);
+
+    } else {
+      sidoValue = sido.substring(0,2);
+      console.log(sidoValue);
+
+    }
+  });
+  
+  
+  //var sidoselect = function (select_obj){
+  //var sidoselect_index = select_obj.target.selectedIndex;
+  //var sidoselect_value = select_obj.options[sidoselect_index].value;
+  //return sidoselect_value;
+  //}
+  
+</script>
+<script>
+  //var gugunselect = function (select_obj){
+  //var gugunselect_index = select_obj.selectedIndex;
+  //var gugunselect_value = select_obj.options[gugunselect_index].value;
+  //return gugunselect_value;
+  //}
+</script>
+<script>
+  //var schoolselect = function (select_obj){
+  //var schoolselect_index = select_obj.selectedIndex;
+  //var schoolselect_value = select_obj.options[schoolselect_index].value;
+  //return schoolselect_value;
+  //}
+</script>
+<script>
+  try {
+    var subjectselect = function (select_obj){
+    var subjectselect_index = select_obj.selectedIndex;
+    var subjectselect_value = select_obj.options[subjectselect_index].value;
+    return subjectselect_value;
+    }
+  } catch (e) {
+  }
+</script>
+<!-- <script>
   var select_value = function (select_obj){
   var selected_index = select_obj.selectedIndex;
   var selected_value = select_obj.options[selected_index].value;
-  console.log(selected_value);
+  return selected_value;
   
   $.ajax({
 	  url:"/ajaxList",
 	  type:"POST",
-	  data: selected_value,
+	  data: {
+        a:sidoValue,
+        b:2,
+        c:
+      },
 	  success: function(result){
 		  alert(result + "성공");
 	  },
@@ -521,6 +534,54 @@ function myFunction(){
   });
 };
 
+</script> -->
+
+<!-- AJAX를 호출 할 때 쓸 함수 목록들 -->
+<script>
+  var getThisYear = function() {
+    var today = new Date();
+    return today.getFullYear();
+    
+  };
+  
+  var calculateAges = function() {
+    var ageList = new Array();
+    
+    var firstAge = $('#age_1').val();
+    var lastAge = $('#age_2').val();
+    
+    var thisYear = getThisYear();
+    
+    ageList.push(thisYear - firstAge + 1);
+    ageList.push(thisYear - lastAge + 1);
+    
+    return ageList;
+  };
+  
+</script>
+
+<script>
+
+var mygender = genderselect();
+var mywantedfee = wantedFeeselect();
+var myAge = calculateAges();
+//var mySido = sidoselect();
+//var myGugun = gugunselect();
+//var mySchool = schoolselect();
+//var mySubject = subjectselect();
+
+/*
+$('.my-button-yeah').click(function() {
+  
+  $.ajax({
+    url: '/app/member/search',
+    method: 'get',
+    success: function(result){
+    }
+  });
+  
+});
+*/
 </script>
 
 

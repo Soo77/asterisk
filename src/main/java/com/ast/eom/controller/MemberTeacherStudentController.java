@@ -1,7 +1,9 @@
 package com.ast.eom.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,27 +58,32 @@ public class MemberTeacherStudentController {
   }
   
   @RequestMapping("search")
-  public String search(HttpServletRequest request, Model model) throws Exception {
+  @ResponseBody
+  public List<MemberTeacherStudent> search(HttpSession session, HttpServletRequest request, Model model) throws Exception {
     
-    String sido1 = "";
-    String gugun1 = "";
-    String gender = "";
-    String age = "";
-    String wantedFee = "";
-    String school1 = "";
-    String subject1 = "";
+    HashMap<String, Object> searchInfo = new HashMap<String, Object>();
     
-    sido1 = request.getParameter("sido1");
-    gugun1 = request.getParameter("gugun1");
-    gender = request.getParameter("gender");
-    age = request.getParameter("age");
-    wantedFee = request.getParameter("wantedFee");
-    school1 = request.getParameter("school1");
-    subject1 = request.getParameter("subject1");
+    String memTypeNo = request.getParameter("memTypeNo");
+    String mySido = request.getParameter("mySido");
+    String myGugun = request.getParameter("myGugun");
+    String myGender = request.getParameter("myGender");
+    String myAge = request.getParameter("myAge");
+    String myWantedFee = request.getParameter("myWantedFee");
+    String mySchool = request.getParameter("mySchool");
+    String mySubject = request.getParameter("mySubject");
     
-   
+    searchInfo.put("memTypeNo", memTypeNo);
+    searchInfo.put("mySido", mySido);
+    searchInfo.put("myGugun", myGugun);
+    searchInfo.put("myGender", myGender);
+    searchInfo.put("myAge", myAge);
+    searchInfo.put("myWantedFee", myWantedFee);
+    searchInfo.put("mySchool", mySchool);
+    searchInfo.put("mySubject", mySubject);
     
-    return "";
+    List<MemberTeacherStudent> resultList = memberTeacherStudentService.searchBy(searchInfo);
+    
+    return resultList;
   }
  
   

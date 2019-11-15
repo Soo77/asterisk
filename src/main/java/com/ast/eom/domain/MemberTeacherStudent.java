@@ -20,6 +20,7 @@ public class MemberTeacherStudent {
   private String lessonDays;
   private String lessonStartTime;
   private String lessonEndTime;
+  private int teacherAge;
   
   private String memberTypeName;
   
@@ -35,6 +36,12 @@ public class MemberTeacherStudent {
   private List<Lesson> lessons;
   private List<Student> students;
   
+  public int getTeacherAge() {
+    return teacherAge;
+  }
+  public void setTeacherAge(int teacherAge) {
+    this.teacherAge = teacherAge;
+  }
   public int getMemberNo() {
     return memberNo;
   }
@@ -168,11 +175,12 @@ public class MemberTeacherStudent {
         + dateOfBirth + ", name=" + name + ", addressCity=" + addressCity + ", addressSuburb="
         + addressSuburb + ", profilePhoto=" + profilePhoto + ", lessonDays=" + lessonDays
         + ", lessonStartTime=" + lessonStartTime + ", lessonEndTime=" + lessonEndTime
-        + ", memberTypeName=" + memberTypeName + ", teacherPhoto=" + teacherPhoto + ", schoolType="
-        + schoolType + ", subjectName=" + subjectName + ", teachers=" + teachers
-        + ", lessonSubjects=" + lessonSubjects + ", schools=" + schools + ", lessons=" + lessons
-        + ", students=" + students + "]";
+        + ", teacherAge=" + teacherAge + ", memberTypeName=" + memberTypeName + ", teacherPhoto="
+        + teacherPhoto + ", schoolType=" + schoolType + ", subjectName=" + subjectName
+        + ", teachers=" + teachers + ", lessonSubjects=" + lessonSubjects + ", schools=" + schools
+        + ", lessons=" + lessons + ", students=" + students + "]";
   }
+  
   
   
   
