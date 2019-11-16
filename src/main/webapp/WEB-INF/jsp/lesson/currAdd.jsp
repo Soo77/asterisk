@@ -21,9 +21,10 @@
 </div>
     <c:set var="teacherNo" value="${loginUser.memberNo}" scope="session"></c:set>
 <div class="main main-raised">
-  <div class="container pt-5 pb-4">
+  <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
     <div id='content'>
       <form action='currAddaction' method='post'>
+      <div style="padding-left: 13px; padding-right: 13px;">
         <div class="row">
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">수업시작일</label>
@@ -119,7 +120,7 @@
             </label>
           </div>
         </div>
-        
+        </div>
         
         <div class="row">
           <div class="col-lg-3 col-sm-6">
@@ -177,7 +178,7 @@
                     <div class="input-group-append">
                       <span class="input-group-text" id="basic-addon2">일</span>
                     </div>
-                      <input type="button" class="btn btn-rose btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">
+                      <input type="button" class="btn btn-outline-primary btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">
                   </div>
                 </td>
               </tr>
