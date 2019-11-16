@@ -1,337 +1,179 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-    <title>엄과외</title>
+<style>
+  /* * {
+    border: 1px solid powderblue;
+  } */
 
-    <!-- Bootstrap core CSS -->
-    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      
-      .container{
-        padding:0;
-      }
+  .my-container {
+    padding: 20px;
+  }
 
-      .row {
-        margin:0;
-      }
+  .my-payment-content {
+    width: 450px;
+    padding: 20px;
+    float: left;
+    flex-basis: 60%;
+  }
 
-      a {
-        color: #ffffff;
-      }
+  .my-sidebar-right {
+    width: 160px;
+    padding: 20px;
+    float: right;
+    flex-basis: 40%;
+  }
 
-      .carousel-control-next,
-      .carousel-control-prev {
-        filter: invert(100%);
-      }
+  .payer-info {
+    border: 1px solid #d2d2d2;
+    border-radius: 0.35rem;
+    margin: 20px 0;
+  }
 
-      hr {
-        color: #000000;
-      }
+  .payment-method {
+    border: 1px solid #d2d2d2;
+    border-radius: 0.35rem;
+    margin: 20px 0;
+  }
 
-    </style>
+  .payment-amount {
+    border: 1px solid #d2d2d2;
+    border-radius: 0.35rem;
+    margin: 20px 0;
+  }
 
-    <script src="https://kit.fontawesome.com/c5804f7418.js" crossorigin="anonymous"></script>
-  </head>
+  .teacher-info {
+    border: 1px solid #d2d2d2;
+    border-radius: 0.35rem;
+    margin: 20px 0;
+    padding-bottom: 33px;
+  }
 
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white static-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="./WEB-INF/images/eomtutor.png" alt="main brand"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-          
-        <ul class="navbar-nav ml-auto ml-md-0">
-          <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-comments fa-2x" style="color: #1abc9c"></i>
-              <span class="badge badge-danger">1+</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-              <a class="dropdown-item" href="#">쪽지함</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-user-circle fa-2x" style="color: #1abc9c"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                
-              <a class="dropdown-item" href="#">회원 정보</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">로그아웃</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  
-    <div class="container" style="display:flex">
-      <!-- Sidebar -->
-      <ul class="sidebar navbar-nav bg-secondary text-white text-center" style="width: 225px; background-color: gray;">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <span></span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-user p-2" style="color: #1abc9c"> </i>
-            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">나의 과외</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fas fa-users p-2" style="color: #1abc9c"></i>
-            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">선생님 찾기</span></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-clipboard-list p-2" style="color: #1abc9c"></i>
-            <span onmouseover="style.color='#1abc9c'" onmouseout="style.color='white'">게시판</span>
-          </a>
-          <div class="dropdown-menu" style="background-color:#1abc9c" aria-labelledby="pagesDropdown">
-            <a class="dropdown-item text-center" href="#">공지사항</a>
-            <a class="dropdown-item text-center" href="#">공부상담</a>
-            <a class="dropdown-item text-center" href="#">입시상담</a>
-            <a class="dropdown-item text-center" href="#">문제풀이</a>
-          </div>
-        </li>
-      </ul>
-      
-      <div id="content-wrapper" style="overflow-x:hidden;">
-        <div class="row-fluid" style="width:900px;height:650px;">
-          <div class="row" style="width:100%; height:100%">
-            <div class="col-1">
-            </div>
-            <div class="col-6">
-              <h3><b>결제</b></h3>
-              <p></p>
-              <p><b>결제 고객</b></p>
-              <hr>
-              <form>
-                <div class="form-group">
-                  <div class="form-group row">
-                    <label for="form-group-text-input" class="col-3 col-form-label">이름</label>
-                    <div class="col-9">
-                      <input class="form-control" type="text" value="${loginUser.id}" id="user-name">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="form-group-text-input" class="col-3 col-form-label">연락처</label>
-                    <div class="col-9">
-                      <input class="form-control" type="text" value="${loginUser.tel}" id="phone-number1">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="form-group-text-input" class="col-3 col-form-label">이메일</label>
-                    <div class="col-9">
-                      <input class="form-control" type="text" value="${loginUser.email}" id="email-addr">
-                    </div>
-                  </div>
-                </div>
-                
-              </form>
+  .teacher-profile-photo {
+    width: 150px;
+    height: 150px;
+  }
+  h3,h4 {
+    color: #3C4858;
+  }
+  p {
+    color: #AAAAAA;
+  }
+</style>
 
-              <p><b>결제방법 선택</b></p>
-              <hr>
-              <div class="form-check">
-                <input class="form-check_input" type="radio" name="paymentRadios" id="paymentRadios1" value="transfer" checked>
-                <label class="form-check-label" for="paymentRaios1">
-                  실시간 계좌이체
-                </label>
-              </div>
-
-              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner mx-auto text-center">
-                  <!-- Slide One - Set the background image for this slide in the line below -->
-                  <div class="carousel-item active">
-                    <img class="d-block mx-auto" src="./WEB-INF/images/kookminbank.png" alt="">
-                    <div class="carousel-caption text-dark">
-                      <h3>국민은행</h3>
-                    </div>
-                  </div>
-                  <!-- Slide Two - Set the background image for this slide in the line below -->
-                  <div class="carousel-item">
-                    <img class="d-block mx-auto" src="./WEB-INF/images/wooribank.png" alt="">
-                    <div class="carousel-caption text-dark">
-                      <h3>우리은행</h3>
-                    </div>
-                  </div>
-                  <!-- Slide Three - Set the background image for this slide in the line below -->
-                  <div class="carousel-item">
-                    <img class="d-block mx-auto" src="./WEB-INF/images/hanabank.png" alt="">
-                    <div class="carousel-caption text-dark">
-                      <h3>하나은행</h3>
-                    </div>
-                  </div>
-                  <!-- Slide Four - Set the background image for this slide in the line below -->
-                  <div class="carousel-item">
-                    <img class="d-block mx-auto" src="./WEB-INF/images/ibkbank.png" alt="">
-                    <div class="carousel-caption text-dark">
-                      <h3>기업은행</h3>
-                    </div>
-                  </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> 
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </div>
-
-              <form>
-                <div class="form-group">
-                    <div class="form-group row">
-                      <label for="form-group-text-input" class="col-3 col-form-label">계좌번호</label>
-                      <div class="col-9">
-                        <input class="form-control" type="text" value="계좌번호" id="account-number">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="form-group-text-input" class="col-3 col-form-label">예금주</label>
-                      <div class="col-9">
-                        <input class="form-control" type="text" value="${loginUser.name}" id="account-name">
-                      </div>
-                    </div>
-                  </div>
-                  
-                </form>
-
-              <div class="form-check">
-                <input class="form-check_input" type="radio" name="paymentRadios" id="paymentRadios2" value="cardpayment">
-                <label class="form-check-label" for="paymentRaios2">
-                  카드 결제
-                </label>
-              </div>
-              <div class="input-group">
-                <div class="input-group row">
-                  <label for="input-group-text-input" class="col-3 col-form-label">카드사</label>
-                  <select class="col-9 custom-select" id="inputCardSelect">
-                    <option selected>Choose...</option>
-                    <option value="1">국민카드</option>
-                    <option value="2">신한카드</option>
-                    <option value="3">외환카드</option>
-                    <option value="4">농협카드</option>
-                    <option value="5">우리카드</option>
-                    <option value="6">하나카드</option>
-                    <option value="7">삼성카드</option>
-                    <option value="8">현대카드</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-check">
-                <input class="form-check_input" type="radio" name="paymentRadios" id="paymentRadios3" value="kakaopay">
-                <label class="form-check-label" for="paymentRaios3">
-                  카카오 페이
-                </label>
-              </div>
-              <!-- <img class="d-block mx-auto my-auto" src="./WEB-INF/images/kakaopay.png" style="width:100px; height:50px;"> -->
-            </div>
-            <div class="col-4">
-              <h3><b> </b></h3>
-              <p></p>
-              <p><b>결제 금액</b></p>
-              <hr>
-              <div class="row">
-                <div class="col-auto mr-auto">수업료</div>
-                <div class="col-auto">+50,000원</div>
-              </div>
-              <div class="row">
-                <div class="col-auto mr-auto">수업 기간</div>
-                <div class="col-auto">2달</div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-auto mr-auto"></div>
-                <div class="col-auto">100,000원</div>
-              </div>
-
-              <p><b>강사 정보</b></p>
-              <hr>
-              <div class="row">
-                <div class="col-4">
-                    <img class="d-block mx-auto" src="./WEB-INF/images/hong.png" style="width:50px; height:50px;">
-                </div>
-                
-                <div class="col-8">
-                  <p style="font-size:14px">
-                    <b>엄선생님</b></br>
-                    비트대학교 졸업</br>
-                    비트교육센터 강사
-                  </p>
-                </div>
-              </div>
-              <a class="btn btn-block text-white" href="#" style="background-color: #1abc9c">결제하기</a>
-            </div>
-            <div class="col-1">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>  
-    
-    <!-- Footer -->
-    <div class="container">
-      <div class="row bg-dark text-white" style="display:flex">
-        <div class="col-3 py-3">
-          <a class="btn btn-dark d-block text-left" href="#" role="button" style="font-size:12px">회사소개</a>
-          <a class="btn btn-dark d-block text-left" href="#" role="button" style="font-size:12px">이용약관</a>
-          <a class="btn btn-dark d-block text-left" href="#" role="button" style="font-size:12px">개인정보 취급방침</a>
-        </div>
-        <div class="col-1"></div>
-        <div class="col-4">
-          <div class="row-3">
-            <p> </p>
-          </div>
-          <div class="row-3 mx-auto d-block text-center">
-            <i class="fab fa-facebook-f fa-1.5x p-2" style="color: #1abc9c"></i>
-            <i class="fab fa-twitter fa-1.5x p-2" style="color: #1abc9c"></i>
-            <i class="fab fa-youtube fa-1.5x p-2" style="color: #1abc9c"></i>
-            <i class="fab fa-blogger-b fa-1.5x p-2" style="color: #1abc9c"></i>
-            <i class="fab fa-line fa-1.5x p-2" style="color: #1abc9c"></i>
-          </div>
-          <div class="row-3 text-center">
-            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-2 mw-100">
-              <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria_label="Search" aria-describedby="basic-addon1">
-                <div class="input-group-append">
-                  <button class="btn btn-light" type="button"><i class="fas fa-search"></i></button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="row-3">
-            <p class="m-0 text-center text-white" style="font-size:10px">Copyright &copy; Your Website 2019</p>
-          </div>
-        </div>
-        <div class="col-1"></div>
-        <div class="col-3 py-3 d-none d-sm-block">
-          <p style="font-size:12px">
-            엄과외(주)</br>
-            서울특별시 서초구 서초동 서초대로 74길 33</br>
-            TEL: 02-123-4567 / FAX:02-765-4321</br>
-            EMAIL: support@eomcs.co.kr</br>
-            대표이사: 비트비트</br>
-            사업자등록번호: 110-11-123456</br>
-          </p>
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg3.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 ml-auto mr-auto">
+        <div class="brand text-center">
+          <h1>과외비 결제</h1>
         </div>
       </div>
     </div>
-    
-    
-    <!-- Bootstrap core JavaScript -->
-    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-  </body>
-</html>
+  </div>
+</div>
+<div class="main main-raised">
+  <div class="container">
+    <form>
+      <div class="row">
+        <div class="col my-container d-flex">
+          <div class="my-payment-content mx-3">
+            <div class="payer-info px-3 pb-3">
+              <h3>결제 고객</h3>
+              <div class="form-group bmd-form-group">
+                <label for="name" class="bmd-label-static">이름</label>
+                <input type="text" class="form-control" id="name" name="name">
+              </div>
+              <div class="form-group bmd-form-group">
+                <label for="tel" class="bmd-label-static">연락처</label>
+                <input type="text" class="form-control" id="tel" aria-describedby="tel" name="tel">
+                <small id="tel" class="form-text text-muted">11자리의 숫자를 '-' 없이 입력하세요</small>
+              </div>
+              <div class="form-group bmd-form-group">
+                <label for="inputEmail" class="bmd-label-static">이메일</label>
+                <div class="row">
+                  <div class="col">
+                    <input type="text" class="form-control" id="inputEmail" name="email1">
+                  </div>
+                  <div class="col">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                      </div>
+                      <input type="text" class="form-control" id="inputEmail2" name="email2">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="payment-method px-3 pb-3">
+              <h3>결제방법</h3>
+              <div class="form-check form-check-radio">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="paymentMethod" id="payment-method-radio"
+                    value="bank" checked="">
+                  실시간 계좌이체
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="paymentMethod" id="payment-method-radi"
+                    value="card">
+                  카드 결제
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-check form-check-radio">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="paymentMethod" id="payment-method-radi"
+                    value="kakao">
+                  카카오 페이
+                  <span class="circle">
+                    <span class="check"></span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="my-sidebar-right">
+            <div class="payment-amount px-3 pb-3">
+              <h3>결제 금액</h3>
+              <div class="form-group bmd-form-group">
+                <label for="name" class="bmd-label-static">수업료</label>
+                <input type="text" class="form-control" id="lesson-fee" name="lessonFee" value="200,000원" readonly>
+              </div>
+              <div class="form-group bmd-form-group">
+                <label for="name" class="bmd-label-static">수업기간</label>
+                <input type="text" class="form-control" id="lesson-months" name="lessonMonths" value="1달" readonly>
+              </div>
+              <hr>
+              <p class="text-right">200,000원</p>
+            </div>
+            <div class="teacher-info px-3">
+              <h3>강사정보</h3>
+              <div class="row">
+                <div class="col">
+                  <img src="/upload/join/a.gif" class="img-fluid teacher-profile-photo">
+                </div>
+                <div class="col">
+                  <h4>엄선생님</h4>
+                  <p>비트대학교 졸업</p>
+                  <p>비트교육센터 강사</p>
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <button type="button" class="btn btn-primary">결제하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
