@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <head>
 <style>
+    .img-fluid {
+      width: 220px;
+      height: 220px;
+      object-fit: cover; 
+    }
 </style>
 </head>
     
@@ -28,8 +33,10 @@
     </c:if>
 <!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> -->
 <c:forEach items="${lessons}" var="lesson">
-
-  <div class="card">
+   <c:if test="${loginUser.memberNo eq lesson.teacherNo}"> 
+  <div class="text-center">
+  
+  <div class="card w-75"> 
   <div class="row no-gutters">
     <c:choose>
     <c:when test="${lesson.member.memberTypeNo eq 3}">
@@ -37,7 +44,8 @@
       <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}" alt="Raised Image" class="img-raised rounded img-fluid">
      </div> 
      </c:when>
-      <c:otherwise> <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}"  class="card-img-top img-fluid" style="display:none;"> 
+      <c:otherwise> 
+        <img src="<%=request.getContextPath()%>/upload/join/default.png"  class="card-img-top img-fluid"> 
       </c:otherwise>
     </c:choose> 
     <div style="font-family: 'Nanum Gothic';" class="card-body">
@@ -91,15 +99,19 @@
        <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">수정</a> 
        </c:when>
        <c:otherwise> 
-       <a href="../dayLesson/list?lessonNo=${lesson.lessonNo}" class="btn btn-primary">상세보기</a> 
+       <a href="../dayLesson/list?lessonNo=${lesson.lessonNo}" class="btn btn-primary">상세보기</a>&ensp;&ensp;  
+       <a href="fixedDetail?lessonNo=${lesson.lessonNo}" class="btn btn-primary">커리큘럼 보기</a> 
       </c:otherwise>
       </c:choose>
       
       </div>
+  </div>
+      
     </div>
   </div>
-</c:forEach> 
+  </c:if>
+</c:forEach>  
 
-      </div>
+      </div> 
     </div>
   </div>

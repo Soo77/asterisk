@@ -19,14 +19,14 @@ import com.ast.eom.domain.Message;
 public class MessageController {
 
   @Autowired
-  MessageDao messageDao;
+  MessageDao messageService;
 
   @GetMapping("list")
   public void list(HttpSession session, Model model) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
-    model.addAttribute("messageReadShowAll", messageDao.messageReadShowAll(member.getMemberNo()));
+    model.addAttribute("messageReadShowAll", messageService.messageReadShowAll(member.getMemberNo()));
 
-    List<Member> message = messageDao.messageList(member.getMemberNo());
+    List<Member> message = messageService.messageList(member.getMemberNo());
     model.addAttribute("messageMem", message);
     model.addAttribute("messageListSize", message.size());
     Message messageReadShow = new Message();
@@ -39,7 +39,7 @@ public class MessageController {
       if(member.getMemberNo() == message.get(i).getMemberNo()) {
         messageReadList.add(0);
       } else {
-        messageReadList.add(messageDao.messageReadShow(messageReadShow));
+        messageReadList.add(messageService.messageReadShow(messageReadShow));
       }
     }
     model.addAttribute("messageReadList", messageReadList);
@@ -47,7 +47,7 @@ public class MessageController {
 
   @GetMapping("detail")
   public void detail(HttpSession session, Model model, int memberNo) throws Exception {
-    messageDao.detail(memberNo);
+    messageService.detail(memberNo);
     model.addAttribute("receiverNo", memberNo);
     
     Member member = (Member)session.getAttribute("loginUser");
@@ -56,8 +56,8 @@ public class MessageController {
     message.setSenderNo(member.getMemberNo());
     message.setReceiverNo(memberNo);
     
-    model.addAttribute("messageList", messageDao.messageDetail(message));
-    messageDao.messageRead(message);
+    model.addAttribute("messageList", messageService.messageDetail(message));
+    messageService.messageRead(message);
   }
 
   @PostMapping("messagein")
@@ -68,6 +68,6 @@ public class MessageController {
     message.setSenderNo(senderNo);
     message.setMessageContents(messageConts);
 
-    return messageDao.messageIn(message);
+    return messageService.messageIn(message);
   }
 }
