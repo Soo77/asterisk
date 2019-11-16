@@ -19,17 +19,24 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container pt-5 pb-4">
+  <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
     <div id='content'>
     <div class="text-right mb-4">
     
      <form name="deleteAll" action='deleteAll' method='post'>
       <input type="hidden" name="lessonNo" value="${lesson.lessonNo}">
-      <button type="button" class="btn btn-danger deleteCurrBtn">커리큘럼 삭제</button> 
+      <button type="button" class="btn btn-rose deleteCurrBtn" style="
+    margin-right: 12px;
+    margin-bottom: 5px;
+    padding-bottom: 12px;
+    margin-top: 5px;
+    bottom: 14px;
+      ">커리큘럼 삭제</button> 
      </form> 
 
     </div> 
       <form action='update' method='post'>
+      <div style="padding-left: 13px; padding-right: 13px;">
         <div class="row">
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">수업시작일</label>
@@ -129,6 +136,7 @@
             </label>
           </div>
         </div>
+</div>
 
         <table id="table" class='table table-hover'>
           <thead>
@@ -149,7 +157,7 @@
                     <div class="input-group-append">
                       <span class="input-group-text" id="basic-addon2">일</span>
                     </div>
-                      <input id="${clc.curriculumLessonNo}" type="button" class="btn btn-rose btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">
+                      <input id="${clc.curriculumLessonNo}" type="button" class="btn btn-outline-primary btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">
                   </div>
                 </td>
               </tr>
@@ -157,7 +165,9 @@
           </tbody> 
         </table>
 
-        <div class="text-right">
+        <div class="text-right" style="
+    padding-right: 9px;
+        ">
           <input type="button" class="btn btn-primary lessonConts-add-button" value="추가">  
           <button class="btn btn-primary">변경</button>
         </div>
