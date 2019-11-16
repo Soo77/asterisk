@@ -20,6 +20,9 @@ public interface LessonService {
   int findSubNo(HashMap<String, Object> param) throws Exception;
   
   Lesson lessonDetail(int lessonNo) throws Exception;
+  
+  // 중단 요청 처리
+  void interruptionRequest(int memberTypeNo, int lessonNo, String stopReason) throws Exception;
 }
 
 

@@ -310,10 +310,11 @@
     function dayLessonDelete() {
     	var dayLessonNo = $("#modalDayLessonNo").val();
       $.ajax({
-        url : 'dayLesson/delete/' + dayLessonNo,
+        url : 'dayLesson/delete/',
         type : 'post',
         data : {
     			'dayLessonNo' : dayLessonNo,
+    			'lessonNo' : lessonNo
     		},
         success : function(data) {
           if (data == 1)

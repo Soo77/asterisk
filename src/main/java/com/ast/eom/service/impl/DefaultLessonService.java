@@ -97,4 +97,15 @@ public class DefaultLessonService implements LessonService {
   public void deleteCurrAndContsAndLesson(int lessonNo) throws Exception {
     lessonDao.deleteCurrAndContsAndLesson(lessonNo);
   }
+  
+  // 중단 요청 처리
+  @Override
+  public void interruptionRequest(int memberTypeNo, int lessonNo, String stopReason) throws Exception {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("memberTypeNo", memberTypeNo);
+    params.put("lessonNo", lessonNo);
+    params.put("stopReason", stopReason);
+    
+    lessonDao.updateInterruptionState(params);
+  }
 }

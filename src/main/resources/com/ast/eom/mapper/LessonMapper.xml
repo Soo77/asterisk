@@ -28,6 +28,7 @@
     <result column="ref_stat" property="refundState" />
     <result column="ref_date" property="refundDate" />
     <result column="ref_amount" property="refundAmount" />
+    <result column="lesson_day_count" property="lessonDayCount" />
     <result column="sub_name" property="subjectName" />
     <collection resultMap="MemberMap" property="member" />
     <collection resultMap="CLCMap" property="clcs" />
@@ -97,7 +98,8 @@
 			l.tch_stop_reason,
 			l.ref_stat,
 			l.ref_date,
-			l.ref_amount
+			l.ref_amount,
+      l.lesson_day_count
   </sql>
   
   <sql id="curriculumColumn">
@@ -219,5 +221,34 @@
 		delete from lesson
 		where lesson_no = #{lessonNo}; 
   </delete>
-
+  
+  <!-- 수업 카운트 증가  -->
+  <update id="increaseLessonDayCount" parameterType="int">
+    update lesson set
+    lesson_day_count = lesson_day_count + 1
+    where lesson_no = #{lessonNo}
+  </update>
+  
+  <!-- 수업 카운트 감소 -->
+  <update id="decreaseLessonDayCount" parameterType="int">
+    update lesson set
+    lesson_day_count = lesson_day_count - 1
+    where lesson_no= #{lessonNo}
+  </update>
+  
+  <!-- 중단 요청 -->
+  <update id="updateInterruptionState" parameterType="map">
+    update  lesson set
+      <if test="memberTypeNo == 3">
+        tch_lesson_stop=1,
+        tch_stop_reason=#{stopReason},
+      </if> 
+      <if test="memberTypeNo == 1">
+        std_lesson_stop=1,
+        std_stop_reason=#{stopReason},
+      </if> 
+      lesson_stat = 3
+    where lesson_no = #{lessonNo}
+  </update>
+  
 </mapper>

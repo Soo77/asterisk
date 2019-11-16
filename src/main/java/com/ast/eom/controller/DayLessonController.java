@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -99,10 +98,10 @@ public class DayLessonController {
     return dayLessonService.update(dayLesson);
   }
   
-  @RequestMapping("dayLesson/delete/{dayLessonNo}")
+  @RequestMapping("dayLesson/delete")
   @ResponseBody
-  private int delete(@PathVariable int dayLessonNo) throws Exception{
-      return dayLessonService.delete(dayLessonNo);
+  private int delete(@RequestParam  int dayLessonNo, @RequestParam int lessonNo) throws Exception{
+      return dayLessonService.delete(dayLessonNo, lessonNo);
   }
   
   @GetMapping("stop_lesson_form")
@@ -121,30 +120,29 @@ public class DayLessonController {
       if (lesson.getLessonNo() != lessonNo)
         continue;
       else {
-//        System.out.println("lesson===>" + lesson);
         model.addAttribute("subjectName", lesson.getSubjectName());
         model.addAttribute("schoolTypeNo", lesson.getSubject().getSchoolTypeNo());
+        model.addAttribute("lessonDayCount", lesson.getLessonDayCount());
       }
     }
     
     Lesson lessonCurriculum = lessonService.get(lessonNo);
-//    System.out.println(lessonCurriculum.getCurriculum().getTotalHours());
+    
     model.addAttribute("totalHours", lessonCurriculum.getCurriculum().getTotalHours());
+    model.addAttribute("lessonNo", lessonNo);
     model.addAttribute("name", name);
     model.addAttribute("email", email);
-    model.addAttribute("lessonNo", lessonNo);
   }
   
   @PostMapping("stop_lesson")
-  @ResponseBody
-  public int stopLesson(
+  public String stopLesson(
       HttpSession session,
+      int lessonNo,
       String stopReason) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
     int memberTypeNo = member.getMemberTypeNo();
-    int memberNo = member.getMemberNo();
-    return dayLessonService.interruptionRequest(memberTypeNo, memberNo, stopReason);
+    lessonService.interruptionRequest(memberTypeNo, lessonNo, stopReason);
+    return "redirect:list?lessonNo=" + lessonNo;
   }
-
 }
 

@@ -35,6 +35,7 @@ public class Lesson {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date refundDate;
   private int refundAmount;
+  private int lessonDayCount;
   
   private CurriculumLessonContents clc;
   
@@ -49,7 +50,6 @@ public class Lesson {
   private List<Curriculum> curriculums;
   private List<DayLesson> dayLessons;
   
-
   @Override
   public String toString() {
     return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo
@@ -61,11 +61,11 @@ public class Lesson {
         + ", paymentMethod=" + paymentMethod + ", payDay=" + payDay + ", calculationDay="
         + calculationDay + ", calculationState=" + calculationState + ", studentStopReason="
         + studentStopReason + ", teacherStopReason=" + teacherStopReason + ", refundState="
-        + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount + ", clc="
-        + clc + ", member=" + member + ", clcs=" + clcs + ", curriculum=" + curriculum
-        + ", subject=" + subject + ", subjectName=" + subjectName + ", dayintoWord=" + dayintoWord
-        + ", members=" + members + ", curriculums=" + curriculums + ", dayLessons=" + dayLessons
-        + "]";
+        + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount
+        + ", lessonDayCount=" + lessonDayCount + ", clc=" + clc + ", member=" + member + ", clcs="
+        + clcs + ", curriculum=" + curriculum + ", subject=" + subject + ", subjectName="
+        + subjectName + ", dayintoWord=" + dayintoWord + ", members=" + members + ", curriculums="
+        + curriculums + ", dayLessons=" + dayLessons + "]";
   }
 
   public int getParentsNo() {
@@ -221,6 +221,12 @@ public class Lesson {
   }
   public void setRefundAmount(int refundAmount) {
     this.refundAmount = refundAmount;
+  }
+  public int getLessonDayCount() {
+    return lessonDayCount;
+  }
+  public void setLessonDayCount(int lessonDayCount) {
+    this.lessonDayCount = lessonDayCount;
   }
   public List<Curriculum> getCurriculums() {
     return curriculums;

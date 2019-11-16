@@ -94,14 +94,14 @@
         </div>
         <div>
           <label for="doneLessonDays">수업 진행일수</label> <input
-            name="email" id="email" class="form-control" value="30"
+            name="email" id="email" class="form-control" value="${lessonDayCount}"
             readOnly>
         </div>
         <hr>
         <div>
           <label for="residualLessonDays">잔여 수업일수</label> <input
             name="residualLessonDays" id="residualLessonDays"
-            class="form-control" value="30" readOnly>
+            class="form-control" value="${totalHours-lessonDayCount}" readOnly>
         </div>
       </div>
       
@@ -112,6 +112,7 @@
         </div>
         <form id="form1" action="stop_lesson" method=post>
           <div>
+            <input type="hidden" name="lessonNo" value="${lessonNo}">
             <textarea name="stopReason" id="stopReason" class="form-control" rows="26" placeholder="중단 사유를 입력하세요."></textarea>
           </div>
         </form>
