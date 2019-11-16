@@ -36,11 +36,7 @@ public class MessageController {
       messageReadShow.setSenderNo(message.get(i).getMemberNo());
       messageReadShow.setReceiverNo(member.getMemberNo());
       
-      if(member.getMemberNo() == message.get(i).getMemberNo()) {
-        messageReadList.add(0);
-      } else {
-        messageReadList.add(messageService.messageReadShow(messageReadShow));
-      }
+      messageReadList.add(messageService.messageReadShow(messageReadShow));
     }
     model.addAttribute("messageReadList", messageReadList);
   }
@@ -84,8 +80,14 @@ public class MessageController {
     return messageDao.searchStd(id);
   }
   
-  @PostMapping("invitation")
-  public void invitation(int memberNo) throws Exception {
-    System.out.println(memberNo);
+  @PostMapping("lessonInvitationStd")
+  @ResponseBody
+  public void lessonInvitationStd(int stdNo, int lessonNo) throws Exception {
+    messageDao.lessonStd(stdNo, lessonNo);
+  }
+  
+  @PostMapping("lessonMatchingStd")
+  public void lessonMatchingStd(int lessonNo) throws Exception {
+    messageDao.changeLessonStat(lessonNo);
   }
 }

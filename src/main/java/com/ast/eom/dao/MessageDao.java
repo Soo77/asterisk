@@ -13,5 +13,8 @@ public interface MessageDao {
   List<Message> detail(int memberNo) throws Exception;
   List<Message> messageDetail(Message message) throws Exception;
   int messageIn(Message message) throws Exception;
+  
   List<Member> searchStd(String id);
+  void lessonStd(int stdNo, int lessonNo);
+  void changeLessonStat(int lessonNo);
 }

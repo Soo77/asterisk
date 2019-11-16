@@ -22,7 +22,6 @@
 	</div>
 	
 	<div id="searchResult"></div>
-	<a href='javascript:void(0)' id='#selectId2'>클릭해봐</a>
 	
 	<input type="text" id="choiceId" readOnly>
 	<button id="lessonMessage" class="btn btn-primary btn-sm">메세지 전송</button>
@@ -57,7 +56,7 @@
   
 <!-- 아이디 선택 -->
   <script>
-  $("#selectId2").on('click', function(e){
+  $("#selectId").on('click', function(e){
 	  console.log("발생!");
 	  var std = document.getElementById("selectId").value;
 	  $("#choiceId").text("std")
@@ -67,16 +66,30 @@
 <!-- 메세지 전송 -->
   <script>
   $("#lessonMessage").on('click', function(){
-	  var messageConts = "<form action='invitation' method='post'>"
-	  messageConts +="<button name='memberNo' value='${loginUser.memberNo}'"
-	  messageConts += "class='btn btn-primary btn-sm'>초대 승인</button></form>"
+	  
+	  var messageConts = "<form action='lessonMatchingStd' method='post'>"
+	  messageConts += "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
+	  messageConts += "커리큘럼을 확인해보세요!<br><br>"
+	  messageConts += "<button name='lessonChange' value='${lesson.lessonNo}'"
+	  messageConts += "class='btn btn-primary btn-sm'>커리큘럼 확인</button></form>"
 		  
 		  $.ajax({
 		    url:"/app/message/messagein",
 		    type:"post",
 		    data:"senderNo="+${loginUser.memberNo}+"&messageConts=" + 
 		    messageConts + "&receiverNo=" + 2,
-			  success : function(result) {
+			  success : function(data) {
+				  $.ajax({
+			          url:"/app/message/lessonInvitationStd",
+			          type:"post",
+			          data:"stdNo="+${std}+"&lessonNo"+${lessonNo}, 
+			          success : function(result) {
+			        	  console.log("성공");
+			          },
+			          error : function() {
+			           console.log("실패");
+			          }
+			    })
 			   alert("초대 메세지를 보냈습니다");
 			  },
 			  error : function() {

@@ -17,7 +17,7 @@
 		<c:forEach begin="0" end="${messageListSize-1}" var="i">
 			<c:choose>
 				<c:when test="${messageReadList[i] ne 0}">
-					<c:set var="bell" value="<i class='far fa-bell'>${messageReadList[i]}</i>"></c:set>
+					<c:set var="bell" value="<i class='far fa-bell'> ${messageReadList[i]}</i>"></c:set>
 				</c:when>
 
 				<c:otherwise>
@@ -28,7 +28,6 @@
 			<c:choose>
 				<c:when test="${loginUser.name eq messageMem[i].name}">
 					<a href=detail?memberNo=${messageMem[i].memberNo}>나에게 쪽지</a>
-					${bell}
 					<br>
 				</c:when>
 

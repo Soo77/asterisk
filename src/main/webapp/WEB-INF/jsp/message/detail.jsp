@@ -104,27 +104,6 @@
 	<br>
 	<br>
 	<a href="/app/message/list">쪽지목록</a>
-	
-	<form action="invitation" method="post">
-<button name='memberNo' value='${loginUser.memberNo}'
-class='btn btn-primary btn-sm'>초대 승인</button>
-</form>
-
-<!-- 초대 승인시 키값 변경 -->
-	<script>
-// $("#invitation").click(function(){
-// 	$.ajax({
-// 		url:"invitation",
-// 		type:"post",
-// 		data:"senderNo="+${loginUser.memberNo}+"$",
-// 		success : function(result) {
-//           },
-//           error : function() {
-//             console.log("실패");
-//           }
-// 	})
-// });
-</script>
 
 	<!-- 메세지 입력 -->
 	<script>
