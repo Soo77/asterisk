@@ -19,17 +19,18 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container pt-5 pb-4">
+  <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
     <div id='content'>
     <div class="text-right mb-4">
     
      <form name="deleteAll" action='deleteAll' method='post'>
       <input type="hidden" name="lessonNo" value="${lesson.lessonNo}">
-      <button type="button" class="btn btn-danger deleteCurrBtn">커리큘럼 삭제</button> 
+      <input type="hidden" class="btn btn-danger deleteCurrBtn" value="커리큘럼 삭제"> 
      </form> 
 
     </div> 
       <form action='update' method='post'>
+      <div style="padding-left: 13px; padding-right: 13px;">
         <div class="row">
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">수업시작일</label>
@@ -129,7 +130,7 @@
             </label>
           </div>
         </div>
-
+</div>
         <table id="table" class='table table-hover'>
           <thead>
             <tr>
@@ -149,7 +150,7 @@
                     <div class="input-group-append">
                       <span class="input-group-text" id="basic-addon2">일</span>
                     </div>
-                      <input id="${clc.curriculumLessonNo}" type="button" class="btn btn-rose btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">
+                      <input id="${clc.curriculumLessonNo}" type="hidden" class="btn btn-rose btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">
                   </div>
                 </td>
               </tr>
@@ -158,8 +159,8 @@
         </table> 
 
         <div class="text-right">
-          <input type="button" class="btn btn-primary lessonConts-add-button" value="추가">  
-          <button class="btn btn-primary">변경</button>
+          <input type="hidden" class="btn btn-primary lessonConts-add-button" value="추가">  
+          <input type="hidden" class="btn btn-primary" value="변경">
         </div>
       </form>
     </div>
