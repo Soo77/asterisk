@@ -18,6 +18,10 @@
       text-align: right;
     }
     
+    #requestLessonInterrupt {
+      text-align: right;
+    }
+    
     #myBtnDetail {
       text-align: right;
     }
@@ -72,6 +76,8 @@
             <button type="button" class="btn btn-primary"
               data-toggle="modal" data-target="#Modal"
               onclick="resetModal()">추가</button>
+            <a href="stop_lesson?lessonNo=${lessonNo}&memberTypeNo=${loginUser.memberTypeNo}"
+            class="btn btn-danger" id="requestLessonInterrupt">수업중단</a>
           </div>
         </div>
       </c:if>
@@ -269,6 +275,9 @@
 	// 일별 과외 진행현황 수정
 	function dayLessonUpdate() {
 		var dayLessonNo = $("#modalDayLessonNo").val();
+		var updateLessonDate = $("#modalLessonDate").val();
+		var updateLessonStartHour = $("#modalLessonStartHour").val();
+		var updateLessonEndHour = $("#modalLessonEndHour").val();
 		var updateLessonSummary = $("#modalLessonSummary").val();
 		var updateLessonEvaluation = $("#modalLessonEvaluation").val();
 
@@ -277,11 +286,15 @@
 			type : 'post',
 			data : {
 				'dayLessonNo' : dayLessonNo,
+				'lessonDate' : updateLessonDate,
+				'lessonStartHour' : updateLessonStartHour,
+				'lessonEndHour' : updateLessonEndHour,
 				'lessonSummary' : updateLessonSummary,
 				'lessonEvaluation' : updateLessonEvaluation
 			},
 			success : function(data) {
 				if (data == 1)
+					/* dayLessonList(lessonNo); */
 					location.href = "list?lessonNo=" + lessonNo;
 			}
 		});

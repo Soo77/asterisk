@@ -142,7 +142,7 @@
     <select id="findBy" resultMap="LessonMap">
       <include refid="lessonColumn"/>,
       <include refid="curriculumColumn"/>,
-      <include refid="clcColumn"/>,
+      <include refid="clcColumn"/>
       from lesson l 
       inner join curriculum c on l.lesson_no = c.lesson_no
       inner join curr_lesson_conts cl on c.lesson_no = cl.lesson_no
