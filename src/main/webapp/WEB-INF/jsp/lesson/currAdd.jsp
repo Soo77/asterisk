@@ -27,8 +27,7 @@
         <div class="row">
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">수업시작일</label>
-            <div class="form-group ha
-            s-default bmd-form-group pt-0">
+            <div class="form-group has-default bmd-form-group pt-0">
               <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular">
             </div>
           </div>
@@ -124,18 +123,6 @@
         
         <div class="row">
           <div class="col-lg-3 col-sm-6">
-            <label for="basic-url1">수업 설명</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonDescription" id="basic-url1" type=text class="form-control" placeholder="수업설명">
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <label for="basic-url2">수업료</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)"> 
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
             <label for="basic-url2">초중고</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <select class="custom-select" name="schoolTypeNo">
@@ -155,6 +142,18 @@
                   <option value="english">영어</option>
                   <option value="math">수학</option>
               </select>  
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <label for="basic-url1">수업 설명</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonDescription" id="basic-url1" type=text class="form-control" placeholder="수업설명">
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <label for="basic-url2">수업료</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)"> 
             </div>
           </div>
          </div> 
