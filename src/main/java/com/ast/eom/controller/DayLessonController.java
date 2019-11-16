@@ -105,17 +105,18 @@ public class DayLessonController {
       return dayLessonService.delete(dayLessonNo);
   }
   
-  @GetMapping("stop_lesson")
-  public void stop_lesson(
+  @GetMapping("stop_lesson_form")
+  public void stopLessonForm(
       Model model,
       HttpSession session,
       int memberTypeNo,
       int lessonNo) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
+    int memberNo = member.getMemberNo();
     String name = member.getName();
     String email = member.getEmail();
     
-    List<Lesson> lessons = lessonService.list(memberTypeNo);
+    List<Lesson> lessons = lessonService.list(memberTypeNo, memberNo);
     for (Lesson lesson : lessons) {
       if (lesson.getLessonNo() != lessonNo)
         continue;
@@ -131,6 +132,18 @@ public class DayLessonController {
     model.addAttribute("totalHours", lessonCurriculum.getCurriculum().getTotalHours());
     model.addAttribute("name", name);
     model.addAttribute("email", email);
+    model.addAttribute("lessonNo", lessonNo);
+  }
+  
+  @PostMapping("stop_lesson")
+  @ResponseBody
+  public int stopLesson(
+      HttpSession session,
+      String stopReason) throws Exception {
+    Member member = (Member) session.getAttribute("loginUser");
+    int memberTypeNo = member.getMemberTypeNo();
+    int memberNo = member.getMemberNo();
+    return dayLessonService.interruptionRequest(memberTypeNo, memberNo, stopReason);
   }
 
 }

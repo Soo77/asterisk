@@ -5,7 +5,7 @@
 <head>
 
   <style>
-    #btnRequestInterrupt {
+    #requestInterruption {
       text-align: right;
     }
     
@@ -110,21 +110,65 @@
           <h4 id="titleStopReason">중단 사유</h4>
           <hr>
         </div>
-        <div>
-          <textarea name="stopReason" id="stopReason" class="form-control" rows="26">숙제를 한 두번 안해야지 원...</textarea>
-        </div>
+        <form id="form1" action="stop_lesson" method=post>
+          <div>
+            <textarea name="stopReason" id="stopReason" class="form-control" rows="26" placeholder="중단 사유를 입력하세요."></textarea>
+          </div>
+        </form>
       </div>
     </div>
     
-    <div id="btnRequestInterrupt">
-      <button type="button" id="requestInterrupt" class="btn btn-danger" name="requestInterrupt">중단 요청</button>
+    <div id="requestInterruption">
+      <button type="button" id="btnRequestInterruption" class="btn btn-primary" name="requestInterruption">중단 요청</button>
+      <button type="button" id="btnCancel" class="btn btn-danger" name="cancel">취소</button>
     </div>
     
   </div>
 </div>
 
 <script>
-
+  var requestInterruptionButton = document.querySelector('#btnRequestInterruption');
+  requestInterruptionButton.addEventListener('click', function() {
+     var stopReason = $("#stopReason").val().replace(/(\s*)/g, "") ;
+        if (stopReason.length == 0) {
+          swal("중단 사유를 입력하세요.");
+          return;
+        }
+        else {
+          swal({
+              title: "중단신청",
+              text: "신청하시겠습니까?",
+              buttons: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                swal("신청되었습니다.", {
+                  icon: "success",
+                });
+                document.getElementById("form1").submit();
+              } else {
+              }
+            });
+        }
+    });
+  
+  
+  var cancelButton = document.querySelector('#btnCancel');
+  cancelButton.addEventListener('click', function() {
+    swal({
+      title: "취소",
+      text: "취소하시겠습니까?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        location.href = "list?lessonNo=" + ${lessonNo};
+      } else {
+      }
+    });
+  });
 
 </script>
 

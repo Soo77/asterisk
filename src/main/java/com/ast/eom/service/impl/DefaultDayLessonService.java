@@ -1,5 +1,6 @@
 package com.ast.eom.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,14 @@ public class DefaultDayLessonService implements DayLessonService {
   @Override
   public int delete(int dayLessonNo) throws Exception {
     return dayLessonDao.delete(dayLessonNo);
+  }
+  
+  @Override
+  public int interruptionRequest(int memberTypeNo, int memberNo, String stopReason) {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("memberTypeNo", memberTypeNo);
+    params.put("memberNo", memberNo);
+    params.put("stopReason", stopReason);
+    return dayLessonDao.updateInterruptionState(params);
   }
 }

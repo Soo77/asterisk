@@ -9,6 +9,7 @@ public interface DayLessonService {
   int insert(DayLesson dayLesson) throws Exception;
   int update(DayLesson dayLesson) throws Exception;
   int delete(int dayLessonNo) throws Exception;
+  int interruptionRequest(int memberTypeNo, int memberNo, String stopReason);
 }
 
 

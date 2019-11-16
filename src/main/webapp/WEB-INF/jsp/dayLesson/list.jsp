@@ -14,12 +14,16 @@
   <script src="/js/jquery.simple-calendar.js"></script>
 
   <style>
-    #dayLessonAdd {
+    #stopAndAdd {
       text-align: right;
     }
+   
+    #dayLessonAdd {
+      display: inline-block;
+    }
     
-    #requestLessonInterrupt {
-      text-align: right;
+    #dayLessonStop {
+      display: inline-block;
     }
     
     #myBtnDetail {
@@ -47,8 +51,8 @@
 </div>
 <div class="main main-raised">
   <div class="container p-3">
-    <div id="container" class="calendar-container p-5"></div>
-    <hr>
+    <!-- <div id="container" class="calendar-container p-5"></div>
+    <hr> -->
     
     <div class="row">
       <div class="col">
@@ -70,17 +74,19 @@
             class="btn btn-primary" id="lessonList">수업목록</a>
         </div>
       </div>
-      <c:if test="${loginUser.memberTypeNo == 3}">
-        <div class="col">
+      <div class="col" id="stopAndAdd">
+        <c:if test="${loginUser.memberTypeNo == 3}">
           <div id="dayLessonAdd">
             <button type="button" class="btn btn-primary"
               data-toggle="modal" data-target="#Modal"
               onclick="resetModal()">추가</button>
-            <a href="stop_lesson?lessonNo=${lessonNo}&memberTypeNo=${loginUser.memberTypeNo}"
-            class="btn btn-danger" id="requestLessonInterrupt">수업중단</a>
           </div>
+        </c:if>
+        <div id="dayLessonStop">
+          <a href="stop_lesson_form?lessonNo=${lessonNo}&memberTypeNo=${loginUser.memberTypeNo}"
+          class="btn btn-danger" id="requestLessonInterrupt">수업중단</a>
         </div>
-      </c:if>
+      </div>
     </div>
 
     <!-- 일별 과외 진행현황 리스트 -->
@@ -162,7 +168,7 @@
 <script src="/js/jquery.simple-calendar.js"></script>
 
 <script>
- $(document).ready(function(){
+/*  $(document).ready(function(){
 	  
 	$("#container").simpleCalendar();
 
@@ -172,7 +178,7 @@
       months: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
       days: ['일','월','화','수','목','금','토']
   });
-
+ */
 </script>
 
 <script>
