@@ -14,6 +14,14 @@
   <script src="/js/jquery.simple-calendar.js"></script>
 
   <style>
+    #my-progress {
+      padding: 20px;
+    }
+    
+    #percent {
+      text-align: right;
+    }
+    
     #stopAndAdd {
       text-align: right;
     }
@@ -56,19 +64,6 @@
     
     <div class="row">
       <div class="col">
-        <div class="progress-container progress-primary">
-          <span class="progress-badge">남은 일수</span>
-          <div class="progress">
-            <div class="progress-bar progress-bar-primary"
-              role="progressbar" aria-valuenow="30" aria-valuemin="0"
-              aria-valuemax="100" style="width: 30%;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
         <div>
           <a href="../lesson/list?memberTypeNo=${loginUser.memberTypeNo}"
             class="btn btn-primary" id="lessonList">수업목록</a>
@@ -82,9 +77,31 @@
               onclick="resetModal()">추가</button>
           </div>
         </c:if>
-        <div id="dayLessonStop">
-          <a href="stop_lesson_form?lessonNo=${lessonNo}&memberTypeNo=${loginUser.memberTypeNo}"
-          class="btn btn-danger" id="requestLessonInterrupt">수업중단</a>
+        <c:if test="${lessonState != 3}">
+          <div id="dayLessonStop">
+            <a href="stopLessonForm?lessonNo=${lessonNo}"
+            class="btn btn-danger" id="requestLessonInterrupt">수업중단</a>
+          </div>
+        </c:if>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col" id="my-progress">
+        <div class="progress-container progress-primary">
+          <div class="row">
+            <div class="col">
+              <span class="progress-badge">남은 일수 : ${remainDays} 일</span>
+            </div>
+            <div class="col" id="percent">
+              <span>${percent} %</span>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-primary"
+              role="progressbar" aria-valuenow="30" aria-valuemin="0"
+              aria-valuemax="100" style="width: ${percent}%;"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -119,7 +136,7 @@
            <div class="col">
         <label for="modalLessonDate">수업일</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonDate" id="modalLessonDate" type="date" class="form-control" placeholder="Regular" value="">
+              <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="9999-12-31" value="">
             </div>
         </div>
         </div>
@@ -127,13 +144,13 @@
           <div class="col">
             <label for="modalLessonStartHour">수업시작시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonStartHour" id="modalLessonStartHour" type="time" class="form-control" placeholder="Regular" value="">
+              <input class="form-control" name="lessonStartHour" id="modalLessonStartHour" type="time" value="">
             </div>
           </div>
           <div class="col">
             <label for="modalLessonEndHour">수업종료시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonEndHour" id="modalLessonEndHour" type="time" class="form-control" placeholder="Regular" value="">
+              <input class="form-control" name="lessonEndHour" id="modalLessonEndHour" type="time" value="">
             </div>
           </div>
         </div>
@@ -156,7 +173,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
         <c:if test="${loginUser.memberTypeNo == 3}">
-          <button type="button" id="btnUpdate" class="btn btn-primary" data-dismiss="modal" onclick="dayLessonUpdate()">저장</button>
+          <button type="button" id="btnUpdate" class="btn btn-primary">수정</button>
           <button type="button" id="btnAdd" class="btn btn-primary" name="dayLessonInsertBtn">추가</button>
           <button type="button" id="btnDelete" class="btn btn-primary" name="dayLessonDeleteBtn" onclick="dayLessonDelete()">삭제</button>
         </c:if>
@@ -187,19 +204,38 @@
   
   // 일별 과외 진행현황 등록 버튼 클릭시 
   $('[name=dayLessonInsertBtn]').click(function() {
-    var modalLessonDate = document.querySelector('#modalLessonDate');
-    var modalLessonStartHour = document.querySelector('#modalLessonStartHour');
-    var modalLessonEndHour = document.querySelector('#modalLessonEndHour');
-    var modalLessonSummary = document.querySelector('#modalLessonSummary');
-    var modalLessonEvaluation = document.querySelector('#modalLessonEvaluation');
+    var modalLessonDate = $("#modalLessonDate").val().replace(/(\s*)/g, "");
+    var modalLessonStartHour = $("#modalLessonStartHour").val().replace(/(\s*)/g, "");
+    var modalLessonEndHour = $("#modalLessonEndHour").val().replace(/(\s*)/g, "");
+    var modalLessonSummary = $("#modalLessonSummary").val().replace(/(\s*)/g, "");
+    var modalLessonEvaluation = $("#modalLessonEvaluation").val().replace(/(\s*)/g, "");
     
-    if (modalLessonDate.value.length > 0 &&
-    		modalLessonStartHour.value.length > 0 &&
-    		modalLessonEndHour.value.length > 0 &&
-    		modalLessonSummary.value.length > 0 &&
-    		modalLessonEvaluation.value.length > 0) {
+    if (modalLessonDate.length > 0 &&
+    		modalLessonStartHour.length > 0 &&
+    		modalLessonEndHour.length > 0 &&
+    		modalLessonSummary.length > 0 &&
+    		modalLessonEvaluation.length > 0) {
       var insertData = $('[name=dayLessonInsertForm]').serialize();
       dayLessonInsert(insertData);
+    } else {
+      swal("모두 입력하세요.");
+    }
+  });
+  
+	//일별 과외 진행현황 수정 버튼 클릭시 
+  $('#btnUpdate').click(function() {
+    var modalLessonDate = $("#modalLessonDate").val().replace(/(\s*)/g, "");
+    var modalLessonStartHour = $("#modalLessonStartHour").val().replace(/(\s*)/g, "");
+    var modalLessonEndHour = $("#modalLessonEndHour").val().replace(/(\s*)/g, "");
+    var modalLessonSummary = $("#modalLessonSummary").val().replace(/(\s*)/g, "");
+    var modalLessonEvaluation = $("#modalLessonEvaluation").val().replace(/(\s*)/g, "");
+    
+    if (modalLessonDate.length > 0 &&
+    		modalLessonStartHour.length > 0 &&
+    		modalLessonEndHour.length > 0 &&
+    		modalLessonSummary.length > 0 &&
+    		modalLessonEvaluation.length > 0) {
+    	dayLessonUpdate()
     } else {
       swal("모두 입력하세요.");
     }
@@ -287,41 +323,67 @@
 		var updateLessonSummary = $("#modalLessonSummary").val();
 		var updateLessonEvaluation = $("#modalLessonEvaluation").val();
 
-		$.ajax({
-			url : 'dayLesson/update',
-			type : 'post',
-			data : {
-				'dayLessonNo' : dayLessonNo,
-				'lessonDate' : updateLessonDate,
-				'lessonStartHour' : updateLessonStartHour,
-				'lessonEndHour' : updateLessonEndHour,
-				'lessonSummary' : updateLessonSummary,
-				'lessonEvaluation' : updateLessonEvaluation
-			},
-			success : function(data) {
-				if (data == 1)
-					/* dayLessonList(lessonNo); */
-					location.href = "list?lessonNo=" + lessonNo;
-			}
-		});
+		swal({
+        title: "수정",
+        text: "수정하시겠습니까?",
+        buttons: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("수정되었습니다.", {
+            icon: "success",
+          });
+          $.ajax({
+	    			url : 'dayLesson/update',
+	    			type : 'post',
+	    			data : {
+	    				'dayLessonNo' : dayLessonNo,
+	    				'lessonDate' : updateLessonDate,
+	    				'lessonStartHour' : updateLessonStartHour,
+	    				'lessonEndHour' : updateLessonEndHour,
+	    				'lessonSummary' : updateLessonSummary,
+	    				'lessonEvaluation' : updateLessonEvaluation
+	    			},
+	    			success : function(data) {
+	    				if (data == 1)
+	    					/* dayLessonList(lessonNo); */
+	    					location.href = "list?lessonNo=" + lessonNo;
+	    			}
+	    		});
+        } else {
+        }
+      });
 	}
 	
 	// 일별 과외 진행현황 삭제
-    function dayLessonDelete() {
-    	var dayLessonNo = $("#modalDayLessonNo").val();
-      $.ajax({
-        url : 'dayLesson/delete/',
-        type : 'post',
-        data : {
-    			'dayLessonNo' : dayLessonNo,
-    			'lessonNo' : lessonNo
-    		},
-        success : function(data) {
-          if (data == 1)
-        	  location.href = "list?lessonNo=" + lessonNo;
-        }
-      });
-    }
+  function dayLessonDelete() {
+  	var dayLessonNo = $("#modalDayLessonNo").val();
+  	swal({
+          title: "삭제",
+          text: "삭제하시겠습니까?",
+          buttons: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal("삭제되었습니다.", {
+              icon: "success",
+            });
+            $.ajax({
+                url : 'dayLesson/delete/',
+                type : 'post',
+                data : {
+            			'dayLessonNo' : dayLessonNo,
+            			'lessonNo' : lessonNo
+            		},
+                success : function(data) {
+                  if (data == 1)
+                	  location.href = "list?lessonNo=" + lessonNo;
+                }
+              });
+          } else {
+          }
+        });
+  }
 
 	$(document).ready(function() {
 		dayLessonList();

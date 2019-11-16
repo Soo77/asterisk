@@ -29,15 +29,44 @@ public class DayLessonController {
       HttpSession session,
       Model model,
       int lessonNo) throws Exception {
-    List<DayLesson> dayLessons = dayLessonService.list(lessonNo);
+    int dayCount = 0;
+    int lessonState = 0;
+    int totalHours = 0;
+    int dayLessonNo = 0;
+    int remainDays = 0;
+    double percent=0;
     
-    if (dayLessons.size() > 0) {
-      int dayLessonNo = dayLessons.get(0).getDayLessonNo();
-      model.addAttribute("dayLessonNo", dayLessonNo);
+    Member member = (Member) session.getAttribute("loginUser");
+    int memberTypeNo = member.getMemberTypeNo();
+    int memberNo = member.getMemberNo();
+    
+    List<Lesson> lessons = lessonService.list(memberTypeNo, memberNo);
+    for (Lesson lesson : lessons) {
+      if (lesson.getLessonNo() != lessonNo)
+        continue;
+      else {
+        dayCount = lesson.getLessonDayCount();
+        lessonState = lesson.getLessonState();
+      }
     }
     
-    model.addAttribute("dayLessons", dayLessons);
+    Lesson lessonCurriculum = lessonService.get(lessonNo);
+    totalHours = lessonCurriculum.getCurriculum().getTotalHours();
+    remainDays = totalHours - dayCount;
+    percent = ((double)totalHours) / 100;
+    
+    
+    List<DayLesson> dayLessons = dayLessonService.list(lessonNo);
+    if (dayLessons.size() > 0) {
+      dayLessonNo = dayLessons.get(0).getDayLessonNo();
+    }
+    
     model.addAttribute("lessonNo", lessonNo);
+    model.addAttribute("lessonState", lessonState);
+    model.addAttribute("remainDays", remainDays);
+    model.addAttribute("percent", percent);
+    model.addAttribute("dayLessons", dayLessons);
+    model.addAttribute("dayLessonNo", dayLessonNo);
     
 //    Map<String, Object> memberInfoMap = (Map<String, Object>) session.getAttribute("memberInfoMap");
 //    List<Lesson> teacherLessons = (List<Lesson>) memberInfoMap.get("teacherLessons");
@@ -104,13 +133,13 @@ public class DayLessonController {
       return dayLessonService.delete(dayLessonNo, lessonNo);
   }
   
-  @GetMapping("stop_lesson_form")
+  @GetMapping("stopLessonForm")
   public void stopLessonForm(
       Model model,
       HttpSession session,
-      int memberTypeNo,
       int lessonNo) throws Exception {
     Member member = (Member) session.getAttribute("loginUser");
+    int memberTypeNo = member.getMemberTypeNo();
     int memberNo = member.getMemberNo();
     String name = member.getName();
     String email = member.getEmail();
@@ -134,7 +163,7 @@ public class DayLessonController {
     model.addAttribute("email", email);
   }
   
-  @PostMapping("stop_lesson")
+  @PostMapping("stopLesson")
   public String stopLesson(
       HttpSession session,
       int lessonNo,

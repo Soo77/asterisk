@@ -110,7 +110,7 @@
           <h4 id="titleStopReason">중단 사유</h4>
           <hr>
         </div>
-        <form id="form1" action="stop_lesson" method=post>
+        <form id="form1" action="stopLesson" method=post>
           <div>
             <input type="hidden" name="lessonNo" value="${lessonNo}">
             <textarea name="stopReason" id="stopReason" class="form-control" rows="26" placeholder="중단 사유를 입력하세요."></textarea>
@@ -130,7 +130,7 @@
 <script>
   var requestInterruptionButton = document.querySelector('#btnRequestInterruption');
   requestInterruptionButton.addEventListener('click', function() {
-     var stopReason = $("#stopReason").val().replace(/(\s*)/g, "") ;
+     var stopReason = $("#stopReason").val().replace(/(\s*)/g, "");
         if (stopReason.length == 0) {
           swal("중단 사유를 입력하세요.");
           return;
