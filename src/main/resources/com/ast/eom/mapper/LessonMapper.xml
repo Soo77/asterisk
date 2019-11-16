@@ -142,7 +142,7 @@
     <select id="findBy" resultMap="LessonMap">
       <include refid="lessonColumn"/>,
       <include refid="curriculumColumn"/>,
-      <include refid="clcColumn"/>,
+      <include refid="clcColumn"/>
       from lesson l 
       inner join curriculum c on l.lesson_no = c.lesson_no
       inner join curr_lesson_conts cl on c.lesson_no = cl.lesson_no
@@ -207,10 +207,10 @@
 		  st.sch_type_no = #{schoolTypeNo} AND s.sub_name = #{subjectName};
   </select>
   
-  <delete id="deleteCurrAndContsAndLesson">
+  <delete id="deleteCurrAndContsAndLesson"  parameterType="int">
     delete from curr_lesson_conts
 		where lesson_no = #{lessonNo};
-		
+
 		delete from curriculum
 		where lesson_no = #{lessonNo};
 		

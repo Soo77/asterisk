@@ -85,6 +85,57 @@ public class LessonController {
   }
 
 
+  @RequestMapping(value = "fixedDetail", method={RequestMethod.GET})
+  public void fixedDetail(Model model, int lessonNo
+      ) throws Exception {
+
+    Lesson lesson = lessonService.lessonDetail(lessonNo);
+    String whatDay = lesson.getCurriculum().getCurriculumLessonDay();
+    String resultDay = "";
+
+    if (whatDay.charAt(0) == '1') {
+      resultDay = resultDay + "월";
+    }
+    if (whatDay.charAt(1) == '1') {
+      if (resultDay != "") {
+        resultDay = resultDay + ",";
+      }
+      resultDay = resultDay + "화";
+    }
+    if (whatDay.charAt(2) == '1') {
+      if (resultDay != "") {
+        resultDay = resultDay + ",";
+      }
+      resultDay = resultDay + "수";
+    }
+    if (whatDay.charAt(3) == '1') {
+      if (resultDay != "") {
+        resultDay = resultDay + ",";
+      }
+      resultDay = resultDay + "목";
+    }
+    if (whatDay.charAt(4) == '1') {
+      if (resultDay != "") {
+        resultDay = resultDay + ",";
+      }
+      resultDay = resultDay + "금";
+    }
+    if (whatDay.charAt(5) == '1') {
+      if (resultDay != "") {
+        resultDay = resultDay + ",";
+      }
+      resultDay = resultDay + "토";
+    }
+    if (whatDay.charAt(6) == '1') {
+      if (resultDay != "") {
+        resultDay = resultDay + ",";
+      }
+      resultDay = resultDay + "일";
+    }
+
+    lesson.setDayintoWord(resultDay);
+    model.addAttribute("lesson", lesson);
+  }
 
   @PostMapping("update")
   public String update(
