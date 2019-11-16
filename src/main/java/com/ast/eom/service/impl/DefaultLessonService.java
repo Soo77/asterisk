@@ -15,13 +15,13 @@ public class DefaultLessonService implements LessonService {
   @Resource private LessonDao lessonDao;
 
   @Override
-  public List<Lesson> list(int memberTypeNo) throws Exception {
+  public List<Lesson> list(int memberTypeNo, int memberNo) throws Exception {
     if (memberTypeNo ==1) {
-      return lessonDao.findAllTeacherBy();
+      return lessonDao.findAllTeacherBy(memberNo);
     } else if (memberTypeNo == 2) {
-      return lessonDao.findAllTeacherBy();
+      return lessonDao.findAllTeacherBy(memberNo);
     } else if (memberTypeNo == 3) {
-      return lessonDao.findAllStudentBy();
+      return lessonDao.findAllStudentBy(memberNo);
     } else {
       throw new Exception("너 뭐냐?");
     }

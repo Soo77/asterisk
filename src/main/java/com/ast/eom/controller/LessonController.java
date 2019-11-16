@@ -25,10 +25,12 @@ public class LessonController {
 
 
   @GetMapping("list")
-  public void list(Model model, int memberTypeNo) throws Exception {
-    System.out.println(memberTypeNo); 
-
-    List<Lesson> lessons = lessonService.list(memberTypeNo);
+  public void list(HttpSession session, Model model) throws Exception {
+    List<Lesson> lessons;
+    int memberTypeNo = ((Member) session.getAttribute("loginUser")).getMemberTypeNo();
+    int memberNo = ((Member) session.getAttribute("loginUser")).getMemberNo();
+    
+    lessons = lessonService.list(memberTypeNo, memberNo);
     model.addAttribute("lessons", lessons);
   }
 
@@ -38,7 +40,7 @@ public class LessonController {
 
     Lesson lesson = lessonService.lessonDetail(lessonNo);
     String whatDay = lesson.getCurriculum().getCurriculumLessonDay();
-    String resultDay = "";
+    String resultDay = ""; 
 
     if (whatDay.charAt(0) == '1') {
       resultDay = resultDay + "월";
