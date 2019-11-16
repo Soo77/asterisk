@@ -5,8 +5,8 @@ import java.util.Map;
 import com.ast.eom.domain.Lesson;
 
 public interface LessonDao {
-  List<Lesson> findAllTeacherBy() throws Exception;
-  List<Lesson> findAllStudentBy() throws Exception;
+  List<Lesson> findAllTeacherBy(int memberNo) throws Exception;
+  List<Lesson> findAllStudentBy(int memberNo) throws Exception;
   Lesson findBy(int no) throws Exception;
   int insert(Lesson lesson) throws Exception;
   int updateContentsAndDays(Lesson lesson) throws Exception;

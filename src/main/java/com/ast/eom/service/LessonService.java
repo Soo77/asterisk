@@ -3,10 +3,9 @@ package com.ast.eom.service;
 import java.util.HashMap;
 import java.util.List;
 import com.ast.eom.domain.Lesson;
-import com.ast.eom.domain.Subject;
 
 public interface LessonService {
-  List<Lesson> list(int memberTypeNo) throws Exception;
+  List<Lesson> list(int memberTypeNo, int memberNo) throws Exception;
   Lesson get(int no) throws Exception;
   void insert(Lesson lesson) throws Exception;
   void updateContentsAndDays(Lesson lesson) throws Exception;

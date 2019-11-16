@@ -21,14 +21,14 @@
 </div>
     <c:set var="teacherNo" value="${loginUser.memberNo}" scope="session"></c:set>
 <div class="main main-raised">
-  <div class="container pt-5 pb-4">
+  <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
     <div id='content'>
       <form action='currAddaction' method='post'>
+      <div style="padding-left: 13px; padding-right: 13px;">
         <div class="row">
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">수업시작일</label>
-            <div class="form-group ha
-            s-default bmd-form-group pt-0">
+            <div class="form-group has-default bmd-form-group pt-0">
               <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular">
             </div>
           </div>
@@ -120,21 +120,9 @@
             </label>
           </div>
         </div>
-        
+        </div>
         
         <div class="row">
-          <div class="col-lg-3 col-sm-6">
-            <label for="basic-url1">수업 설명</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonDescription" id="basic-url1" type=text class="form-control" placeholder="수업설명">
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-            <label for="basic-url2">수업료</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)"> 
-            </div>
-          </div>
           <div class="col-lg-3 col-sm-6">
             <label for="basic-url2">초중고</label>
             <div class="form-group has-default bmd-form-group pt-0">
@@ -155,6 +143,18 @@
                   <option value="english">영어</option>
                   <option value="math">수학</option>
               </select>  
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <label for="basic-url1">수업 설명</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonDescription" id="basic-url1" type=text class="form-control" placeholder="수업설명">
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <label for="basic-url2">수업료</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)"> 
             </div>
           </div>
          </div> 
@@ -178,7 +178,7 @@
                     <div class="input-group-append">
                       <span class="input-group-text" id="basic-addon2">일</span>
                     </div>
-                      <input type="button" class="btn btn-rose btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">
+                      <input type="button" class="btn btn-outline-primary btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">
                   </div>
                 </td>
               </tr>

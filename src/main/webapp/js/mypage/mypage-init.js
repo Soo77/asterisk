@@ -16,7 +16,7 @@ class MyLesson {
     let myLessonBtn = document.getElementsByClassName('my-lesson-btn')[0];
     myLessonBtn.addEventListener('click', (event) => {
       event.preventDefault();
-      location.href = '/app/lesson/list?memberTypeNo=' + memberTypeNo;
+      location.href = '/app/lesson/list'; 
     });
   }
 }
