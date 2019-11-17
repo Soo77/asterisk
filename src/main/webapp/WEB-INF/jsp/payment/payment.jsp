@@ -2,65 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<style>
-  /* * {
-    border: 1px solid powderblue;
-  } */
-
-  .my-container {
-    padding: 20px;
-  }
-
-  .my-payment-content {
-    width: 450px;
-    padding: 20px;
-    float: left;
-    flex-basis: 60%;
-  }
-
-  .my-sidebar-right {
-    width: 160px;
-    padding: 20px;
-    float: right;
-    flex-basis: 40%;
-  }
-
-  .payer-info {
-    border: 1px solid #d2d2d2;
-    border-radius: 0.35rem;
-    margin: 20px 0;
-  }
-
-  .payment-method {
-    border: 1px solid #d2d2d2;
-    border-radius: 0.35rem;
-    margin: 20px 0;
-  }
-
-  .payment-amount {
-    border: 1px solid #d2d2d2;
-    border-radius: 0.35rem;
-    margin: 20px 0;
-  }
-
-  .teacher-info {
-    border: 1px solid #d2d2d2;
-    border-radius: 0.35rem;
-    margin: 20px 0;
-    padding-bottom: 33px;
-  }
-
-  .teacher-profile-photo {
-    width: 150px;
-    height: 150px;
-  }
-  h3,h4 {
-    color: #3C4858;
-  }
-  p {
-    color: #AAAAAA;
-  }
-</style>
+<link href="/css/payment/payment.css" rel="stylesheet" />
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg3.jpg')">
   <div class="container">
@@ -107,7 +49,7 @@
                 </div>
               </div>
             </div>
-            <div class="payment-method px-3 pb-3">
+            <div class="payment-method px-3">
               <h3>결제방법</h3>
               <div class="form-check form-check-radio">
                 <label class="form-check-label">
@@ -155,21 +97,21 @@
               <hr>
               <p class="text-right">200,000원</p>
             </div>
-            <div class="teacher-info px-3">
+            <div class="teacher-info px-3 pb-3">
               <h3>강사정보</h3>
               <div class="row">
                 <div class="col">
                   <img src="/upload/join/a.gif" class="img-fluid teacher-profile-photo">
                 </div>
                 <div class="col">
-                  <h4>엄선생님</h4>
+                  <h4>홍길동</h4>
                   <p>비트대학교 졸업</p>
                   <p>비트교육센터 강사</p>
                 </div>
               </div>
             </div>
             <div class="text-right">
-              <button type="button" class="btn btn-primary">결제하기</button>
+              <button type="button" class="btn btn-primary payment-button">결제하기</button>
             </div>
           </div>
         </div>
@@ -177,3 +119,16 @@
     </form>
   </div>
 </div>
+
+<!-- 결제 API -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<script src="/js/payment/payment-method.js"></script>
+<script>
+  let payment = new Payment();
+  let paymentButton = document.getElementsByClassName('payment-button')[0];
+
+  paymentButton.addEventListener('click', () => {
+    payment.execute();
+  });
+</script>
