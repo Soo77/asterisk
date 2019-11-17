@@ -130,53 +130,57 @@
       </div>
       <div class="modal-body">
         <input name="dayLessonNo" type="hidden" id="modalDayLessonNo" value="">
-      <form name="dayLessonInsertForm">
-        <input name="lessonNo" type="hidden" id="modalLessonNo" value="${lessonNo}">
-        <div class="row">
-           <div class="col">
-        <label for="modalLessonDate">수업일</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="9999-12-31" value="">
+        <form name="dayLessonInsertForm">
+          <input name="lessonNo" type="hidden" id="modalLessonNo" value="${lessonNo}">
+          <div class="row">
+             <div class="col">
+          <label for="modalLessonDate">수업일</label>
+              <div class="form-group has-default bmd-form-group pt-0">
+                <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="9999-12-31" value="">
+              </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="modalLessonStartHour">수업시작시간</label>
+              <div class="form-group has-default bmd-form-group pt-0">
+                <input class="form-control" name="lessonStartHour" id="modalLessonStartHour" type="time" value="">
+              </div>
             </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <label for="modalLessonStartHour">수업시작시간</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input class="form-control" name="lessonStartHour" id="modalLessonStartHour" type="time" value="">
+            <div class="col">
+              <label for="modalLessonEndHour">수업종료시간</label>
+              <div class="form-group has-default bmd-form-group pt-0">
+                <input class="form-control" name="lessonEndHour" id="modalLessonEndHour" type="time" value="">
+              </div>
             </div>
           </div>
-          <div class="col">
-            <label for="modalLessonEndHour">수업종료시간</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input class="form-control" name="lessonEndHour" id="modalLessonEndHour" type="time" value="">
+          <div class="row">
+            <div class="col">
+              <label for="lessonSummary">수업 내용 정리</label>
+              <textarea id="modalLessonSummary" class="form-control"
+              name="lessonSummary" rows="10" style="resize: none;"></textarea>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <label for="lessonSummary">수업 내용 정리</label>
-            <textarea id="modalLessonSummary" class="form-control"
-            name="lessonSummary" rows="10" style="resize: none;"></textarea>
+          <div class="row">
+            <div class="col">
+              <label for="lessonEvaluation">수업 평가</label>
+              <textarea id="modalLessonEvaluation" class="form-control"
+              name="lessonEvaluation" rows="5" style="resize: none;"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <label for="lessonEvaluation">수업 평가</label>
-            <textarea id="modalLessonEvaluation" class="form-control"
-            name="lessonEvaluation" rows="5" style="resize: none;"></textarea>
-          </div>
-        </div>
-      </form>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <c:if test="${loginUser.memberTypeNo == 3}">
-          <button type="button" id="btnUpdate" class="btn btn-primary">수정</button>
-          <button type="button" id="btnAdd" class="btn btn-primary" name="dayLessonInsertBtn">추가</button>
-          <button type="button" id="btnDelete" class="btn btn-primary" name="dayLessonDeleteBtn" onclick="dayLessonDelete()">삭제</button>
-        </c:if>
+        <div class="row">
+          <div class="col">
+            <c:if test="${loginUser.memberTypeNo == 3}">
+              <button type="button" id="btnAdd" class="btn btn-primary" name="dayLessonInsertBtn">등록</button>
+              <button type="button" id="btnUpdate" class="btn btn-primary">수정</button>
+              <button type="button" id="btnDelete" class="btn btn-danger" name="dayLessonDeleteBtn" onclick="dayLessonDelete()">삭제</button>
+            </c:if>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -387,6 +391,35 @@
 
 	$(document).ready(function() {
 		dayLessonList();
+		if (${totalHours} == ${lessonDayCount}) {
+			if (${loginUser.memberTypeNo == 1}) {
+  			swal({
+            title: "후기작성",
+    	      text: "다른 학생들에게 이 선생님에 대해 알려주세요!",
+            buttons: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+          	  location.href = "reviewForm?lessonNo=" + lessonNo;
+            } else {
+          	  location.href = "../lesson/list";
+            }
+          });
+			} else if (${loginUser.memberTypeNo == 3}) {
+				swal({
+            title: "후기작성",
+    	      text: "다른 선생님들에게 이 학생에 대해 알려주세요!",
+            buttons: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+          	  location.href = "reviewForm?lessonNo=" + lessonNo;
+            } else {
+          	  location.href = "../lesson/list";
+            }
+          });
+			}
+		}	
 	});
 </script>
 

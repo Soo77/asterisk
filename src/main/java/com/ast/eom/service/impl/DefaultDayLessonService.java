@@ -28,7 +28,12 @@ public class DefaultDayLessonService implements DayLessonService {
   @Override
   public int insert(DayLesson dayLesson) throws Exception {
     int lessonNo = dayLesson.getLessonNo();
+    int totalDay = lessonDao.findBy(lessonNo).getCurriculum().getTotalHours();
     lessonDao.increaseLessonDayCount(lessonNo);
+    int lessonDayCount = lessonDao.findBy(lessonNo).getLessonDayCount();
+    if (lessonDayCount == totalDay) {
+      
+    }
     return dayLessonDao.insert(dayLesson);
   }
   
