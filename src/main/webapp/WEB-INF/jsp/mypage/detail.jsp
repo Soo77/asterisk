@@ -649,6 +649,7 @@
     }
   </script>
 </c:forEach>
+
 <script src="/js/mypage/teacher-photo-controller.js"></script>
 <script>
   let teacherPhotoController = new TeacherPhotoController(teacherPhotos);

@@ -1,0 +1,57 @@
+  /* * {
+    border: 1px solid powderblue;
+  } */
+
+  .my-container {
+    padding: 20px;
+  }
+
+  .my-payment-content {
+    width: 450px;
+    padding: 20px;
+    float: left;
+    flex-basis: 60%;
+  }
+
+  .my-sidebar-right {
+    width: 160px;
+    padding: 20px;
+    float: right;
+    flex-basis: 40%;
+  }
+
+  .payer-info {
+    border: 1px solid #d2d2d2;
+    border-radius: 0.35rem;
+    margin: 20px 0;
+  }
+
+  .payment-method {
+    border: 1px solid #d2d2d2;
+    border-radius: 0.35rem;
+    margin: 20px 0;
+    padding-bottom: 28px;
+  }
+
+  .payment-amount {
+    border: 1px solid #d2d2d2;
+    border-radius: 0.35rem;
+    margin: 20px 0;
+  }
+
+  .teacher-info {
+    border: 1px solid #d2d2d2;
+    border-radius: 0.35rem;
+    margin: 20px 0;
+  }
+
+  .teacher-profile-photo {
+    width: 150px;
+    height: 150px;
+  }
+  h3,h4 {
+    color: #3C4858;
+  }
+  p {
+    color: #AAAAAA;
+  }

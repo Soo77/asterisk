@@ -38,7 +38,6 @@
     </c:if>
 <!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> --> 
 <c:forEach items="${lessons}" var="lesson">
-   <c:if test="${loginUser.memberNo eq lesson.teacherNo}"> 
   <div class="text-center">
   <div class="card w-75"> 
   <div class="row no-gutters">
@@ -113,7 +112,6 @@
       
     </div>
   </div>
-  </c:if>
 </c:forEach>  
 
       </div> 

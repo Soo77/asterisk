@@ -28,6 +28,7 @@
     <result column="ref_stat" property="refundState" />
     <result column="ref_date" property="refundDate" />
     <result column="ref_amount" property="refundAmount" />
+    <result column="lesson_day_count" property="lessonDayCount" />
     <result column="sub_name" property="subjectName" />
     <collection resultMap="MemberMap" property="member" />
     <collection resultMap="CLCMap" property="clcs" />
@@ -97,7 +98,8 @@
 			l.tch_stop_reason,
 			l.ref_stat,
 			l.ref_date,
-			l.ref_amount
+			l.ref_amount,
+      l.lesson_day_count
   </sql>
   
   <sql id="curriculumColumn">
@@ -115,20 +117,22 @@
 		cl.lesson_days
   </sql>
 
-    <select id="findAllTeacherBy" resultMap="LessonMap">
-	     <include refid="lessonColumn"/>,
+    <select id="findAllTeacherBy" resultMap="LessonMap" parameterType="int">
+	   <include refid="lessonColumn"/>,
 	     s.sch_type_no, l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
 			from lesson l 
 			inner join subject s on l.sub_no = s.sub_no
 			inner join member m on l.tch_no = m.mem_no
+			where  std_no = #{no}
     </select>
     
-    <select id="findAllStudentBy" resultMap="LessonMap">
+    <select id="findAllStudentBy" resultMap="LessonMap" parameterType="int">
 			<include refid="lessonColumn"/>,
 			s.sch_type_no, l.lesson_no, m.name, m.mem_type_no, m.profile_photo, s.sub_name, l.sdt, l.edt
 			from lesson l 
 			left outer join subject s on l.sub_no = s.sub_no
 			left outer join member m on l.std_no = m.mem_no
+			where  tch_no = #{no}
     </select>
     
      <select id="findCurrBy" parameterType="int" resultMap="LessonMap">
@@ -217,5 +221,34 @@
 		delete from lesson
 		where lesson_no = #{lessonNo}; 
   </delete>
-
+  
+  <!-- 수업 카운트 증가  -->
+  <update id="increaseLessonDayCount" parameterType="int">
+    update lesson set
+    lesson_day_count = lesson_day_count + 1
+    where lesson_no = #{lessonNo}
+  </update>
+  
+  <!-- 수업 카운트 감소 -->
+  <update id="decreaseLessonDayCount" parameterType="int">
+    update lesson set
+    lesson_day_count = lesson_day_count - 1
+    where lesson_no= #{lessonNo}
+  </update>
+  
+  <!-- 중단 요청 -->
+  <update id="updateInterruptionState" parameterType="map">
+    update  lesson set
+      <if test="memberTypeNo == 3">
+        tch_lesson_stop=1,
+        tch_stop_reason=#{stopReason},
+      </if> 
+      <if test="memberTypeNo == 1">
+        std_lesson_stop=1,
+        std_stop_reason=#{stopReason},
+      </if> 
+      lesson_stat = 3
+    where lesson_no = #{lessonNo}
+  </update>
+  
 </mapper>

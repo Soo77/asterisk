@@ -8,7 +8,7 @@ public interface DayLessonService {
   List<DayLesson> list(int lessonNo) throws Exception;
   int insert(DayLesson dayLesson) throws Exception;
   int update(DayLesson dayLesson) throws Exception;
-  int delete(int dayLessonNo) throws Exception;
+  int delete(int dayLessonNo, int lessonNo) throws Exception;
 }
 
 
