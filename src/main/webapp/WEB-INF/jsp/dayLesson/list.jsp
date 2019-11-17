@@ -13,35 +13,36 @@
   <!--Simple Calender Js-->
   <script src="/js/jquery.simple-calendar.js"></script>
 
-  <style>
-    #my-progress {
-      padding: 20px;
-    }
-    
-    #percent {
-      text-align: right;
-    }
-    
-    #stopAndAdd {
-      text-align: right;
-    }
-   
-    #dayLessonAdd {
-      display: inline-block;
-    }
-    
-    #dayLessonStop {
-      display: inline-block;
-    }
-    
-    #myBtnDetail {
-      text-align: right;
-    }
-    
-    .modal-title {
-      font-weight: bold;
-    }
-  </style>
+<style>
+  #my-progress {
+    padding: 20px;
+  }
+  
+  #percent {
+    text-align: right;
+  }
+  
+  #stopAndAdd {
+    text-align: right;
+  }
+  
+  #dayLessonAdd {
+    display: inline-block;
+  }
+  
+  #dayLessonStop {
+    display: inline-block;
+  }
+  
+  #myBtnDetail {
+    text-align: right;
+  }
+  
+  .modal-title {
+    font-weight: bold;
+  }
+  
+</style>
   
 </head>
 
@@ -73,7 +74,7 @@
         <c:if test="${loginUser.memberTypeNo == 3}">
           <div id="dayLessonAdd">
             <button type="button" class="btn btn-primary"
-              data-toggle="modal" data-target="#Modal"
+              data-toggle="modal" data-target="#Modal" id="btnDayLessonAdd"
               onclick="resetModal()">추가</button>
           </div>
         </c:if>
@@ -130,15 +131,16 @@
       </div>
       <div class="modal-body">
         <input name="dayLessonNo" type="hidden" id="modalDayLessonNo" value="">
+        
         <form name="dayLessonInsertForm">
           <input name="lessonNo" type="hidden" id="modalLessonNo" value="${lessonNo}">
           <div class="row">
-             <div class="col">
-          <label for="modalLessonDate">수업일</label>
+            <div class="col">
+              <label for="modalLessonDate">수업일</label>
               <div class="form-group has-default bmd-form-group pt-0">
-                <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="9999-12-31" value="">
+                <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="" value="">
               </div>
-          </div>
+            </div>
           </div>
           <div class="row">
             <div class="col">
@@ -390,6 +392,7 @@
   }
 
 	$(document).ready(function() {
+		modalLessonDate.max = new Date().toISOString().split("T")[0];
 		dayLessonList();
 		if (${lessonState == 5 } && ${studentReview == null}) {
 			swal({
@@ -404,7 +407,12 @@
         	  location.href = "../lesson/list";
           }
         });
-		}	
+		}	else if (${lessonState == 5 } && ${studentReview != null}) {
+			var dayLessonAddButton = document.querySelector('#btnDayLessonAdd');
+			dayLessonAddButton.style.display = 'none';
+			var dayLessonStopButton = document.querySelector('#dayLessonStop');
+			dayLessonStopButton.style.display = 'none';
+		}
 	});
 </script>
 

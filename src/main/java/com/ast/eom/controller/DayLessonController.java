@@ -48,7 +48,6 @@ public class DayLessonController {
     model.addAttribute("percent", percent);
     model.addAttribute("dayLessons", dayLessons);
     model.addAttribute("studentReview", studentReview);
-    
   }
   
   @GetMapping("dayLesson/list")
