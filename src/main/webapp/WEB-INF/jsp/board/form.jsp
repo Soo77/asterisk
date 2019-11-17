@@ -90,7 +90,7 @@
 </div>
 <div class="main main-raised">
   <div class="container p-3">
-    <form id="form1" name="frm1" action='add' method=post
+    <form id="form1" name="frm1" action='add' method='post'
       enctype='multipart/form-data'>
 
       <input type="hidden" name="boardTypeNo" value="${boardTypeNo}">

@@ -391,34 +391,19 @@
 
 	$(document).ready(function() {
 		dayLessonList();
-		if (${totalHours} == ${lessonDayCount}) {
-			if (${loginUser.memberTypeNo == 1}) {
-  			swal({
-            title: "후기작성",
-    	      text: "다른 학생들에게 이 선생님에 대해 알려주세요!",
-            buttons: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-          	  location.href = "reviewForm?lessonNo=" + lessonNo;
-            } else {
-          	  location.href = "../lesson/list";
-            }
-          });
-			} else if (${loginUser.memberTypeNo == 3}) {
-				swal({
-            title: "후기작성",
-    	      text: "다른 선생님들에게 이 학생에 대해 알려주세요!",
-            buttons: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-          	  location.href = "reviewForm?lessonNo=" + lessonNo;
-            } else {
-          	  location.href = "../lesson/list";
-            }
-          });
-			}
+		if (${lessonState == 5 } && ${studentReview == null}) {
+			swal({
+          title: "후기작성",
+  	      text: "다른 학생들에게 이 선생님에 대해 알려주세요!",
+          buttons: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+        	  location.href = "reviewForm?lessonNo=" + lessonNo;
+          } else {
+        	  location.href = "../lesson/list";
+          }
+        });
 		}	
 	});
 </script>

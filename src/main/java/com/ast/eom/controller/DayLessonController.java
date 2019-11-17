@@ -29,34 +29,25 @@ public class DayLessonController {
       Model model,
       HttpSession session,
       int lessonNo) throws Exception {
-    int lessonDayCount = 0;
-    int lessonState = 0;
-    int totalHours = 0;
-    int dayLessonNo = 0;
-    int remainDays = 0;
-    String percent;
-    
     Lesson lesson = lessonService.get(lessonNo);
-    totalHours = lesson.getCurriculum().getTotalHours();
-    lessonDayCount = lesson.getLessonDayCount();
-    lessonState = lesson.getLessonState();
-    remainDays = totalHours - lessonDayCount;
-    percent = String.format("%.2f", (double)lessonDayCount / (double)totalHours * 100);
-    
+    int lessonState = lesson.getLessonState();
+    String studentReview = lesson.getStudentReview();
+    int totalHours = lesson.getCurriculum().getTotalHours();
+    int lessonDayCount = lesson.getLessonDayCount();
+    int remainDays = totalHours - lessonDayCount;
+    String percent = String.format("%.2f", (double)lessonDayCount / (double)totalHours * 100);
     
     List<DayLesson> dayLessons = dayLessonService.list(lessonNo);
     if (dayLessons.size() > 0) {
-      dayLessonNo = dayLessons.get(0).getDayLessonNo();
+      model.addAttribute("dayLessonNo", dayLessons.get(0).getDayLessonNo());
     }
     
     model.addAttribute("lessonNo", lessonNo);
-    model.addAttribute("lessonDayCount", lessonDayCount);
     model.addAttribute("lessonState", lessonState);
-    model.addAttribute("totalHours", totalHours);
     model.addAttribute("remainDays", remainDays);
     model.addAttribute("percent", percent);
     model.addAttribute("dayLessons", dayLessons);
-    model.addAttribute("dayLessonNo", dayLessonNo);
+    model.addAttribute("studentReview", studentReview);
     
   }
   
@@ -161,7 +152,14 @@ public class DayLessonController {
     int memberTypeNo = member.getMemberTypeNo();
     model.addAttribute("memberTypeNo", memberTypeNo);
     model.addAttribute("lessonNo", lessonNo);
-    
+  }
+  
+  @PostMapping("review")
+  public String review(
+      int lessonNo,
+      String studentReview) throws Exception {
+    lessonService.insertReview(lessonNo, studentReview);
+    return "redirect:list?lessonNo=" + lessonNo;
   }
 }
 

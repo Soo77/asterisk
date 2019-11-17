@@ -23,6 +23,9 @@ public interface LessonService {
   
   // 중단 요청 처리
   void interruptionRequest(int memberTypeNo, int lessonNo, String stopReason) throws Exception;
+  
+  // 후기 작성
+  void insertReview(int lessonNo, String review) throws Exception;
 }
 
 

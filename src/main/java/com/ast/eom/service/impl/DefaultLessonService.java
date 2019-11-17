@@ -108,4 +108,14 @@ public class DefaultLessonService implements LessonService {
     
     lessonDao.updateInterruptionState(params);
   }
+  
+  // 후기 작성
+  @Override
+  public void insertReview(int lessonNo, String studentReview) throws Exception {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("lessonNo", lessonNo);
+    params.put("studentReview", studentReview);
+    
+    lessonDao.insertReview(params);
+  }
 }

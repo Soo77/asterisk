@@ -1,5 +1,6 @@
 package com.ast.eom.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,10 @@ public class DefaultDayLessonService implements DayLessonService {
     lessonDao.increaseLessonDayCount(lessonNo);
     int lessonDayCount = lessonDao.findBy(lessonNo).getLessonDayCount();
     if (lessonDayCount == totalDay) {
-      
+      HashMap<String,Object> params = new HashMap<>();
+      params.put("lessonState", 5);
+      params.put("lessonNo", lessonNo);
+      lessonDao.updateLessonState(params);
     }
     return dayLessonDao.insert(dayLesson);
   }

@@ -22,12 +22,18 @@ public interface LessonDao {
   int addCurriculum(Lesson lesson) throws Exception;
   int findSubNo(Map<String, Object> param) throws Exception;
   
-  // 수업 카운트 증가
+  // 일별 수업 카운트 증가
   int increaseLessonDayCount(int lessonNo) throws Exception;
   
-  // 수업 카운트 감소
+  // 일별 수업 카운트 감소
   int decreaseLessonDayCount(int lessonNo) throws Exception;
   
   // 중단 요청
   int updateInterruptionState(Map<String, Object> params) throws Exception;
+  
+  // 수업 상태 수정
+  int updateLessonState(Map<String, Object> params) throws Exception;
+  
+  // 후기 작성
+  int insertReview(Map<String, Object> params) throws Exception;
 }

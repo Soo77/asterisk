@@ -222,14 +222,14 @@
 		where lesson_no = #{lessonNo}; 
   </delete>
   
-  <!-- 수업 카운트 증가  -->
+  <!-- 일별 수업 카운트 증가  -->
   <update id="increaseLessonDayCount" parameterType="int">
     update lesson set
     lesson_day_count = lesson_day_count + 1
     where lesson_no = #{lessonNo}
   </update>
   
-  <!-- 수업 카운트 감소 -->
+  <!-- 일별 수업 카운트 감소 -->
   <update id="decreaseLessonDayCount" parameterType="int">
     update lesson set
     lesson_day_count = lesson_day_count - 1
@@ -248,6 +248,20 @@
         std_stop_reason=#{stopReason},
       </if> 
       lesson_stat = 3
+    where lesson_no = #{lessonNo}
+  </update>
+  
+  <!-- 수업 상태 수정 -->
+  <update id="updateLessonState" parameterType="map">
+    update lesson set
+    lesson_stat=#{lessonState}
+    where lesson_no = #{lessonNo}
+  </update>
+  
+  <!-- 후기 작성 -->
+  <update id="insertReview" parameterType="map">
+    update lesson set
+    std_review = #{studentReview}
     where lesson_no = #{lessonNo}
   </update>
   

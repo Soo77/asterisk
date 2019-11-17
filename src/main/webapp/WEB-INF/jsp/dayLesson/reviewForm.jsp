@@ -29,28 +29,48 @@
 </div>
 <div class="main main-raised">
   <div class="container p-3">
-      <input type="text" name="lessonNo" value="${lessonNo}">
       
-      <c:if test="${memberTypeNo == 1}">
-        <h4 id="title">선생님에 대한 평가를 들려주세요</h4>
-      </c:if>
-      <c:if test="${memberTypeNo == 3}">
-        <h4 id="title">학생에 대한 평가를 들려주세요</h4>
-      </c:if>
+      <h4 id="title">선생님에 대한 평가를 들려주세요</h4>
       <hr>
       
-      <form id="form1" action="review" method=post>
+      <form id="form1" name="frm1" action="review" method="post">
+        <input type="hidden" name="lessonNo" value="${lessonNo}">
         <div>
-          <textarea name="stopReason" id="stopReason" class="form-control" rows="20" placeholder="후기를 입력하세요."></textarea>
+          <textarea name="studentReview" id="studentReview" class="form-control" rows="20" placeholder="후기를 입력하세요."></textarea>
+        </div>
+        <div id="addReview">
+          <button type="button" id="btnAdd" class="btn btn-primary">등록1</button>
         </div>
       </form>
-      
-      <div id="addReview">
-        <button type="button" id="btnAdd" class="btn btn-primary" name="addReview">등록</button>
-      </div>
-    
   </div>
 </div>
+
+<script>
+  var addButton = document.querySelector('#btnAdd');
+  addButton.addEventListener('click', function() {
+    var form = document.frm1;
+      if (form.studentReview.value.length == 0) {
+        swal("내용을 입력하세요.");
+        form.studentReview.focus();
+        return;
+      } else {
+        swal({
+            title: "후기",
+            text: "등록하시겠습니까?",
+            buttons: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("등록되었습니다.", {
+                icon: "success",
+              });
+              document.getElementById("form1").submit();
+            } else {
+            }
+          });
+      }
+  });
+</script>
 
 
 
