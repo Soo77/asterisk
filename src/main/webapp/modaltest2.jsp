@@ -17,20 +17,20 @@
 </style>
 </head>
 <body>
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		data-target="#exampleModal">학생초대</button>
-	<i class="fas fa-bell"></i>
+	<button type="button" class="btn btn-primary float-right" 
+	data-toggle="modal" data-target="#exampleModal">학생초대</button>&ensp;&ensp;
 
-	<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
+	<div id="exampleModal" class="modal fade">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>×</span>
 					</button>
 				</div>
-				<h2>쪽지 보내기</h2>
+				<h2>
+				<span class="messageLessonNo" id=1>수업번호 : 1</span>
+				</h2>
 				<div class="messageRow">
 					<input type="text" id="std" placeholder="학생 아이디 입력">
 					<button id="search" class="btn btn-primary btn-sm">검색</button>
@@ -41,12 +41,10 @@
 				<input type="text" id="choiceId" readOnly>
 				<button id="lessonMessage" class="btn btn-primary btn-sm">메세지
 					전송</button>
-					<a href='javascript:void(0)' class="testBtn">클릭</a>
 			</div>
 		</div>
 	</div>
-
-	<script>
+<script>
 $("#search").on('click', function() {
     list();
   });
@@ -63,9 +61,9 @@ $("#search").on('click', function() {
 	        $("#searchResult").text("");
 	        for(var i in data){
 	          console.log(data);
-	          var result = "아이디:"+"<a href='javascript:void(0)'"
-	          result += "class='selectId' id="+data[i].memberNo+">"
-	          result += data[i].id+"</a>"
+	          var result = "아이디:<a href='javascript:void(0)'"
+	          result += "onclick='selectId(this)'"
+	          result += "id="+data[i].memberNo+">"+data[i].id+"</a>"
 	          result += " 이름:"+data[i].name
 	          result += " 성별:"+data[i].gender
 	          result += " 생년월일:"+data[i].dateOfBirth
@@ -82,35 +80,42 @@ $("#search").on('click', function() {
 
 	<!-- 아이디 선택 -->
 	<script>
-  $(".testBtn").on('click', function(e){
-    console.log("발생!");
-    var stdNo = document.getElementsByClassName("selectId").id;
-    var stdId = document.getElementsByClassName("selectId").value;
-    console.log(stdNo);
-    console.log(stdId);
-    $("#choiceId").text("stdId")
-  })
+  function selectId(clickId){
+	var no = clickId.id;
+	var val = clickId.text;
+    $("#choiceId").attr("placeholder",val)
+    $("#lessonMessage").attr("name",no)
+  }
   </script>
 
 	<!-- 메세지 전송 -->
 	<script>
   $("#lessonMessage").on('click', function(){
-    var messageConts = "<form action='invitation' method='post'>"
-    messageConts += "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
+	var memberNo = document.getElementById("lessonMessage").name;
+	var lessonNo = document.getElementsByClassName("messageLessonNo")[0].id;
+	console.log(memberNo);
+	console.log(lessonNo);
+    var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
     messageConts += "커리큘럼을 확인해보세요!<br><br>"
-    messageConts += "<button name='lessonChange' value='${lesson.lessonNo}'"
-    messageConts += "class='btn btn-primary btn-sm'>커리큘럼 확인</button></form>"
+    messageConts += "<button id='lessonChange' name="+lessonNo
+    messageConts += "class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
+    
+    if(memberNo == ""){
+    	alert("학생을 선택해주세요");
+    	return false;
+    }
       
       $.ajax({
         url:"/app/message/messagein",
         type:"post",
         data:"senderNo="+${loginUser.memberNo}+"&messageConts=" + 
-        messageConts + "&receiverNo=" + ${receiverNo},
+        messageConts + "&receiverNo=" + memberNo,
         success : function(data) {
+//         	lesson_stat 2로 변경
         	$.ajax({
                 url:"/app/message/lessonInvitationStd",
                 type:"post",
-                data:"stdNo="+${std}+"&lessonNo"+${lessonNo}, 
+                data:"stdNo="+memberNo+"&lessonNo"+lessonNo,
                 success : function(result) {
                   console.log("성공");
                 },
@@ -121,7 +126,7 @@ $("#search").on('click', function() {
          alert("초대 메세지를 보냈습니다");
         },
         error : function() {
-         console.log("실패");
+         console.log("실패2");
         }
       })
   });

@@ -30,7 +30,7 @@
 	
 	<select id="messageList" parameterType="int" resultMap="MemberMap">
      select distinct m.name, m.mem_no from member m inner 
-     join message s on m.mem_no = s.receiver 
+     join message s on m.mem_no = s.sender or m.mem_no = s.receiver
      where s.sender=#{memberNo} or s.receiver=#{memberNo} 
      order by s.message_no desc
   </select>
@@ -64,15 +64,15 @@
   
   
   <select id="searchStd" parameterType="String" resultMap="MemberMap">
-    select *from member where id like CONCAT('%',#{id},'%')
+    select *from member where id like CONCAT('%',#{id},'%') and mem_type_no=1
   </select>
   
-  <update id="lessonStd" parameterType="int">
-    UPDATE lesson SET std_no=${std}, lesson_stat=2 WHERE lesson_no=${lessonNo};
+  <update id="lessonStd" parameterType="Map">
+    UPDATE lesson SET std_no=#{std}, lesson_stat=2 WHERE lesson_no=#{lessonNo}
   </update>
   
   <update id="changeLessonStat" parameterType="int">
-    UPDATE lesson SET lesson_stat=1 WHERE lesson_no=#{lessonNo};
+    UPDATE lesson SET lesson_stat=1 WHERE lesson_no=#{lessonNo}
   </update>
 
 </mapper>

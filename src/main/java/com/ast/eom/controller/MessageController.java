@@ -1,8 +1,11 @@
 package com.ast.eom.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.ast.eom.dao.MessageDao;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Message;
@@ -82,11 +86,16 @@ public class MessageController {
   
   @PostMapping("lessonInvitationStd")
   @ResponseBody
-  public void lessonInvitationStd(int stdNo, int lessonNo) throws Exception {
-    messageDao.lessonStd(stdNo, lessonNo);
+  public void lessonInvitationStd(int stdNo, String lessonNo) throws Exception {
+	HashMap<String, Object> stat = new HashMap<>();
+	stat.put("stdNo", stdNo);
+	stat.put("lessonNo", lessonNo);
+	
+    messageDao.lessonStd(stat);
   }
   
   @PostMapping("lessonMatchingStd")
+  @ResponseBody
   public void lessonMatchingStd(int lessonNo) throws Exception {
     messageDao.changeLessonStat(lessonNo);
   }
