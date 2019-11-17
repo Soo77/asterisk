@@ -11,7 +11,7 @@
 <style>
 .messageRow {
 	width: 80%;
-	display: inline-block !important;
+	display: inline-block;
 }
 
 .right {
@@ -105,12 +105,18 @@
 	<br>
 	<a href="/app/message/list">쪽지목록</a>
 
-	<!-- 메세지 입력 -->
 	<script>
     $("#messageIn").click(function() {
       messageIn();
     });
     
+    $("#lessonChange").click(function() {
+    	lessonMatchingStd();
+      });
+    </script>
+    
+    <!-- 메세지 입력 -->
+    <script>
     function messageIn(){
       var messageConts = document.getElementById("messageConts").value;
       
@@ -135,6 +141,31 @@
 	      });
       }
     }
+  </script>
+  
+<!--   커리큘럼 확인 -->
+  <script>
+  function lessonMatchingStd(){
+	  var lessonNo = document.getElementById("lessonChange").name;
+	  
+	  if(${loginUser.memberNo} != ${receiverNo}){
+		  return false;
+	  }
+	  
+	  $.ajax({
+		  url : "lessonMatchingStd",
+		  type : "post",
+		  data : {lessonNo : lessonNo},
+		  success : function(result){
+			  var url = "/app/mypage/detail";
+			  alert("나의 수업을 확인해주세요");
+			  windwo.open(url);
+		  },
+		  error : function(){
+			  console.log("실패");
+		  }
+	  })
+  }
   </script>
 
 </body>

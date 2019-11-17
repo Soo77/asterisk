@@ -1,5 +1,6 @@
 package com.ast.eom.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Message;
@@ -13,4 +14,8 @@ public interface MessageDao {
   List<Message> detail(int memberNo) throws Exception;
   List<Message> messageDetail(Message message) throws Exception;
   int messageIn(Message message) throws Exception;
+  
+  List<Member> searchStd(String id);
+  void lessonStd(HashMap<String, Object> stat);
+  void changeLessonStat(int lessonNo);
 }
