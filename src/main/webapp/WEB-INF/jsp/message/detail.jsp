@@ -47,11 +47,6 @@
 
 	<div class="messageRow">
 
-    <div class="data">
-        <h4 class="mb-0">신우혁</h4>
-        <p class="text-muted mb-0">밥 뭐먹지</p>
-    </div>
-
 		<c:forEach var="messageList" items="${messageList}">
 			<c:choose>
 				<c:when test="${messageList.read eq false}">
