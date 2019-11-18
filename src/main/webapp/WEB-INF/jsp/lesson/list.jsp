@@ -212,6 +212,7 @@ $("#search").on('click', function() {
     var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
     messageConts += "커리큘럼을 확인해보세요!<br><br>"
     messageConts += "<button onclick='lessonMatchingStd(this)' name="+lessonNo
+    messageConts += "value="+memberNo
     messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
     
     if(memberNo == ""){
@@ -225,22 +226,10 @@ $("#search").on('click', function() {
         data:"senderNo="+${loginUser.memberNo}+"&messageConts=" + 
         messageConts + "&receiverNo=" + memberNo,
         success : function(data) {
-//          lesson_stat 2로 변경
-          $.ajax({
-                url:"/app/message/lessonInvitationStd",
-                type:"post",
-                data:"stdNo="+memberNo+"&lessonNo="+lessonNo,
-                success : function(result) {
-                  console.log("성공");
-                },
-                error : function() {
-                 console.log("실패");
-                }
-          })
          alert("초대 메세지를 보냈습니다");
         },
         error : function() {
-         console.log("실패2");
+         console.log("실패");
         }
       })
   });
