@@ -1,0 +1,21 @@
+/* * {
+  border: 1px solid powderblue;
+} */
+.my-container {
+  padding: 20px;
+}
+.member-number {
+  min-width: 52px;
+}
+.member-name {
+  min-width: 65px;
+}
+.member-age {
+  min-width: 56px;
+}
+.member-etc {
+  min-width: 250px;
+}
+.my-table-row {
+  cursor: pointer;
+}
