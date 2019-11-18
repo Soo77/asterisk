@@ -1,7 +1,9 @@
 package com.ast.eom.controller;
 
+import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,5 +116,14 @@ public class MypageController {
 
     return "redirect:detail";
   }
-
+  
+  @GetMapping("redirectLessonPage")
+  public void redirectLessonPage(
+      HttpServletResponse response,
+      HttpSession session,
+      String thisChildNo) throws Exception {
+    System.out.println(thisChildNo);
+    session.setAttribute("childrenNo", Integer.parseInt(thisChildNo));
+    response.sendRedirect("/app/lesson/list");
+  }
 }

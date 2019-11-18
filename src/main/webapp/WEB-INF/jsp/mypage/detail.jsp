@@ -584,12 +584,14 @@
 <script>
   if ('${loginUser.memberTypeNo}' == 2) {
     var myParentsChildrenId = new Array();
+    var myPatentsChildrenNo = new Array();
   }
 </script>
 <c:forEach items="${memberInfoMap.parents.students}" var="student">
   <script>
     if ('${loginUser.memberTypeNo}' == 2) {
       myParentsChildrenId.push('${student.id}');
+      myPatentsChildrenNo.push(${student.studentNo});
     }
   </script>
 </c:forEach>
