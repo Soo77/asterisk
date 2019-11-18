@@ -69,14 +69,16 @@
             class="btn btn-primary">관리자글쓰기</a>
         </c:if>
       </div>
-      <div class="input-group">
-        <select id="pageSize" class="form-control">
+      
+       <div class="form-group">
+        <select class="custom-select" id="pageSize">
           <option value="3">3개씩</option>
           <option value="8">8개씩</option>
           <option value="10">10개씩</option>
           <option value="20">20개씩</option>
         </select>
       </div>
+      
     </div>
 
     <table class='table table-hover'>
@@ -164,6 +166,7 @@
   
   
   	$('#pageSize').change((e) => {
-  	  location.href = "list?boardTypeNo=" + ${boardTypeNo} + "&pageSize=" + $(e.target).val();
+  	  location.href = "list?boardTypeNo=" + ${boardTypeNo} + "&pageSize=" + $(e.target).val()
+  			  + "&curPage=1&searchType=" + $('#searchType').val() + "&keyword=" + $('#keyword').val();
   	});
   </script>

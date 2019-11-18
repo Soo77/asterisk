@@ -36,6 +36,8 @@
     <c:if test="${loginUser.memberTypeNo eq 3}">
       <a href="currAdd" class="btn btn-primary " style="margin-bottom: 15px; left: 335px;">새 커리큘럼 등록</a>  
     </c:if>
+
+<c:set var="i" value="0" />
 <!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> --> 
 <c:forEach items="${lessons}" var="lesson">
   <div class="text-center">
@@ -92,9 +94,10 @@
       <c:choose>
         <c:when test="${lesson.lessonState eq 0}">
           <button type="button" class="btn btn-primary float-right" 
-				  data-toggle="modal" data-target="#exampleModal2">학생초대</button>&ensp;&ensp;
-				
-				  <div id="exampleModal2" class="modal fade" data-backdrop="false">
+				  data-toggle="modal" data-target="#exampleModal${i}">학생초대</button>&ensp;&ensp;
+				  
+				  <div id="exampleModal${i}" class="modal fade" data-backdrop="false">
+				  <c:set var="i" value="${i+1}"/>
 				    <div class="modal-dialog">
 				      <div class="modal-content">
 				        <div class="modal-header">
@@ -102,7 +105,7 @@
 				            <span>×</span>
 				          </button>
 				        </div>
-				        <span class="messageLessonNo" id="1">수업번호 : ${lesson.lessonNo}</span>
+				        <span class="messageLessonNo" id="${lesson.lessonNo}">수업번호 : ${lesson.lessonNo}</span>
 				                수업과목:
 					      <c:choose>
 					      <c:when test="${lesson.subject.schoolTypeNo eq 1}">
@@ -119,6 +122,7 @@
 					      </c:choose>
 					       ${lesson.subjectName}<br>
 					            시작일: ${lesson.startDate}&ensp;종료일: ${lesson.endDate}
+					      
 				        <div class="messageRow">
 				          <input type="text" id="std" placeholder="학생 아이디 입력">
 				          <button id="search" class="btn btn-primary btn-sm">검색</button>
@@ -145,7 +149,7 @@
         <c:when test="${lesson.lessonState eq 5}">
           <button type="button" class="btn float-right">종료된 수업</button>&ensp;&ensp;  
         </c:when>
-        
+      
       </c:choose>
       </div>
   </div>
@@ -153,6 +157,7 @@
     </div>
   </div>
 </c:forEach>  
+
 
       </div> 
     </div>
@@ -212,7 +217,7 @@ $("#search").on('click', function() {
     var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
     messageConts += "커리큘럼을 확인해보세요!<br><br>"
     messageConts += "<button onclick='lessonMatchingStd(this)' name="+lessonNo
-    messageConts += "value="+memberNo
+    messageConts += " value="+memberNo
     messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
     
     if(memberNo == ""){
@@ -236,8 +241,4 @@ $("#search").on('click', function() {
   </script>
 
   <!--   Core JS Files   -->
-  <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="/assets/js/core/bootstrap-material-design.min.js"
-    type="text/javascript"></script>
   <script src="/assets/js/plugins/moment.min.js"></script>
