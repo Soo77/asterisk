@@ -30,7 +30,13 @@ public class LessonController {
     int memberTypeNo = ((Member) session.getAttribute("loginUser")).getMemberTypeNo();
     int memberNo = ((Member) session.getAttribute("loginUser")).getMemberNo();
     
-    lessons = lessonService.list(memberTypeNo, memberNo);
+    
+    if (memberTypeNo == 2) {
+      int childNo = (int) session.getAttribute("childrenNo");
+      lessons = lessonService.list(memberTypeNo, childNo);
+    } else {
+      lessons = lessonService.list(memberTypeNo, memberNo);
+    }
     model.addAttribute("lessons", lessons);
   }
 
