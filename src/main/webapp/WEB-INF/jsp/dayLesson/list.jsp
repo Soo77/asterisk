@@ -71,14 +71,14 @@
         </div>
       </div>
       <div class="col" id="stopAndAdd">
-        <c:if test="${loginUser.memberTypeNo == 3}">
+        <c:if test="${loginUser.memberTypeNo == 3 && lessonState == 1}">
           <div id="dayLessonAdd">
             <button type="button" class="btn btn-primary"
-              data-toggle="modal" data-target="#Modal" id="btnDayLessonAdd"
+              data-toggle="modal" data-target="#modal" id="btnDayLessonAdd"
               onclick="resetModal()">추가</button>
           </div>
         </c:if>
-        <c:if test="${lessonState != 3}">
+        <c:if test="${lessonState == 1}">
           <div id="dayLessonStop">
             <a href="stopLessonForm?lessonNo=${lessonNo}"
             class="btn btn-danger" id="requestLessonInterrupt">수업중단</a>
@@ -117,7 +117,7 @@
 
 
 <!-- Modal -->
-  <div class="modal fade" id="Modal" tabindex="-1"
+  <div class="modal fade" id="modal" tabindex="-1"
   role="dialog" aria-labelledby="detailModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -175,7 +175,7 @@
       <div class="modal-footer">
         <div class="row">
           <div class="col">
-            <c:if test="${loginUser.memberTypeNo == 3}">
+            <c:if test="${loginUser.memberTypeNo == 3 && lessonState == 1}">
               <button type="button" id="btnAdd" class="btn btn-primary" name="dayLessonInsertBtn">등록</button>
               <button type="button" id="btnUpdate" class="btn btn-primary">수정</button>
               <button type="button" id="btnDelete" class="btn btn-danger" name="dayLessonDeleteBtn" onclick="dayLessonDelete()">삭제</button>
@@ -283,7 +283,7 @@
         						a += '</div>';
       							a += '<div class="row" id="myBtnDetail">';
     								a += '<div class="col">';
-  									a += '<button type="button" class="btn btn-primary btn-sm .modal-param" data-toggle="modal" data-target="#Modal" data-unique="' + value.dayLessonNo + '"' +  'onclick="setModal(' + value.dayLessonNo + ')">상세보기 </button>';
+  									a += '<button type="button" class="btn btn-primary btn-sm .modal-param" data-toggle="modal" data-target="#modal" data-unique="' + value.dayLessonNo + '"' +  'onclick="setModal(' + value.dayLessonNo + ')">상세보기 </button>';
   									a += '</div>';
   									a += '</div>';
   									a += '</div>';
@@ -312,7 +312,7 @@
 			data : insertData,
 			success : function(data) {
 				if (data == 1) {
-/* 					$('#Modal').modal('hide');
+/* 					$('#modal').modal('hide');
 					dayLessonList(); */
 					location.href = "list?lessonNo=" + lessonNo;
 				}
@@ -394,7 +394,7 @@
 	$(document).ready(function() {
 		modalLessonDate.max = new Date().toISOString().split("T")[0];
 		dayLessonList();
-		if (${lessonState == 5 } && ${studentReview == null}) {
+		if (${loginUser.memberTypeNo == 1 && lessonState == 5 && studentReview == null} ) {
 			swal({
           title: "후기작성",
   	      text: "다른 학생들에게 이 선생님에 대해 알려주세요!",
@@ -418,14 +418,12 @@
 
 <script>
 	function resetModal() {
-		if (${loginUser.memberTypeNo == 3}) {
-  		var updateButton = document.querySelector('#btnUpdate');
-  		updateButton.style.display = 'none';
-  		var addButton = document.querySelector('#btnAdd');
-  		addButton.style.display = 'inline';
-  		var addButton = document.querySelector('#btnDelete');
-  		addButton.style.display = 'none';
-    }
+		var addButton = document.querySelector('#btnAdd');
+		addButton.style.display = 'inline';
+		var updateButton = document.querySelector('#btnUpdate');
+		updateButton.style.display = 'none';
+		var addButton = document.querySelector('#btnDelete');
+		addButton.style.display = 'none';
 		
     $("#modalDayLessonNo").val('');
     $("#modalLessonDate").val('');
@@ -436,24 +434,24 @@
   }
   
 	function setModal(key) {
-		if (${loginUser.memberTypeNo == 3}) {
-  		var addButton = document.querySelector('#btnAdd');
-  		addButton.style.display = 'none';
-  		var updateButton = document.querySelector('#btnUpdate');
-  		updateButton.style.display = 'inline';
-  		var addButton = document.querySelector('#btnDelete');
-  		addButton.style.display = 'inline';
-		} else {
-			var sdt = document.querySelector('#modalLessonDate');
-			sdt.readOnly = true;
-			var sh = document.querySelector('#modalLessonStartHour');
-			sh.readOnly = true;
-      var eh = document.querySelector('#modalLessonEndHour');
-      eh.readOnly = true;
-      var summary = document.querySelector('#modalLessonSummary');
-      summary.readOnly = true;
-      var ev = document.querySelector('#modalLessonEvaluation');
-      ev.readOnly = true;
+		if (${loginUser.memberTypeNo == 3 && lessonState == 1}) {
+			var addButton = document.querySelector('#btnAdd');
+			addButton.style.display = 'none';
+			var updateButton = document.querySelector('#btnUpdate');
+			updateButton.style.display = 'inline';
+			var addButton = document.querySelector('#btnDelete');
+			addButton.style.display = 'inline';
+		} else if (${loginUser.memberTypeNo == 1 || (loginUser.memberTypeNo == 3 && (lessonState == 3 || lessonState == 5))}) {
+  			var sdt = document.querySelector('#modalLessonDate');
+  			sdt.readOnly = true;
+  			var sh = document.querySelector('#modalLessonStartHour');
+  			sh.readOnly = true;
+        var eh = document.querySelector('#modalLessonEndHour');
+        eh.readOnly = true;
+        var summary = document.querySelector('#modalLessonSummary');
+        summary.readOnly = true;
+        var ev = document.querySelector('#modalLessonEvaluation');
+        ev.readOnly = true;
     }
 		
 	  var daylessonNo = $("#dayLessonNo_" + key).val();
