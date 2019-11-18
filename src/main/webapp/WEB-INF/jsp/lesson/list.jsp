@@ -212,7 +212,7 @@ $("#search").on('click', function() {
     var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
     messageConts += "커리큘럼을 확인해보세요!<br><br>"
     messageConts += "<button onclick='lessonMatchingStd(this)' name="+lessonNo
-    messageConts += "value="+memberNo
+    messageConts += " value="+memberNo
     messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
     
     if(memberNo == ""){
@@ -236,8 +236,4 @@ $("#search").on('click', function() {
   </script>
 
   <!--   Core JS Files   -->
-  <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="/assets/js/core/bootstrap-material-design.min.js"
-    type="text/javascript"></script>
   <script src="/assets/js/plugins/moment.min.js"></script>

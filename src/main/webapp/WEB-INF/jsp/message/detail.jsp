@@ -45,28 +45,6 @@
 <body>
 	<h2>쪽지함</h2>
 
-	<div class="card-header d-flex justify-content-between p-2"
-		style="cursor: pointer;">
-		<div class="d-flex">
-			<div class="profile-photo">
-				<img
-					src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg"
-					alt="avatar" />
-			</div>
-			<div class="data">
-				<h4 class="mb-0">신우혁</h4>
-				<p class="text-muted mb-0">밥 뭐먹지</p>
-			</div>
-		</div>
-
-		<div class="icons grey-text">
-			<a class="feature"><i class="fas fa-video mr-2"></i></a> <a
-				class="feature"><i class="fas fa-phone mr-2"></i></a> <a
-				class="feature"><i class="fas fa-cog mr-2"></i></a> <a
-				id="closeButton"><i class="fas fa-times mr-2"></i></a>
-		</div>
-	</div>
-
 	<div class="messageRow">
 
 		<c:forEach var="messageList" items="${messageList}">
@@ -144,10 +122,8 @@
   function lessonMatchingStd(lessonCheck){
 	  var memberNo = lessonCheck.value;
 	  var lessonNo = lessonCheck.name;
-	  console.log(memberNo);
-	  console.log(lessonNo);
 	  
-	  if(${loginUser.memberNo} == ${receiverNo}){
+	  if(${loginUser.memberNo} != memberNo){
 		  return false;
 	  }
 	  
@@ -156,7 +132,9 @@
           type:"post",
           data:"stdNo="+memberNo+"&lessonNo="+lessonNo,
           success : function(result) {
-            console.log("성공");
+        	  var url = "/app/mypage/detail";
+            alert("나의 수업을 확인해주세요");
+            window.open(url);
           },
           error : function() {
            console.log("실패");
