@@ -223,7 +223,7 @@
   html += '<div class="input-group-append">';
   html += '<span class="input-group-text" id="basic-addon2">일</span>'; 
   html += '</div>';
-  html += '<input type="button" class="btn btn-rose btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">';
+  html += '<input type="button" class="btn btn-outline-primary btn-sm lessonConts-delete-button" value="삭제" onclick = "deleteRow(this)">';
   html += '</div>'; 
   html += '</div>'; 
   html += '</td>';
@@ -233,7 +233,7 @@
 
   lessonContsAddButton.addEventListener('click', () => {
     $('#lesson-table').append(html);
-
+ 
   });
 </script>
  
