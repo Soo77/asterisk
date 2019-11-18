@@ -272,6 +272,10 @@
                   	a += '<div class="card-body">';
                   	a += "<input type='hidden' id='dayLessonNo_" + value.dayLessonNo + "' value='" + value.dayLessonNo + "'>";
                   	a += '<div class="row">';
+              			/* var year = new Date(value.lessonDate).getFullYear();
+              			var month = new Date(value.lessonDate).getMonth()+1;
+              			var day = new Date(value.lessonDate).getDate()+1;
+              			var lessonDate = year + '-' + month + '-' + day; */
               			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDate + '</div>';
               			a += '수업시작시간 : <div class="col" id="lessonStartHour_' + value.dayLessonNo + '">' + value.lessonStartHour + '</div>';
               			a += '수업종료시간 : <div class="col" id="lessonEndHour_' + value.dayLessonNo + '">' + value.lessonEndHour + '</div>';
@@ -458,6 +462,7 @@
 	  $("#modalDayLessonNo").val(daylessonNo);
 	    
 	  var lessonDate = $("#lessonDate_" + key).text();
+	  console.log("modal==> " + lessonDate);
 	  $("#modalLessonDate").val(lessonDate);
 	    
     var lessonStartHour = $("#lessonStartHour_" + key).text();

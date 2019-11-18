@@ -53,6 +53,7 @@ public class DayLessonController {
   @GetMapping("dayLesson/list")
   @ResponseBody
   public List<DayLesson> list(int lessonNo) throws Exception {
+    System.out.println("lessonDate===>" + dayLessonService.list(lessonNo).get(0).getLessonDate());
     return dayLessonService.list(lessonNo);
   }
   
@@ -139,7 +140,7 @@ public class DayLessonController {
     Member member = (Member) session.getAttribute("loginUser");
     int memberTypeNo = member.getMemberTypeNo();
     lessonService.interruptionRequest(memberTypeNo, lessonNo, stopReason);
-    return "redirect:list?lessonNo=" + lessonNo;
+    return "redirect:../lesson/list";
   }
   
   @GetMapping("reviewForm")
@@ -156,8 +157,9 @@ public class DayLessonController {
   @PostMapping("review")
   public String review(
       int lessonNo,
-      String studentReview) throws Exception {
-    lessonService.insertReview(lessonNo, studentReview);
+      String studentReview,
+      int teacherEvaluation) throws Exception {
+    lessonService.insertReview(lessonNo, studentReview, teacherEvaluation);
     return "redirect:list?lessonNo=" + lessonNo;
   }
 }
