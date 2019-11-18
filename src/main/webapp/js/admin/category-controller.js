@@ -1,13 +1,13 @@
 class CategoryController {
-  parentsButton = document.getElementById('parents-toggle-button');
   studentButton = document.getElementById('student-toggle-button');
+  parentsButton = document.getElementById('parents-toggle-button');
   teacherButton = document.getElementById('teacher-toggle-button');
   cancelButton = document.getElementById('cancel-toggle-button');
 
   init() {
     this.getMemberData(1);
-    this.parentsButton.addEventListener('click', () => {this.getMemberData(1)});
-    this.studentButton.addEventListener('click', () => {this.getMemberData(2)});
+    this.studentButton.addEventListener('click', () => {this.getMemberData(1)});
+    this.parentsButton.addEventListener('click', () => {this.getMemberData(2)});
     this.teacherButton.addEventListener('click', () => {this.getMemberData(3)});
   }
 
@@ -34,7 +34,9 @@ class CategoryController {
 
         for (let i = 0; i < result.memberList.length; i++) {
           let thisTableRow = document.getElementsByClassName('row-no-'+result.memberList[i].memberNo)[0];
-          thisTableRow.addEventListener('click', () =>{location.href = 'https://google.com.au'});
+          thisTableRow.addEventListener('click', () =>{
+            location.href = '/app/admin/detail?memberNo='+result.memberList[i].memberNo+'&memberTypeNo='+memberTypeNo;
+          });
         }
       }
     })

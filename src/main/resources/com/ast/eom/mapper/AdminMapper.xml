@@ -139,6 +139,12 @@
     where mem_type_no = #{no}
   </select>
 
+  <select id="getMember" parameterType="int" resultMap="MemberMap">
+    select *
+    from member
+    where mem_no = #{no}
+  </select>
+
 <!--   
   <select id="getTeacher" parameterType="int" resultMap="TeacherMap">
     select *

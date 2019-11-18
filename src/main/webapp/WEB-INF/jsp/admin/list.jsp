@@ -23,17 +23,17 @@
         <div class="nav-tabs-wrapper">
           <ul class="nav nav-tabs" data-tabs="tabs">
             <li class="nav-item">
-              <a id="parents-toggle-button" class="nav-link active show" href="#teacher" data-toggle="tab">
-                <i class="material-icons">face</i> 학부모
-                <div class="ripple-container"></div></a>
-            </li>
-            <li class="nav-item">
-              <a id="student-toggle-button" class="nav-link" href="#student" data-toggle="tab">
+              <a id="student-toggle-button" class="nav-link active show" href="#student" data-toggle="tab">
                 <i class="material-icons">face</i> 학생
                 <div class="ripple-container"></div></a>
             </li>
             <li class="nav-item">
-              <a id="teacher-toggle-button" class="nav-link" href="#parents" data-toggle="tab">
+              <a id="parents-toggle-button" class="nav-link" href="#parents" data-toggle="tab">
+                <i class="material-icons">face</i> 학부모
+                <div class="ripple-container"></div></a>
+            </li>
+            <li class="nav-item">
+              <a id="teacher-toggle-button" class="nav-link" href="#teacher" data-toggle="tab">
                 <i class="material-icons">face</i> 선생님
                 <div class="ripple-container"></div></a>
             </li>
@@ -48,7 +48,7 @@
     </div>
     <div class="card-body">
       <div class="tab-content text-center">
-        <div class="tab-pane active show" id="teacher">
+        <div class="tab-pane active show" id="student">
           <div class="table-responsive">
             <table class='table table-hover'>
               <thead>
@@ -59,40 +59,7 @@
                   <th class="member-etc">비고</th>
                 </tr>
               </thead>
-              <tbody id="tbody-1">
-                <c:forEach begin="0" end="3">
-                  <tr>
-                    <td>1</td>
-                    <td>홍길동</td>
-                    <td>24세</td>
-                    <td>한국대 졸업, 과외경력 20년</td>
-                  </tr>
-                </c:forEach>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="tab-pane" id="student">
-          <div class="table-responsive">
-            <table class='table table-hover'>
-              <thead>
-                <tr>
-                  <th class="member-number">번호</th>
-                  <th class="member-name">이름</th>
-                  <th class="member-age">나이</th>
-                  <th class="member-etc">비고</th>
-                </tr>
-              </thead>
-              <tbody id="tbody-2">
-                <c:forEach begin="0" end="3">
-                  <tr>
-                    <td>1</td>
-                    <td>어피치</td>
-                    <td>24세</td>
-                    <td>한국대 졸업, 과외경력 20년</td>
-                  </tr>
-                </c:forEach>
-              </tbody>
+              <tbody id="tbody-1"></tbody>
             </table>
           </div>
         </div>
@@ -107,16 +74,22 @@
                   <th class="member-etc">비고</th>
                 </tr>
               </thead>
-              <tbody id="tbody-3">
-                <c:forEach begin="0" end="3">
-                  <tr>
-                    <td>1</td>
-                    <td>홍길동</td>
-                    <td>24세</td>
-                    <td>한국대 졸업, 과외경력 20년</td>
-                  </tr>
-                </c:forEach>
-              </tbody>
+              <tbody id="tbody-2"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane" id="teacher">
+          <div class="table-responsive">
+            <table class='table table-hover'>
+              <thead>
+                <tr>
+                  <th class="member-number">번호</th>
+                  <th class="member-name">이름</th>
+                  <th class="member-age">나이</th>
+                  <th class="member-etc">비고</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-3"></tbody>
             </table>
           </div>
         </div>
