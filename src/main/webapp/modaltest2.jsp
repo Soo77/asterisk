@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,111 +7,137 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/JavaScript"
-  src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link href="/assets/css/material-kit.min.css?v=2.0.6" rel="stylesheet" />
+<style>
+.messageRow {
+	width: 80%;
+	display: inline-block;
+}
+</style>
 </head>
 <body>
-<button type="button" id="modalBtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  쪽지함
-</button>
-<i class="fas fa-bell"></i>
+	<button type="button" class="btn btn-primary float-right" 
+	data-toggle="modal" data-target="#exampleModal">학생초대</button>&ensp;&ensp;
 
-<div id="exampleModal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-      </div>
-        <h2>쪽지 보내기</h2>
-        <button id="findMember" onclick="findmember()">회원목록</button>
-          <div id="showList"></div>
-          <br>
-          <br>
-    </div>
-  </div>
-</div>
+	<div id="exampleModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>×</span>
+					</button>
+				</div>
+				<h2>
+				<span class="messageLessonNo" id=1>수업번호 : 1</span>
+				</h2>
+				<div class="messageRow">
+					<input type="text" id="std" placeholder="학생 아이디 입력">
+					<button id="search" class="btn btn-primary btn-sm">검색</button>
+				</div>
 
-<button type="button" id="popMessage" class="btn btn-primary">
-  쪽지함 팝업
-</button>
+				<div id="searchResult"></div>
 
+				<input type="text" id="choiceId" readOnly>
+				<button id="lessonMessage" class="btn btn-primary btn-sm">메세지
+					전송</button>
+			</div>
+		</div>
+	</div>
 <script>
-$("#modalBtn").on('click', function() {
+$("#search").on('click', function() {
     list();
   });
-  
-$("#btntest").on('click', function() {
-    detail();
-  });
-  
-$("#popMessage").on('click', function() {
-	  popMessage();
-  });
 </script>
 
-<script>
+	<script>
   function list() {
-    $.ajax({
-      url : '/app/message/memberlist',
-      type : 'post',
-      data : "memberNo=" + ${loginUser.memberNo},
-      success : function(data) {
-        console.log(data);
-        for ( var i = 0 in data) {
-          console.log(data[i].name);
-          var str = '<button id="btntest" data-target="#ohora">';
-          str += "<a href='/app/message/detail?memberNo="+data[i].memberNo+"'>" + data[i].name + '</a>';
-          str += '</button>';
-        $("#showList").append(str);
-        }
-      },
-      error : function() {
-        console.log("실패");
-      }
-    });
+	  var id = document.getElementById("std").value;
+	    $.ajax({
+	      url : "/app/message/searchStd",
+	      type : "post",
+	      data : {id : id},
+	      success : function(data){
+	        $("#searchResult").text("");
+	        for(var i in data){
+	          console.log(data);
+	          var result = "아이디:<a href='javascript:void(0)'"
+	          result += "onclick='selectId(this)'"
+	          result += "id="+data[i].memberNo+">"+data[i].id+"</a>"
+	          result += " 이름:"+data[i].name
+	          result += " 성별:"+data[i].gender
+	          result += " 생년월일:"+data[i].dateOfBirth
+	          result += " 주소:"+data[i].addressCity+" "+data[i].addressSuburb+"<br>"
+	          $("#searchResult").append(result);
+	        }
+	      },
+	      error : function(){
+	        console.log("실패");
+	      }
+	    })
   }
 </script>
 
-<script>
-  function detail() {
-	  consol.log("dd");
-      $.ajax({
-        url : '/app/message/messageDetail',
-        type : 'post',
-        data : "senderNo=" + ${loginUser.memberNo} + "&receiverNo=" + data[i].memberNo,
-        success : function(data) {
-          
-          for ( var i = 0 in data) {
-            if (data[i].receiverNo == ${loginUser.memberNo}) {
-              let str = '<div class="chat-left">'+data[i].messageContents+'</div>';
-              $("#chat").append(str);
-            } else {
-              let str = '<div class="chat-right">'+data[i].messageContents+'</div>';
-              $("#chat").append(str);
-            }
-          }
+	<!-- 아이디 선택 -->
+	<script>
+  function selectId(clickId){
+	var no = clickId.id;
+	var val = clickId.text;
+    $("#choiceId").attr("placeholder",val)
+    $("#lessonMessage").attr("name",no)
+  }
+  </script>
 
+	<!-- 메세지 전송 -->
+	<script>
+  $("#lessonMessage").on('click', function(){
+	var memberNo = document.getElementById("lessonMessage").name;
+	var lessonNo = document.getElementsByClassName("messageLessonNo")[0].id;
+	console.log(memberNo);
+	console.log(lessonNo);
+    var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
+    messageConts += "커리큘럼을 확인해보세요!<br><br>"
+    messageConts += "<button id='lessonChange' name="+lessonNo
+    messageConts += "class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
+    
+    if(memberNo == ""){
+    	alert("학생을 선택해주세요");
+    	return false;
+    }
+      
+      $.ajax({
+        url:"/app/message/messagein",
+        type:"post",
+        data:"senderNo="+${loginUser.memberNo}+"&messageConts=" + 
+        messageConts + "&receiverNo=" + memberNo,
+        success : function(data) {
+//         	lesson_stat 2로 변경
+        	$.ajax({
+                url:"/app/message/lessonInvitationStd",
+                type:"post",
+                data:"stdNo="+memberNo+"&lessonNo"+lessonNo,
+                success : function(result) {
+                  console.log("성공");
+                },
+                error : function() {
+                 console.log("실패");
+                }
+          })
+         alert("초대 메세지를 보냈습니다");
         },
         error : function() {
-          console.log("실패");
+         console.log("실패2");
         }
-      });
-    }
-</script>
+      })
+  });
+  </script>
 
-<script>
-  function popMessage(){
-	  var url = "/app/message/list";
-    var option = "width = 500, height = 500, top = 100, left = 200, location = yes"
-    window.open(url, "쪽지목록" ,option);
-  }
-</script>
-
-<!--   Core JS Files   -->
-<script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
-<script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
-<script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-<script src="/assets/js/plugins/moment.min.js"></script>
+	<!--   Core JS Files   -->
+	<script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
+	<script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
+	<script src="/assets/js/core/bootstrap-material-design.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/js/plugins/moment.min.js"></script>
 
 </body>
 </html>
