@@ -6,14 +6,42 @@
 <head>
 <meta charset="UTF-8">
 <title>쪽지</title>
+<style>
+
+#showList {
+  background-color: white;
+	width: auto;
+	heigh: auto;
+	border: solid 1px #ccc;
+}
+
+.message {
+	border-bottom: solid 1px #ccc;
+	padding: 20px;
+}
+
+.avatar {
+  border-radius: 30px;
+  width: 50px;
+  height: 50px;
+	float: left;
+  margin: 7px 10px 0px 10px;
+}
+
+.datetime {
+	float: right;
+	color: #999;
+}
+</style>
 </head>
 <body>
-	<h2>쪽지 보내기</h2>
+  <br>
+  <br>
+	<h2>쪽지 목록</h2>
 	<i class="fas fa-bell" id="messageReadShowAll">
 		${messageReadShowAll}개</i>
 
 	<div id="showList">
-
 		<c:if test="${messageListSize ne 0}">
 			<c:forEach begin="0" end="${messageListSize-1}" var="i">
 				<c:choose>
@@ -29,14 +57,20 @@
 
 				<c:choose>
 					<c:when test="${loginUser.name eq messageMem[i].name}">
-						<a href=detail?memberNo=${messageMem[i].memberNo}>나에게 쪽지</a>
-						<br>
+						<img class="avatar" src="/upload/join/${messageMem[i].profilePhoto}">
+						<div class="message">
+						  <a href=detail?memberNo=${messageMem[i].memberNo}>나에게 쪽지</a>
+						  <div class="datetime">23/03/2016 20:40</div>
+						</div>
 					</c:when>
 
 					<c:otherwise>
-						<a href=detail?memberNo=${messageMem[i].memberNo}>${messageMem[i].name}</a>
-					${bell}
-					<br>
+	  				<img class="avatar" src="/upload/join/${messageMem[i].profilePhoto}">
+						<div class="message">
+							<a href=detail?memberNo=${messageMem[i].memberNo}>${messageMem[i].name}</a>
+						  ${bell}
+						  <div class="datetime">23/03/2016 20:40</div>
+						</div>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ast.eom.dao.AdminDao">
+
+  <resultMap type="Member" id="MemberMap">
+    <id column="mem_no" property="memberNo"/>
+    <result column="reg_date" property="registeredDate"/>
+    <result column="gender" property="gender"/>
+    <result column="dob" property="dateOfBirth"/>
+    <result column="id" property="id"/>
+    <result column="email" property="email"/>
+    <result column="name" property="name"/>
+    <result column="pwd" property="password"/>
+    <result column="addr_city" property="addressCity"/>
+    <result column="addr_sub" property="addressSuburb"/>
+    <result column="tel" property="tel"/>
+    <result column="profile_photo" property="profilePhoto"/>
+    <result column="email_checked" property="userEmailChecked"/>
+    <result column="activation_key" property="activationKey"/>
+    <result column="curr_lesson_dt" property="lessonDays"/>
+    <result column="curr_lesson_st" property="lessonStartTime"/>
+    <result column="curr_lesson_et" property="lessonEndTime"/>
+    <collection resultMap="MemberTypeMap" property="memberType"/>
+  </resultMap>
+  
+  <resultMap type="MemberType" id="MemberTypeMap">
+    <id column="mem_type_no" property="memberTypeNo"/>
+    <result column="mem_type_name" property="memberTypeName"/>
+  </resultMap>
+  
+  <resultMap type="Teacher" id="TeacherMap">
+    <id column="tch_no" property="teacherNo"/>
+    <result column="acc_no" property="accountNo"/>
+    <result column="bank_name" property="bankName"/>
+    <result column="lesson_certi" property="lessonCertificate"/>
+    <result column="tch_intro" property="teacherIntro"/>
+    <result column="appr_stat" property="approvementState"/>
+    <result column="vid_addr" property="videoAddress"/>
+    <collection resultMap="SchoolMap" property="schools"/>
+  </resultMap>
+
+  <resultMap type="LessonSubject" id="LessonSubjectMap">
+    <id column="lesson_sub_no" property="lessonSubjectNo"/>
+    <result column="tch_no" property="teacherNo"/>
+    <result column="sub_no" property="subjectNo"/>
+    <result column="sub_conts" property="subjectContents"/>
+    <result column="rdt" property="registeredDate"/>
+    <result column="wanted_fee" property="wantedFee"/>
+    <collection resultMap="SubjectMap" property="subjects"/>
+  </resultMap>
+
+  <resultMap type="Subject" id="SubjectMap">
+    <id column="sub_no" property="subjectNo"/>
+    <result column="sub_name" property="subjectName"/>
+    <result column="sch_type_no" property="schoolTypeNo"/>
+  </resultMap>
+  
+  <resultMap type="School" id="SchoolMap">
+    <id column="sch_no" property="schoolNo"/>
+    <result column="tch_no" property="teacherNo"/>
+    <result column="sch_type_no" property="schoolTypeNo"/>
+    <result column="sch_name" property="schoolName"/>
+    <result column="certi" property="certificate"/>
+    <result column="grad" property="graduated"/>
+    <result column="mdt" property="modifiedDate"/>
+    <result column="major" property="major"/>
+    <result column="confirm" property="confirmed"/>
+    <result column="grad_date" property="graduatedDate"/>
+  </resultMap>
+  
+  <resultMap type="Student" id="StudentMap">
+    <id column="std_no" property="studentNo"/>
+    <result column="parents_no" property="parentsNo"/>
+    <result column="req_to_teacher" property="requirementsToTeacher"/>
+    <collection resultMap="WantedLessonMap" property="wantedLessons"/>
+    <collection resultMap="SchoolTypeMap" property="schoolType"/>
+  </resultMap>
+
+  <resultMap type="WantedLesson" id="WantedLessonMap">
+    <id column="wtd_lesson_no" property="wantedLessonNo"/>
+    <result column="std_no" property="studentNo"/>
+    <result column="sub_no" property="subjectNo"/>
+    <result column="req" property="requirements"/>
+    <result column="rdt" property="registeredDate"/>
+    <result column="wanted_fee" property="wantedFee"/>
+    <collection resultMap="SubjectMap" property="subjects"/>
+  </resultMap>
+
+  <resultMap type="SchoolType" id="SchoolTypeMap">
+    <id column="sch_type_no" property="schoolTypeNo"/>
+    <result column="sch_type" property="schoolType"/>
+  </resultMap>
+
+  <resultMap type="Parents" id="ParentsMap">
+    <id column="parents_no" property="parentsNo"/>
+    <result column="kakaotalk" property="kakaotalk"/>
+    <collection resultMap="StudentMap" property="students"/>
+  </resultMap>
+
+  <resultMap type="TeacherPhoto" id="TeacherPhotoMap">
+    <id column="tch_photo_no" property="teacherPhotoNo"/>
+    <result column="tch_no" property="teacherNo"/>
+    <result column="tch_photo" property="teacherPhoto"/>
+  </resultMap>
+
+  <resultMap type="Lesson" id="LessonMap">
+    <id column="lesson_no" property="lessonNo"/>
+    <result column="tch_no" property="teacherNo"/>
+    <result column="std_no" property="studentNo"/>
+    <result column="sub_no" property="subjectNo"/>
+    <result column="lesson_desc" property="lessonDescription"/>
+    <result column="lesson_fee" property="lessonFee"/>
+    <result column="lesson_stat" property="lessonState"/>
+    <result column="std_lesson_stop" property="studentLessonStop"/>
+    <result column="tch_lesson_stop" property="teacherLessonStop"/>
+    <result column="sdt" property="startDate"/>
+    <result column="edt" property="endDate"/>
+    <result column="tch_review" property="teacherReview"/>
+    <result column="std_review" property="studentReview"/>
+    <result column="tch_eval" property="teacherEvaluation"/>
+    <result column="payment" property="paymentMethod"/>
+    <result column="pay_day" property="payDay"/>
+    <result column="cal_date" property="calculationDay"/>
+    <result column="cal_stat" property="calculationState"/>
+    <result column="std_stop_reason" property="studentStopReason"/>
+    <result column="tch_stop_reason" property="teacherStopReason"/>
+    <result column="ref_stat" property="refundState"/>
+    <result column="ref_date" property="refundDate"/>
+    <result column="ref_amount" property="refundAmount"/>
+  </resultMap>
+  
+  
+  
+  <select id="getBasicMemberInfo" parameterType="int" resultMap="MemberMap">
+    select mem_no, name, dob
+    from member
+    where mem_type_no = #{no}
+  </select>
+
+  <select id="getMember" parameterType="int" resultMap="MemberMap">
+    select *
+    from member
+    where mem_no = #{no}
+  </select>
+
+<!--   
+  <select id="getTeacher" parameterType="int" resultMap="TeacherMap">
+    select *
+    from teacher t
+    left outer join school s on t.tch_no = s.tch_no
+    where t.tch_no = #{no}
+  </select>
+
+  <select id="getLessonSubjects" parameterType="int" resultMap="LessonSubjectMap">
+    select * from lesson_subject ls
+    inner join subject s on ls.sub_no = s.sub_no
+    where tch_no=#{no};
+  </select>
+  
+  <select id="getStudent" parameterType="int" resultMap="StudentMap">
+    select *
+    from student s
+    left outer join school_type st on s.sch_type_no = st.sch_type_no
+    left outer join wanted_lesson wl on s.std_no = wl.std_no
+    where s.std_no = #{no}
+  </select>
+
+  <select id="getWantedLessons" parameterType="int" resultMap="WantedLessonMap">
+    select * from wanted_lesson wl
+    inner join subject s on wl.sub_no = s.sub_no
+    where std_no=#{no};
+  </select>
+
+  <select id="getParents" parameterType="int" resultMap="ParentsMap">
+    select *
+    from parents p
+    left outer join student s on p.parents_no = s.parents_no
+    where p.parents_no = #{no}
+  </select>
+
+  <select id="getChildrenIdAndName" parameterType="map" resultMap="MemberMap">
+    select mem_no, id, name
+    from member
+    where 
+    <foreach collection="list" item="no" separator="or">
+      mem_no = #{no.value}
+    </foreach>
+  </select>
+
+  <select id="getTeacherPhotos" parameterType="int" resultMap="TeacherPhotoMap">
+    select *
+    from teacher_photo
+    where tch_no = #{no};
+  </select>
+  
+  <select id="getLessonsForTeacher" parameterType="int" resultMap="LessonMap">
+    select *
+    from lesson
+    where tch_no = #{no};
+  </select>
+  
+  <select id="getLessonsForStudent" parameterType="int" resultMap="LessonMap">
+    select *
+    from lesson
+    where std_no = #{no};
+  </select>
+  
+  <update id="updateMember">
+    update member
+    <set>
+      <if test="email != null">email = #{email},</if> 
+      <if test="password != null">pwd = password(#{password}),</if> 
+      <if test="addressCity != null">addr_city=#{addressCity},</if> 
+      <if test="addressSuburb != null">addr_sub=#{addressSuburb},</if> 
+      <if test="tel != null">tel=#{tel},</if> 
+      <if test="profilePhoto != null">profile_photo=#{profilePhoto},</if> 
+      <if test="lessonDays != null">curr_lesson_dt=#{lessonDays},</if> 
+      <if test="lessonStartTime != null">curr_lesson_st=#{lessonStartTime},</if> 
+      <if test="lessonEndTime != null">curr_lesson_et=#{lessonEndTime}</if> 
+    </set>
+    where mem_no = #{memberNo}
+  </update>
+
+  <select id="getAllLessonSubjectContentsOf" parameterType="int" resultType="string">
+    select sub_conts
+    from lesson_subject
+    where tch_no = #{no};
+  </select>
+
+
+  <insert id="insertLessonSubjectOf" parameterType="map">
+    insert into lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
+    values(#{teacherNo},#{subjectNo},#{subjectContents},now(),#{wantedFee})
+  </insert>
+
+  <update id="updateTeacher" parameterType="Teacher">
+    update teacher
+    <set>
+      <if test="accountNo != null">acc_no = #{accountNo},</if> 
+      <if test="bankName != null">bank_name = #{bankName},</if>
+      <if test="teacherIntro != null">tch_intro=#{teacherIntro},</if> 
+      <if test="videoAddress != null">vid_addr=#{videoAddress}</if> 
+    </set>
+    where tch_no = #{teacherNo}
+  </update>
+  
+  <delete id="deleteAllLessonSubjectRelatedTo" parameterType="int">
+    delete from lesson_subject
+    where tch_no = #{no}
+  </delete>
+   -->
+</mapper>
