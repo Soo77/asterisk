@@ -102,7 +102,7 @@
 				            <span>×</span>
 				          </button>
 				        </div>
-				        <span class="messageLessonNo" id="1">수업번호 : ${lesson.lessonNo}</span>
+				        <span class="messageLessonNo" id="${lesson.lessonNo}">수업번호 : ${lesson.lessonNo}</span>
 				                수업과목:
 					      <c:choose>
 					      <c:when test="${lesson.subject.schoolTypeNo eq 1}">

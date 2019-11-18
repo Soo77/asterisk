@@ -123,6 +123,9 @@
 	  var memberNo = lessonCheck.value;
 	  var lessonNo = lessonCheck.name;
 	  
+	  console.log(memberNo);
+	  console.log(lessonNo);
+	  
 	  if(${loginUser.memberNo} != memberNo){
 		  return false;
 	  }
