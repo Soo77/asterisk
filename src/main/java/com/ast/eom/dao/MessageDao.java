@@ -16,6 +16,5 @@ public interface MessageDao {
   int messageIn(Message message) throws Exception;
   
   List<Member> searchStd(String id);
-  void lessonStd(HashMap<String, Object> stat);
-  void changeLessonStat(int lessonNo);
+  void lessonInvitationStd(HashMap<String, Object> stat);
 }
