@@ -9,6 +9,7 @@ public class Lesson {
   private int lessonNo;
   private int teacherNo;
   private int studentNo;
+  private int parentsNo;
   private String lessonDescription;
   private int subjectNo;
   private int lessonFee;
@@ -34,6 +35,7 @@ public class Lesson {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date refundDate;
   private int refundAmount;
+  private int lessonDayCount;
   
   private CurriculumLessonContents clc;
   
@@ -48,23 +50,30 @@ public class Lesson {
   private List<Curriculum> curriculums;
   private List<DayLesson> dayLessons;
   
-
-
   @Override
   public String toString() {
     return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo
-        + ", lessonDescription=" + lessonDescription + ", subjectNo=" + subjectNo + ", lessonFee="
-        + lessonFee + ", lessonState=" + lessonState + ", studentLessonStop=" + studentLessonStop
-        + ", teacherLessonStop=" + teacherLessonStop + ", startDate=" + startDate + ", endDate="
-        + endDate + ", teacherReview=" + teacherReview + ", studentReview=" + studentReview
-        + ", teacherEvaluation=" + teacherEvaluation + ", paymentMethod=" + paymentMethod
-        + ", payDay=" + payDay + ", calculationDay=" + calculationDay + ", calculationState="
-        + calculationState + ", studentStopReason=" + studentStopReason + ", teacherStopReason="
-        + teacherStopReason + ", refundState=" + refundState + ", refundDate=" + refundDate
-        + ", refundAmount=" + refundAmount + ", clc=" + clc + ", member=" + member + ", clcs="
+        + ", parentsNo=" + parentsNo + ", lessonDescription=" + lessonDescription + ", subjectNo="
+        + subjectNo + ", lessonFee=" + lessonFee + ", lessonState=" + lessonState
+        + ", studentLessonStop=" + studentLessonStop + ", teacherLessonStop=" + teacherLessonStop
+        + ", startDate=" + startDate + ", endDate=" + endDate + ", teacherReview=" + teacherReview
+        + ", studentReview=" + studentReview + ", teacherEvaluation=" + teacherEvaluation
+        + ", paymentMethod=" + paymentMethod + ", payDay=" + payDay + ", calculationDay="
+        + calculationDay + ", calculationState=" + calculationState + ", studentStopReason="
+        + studentStopReason + ", teacherStopReason=" + teacherStopReason + ", refundState="
+        + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount
+        + ", lessonDayCount=" + lessonDayCount + ", clc=" + clc + ", member=" + member + ", clcs="
         + clcs + ", curriculum=" + curriculum + ", subject=" + subject + ", subjectName="
         + subjectName + ", dayintoWord=" + dayintoWord + ", members=" + members + ", curriculums="
         + curriculums + ", dayLessons=" + dayLessons + "]";
+  }
+
+  public int getParentsNo() {
+    return parentsNo;
+  }
+
+  public void setParentsNo(int parentsNo) {
+    this.parentsNo = parentsNo;
   }
 
   public CurriculumLessonContents getClc() {
@@ -212,6 +221,12 @@ public class Lesson {
   }
   public void setRefundAmount(int refundAmount) {
     this.refundAmount = refundAmount;
+  }
+  public int getLessonDayCount() {
+    return lessonDayCount;
+  }
+  public void setLessonDayCount(int lessonDayCount) {
+    this.lessonDayCount = lessonDayCount;
   }
   public List<Curriculum> getCurriculums() {
     return curriculums;

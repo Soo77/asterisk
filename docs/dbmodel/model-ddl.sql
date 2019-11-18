@@ -153,29 +153,30 @@ ALTER TABLE message
 
 -- 수업
 CREATE TABLE lesson (
-  lesson_no       INTEGER  NOT NULL, -- 수업번호
-  tch_no          INTEGER  NOT NULL, -- 선생님번호
-  std_no          INTEGER  NULL,     -- 학생번호
-  sub_no          INTEGER  NOT NULL, -- 과목번호
-  lesson_desc     TEXT     NOT NULL, -- 수업소개
-  lesson_fee      INTEGER  NOT NULL, -- 수업료
-  lesson_stat     INTEGER  NOT NULL DEFAULT 0, -- 수업상태
-  std_lesson_stop BOOLEAN  NOT NULL DEFAULT false, -- 학생수업중단신청여부
-  tch_lesson_stop BOOLEAN  NOT NULL DEFAULT false, -- 선생님수업중단신청여부
-  sdt             DATETIME NOT NULL, -- 시작일
-  edt             DATETIME NOT NULL, -- 종료일
-  tch_review      TEXT     NULL,     -- 선생님후기내용
-  std_review      TEXT     NULL,     -- 학생후기내용
-  tch_eval        INTEGER  NULL,     -- 선생님별점
-  payment         INTEGER  NULL,     -- 결제수단
-  pay_day         DATETIME NULL,     -- 결제일
-  cal_date        DATETIME NULL,     -- 정산일
-  cal_stat        INTEGER  NULL     DEFAULT 0, -- 정산상태
-  std_stop_reason TEXT     NULL,     -- 학생중단사유
-  tch_stop_reason TEXT     NULL,     -- 선생님중단사유
-  ref_stat        BOOLEAN  NULL     DEFAULT 0, -- 환불상태
-  ref_date        DATETIME NULL,     -- 환불일
-  ref_amount      INTEGER  NULL      -- 환불금액
+  lesson_no        INTEGER  NOT NULL, -- 수업번호
+  tch_no           INTEGER  NOT NULL, -- 선생님번호
+  std_no           INTEGER  NULL,     -- 학생번호
+  sub_no           INTEGER  NOT NULL, -- 과목번호
+  lesson_desc      TEXT     NOT NULL, -- 수업소개
+  lesson_fee       INTEGER  NOT NULL, -- 수업료
+  lesson_stat      INTEGER  NOT NULL DEFAULT 0, -- 수업상태
+  std_lesson_stop  BOOLEAN  NOT NULL DEFAULT false, -- 학생수업중단신청여부
+  tch_lesson_stop  BOOLEAN  NOT NULL DEFAULT false, -- 선생님수업중단신청여부
+  sdt              DATETIME NOT NULL, -- 시작일
+  edt              DATETIME NOT NULL, -- 종료일
+  tch_review       TEXT     NULL,     -- 선생님후기내용
+  std_review       TEXT     NULL,     -- 학생후기내용
+  tch_eval         INTEGER  NULL,     -- 선생님별점
+  payment          INTEGER  NULL,     -- 결제수단
+  pay_day          DATETIME NULL,     -- 결제일
+  cal_date         DATETIME NULL,     -- 정산일
+  cal_stat         INTEGER  NULL     DEFAULT 0, -- 정산상태
+  std_stop_reason  TEXT     NULL,     -- 학생중단사유
+  tch_stop_reason  TEXT     NULL,     -- 선생님중단사유
+  ref_stat         BOOLEAN  NULL     DEFAULT 0, -- 환불상태
+  ref_date         DATETIME NULL,     -- 환불일
+  ref_amount       INTEGER  NULL,     -- 환불금액
+  lesson_day_count INTEGER  NULL      -- 수업일카운트
 );
 
 -- 수업

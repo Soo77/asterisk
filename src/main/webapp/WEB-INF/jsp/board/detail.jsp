@@ -16,7 +16,7 @@
       display: none;
     }
     
-    #btnCancle {
+    #btnCancel {
       display: none;
     }
     
@@ -344,7 +344,7 @@
         <c:if test="${board.memberNo == loginUser.memberNo}">
           <button id="btnUpdate" type="button" class="btn btn-primary">수정</button>
           <button id="btnSave" type="button" class="btn btn-primary">수정완료</button>
-          <button id="btnCancle" type="button"
+          <button id="btnCancel" type="button"
             class="btn btn-danger my-view-group">수정취소</button>
         </c:if>
         <c:if
@@ -513,7 +513,7 @@
     document.querySelector('#btnDelete').style.display = 'none';
     document.querySelector('#btnList').style.display = 'none';
     document.querySelector('#btnSave').style.display = 'inline';
-    document.querySelector('#btnCancle').style.display = 'inline';
+    document.querySelector('#btnCancel').style.display = 'inline';
     document.querySelector('#inputTitle').readOnly = false;
     document.querySelector('#inputContents').readOnly = false;
     var boardPhotos = document.querySelector('#insertBoardPhotos');
@@ -523,8 +523,8 @@
 
 <script>
   // 수정 취소
-  var cancleButton = document.querySelector('#btnCancle');
-  cancleButton.addEventListener('click', function() {
+  var cancelButton = document.querySelector('#btnCancel');
+  cancelButton.addEventListener('click', function() {
     swal({
       title: "취소",
       text: "취소하시겠습니까?",

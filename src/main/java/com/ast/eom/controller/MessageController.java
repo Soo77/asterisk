@@ -1,8 +1,11 @@
 package com.ast.eom.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.ast.eom.dao.MessageDao;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Message;
@@ -20,7 +24,7 @@ public class MessageController {
 
   @Autowired
   MessageDao messageService;
-
+  
   @GetMapping("list")
   public void list(HttpSession session, Model model) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
@@ -36,11 +40,7 @@ public class MessageController {
       messageReadShow.setSenderNo(message.get(i).getMemberNo());
       messageReadShow.setReceiverNo(member.getMemberNo());
       
-      if(member.getMemberNo() == message.get(i).getMemberNo()) {
-        messageReadList.add(0);
-      } else {
-        messageReadList.add(messageService.messageReadShow(messageReadShow));
-      }
+      messageReadList.add(messageService.messageReadShow(messageReadShow));
     }
     model.addAttribute("messageReadList", messageReadList);
   }
@@ -69,5 +69,28 @@ public class MessageController {
     message.setMessageContents(messageConts);
 
     return messageService.messageIn(message);
+  }
+  
+  @GetMapping("studentFind")
+  public void studentFind() {
+  }
+  
+  @Autowired
+  MessageDao messageDao;
+  
+  @PostMapping("searchStd")
+  @ResponseBody
+  public List<Member> searchStd(String id) throws Exception {
+    return messageDao.searchStd(id);
+  }
+  
+  @PostMapping("lessonInvitationStd")
+  @ResponseBody
+  public void lessonInvitationStd(int stdNo, int lessonNo) throws Exception {
+	HashMap<String, Object> stat = new HashMap<>();
+	stat.put("stdNo", stdNo);
+	stat.put("lessonNo", lessonNo);
+	
+    messageDao.lessonInvitationStd(stat);
   }
 }

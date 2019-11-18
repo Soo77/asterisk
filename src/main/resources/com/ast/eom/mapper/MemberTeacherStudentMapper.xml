@@ -138,16 +138,16 @@
 		left outer join subject sub on ls.sub_no = sub.sch_type_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
 	    where addr_city like #{mySido}
-	      and addr_sub like #{pattern}
-	      and gender like #{pattern}
-	      and dob like #{pattern}
-	      and sub_name like #{pattern}
-	      and sch_type like #{pattern}
-	      and wanted_fee like #{pattern}
+	      and addr_sub like #{myGugun}
+	      and gender like #{myGender}
+	      and dob like #{myAge}
+	      and sub_name like #{mySubject}
+	      and sch_type like #{mySchool}
+	      and wanted_fee like #{myWantedfee}
 	    order by name addr_city
 	</select>
 	
-	<select id="saerchStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
+	<select id="searchStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
 		m.mem_no, m.gender, m.addr_city, m.addr_sub, sub.sub_name, st.sch_type, wl.wanted_fee
 		from
@@ -156,12 +156,12 @@
 		left outer join wanted_lesson wl on stu.std_no = wl.std_no
 		left outer join subject sub on wl.sub_no = sub.sub_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
-		where addr_city like #{pattern}
-	      and addr_sub like #{pattern}
-	      and gender like #{pattern}
-	      and sub_name like #{pattern}
-	      and sch_type like #{pattern}
-	      and wanted_fee like #{pattern}
+		where addr_city like #{mySido}
+	      and addr_sub like #{myGugun}
+	      and gender like #{myGender}
+	      and sub_name like #{mySubject}
+	      and sch_type like #{mySchool}
+	      and wanted_fee like #{myWantedfee}
 	    order by name addr_city
 	</select>
 

@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <!-- 엄과외 커스텀 CSS -->
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
 <!--     Fonts and icons     -->
 <link rel="stylesheet" type="text/css"
   href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />

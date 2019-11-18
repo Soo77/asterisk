@@ -35,6 +35,9 @@
   
   <update id="update" parameterType="DayLesson">
     update day_lesson set
+      lesson_date=#{lessonDate},
+      lesson_start_hr=#{lessonStartHour},
+      lesson_end_hr=#{lessonEndHour},
       lesson_summ=#{lessonSummary},
       lesson_eval=#{lessonEvaluation}
     where day_lesson_no=#{dayLessonNo}

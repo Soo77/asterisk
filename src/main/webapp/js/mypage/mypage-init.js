@@ -16,7 +16,7 @@ class MyLesson {
     let myLessonBtn = document.getElementsByClassName('my-lesson-btn')[0];
     myLessonBtn.addEventListener('click', (event) => {
       event.preventDefault();
-      location.href = '/app/lesson/list?memberTypeNo=' + memberTypeNo;
+      location.href = '/app/lesson/list'; 
     });
   }
 }
@@ -110,6 +110,13 @@ class MypageInit {
     });
   }
 
+  addGoingToLessonListEventTo(thisBtn, i) {
+    thisBtn.addEventListener('click', () => {
+      let thisChildNo = myPatentsChildrenNo[i];
+      location.href='/app/mypage/redirectLessonPage?thisChildNo='+thisChildNo;
+    });
+  }
+
   addChildIdNode() {
     let childrendId = document.getElementsByClassName('childId');
     let childIdTemplate = childrendId[0].cloneNode(true);
@@ -120,7 +127,7 @@ class MypageInit {
     this.childIdCount++;
 
     this.addRemoveChildIdEventTo(childIdTemplate.childNodes[1].childNodes[3]);
-
+    
     return childIdTemplate;
   }
 
@@ -136,8 +143,11 @@ class MypageInit {
     for (let i = 0; i < myParentsChildrenId.length; i++) {
       let addedChildIdObject = this.addChildIdNode();
       let childIdInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[1];
-
+      let lessonListButton = addedChildIdObject.childNodes[3].childNodes[3].childNodes[3];
+      
       childIdInput.value = myParentsChildrenId[i];
+      this.addGoingToLessonListEventTo(lessonListButton, i);
+
     }
   }
 

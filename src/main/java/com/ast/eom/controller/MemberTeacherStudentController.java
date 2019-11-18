@@ -63,7 +63,7 @@ public class MemberTeacherStudentController {
     
     HashMap<String, Object> searchInfo = new HashMap<String, Object>();
     
-    String memTypeNo = request.getParameter("memTypeNo");
+    String memTypeNo = request.getParameter("memberTypeNo");
     String mySido = request.getParameter("mySido");
     String myGugun = request.getParameter("myGugun");
     String myGender = request.getParameter("myGender");
@@ -71,6 +71,15 @@ public class MemberTeacherStudentController {
     String myWantedFee = request.getParameter("myWantedFee");
     String mySchool = request.getParameter("mySchool");
     String mySubject = request.getParameter("mySubject");
+   
+System.out.println(memTypeNo);
+System.out.println(mySido);
+System.out.println(myGugun);
+System.out.println(myGender);
+System.out.println(myAge);
+System.out.println(myWantedFee);
+System.out.println(mySchool);
+System.out.println(mySubject);
     
     searchInfo.put("memTypeNo", memTypeNo);
     searchInfo.put("mySido", mySido);
@@ -80,6 +89,8 @@ public class MemberTeacherStudentController {
     searchInfo.put("myWantedFee", myWantedFee);
     searchInfo.put("mySchool", mySchool);
     searchInfo.put("mySubject", mySubject);
+    
+   
     
     List<MemberTeacherStudent> resultList = memberTeacherStudentService.searchBy(searchInfo);
     

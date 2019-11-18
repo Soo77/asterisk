@@ -15,13 +15,13 @@ public class DefaultLessonService implements LessonService {
   @Resource private LessonDao lessonDao;
 
   @Override
-  public List<Lesson> list(int memberTypeNo) throws Exception {
+  public List<Lesson> list(int memberTypeNo, int memberNo) throws Exception {
     if (memberTypeNo ==1) {
-      return lessonDao.findAllTeacherBy();
+      return lessonDao.findAllTeacherBy(memberNo);
     } else if (memberTypeNo == 2) {
-      return lessonDao.findAllTeacherBy();
+      return lessonDao.findAllTeacherBy(memberNo);
     } else if (memberTypeNo == 3) {
-      return lessonDao.findAllStudentBy();
+      return lessonDao.findAllStudentBy(memberNo);
     } else {
       throw new Exception("너 뭐냐?");
     }
@@ -96,5 +96,27 @@ public class DefaultLessonService implements LessonService {
   @Override
   public void deleteCurrAndContsAndLesson(int lessonNo) throws Exception {
     lessonDao.deleteCurrAndContsAndLesson(lessonNo);
+  }
+  
+  // 중단 요청 처리
+  @Override
+  public void interruptionRequest(int memberTypeNo, int lessonNo, String stopReason) throws Exception {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("memberTypeNo", memberTypeNo);
+    params.put("lessonNo", lessonNo);
+    params.put("stopReason", stopReason);
+    
+    lessonDao.updateInterruptionState(params);
+  }
+  
+  // 후기 작성
+  @Override
+  public void insertReview(int lessonNo, String studentReview, int teacherEvaluation) throws Exception {
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("lessonNo", lessonNo);
+    params.put("studentReview", studentReview);
+    params.put("teacherEvaluation", teacherEvaluation);
+    
+    lessonDao.insertReview(params);
   }
 }

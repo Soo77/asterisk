@@ -44,15 +44,6 @@
   padding-bottom: 40px;
 }
 </style>
-<script>
-function myFunction(){
-	var select1=[];
-	var f = document.form1;
-	f.action="search";
-	f.submit();
-}
-</script>
-
 
 <body>
   <div class="page-header header-filter" data-parallax="true" style="background-image: url('')">
@@ -85,8 +76,8 @@ function myFunction(){
           <!-- Sidebar ================================================== -->
           <div class="col-lg-3 col-md-4">
             <div class="sidemenubar" id="sideMenuBar">
-            <form name="form1" id="form1" method="post">
-            <input type="hidden" name="memTypeNo" value="${memberTypeNo}">
+            <form name="form1" id="form1">
+            <input type="hidden" name="memberTypeNo" value="${memberTypeNo}">
            
               <label class="address title">지역</label>
               <div class="address">
@@ -98,21 +89,19 @@ function myFunction(){
               <label class="gender title">성별</label>
               <div class="form-check" >
                 <label class="btn btn-primary gender"> 
-                  <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M" onclick="genderselect(this)"> 남자 
+                  <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M"> 남자 
                   <span class="circle">
                     <span class="check">
                     </span> 
                   </span> 
                 </label> 
                 <label class="btn btn-primary gender"> 
-                  <input  class="form-check-input" type="radio" name="gender" id="gender_2" value="F" onclick="genderselect(this)"> 여자 
+                  <input  class="form-check-input" type="radio" name="gender" id="gender_2" value="F"> 여자 
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
-                
-            
               </div>
 
 
@@ -126,28 +115,28 @@ function myFunction(){
               <label class="lessons_fee title">수업료</label>
               <div class="form-check">
                 <label class="btn btn-primary wantedFee"> 
-                  <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1" onclick="wantedFeeselect(this)"> 20만원 이하
+                  <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1"> 20만원 이하
                   <span class="circle"> 
                     <span class="check">
                     </span> 
                   </span> 
                 </label> 
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2" onclick="wantedFeeselect(this)"> 20~30 만원
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2"> 20~30 만원
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3" onclick="wantedFeeselect(this)"> 30~40 만원
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3"> 30~40 만원
                   <span class="circle"> 
                     <span class="check">
                     </span>
                   </span>
                 </label>
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4" onclick="wantedFeeselect(this)"> 40만원 이상 
+                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4"> 40만원 이상 
                   <span class="circle"> 
                     <span class="check">
                     </span>
@@ -158,8 +147,8 @@ function myFunction(){
 
               <label class="subject title">과목으로 찾기</label>
               <div class="checkbox-container checkbox-container-four active">
-                <select class="custom-select" name="school1" id="school1" onchange="schoolselect(this)"></select> 
-                <select class="custom-select" name="subject1" id="subject1" onchange="subjectselect()"></select>
+                <select class="custom-select" name="school1" id="school1"></select> 
+                <select class="custom-select" name="subject1" id="subject1"></select>
               </div>
 
               <div class="button search">
@@ -245,7 +234,7 @@ function myFunction(){
                           </h5>
                           <h5>
                             <span class="tim-note">
-                              ${member.gender}/ ${membe.addressCity}
+                              ${member.gender}/ ${member.addressCity}
                               ${member.addressSuburb}/
                               ${member.schoolType}/
                               ${member.subjectName} 
@@ -440,101 +429,44 @@ function myFunction(){
 
 <!-- 조건 선택 값 구하기 -->
 <script>
-  var genderselect = function (select_obj) {
-    var genderRadio= document.getElementsByName("gender");
-    for (var i=0; i < genderRadio.length; i++){
-      if (genderRadio[i].checked) {
-        return genderRadio[i].value;
+$(document).ready(function(){
+	$(".my-button-yeah").click(function(){
+
+	var sido1 = $('select[name="sido1"]').val();
+  var myGugun = $('select[name="gugun1"]').val();
+  var myGender = $('input[name="gender"]:checked').val();
+  var myAge = calculateAges();
+  var myWantedFee = $('input[name="wantedFee"]:checked').val();
+  var mySchool = $('select[name="school1"]').val();
+  var mySubject = $('select[name="subject1"]').val();
+ /*  var searchData = {"mySido":mysido, "myGugun":myGugun, "myGender":myGender, "myAge":myAge, 
+		                "myWantedFee":myWantedFee, "mySchool":mySchool, "mySubject":mySubject}; */
+  
+      if (sido1.startsWith('충청') ||
+          sido1.startsWith('전라') ||
+          sido1.startsWith('경상')) {
+        mySido = sido1.substring(0,3);
+        console.log("세글자:" + mySido);
+      } else {
+        mySido = sido1.substring(0,2);
+        console.log("두글자:" + mySido);
       }
-    }
-  }
-</script>
-<script>
-  var wantedFeeselect = function (select_obj) {
-    var wantedFeeRadio = document.getElementsByName("wantedFee");
-    for (var i=0; i < wantedFeeRadio.length; i++){
-      if (wantedFeeRadio[i].checked) {
-        return wantedFeeRadio[i].value;
-      }
-    }
-  }
-</script>
-<script>
-  var sidoselect = document.getElementById('sido1');
-  var sidoValue;
   
-  sidoselect.addEventListener('change', (event) => {
-    let sido = event.target.value;
-    
-    if (sido.startsWith('충청') ||
-        sido.startsWith('전라') ||
-        sido.startsWith('경상')) {
-      sidoValue = sido.substring(0,3);
-      console.log(sidoValue);
+      console.log(mySido);
+      console.log(myGugun);
+      console.log(myGender);
+      console.log(myAge);
+      console.log(myWantedFee);
+      console.log(mySchool);
+      console.log(mySubject);
+      console.log(searchData);
+      
+      
+      
+	});
+});
 
-    } else {
-      sidoValue = sido.substring(0,2);
-      console.log(sidoValue);
-
-    }
-  });
-  
-  
-  //var sidoselect = function (select_obj){
-  //var sidoselect_index = select_obj.target.selectedIndex;
-  //var sidoselect_value = select_obj.options[sidoselect_index].value;
-  //return sidoselect_value;
-  //}
-  
 </script>
-<script>
-  //var gugunselect = function (select_obj){
-  //var gugunselect_index = select_obj.selectedIndex;
-  //var gugunselect_value = select_obj.options[gugunselect_index].value;
-  //return gugunselect_value;
-  //}
-</script>
-<script>
-  //var schoolselect = function (select_obj){
-  //var schoolselect_index = select_obj.selectedIndex;
-  //var schoolselect_value = select_obj.options[schoolselect_index].value;
-  //return schoolselect_value;
-  //}
-</script>
-<script>
-  try {
-    var subjectselect = function (select_obj){
-    var subjectselect_index = select_obj.selectedIndex;
-    var subjectselect_value = select_obj.options[subjectselect_index].value;
-    return subjectselect_value;
-    }
-  } catch (e) {
-  }
-</script>
-<!-- <script>
-  var select_value = function (select_obj){
-  var selected_index = select_obj.selectedIndex;
-  var selected_value = select_obj.options[selected_index].value;
-  return selected_value;
-  
-  $.ajax({
-	  url:"/ajaxList",
-	  type:"POST",
-	  data: {
-        a:sidoValue,
-        b:2,
-        c:
-      },
-	  success: function(result){
-		  alert(result + "성공");
-	  },
-	  error: function(result){
-		  alert(result + "오류");
-	  }
-  });
-};
-
-</script> -->
 
 <!-- AJAX를 호출 할 때 쓸 함수 목록들 -->
 <script>
@@ -558,39 +490,6 @@ function myFunction(){
     return ageList;
   };
   
-</script>
-
-<script>
-
-var mygender = genderselect();
-var mywantedfee = wantedFeeselect();
-var myAge = calculateAges();
-//var mySido = sidoselect();
-//var myGugun = gugunselect();
-//var mySchool = schoolselect();
-//var mySubject = subjectselect();
-
-/*
-$('.my-button-yeah').click(function() {
-  
-  $.ajax({
-    url: '/app/member/search',
-    method: 'get',
-    success: function(result){
-    }
-  });
-  
-});
-*/
-</script>
-
-
-<script>
-  let mySearchButton = document.getElementsByClassName('my-button-yeah')[0];
-  mySearchButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    
-  });
 </script>
 
 </body>

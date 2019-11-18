@@ -4,7 +4,7 @@
 
 <head>
   <style>
-    #boardAddAndCancle {
+    #boardAddAndCancel {
       text-align: right;
     }
     
@@ -90,7 +90,7 @@
 </div>
 <div class="main main-raised">
   <div class="container p-3">
-    <form id="form1" name="frm1" action='add' method=post
+    <form id="form1" name="frm1" action='add' method='post'
       enctype='multipart/form-data'>
 
       <input type="hidden" name="boardTypeNo" value="${boardTypeNo}">
@@ -135,9 +135,9 @@
 
       <div class="row">
         <div class="col">
-          <div id="boardAddAndCancle">
+          <div id="boardAddAndCancel">
             <button id="btnAdd" type="button" class="btn btn-primary">등록</button>
-            <button id="btnCancle" type="button"
+            <button id="btnCancel" type="button"
               class="btn btn-danger my-view-group">취소</button>
           </div>
         </div>
@@ -148,8 +148,8 @@
 </div>
   
 <script type="text/javascript">
-    var cancleButton = document.querySelector('#btnCancle');
-    cancleButton.addEventListener('click', function() {
+    var cancelButton = document.querySelector('#btnCancel');
+    cancelButton.addEventListener('click', function() {
       swal({
         title: "취소",
         text: "취소하시겠습니까?",
