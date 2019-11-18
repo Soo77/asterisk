@@ -509,7 +509,9 @@
   var UpdateButton = document.querySelector('#btnUpdate');
   UpdateButton.addEventListener('click', function() {
     UpdateButton.style.display = 'none';
-    document.querySelector('.cmt').style.display = 'none';
+    if (${board.boardTypeNo != 4}) {
+    	document.querySelector('.cmt').style.display = 'none';
+    }
     document.querySelector('#btnDelete').style.display = 'none';
     document.querySelector('#btnList').style.display = 'none';
     document.querySelector('#btnSave').style.display = 'inline';
