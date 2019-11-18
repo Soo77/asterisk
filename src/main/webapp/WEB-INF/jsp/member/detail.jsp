@@ -97,13 +97,16 @@ ul li::before {
 				        </div>
 				        
                   <div class="menu button">
-                  <a href="#pablo" class="btn btn-just-icon btn-link btn-message">
-                    <i class="far fa-comment-dots"></i></a> 
+                  <button onclick="messageShow(this)" value="${member.memberNo}"
+                  class="btn btn-just-icon btn-link btn-message">
+                    <i class="far fa-comment-dots"></i></button> 
                   <a href="http://www.naver.com" class="btn btn-just-icon btn-link btn-photo">
                     <i class="far fa-image"></i></a> 
                   <a href="http://www.youtube.com" class="btn btn-just-icon btn-link btn-video">
                     <i class="fab fa-youtube"></i></a>
                   </div>
+                  
+                  
                   
                 </div>
                 </c:if>

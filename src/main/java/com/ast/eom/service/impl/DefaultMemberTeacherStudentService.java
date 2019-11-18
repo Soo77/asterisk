@@ -57,12 +57,12 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
   @Override
   public List<MemberTeacherStudent> searchBy(HashMap<String, Object> searchInfo) throws Exception {
     
-    int memTypeNo = Integer.parseInt((String) searchInfo.get("memTypeNo"));
+    int memberTypeNo = Integer.parseInt((String)searchInfo.get("memberTypeNo"));
     
-    if (memTypeNo == 1) {
+    if (memberTypeNo == 1) {
       return memberTeacherStudentDao.searchStudent(searchInfo);
       
-    } else if (memTypeNo == 3) {
+    } else if (memberTypeNo == 3) {
       List<MemberTeacherStudent> teachers = memberTeacherStudentDao.searchTeacher(searchInfo);
       
       String today = String.valueOf(new Date(System.currentTimeMillis()));

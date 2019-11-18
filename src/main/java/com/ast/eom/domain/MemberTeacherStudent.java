@@ -36,6 +36,56 @@ public class MemberTeacherStudent {
   private List<Lesson> lessons;
   private List<Student> students;
   
+  private String mySido;
+  private String myGugun;
+  private String myGender;
+  private String myAge;
+  private String myWantedFee;
+  private String mySchool;
+  private String mySubject;
+  
+  public String getMySido() {
+    return mySido;
+  }
+  public void setMySido(String mySido) {
+    this.mySido = mySido;
+  }
+  public String getMyGugun() {
+    return myGugun;
+  }
+  public void setMyGugun(String myGugun) {
+    this.myGugun = myGugun;
+  }
+  public String getMyGender() {
+    return myGender;
+  }
+  public void setMyGender(String myGender) {
+    this.myGender = myGender;
+  }
+  public String getMyAge() {
+    return myAge;
+  }
+  public void setMyAge(String myAge) {
+    this.myAge = myAge;
+  }
+  public String getMyWantedFee() {
+    return myWantedFee;
+  }
+  public void setMyWantedFee(String myWantedFee) {
+    this.myWantedFee = myWantedFee;
+  }
+  public String getMySchool() {
+    return mySchool;
+  }
+  public void setMySchool(String mySchool) {
+    this.mySchool = mySchool;
+  }
+  public String getMySubject() {
+    return mySubject;
+  }
+  public void setMySubject(String mySubject) {
+    this.mySubject = mySubject;
+  }
   public int getTeacherAge() {
     return teacherAge;
   }

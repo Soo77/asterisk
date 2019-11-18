@@ -78,6 +78,15 @@
             <div class="sidemenubar" id="sideMenuBar">
             <form name="form1" id="form1">
             <input type="hidden" name="memberTypeNo" value="${memberTypeNo}">
+            <input type="hidden" name="mySido" id="mySido" value="">
+            <input type="hidden" name="myGugun" id="myGugun" value="">
+            <input type="hidden" name="myGender" id="myGender" value="">
+            <input type="hidden" name="myAge" id="myAge" value="">
+            <input type="hidden" name="myWantedFee" id="myWantedFee" value="">
+            <input type="hidden" name="mySchool" id="mySchool" value="">
+            <input type="hidden" name="mySubject" id="mySubject" value="">
+            </form>
+            
            
               <label class="address title">지역</label>
               <div class="address">
@@ -104,13 +113,13 @@
                 </label>
               </div>
 
-
+            <c:if test="${memberTypeNo == 3}">
               <label class="age title">나이</label>
               <div class="age-check">
                 <input type="text" id="age_1"> ~
                 <input type="text" id="age_2">
               </div>
-
+            </c:if>
 
               <label class="lessons_fee title">수업료</label>
               <div class="form-check">
@@ -155,8 +164,6 @@
                 <button class="btn btn-primary btn-round my-button-yeah">조건 검색</button>
               </div>
               
-               </form>
-
             </div>
           </div>
           <!-- Sidebar / End -->
@@ -215,8 +222,7 @@
             </c:if>
 
             <c:if test="${memberTypeNo eq 1}">
-              <c:forEach items="${memberList}" var="member"
-                begin="${pagination.pageSize * (pagination.curPage - 1)}"
+              <c:forEach items="${memberList}" var="member" begin="${pagination.pageSize * (pagination.curPage - 1)}"
                 end="${pagination.pageSize * pagination.curPage - 1}">
                 <a href="detail?no=${member.memberNo}">
                   <div class="card-body">
@@ -234,7 +240,7 @@
                           </h5>
                           <h5>
                             <span class="tim-note">
-                              ${member.gender}/ ${member.addressCity}
+                              ${member.gender}/ ${memberlo.addressCity}
                               ${member.addressSuburb}/
                               ${member.schoolType}/
                               ${member.subjectName} 
@@ -308,11 +314,11 @@
   $('document')
     .ready(
       function () {
-        var area0 = [ "시/도 선택", "서울특별시", "인천광역시", "대전광역시", "광주광역시",
+        var area0 = [ "시/도 선택", "Seoul", "인천광역시", "대전광역시", "광주광역시",
           "대구광역시", "울산광역시", "부산광역시", "경기도", "강원도", "충청북도", "충청남도",
           "전라북도", "전라남도", "경상북도", "경상남도", "제주도" ];
       var area1 = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구",
-          "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구",
+          "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "Seocho",
           "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구",
           "중구", "중랑구" ];
       var area2 = [ "계양구", "남구", "남동구", "동구", "부평구", "서구", "연수구",
@@ -387,8 +393,8 @@
   <script type="text/javascript">
   $('document').ready(
     function () {
-      var area0 = [ "학교 선택", "초등학교", "중학교", "고등학교" ];
-      var area1 = [ "국어", "영어", "수학", "사회", "과학", "기타" ];
+      var area0 = [ "학교 선택", "primary", "중학교", "고등학교" ];
+      var area1 = [ "korean", "영어", "수학", "사회", "과학", "기타" ];
       var area2 = [ "국어", "영어", "수학", "사회", "과학", "기타" ];
       var area3 = [ "국어", "영어", "수학", "사회", "과학", "기타" ];
 
@@ -427,22 +433,28 @@
 </script>
 
 
+<script>
+var goView = function(data){
+}
+
+</script>
+
 <!-- 조건 선택 값 구하기 -->
 <script>
 $(document).ready(function(){
 	$(".my-button-yeah").click(function(){
 
-	var sido1 = $('select[name="sido1"]').val();
-  var myGugun = $('select[name="gugun1"]').val();
-  var myGender = $('input[name="gender"]:checked').val();
-  var myAge = calculateAges();
-  var myWantedFee = $('input[name="wantedFee"]:checked').val();
-  var mySchool = $('select[name="school1"]').val();
-  var mySubject = $('select[name="subject1"]').val();
- /*  var searchData = {"mySido":mysido, "myGugun":myGugun, "myGender":myGender, "myAge":myAge, 
-		                "myWantedFee":myWantedFee, "mySchool":mySchool, "mySubject":mySubject}; */
-  
-      if (sido1.startsWith('충청') ||
+		
+	var params = $("#form1").serialize();
+	$("#myGugun").val($('select[name="gugun1"]').val());
+	$("#myGender").val($('input[name="gender"]:checked').val());
+	$("#myAge").val(calculateAges());
+  $("#myWantedFee").val($('input[name="wantedFee"]:checked').val());
+  $("#mySchool").val($('select[name="school1"]').val());
+  $("#mySubject").val($('select[name="subject1"]').val());
+  $("#mySido").val($('select[name="sido1"]').val());
+      
+      /* if (sido1.startsWith('충청') ||
           sido1.startsWith('전라') ||
           sido1.startsWith('경상')) {
         mySido = sido1.substring(0,3);
@@ -450,18 +462,21 @@ $(document).ready(function(){
       } else {
         mySido = sido1.substring(0,2);
         console.log("두글자:" + mySido);
-      }
-  
-      console.log(mySido);
-      console.log(myGugun);
-      console.log(myGender);
-      console.log(myAge);
-      console.log(myWantedFee);
-      console.log(mySchool);
-      console.log(mySubject);
-      console.log(searchData);
-      
-      
+      } */
+      $.ajax({
+          type    : "GET",
+          url     : "search",
+          data    :  params, 
+          success   : function(data) {
+        	  console.log(data);
+        	  if(data) {
+        		  alert("ㅇㅋ");
+        	  }
+          },
+          error   : function(error) {
+        	  alert("실패");
+          }
+      });
       
 	});
 });

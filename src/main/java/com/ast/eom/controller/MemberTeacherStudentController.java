@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ast.eom.domain.MemberTeacherStudent;
@@ -57,13 +58,13 @@ public class MemberTeacherStudentController {
     model.addAttribute("detailTeacher", detailTeacher);
   }
   
-  @RequestMapping("search")
+  @RequestMapping(value="search", method = {RequestMethod.POST,RequestMethod.GET})
   @ResponseBody
   public List<MemberTeacherStudent> search(HttpSession session, HttpServletRequest request, Model model) throws Exception {
     
     HashMap<String, Object> searchInfo = new HashMap<String, Object>();
     
-    String memTypeNo = request.getParameter("memberTypeNo");
+    String memberTypeNo = request.getParameter("memberTypeNo");
     String mySido = request.getParameter("mySido");
     String myGugun = request.getParameter("myGugun");
     String myGender = request.getParameter("myGender");
@@ -72,16 +73,7 @@ public class MemberTeacherStudentController {
     String mySchool = request.getParameter("mySchool");
     String mySubject = request.getParameter("mySubject");
    
-System.out.println(memTypeNo);
-System.out.println(mySido);
-System.out.println(myGugun);
-System.out.println(myGender);
-System.out.println(myAge);
-System.out.println(myWantedFee);
-System.out.println(mySchool);
-System.out.println(mySubject);
-    
-    searchInfo.put("memTypeNo", memTypeNo);
+    searchInfo.put("memberTypeNo", memberTypeNo);
     searchInfo.put("mySido", mySido);
     searchInfo.put("myGugun", myGugun);
     searchInfo.put("myGender", myGender);
@@ -90,8 +82,6 @@ System.out.println(mySubject);
     searchInfo.put("mySchool", mySchool);
     searchInfo.put("mySubject", mySubject);
     
-   
-    
     List<MemberTeacherStudent> resultList = memberTeacherStudentService.searchBy(searchInfo);
     
     return resultList;
@@ -99,10 +89,4 @@ System.out.println(mySubject);
  
   
   
-  /*
-   * @GetMapping("ohora")
-   * 
-   * @ResponseBody public Object ohora(int boardNo) { MemberTeacherStudent temp = new
-   * MemberTeacherStudent(); temp.setName("홍길동"); return temp; }
-   */
 }
