@@ -10,8 +10,20 @@
 	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
 .messageRow {
-	width: 80%;
-	display: inline-block;
+  background-color: white;
+  width: auto;
+  heigh: auto;
+  border: solid 1px #ccc;
+}
+
+.datetime-right {
+  float: right;
+  color: #999;
+}
+
+.datetime-left {
+  float: left;
+  color: #999;
 }
 
 .right {
@@ -20,25 +32,19 @@
 
 .chat-left {
 	width: 50%;
-	border-radius: 5px;
-	position: relative;
+	border-radius: 10px;
 	padding: 5px 10px;
 	background: #B5E8E2;
-	border: 1px solid #d2d6de;
+	border: 1px solid #ccc;
 	margin-top: 5px;
-	color: #444;
-	border-radius: 5px;
 }
 
 .chat-right {
-	border-radius: 5px;
-	position: relative;
+	border-radius: 10px;
 	padding: 5px 10px;
 	background: #FACBBA;
-	border: 1px solid #d2d6de;
+	border: 1px solid #ccc;
 	margin-top: 5px;
-	color: #444;
-	text-align: right;
 }
 </style>
 </head>
@@ -62,21 +68,26 @@
 					<div class='right'>
 						<div class="chat-right">${messageList.messageContents}</div>
 						${read}
+						<div class="datetime-right">${messageList.sendDate}</div>
 					</div>
 				</c:when>
 				<c:otherwise>
 					<div class="chat-left">${messageList.messageContents}</div>
 	           ${read}
+	           <div class="datetime-left">${messageList.sendDate}</div>
 	         </c:otherwise>
 			</c:choose>
 		</c:forEach>
 
 		<div id="chat"></div>
 
+	</div>
+	
+	<br>
+	<div style="width: 400px; display: inline-block;">
 		<input type="text" id="messageConts" name="messageConts"
 			onKeypress="if(event.keyCode==13) {messageIn();}"
 			class="form-control" placeholder="내용을 입력">
-
 	</div>
 	<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
 	<br>

@@ -17,6 +17,7 @@
     <result column="dob" property="dateOfBirth"></result>
     <result column="addr_city" property="addressCity"></result>
     <result column="addr_sub" property="addressSuburb"></result>
+    <result column="profile_photo" property="profilePhoto"></result>
   </resultMap>
   
   <select id="detail" parameterType="int" resultMap="MessageMap">
@@ -29,7 +30,7 @@
 	</select>
 	
 	<select id="messageList" parameterType="int" resultMap="MemberMap">
-     select distinct m.name, m.mem_no from member m inner 
+     select distinct m.name, m.mem_no, m.profile_photo from member m inner 
      join message s on m.mem_no = s.sender or m.mem_no = s.receiver
      where s.sender=#{memberNo} or s.receiver=#{memberNo} 
      order by s.message_no desc
