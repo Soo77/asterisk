@@ -86,7 +86,7 @@ public class MessageController {
   
   @PostMapping("lessonInvitationStd")
   @ResponseBody
-  public void lessonInvitationStd(int stdNo, String lessonNo) throws Exception {
+  public void lessonInvitationStd(int stdNo, int lessonNo) throws Exception {
 	HashMap<String, Object> stat = new HashMap<>();
 	stat.put("stdNo", stdNo);
 	stat.put("lessonNo", lessonNo);

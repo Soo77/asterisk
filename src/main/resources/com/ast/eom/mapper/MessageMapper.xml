@@ -68,7 +68,7 @@
   </select>
   
   <update id="lessonStd" parameterType="Map">
-    UPDATE lesson SET std_no=#{std}, lesson_stat=2 WHERE lesson_no=#{lessonNo}
+    UPDATE lesson SET std_no=#{stdNo}, lesson_stat=2 WHERE lesson_no=#{lessonNo}
   </update>
   
   <update id="changeLessonStat" parameterType="int">

@@ -28,9 +28,7 @@
 						<span>×</span>
 					</button>
 				</div>
-				<h2>
-				<span class="messageLessonNo" id=1>수업번호 : 1</span>
-				</h2>
+				<span class="messageLessonNo" id="1">수업번호 : ${lesson.lessonNo}</span>
 				<div class="messageRow">
 					<input type="text" id="std" placeholder="학생 아이디 입력">
 					<button id="search" class="btn btn-primary btn-sm">검색</button>
@@ -84,21 +82,21 @@ $("#search").on('click', function() {
 	var no = clickId.id;
 	var val = clickId.text;
     $("#choiceId").attr("placeholder",val)
-    $("#lessonMessage").attr("name",no)
+    $("#lessonMessage").attr("value",no)
   }
   </script>
 
 	<!-- 메세지 전송 -->
 	<script>
   $("#lessonMessage").on('click', function(){
-	var memberNo = document.getElementById("lessonMessage").name;
+	var memberNo = document.getElementById("lessonMessage").value;
 	var lessonNo = document.getElementsByClassName("messageLessonNo")[0].id;
 	console.log(memberNo);
 	console.log(lessonNo);
     var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
     messageConts += "커리큘럼을 확인해보세요!<br><br>"
-    messageConts += "<button id='lessonChange' name="+lessonNo
-    messageConts += "class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
+    messageConts += "<button onclick='lessonMatchingStd(this)' name="+lessonNo
+    messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
     
     if(memberNo == ""){
     	alert("학생을 선택해주세요");
@@ -115,7 +113,7 @@ $("#search").on('click', function() {
         	$.ajax({
                 url:"/app/message/lessonInvitationStd",
                 type:"post",
-                data:"stdNo="+memberNo+"&lessonNo"+lessonNo,
+                data:"stdNo="+memberNo+"&lessonNo="+lessonNo,
                 success : function(result) {
                   console.log("성공");
                 },

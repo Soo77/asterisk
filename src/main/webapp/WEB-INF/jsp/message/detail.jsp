@@ -109,10 +109,6 @@
     $("#messageIn").click(function() {
       messageIn();
     });
-    
-    $("#lessonChange").click(function() {
-    	lessonMatchingStd();
-      });
     </script>
     
     <!-- 메세지 입력 -->
@@ -145,10 +141,11 @@
   
 <!--   커리큘럼 확인 -->
   <script>
-  function lessonMatchingStd(){
-	  var lessonNo = document.getElementById("lessonChange").name;
+  function lessonMatchingStd(lessonCheck){
+	  var lessonNo = lessonCheck.name;
+	  console.log(lessonNo);
 	  
-	  if(${loginUser.memberNo} != ${receiverNo}){
+	  if(${loginUser.memberNo} == ${receiverNo}){
 		  return false;
 	  }
 	  
@@ -159,7 +156,7 @@
 		  success : function(result){
 			  var url = "/app/mypage/detail";
 			  alert("나의 수업을 확인해주세요");
-			  windwo.open(url);
+			  window.open(url);
 		  },
 		  error : function(){
 			  console.log("실패");
