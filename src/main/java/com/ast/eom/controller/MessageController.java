@@ -91,12 +91,6 @@ public class MessageController {
 	stat.put("stdNo", stdNo);
 	stat.put("lessonNo", lessonNo);
 	
-    messageDao.lessonStd(stat);
-  }
-  
-  @PostMapping("lessonMatchingStd")
-  @ResponseBody
-  public void lessonMatchingStd(int lessonNo) throws Exception {
-    messageDao.changeLessonStat(lessonNo);
+    messageDao.lessonInvitationStd(stat);
   }
 }
