@@ -137,8 +137,9 @@ ul li::before {
                   <h5>${member.gender}, ${age} 세</h5>
                   </div>
                   
-                  <a href="#pablo" class="btn btn-just-icon btn-link btn-message">
-                    <i class="far fa-comment-dots"></i></a> 
+                  <button onclick="messageShow(this)" value="${member.memberNo}"
+                  class="btn btn-just-icon btn-link btn-message">
+                    <i class="far fa-comment-dots"></i></button> 
                     
                 </div>
                 </c:if>
@@ -434,6 +435,14 @@ ul li::before {
       <!-- Container / End -->
     </div>
   </div>
+  
+  <script>
+  function messageShow(memberNo){
+	  var url = "/app/message/detail?memberNo="+memberNo.value;
+	  var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	  window.open(url, "쪽지목록" ,option);
+  }
+  </script>
 
 </body>
 </html>
