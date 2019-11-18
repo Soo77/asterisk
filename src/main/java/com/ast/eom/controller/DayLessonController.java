@@ -1,6 +1,7 @@
 package com.ast.eom.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,13 @@ public class DayLessonController {
     List<DayLesson> dayLessons = dayLessonService.list(lessonNo);
     if (dayLessons.size() > 0) {
       model.addAttribute("dayLessonNo", dayLessons.get(0).getDayLessonNo());
+    }
+
+    // 수정해야함
+    List<Date> dayLessonDateList = new ArrayList<Date>();
+    for (int i=0; i<dayLessons.size(); i++) {
+      dayLessonDateList.add(dayLessons.get(i).getLessonDate());
+      System.out.println("date==>" + dayLessons.get(i).getLessonDate());
     }
     
     model.addAttribute("lessonNo", lessonNo);

@@ -54,6 +54,7 @@ public class DefaultBoardService implements BoardService {
   public void update(Board board) throws Exception {
     boardDao.update(board);
     if (board.getFiles().size() > 0) {
+      boardFileDao.deleteAll(board.getBoardNo());
       for (BoardFile file : board.getFiles()) {
         file.setBoardNo(board.getBoardNo());
         boardFileDao.insert(file);

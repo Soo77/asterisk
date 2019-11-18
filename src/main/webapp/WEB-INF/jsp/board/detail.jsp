@@ -295,7 +295,7 @@
         </div>
       </div>
 
-      <div id="insertBoardPhotos">
+       <div id="insertBoardPhotos">
         <hr>
         <div class="row">
           <div class="col">
@@ -315,7 +315,7 @@
         </div>
       </div>
 
-      <!--       <div id="insertBoardPhotos">
+<!--       <div id="insertBoardPhotos">
         <div class="form-group row teacherDisplay">
           <div class="col">
             <label for="inputPhotos" class="mb-3">사진 업로드</label>
@@ -397,9 +397,9 @@
   let teacherPhotos = new Array();
 
 </script>
-<c:forEach items="${board.files}" var="photo">
+<c:forEach items="${board.files}" var="board">
   <script>
-      teacherPhotos.push('${photo.fileName}');
+      teacherPhotos.push('${board.fileName}');
   </script>
 </c:forEach>
 <script>
@@ -502,8 +502,8 @@
   teacherPhotoController.loadInitialTeacherPhotos();
 
 
-</script> -->
-
+</script>
+ -->
 <script>
   // 수정
   var UpdateButton = document.querySelector('#btnUpdate');
@@ -604,9 +604,7 @@
         for (i = 0; i < filesAmount; i++) {
           var reader = new FileReader();
           reader.onload = function(event) {
-            $(
-                $
-                    .parseHTML('<img style="height:150px; width:150px; margin:2px; object-fit: cover;">'))
+            $($.parseHTML('<img style="height:150px; width:150px; margin:2px; object-fit: cover;">'))
                 .attr('src', event.target.result)
                 .appendTo(placeToInsertImagePreview);
           }
@@ -616,6 +614,7 @@
     };
   
     $('#gallery-photo-add').on('change', function() {
+    	$(".gallery").empty();
       imagesPreview(this, 'div.gallery');
       $('.upload-name').val('파일' + this.files.length + '개');
     });

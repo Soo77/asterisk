@@ -4,14 +4,7 @@
 
 <head>
 
-  <!--Google Fonts-->
-  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-  
-  <!--Simple Cale Calender CSS-->
-  <link rel="stylesheet" href="/css/simple-calendar.css">
-  
-  <!--Simple Calender Js-->
-  <script src="/js/jquery.simple-calendar.js"></script>
+<link rel="stylesheet" href="/css/simple-calendar.css">
 
 <style>
   #my-progress {
@@ -41,7 +34,9 @@
   .modal-title {
     font-weight: bold;
   }
-  
+
+
+
 </style>
   
 </head>
@@ -60,9 +55,19 @@
 </div>
 <div class="main main-raised">
   <div class="container p-3">
-    <!-- <div id="container" class="calendar-container p-5"></div>
-    <hr> -->
-    
+  
+    <!-- 수정해야함 -->
+    <c:forEach var="dayLesson" items="${dayLessons}" varStatus="status">
+      <input type="hidden" name="lessonDate" id="dayLessonDate${status.index}" value="${dayLesson.lessonDate}">
+    </c:forEach>
+  
+    <div class="row">
+      <div class="col">
+        <div id="container" class="calendar-container p-5"></div>
+      </div>
+    </div>
+    <hr>
+
     <div class="row">
       <div class="col">
         <div>
@@ -106,6 +111,8 @@
         </div>
       </div>
     </div>
+    
+    
 
     <!-- 일별 과외 진행현황 리스트 -->
     <div class="dayLessonList">
@@ -191,17 +198,31 @@
 <script src="/js/jquery.simple-calendar.js"></script>
 
 <script>
-/*  $(document).ready(function(){
-	  
-	$("#container").simpleCalendar();
 
+	$(document).ready(function(){
+		$("#container").simpleCalendar();
 	});
-
+	
+	
+	// 수정해야함
+  $("input[name=lessonDate]").each(function(idx) {
+    var value = $(this).val();
+    console.log(value);
+  });
+	
   $("#container").simpleCalendar({
       months: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-      days: ['일','월','화','수','목','금','토']
-  });
- */
+      days: ['일','월','화','수','목','금','토'],
+      minDate : "YYYY-MM-DD",         // minimum date
+      maxDate : "YYYY-MM-DD",         // maximum date
+      insertEvent: true,              // can insert events
+      displayEvent: true,             // display existing event
+      fixedStartDay: true,            // Week begin always by monday
+      events: ['2019-11-02', '2019-11-13', '2019-11-15'],        // event dates 임시로 정해둠!!
+      eventsInfo: [],     // event info to show
+      insertCallback : function(){}   // Callback when an event is added to the calendar
+  }); 
+  
 </script>
 
 <script>
