@@ -25,7 +25,7 @@ public interface LessonService {
   void interruptionRequest(int memberTypeNo, int lessonNo, String stopReason) throws Exception;
   
   // 후기 작성
-  void insertReview(int lessonNo, String review) throws Exception;
+  void insertReview(int lessonNo, String review, int teacherEvaluation) throws Exception;
 }
 
 
