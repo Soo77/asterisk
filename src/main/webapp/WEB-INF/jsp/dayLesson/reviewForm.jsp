@@ -20,6 +20,13 @@
       font-size: 30px;
       color: #FFCD12;
     }
+    
+    #studentReview {
+      background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+        linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+      border: 0.5px solid #d2d2d2;
+      border-radius: .25rem;
+    }
   </style>
   
 </head>
@@ -92,8 +99,8 @@ $('#star_grade a').click(function(){
         return;
       } else {
         swal({
-            title: "후기",
-            text: "등록하시겠습니까?",
+            title: "후기 등록",
+            text: "등록하시면 수정이 불가능합니다. 등록하시겠습니까?",
             buttons: true,
           })
           .then((willDelete) => {
