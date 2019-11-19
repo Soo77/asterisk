@@ -6,13 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>쪽지</title>
-<script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
 .messageRow {
   background-color: white;
   width: auto;
-  heigh: auto;
+  height: auto;
   border: solid 1px #ccc;
 }
 
@@ -73,8 +71,8 @@
 				</c:when>
 				<c:otherwise>
 					<div class="chat-left">${messageList.messageContents}</div>
-	           ${read}
-	           <div class="datetime-left">${messageList.sendDate}</div>
+			       <span style="margin-right: 110px;">읽음</span>
+	           <div style="color: #999; display:inline">${messageList.sendDate}</div>
 	         </c:otherwise>
 			</c:choose>
 		</c:forEach>
