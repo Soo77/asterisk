@@ -49,4 +49,9 @@ public class DefaultMessageService implements MessageService {
     return messageDao.messageIn(message);
   }
 
+  @Override
+  public List<Member> messageDetailInfo(int memberNo) throws Exception {
+    return messageDao.messageDetailInfo(memberNo);
+  }
+
 }
