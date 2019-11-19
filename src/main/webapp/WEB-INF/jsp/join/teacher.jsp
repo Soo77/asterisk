@@ -8,7 +8,6 @@
   <meta charset="UTF-8">
   <title>가입 화면</title>
   <script type="text/javascript">
-
     // 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
     function checkValue() {
       var va = document.querySelectorAll(".redch");
@@ -18,41 +17,6 @@
           return false;
         }
       }
-
-      if (!document.userInfo.filePath.value) {
-        alert("프로필 사진을 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.password.value) {
-        alert("비밀번호를 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.okpw.value) {
-        alert("비밀번호 확인을 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.name.value) {
-        alert("이름을 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.email.value) {
-        alert("이메일을 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.gender.value) {
-        alert("성별을 선택하세요.");
-        return false;
-      }
-    }
-
-    // 취소 버튼 클릭시 로그인 화면으로 이동
-    function goLoginForm() {
-      location.href = "/";
     }
   </script>
   <style>
@@ -118,7 +82,7 @@
                 <div class="profile">
                   <div class="avatar">
                     <img src="/images/photo.png" alt="Circle Image" id="view_file"
-                      class="img-raised rounded-circle img-fluid">
+                      class="img-raised rounded-circle">
                   </div>
                   <div class="name">
                     <h2 class="title">프로필 사진</h2>
@@ -138,29 +102,30 @@
 
               <div class="form-group bmd-form-group">
                 <label for="id">아이디</label>
-                <input type="text" class="form-control" name="id" id="id" maxlength="50">
+                <input type="text" class="form-control" name="id" id="id" maxlength="50" required>
                 <div class="redch" id="id_check"></div>
               </div>
 
               <div class="form-group bmd-form-group">
                 <label for="pw">비밀번호</label>
-                <input type="password" class="form-control" name="password" id="pw" maxlength="50">
+                <input type="password" class="form-control" name="password" id="pw" maxlength="50" required>
               </div>
               <div class="form-group bmd-form-group">
                 <label for="okpw">비밀번호 확인</label>
-                <input type="password" class="form-control" name="okpw" id="okpw" maxlength="50">
+                <input type="password" class="form-control" name="okpw" id="okpw" maxlength="50" required>
                 <div class="redch" id="pw_check"></div>
               </div>
 
               <div class="form-group bmd-form-group">
                 <label for="exampleInput1">이름</label>
-                <input type="text" class="form-control" name="name" id="name" maxlength="50">
+                <input type="text" class="form-control" name="name" id="name" maxlength="50" required>
               </div>
 
               <div class="form-check mb-3">
                 <label for="exampleInput1" class="bmd-label-floating">성별</label><br>
                 <div class="my-wrapper ml-2">
-                  <label class="form-check-label"> <input class="form-check-input" type="radio" name="gender" value="M">
+                  <label class="form-check-label"> 
+                  <input class="form-check-input" type="radio" name="gender" value="M" checked>
                     남&ensp; <span class="circle"> <span class="check"></span>
                     </span>
                   </label> <label class="form-check-label"> <input class="form-check-input" type="radio" name="gender"
@@ -173,15 +138,15 @@
 
               <div class="form-group">
                 <label for="YEAR">생년월일</label>
-                <Input type="date" name="birthDay" id="YEAR" class="form-control">
+                <Input type="date" max="9999-12-31" name="birthDay" id="YEAR" class="form-control" required>
               </div>
 
               <div id="mailselect">
                 <div class="input-group form-group">
                   <label for="email">이메일</label>
-                  <input type="text" class="form-control" name="email" id="email" maxlength="50">
+                  <input type="text" class="form-control" name="email" id="email" maxlength="50" required>
                   <div class="input-group-text">@</div>
-                  <input type="text" class="form-control" name="mail" id="mail" value="">
+                  <input type="text" class="form-control" name="mail" id="mail" value="" required>
                   <select name="mail2" id="mail2" class="form-control">
                     <option selected disabled>메일 선택</option>
                     <option value="naver.com">naver.com</option>
@@ -299,51 +264,54 @@
                 <input type="time" class="form-control" name="lessonEndTime" />
               </div>
 
-              <div class="form-group row">
-                <div class="col">
-                  <label>수업료</label>
-                  <div class="d-flex">
-                    <div class="flex-item pr-1" style="flex-basis: 97%;">
-                      <input type="text" class="form-control" name="wantedFeeAmount">
-                    </div>
-                    <div class="flex-item align-self-end" style="flex-basis: 3%;">
-                      <span>만원</span>
-                    </div>
-                  </div>
-                </div>
-
+              <div class="form-group">
+                 <label>수업료</label>
+                 <div class="d-flex">
+                   <select class="form-control" name="wantedFeeAmount">
+		                <option value="1">20만원이하</option>
+		                <option value="2">20만원~30만원</option>
+		                <option value="3">30만원~40만원</option>
+		                <option value="4">40만원이상</option>
+	                </select>
+                 </div>
               </div>
 
               <div class="form-group">
                 <label>은행명</label>
-                <select name="bankname" class="form-control">
+                <select name="bankname" class="form-control" required>
                   <option value="국민은행">국민은행</option>
                   <option value="신한은행">신한은행</option>
+                  <option value="우리은행">우리은행</option>
+                  <option value="카카오뱅크">카카오뱅크</option>
+                  <option value="기업은행">기업은행</option>
+                  <option value="하나은행">하나은행</option>
                 </select>
               </div>
 
               <div class="form-group">
                 <label>계좌번호</label>
-                <input type="text" name="accountno" id="accountno" class="form-control"><br>
+                <input type="text" name="accountno" id="accountno" class="form-control" required><br>
                 <div id="ac_check" class="redch"></div>
               </div>
 
               <div class="form-group">
                 <label>자기소개</label>
-                <textarea rows="10" cols="30" id="teacherintro" class="form-control" name="teacherintro"></textarea>
+                <textarea rows="10" cols="30" id="teacherintro" class="form-control" name="teacherintro" required></textarea>
               </div>
 
               <div class="form-group">
                 <label class="bmd-label-floating my-lesson-certi">과외 신고서</label>
                 <div class="filebox my-lesson-certi">
                   <label for="lessoncertificate" class="btn btn-outline-primary btn-sm">파일선택</label>
-                  <input type="file" id='lessoncertificate' name='lessoncertificate'>
+                  <input type="file" id='lessoncertificate' name='lessoncertificate' required>
                 </div>
                 <img id="view_lessonFile" class="mb-3">
               </div>
 
-              <button type="submit" class="btn btn-primary btn-sm" id="submit">가입</button>
-              <input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
+              <div style="padding-bottom: 20px;">
+                <button type="submit" class="btn btn-primary btn-sm" id="submit">가입</button>
+                <input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
+              </div>
 
             </div>
 
@@ -352,39 +320,7 @@
       </div>
     </div>
   </form>
-
-  <!--   생년월일 -->
-  <script>
-    $(document).ready(function () {
-      setDateBox();
-    });
-
-    // select box 연도 , 월 표시
-    function setDateBox() {
-      var dt = new Date();
-      var year = "";
-      var com_year = dt.getFullYear();
-      // 발행 뿌려주기
-      $("#YEAR").append("<option value=''>년도</option>");
-      // 올해 기준으로 -1년부터 +5년을 보여준다.
-      for (var y = (com_year - 118); y <= (com_year); y++) {
-        $("#YEAR").append("<option value='" + y + "'>" + y + " 년" + "</option>");
-      }
-      // 월 뿌려주기(1월부터 12월)
-      var month;
-      $("#MONTH").append("<option value=''>월</option>");
-      for (var i = 1; i <= 12; i++) {
-        $("#MONTH").append("<option value='" + i + "'>" + i + " 월" + "</option>");
-      }
-
-      var day;
-      $("#DAY").append("<option value=''>일</option>");
-      for (var i = 1; i <= 31; i++) {
-        $("#DAY").append("<option value='" + i + "'>" + i + " 일" + "</option>");
-      }
-    }
-  </script>
-
+  
   <!-- 취소 -->
   <script>
     var cbtn = document.querySelector("#cancelbtn");
@@ -558,20 +494,25 @@
 
   <!--   이메일 확인 -->
   <script>
-    var mailSelector = $('#mail2');
-    mailSelector.change(function () {
-      if (mailSelector.val() == "") {
+    $("#mailselect").focusout(function(){
+      emailCheck();
+    })
+  
+    $("#mail2").change(function(){
+      if ($('#mail2').val() == "") {
         dp.style.display = 'block';
-        mailSelector.css('display', 'none');
+        $('#mail2').css('display', 'none');
       }
+      document.getElementById("mail").value = document.getElementById("mail2").value;
+      emailCheck();
     });
-    $("#email").blur(function () {
-
+    
+    function emailCheck(){
       var email = $('#email').val();
       var mail = $('#mail').val();
       var addmail = email + '@' + mail;
       var mailtest = /^[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-
+      
       if (mail == "") {
         dp.readOnly = false;
         $('#email_check').text('이메일을 입력해주세요');
@@ -617,16 +558,7 @@
           }
         });
       }
-    });
-  </script>
-
-  <!--     메일 선택 -->
-  <script>
-    $("#mail2").change(
-      function () {
-        document.getElementById("mail").value = document
-          .getElementById("mail2").value;
-      });
+    }
   </script>
 
   <!--   휴대전화 중복 -->
@@ -635,13 +567,12 @@
       var tel = $('#tel').val();
       var teltest = /^[0-9]{11}$/;
 
-      if (!teltest.test(tel)) {
+      if (tel == "") {
+        $("#tel_check").text("");
+        $("#submit").attr("disabled", false);
+        return false;
+      } else if (!teltest.test(tel)) {
         $("#tel_check").text("11개의 숫자만 입력해주세요");
-        $("#tel_check").css("color", "red");
-        $("#tel").css("color", "red");
-        $("#submit").attr("disabled", true);
-      } else if (tel == "") {
-        $("#tel_check").text("번호를 입력해주세요");
         $("#tel_check").css("color", "red");
         $("#tel").css("color", "red");
         $("#submit").attr("disabled", true);
@@ -682,7 +613,7 @@
       var ac = document.getElementById("accountno").value;
       var actest = /^[0-9]{4,}$/
       if (!actest.test(ac)) {
-        $("#ac_check").text("숫자만 입력해주세요");
+        $("#ac_check").text("4자리 이상의 숫자만 입력해주세요");
         $("#ac_check").css("color", "red");
         $("#accountno").css("color", "red");
         $("#submit").attr("disabled", true);
