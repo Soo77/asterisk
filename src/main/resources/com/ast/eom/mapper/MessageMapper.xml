@@ -68,6 +68,10 @@
     select *from member where id like CONCAT('%',#{id},'%') and mem_type_no=1
   </select>
   
+  <select id="lessonInvitationCheck" parameterType="int" resultType="String">
+    select std_no from lesson WHERE lesson_no=#{lessonNo}
+  </select>
+  
   <update id="lessonInvitationStd" parameterType="Map">
     UPDATE lesson SET std_no=#{stdNo}, lesson_stat=2 WHERE lesson_no=#{lessonNo}
   </update>

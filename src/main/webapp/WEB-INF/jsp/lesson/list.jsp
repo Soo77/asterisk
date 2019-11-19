@@ -97,7 +97,6 @@
 				  data-toggle="modal" data-target="#exampleModal${i}">학생초대</button>&ensp;&ensp;
 				  
 				  <div id="exampleModal${i}" class="modal fade" data-backdrop="false">
-				  <c:set var="i" value="${i+1}"/>
 				    <div class="modal-dialog">
 				      <div class="modal-content">
 				        <div class="modal-header">
@@ -105,7 +104,7 @@
 				            <span>×</span>
 				          </button>
 				        </div>
-				        <span class="messageLessonNo" id="${lesson.lessonNo}">수업번호 : ${lesson.lessonNo}</span>
+				        <span class="messageLessonNo${i}" id="${lesson.lessonNo}">수업번호 : ${lesson.lessonNo}</span>
 				                수업과목:
 					      <c:choose>
 					      <c:when test="${lesson.subject.schoolTypeNo eq 1}">
@@ -124,15 +123,17 @@
 					            시작일: ${lesson.startDate}&ensp;종료일: ${lesson.endDate}
 					      
 				        <div class="messageRow">
-				          <input type="text" id="std" placeholder="학생 아이디 입력">
-				          <button id="search" class="btn btn-primary btn-sm">검색</button>
+				          <input type="text" id="std${i}" placeholder="학생 아이디 입력">
+				          <button onclick="list(this)" id="${i}"
+				          class="btn btn-primary btn-sm">검색</button>
 				        </div>
 				
-				        <div id="searchResult"></div>
+				        <div id="searchResult${i}"></div>
 				
-				        <input type="text" id="choiceId" readOnly>
-				        <button id="lessonMessage" 
+				        <input type="text" id="choiceId${i}" readOnly>
+				        <button id="lessonMessage${i}" onclick="lessonMessage(${i})" 
 				        class="btn btn-primary btn-sm">메세지  전송</button>
+							  <c:set var="i" value="${i+1}"/>
 				      </div>
 				    </div>
 				  </div>
@@ -164,30 +165,25 @@
   </div>
   
   <script>
-$("#search").on('click', function() {
-    list();
-  });
-</script>
-
-  <script>
-  function list() {
-    var id = document.getElementById("std").value;
+  function list(search) {
+	  var no = search.id;
+    var id = document.getElementById("std"+no).value;
       $.ajax({
         url : "/app/message/searchStd",
         type : "post",
         data : {id : id},
         success : function(data){
-          $("#searchResult").text("");
+          $("#searchResult"+no).text("");
           for(var i in data){
             console.log(data);
             var result = "아이디:<a href='javascript:void(0)'"
-            result += "onclick='selectId(this)'"
-            result += "id="+data[i].memberNo+">"+data[i].id+"</a>"
+            result += "onclick='selectId(this,"+no+")'"
+            result += " id="+data[i].memberNo+">"+data[i].id+"</a>"
             result += " 이름:"+data[i].name
             result += " 성별:"+data[i].gender
             result += " 생년월일:"+data[i].dateOfBirth
             result += " 주소:"+data[i].addressCity+" "+data[i].addressSuburb+"<br>"
-            $("#searchResult").append(result);
+            $("#searchResult"+no).append(result);
           }
         },
         error : function(){
@@ -199,19 +195,19 @@ $("#search").on('click', function() {
 
   <!-- 아이디 선택 -->
   <script>
-  function selectId(clickId){
-  var no = clickId.id;
+  function selectId(clickId, no){
+  var memNo = clickId.id;
   var val = clickId.text;
-    $("#choiceId").attr("placeholder",val)
-    $("#lessonMessage").attr("value",no)
+    $("#choiceId"+no).attr("placeholder",val)
+    $("#lessonMessage"+no).attr("value",memNo)
   }
   </script>
 
   <!-- 메세지 전송 -->
   <script>
-  $("#lessonMessage").on('click', function(){
-  var memberNo = document.getElementById("lessonMessage").value;
-  var lessonNo = document.getElementsByClassName("messageLessonNo")[0].id;
+  function lessonMessage(no){
+  var memberNo = document.getElementById("lessonMessage"+no).value;
+  var lessonNo = document.getElementsByClassName("messageLessonNo"+no)[0].id;
   console.log(memberNo);
   console.log(lessonNo);
     var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
@@ -237,7 +233,7 @@ $("#search").on('click', function() {
          console.log("실패");
         }
       })
-  });
+  }
   </script>
 
   <!--   Core JS Files   -->

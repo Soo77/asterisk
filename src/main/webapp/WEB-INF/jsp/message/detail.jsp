@@ -142,18 +142,34 @@
 	  }
 	  
 	  $.ajax({
-          url:"/app/message/lessonInvitationStd",
+          url:"/app/message/lessonInvitationCheck",
           type:"post",
-          data:"stdNo="+memberNo+"&lessonNo="+lessonNo,
+          data:"lessonNo="+lessonNo,
           success : function(result) {
-        	  var url = "/app/mypage/detail";
-            alert("나의 수업을 확인해주세요");
-            window.open(url);
+        	  if(result != ""){
+        		  alert("이미 등록된 수업입니다")
+        		  return false;
+        	  } else{
+        		  $.ajax({
+        	          url:"/app/message/lessonInvitationStd",
+        	          type:"post",
+        	          data:"stdNo="+memberNo+"&lessonNo="+lessonNo,
+        	          success : function(result) {
+        	            var url = "/app/lesson/list";
+        	            alert("나의 수업을 확인해주세요");
+        	            window.open(url);
+        	          },
+        	          error : function() {
+        	           console.log("실패");
+        	          }
+        	    })
+        	  }
           },
           error : function() {
            console.log("실패");
           }
     })
+	  
   }
   </script>
 
