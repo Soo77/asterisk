@@ -84,6 +84,12 @@ public class MessageController {
     return messageDao.searchStd(id);
   }
   
+  @PostMapping("lessonInvitationCheck")
+  @ResponseBody
+  public String lessonInvitationCheck(int lessonNo) throws Exception {
+    return messageDao.lessonInvitationCheck(lessonNo);
+  }
+  
   @PostMapping("lessonInvitationStd")
   @ResponseBody
   public void lessonInvitationStd(int stdNo, int lessonNo) throws Exception {
