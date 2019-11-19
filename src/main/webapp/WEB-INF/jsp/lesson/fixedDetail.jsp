@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"
-  charset="UTF-8"> </script>
-<head>
-</head>
 
+<script>
+  console.log(${lesson});
+</script>
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
   <div class="container">
@@ -21,13 +20,13 @@
 <div class="main main-raised">
   <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
     <div id='content'>
-    <div class="text-right mb-4">
+    <div class="mb-4"> 
     
      <form name="deleteAll" action='deleteAll' method='post'>
       <input type="hidden" name="lessonNo" value="${lesson.lessonNo}">
       <input type="hidden" class="btn btn-danger deleteCurrBtn" value="커리큘럼 삭제"> 
      </form> 
-
+    <h4>수업번호 : ${lesson.lessonNo}</h4>
     </div> 
       <form action='update' method='post'>
       <div style="padding-left: 13px; padding-right: 13px;">
@@ -123,42 +122,52 @@
           </div>
         </div>
       </div>
-      
-      
-      
-      <div class="row">
+    
+     
+      <div class="row">  
           <div class="col-lg-3 col-sm-6">
             <label for="basic-url2">초중고</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <select class="custom-select" name="schoolTypeNo">
-                  <option value="">학교 선택</option>
-                  <option value=1>초등학교</option>
-                  <option value=2>중학교</option>
-                  <option value=3>고등학교</option>
-              </select>
-            </div>
+            
+            <c:choose>
+              <c:when test="${lesson.subject.schoolTypeNo eq 1}">
+                <div class="form-group has-default bmd-form-group pt-0">
+                  <input name="schoolType" type="text" class="form-control"
+                    value="초등"readonly> 
+                </div>
+              </c:when>
+              <c:when test="${lesson.subject.schoolTypeNo eq 2}">
+                <div class="form-group has-default bmd-form-group pt-0">
+                  <input name="schoolType" type="text" class="form-control"
+                    value="중등"readonly> 
+                </div>
+              </c:when>
+              <c:when test="${lesson.subject.schoolTypeNo eq 3}">
+                <div class="form-group has-default bmd-form-group pt-0">
+                  <input name="schoolType" type="text" class="form-control"
+                    value="고등"readonly> 
+                </div>
+              </c:when>
+            </c:choose>
           </div>
           <div class="col-lg-3 col-sm-6">
             <label for="basic-url2">과목</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <select class="custom-select" name="subjectName">
-                  <option value="">과목 선택</option>
-                  <option value="korean">국어</option>
-                  <option value="english">영어</option>
-                  <option value="math">수학</option>
-              </select>  
+              <input name="subjectName" type="text" class="form-control"
+                value="${lesson.subject.subjectName}"readonly>
             </div>
           </div>
           <div class="col-lg-3 col-sm-6">
             <label for="basic-url1">수업 설명</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonDescription" id="basic-url1" type=text class="form-control" placeholder="수업설명">
+              <input name=lessonDescription type="text" class="form-control"
+                value="${lesson.lessonDescription}"readonly>
             </div>
           </div>
           <div class="col-lg-3 col-sm-6">
             <label for="basic-url2">수업료</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)"> 
+              <input name=lessonFee type="text" class="form-control"
+                value="${lesson.lessonFee}"readonly>
             </div>
           </div>
          </div> 
@@ -198,20 +207,18 @@
             <a href="list" class="btn btn-primary">수업목록</a>
           </div> 
           <div class="col text-right">
-            <input type="button" class="btn btn-primary pay-button" value="결제">  
+            <input type="button" class="btn btn-primary pay-button" value="결제" onClick="location.href='../payment/detail'">
           </div>
         </div>
       </form>
     </div>
 
     <c:set var="garo" value="${lesson.lessonNo}" scope="session"></c:set>
-    <c:set var="lessonFee" value="${lesson.lessonNo}" scope="session"></c:set>
+    <c:set var="lessonFee" value="${lesson.lessonFee*10000}" scope="session"></c:set>
 
 
   </div>
 </div>
-
-
 
 <script language="javascript">
   function checking() {

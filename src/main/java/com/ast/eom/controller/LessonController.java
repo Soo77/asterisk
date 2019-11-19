@@ -140,8 +140,9 @@ public class LessonController {
       }
       resultDay = resultDay + "일";
     }
-
+    
     lesson.setDayintoWord(resultDay);
+    System.out.println(lesson);
     model.addAttribute("lesson", lesson);
   }
 

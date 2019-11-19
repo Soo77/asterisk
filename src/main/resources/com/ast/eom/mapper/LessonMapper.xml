@@ -136,8 +136,13 @@
     </select>
     
      <select id="findCurrBy" parameterType="int" resultMap="LessonMap">
-			select c.curr_lesson_dt, c.curr_lesson_st, c.curr_lesson_et, l.sdt, l.edt, cl.curr_lesson_no, cl.lesson_no, cl.lesson_conts, cl.lesson_days
+			<include refid="lessonColumn"/>,
+			<include refid="curriculumColumn"/>,
+			<include refid="clcColumn"/>,
+			s.sub_name, s.sch_type_no, st.sch_type_no, st.sch_type
 			from lesson l
+			inner join subject s on l.sub_no = s.sub_no
+			inner join school_type st on s.sch_type_no = st.sch_type_no
 			inner join curriculum c on l.lesson_no = c.lesson_no
 			inner join curr_lesson_conts cl on c.lesson_no = cl.lesson_no
 			where l.lesson_no = #{haha}
@@ -192,10 +197,10 @@
     keyColumn="lesson_no"
     keyProperty="lessonNo">
     insert into lesson (tch_no, sub_no, lesson_desc, lesson_fee, sdt, edt)
-    values (#{teacherNo}, #{subjectNo}, #{lessonDescription}, #{lessonFee}, #{startDate}, #{startDate});
+    values (#{teacherNo}, #{subjectNo}, #{lessonDescription}, #{lessonFee}, #{startDate}, #{endDate});
   </insert>
   
-  <insert id="addCurriculum" parameterType="Lesson" >
+  <insert id="addCurriculum" parameterType="Lesson" > 
     insert into curriculum (lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
     values (#{lessonNo}, #{curriculum.curriculumLessonDay}, #{curriculum.curriculumLessonStartTime}, #{curriculum.curriculumLessonEndTime});
   </insert>
