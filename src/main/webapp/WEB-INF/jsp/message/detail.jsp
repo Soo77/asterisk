@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>쪽지</title>
-<script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
 .messageRow {
   background-color: white;
@@ -146,10 +144,6 @@
           type:"post",
           data:"lessonNo="+lessonNo,
           success : function(result) {
-<<<<<<< HEAD
-=======
-            console.log(result);
->>>>>>> soohyun
         	  if(result != ""){
         		  alert("이미 등록된 수업입니다")
         		  return false;

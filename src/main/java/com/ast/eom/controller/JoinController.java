@@ -273,7 +273,7 @@ public class JoinController implements Runnable {
     try { 
       MimeMessage message = new MimeMessage(session);
       message.setFrom(new InternetAddress(user));
-      message.addRecipient(Message.RecipientType.TO, new InternetAddress("s_swwhh@naver.com")); 
+      message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress)); 
 
       // 메일 제목 
       message.setSubject("엄과외 회원가입 인증~"); 
