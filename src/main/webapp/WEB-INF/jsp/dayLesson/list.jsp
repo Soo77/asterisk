@@ -66,7 +66,7 @@
   
     <!-- 수정해야함 -->
     <c:forEach var="dayLesson" items="${dayLessons}" varStatus="status">
-      <input type="hidden" name="lessonDate" id="dayLessonDate${status.index}" value="${dayLesson.lessonDate}">
+      <input type="hidden" name="hiddenLessonDate" id="dayLessonDate${status.index}" value="${dayLesson.lessonDate}">
     </c:forEach>
   
     <div class="row">
@@ -206,11 +206,12 @@
 	
 	
 	// 수정해야함
-  $("input[name=lessonDate]").each(function(idx) {
-    var value = $(this).val();
-    console.log(value);
+	var lessonDateList = new Array();
+  $("input[name=hiddenLessonDate]").each(function(idx) {
+	  lessonDateList.push($(this).val());
+    console.log(lessonDateList);
   });
-	
+  
   $("#container").simpleCalendar({
       months: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
       days: ['일','월','화','수','목','금','토'],
@@ -219,7 +220,7 @@
       insertEvent: true,              // can insert events
       displayEvent: true,             // display existing event
       fixedStartDay: true,            // Week begin always by monday
-      events: ['2019-11-02', '2019-11-13', '2019-11-15'],        // event dates 임시로 정해둠!!
+      events: lessonDateList,        // event dates 임시로 정해둠!!
       eventsInfo: [],     // event info to show
       insertCallback : function(){}   // Callback when an event is added to the calendar
   }); 
