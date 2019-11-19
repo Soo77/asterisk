@@ -216,13 +216,6 @@
     where mem_no = #{memberNo}
   </update>
 
-  <select id="getAllLessonSubjectContentsOf" parameterType="int" resultType="string">
-    select sub_conts
-    from lesson_subject
-    where tch_no = #{no};
-  </select>
-
-
   <insert id="insertLessonSubjectOf" parameterType="map">
     insert into lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
     values(#{teacherNo},#{subjectNo},#{subjectContents},now(),#{wantedFee})
