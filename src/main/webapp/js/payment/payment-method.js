@@ -66,7 +66,6 @@ class Payment {
       }
 
       alert(msg);
-
       if (rsp.success)
         location.href = '/app/payment/success';
     });

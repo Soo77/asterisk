@@ -14,6 +14,11 @@
 .photo-add-button {
   display: none !important;
 }
+
+.photo-add-div {
+  border: 1px solid #d2d2d2;
+  border-radius: 0.35rem;
+}
 </style>
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg3.jpg')">
