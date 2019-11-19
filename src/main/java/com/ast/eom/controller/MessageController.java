@@ -47,6 +47,9 @@ public class MessageController {
 
   @GetMapping("detail")
   public void detail(HttpSession session, Model model, int memberNo) throws Exception {
+    List<Member> messageDetailInfo = messageService.messageList(memberNo);
+    model.addAttribute("messageInfo", messageDetailInfo);
+    
     messageService.detail(memberNo);
     model.addAttribute("receiverNo", memberNo);
     
