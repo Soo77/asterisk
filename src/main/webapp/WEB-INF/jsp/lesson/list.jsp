@@ -32,11 +32,17 @@
   <div class="main main-raised">
     <div class="container">
       <div class="section text-center">
-${memberInfoMap.teacher.approvementState}
-    <c:if test="${loginUser.memberTypeNo eq 3}">
+<c:choose>
+  <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState ne 'true'}">
+    <input type="button" class="btn btn-primary pay-button" style="margin-bottom: 15px; left: 335px; display: none;" 
+      value="새 커리큘럼 등록" onClick="location.href='currAdd'">
+  </c:when>
+  <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState eq 'true'}">
+    <input type="button" class="btn btn-primary pay-button" style="margin-bottom: 15px; left: 335px;" 
+      value="새 커리큘럼 등록" onClick="location.href='currAdd'">
+  </c:when>
     
-      <a href="currAdd" class="btn btn-primary addCurrBtn" style="margin-bottom: 15px; left: 335px;">새 커리큘럼 등록</a>  
-    </c:if>
+</c:choose>
 
 <c:set var="i" value="0" />
 <!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> --> 
@@ -170,7 +176,7 @@ ${memberInfoMap.teacher.approvementState}
   
   <script>
   function list(search) {
-	  var no = search.id;
+    var no = search.id;
     var id = document.getElementById("std"+no).value;
       $.ajax({
         url : "/app/message/searchStd",
@@ -180,13 +186,13 @@ ${memberInfoMap.teacher.approvementState}
           $("#searchResult"+no).text("");
           for(var i in data){
             console.log(data);
-            var result = "아이디:<a href='javascript:void(0)'"
-            result += "onclick='selectId(this,"+no+")'"
-            result += " id="+data[i].memberNo+">"+data[i].id+"</a>"
-            result += " 이름:"+data[i].name
-            result += " 성별:"+data[i].gender
-            result += " 생년월일:"+data[i].dateOfBirth
-            result += " 주소:"+data[i].addressCity+" "+data[i].addressSuburb+"<br>"
+            var result = "아이디:<a href='javascript:void(0)'";
+            result += "onclick='selectId(this,"+no+")'";
+            result += " id="+data[i].memberNo+">"+data[i].id+"</a>";
+            result += " 이름:"+data[i].name;
+            result += " 성별:"+data[i].gender;
+            result += " 생년월일:"+data[i].dateOfBirth;
+            result += " 주소:"+data[i].addressCity+" "+data[i].addressSuburb+"<br>";
             $("#searchResult"+no).append(result);
           }
         },
