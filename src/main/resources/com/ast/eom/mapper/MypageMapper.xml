@@ -199,6 +199,12 @@
     from lesson
     where std_no = #{no};
   </select>
+
+  <select id="getChildBy" parameterType="string" resultMap="MemberMap">
+    select *
+    from member
+    where id = #{id};
+  </select>
   
   <update id="updateMember">
     update member
@@ -217,9 +223,28 @@
   </update>
 
   <insert id="insertLessonSubjectOf" parameterType="map">
-    insert into lesson_subject(tch_no, sub_no, sub_conts, rdt, wanted_fee)
-    values(#{teacherNo},#{subjectNo},#{subjectContents},now(),#{wantedFee})
+    insert into lesson_subject(tch_no, sub_no, rdt, wanted_fee)
+    values(#{teacherNo},#{subjectNo},now(),#{wantedFee})
   </insert>
+
+  <insert id="insertWantedLessonOf" parameterType="map">
+    insert into wanted_lesson(std_no, sub_no, rdt, wanted_fee)
+    values(#{studentNo},#{subjectNo},now(),#{wantedFee})
+  </insert>
+
+  <update id="deleteAllParentsNoOfStudents" parameterType="int">
+    update student
+    set parents_no = null
+    where parents_no = #{no}
+  </update>
+  
+  <update id="updateParentsOfStudent" parameterType="map">
+    update student
+    <set>
+      <if test="parentsNo != null">parents_no = #{parentsNo}</if> 
+    </set>
+    where std_no = #{childNo}
+  </update>
 
   <update id="updateTeacher" parameterType="Teacher">
     update teacher t
@@ -235,9 +260,24 @@
     where t.tch_no = #{teacherNo}
   </update>
   
+  <update id="updateStudent" parameterType="Student">
+    update student
+    <set>
+      <if test="requirementsToTeacher != null">
+        req_to_teacher = #{requirementsToTeacher}
+      </if> 
+    </set>
+    where std_no = #{studentNo}
+  </update>
+  
   <delete id="deleteAllLessonSubjectRelatedTo" parameterType="int">
     delete from lesson_subject
     where tch_no = #{no}
+  </delete>
+  
+  <delete id="deleteAllWantedLessonRelatedTo" parameterType="int">
+    delete from wanted_lesson
+    where std_no = #{no}
   </delete>
   
 </mapper>

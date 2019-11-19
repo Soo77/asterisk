@@ -31,20 +31,6 @@
                 </div>
                 <div class="name">
                   <h3 class="title mb-2">${loginUser.name}</h3>
-                  <h6>
-                    <i class="far fa-square student-ID-unchecked"></i><i
-                      class="far fa-check-square student-ID-checked"></i>
-                    <span class="student-ID-span">
-                      학생증 인증&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <i class="far fa-square tutor-certi-unchecked"></i><i
-                      class="far fa-check-square tutor-certi-checked"></i>
-                    <span class="tutor-certi-span">
-                      신고서 인증
-                    </span>
-                  </h6>
-                  <h6></h6>
-                  <button id="popMessage" class="btn btn-primary btn-sm my-message-btn">쪽지함</button>
                   <button class="btn btn-primary btn-sm my-lesson-btn">나의 과외</button>
                 </div>
               </div>
@@ -301,7 +287,7 @@
               name="videoAddress">
           </div>
 
-          <label>자녀 목록</label>
+          <label class="parentsDisplay">자녀 목록</label>
           <div class="form-group row childId mb-2 pt-1 childIdTemplate">
             <div class="col-sm-2 mb-0 form-group">
               <label for="inputChildId" class="childIdLabel">자녀ID</label>&nbsp;&nbsp;
@@ -310,11 +296,15 @@
             </div>
             <div class="col-sm-10 mt-1 d-flex">
               <div class="flex-item pr-1" style="flex-basis: 93%;">
-                <input type="text" class="form-control" readonly name="childrenId">
+                <input type="text" class="form-control" name="childrenId">
+                <input type="hidden" class="form-control" name="childrenNo">
               </div>
-              <div class="flex-item" style="flex-basis: 7%;">
+              <div class="flex-item" style="flex-basis: 7%; display: none;">
                 <input type="hidden" value="4">
                 <button class="btn btn-sm btn-outline-primary childLessonButton" type="button">과외현황</button>
+              </div>
+              <div class="flex-item" style="flex-basis: 7%;">
+                <button class="btn btn-sm btn-outline-primary child-verification-button" type="button">인증하기</button>
               </div>
             </div>
           </div>
@@ -346,7 +336,7 @@
 <!-- 값 테스트용 출력 (디버깅 이후 지울 것)-->
 <script>
   //console.log('${memberInfoMap.teacher}');
-  //console.log('${memberInfoMap.lessonSubjects}');
+  //console.log('${memberInfboMap.lessonSubjects}');
   //console.log('${memberInfoMap.parents}');
   console.log('${memberInfoMap.student}');
   //console.log('${memberInfoMap.wantedLessons}');
@@ -357,19 +347,6 @@
     console.log("${teacherLesson}");
   </script>
 </c:forEach>
-
-<!-- 쪽지함 팝업 -->
-<script>
-  $("#popMessage").on('click', function() {
-    popMessage();
-  });
- 
-  function popMessage(){
-    var url = "/app/message/list";
-    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-    window.open(url, "쪽지목록" ,option);
-  }
-</script>
 
 <!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
 <script src="/js/mypage/profile-photo.js"></script>
@@ -404,9 +381,9 @@
   myLesson.addLinkToMyLessonButton();
 
   let mypageInit = new MypageInit(memberTypeNo);
-  if (memberTypeNo == 3) {
-    mypageInit.checkTeacherApprovement(teacherUniversityConfirmation, teacherApprovementState);
-  }
+  // if (memberTypeNo == 3) {
+  //   mypageInit.checkTeacherApprovement(teacherUniversityConfirmation, teacherApprovementState);
+  // }
 
   mypageInit.displayMemberInfo();
 
