@@ -10,12 +10,14 @@ class TeacherPhotoController {
 
     addEventOfDeletionPhoto(thisDeleteButton) {
       thisDeleteButton.addEventListener('click', () => {
-        if (this.teacherPhotoCount == 1)
-          return;
+        // if (this.teacherPhotoCount == 1)
+        //   return;
         let thisPhotoCard = thisDeleteButton.parentNode;
 
         thisPhotoCard.parentNode.removeChild(thisPhotoCard);
         this.teacherPhotoCount--;
+        if (this.teacherPhotoCount == 0)
+          document.getElementById('my-image-wrapper').style.height = '343px';
       });
     }
 

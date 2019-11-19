@@ -65,19 +65,20 @@
             <label for="inputPasswordCheck">비밀번호확인</label>
             <input type="password" class="form-control" id="inputPasswordCheck">
           </div>
+          <div class="redch" id="pw_check"></div>
 
           <div class="form-group">
             <label for="inputEmail">이메일</label>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" id="inputEmail" value="${mypageEmail[0]}" name="email1">
+                <input type="text" class="form-control" id="inputEmail" value="${mypageEmail[0]}" name="email1" readonly>
               </div>
               <div class="col">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                   </div>
-                  <input type="text" class="form-control" id="inputEmail2" value="${mypageEmail[1]}" name="email2">
+                  <input type="text" class="form-control" id="inputEmail2" value="${mypageEmail[1]}" name="email2" readonly>
                 </div>
               </div>
             </div>
@@ -145,6 +146,15 @@
               <c:if test="${school.schoolTypeNo eq 4}">
                 <c:set var="teacherUniversityConfirmation" value="${school.confirmed}" />
                 <input type="text" class="form-control" id="inputUniversity" value="${school.schoolName}" readonly>
+              </c:if>
+            </c:forEach>
+          </div>
+
+          <div class="form-group teacherDisplay">
+            <label for="major">전공</label>
+            <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
+              <c:if test="${school.schoolTypeNo eq 4}">
+                <input type="text" class="form-control" id="major" name="major" value="${school.major}">
               </c:if>
             </c:forEach>
           </div>
@@ -291,6 +301,7 @@
               name="videoAddress">
           </div>
 
+          <label>자녀 목록</label>
           <div class="form-group row childId mb-2 pt-1 childIdTemplate">
             <div class="col-sm-2 mb-0 form-group">
               <label for="inputChildId" class="childIdLabel">자녀ID</label>&nbsp;&nbsp;
@@ -299,7 +310,7 @@
             </div>
             <div class="col-sm-10 mt-1 d-flex">
               <div class="flex-item pr-1" style="flex-basis: 93%;">
-                <input type="text" class="form-control" readonly value="hong111" name="childrenId">
+                <input type="text" class="form-control" readonly name="childrenId">
               </div>
               <div class="flex-item" style="flex-basis: 7%;">
                 <input type="hidden" value="4">
@@ -313,7 +324,7 @@
           </div>
 
 
-          <div class="form-check kakaotalkDiv parentsDisplay">
+          <div class="form-check kakaotalkDiv parentsDisplay hiddenNode">
             <label class="form-check-label">
               <input id="kakaotalkCheckbox" class="form-check-input" type="checkbox" name="kakaoCheck">
               과외 내용을 카톡으로 수신
@@ -324,7 +335,7 @@
           </div>
 
           <div class="modification-button-div pt-2 pb-2">
-            <button class="btn btn-primary">수정</button>
+            <button id="submit" class="btn btn-primary">수정</button>
           </div>
         </form>
       </div>
@@ -379,7 +390,9 @@
   </script>
 </c:forEach>
 
+
 <script src="/js/mypage/mypage-init.js"></script>
+<script src="/js/mypage/password-checker.js"></script>
 <script>
   let memberTypeNo = Number('${loginUser.memberTypeNo}');
   let teacherUniversityConfirmation = '${teacherUniversityConfirmation}';
@@ -443,11 +456,6 @@
     document.getElementById('my-image-wrapper').style.height = '343px';
 
 </script>
-
-
-
-
-
 
 <!-- 희망과목 제거 버튼 초기 세팅-->
 <script>

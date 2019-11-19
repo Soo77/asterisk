@@ -222,14 +222,17 @@
   </insert>
 
   <update id="updateTeacher" parameterType="Teacher">
-    update teacher
+    update teacher t
+    inner join school s
+    on t.tch_no = s.tch_no
     <set>
-      <if test="accountNo != null">acc_no = #{accountNo},</if> 
-      <if test="bankName != null">bank_name = #{bankName},</if>
-      <if test="teacherIntro != null">tch_intro=#{teacherIntro},</if> 
-      <if test="videoAddress != null">vid_addr=#{videoAddress}</if> 
+      <if test="accountNo != null">t.acc_no = #{accountNo},</if> 
+      <if test="bankName != null">t.bank_name = #{bankName},</if>
+      <if test="teacherIntro != null">t.tch_intro=#{teacherIntro},</if> 
+      <if test="videoAddress != null">t.vid_addr=#{videoAddress},</if> 
+      <if test="videoAddress != null">s.major=#{major}</if> 
     </set>
-    where tch_no = #{teacherNo}
+    where t.tch_no = #{teacherNo}
   </update>
   
   <delete id="deleteAllLessonSubjectRelatedTo" parameterType="int">

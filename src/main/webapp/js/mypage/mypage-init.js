@@ -47,8 +47,11 @@ class MypageInit {
       tutorCertiSpan.style.display = 'inline-block';
       myLessonBtnDisplay.style.display = 'inline-block';
 
-      for (let td of teacherDisplay)
+      for (let td of teacherDisplay) {
+        if (td.getAttribute('class').endsWith('hiddenNode'))
+          continue;
         td.style.display = 'block';
+      }
     }
   }
 
@@ -59,8 +62,11 @@ class MypageInit {
 
       myLessonBtnDisplay.style.display = 'inline-block';
 
-      for (let sd of studentDisplay)
+      for (let sd of studentDisplay) {
+        if (sd.getAttribute('class').endsWith('hiddenNode'))
+          continue;
         sd.style.display = 'block';
+      }
     }
   }
 
@@ -68,8 +74,11 @@ class MypageInit {
     if (memberTypeNo == 2) {
       let parentsDisplay = document.getElementsByClassName('parentsDisplay');
 
-      for (let pd of parentsDisplay)
+      for (let pd of parentsDisplay) {
+        if (pd.getAttribute('class').endsWith('hiddenNode'))
+          continue;
         pd.style.display = 'block';
+      }
     }
   }
 
@@ -141,6 +150,8 @@ class MypageInit {
 
   addParentsChildrenNodes() {
     for (let i = 0; i < myParentsChildrenId.length; i++) {
+      if (myParentsChildrenId == '')
+        continue;
       let addedChildIdObject = this.addChildIdNode();
       let childIdInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[1];
       let lessonListButton = addedChildIdObject.childNodes[3].childNodes[3].childNodes[3];

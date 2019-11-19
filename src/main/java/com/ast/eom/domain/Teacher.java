@@ -11,20 +11,26 @@ public class Teacher extends Member {
   private boolean approvementState;
   private String videoAddress;
   private String subjectName;
+  private String major;
   
   private List<Lesson> lessons;
   private List<School> schools;
   private List<LessonSubject> lessonSubjects;
   private List<TeacherPhoto> teacherPhotos;
   
-  
   @Override
   public String toString() {
     return "Teacher [teacherNo=" + teacherNo + ", accountNo=" + accountNo + ", bankName=" + bankName
         + ", lessonCertificate=" + lessonCertificate + ", teacherIntro=" + teacherIntro + ", approvementState="
-        + approvementState + ", videoAddress=" + videoAddress + ", subjectName=" + subjectName + ", lessons=" + lessons
-        + ", schools=" + schools + ", lessonSubjects=" + lessonSubjects + ", teacherPhotos=" + teacherPhotos
-        + ", schoolType=" + schoolType + "]";
+        + approvementState + ", videoAddress=" + videoAddress + ", subjectName=" + subjectName + ", major=" + major
+        + ", lessons=" + lessons + ", schools=" + schools + ", lessonSubjects=" + lessonSubjects + ", teacherPhotos="
+        + teacherPhotos + ", schoolType=" + schoolType + "]";
+  }
+  public String getMajor() {
+    return major;
+  }
+  public void setMajor(String major) {
+    this.major = major;
   }
   public String getSubjectName() {
     return subjectName;
