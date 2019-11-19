@@ -103,7 +103,7 @@
           <div class="form-group row pt-1 mb-0">
             <div class="col">
               <div class="d-flex">
-                <div class="flex-item pr-1" style="flex-basis: 100%">
+                <div class="flex-item" style="flex-basis: 100%">
                   <input type="text" id="inputAddress" class="form-control" readonly value="${thisMember.addressCity}"
                     name="addressCity">
                 </div>
@@ -198,7 +198,7 @@
                 <option value=4>과학</option>
                 <option value=5>사회</option>
               </select>
-              <select class="form-control pt-0 mx-1 wantedSubject-fee" name="wantedFee" readonly>
+              <select class="form-control pt-0 ml-1 wantedSubject-fee" name="wantedFee" readonly>
                 <option value=1>20만원이하</option>
                 <option value=2>20만원~30만원</option>
                 <option value=3>30만원~40만원</option>
