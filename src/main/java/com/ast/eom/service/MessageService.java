@@ -12,4 +12,5 @@ public interface MessageService {
   List<Message> detail(int memberNo) throws Exception;
   List<Message> messageDetail(Message message) throws Exception;
   int messageIn(Message message) throws Exception;
+  List<Member> messageDetailInfo(int memberNo) throws Exception;
 }
