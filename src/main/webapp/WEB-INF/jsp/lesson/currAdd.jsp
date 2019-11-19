@@ -19,6 +19,8 @@
     </div>
   </div>
 </div>
+
+
     <c:set var="teacherNo" value="${loginUser.memberNo}" scope="session"></c:set>
 <div class="main main-raised">
   <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
@@ -29,14 +31,14 @@
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">수업시작일</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular">
+              <input max="9999-12-31" name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular">
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url2">수업종료일</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular">
-            </div>
+              <input max="9999-12-31" name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular">
+            </div> 
           </div>
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url3">수업시작시간</label>

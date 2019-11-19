@@ -32,9 +32,10 @@
   <div class="main main-raised">
     <div class="container">
       <div class="section text-center">
-
+${memberInfoMap.teacher.approvementState}
     <c:if test="${loginUser.memberTypeNo eq 3}">
-      <a href="currAdd" class="btn btn-primary " style="margin-bottom: 15px; left: 335px;">새 커리큘럼 등록</a>  
+    
+      <a href="currAdd" class="btn btn-primary addCurrBtn" style="margin-bottom: 15px; left: 335px;">새 커리큘럼 등록</a>  
     </c:if>
 
 <c:set var="i" value="0" />
@@ -44,11 +45,11 @@
   <div class="card w-75"> 
   <div class="row no-gutters">
     <c:choose>
-    <c:when test="${loginUser.memberTypeNo eq 3}">
-     <div class="col-md-3"> 
-        <img src="<%=request.getContextPath()%>/upload/join/default2.png"  class="card-img-top img-fluid"> 
-     </div> 
-     </c:when>
+     <c:when test="${loginUser.memberTypeNo eq 3 and lesson.member.profilePhoto eq NULL}">
+       <div class="col-md-3"> 
+          <img src="<%=request.getContextPath()%>/upload/join/default2.png"  class="card-img-top img-fluid"> 
+       </div> 
+     </c:when> 
       <c:otherwise> 
         <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}" alt="Raised Image" class="img-raised rounded img-fluid">
       </c:otherwise>
