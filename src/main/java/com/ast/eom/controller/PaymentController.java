@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/payment")
 public class PaymentController {
   
-  @GetMapping("payment")
-  public void payment() {}
+  @GetMapping("detail")
+  public void detail() {}
   
 }
