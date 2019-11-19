@@ -59,6 +59,12 @@
       -moz-appearance: none;
       appearance: none;
     }
+    #exampleFormControlTextarea1 {
+      background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+        linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+      border: 0.5px solid #d2d2d2;
+      border-radius: .25rem;
+    }
     
   </style>
 </head>
@@ -207,7 +213,7 @@
           for (i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
             reader.onload = function(event) {
-              $($.parseHTML('<img style="height:150px; width:150px; margin:2px;">'))
+              $($.parseHTML('<img style="height:150px; width:150px; margin:2px; object-fit: cover;">'))
                   .attr('src', event.target.result)
                   .appendTo(placeToInsertImagePreview);
             }
