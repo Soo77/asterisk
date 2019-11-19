@@ -23,7 +23,7 @@ class TeacherPhotoController {
       let html = '';
       html += '<div class="card my-images mr-1 photo-no-' + this.indexOfPhotos + '" style="display: none;">';
       html += '<img class="card-img-top my-teacher-images" src="/upload/teacher_photo/' + photoFileName + '" alt="Card image cap">';
-      html += '<div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0" style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">';
+      html += '<div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0 photo-delete-button-div" style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">';
       html += '<button type="button" class="btn btn-outline-primary mx-0 my-0" style="flex-basis: 100%; box-shadow: none; border: 0;">';
       html += '삭제';
       html += '</button>';

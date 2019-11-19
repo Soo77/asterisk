@@ -9,8 +9,10 @@
     }
     
     .photo2 {
-      height: 100px;
+      height: 150px;
+      width: 150px;
       margin: 2px;
+      object-fit: cover;
     }
     
     .row {
@@ -205,7 +207,7 @@
           for (i = 0; i < filesAmount; i++) {
             var reader = new FileReader();
             reader.onload = function(event) {
-              $($.parseHTML('<img style="height:100px; width:100px; margin:2px;">'))
+              $($.parseHTML('<img style="height:150px; width:150px; margin:2px;">'))
                   .attr('src', event.target.result)
                   .appendTo(placeToInsertImagePreview);
             }
@@ -215,6 +217,7 @@
       };
 
       $('#gallery-photo-add').on('change', function() {
+    	  $(".gallery").empty();
         imagesPreview(this, 'div.gallery');
         $('.upload-name').val('파일' + this.files.length + '개');
       });

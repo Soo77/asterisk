@@ -1,0 +1,209 @@
+/* 동그란 사진 길이가 길면 자르기 */
+.img-raised.rounded-circle.img-fluid {
+  height: 160px;
+  object-fit: cover;
+}
+
+#mypage-form {
+  padding: 0px 20px 0px 20px;
+}
+
+@media (max-width: 575.98px) {
+  #mypage-form {
+    padding: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #mypage-form {
+    padding: 0;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+@media (max-width: 575.98px) {
+  #address2-label {
+    display: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #address2-label {
+    display: none;
+  }
+}
+
+#addressSearchButton {
+  margin-top: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.childLessonButton {
+  margin-top: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.addr-search-btn-div,
+.subjectAddButtonDiv,
+.childAddButtonDiv {
+  text-align: center;
+}
+
+.subjectCheckboxDiv {
+  padding: 5px 0 0 15px;
+}
+
+@media (max-width: 495px) {
+  .subjectCheckboxDiv {
+    margin: 0;
+    text-align: center;
+    max-width: 240px;
+  }
+
+}
+
+.kakaotalkDiv {
+  padding-left: 3px;
+}
+
+.wantedSubjectLabel {
+  font-size: 0.875rem;
+}
+
+.fa-square,
+.fa-check-square,
+.student-ID-span,
+.tutor-certi-span {
+  display: none;
+}
+
+.my-lesson-btn,
+.studentDisplay,
+.teacherDisplay,
+.parentsDisplay {
+  display: none;
+}
+
+#inputIntro {
+  background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+    linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  border: 0.5px solid #d2d2d2;
+  border-radius: .25rem;
+}
+
+#inputRequirements {
+  background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+    linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  border: 0.5px solid #d2d2d2;
+  border-radius: .25rem;
+}
+
+.wantedSubject-school {
+  flex-basis: 40%;
+}
+
+.wantedSubject-subject {
+  flex-basis: 30%;
+}
+
+.wantedSubject-fee {
+  flex-basis: 40%;
+}
+
+.subjectTemplate {
+  display: none;
+}
+
+.childIdTemplate {
+  display: none;
+}
+
+.my-images {
+  max-width: 16.3rem;
+
+}
+
+.my-teacher-images {
+  width: 16.3rem;
+  height: 16.3rem;
+  object-fit: cover;
+}
+
+@media (min-width: 576px) {
+  .my-images {
+    max-width: 28rem;
+  }
+
+  .my-teacher-images {
+    width: 28rem;
+    height: 28rem;
+    object-fit: cover;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .my-images {
+    max-width: 18.2rem;
+  }
+
+  .my-teacher-images {
+    width: 18.2rem;
+    height: 18.2rem;
+    object-fit: cover;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .my-images {
+    max-width: 25rem;
+  }
+
+  .my-teacher-images {
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .my-images {
+    max-width: 15rem;
+  }
+
+  .my-teacher-images {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+  }
+}
+
+.profile-photo {
+  cursor: pointer;
+}
+
+.card-body {
+  font-size: 16px;
+  color: #9c27b0;
+}
+
+.photo-add-div {
+  border: 1px solid #d2d2d2;
+  border-radius: 0.35rem;
+}
+
+.photo-add-button {
+  color: #9c27b0;
+  border-right: 1px solid #9c27b0 !important;
+  border-left: 1px solid #9c27b0;
+  border-bottom: 1px solid #9c27b0;
+  border-bottom-left-radius: 0.35rem;
+  border-bottom-right-radius: 0.35rem;
+}

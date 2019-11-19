@@ -13,7 +13,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
-import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.util.UrlPathHelper;
 import com.ast.eom.interceptor.AuthControllerCheckInterceptor;
 import com.ast.eom.interceptor.LoginCheckInterceptor;
@@ -78,7 +77,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     registry.addInterceptor(new LoginCheckInterceptor()).addPathPatterns("/**")
         .excludePathPatterns("/auth/**").excludePathPatterns("/join/**")
-        .excludePathPatterns("/loginCheck");
+        .excludePathPatterns("/loginCheck").excludePathPatterns("/admin/**");
 
     registry.addInterceptor(new AuthControllerCheckInterceptor()).addPathPatterns("/auth/form");
 

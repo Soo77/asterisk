@@ -54,11 +54,13 @@ public class DefaultMypageService implements MypageService {
       }
       
       List<Member> member = mypageDao.getChildrenIdAndName(childrenNo);
-      for (int i = 0; i < children.size(); i++) {
-        children.get(i).setId(member.get(i).getId());
-        children.get(i).setName(member.get(i).getName());
+      if (member.size() > 0) {
+        for (int i = 0; i < children.size(); i++) {
+          children.get(i).setId(member.get(i).getId());
+          children.get(i).setName(member.get(i).getName());
+        }
+        parents.setStudents(children);
       }
-      parents.setStudents(children);
       
       memberInfoMap.put("parents", parents);
       
