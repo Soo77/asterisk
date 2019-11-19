@@ -60,7 +60,11 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     int memberTypeNo = Integer.parseInt((String)searchInfo.get("memberTypeNo"));
     
     if (memberTypeNo == 1) {
-      return memberTeacherStudentDao.searchStudent(searchInfo);
+      List<MemberTeacherStudent> students = memberTeacherStudentDao.searchStudent(searchInfo);
+      
+      
+      
+      return students;
       
     } else if (memberTypeNo == 3) {
       List<MemberTeacherStudent> teachers = memberTeacherStudentDao.searchTeacher(searchInfo);

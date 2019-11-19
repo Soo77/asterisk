@@ -58,7 +58,7 @@ public class MemberTeacherStudentController {
     model.addAttribute("detailTeacher", detailTeacher);
   }
   
-  @RequestMapping(value="search", method = {RequestMethod.POST,RequestMethod.GET})
+  @RequestMapping(value="search", method = {RequestMethod.GET})
   @ResponseBody
   public List<MemberTeacherStudent> search(HttpSession session, HttpServletRequest request, Model model) throws Exception {
     
@@ -81,6 +81,10 @@ public class MemberTeacherStudentController {
     searchInfo.put("myWantedFee", myWantedFee);
     searchInfo.put("mySchool", mySchool);
     searchInfo.put("mySubject", mySubject);
+    
+    for (Object s : searchInfo.keySet()) {
+      System.out.println(searchInfo.get(s));
+    }
     
     List<MemberTeacherStudent> resultList = memberTeacherStudentService.searchBy(searchInfo);
     

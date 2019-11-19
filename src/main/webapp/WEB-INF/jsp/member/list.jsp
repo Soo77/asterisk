@@ -77,7 +77,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="sidemenubar" id="sideMenuBar">
             <form name="form1" id="form1">
-            <input type="hidden" name="memberTypeNo" value="${memberTypeNo}">
+            <input type="hidden" name="memberTypeNo" id="memberTypeNo" value="${memberTypeNo}">
             <input type="hidden" name="mySido" id="mySido" value="">
             <input type="hidden" name="myGugun" id="myGugun" value="">
             <input type="hidden" name="myGender" id="myGender" value="">
@@ -186,75 +186,79 @@
 
 
             <c:if test="${memberTypeNo eq 3}">
+              <div class="my-lesson-wrapper">
               <c:forEach items="${memberList}" var="member"
                 begin="${pagination.pageSize * (pagination.curPage - 1)}"
                 end="${pagination.pageSize * pagination.curPage - 1}">
-                <a href="detail?no=${member.memberNo}">
-                  <div class="card-body">
-                    <div class="cardcard mb-3">
-                      <div class="row no-gutters">
-                        <div class="col-md-3">
-                          <img src="/upload/join/${member.profilePhoto}"
-                            width="120" alt="Thumbnail Image"
-                            class="img-raised rounded-circle img-fluid"
-                            onError="this.src='/upload/join/default.png'">
-                        </div>
-                        <div class="col-md-9">
-                          <h5 class="title">
-                            <span class="tim-note">${member.name}</span>
-                          </h5>
-                          <h5>
-                            <span class="tim-note">
-                              ${member.schools[0].schoolName}/
-                              ${member.gender}/ ${member.addressCity}
-                              ${member.addressSuburb}/
-                              ${member.schoolType}/
-                              ${member.subjectName} 
-                              </span>
-                          </h5>
+                  <a href="detail?no=${member.memberNo}">
+                    <div class="card-body">
+                      <div class="cardcard mb-3">
+                        <div class="row no-gutters">
+                          <div class="col-md-3">
+                            <img src="/upload/join/${member.profilePhoto}"
+                              width="120" alt="Thumbnail Image"
+                              class="img-raised rounded-circle img-fluid"
+                              onError="this.src='/upload/join/default.png'">
+                          </div>
+                          <div class="col-md-9">
+                            <h5 class="title">
+                              <span class="tim-note">${member.name}</span>
+                            </h5>
+                            <h5>
+                              <span class="tim-note">
+                                ${member.schools[0].schoolName}/
+                                ${member.gender}/ ${member.addressCity}
+                                ${member.addressSuburb}/
+                                ${member.schoolType}/
+                                ${member.subjectName} 
+                                </span>
+                            </h5>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-                <hr>
-              </c:forEach>
-            </c:if>
-
+                  </a>
+                  <hr>
+                </c:forEach>
+              </div>
+              </c:if>
+              
             <c:if test="${memberTypeNo eq 1}">
+              <div class="my-lesson-wrapper">
               <c:forEach items="${memberList}" var="member" begin="${pagination.pageSize * (pagination.curPage - 1)}"
                 end="${pagination.pageSize * pagination.curPage - 1}">
-                <a href="detail?no=${member.memberNo}">
-                  <div class="card-body">
-                    <div class="cardcard mb-3">
-                      <div class="row no-gutters">
-                        <div class="col-md-3">
-                          <img src="/upload/join/${member.profilePhoto}"
-                            width="120" alt="Thumbnail Image"
-                            class="img-raised rounded-circle img-fluid"
-                            onError="this.src='/upload/join/default.png'">
-                        </div>
-                        <div class="col-md-9">
-                          <h5 class="title">
-                            <span class="tim-note">${member.name}</span>
-                          </h5>
-                          <h5>
-                            <span class="tim-note">
-                              ${member.gender}/ ${memberlo.addressCity}
-                              ${member.addressSuburb}/
-                              ${member.schoolType}/
-                              ${member.subjectName} 
-                            </span>
-                          </h5>
+                  <a href="detail?no=${member.memberNo}">
+                    <div class="card-body">
+                      <div class="cardcard mb-3">
+                        <div class="row no-gutters">
+                          <div class="col-md-3">
+                            <img src="/upload/join/${member.profilePhoto}"
+                              width="120" alt="Thumbnail Image"
+                              class="img-raised rounded-circle img-fluid"
+                              onError="this.src='/upload/join/default.png'">
+                          </div>
+                          <div class="col-md-9">
+                            <h5 class="title">
+                              <span class="tim-note">${member.name}</span>
+                            </h5>
+                            <h5>
+                              <span class="tim-note">
+                                ${member.gender}/ ${member.addressCity}
+                                ${member.addressSuburb}/
+                                ${member.schoolType}/
+                                ${member.subjectName} 
+                              </span>
+                            </h5>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-                <hr>
-              </c:forEach>
-            </c:if>
-
+                  </a>
+                  <hr>
+                </c:forEach>
+              </div>
+              </c:if>
+              
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <c:if test="${pagination.curPage ne 1}">
@@ -393,9 +397,9 @@
   <script type="text/javascript">
   $('document').ready(
     function () {
-      var area0 = [ "학교 선택", "primary", "중학교", "고등학교" ];
-      var area1 = [ "korean", "영어", "수학", "사회", "과학", "기타" ];
-      var area2 = [ "국어", "영어", "수학", "사회", "과학", "기타" ];
+      var area0 = [ "학교 선택", "primary", "middle", "고등학교" ];
+      var area1 = [ "korean", "English", "Math", "사회", "과학", "기타" ];
+      var area2 = [ "korean", "English", "Math", "사회", "과학", "기타" ];
       var area3 = [ "국어", "영어", "수학", "사회", "과학", "기타" ];
 
       // 학교 선택 박스 초기화
@@ -445,14 +449,33 @@ $(document).ready(function(){
 	$(".my-button-yeah").click(function(){
 
 		
-	var params = $("#form1").serialize();
 	$("#myGugun").val($('select[name="gugun1"]').val());
 	$("#myGender").val($('input[name="gender"]:checked').val());
 	$("#myAge").val(calculateAges());
-  $("#myWantedFee").val($('input[name="wantedFee"]:checked').val());
-  $("#mySchool").val($('select[name="school1"]').val());
-  $("#mySubject").val($('select[name="subject1"]').val());
-  $("#mySido").val($('select[name="sido1"]').val());
+	$("#myWantedFee").val($('input[name="wantedFee"]:checked').val());
+	$("#mySchool").val($('select[name="school1"]').val());
+	$("#mySubject").val($('select[name="subject1"]').val());
+	$("#mySido").val($('select[name="sido1"]').val());
+  
+	let memberTypeNo = $("#memberTypeNo").val();
+	let myGugun = $("#myGugun").val();
+	let myGender = $("#myGender").val();
+	let myAge = $("#myAge").val();
+	let myWantedFee = $("#myWantedFee").val();
+	let mySchool = $("#mySchool").val();
+	let mySubject = $("#mySubject").val();
+	let mySido = $("#mySido").val();
+	
+	var params = {
+	  'memberTypeNo' : memberTypeNo,
+	  'myGugun': myGugun,
+	  'myGender': myGender,
+	  'myAge': myAge,
+	  'myWantedFee': myWantedFee,
+	  'mySchool': mySchool,
+	  'mySubject': mySubject,
+	  'mySido': mySido,
+	};
       
       /* if (sido1.startsWith('충청') ||
           sido1.startsWith('전라') ||
@@ -465,16 +488,82 @@ $(document).ready(function(){
       } */
       $.ajax({
           type    : "GET",
-          url     : "search",
+          url     : "/app/member/search",
           data    :  params, 
-          success   : function(data) {
-        	  console.log(data);
-        	  if(data) {
-        		  alert("ㅇㅋ");
-        	  }
+          success   : function(resultList) {
+
+            console.log(resultList);
+            let html = '';
+
+            for (let i=0; i<resultList.length; i++) {
+
+            
+            if (memberTypeNo == 1) {
+              html += '<a href="detail?no='+resultList[i].memberNo+'">';
+              html += '<div class="card-body">';
+              html += '<div class="cardcard mb-3">';
+              html += '<div class="row no-gutters">';
+              html += '<div class="col-md-3">';
+              html += '<img src="/upload/join/'+resultList[i].profilePhoto+'" width="120" alt="Thumbnail Image"';
+              html += 'class="img-raised rounded-circle img-fluid">';
+              html += '</div>';
+              html += '<div class="col-md-9">';
+              html += '<h5 class="title">';
+              html += '<span class="tim-note">'+resultList[i].name+'</span>';
+              html += '</h5>';
+              html += '<h5>';
+              html += '<span class="tim-note">';
+              html += ''+resultList[i].gender+'/'+resultList[i].addressCity+'';
+              html += ''+resultList[i].addressSuburb+'/';
+              html += ''+resultList[i].schoolType+'/';
+              html += ''+resultList[i].subjectName+'';
+              html += '</span>';
+              html += '</h5>';
+              html += '</div>';
+              html += '</div>';
+              html += '</div>';
+              html += '</div>';
+              html += '</a>';
+              html += '<hr>';
+              
+            } else if (memberTypeNo == 3) {
+              html += '<a href="detail?no='+resultList[i].memberNo+'">';
+              html += '<div class="card-body">';
+              html += '<div class="cardcard mb-3">';
+              html += '<div class="row no-gutters">';
+              html += '<div class="col-md-3">';
+              html += '<img src="/upload/join/'+resultList[i].profilePhoto+'" width="120" alt="Thumbnail Image"';
+              html += 'class="img-raised rounded-circle img-fluid">';
+              html += '</div>';
+              html += '<div class="col-md-9">';
+              html += '<h5 class="title">';
+              html += '<span class="tim-note">'+resultList[i].name+'</span>';
+              html += '</h5>';
+              html += '<h5>';
+              html += '<span class="tim-note">';
+              html += ''+resultList[i].schools[0].schoolName+'/';
+              html += ''+resultList[i].gender+'/'+resultList[i].addressCity+'';
+              html += ''+resultList[i].addressSuburb+'/';
+              html += ''+resultList[i].schoolType+'/';
+              html += ''+resultList[i].subjectName+'';
+              html += '</span>';
+              html += '</h5>';
+              html += '</div>';
+              html += '</div>';
+              html += '</div>';
+              html += '</div>';
+              html += '</a>';
+              html += '<hr>';
+              
+            }
+          }
+
+          $('.my-lesson-wrapper').html('');
+          $('.my-lesson-wrapper').append(html);
+
           },
           error   : function(error) {
-        	  alert("실패");
+        	  alert(error);
           }
       });
       

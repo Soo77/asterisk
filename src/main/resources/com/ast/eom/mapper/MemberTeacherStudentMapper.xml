@@ -130,6 +130,7 @@
 	
 	<select id="saerchTeacher" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
+		m.mem_no, m.name, m.profile_photo,
 		m.gender, m.addr_city, m.addr_sub, m.dob, sub.sub_name, st.sch_type, ls.wanted_fee
 		from member m
 		left outer join teacher t on m.mem_no = t.tch_no
@@ -142,11 +143,12 @@
         and dob LIKE CONCAT('%', #{myAge}, '%')
         and sub_name LIKE CONCAT('%', #{mySubject}, '%')
         and sch_type LIKE CONCAT('%', #{mySchool}, '%')
-        and wanted_fee LIKE CONCAT('%', #{myWantedfee}, '%')
+        and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
 	</select>
 	
 	<select id="searchStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
+		m.mem_no, m.name, m.profile_photo,
 		m.gender, m.addr_city, m.addr_sub, sub.sub_name, st.sch_type, wl.wanted_fee
 		from
 		member m
@@ -159,7 +161,7 @@
 	      and gender LIKE CONCAT('%', #{myGender}, '%')
 	      and sub_name LIKE CONCAT('%', #{mySubject}, '%')
 	      and sch_type LIKE CONCAT('%', #{mySchool}, '%')
-	      and wanted_fee LIKE CONCAT('%', #{myWantedfee}, '%')
+	      and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
 	</select>
 
 	
