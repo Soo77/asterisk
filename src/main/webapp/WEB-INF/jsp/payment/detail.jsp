@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="/css/payment/payment.css" rel="stylesheet" />
+<link href="/css/payment/detail.css" rel="stylesheet" />
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg3.jpg')">
   <div class="container">

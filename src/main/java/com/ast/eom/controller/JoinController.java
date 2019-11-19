@@ -250,11 +250,11 @@ public class JoinController implements Runnable {
   public void run() {
     System.out.println(emailAddress);
 
-    String host = "smtp.fastmail.com"; 
+    String host = "smtp.naver.com"; 
     // 네이버일 경우 네이버 계정, gmail경우 gmail 계정
-    String user = "bitcamppr@fastmail.com"; 
+    String user = "bitcampshin@naver.com"; 
     // 패스워드
-    String password = "ENCRJ3GAJV56WZG9";      
+    String password = "Bitcamp1111~";      
 
     // SMTP 서버 정보를 설정한다. 
     Properties props = new Properties(); 

@@ -3,9 +3,7 @@ package com.ast.eom.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,17 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.ast.eom.dao.MessageDao;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Message;
+import com.ast.eom.service.MessageService;
 
 @Controller
 @RequestMapping("/message")
 public class MessageController {
 
   @Autowired
-  MessageDao messageService;
+  MessageService messageService;
   
   @GetMapping("list")
   public void list(HttpSession session, Model model) throws Exception {
@@ -47,6 +45,10 @@ public class MessageController {
 
   @GetMapping("detail")
   public void detail(HttpSession session, Model model, int memberNo) throws Exception {
+    List<Member> messageDetailInfo = messageService.messageDetailInfo(memberNo);
+    model.addAttribute("messageInfo", messageDetailInfo);
+    System.out.println(messageDetailInfo);
+    
     messageService.detail(memberNo);
     model.addAttribute("receiverNo", memberNo);
     

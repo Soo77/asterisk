@@ -107,14 +107,12 @@ public class DefaultMypageService implements MypageService {
     
     Map<String, Object> teacherInfo = new HashMap<>();
     
-    String[] subjectContents = mypageDao.getAllLessonSubjectContentsOf(member.getMemberNo());
     mypageDao.deleteAllLessonSubjectRelatedTo(member.getMemberNo());
     
     // 화면에 표시할 때 템플릿을 남기게 구현하는 바람에 인덱스가 1부터 시작
     for (int i = 1; i < schoolTypeNo.length; i++) {
       teacherInfo.put("teacherNo", member.getMemberNo());
       teacherInfo.put("subjectNo", thisSubjectNo[i]);
-      teacherInfo.put("subjectContents", subjectContents[i-1]);
       teacherInfo.put("wantedFee", wantedFee[i]);
       mypageDao.insertLessonSubjectOf(teacherInfo);
     }
