@@ -82,13 +82,16 @@
         
 <!--        <button class="btn btn-primary">결제 대기중<div class="ripple-container"></div></button>&ensp;&ensp;&ensp; -->
       <c:choose>
-       <c:when test="${lesson.lessonState ne 0}">
+       <c:when test="${lesson.lessonState ne 0 and lesson.lessonState ne 2}">
        <a href="../dayLesson/list?lessonNo=${lesson.lessonNo}" class="btn btn-primary float-right ">상세보기</a>&ensp;&ensp;  
        <a href="fixedDetail?lessonNo=${lesson.lessonNo}" class="btn btn-primary float-right">커리큘럼 보기</a> 
        </c:when>
-       <c:otherwise>  
-       <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary float-right">수정</a> 
-      </c:otherwise>
+       <c:when test="${loginUser.memberTypeNo eq 3}">
+            <a href="detail?lessonNo=${lesson.lessonNo}" class="btn btn-primary float-right">수정</a> 
+       </c:when>
+       <c:when test="${loginUser.memberTypeNo ne 3}">
+            <a href="fixedDetail?lessonNo=${lesson.lessonNo}" class="btn btn-primary float-right">커리큘럼 보기</a> 
+       </c:when>
       </c:choose>
       
       <c:choose>

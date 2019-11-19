@@ -165,11 +165,15 @@
           </tbody> 
         </table>
 
-        <div class="text-right" style="
-    padding-right: 9px;
-        ">
-          <input type="button" class="btn btn-primary lessonConts-add-button" value="추가">  
-          <button class="btn btn-primary">변경</button>
+        <div class="row">
+            <div class="col text-left" style="display: inline-block"> 
+              <a href="list" class="btn btn-primary">수업목록</a>
+            </div>
+
+            <div class="col text-right" style="padding-right: 9px;">
+              <input type="button" class="btn btn-primary lessonConts-add-button" value="추가">  
+              <button class="btn btn-primary">변경</button>
+          </div>
         </div>
       </form>
     </div>
