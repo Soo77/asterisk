@@ -146,7 +146,7 @@
           type:"post",
           data:"lessonNo="+lessonNo,
           success : function(result) {
-        	  if(result != null){
+        	  if(result != ""){
         		  alert("이미 등록된 수업입니다")
         		  return false;
         	  } else{
