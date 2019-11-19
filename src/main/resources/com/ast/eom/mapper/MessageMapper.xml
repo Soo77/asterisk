@@ -29,6 +29,10 @@
 	   or sender=#{receiverNo} and receiver=#{senderNo}
 	</select>
 	
+	<select id="messageDetailInfo" parameterType="int" resultMap="MemberMap">
+     select name, profile_photo from member where mem_no=#{memberNo}
+  </select>
+	
 	<select id="messageList" parameterType="int" resultMap="MemberMap">
      select distinct m.name, m.mem_no, m.profile_photo from member m inner 
      join message s on m.mem_no = s.sender or m.mem_no = s.receiver
