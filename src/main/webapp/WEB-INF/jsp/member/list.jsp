@@ -43,6 +43,11 @@
   padding-top: 40px;
   padding-bottom: 40px;
 }
+
+.img-raised.rounded-circle.img-fluid {
+    width: 120px !important;
+    height: 120px !important;
+    object-fit: cover;
 </style>
 
 <body>
@@ -173,7 +178,7 @@
             <div class="row">
               <div class="col-lg-10 col-md-10 col-sm-10"></div>
               <div class="col-lg-2 col-md-2 col-sm-2">
-                <div class="input-group">
+                <div class="input-group"> 
                   <select class="custom-select custom-select-sm" id="pageSize">
                     <option value="2">2</option>
                     <option value="8">8</option>
@@ -503,12 +508,12 @@ $(document).ready(function(){
               html += '<div class="cardcard mb-3">';
               html += '<div class="row no-gutters">';
               html += '<div class="col-md-3">';
-              html += '<img src="/upload/join/'+resultList[i].profilePhoto+'" width="120" alt="Thumbnail Image"';
+              html += '<img src="/upload/join/'+resultList[i].profilePhoto+'" alt="Thumbnail Image"';
               html += 'class="img-raised rounded-circle img-fluid">';
               html += '</div>';
               html += '<div class="col-md-9">';
               html += '<h5 class="title">';
-              html += '<span class="tim-note">'+resultList[i].name+'</span>';
+              html += '<span class="tim-note">'+resultList[i].id+'</span>';
               html += '</h5>';
               html += '<h5>';
               html += '<span class="tim-note">';
@@ -531,12 +536,12 @@ $(document).ready(function(){
               html += '<div class="cardcard mb-3">';
               html += '<div class="row no-gutters">';
               html += '<div class="col-md-3">';
-              html += '<img src="/upload/join/'+resultList[i].profilePhoto+'" width="120" alt="Thumbnail Image"';
+              html += '<img src="/upload/join/'+resultList[i].profilePhoto+'" alt="Thumbnail Image"';
               html += 'class="img-raised rounded-circle img-fluid">';
               html += '</div>';
               html += '<div class="col-md-9">';
               html += '<h5 class="title">';
-              html += '<span class="tim-note">'+resultList[i].name+'</span>';
+              html += '<span class="tim-note">'+resultList[i].id+'</span>';
               html += '</h5>';
               html += '<h5>';
               html += '<span class="tim-note">';

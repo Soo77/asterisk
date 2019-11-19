@@ -135,7 +135,7 @@
 		where m.mem_no= #{mem_no}
 	</select>
 	
-	<select id="saerchTeacher" parameterType="map" resultMap="MemberTeacherStudentMap">
+	<select id="searchTeacher" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
 		m.mem_no, m.id, m.profile_photo,
 		m.gender, m.addr_city, m.addr_sub, m.dob, sub.sub_name, st.sch_type, ls.wanted_fee
