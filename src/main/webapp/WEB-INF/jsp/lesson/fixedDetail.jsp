@@ -121,14 +121,6 @@
               </span>
             </label>
           </div>
-          <div class="form-check form-check-inline">
-            <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" name="chk" onclick="javascript:checking()" onclick="return false;">전체선택
-              <span class="form-check-sign">
-                <span class="check"></span>
-              </span>
-            </label>
-          </div>
         </div>
 </div>
         <table id="table" class='table table-hover'>
@@ -157,7 +149,9 @@
             </c:forEach>
           </tbody> 
         </table> 
-
+            <div class="text-left"> 
+              <a href="list" class="btn btn-primary">수업목록</a>
+            </div> 
         <div class="text-right">
           <input type="hidden" class="btn btn-primary lessonConts-add-button" value="추가">  
           <input type="hidden" class="btn btn-primary" value="변경">
