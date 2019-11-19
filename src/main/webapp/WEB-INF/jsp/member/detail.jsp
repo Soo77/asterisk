@@ -40,6 +40,13 @@ height: 100%;
   box-shadow: none;
 }
 
+
+.img-raised.rounded-circle.img-fluid {
+    width: 160px !important;
+    height: 160px !important;
+    object-fit: cover;
+}
+
 /*  ul ul.school {
   list-style: none;
   padding-left: 15px;
@@ -69,12 +76,17 @@ ul li::before {
              <c:if test="${member.memberTypeNo eq 3}">
              
                 <div class="avatar">
-                  <img src="/upload/join/${member.profilePhoto}" alt="Circle Image" class="img-raised rounded-circle img-fluid"
+                  <img src="/upload/join/${member.profilePhoto}" alt="Circle Image" 
+                  class="img-raised rounded-circle img-fluid profile-photo"
                     onError="this.src='/upload/join/default.png'">
+  
+                    
+                    
+                   
                 </div>
                 
                 <div class="name">
-                  <h3 class="title">${member.name}</h3>
+                  <h3 class="title">${member.id}</h3>
                   
                   <div class="age">
                   <c:set var="birth" value="${member.dateOfBirth}" />
@@ -122,7 +134,7 @@ ul li::before {
                 </div>
                 
                 <div class="name">
-                  <h3 class="title">${member.name}</h3>
+                  <h3 class="title">${member.id}</h3>
                   
                   <div class="age">
                   <c:set var="birth" value="${member.dateOfBirth}" />
@@ -269,17 +281,14 @@ ul li::before {
 					</div>
 					
 					<div class="card-deck">
-  <div class="card">
-    <img src="/upload/join/${member.teacherPhoto}" class="card-img-top" alt="...">
-  </div>
-  <div class="card">
-    <img src="/upload/join/${member.teacherPhoto}" class="card-img-top" alt="...">
-  </div>
-</div>
-<br><br><br>
+                      <div class="card">
+                        <img src="/upload/teacher_photo/${member.teacherPhotos[0].teacherPhoto}" class="card-img-top" alt="...">
+                      </div>
+                    </div>
+                    <br><br><br>
 
 <div class="video-container"> 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/5w0SKw5oBPg" frameborder="0" allowfullscreen>
+<iframe width="640" height="480" src="${member.teachers[0].videoAddress}" frameborder="0" allowfullscreen>
 </iframe> 
 </div><hr>
             
@@ -446,6 +455,7 @@ ul li::before {
 	  window.open(url, "쪽지목록" ,option);
   }
   </script>
+  
 
 </body>
 </html>

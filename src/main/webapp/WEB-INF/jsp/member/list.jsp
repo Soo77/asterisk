@@ -195,14 +195,14 @@
                       <div class="cardcard mb-3">
                         <div class="row no-gutters">
                           <div class="col-md-3">
-                            <img src="/upload/join/${member.profilePhoto}"
-                              width="120" alt="Thumbnail Image"
+                          
+                           <img src="/upload/join/${member.profilePhoto}" alt="Thumbnail Image"
                               class="img-raised rounded-circle img-fluid"
                               onError="this.src='/upload/join/default.png'">
                           </div>
                           <div class="col-md-9">
                             <h5 class="title">
-                              <span class="tim-note">${member.name}</span>
+                              <span class="tim-note">${member.id}</span>
                             </h5>
                             <h5>
                               <span class="tim-note">
@@ -232,14 +232,13 @@
                       <div class="cardcard mb-3">
                         <div class="row no-gutters">
                           <div class="col-md-3">
-                            <img src="/upload/join/${member.profilePhoto}"
-                              width="120" alt="Thumbnail Image"
+                             <img src="/upload/join/${member.profilePhoto}" alt="Thumbnail Image"
                               class="img-raised rounded-circle img-fluid"
                               onError="this.src='/upload/join/default.png'">
                           </div>
                           <div class="col-md-9">
                             <h5 class="title">
-                              <span class="tim-note">${member.name}</span>
+                              <span class="tim-note">${member.id}</span>
                             </h5>
                             <h5>
                               <span class="tim-note">
