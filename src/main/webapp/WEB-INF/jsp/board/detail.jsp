@@ -352,7 +352,7 @@
           <button id="btnDelete" type="button"
             class="btn btn-danger my-view-group">삭제</button>
         </c:if>
-        <button id="btnList" type="button" class="btn"
+        <button id="btnList" type="button" class="btn btn-primary"
           onclick="location='list?boardTypeNo=${board.boardTypeNo}'">목록</button>
       </div>
     </div>
@@ -518,6 +518,10 @@
     document.querySelector('#btnCancel').style.display = 'inline';
     document.querySelector('#inputTitle').readOnly = false;
     document.querySelector('#inputContents').readOnly = false;
+    document.querySelector('#inputContents').style =
+      'background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),'
+      +'linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);'
+      +'border: 0.5px solid #d2d2d2; border-radius: .25rem;';
     var boardPhotos = document.querySelector('#insertBoardPhotos');
     boardPhotos.style.display = 'inline';
   });
