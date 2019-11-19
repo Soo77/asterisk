@@ -17,11 +17,11 @@
 
 <body class="login-page sidebar-collapse">
   <tiles:insertAttribute name="header2"/>
+  <tiles:insertAttribute name="javascript3"/>
   <div class="page-header header-filter" style="background-image: url('/assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
 	  <tiles:insertAttribute name="body2"/>
 	  <tiles:insertAttribute name="footer2"/>
   </div>
-  <tiles:insertAttribute name="javascript3"/>
 </body>
 
 </html>
