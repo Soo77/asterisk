@@ -57,25 +57,19 @@
 <body>
 	<h2>쪽지함</h2>
 
-	<div class="card-header d-flex justify-content-between p-2"
-		style="cursor: pointer;">
+	<div class="card-header d-flex justify-content-between p-2">
 		<div class="d-flex">
 			<div class="profile-photo">
-				<img
-					src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg"
-					alt="avatar" />
+				<img class="avatar" src="/upload/join/${messageInfo[0].profilePhoto}">
 			</div>
 			<div class="data">
-				<h4 class="mb-0">신우혁</h4>
+				<h4 class="mb-0">${messageInfo[0].name}</h4>
 				<p class="text-muted mb-0">밥 뭐먹지</p>
 			</div>
 		</div>
 
 		<div class="icons grey-text">
-			<a class="feature"><i class="fas fa-video mr-2"></i></a> 
-			<a class="feature"><i class="fas fa-phone mr-2"></i></a> 
-			<a class="feature"><i class="fas fa-cog mr-2"></i></a> 
-			<a id="closeButton"><i class="fas fa-times mr-2"></i></a>
+			<a href="/app/message/list" id="closeButton"><i class="fas fa-times mr-2"></i></a>
 		</div>
 	</div>
 
@@ -95,14 +89,15 @@
 					<c:when test="${loginUser.memberNo eq messageList.senderNo}">
 						<div class='right'>
 							<div class="chat-right">${messageList.messageContents}</div>
-							${read}
-							<div class="datetime-right">${messageList.sendDate}</div>
+								<c:if test="${loginUser.memberNo ne receiverNo}">
+								${read}
+								</c:if>
+							<div class="datetime-right">${messageList.sendDate}</div><br>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div class="chat-left">${messageList.messageContents}</div>
-						<span style="margin-right: 110px;">읽음</span>
-						<div style="color: #999; display: inline">${messageList.sendDate}</div>
+						<div style="color: #999;">${messageList.sendDate}</div>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
@@ -140,9 +135,17 @@
 	        data : "senderNo="+${loginUser.memberNo}+"&messageConts=" + 
 	        messageConts + "&receiverNo=" + ${receiverNo},
 	        success : function(result) {
+	        	let today = new Date();   
+	        	let year = today.getFullYear(); // 년도
+	        	let month = today.getMonth() + 1;  // 월
+	        	let date = today.getDate();  // 날짜
+	        	
 	        	let str = "<div class='right'>" 
-	          str += '<div class="chat-right">'+messageConts+'</div>';
-	          str += "읽지 않음"+"</div>"
+	          str += '<div class="chat-right">'+messageConts+'</div>'
+	          if(${loginUser.memberNo} != ${receiverNo}){
+	           str += "읽지 않음"
+	          }
+	          str += "<div class='datetime-right'>"+year+-month+-date+"</div><br></div>"
 	          $("#chat").append(str);
 	          $("#messageConts").val("");
 	        },

@@ -122,7 +122,51 @@
             </label>
           </div>
         </div>
-</div>
+      </div>
+      
+      
+      
+      <div class="row">
+          <div class="col-lg-3 col-sm-6">
+            <label for="basic-url2">초중고</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <select class="custom-select" name="schoolTypeNo">
+                  <option value="">학교 선택</option>
+                  <option value=1>초등학교</option>
+                  <option value=2>중학교</option>
+                  <option value=3>고등학교</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <label for="basic-url2">과목</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <select class="custom-select" name="subjectName">
+                  <option value="">과목 선택</option>
+                  <option value="korean">국어</option>
+                  <option value="english">영어</option>
+                  <option value="math">수학</option>
+              </select>  
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <label for="basic-url1">수업 설명</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonDescription" id="basic-url1" type=text class="form-control" placeholder="수업설명">
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <label for="basic-url2">수업료</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)"> 
+            </div>
+          </div>
+         </div> 
+      
+      
+      
+      
+      
         <table id="table" class='table table-hover'>
           <thead>
             <tr>
@@ -149,17 +193,19 @@
             </c:forEach>
           </tbody> 
         </table> 
-            <div class="text-left"> 
-              <a href="list" class="btn btn-primary">수업목록</a>
-            </div> 
-        <div class="text-right">
-          <input type="hidden" class="btn btn-primary lessonConts-add-button" value="추가">  
-          <input type="hidden" class="btn btn-primary" value="변경">
+        <div class="row">
+          <div class="col text-left"> 
+            <a href="list" class="btn btn-primary">수업목록</a>
+          </div> 
+          <div class="col text-right">
+            <input type="button" class="btn btn-primary pay-button" value="결제">  
+          </div>
         </div>
       </form>
     </div>
 
     <c:set var="garo" value="${lesson.lessonNo}" scope="session"></c:set>
+    <c:set var="lessonFee" value="${lesson.lessonNo}" scope="session"></c:set>
 
 
   </div>
