@@ -29,7 +29,8 @@
 
 					<div class="input-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"> <i class="material-icons">face</i>
+							<span class="input-group-text"> 
+							<i class="far fa-smile fa-lg"></i>
 							</span>
 						</div>
 						<input type="text" placeholder="이름" id="name" class="form-control"
@@ -39,30 +40,31 @@
 					<div id=mailselect>
 						<div class="input-group">
 							<div class="input-group-prepend">
-								<span class="input-group-text"> <i class="material-icons">face</i>
+								<span class="input-group-text"> 
+								<i class="far fa-envelope fa-lg"></i>
 								</span>
 							</div>
 							<input type="text" placeholder="이메일" id="mail0" maxlength="50"
-								class="form-control" required>@
+								class="form-control" required>
 						</div>
-
+						
 						<div id="hiddenMail">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"> <i
-										class="material-icons">face</i>
+									<span class="input-group-text">
+									<i class="fas fa-at fa-lg"></i>
 									</span>
 								</div>
-								<input type="text" id="mail1" value="" class="form-control"
-									required>
+								<input type="text" id="mail1" value="" 
+								class="form-control" required>
 							</div>
 						</div>
 
 						<div id="hiddenSelectMail">
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"> <i
-										class="material-icons">face</i>
+									<span class="input-group-text"> 
+									<i class="fas fa-at fa-lg"></i>
 									</span>
 								</div>
 								<select name="mail2" id="mail2" class="form-control">
@@ -125,26 +127,23 @@ $("#searchBtn").click(function() {
 <script>
 		var dp = document.getElementById("mail1");
 		
-		$("#mailselect").focusout(function () {
-		  emailCheck();
-		})
-		
-		$("#mail2").change(function () {
-		  if ($('#mail2').val() == "") {
-		    dp.style.display = 'block';
-		    $('#mail2').css('display', 'none');
-		  }
+		$("#mail2").change(function() {
 		  document.getElementById("mail1").value = document.getElementById("mail2").value;
 		  emailCheck();
 		});
 		
+		$("#mailselect").focusout(function () {
+		  emailCheck();
+		})
+		
 		function emailCheck() {
-      if($("#mail2 option:selected").val() == "") {
+      	if($("#mail2 option:selected").val() == "") {
           dp.readOnly = false;
+          $('#hiddenSelectMail').css('display', 'none');
+          $("#hiddenMail").css("display", "block");
           $('#email_check').text("");
           $("#submit").attr("disabled", false);
         } else if($("#mail2 option:selected").val() == "메일 선택") {
-            dp.readOnly = true;
             $('#email_check').text('이메일을 입력해주세요');
             $('#email_check').css('color', 'red');
             $("#submit").attr("disabled", true);
@@ -153,12 +152,5 @@ $("#searchBtn").click(function() {
            $('#email_check').text("");
            $("#submit").attr("disabled", false);
          }
-    };
-</script>
-
-<!--     메일 선택 -->
-<script>
-$("#mail2").change(function() {
-    document.getElementById("mail1").value = document.getElementById("mail2").value;
-    });
+    	};
 </script>
