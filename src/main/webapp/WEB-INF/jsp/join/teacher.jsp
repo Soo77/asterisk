@@ -279,12 +279,12 @@
               <div class="form-group">
                 <label>은행명</label>
                 <select name="bankname" class="form-control" required>
-                  <option value="국민은행">국민은행</option>
-                  <option value="신한은행">신한은행</option>
-                  <option value="우리은행">우리은행</option>
-                  <option value="카카오뱅크">카카오뱅크</option>
-                  <option value="기업은행">기업은행</option>
-                  <option value="하나은행">하나은행</option>
+                  <option value="1">국민은행</option>
+                  <option value="2">신한은행</option>
+                  <option value="3">우리은행</option>
+                  <option value="4">카카오뱅크</option>
+                  <option value="5">기업은행</option>
+                  <option value="6">하나은행</option>
                 </select>
               </div>
 
