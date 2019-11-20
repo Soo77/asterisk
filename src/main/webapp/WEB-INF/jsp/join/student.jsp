@@ -14,9 +14,11 @@
 			for (var i = 0; i < va.length; i++) {
 				if (va[i].style.color == "red") {
 					va[i].focus();
-					console.log(va[i]);
 					return false;
-				}
+				} else{
+					  swal("이메일로 인증링크를 보냈습니다")
+					  location.href("/app/auth/form");
+          }
 			}
 		}
 	</script>

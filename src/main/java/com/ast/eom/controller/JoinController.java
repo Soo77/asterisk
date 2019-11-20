@@ -79,6 +79,10 @@ public class JoinController implements Runnable {
       String subjectNo, String wantedFeeAmount)
           throws Exception {
     
+    if(member.getTel().equals("")) {
+      member.setTel(null);
+    }
+    
     if (lessonDay != null) {
       StringBuilder sb = new StringBuilder();
       sb.append("0000000");
@@ -92,7 +96,6 @@ public class JoinController implements Runnable {
     member.setEmail(emailAddress);
     member.setDateOfBirth(birthDay);
     member.setMemberTypeNo(3);
-
 
     Map<String, Object> params = new HashMap<>();
     if (!lessoncertificate.isEmpty()) {
@@ -162,7 +165,11 @@ public class JoinController implements Runnable {
       Date birthDay, String mail,
       String studentId) 
           throws Exception {
-
+    
+    if(member.getTel().equals("")) {
+      member.setTel(null);
+    }
+    
     String emailAddress = member.getEmail() + "@" + mail;
     member.setEmail(emailAddress);
     member.setDateOfBirth(birthDay);
@@ -190,8 +197,8 @@ public class JoinController implements Runnable {
     this.emailAddress = emailAddress;
     executorService = Executors.newCachedThreadPool();
     executorService.submit(this);
-
-    return "/view/checkplease";
+    
+    return "redirect:/app/auth/form";
   }
 
   //학생 회원가입
@@ -202,6 +209,10 @@ public class JoinController implements Runnable {
       String[] lessonDay, String requirementsToTeacher,
       WantedLesson wantedLesson) 
           throws Exception {
+    
+    if(member.getTel().equals("")) {
+      member.setTel(null);
+    }
     
     if (lessonDay != null) {
       StringBuilder sb = new StringBuilder();

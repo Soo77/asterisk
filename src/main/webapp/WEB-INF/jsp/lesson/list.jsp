@@ -238,17 +238,16 @@
     messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
     
     if(memberNo == ""){
-      alert("학생을 선택해주세요");
+      swal("학생을 선택해주세요");
       return false;
     }
-      
       $.ajax({
         url:"/app/message/messagein",
         type:"post",
         data:"senderNo="+${loginUser.memberNo}+"&messageConts=" + 
         messageConts + "&receiverNo=" + memberNo,
         success : function(data) {
-         alert("초대 메세지를 보냈습니다");
+         swal("초대 메세지를 보냈습니다");
         },
         error : function() {
          console.log("실패");
