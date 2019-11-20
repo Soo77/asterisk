@@ -2,85 +2,95 @@
   pageEncoding="UTF-8"%> -->
 
 <style>
-  .this-center{
-    text-align: center;
-    padding-top: 0px !important;
-  }
-  .card-login .card-body {
-    padding: 1.25rem;
-  }
-  #mail1 {
-  display: none;
-  }
-  
+.this-center {
+	text-align: center;
+	padding-top: 0px !important;
+}
+
+.card-login .card-body {
+	padding: 1.25rem;
+}
+
+#hiddenMail {
+	display: none;
+}
 </style>
 </head>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-          <div class="card card-login">
-              <div class="card-header card-header-primary text-center">
-                <h4 class="card-title">아이디 찾기</h4>
-              </div>
-              
-					  <div class="card-body">
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4 col-md-6 ml-auto mr-auto">
+			<div class="card card-login">
+				<div class="card-header card-header-primary text-center">
+					<h4 class="card-title">아이디 찾기</h4>
+				</div>
 
+				<div class="card-body">
+
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="material-icons">face</i>
+							</span>
+						</div>
+						<input type="text" placeholder="이름" id="name" class="form-control"
+							required autofocus>
+					</div>
+
+					<div id=mailselect>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"> <i class="material-icons">face</i>
 								</span>
 							</div>
-							<input type="text" placeholder="이름" id="name" class="form-control" required autofocus>
+							<input type="text" placeholder="이메일" id="mail0" maxlength="50"
+								class="form-control" required>@
 						</div>
-            
-            <div id=mailselect>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="material-icons">face</i>
-                </span>
-              </div>
-              <input type="text" placeholder="이메일" id="mail0" maxlength="50" class="form-control" required>@
-            </div>
-            
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="material-icons">face</i>
-                </span>
-              </div>
-              <input type="text" id="mail1" value="" class="form-control" required>
-            </div>
-            
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="material-icons">face</i>
-                </span>
-              </div>
-              <select name="mail2" id="mail2" class="form-control">
-                <option selected disabled>메일 선택</option>
-                <option value="naver.com">naver.com</option>
-                <option value="daum.net">daum.net</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="nate.com">nate.com</option>
-                <option value="">직접 입력</option>
-              </select>
-            </div>
-            </div>
-            
-            <div class="text-center" id="email_check"></div>
 
-						<div class="this-center">
-							<div class="description">
-								<button id="searchBtn" class="btn btn-primary">찾기</button>
+						<div id="hiddenMail">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"> <i
+										class="material-icons">face</i>
+									</span>
+								</div>
+								<input type="text" id="mail1" value="" class="form-control"
+									required>
+							</div>
+						</div>
+
+						<div id="hiddenSelectMail">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text"> <i
+										class="material-icons">face</i>
+									</span>
+								</div>
+								<select name="mail2" id="mail2" class="form-control">
+									<option selected disabled>메일 선택</option>
+									<option value="naver.com">naver.com</option>
+									<option value="daum.net">daum.net</option>
+									<option value="gmail.com">gmail.com</option>
+									<option value="nate.com">nate.com</option>
+									<option value="">직접 입력</option>
+								</select>
 							</div>
 						</div>
 					</div>
-            
-        </div>
-      </div>
-    </div>
-  </div>
-  
+
+					<div class="text-center" id="email_check"></div>
+
+					<div class="this-center">
+						<div class="description">
+							<button id="searchBtn" class="btn btn-primary">찾기</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
 <script>
 $("#searchBtn").click(function() {
   var mail0 = document.getElementById("mail0").value;
@@ -113,19 +123,27 @@ $("#searchBtn").click(function() {
 
 <!--   메일 -->
 <script>
-$("#mailselect").change(function() {
-      var dp = document.getElementById("mail1");
-      dp.style.display = "block";
-      
-      var mail0 = $('#mail0').val();
-      var mail1 = $('#mail1').val();
-      var mail = mail0+'@'+mail1;
-      
-      if($("#mailselect option:selected").val() == "") {
+		var dp = document.getElementById("mail1");
+		
+		$("#mailselect").focusout(function () {
+		  emailCheck();
+		})
+		
+		$("#mail2").change(function () {
+		  if ($('#mail2').val() == "") {
+		    dp.style.display = 'block';
+		    $('#mail2').css('display', 'none');
+		  }
+		  document.getElementById("mail1").value = document.getElementById("mail2").value;
+		  emailCheck();
+		});
+		
+		function emailCheck() {
+      if($("#mail2 option:selected").val() == "") {
           dp.readOnly = false;
           $('#email_check').text("");
           $("#submit").attr("disabled", false);
-        } else if($("#mailselect option:selected").val() == "메일 선택") {
+        } else if($("#mail2 option:selected").val() == "메일 선택") {
             dp.readOnly = true;
             $('#email_check').text('이메일을 입력해주세요');
             $('#email_check').css('color', 'red');
@@ -135,7 +153,7 @@ $("#mailselect").change(function() {
            $('#email_check').text("");
            $("#submit").attr("disabled", false);
          }
-});
+    };
 </script>
 
 <!--     메일 선택 -->
