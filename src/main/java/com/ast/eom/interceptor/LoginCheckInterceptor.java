@@ -24,11 +24,11 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     }
     
     // 이메일 인증을 받지 않은 유저를 걸러내는 코드
-    if (!loginUser.isUserEmailChecked()) {
-      request.getSession().invalidate();
-      response.sendRedirect("/app/auth/loginFail");
-      return false;
-    }
+//    if (!loginUser.isUserEmailChecked()) {
+//      request.getSession().invalidate();
+//      response.sendRedirect("/app/auth/loginFail");
+//      return false;
+//    }
     
     // 다음 인터셉터나 페이지 컨트롤러를 계속 실행하고 싶다면 true를 리턴한다.
     // 여기서 요청 처리를 완료하고 싶다면 false를 리턴한다.

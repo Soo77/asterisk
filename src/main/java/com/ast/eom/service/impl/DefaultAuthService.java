@@ -14,7 +14,7 @@ public class DefaultAuthService implements AuthService {
   AuthDao authDao;
 
   @Override
-  public Member findId(Member member) throws Exception {
+  public String findId(Member member) throws Exception {
     return authDao.findId(member);
   }
 

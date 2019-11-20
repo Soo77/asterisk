@@ -4,6 +4,11 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
+  <definition template="/WEB-INF/tiles/template.jsp" name="base1">
+    <put-attribute name="stylesheet3" value="/WEB-INF/tiles/stylesheet3.jsp"/>
+    <put-attribute name="javascript3" value="/WEB-INF/tiles/javascript3.jsp"/>
+  </definition>
+  
   <definition template="/WEB-INF/tiles/template2.jsp" name="base2">
     <put-attribute name="header2" value="/WEB-INF/tiles/header2.jsp"/>
     <put-attribute name="footer2" value="/WEB-INF/tiles/footer2.jsp"/>
@@ -18,11 +23,13 @@
     <put-attribute name="javascript3" value="/WEB-INF/tiles/javascript3.jsp"/>
   </definition>
   
-  
   <definition name="auth/form" extends="base2">
     <put-attribute name="body2" value="/WEB-INF/jsp/auth/form.jsp"/>
   </definition>
   
+  <definition name="message/*" extends="base1">
+    <put-attribute name="body" value="/WEB-INF/jsp/message/{1}.jsp"/>
+  </definition>
 <!-- 
   <definition name="join/*" extends="base2">
     <put-attribute name="body2" value="/WEB-INF/jsp/join/{1}.jsp"/>

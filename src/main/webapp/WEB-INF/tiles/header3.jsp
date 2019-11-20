@@ -86,7 +86,7 @@ id="sectionsNav">
         let studentLi = document.getElementsByClassName('my-student-li')[0];
         let boardsLi = document.getElementsByClassName('my-board-li')[0];
         let loginUserLi = document.getElementsByClassName('my-login-user-li')[0];
-        let loginUserName = document.getElementsByClassName('my-loggedin-user')[0];
+        let loginUserId = document.getElementsByClassName('my-loggedin-user')[0];
 
         if (result.loginUserMemberType != 1) {
           studentLi.style.display = 'inline-block';
@@ -96,7 +96,7 @@ id="sectionsNav">
         }
         boardsLi.style.display = 'inline-block';
         loginUserLi.style.display = 'inline-block';
-        loginUserName.innerHTML = result.loginUserName;
+        loginUserId.innerHTML = result.loginUserId;
 
       } else {
         let loginLi = document.getElementsByClassName('my-login-li')[0];
@@ -114,7 +114,7 @@ id="sectionsNav">
  
   function popMessage(){
     var url = "/app/message/list";
-    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    var option = "width = 600, height = 600, top = 100, left = 200, location = no"
     window.open(url, "쪽지목록" ,option);
   }
 </script>
