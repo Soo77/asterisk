@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<style>
+  #lesson-description {
+    border: 0.5px solid #d2d2d2;
+    border-radius: .25rem;
+    background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+      linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  }
+</style>
+
+
 <script>
   console.log(${lesson});
 </script>
@@ -125,7 +135,7 @@
     
      
       <div class="row">  
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 ">
             <label for="basic-url2">초중고</label>
             
             <c:choose>
@@ -149,26 +159,19 @@
               </c:when>
             </c:choose>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4">
             <label for="basic-url2">과목</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="subjectName" type="text" class="form-control"
                 value="${lesson.subject.subjectName}"readonly>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
-            <label for="basic-url1">수업 설명</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input name=lessonDescription type="text" class="form-control"
-                value="${lesson.lessonDescription}"readonly>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
+            <div class="col-lg-4">
             <label for="basic-url2">수업료</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <div class="d-flex">
+              <div class="d-flex"> 
                 <div class="flex-item" style="flex-basis: 95%;">
-                  <input id="lesson-fee" name=lessonFee type="text" class="form-control text-right pr-2 mr-2"
+                  <input id="lesson-fee" name=lessonFee type="text" class="form-control text-left pr-2 mr-2"
                     value="${lesson.lessonFee}" readonly>
                 </div>
                 <div class="flex-item align-self-center pl-1" style="flex-basis: 5%;">
@@ -178,6 +181,12 @@
             </div>
           </div>
          </div> 
+         
+         <div class="form-group">
+          <label for="lesson-description">수업설명</label>
+          <textarea class="form-control" id="lesson-description" name="lessonDescription" rows="3" readonly>${lesson.lessonDescription}
+          </textarea> 
+        </div>
       
       
       
@@ -214,7 +223,9 @@
             <a href="list" class="btn btn-primary">수업목록</a>
           </div> 
           <div class="col text-right">
-            <input type="button" class="btn btn-primary pay-button" value="결제" onClick="location.href='../payment/detail'">
+            <c:if test="${lesson.lessonState eq 0}">
+              <input type="button" class="btn btn-primary pay-button" value="결제" onClick="location.href='../payment/detail'">
+            </c:if>
           </div>
         </div>
       </form>
