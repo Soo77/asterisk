@@ -239,7 +239,6 @@
   </form>
 
   <script>
-    
     $('#submitBtn').click(function (e) {
       e.preventDefault();
       
@@ -262,13 +261,13 @@
         });
     });
   </script>
+  
   <!-- 취소 -->
   <script>
     var cbtn = document.querySelector("#cancelbtn");
     cbtn.addEventListener("click", function () {
       location.href = "../auth/form";
     });
-
   </script>
 
   <!-- 다음 우편 API -->
