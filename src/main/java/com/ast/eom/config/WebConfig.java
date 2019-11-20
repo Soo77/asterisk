@@ -14,6 +14,8 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.util.UrlPathHelper;
+
+import com.ast.eom.interceptor.AdminCheckInterceptor;
 import com.ast.eom.interceptor.AuthControllerCheckInterceptor;
 import com.ast.eom.interceptor.LoginCheckInterceptor;
 
@@ -75,18 +77,19 @@ public class WebConfig implements WebMvcConfigurer {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
 
+    // 비로그인 유저를 걸러내는 인터셉터
     registry.addInterceptor(new LoginCheckInterceptor()).addPathPatterns("/**")
         .excludePathPatterns("/auth/**").excludePathPatterns("/join/**")
         .excludePathPatterns("/loginCheck").excludePathPatterns("/admin/**")
         .excludePathPatterns("/main/**");
+    
+    // 로그인을 하고도 로그인 창으로 가려는 유저를 걸러내는 인터셉터
+    registry.addInterceptor(new AuthControllerCheckInterceptor())
+      .addPathPatterns("/auth/form");
 
-    registry.addInterceptor(new AuthControllerCheckInterceptor()).addPathPatterns("/auth/form");
-
-
-    /*
-     * registry.addInterceptor(new Controller04_1_Interceptor1()); registry.addInterceptor(new
-     * Controller04_1_Interceptor3()) .addPathPatterns("/c04_1/**");
-     */
+    // 관리자 이외의 유저의 관리자 페이지 접근을 방지하는 인터셉터
+    registry.addInterceptor(new AdminCheckInterceptor())
+      .addPathPatterns("/admin/**");
   }
   
 }

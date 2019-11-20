@@ -144,6 +144,30 @@
     from member
     where mem_no = #{no}
   </select>
+  
+  <select id="getPendingLessons" parameterType="int" resultMap="LessonMap">
+    select *
+    from lesson
+    where lesson_stat = 3
+  </select>
+  
+  <update id="approveTeacherCertificationOf" parameterType="int">
+    update teacher
+    set appr_stat = 1
+    where tch_no = #{no}
+  </update>
+
+  <update id="acceptThis" parameterType="int">
+    update member
+    set activation_key = '1111'
+    where mem_no = #{no}
+  </update>
+
+  <update id="rejectThis" parameterType="int">
+    update member
+    set activation_key = null
+    where mem_no = #{no}
+  </update>
 
 <!--   
   <select id="getTeacher" parameterType="int" resultMap="TeacherMap">

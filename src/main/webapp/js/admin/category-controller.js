@@ -9,6 +9,7 @@ class CategoryController {
     this.studentButton.addEventListener('click', () => {this.getMemberData(1)});
     this.parentsButton.addEventListener('click', () => {this.getMemberData(2)});
     this.teacherButton.addEventListener('click', () => {this.getMemberData(3)});
+    this.cancelButton.addEventListener('click', () => {this.getCancelData()});
   }
 
   getMemberData(memberTypeNo) {
@@ -18,7 +19,6 @@ class CategoryController {
         'memberTypeNo' : memberTypeNo
       },
       success: (result) => {
-        console.log(result);
         let html = '';
         for (let i = 0; i < result.memberList.length; i++) {
           html += '<tr class="my-table-row row-no-'+result.memberList[i].memberNo+'">'
@@ -39,7 +39,35 @@ class CategoryController {
           });
         }
       }
-    })
+    });
+  }
+
+  getCancelData() {
+    $.ajax({
+      url: '/app/admin/getPendingLessons',
+      success: (result) => {
+        console.log(result);
+        let html = '';
+        for (let i = 0; i < result.pendingLessons.length; i++) {
+          html += '<tr class="my-table-row row-no-'+result.pendingLessons[i].lessonNo+'">'
+          html += '<td>'+result.pendingLessons[i].lessonNo+'</td>';
+          html += '<td>'+result.studentList[i].name+'</td>';
+          html += '<td>'+result.teacherList[i].name+'</td>';
+          html += '<td>한국대 졸업, 과외경력 20년</td>';
+          html += '</tr>'
+        }
+        
+        let tbody = document.getElementById('tbody-99');
+        tbody.innerHTML = html;
+
+        for (let i = 0; i < result.pendingLessons.length; i++) {
+          let thisTableRow = document.getElementsByClassName('row-no-'+result.pendingLessons[i].lessonNo)[0];
+          thisTableRow.addEventListener('click', () =>{
+            location.href = '#';
+          });
+        }
+      }
+    });
   }
 
 }

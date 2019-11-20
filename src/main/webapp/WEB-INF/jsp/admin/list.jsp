@@ -98,21 +98,13 @@
             <table class='table table-hover'>
               <thead>
                 <tr>
-                  <th class="member-number">번호</th>
-                  <th class="member-name">이름</th>
-                  <th class="member-age">나이</th>
-                  <th class="member-etc">비고</th>
+                  <th>수업번호</th>
+                  <th>학생</th>
+                  <th>선생님</th>
+                  <th>비고</th>
                 </tr>
               </thead>
               <tbody id="tbody-99">
-                <c:forEach begin="0" end="3">
-                  <tr class="my-table-row">
-                    <td>1</td>
-                    <td>유관순</td>
-                    <td>24세</td>
-                    <td>한국대 졸업, 과외경력 20년</td>
-                  </tr>
-                </c:forEach>
               </tbody>
             </table>
           </div>
