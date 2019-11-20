@@ -64,8 +64,8 @@
 
             <div class="form-check this-center">
 							<label class="form-check-label"> 
-								<input class="form-check-input" type="checkbox" id="idmemory"
-									value="아이디 기억">아이디 기억 
+								<input class="form-check-input" type="checkbox" 
+								id="idmemory"	value="아이디 기억" style="margin-left: 0px !important;">아이디 기억 
 								<span class="form-check-sign">
 									<span class="check"></span>
 								</span>

@@ -93,14 +93,14 @@ $('#star_grade a').click(function(){
 	  var rating = $('.on').length;
 	  $("#teacherEvaluation").val(rating);
     var form = document.frm1;
-      if (form.studentReview.value.length == 0) {
+    var stopReason = $("#studentReview").val().replace(/(\s*)/g, "");
+      if (stopReason.length == 0) {
         swal("내용을 입력하세요.");
-        form.studentReview.focus();
         return;
       } else {
         swal({
             title: "후기 등록",
-            text: "등록하시면 수정이 불가능합니다. 등록하시겠습니까?",
+            text: "등록하시면 수정이 불가능합니다.",
             buttons: true,
           })
           .then((willDelete) => {

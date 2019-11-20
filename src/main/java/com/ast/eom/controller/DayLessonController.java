@@ -1,7 +1,6 @@
 package com.ast.eom.controller;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.ast.eom.dao.MemberDao;
 import com.ast.eom.domain.DayLesson;
 import com.ast.eom.domain.Lesson;
 import com.ast.eom.domain.Member;
@@ -24,6 +24,7 @@ public class DayLessonController {
 
   @Autowired private DayLessonService dayLessonService;
   @Autowired private LessonService lessonService;
+  @Autowired private MemberDao memberDao;
 
   @GetMapping("list")
   public void list(
@@ -42,13 +43,6 @@ public class DayLessonController {
     if (dayLessons.size() > 0) {
       model.addAttribute("dayLessonNo", dayLessons.get(0).getDayLessonNo());
     }
-
-    // 수정해야함
-    List<Date> dayLessonDateList = new ArrayList<Date>();
-    for (int i=0; i<dayLessons.size(); i++) {
-      dayLessonDateList.add(dayLessons.get(i).getLessonDate());
-      System.out.println("date==>" + dayLessons.get(i).getLessonDate());
-    }
     
     model.addAttribute("lessonNo", lessonNo);
     model.addAttribute("lessonState", lessonState);
@@ -61,8 +55,11 @@ public class DayLessonController {
   @GetMapping("dayLesson/list")
   @ResponseBody
   public List<DayLesson> list(int lessonNo) throws Exception {
-    System.out.println("lessonDate===>" + dayLessonService.list(lessonNo).get(0).getLessonDate());
-    return dayLessonService.list(lessonNo);
+    List<DayLesson> dayLessons = dayLessonService.list(lessonNo);
+    for (DayLesson dl : dayLessons) {
+      dl.setLessonDateStr(String.valueOf(dl.getLessonDate()));
+    }
+    return dayLessons;
   }
   
   @PostMapping("dayLesson/add")
@@ -115,29 +112,16 @@ public class DayLessonController {
       Model model,
       HttpSession session,
       int lessonNo) throws Exception {
-    Member member = (Member) session.getAttribute("loginUser");
-    int memberTypeNo = member.getMemberTypeNo();
-    int memberNo = member.getMemberNo();
-    String name = member.getName();
-    String email = member.getEmail();
     
-    List<Lesson> lessons = lessonService.list(memberTypeNo, memberNo);
-    for (Lesson lesson : lessons) {
-      if (lesson.getLessonNo() != lessonNo)
-        continue;
-      else {
-        model.addAttribute("subjectName", lesson.getSubjectName());
-        model.addAttribute("schoolTypeNo", lesson.getSubject().getSchoolTypeNo());
-      }
-    }
+    Lesson lesson = lessonService.lessonDetail(lessonNo);
     
-    Lesson lessonCurriculum = lessonService.get(lessonNo);
+    String teacherName = memberDao.detailMember(lesson.getTeacherNo()).getName();
+    String studentName = memberDao.detailMember(lesson.getStudentNo()).getName();
     
-    model.addAttribute("totalHours", lessonCurriculum.getCurriculum().getTotalHours());
-    model.addAttribute("lessonDayCount", lessonCurriculum.getLessonDayCount());
-    model.addAttribute("lessonNo", lessonNo);
-    model.addAttribute("name", name);
-    model.addAttribute("email", email);
+    model.addAttribute("lesson", lesson);
+    model.addAttribute("teacherName", teacherName);
+    model.addAttribute("studentName", studentName);
+    
   }
   
   @PostMapping("stopLesson")

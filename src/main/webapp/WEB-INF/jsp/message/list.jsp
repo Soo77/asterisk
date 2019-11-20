@@ -42,7 +42,9 @@
 		${messageReadShowAll}개</i>
 
 	<div id="showList">
-		<c:if test="${messageListSize ne 0}">
+	
+	<c:choose>
+		<c:when test="${messageListSize ne 0}">
 			<c:forEach begin="0" end="${messageListSize-1}" var="i">
 				<c:choose>
 					<c:when test="${messageReadList[i] ne 0}">
@@ -74,7 +76,12 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-		</c:if>
+		</c:when>
+		
+			<c:otherwise>
+	      <h4>쪽지를 보낸 사람이 없습니다</h4>
+	    </c:otherwise>
+    </c:choose>
 
 	</div>
 

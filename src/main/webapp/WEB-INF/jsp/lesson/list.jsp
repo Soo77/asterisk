@@ -141,7 +141,8 @@
 				
 				        <div id="searchResult${i}"></div>
 				
-				        <input type="text" id="choiceId${i}" readOnly>
+				        <input type="text" class="form-control" placeholder="학생 아이디" 
+				        id="choiceId${i}" readOnly>
 				        <button id="lessonMessage${i}" onclick="lessonMessage(${i})" 
 				        class="btn btn-primary btn-sm">메세지  전송</button>
 							  <c:set var="i" value="${i+1}"/>
@@ -184,6 +185,15 @@
         type : "post",
         data : {id : id},
         success : function(data){
+        	if(data == ""){
+            $("#searchResult"+no).text("없는 아이디입니다");
+            $("#searchResult"+no).css("color", "red");
+            $("#std"+no).css("color", "red");
+            return false;
+          }
+          
+          $("#searchResult"+no).css("color", "black");
+          $("#std"+no).css("color", "black");
           $("#searchResult"+no).text("");
           for(var i in data){
             console.log(data);
@@ -228,17 +238,16 @@
     messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
     
     if(memberNo == ""){
-      alert("학생을 선택해주세요");
+      swal("학생을 선택해주세요");
       return false;
     }
-      
       $.ajax({
         url:"/app/message/messagein",
         type:"post",
         data:"senderNo="+${loginUser.memberNo}+"&messageConts=" + 
         messageConts + "&receiverNo=" + memberNo,
         success : function(data) {
-         alert("초대 메세지를 보냈습니다");
+         swal("초대 메세지를 보냈습니다");
         },
         error : function() {
          console.log("실패");

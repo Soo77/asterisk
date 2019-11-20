@@ -1,5 +1,6 @@
 package com.ast.eom.service.impl;
 
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,5 +94,10 @@ public class DefaultJoinService implements JoinService {
   @Override
   public int teacherSubjectInsert(Map<String, Object> subjectParams) {
     return joinDao.teacherSubjectInsert(subjectParams);
+  }
+
+  @Override
+  public List<Member> checkOverChildId(String id) {
+    return joinDao.checkOverChildId(id);
   }
 }

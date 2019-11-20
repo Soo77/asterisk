@@ -7,6 +7,43 @@
 <link rel="stylesheet" href="/css/simple-calendar.css">
 
 <style>
+  
+  /* 캘린더 month 이동하는 버튼 */
+  .calendar header .btn {
+    color: #D8D8D8;
+    border: 2px solid #D8D8D8;
+    background-color: white;
+    padding: 0px;
+  }
+  
+  /* 캘린더 오늘 날짜 */
+  .calendar .day.today {
+    background: #FFE08C;
+    color: black;
+  }
+  
+  /* 캘린더 날짜 누르고 뜬 화면에서 'x' */
+  .event-container>.close:before, .event-container>.close:after {
+    background-color: black;
+  }
+  
+  /* 캘린더 날짜 누르고 뜬 화면 */
+  .calendar .event-container {
+    color: black;
+    background: #EAEAEA;
+  }
+  
+  /* 캘린더 날짜 누르고 뜬 화면에서 날짜 */
+  .event-container>p {
+    margin-top: 25%;
+  }
+  
+  /* 캘린더 날짜 누르고 뜬 화면에서 내용 */
+  h2.title {
+    color: black;
+    font-size: 20px;
+  }
+  
   #my-progress {
     padding: 20px;
   }
@@ -64,9 +101,9 @@
 <div class="main main-raised">
   <div class="container p-3">
   
-    <!-- 수정해야함 -->
     <c:forEach var="dayLesson" items="${dayLessons}" varStatus="status">
       <input type="hidden" name="hiddenLessonDate" id="dayLessonDate${status.index}" value="${dayLesson.lessonDate}">
+      <input type="hidden" name="hiddenLessonSummary" id="dayLessonSummary${status.index}" value="${dayLesson.lessonSummary}">
     </c:forEach>
   
     <div class="row">
@@ -204,14 +241,18 @@
 		$("#container").simpleCalendar();
 	});
 	
-	
-	// 수정해야함
+	// 일별과외진행현황 날짜들을 리스트에 저장
 	var lessonDateList = new Array();
   $("input[name=hiddenLessonDate]").each(function(idx) {
 	  lessonDateList.push($(this).val());
-    console.log(lessonDateList);
   });
   
+  var lessonSummaryList = new Array();
+  $("input[name=hiddenLessonSummary]").each(function(idx) {
+	  lessonSummaryList.push($(this).val());
+  });
+  
+  // lessonDateList 리스트를 가지고 캘린더에 일별과외진행현황 날짜 표시
   $("#container").simpleCalendar({
       months: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
       days: ['일','월','화','수','목','금','토'],
@@ -220,8 +261,8 @@
       insertEvent: true,              // can insert events
       displayEvent: true,             // display existing event
       fixedStartDay: true,            // Week begin always by monday
-      events: lessonDateList,        // event dates 임시로 정해둠!!
-      eventsInfo: [],     // event info to show
+      events: lessonDateList,        // event dates
+      eventsInfo: lessonSummaryList,     // event info to show
       insertCallback : function(){}   // Callback when an event is added to the calendar
   }); 
   
@@ -252,7 +293,7 @@
     } else if (${remainDays == 1}) {
   		swal({
   	        title: "등록",
-  	        text: "과외의 마지막 수업 등록입니다. 등록하시면 더이상 수정이 불가능합니다. 등록하시겠습니까?",
+  	        text: "과외의 마지막 수업 등록입니다.\n등록하시면 더이상 수정이 불가능합니다.",
   	        buttons: true,
   	      })
   	      .then((willDelete) => {
@@ -320,11 +361,7 @@
                   	a += '<div class="card-body">';
                   	a += "<input type='hidden' id='dayLessonNo_" + value.dayLessonNo + "' value='" + value.dayLessonNo + "'>";
                   	a += '<div class="row">';
-              			/* var year = new Date(value.lessonDate).getFullYear();
-              			var month = new Date(value.lessonDate).getMonth()+1;
-              			var day = new Date(value.lessonDate).getDate()+1;
-              			var lessonDate = year + '-' + month + '-' + day; */
-              			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDate + '</div>';
+              			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDateStr + '</div>';
               			a += '수업시작시간 : <div class="col" id="lessonStartHour_' + value.dayLessonNo + '">' + value.lessonStartHour + '</div>';
               			a += '수업종료시간 : <div class="col" id="lessonEndHour_' + value.dayLessonNo + '">' + value.lessonEndHour + '</div>';
               			a += '</div>';
@@ -469,6 +506,7 @@
 </script>
 
 <script>
+  // 일별 과외 추가 버튼 눌렀을 때 modal 설정
 	function resetModal() {
 		var addButton = document.querySelector('#btnAdd');
 		addButton.style.display = 'inline';
@@ -479,12 +517,13 @@
 		
     $("#modalDayLessonNo").val('');
     $("#modalLessonDate").val('');
-    $("#modalLessonStartHour").val('');
-    $("#modalLessonEndHour").val('');
+    $("#modalLessonStartHour").val('12:00');
+    $("#modalLessonEndHour").val('12:00');
     $("#modalLessonSummary").val('');
     $("#modalLessonEvaluation").val('');
   }
   
+	// 일별 과외 상세보기 버튼 눌렀을 때 modal 설정
 	function setModal(key) {
 		if (${loginUser.memberTypeNo == 3 && lessonState == 1}) {
 			var addButton = document.querySelector('#btnAdd');
@@ -493,7 +532,8 @@
 			updateButton.style.display = 'inline';
 			var addButton = document.querySelector('#btnDelete');
 			addButton.style.display = 'inline';
-		} else if (${loginUser.memberTypeNo == 1 || (loginUser.memberTypeNo == 3 && (lessonState == 3 || lessonState == 5))}) {
+		} else if (${loginUser.memberTypeNo == 1 || loginUser.memberTypeNo == 2 || 
+							(loginUser.memberTypeNo == 3 && (lessonState == 3 || lessonState == 5))}) {
   			var sdt = document.querySelector('#modalLessonDate');
   			sdt.readOnly = true;
   			var sh = document.querySelector('#modalLessonStartHour');

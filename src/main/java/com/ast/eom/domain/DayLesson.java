@@ -9,6 +9,7 @@ public class DayLesson {
   private int lessonNo;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date lessonDate;
+  private String lessonDateStr;
   private String lessonStartHour;
   private String lessonEndHour;
   private String lessonSummary;
@@ -17,8 +18,15 @@ public class DayLesson {
   @Override
   public String toString() {
     return "DayLesson [dayLessonNo=" + dayLessonNo + ", lessonNo=" + lessonNo + ", lessonDate="
-        + lessonDate + ", lessonStartHour=" + lessonStartHour + ", lessonEndHour=" + lessonEndHour
-        + ", lessonSummary=" + lessonSummary + ", lessonEvaluation=" + lessonEvaluation + "]";
+        + lessonDate + ", lessonDateStr=" + lessonDateStr + ", lessonStartHour=" + lessonStartHour
+        + ", lessonEndHour=" + lessonEndHour + ", lessonSummary=" + lessonSummary
+        + ", lessonEvaluation=" + lessonEvaluation + "]";
+  }
+  public String getLessonDateStr() {
+    return lessonDateStr;
+  }
+  public void setLessonDateStr(String lessonDateStr) {
+    this.lessonDateStr = lessonDateStr;
   }
   public int getDayLessonNo() {
     return dayLessonNo;
