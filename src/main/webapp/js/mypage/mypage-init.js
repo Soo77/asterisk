@@ -1,9 +1,3 @@
-// 쪽지함 버튼
-let myMessageBtn = document.getElementsByClassName('my-message-btn')[0];
-myMessageBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-});
-
 // 나의 과외 버튼
 class MyLesson {
   memberTypeNo;
@@ -38,17 +32,16 @@ class MypageInit {
 
   displayTeacherInfo() {
     if (memberTypeNo == 3) {
-      let studentIdSpan = document.getElementsByClassName('student-ID-span')[0];
-      let tutorCertiSpan = document.getElementsByClassName('tutor-certi-span')[0];
       let myLessonBtnDisplay = document.getElementsByClassName('my-lesson-btn')[0];
       let teacherDisplay = document.getElementsByClassName('teacherDisplay');
 
-      studentIdSpan.style.display = 'inline-block';
-      tutorCertiSpan.style.display = 'inline-block';
       myLessonBtnDisplay.style.display = 'inline-block';
 
-      for (let td of teacherDisplay)
+      for (let td of teacherDisplay) {
+        if (td.getAttribute('class').endsWith('hiddenNode'))
+          continue;
         td.style.display = 'block';
+      }
     }
   }
 
@@ -59,8 +52,11 @@ class MypageInit {
 
       myLessonBtnDisplay.style.display = 'inline-block';
 
-      for (let sd of studentDisplay)
+      for (let sd of studentDisplay) {
+        if (sd.getAttribute('class').endsWith('hiddenNode'))
+          continue;
         sd.style.display = 'block';
+      }
     }
   }
 
@@ -68,27 +64,10 @@ class MypageInit {
     if (memberTypeNo == 2) {
       let parentsDisplay = document.getElementsByClassName('parentsDisplay');
 
-      for (let pd of parentsDisplay)
+      for (let pd of parentsDisplay) {
+        if (pd.getAttribute('class').endsWith('hiddenNode'))
+          continue;
         pd.style.display = 'block';
-    }
-  }
-
-  checkTeacherApprovement(teacherUniversityConfirmation, teacherApprovementState) {
-    if (this.memberTypeNo == 3) {
-      if (teacherUniversityConfirmation == 'true') {
-        let studentIdchecked = document.getElementsByClassName('student-ID-checked')[0];
-        studentIdchecked.style.display = 'inline-block';
-      } else if (teacherUniversityConfirmation == 'false' || teacherUniversityConfirmation == '') {
-        let studentIdUnchecked = document.getElementsByClassName('student-ID-unchecked')[0];
-        studentIdUnchecked.style.display = 'inline-block';
-      }
-
-      if (teacherApprovementState == 'true') {
-        let tutorCertichecked = document.getElementsByClassName('tutor-certi-checked')[0];
-        tutorCertichecked.style.display = 'inline-block';
-      } else if (teacherApprovementState == 'false' || teacherApprovementState == '') {
-        let tutorCertiUnchecked = document.getElementsByClassName('tutor-certi-unchecked')[0];
-        tutorCertiUnchecked.style.display = 'inline-block';
       }
     }
   }
@@ -135,17 +114,53 @@ class MypageInit {
     let childAddButton = document.getElementsByClassName('childAddButton')[0];
 
     childAddButton.addEventListener('click', () => {
-      this.addChildIdNode();
+      let addedChildIdObject = this.addChildIdNode();
+      let childIdInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[1]
+      let childNoInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[3];
+      let childVerificationButton = addedChildIdObject.childNodes[3].childNodes[5].childNodes[1];
+      let lessonListButtonDiv = addedChildIdObject.childNodes[3].childNodes[3];
+      let childVerificationButtonDiv = addedChildIdObject.childNodes[3].childNodes[5];
+
+      childVerificationButton.addEventListener('click', () => {
+        console.log(childIdInput.value);
+        $.ajax({
+          url: '/app/mypage/verifyTheChild',
+          data : {
+            'childId' : childIdInput.value.trim()
+          },
+          success : (result) => {
+            console.log(result);
+            if (result.memberNo == null) {
+              swal('해당하는 아이디의 유저가 없습니다!');
+            } else {
+              childNoInput.value = result.memberNo;
+              childVerificationButtonDiv.style.display = 'none';
+              lessonListButtonDiv.style.display = 'block';
+              swal('인증 완료');
+            }
+          }
+
+        })
+      });
+
     });
   }
 
   addParentsChildrenNodes() {
     for (let i = 0; i < myParentsChildrenId.length; i++) {
+      if (myParentsChildrenId == '')
+        continue;
       let addedChildIdObject = this.addChildIdNode();
       let childIdInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[1];
+      let childNoInput = addedChildIdObject.childNodes[3].childNodes[1].childNodes[3];
       let lessonListButton = addedChildIdObject.childNodes[3].childNodes[3].childNodes[3];
-      
+      let lessonListButtonDiv = addedChildIdObject.childNodes[3].childNodes[3];
+      let childVerificationButtonDiv = addedChildIdObject.childNodes[3].childNodes[5];
+
       childIdInput.value = myParentsChildrenId[i];
+      childNoInput.value = myPatentsChildrenNo[i];
+      lessonListButtonDiv.style.display = 'block';
+      childVerificationButtonDiv.style.display = 'none';
       this.addGoingToLessonListEventTo(lessonListButton, i);
 
     }

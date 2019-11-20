@@ -31,20 +31,6 @@
                 </div>
                 <div class="name">
                   <h3 class="title mb-2">${loginUser.name}</h3>
-                  <h6>
-                    <i class="far fa-square student-ID-unchecked"></i><i
-                      class="far fa-check-square student-ID-checked"></i>
-                    <span class="student-ID-span">
-                      학생증 인증&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <i class="far fa-square tutor-certi-unchecked"></i><i
-                      class="far fa-check-square tutor-certi-checked"></i>
-                    <span class="tutor-certi-span">
-                      신고서 인증
-                    </span>
-                  </h6>
-                  <h6></h6>
-                  <button id="popMessage" class="btn btn-primary btn-sm my-message-btn">쪽지함</button>
                   <button class="btn btn-primary btn-sm my-lesson-btn">나의 과외</button>
                 </div>
               </div>
@@ -65,19 +51,20 @@
             <label for="inputPasswordCheck">비밀번호확인</label>
             <input type="password" class="form-control" id="inputPasswordCheck">
           </div>
+          <div class="redch" id="pw_check"></div>
 
           <div class="form-group">
             <label for="inputEmail">이메일</label>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" id="inputEmail" value="${mypageEmail[0]}" name="email1">
+                <input type="text" class="form-control" id="inputEmail" value="${mypageEmail[0]}" name="email1" readonly>
               </div>
               <div class="col">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                   </div>
-                  <input type="text" class="form-control" id="inputEmail2" value="${mypageEmail[1]}" name="email2">
+                  <input type="text" class="form-control" id="inputEmail2" value="${mypageEmail[1]}" name="email2" readonly>
                 </div>
               </div>
             </div>
@@ -145,6 +132,15 @@
               <c:if test="${school.schoolTypeNo eq 4}">
                 <c:set var="teacherUniversityConfirmation" value="${school.confirmed}" />
                 <input type="text" class="form-control" id="inputUniversity" value="${school.schoolName}" readonly>
+              </c:if>
+            </c:forEach>
+          </div>
+
+          <div class="form-group teacherDisplay">
+            <label for="major">전공</label>
+            <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
+              <c:if test="${school.schoolTypeNo eq 4}">
+                <input type="text" class="form-control" id="major" name="major" value="${school.major}">
               </c:if>
             </c:forEach>
           </div>
@@ -291,6 +287,7 @@
               name="videoAddress">
           </div>
 
+          <label class="parentsDisplay">자녀 목록</label>
           <div class="form-group row childId mb-2 pt-1 childIdTemplate">
             <div class="col-sm-2 mb-0 form-group">
               <label for="inputChildId" class="childIdLabel">자녀ID</label>&nbsp;&nbsp;
@@ -299,11 +296,15 @@
             </div>
             <div class="col-sm-10 mt-1 d-flex">
               <div class="flex-item pr-1" style="flex-basis: 93%;">
-                <input type="text" class="form-control" readonly value="hong111" name="childrenId">
+                <input type="text" class="form-control" name="childrenId">
+                <input type="hidden" class="form-control" name="childrenNo">
               </div>
-              <div class="flex-item" style="flex-basis: 7%;">
+              <div class="flex-item" style="flex-basis: 7%; display: none;">
                 <input type="hidden" value="4">
                 <button class="btn btn-sm btn-outline-primary childLessonButton" type="button">과외현황</button>
+              </div>
+              <div class="flex-item" style="flex-basis: 7%;">
+                <button class="btn btn-sm btn-outline-primary child-verification-button" type="button">인증하기</button>
               </div>
             </div>
           </div>
@@ -313,7 +314,7 @@
           </div>
 
 
-          <div class="form-check kakaotalkDiv parentsDisplay">
+          <div class="form-check kakaotalkDiv parentsDisplay hiddenNode">
             <label class="form-check-label">
               <input id="kakaotalkCheckbox" class="form-check-input" type="checkbox" name="kakaoCheck">
               과외 내용을 카톡으로 수신
@@ -324,7 +325,7 @@
           </div>
 
           <div class="modification-button-div pt-2 pb-2">
-            <button class="btn btn-primary">수정</button>
+            <button id="submit" class="btn btn-primary">수정</button>
           </div>
         </form>
       </div>
@@ -335,7 +336,7 @@
 <!-- 값 테스트용 출력 (디버깅 이후 지울 것)-->
 <script>
   //console.log('${memberInfoMap.teacher}');
-  //console.log('${memberInfoMap.lessonSubjects}');
+  //console.log('${memberInfboMap.lessonSubjects}');
   //console.log('${memberInfoMap.parents}');
   console.log('${memberInfoMap.student}');
   //console.log('${memberInfoMap.wantedLessons}');
@@ -346,19 +347,6 @@
     console.log("${teacherLesson}");
   </script>
 </c:forEach>
-
-<!-- 쪽지함 팝업 -->
-<script>
-  $("#popMessage").on('click', function() {
-    popMessage();
-  });
- 
-  function popMessage(){
-    var url = "/app/message/list";
-    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-    window.open(url, "쪽지목록" ,option);
-  }
-</script>
 
 <!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
 <script src="/js/mypage/profile-photo.js"></script>
@@ -379,7 +367,9 @@
   </script>
 </c:forEach>
 
+
 <script src="/js/mypage/mypage-init.js"></script>
+<script src="/js/mypage/password-checker.js"></script>
 <script>
   let memberTypeNo = Number('${loginUser.memberTypeNo}');
   let teacherUniversityConfirmation = '${teacherUniversityConfirmation}';
@@ -391,9 +381,9 @@
   myLesson.addLinkToMyLessonButton();
 
   let mypageInit = new MypageInit(memberTypeNo);
-  if (memberTypeNo == 3) {
-    mypageInit.checkTeacherApprovement(teacherUniversityConfirmation, teacherApprovementState);
-  }
+  // if (memberTypeNo == 3) {
+  //   mypageInit.checkTeacherApprovement(teacherUniversityConfirmation, teacherApprovementState);
+  // }
 
   mypageInit.displayMemberInfo();
 
@@ -443,11 +433,6 @@
     document.getElementById('my-image-wrapper').style.height = '343px';
 
 </script>
-
-
-
-
-
 
 <!-- 희망과목 제거 버튼 초기 세팅-->
 <script>

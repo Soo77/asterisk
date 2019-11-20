@@ -82,8 +82,61 @@ public class DefaultMypageService implements MypageService {
   }
   
   @Override
-  public int updateMember(Member member) {
+  public int updateMember(Member member) throws Exception {
     return mypageDao.updateMember(member);
+  }
+  
+  @Override
+  public int updateStudent(Member member, Student student, String[] schoolTypeNo, String[] subjectNo,
+      String[] wantedFee) throws Exception {
+    updateMember(member);
+    mypageDao.updateStudent(student);
+    
+    int[] thisSubjectNo = new int[schoolTypeNo.length];
+    for (int i = 1; i < schoolTypeNo.length; i++) {
+      int schoolTypeNo2 = Integer.parseInt(schoolTypeNo[i]);
+      int subjectNo2 = Integer.parseInt(subjectNo[i]);
+      thisSubjectNo[i] = (3*(schoolTypeNo2-1)+subjectNo2);
+      System.out.println("과목: " + thisSubjectNo[i]);
+    }
+    
+    Map<String, Object> studentInfo = new HashMap<>();
+    
+    mypageDao.deleteAllWantedLessonRelatedTo(member.getMemberNo());
+    
+    // 화면에 표시할 때 템플릿을 남기게 구현하는 바람에 인덱스가 1부터 시작
+    for (int i = 1; i < schoolTypeNo.length; i++) {
+      studentInfo.put("studentNo", member.getMemberNo());
+      studentInfo.put("subjectNo", thisSubjectNo[i]);
+      studentInfo.put("wantedFee", wantedFee[i]);
+      mypageDao.insertWantedLessonOf(studentInfo);
+    }
+    
+    return 1;
+  }
+  
+  @Override
+  public int updateParents(
+      Member member,
+      Parents parents,
+      String[] childrenNo) throws Exception {
+    
+    updateMember(member);
+    
+    Map<String, Object> childrenInfo = new HashMap<>();
+    childrenInfo.put("parentsNo", member.getMemberNo());
+    
+    // 하기 전에 다 지우는거 잊지 말것
+    mypageDao.deleteAllParentsNoOfStudents(member.getMemberNo());
+    
+    // 화면에 표시할 때 템플릿을 남기게 구현하는 바람에 인덱스가 1부터 시작
+    for (int i = 1; i < childrenNo.length; i++) {
+      System.out.println(childrenNo[i]);
+      childrenInfo.put("childNo", Integer.parseInt(childrenNo[i]));
+      mypageDao.updateParentsOfStudent(childrenInfo);
+    }
+    
+    return 1;
   }
 
   @Override
@@ -92,7 +145,7 @@ public class DefaultMypageService implements MypageService {
       Teacher teacher,
       String[] schoolTypeNo,
       String[] subjectNo,
-      String[] wantedFee) {
+      String[] wantedFee) throws Exception {
     
     updateMember(member);
     mypageDao.updateTeacher(teacher);
@@ -119,6 +172,10 @@ public class DefaultMypageService implements MypageService {
     
     return 1;
   }
-
+  
+  @Override
+  public Member getChild(String childId) throws Exception {
+    return mypageDao.getChildBy(childId);
+  }
 
 }

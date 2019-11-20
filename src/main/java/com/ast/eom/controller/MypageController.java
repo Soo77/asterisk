@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ast.eom.domain.Member;
@@ -85,7 +86,7 @@ public class MypageController {
       MultipartFile[] teacherPhotoFiles,
       Student student,
       Parents parents,
-      String[] childrenId,
+      String[] childrenNo,
       String kakaoCheck) throws Exception {
     
     Member loginUser = (Member) session.getAttribute("loginUser");
@@ -96,10 +97,12 @@ public class MypageController {
         member, session);
 
     if (loginUser.getMemberTypeNo() == 1) {
-      mypageService.updateMember(member);
+      student.setStudentNo(loginUser.getMemberNo());
+      mypageService.updateStudent(
+          member, student, schoolTypeNo, subjectNo, wantedFee);
       
     } else if (loginUser.getMemberTypeNo() == 2) {
-      mypageService.updateMember(member);
+      mypageService.updateParents(member, parents, childrenNo);
       
     } else if (loginUser.getMemberTypeNo() == 3) {
       teacher.setTeacherNo(loginUser.getMemberNo());
@@ -124,5 +127,11 @@ public class MypageController {
     
     session.setAttribute("childrenNo", Integer.parseInt(thisChildNo));
     response.sendRedirect("/app/lesson/list");
+  }
+  
+  @GetMapping("verifyTheChild")
+  @ResponseBody
+  public Object verifyTheChild(String childId) throws Exception {
+    return mypageService.getChild(childId);
   }
 }

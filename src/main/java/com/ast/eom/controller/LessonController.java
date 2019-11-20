@@ -94,7 +94,7 @@ public class LessonController {
 
 
   @RequestMapping(value = "fixedDetail", method={RequestMethod.GET})
-  public void fixedDetail(Model model, int lessonNo
+  public void fixedDetail(HttpSession session, Model model, int lessonNo
       ) throws Exception {
 
     Lesson lesson = lessonService.lessonDetail(lessonNo);
@@ -144,6 +144,7 @@ public class LessonController {
     lesson.setDayintoWord(resultDay);
     System.out.println(lesson);
     model.addAttribute("lesson", lesson);
+    session.setAttribute("lessonInfoForPayment", lesson);
   }
 
   @PostMapping("update")

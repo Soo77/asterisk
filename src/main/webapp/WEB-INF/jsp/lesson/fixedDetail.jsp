@@ -166,8 +166,15 @@
           <div class="col-lg-3 col-sm-6">
             <label for="basic-url2">수업료</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name=lessonFee type="text" class="form-control"
-                value="${lesson.lessonFee}"readonly>
+              <div class="d-flex">
+                <div class="flex-item" style="flex-basis: 95%;">
+                  <input id="lesson-fee" name=lessonFee type="text" class="form-control text-right pr-2 mr-2"
+                    value="${lesson.lessonFee}" readonly>
+                </div>
+                <div class="flex-item align-self-center pl-1" style="flex-basis: 5%;">
+                  <span>원</span>
+                </div>
+              </div>
             </div>
           </div>
          </div> 
@@ -214,11 +221,18 @@
     </div>
 
     <c:set var="garo" value="${lesson.lessonNo}" scope="session"></c:set>
-    <c:set var="lessonFee" value="${lesson.lessonFee*10000}" scope="session"></c:set>
+    <c:set var="lessonFee" value="${lesson.lessonFee}" scope="session"></c:set>
 
 
   </div>
 </div>
+
+<!-- 1,000 단위마다 콤마 찍는 함수 -->
+<script src="/js/payment/number-formatter.js"></script>
+<script>
+  let myLessonFee = numberFormat(${lesson.lessonFee});
+  document.getElementById('lesson-fee').value = myLessonFee;
+</script>
 
 <script language="javascript">
   function checking() {

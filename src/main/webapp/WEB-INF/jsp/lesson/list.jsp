@@ -32,13 +32,14 @@
   <div class="main main-raised">
     <div class="container">
       <div class="section text-center">
+       
 <c:choose>
   <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState ne 'true'}">
-    <input type="button" class="btn btn-primary pay-button" style="margin-bottom: 15px; left: 335px; display: none;" 
+    <input type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px; display: none;" 
       value="새 커리큘럼 등록" onClick="location.href='currAdd'">
   </c:when>
   <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState eq 'true'}">
-    <input type="button" class="btn btn-primary pay-button" style="margin-bottom: 15px; left: 335px;" 
+    <input type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;" 
       value="새 커리큘럼 등록" onClick="location.href='currAdd'">
   </c:when>
     
@@ -245,6 +246,8 @@
       })
   }
   </script>
+  
+
 
   <!--   Core JS Files   -->
   <script src="/assets/js/plugins/moment.min.js"></script>

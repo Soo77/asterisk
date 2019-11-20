@@ -195,8 +195,12 @@ textarea {
 }
 
 .photo-add-div {
-  border: 1px solid #d2d2d2;
-  border-radius: 0.35rem;
+  border-top: 1px solid #d2d2d2;
+  border-right: 1px solid #d2d2d2;
+  border-bottom: 1px solid #9c27b0;
+  border-left: 1px solid #d2d2d2;
+  border-top-left-radius: 0.35rem;
+  border-top-right-radius: 0.35rem;
 }
 
 .photo-add-button {

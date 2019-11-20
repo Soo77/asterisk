@@ -8,7 +8,6 @@
   <meta charset="UTF-8">
   <title>가입 화면</title>
   <script type="text/javascript">
-
     // 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
     function checkValue() {
       var va = document.querySelectorAll(".redch");
@@ -18,46 +17,6 @@
           return false;
         }
       }
-
-      if (!document.userInfo.filePath.value) {
-        alert("프로필 사진을 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.password.value) {
-        alert("비밀번호를 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.okpw.value) {
-        alert("비밀번호 확인을 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.name.value) {
-        alert("이름을 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.email.value) {
-        alert("이메일을 입력하세요.");
-        return false;
-      }
-
-      if (!document.userInfo.gender.value) {
-        alert("성별을 선택하세요.");
-        return false;
-      }
-
-      if (isNaN(form.birthyy.value)) {
-        alert("년도는 숫자만 입력가능합니다.");
-        return false;
-      }
-    }
-
-    // 취소 버튼 클릭시 로그인 화면으로 이동
-    function goLoginForm() {
-      location.href = "/";
     }
   </script>
   <style>
@@ -82,6 +41,7 @@
       height: 160px;
       object-fit: cover;
     }
+    
   </style>
 </head>
 
@@ -127,34 +87,38 @@
               </b><br> <br>
 
               <div class="form-group">
-                <label for="id" class="bmd-label-floating">아이디</label>
-                <input type="text" class="form-control" name="id" id="id" maxlength="50">
+                <label for="id" class="required bmd-label-floating">아이디</label>
+                <input type="text" class="form-control" name="id" id="id" maxlength="50" required>
                 <div class="redch" id="id_check"></div>
               </div>
 
               <div class="form-group">
                 <label for="pw" class="bmd-label-floating">비밀번호</label>
-                <input type="password" class="form-control" name="password" id="pw" maxlength="50">
+                <input type="password" class="form-control" name="password" id="pw" maxlength="50" required>
               </div>
 
               <div class="form-group">
                 <label for="okpw" class="bmd-label-floating">비밀번호 확인</label>
-                <input type="password" class="form-control" name="okpw" id="okpw" maxlength="50">
+                <input type="password" class="form-control" name="okpw" id="okpw" maxlength="50" required>
                 <div class="redch" id="pw_check"></div>
               </div>
 
               <div class="form-group">
                 <label for="name">이름</label>
-                <input type="text" class="form-control" name="name" id="name" maxlength="50">
+                <input type="text" class="form-control" name="name" id="name" maxlength="50" required>
               </div>
 
               <div class="form-check mb-3">
                 <label for="exampleInput1" class="bmd-label-floating">성별</label><br>
                 <div class="my-wrapper ml-2">
-                  <label class="form-check-label"> <input class="form-check-input" type="radio" name="gender" value="M">
-                    남&ensp; <span class="circle"> <span class="check"></span>
+                  <label class="form-check-label"> 
+                  <input class="form-check-input" type="radio" name="gender" value="M" checked>
+                    남&ensp; <span class="circle"> 
+                    <span class="check"></span>
                     </span>
-                  </label> <label class="form-check-label"> <input class="form-check-input" type="radio" name="gender"
+                  </label> 
+                  <label class="form-check-label"> 
+                  <input class="form-check-input" type="radio" name="gender"
                       value="F">
                     여 <span class="circle"> <span class="check"></span>
                     </span>
@@ -164,15 +128,15 @@
 
               <div class="form-group">
                 <label for="YEAR">생년월일</label>
-                <Input type="date" name="birthDay" id="YEAR" class="form-control">
+                <Input type="date" max="9999-12-31" name="birthDay" id="YEAR" class="form-control">
               </div>
 
               <div id="mailselect">
                 <div class="input-group form-group">
                   <label for="email">이메일</label>
-                  <input type="text" class="form-control" name="email" id="email" maxlength="50">
+                  <input type="text" class="form-control" name="email" id="email" maxlength="50" required>
                   <div class="input-group-text">@</div>
-                  <input type="text" class="form-control" name="mail" id="mail" value="">
+                  <input type="text" class="form-control" name="mail" id="mail" value="" required>
                   <select name="mail2" id="mail2" class="form-control">
                     <option selected disabled>메일 선택</option>
                     <option value="naver.com">naver.com</option>
@@ -225,11 +189,14 @@
                         onclick="verify2()">인증하기</button>
                     </div>
                   </div>
+                  <div id="checkverify"></div>
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-sm" id="submit">가입</button>
-              <input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
+              <div style="padding-bottom: 20px;">
+	              <button type="submit" class="btn btn-primary btn-sm" id="submit">가입</button>
+	              <input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
+              </div>
 
             </div>
           </div>
@@ -388,26 +355,31 @@
     });
   </script>
 
-<script>
+  <script>
     var dp = document.getElementById("mail");
   </script>
 
   <!--   이메일 확인 -->
   <script>
-    var mailSelector = $('#mail2');
-    mailSelector.change(function () {
-      if (mailSelector.val() == "") {
-        dp.style.display = 'block';
-        mailSelector.css('display', 'none');
+    $("#mailselect").focusout(function(){
+    	emailCheck();
+    })
+  
+    $("#mail2").change(function(){
+    	if ($('#mail2').val() == "") {
+	      dp.style.display = 'block';
+	      $('#mail2').css('display', 'none');
       }
+    	document.getElementById("mail").value = document.getElementById("mail2").value;
+    	emailCheck();
     });
-    $("#email").blur(function () {
-
+    
+    function emailCheck(){
       var email = $('#email').val();
       var mail = $('#mail').val();
       var addmail = email + '@' + mail;
       var mailtest = /^[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-
+      
       if (mail == "") {
         dp.readOnly = false;
         $('#email_check').text('이메일을 입력해주세요');
@@ -453,16 +425,7 @@
           }
         });
       }
-    });
-  </script>
-
-  <!--     메일 선택 -->
-  <script>
-    $("#mail2").change(
-      function () {
-        document.getElementById("mail").value = document
-          .getElementById("mail2").value;
-      });
+    }
   </script>
 
   <!--   휴대전화 중복 -->
@@ -471,13 +434,12 @@
       var tel = $('#tel').val();
       var teltest = /^[0-9]{11}$/;
 
-      if (!teltest.test(tel)) {
-        $("#tel_check").text("11개의 숫자만 입력해주세요");
-        $("#tel_check").css("color", "red");
-        $("#tel").css("color", "red");
-        $("#submit").attr("disabled", true);
-      } else if (tel == "") {
-        $("#tel_check").text("번호를 입력해주세요");
+      if (tel == "") {
+    	  $("#tel_check").text("");
+    	  $("#submit").attr("disabled", false);
+    	  return false;
+      } else if (!teltest.test(tel)) {
+    	  $("#tel_check").text("11개의 숫자만 입력해주세요");
         $("#tel_check").css("color", "red");
         $("#tel").css("color", "red");
         $("#submit").attr("disabled", true);

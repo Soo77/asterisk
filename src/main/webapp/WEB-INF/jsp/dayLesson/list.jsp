@@ -35,8 +35,16 @@
     font-weight: bold;
   }
 
-
-
+  .myDayLessonInsertForms .row {
+    padding: 10px 0px;
+  }
+  
+  .myDayLessonInsertForms .form-control {
+    background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+      linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+    border: 0.5px solid #d2d2d2;
+    border-radius: .25rem;
+  }
 </style>
   
 </head>
@@ -58,7 +66,7 @@
   
     <!-- 수정해야함 -->
     <c:forEach var="dayLesson" items="${dayLessons}" varStatus="status">
-      <input type="hidden" name="lessonDate" id="dayLessonDate${status.index}" value="${dayLesson.lessonDate}">
+      <input type="hidden" name="hiddenLessonDate" id="dayLessonDate${status.index}" value="${dayLesson.lessonDate}">
     </c:forEach>
   
     <div class="row">
@@ -122,7 +130,6 @@
   </div>
 </div>
 
-
 <!-- Modal -->
   <div class="modal fade" id="modal" tabindex="-1"
   role="dialog" aria-labelledby="detailModalLabel"
@@ -139,28 +146,22 @@
       <div class="modal-body">
         <input name="dayLessonNo" type="hidden" id="modalDayLessonNo" value="">
         
-        <form name="dayLessonInsertForm">
+        <form name="dayLessonInsertForm" class="myDayLessonInsertForms">
           <input name="lessonNo" type="hidden" id="modalLessonNo" value="${lessonNo}">
           <div class="row">
             <div class="col">
               <label for="modalLessonDate">수업일</label>
-              <div class="form-group has-default bmd-form-group pt-0">
-                <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="" value="">
-              </div>
+              <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="" value="">
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <label for="modalLessonStartHour">수업시작시간</label>
-              <div class="form-group has-default bmd-form-group pt-0">
-                <input class="form-control" name="lessonStartHour" id="modalLessonStartHour" type="time" value="">
-              </div>
+              <label for="modalLessonStartHour">수업 시작시간</label>
+              <input class="form-control" name="lessonStartHour" id="modalLessonStartHour" type="time" value="">
             </div>
             <div class="col">
-              <label for="modalLessonEndHour">수업종료시간</label>
-              <div class="form-group has-default bmd-form-group pt-0">
-                <input class="form-control" name="lessonEndHour" id="modalLessonEndHour" type="time" value="">
-              </div>
+              <label for="modalLessonEndHour">수업 종료시간</label>
+              <input class="form-control" name="lessonEndHour" id="modalLessonEndHour" type="time" value="">
             </div>
           </div>
           <div class="row">
@@ -205,11 +206,12 @@
 	
 	
 	// 수정해야함
-  $("input[name=lessonDate]").each(function(idx) {
-    var value = $(this).val();
-    console.log(value);
+	var lessonDateList = new Array();
+  $("input[name=hiddenLessonDate]").each(function(idx) {
+	  lessonDateList.push($(this).val());
+    console.log(lessonDateList);
   });
-	
+  
   $("#container").simpleCalendar({
       months: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
       days: ['일','월','화','수','목','금','토'],
@@ -218,7 +220,7 @@
       insertEvent: true,              // can insert events
       displayEvent: true,             // display existing event
       fixedStartDay: true,            // Week begin always by monday
-      events: ['2019-11-02', '2019-11-13', '2019-11-15'],        // event dates 임시로 정해둠!!
+      events: lessonDateList,        // event dates 임시로 정해둠!!
       eventsInfo: [],     // event info to show
       insertCallback : function(){}   // Callback when an event is added to the calendar
   }); 
@@ -237,15 +239,36 @@
     var modalLessonSummary = $("#modalLessonSummary").val().replace(/(\s*)/g, "");
     var modalLessonEvaluation = $("#modalLessonEvaluation").val().replace(/(\s*)/g, "");
     
-    if (modalLessonDate.length > 0 &&
-    		modalLessonStartHour.length > 0 &&
-    		modalLessonEndHour.length > 0 &&
-    		modalLessonSummary.length > 0 &&
-    		modalLessonEvaluation.length > 0) {
-      var insertData = $('[name=dayLessonInsertForm]').serialize();
+    if (modalLessonDate.length == 0) {
+    	swal("수업일을 입력하세요.");
+    } else if (modalLessonStartHour.length == 0) {
+    	swal("수업 시작시간을 입력하세요.");
+    } else if (modalLessonEndHour.length == 0) {
+    	swal("수업 종료시간을 입력하세요.");
+    } else if (modalLessonSummary.length == 0) {
+    	swal("수업 내용 정리를 입력하세요.");
+    } else if (modalLessonEvaluation.length == 0) {
+    	swal("수업 평가를 입력하세요.");
+    } else if (${remainDays == 1}) {
+  		swal({
+  	        title: "등록",
+  	        text: "과외의 마지막 수업 등록입니다. 등록하시면 더이상 수정이 불가능합니다. 등록하시겠습니까?",
+  	        buttons: true,
+  	      })
+  	      .then((willDelete) => {
+  	        if (willDelete) {
+  	          swal("수정되었습니다.", {
+  	            icon: "success",
+  	          });
+  	          var insertData = $('[name=dayLessonInsertForm]').serialize();
+  	          dayLessonInsert(insertData);
+  	        } else {
+  	        	
+  	        }
+  	      });
+  	} else {
+    	var insertData = $('[name=dayLessonInsertForm]').serialize();
       dayLessonInsert(insertData);
-    } else {
-      swal("모두 입력하세요.");
     }
   });
   
@@ -257,14 +280,18 @@
     var modalLessonSummary = $("#modalLessonSummary").val().replace(/(\s*)/g, "");
     var modalLessonEvaluation = $("#modalLessonEvaluation").val().replace(/(\s*)/g, "");
     
-    if (modalLessonDate.length > 0 &&
-    		modalLessonStartHour.length > 0 &&
-    		modalLessonEndHour.length > 0 &&
-    		modalLessonSummary.length > 0 &&
-    		modalLessonEvaluation.length > 0) {
-    	dayLessonUpdate()
+    if (modalLessonDate.length == 0) {
+    	swal("수업일을 입력하세요.");
+    } else if (modalLessonStartHour.length == 0) {
+    	swal("수업 시작시간을 입력하세요.");
+    } else if (modalLessonEndHour.length == 0) {
+    	swal("수업 종료시간을 입력하세요.");
+    } else if (modalLessonSummary.length == 0) {
+    	swal("수업 내용 정리를 입력하세요.");
+    } else if (modalLessonEvaluation.length == 0) {
+    	swal("수업 평가를 입력하세요.");
     } else {
-      swal("모두 입력하세요.");
+    	dayLessonUpdate()
     }
   });
   
