@@ -179,15 +179,15 @@
     let paymentMethodNo = document.querySelector('input[name="paymentMethod"]:checked').value;
     let lessonFeeForPayment = (${lessonFee} * lessonMonthOption.value);
 
-    if (lessonFeeForPayment < ${lessonFee}) {
-      swal({
-        title: "오류 발생",
-        text: "결제 금액을 다시 한번 확인해주세요!",
-        confirmButtonClass: "btn-danger",
-        icon: "warning"
-      });
-      return;
-    }
+//     if (lessonFeeForPayment < ${lessonFee}) {
+//       swal({
+//         title: "오류 발생",
+//         text: "결제 금액을 다시 한번 확인해주세요!",
+//         confirmButtonClass: "btn-danger",
+//         icon: "warning"
+//       });
+//       return;
+//     }
 
     let payerInfo = {
       'payerName': document.getElementById('name').value,

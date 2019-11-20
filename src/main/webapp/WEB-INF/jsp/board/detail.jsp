@@ -26,7 +26,7 @@
       margin: 0px;
     }
     
-    #commentUpdateAndDelete {
+    .commentUpdateAndDelete {
       text-align: right;
     }
     
@@ -90,6 +90,17 @@
       width: 30px;
       height: 30px;
       object-fit: cover;
+    }
+    
+    .complete {
+      text-align: right;
+    }
+    
+    .commentUpdate {
+      background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+        linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+      border: 0.5px solid #d2d2d2;
+      border-radius: .25rem;
     }
 
     @media (min-width: 576px) {
@@ -373,7 +384,7 @@
               </div>
               <div class="col-9 p-1" id="wrap">
                 <textarea id="commentContents" name="commentContents" rows="5"
-                  maxlength="300" placeholder="내용을 입력하세요."></textarea>
+                  maxlength="300" placeholder="댓글을 입력하세요."></textarea>
                 <span id="counter">0/300</span>
               </div>
               <div class="col-1 p-1" id="commentAdd">
@@ -505,7 +516,7 @@
 </script>
  -->
 <script>
-  // 수정
+  // 게시글 수정
   var UpdateButton = document.querySelector('#btnUpdate');
   UpdateButton.addEventListener('click', function() {
     UpdateButton.style.display = 'none';
@@ -528,7 +539,7 @@
 </script>
 
 <script>
-  // 수정 취소
+  // 게시글 수정 취소
   var cancelButton = document.querySelector('#btnCancel');
   cancelButton.addEventListener('click', function() {
     swal({
@@ -548,36 +559,34 @@
 </script>
 
 <script>
-  // 수정 완료
+  // 게시글 수정 완료
   var saveButton = document.querySelector('#btnSave');
   saveButton.addEventListener('click', function() {
     var form = document.frm1;
-      if (form.title.value.length == 0) {
-        swal("제목을 입력하세요.");
-        form.title.focus();
-        return;
-      }
-      if (form.contents.value.length == 0) {
-        swal("내용을 입력하세요.");
-        form.contents.focus();
-        return;
-      }
-      else {
-        swal({
-            title: "수정",
-            text: "등록하시겠습니까?",
-            buttons: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal("등록되었습니다.", {
-                icon: "success",
-              });
-              document.getElementById("form1").submit();
-            } else {
-            }
+    
+    var title = $("#inputTitle").val().replace(/(\s*)/g, "");
+    var contents = $("#inputContents").val().replace(/(\s*)/g, "");
+    
+    if (title.length == 0) {
+      swal("제목을 입력하세요.");
+    } else if (contents.length == 0) {
+      swal("내용을 입력하세요.");
+    } else {
+      swal({
+        title: "수정",
+        text: "저장하시겠습니까?",
+        buttons: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("등록되었습니다.", {
+            icon: "success",
           });
-      }
+          document.getElementById("form1").submit();
+        } else {
+        }
+      });
+    }
   });
 </script>
 
@@ -630,20 +639,18 @@
 
 
 <script>
-      // comment
-      
-      var boardNo = '${board.boardNo}'; //게시글 번호
+      var boardNo = '${board.boardNo}';
 
       // 댓글 등록 버튼 클릭시 
       $('[name=commentInsertBtn]').click(function() {
-        var commentContents = document.querySelector('#commentContents');
-        if (commentContents.value.length > 0) {
-        var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-        commentInsert(insertData); //Insert 함수호출(아래)
-        $("#counter").html("0/300");
-        } else {
-          swal("내용을 입력하세요.");
-        }
+    	  var commentContents = $("#commentContents").val().replace(/(\s*)/g, "");
+    	  
+    	  if (commentContents.length == 0) {
+    		  swal("댓글을 입력하세요.");
+    	  } else {
+    		  var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
+    	    commentInsert(insertData); //Insert 함수호출(아래)
+    	  }
       });
       
       // 댓글 글자수 제한
@@ -687,7 +694,7 @@
                         a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
                             + value.commentContents + '</div>'
                         if (value.memberNo == ${loginUser.memberNo}){
-                        	  a += '<div id="commentUpdateAndDelete">'
+                        	  a += '<div class="commentUpdateAndDelete" id="commentUpdateAndDelete' + value.commentNo + '">'
                             a += '<button class="btn btn-outline-primary btn-round btn-sm" id="commentUpdate" type="button" onclick="commentUpdate('
                                 + value.commentNo
                                 + ',\''
@@ -725,13 +732,16 @@
       
        //댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
       function commentUpdate(commentNo, commentContents) {
+    	  document.querySelector('#commentUpdateAndDelete'+commentNo).style.display = 'none';
         var a = '';
-
-        a += '<div>';
-        a += '<textarea class="form-control" name="commentContents_'+commentNo+'" rows="3" maxlength="300">' + commentContents + '</textarea>';
-        a += '</div>';
-        a += '<div> <button class="btn btn-outline-success btn-round btn-sm" type="button" onclick="commentUpdateProc('
-            + commentNo + ');">수정완료</button> </div>';
+        a += '<div class="row">';
+        a += '<div class="col">';
+        a += '<textarea class="form-control commentUpdate" name="commentContents_'+commentNo+'" rows="3" maxlength="300">' + commentContents + '</textarea>';
+        a += '</div></div>';
+        a += '<div class="row">';
+        a += '<div class="col complete"> <button class="btn btn-outline-success btn-round btn-sm" type="button" onclick="commentUpdateProc('
+            + commentNo + ');">수정완료</button>';
+        a += '</div></div>';
 
         $('.commentContents' + commentNo).html(a);
 
@@ -739,7 +749,27 @@
       
       //댓글 수정
       function commentUpdateProc(commentNo) {
-        var updateContent = $('[name=commentContents_' + commentNo + ']')
+    	  var updateContent = $('[name=commentContents_' + commentNo + ']')
+          .val().replace(/(\s*)/g, "");
+    	  
+    	  if (updateContent.length == 0) {
+    		  swal("댓글을 입력하세요.");
+    	  } else {
+    		  $.ajax({
+    	          url : 'comment/update',
+    	          type : 'post',
+    	          data : {
+    	            'commentContents' : updateContent,
+    	            'commentNo' : commentNo
+    	          },
+    	          success : function(data) {
+    	            if (data == 1)
+    	              commentList(boardNo); //댓글 수정후 목록 출력 
+    	          }
+    	        });
+    	  }
+    	  
+/*         var updateContent = $('[name=commentContents_' + commentNo + ']')
             .val();
 
         $.ajax({
@@ -753,7 +783,7 @@
             if (data == 1)
               commentList(boardNo); //댓글 수정후 목록 출력 
           }
-        });
+        }); */
       }
 
       //댓글 삭제 

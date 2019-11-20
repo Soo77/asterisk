@@ -4,9 +4,14 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"
   charset="UTF-8"> </script>
 
-<head>
-</head>
-
+<style>
+  #lesson-description {
+    border: 0.5px solid #d2d2d2;
+    border-radius: .25rem;
+    background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+      linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  }
+</style>
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
   <div class="container">
@@ -125,7 +130,7 @@
         </div>
         
         <div class="row">
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-sm-6">
             <label for="basic-url2">초중고</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <select class="custom-select" name="schoolTypeNo">
@@ -136,7 +141,7 @@
               </select>
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-sm-6">
             <label for="basic-url2">과목</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <select class="custom-select" name="subjectName">
@@ -147,20 +152,24 @@
               </select>  
             </div>
           </div>
-          <div class="col-lg-3 col-sm-6">
-            <label for="basic-url1">수업 설명</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonDescription" id="basic-url1" type=text class="form-control" placeholder="수업설명">
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
+          <div class="col-lg-4 col-sm-6">
             <label for="basic-url2">수업료</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)"> 
+              <div class="d-flex">
+                <div class="flex-item" style="flex-basis: 95%;">
+                  <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)">
+                </div>
+                <div class="flex-item align-self-center pl-1" style="flex-basis: 5%;">
+                  <span>원</span>
+                </div>
+              </div>
             </div>
           </div>
          </div> 
-        
+        <div class="form-group">
+          <label for="lesson-description">수업설명</label>
+          <textarea class="form-control" id="lesson-description" name="lessonDescription" rows="3"></textarea>
+        </div>
 
         <table id="table" class='table table-hover'>
           <thead>
@@ -207,7 +216,6 @@
 </div>
 
 
-<script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 <script language="javascript">
   function checking() {
     if (document.all['chk'].checked == true) {
@@ -292,12 +300,12 @@ function deleteRow(btn) {
      var lessonWeekArr = $('input[name=weekArr]').val().replace(/(\s*)/g, "");
      var lessonSchoolTypeNo = $('[name=schoolTypeNo]').val().replace(/(\s*)/g, "");
      var lessonSubjectName = $('[name=subjectName]').val().replace(/(\s*)/g, "");
-     var lessonLessonDes = $('input[name=lessonDescription]').val().replace(/(\s*)/g, "");
+     var lessonLessonDes = $('#lesson-description').val().replace(/(\s*)/g, "");
      var lessonLessonFee = $('input[name=lessonFee]').val().replace(/(\s*)/g, "");
      var lessonLessonConts = $('input[name=lessonconts]').val().replace(/(\s*)/g, "");
      var lessonLessonDays = $('input[name=lessondays]').val().replace(/(\s*)/g, "");
     console.log("2");
-    if (lessonSdt.length > 0 &&
+    if (lessonSdt.length > 0 && 
         lessonEdt.length > 0 &&
         lessonSt.length > 0 &&
         lessonEt.length > 0 &&

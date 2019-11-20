@@ -53,62 +53,45 @@
     <div class="row">
       <div class="col">
         <div>
-          <c:if test="${loginUser.memberTypeNo == 3}">
-            <h4 id="titleTchInfo">선생님 정보</h4>
-            <hr>
-          </c:if>
-          <c:if test="${loginUser.memberTypeNo == 1}">
-            <h4 id="titleStdInfo">학생 정보</h4>
-            <hr>
-          </c:if>
-        </div>
-        <div>
-          <label for="name">이름</label>
-          <input name="name" id="name" class="form-control" value="${name}" readOnly>
-        </div>
-        <div>
-          <label for="email">이메일</label>
-          <input name="email" id="email" class="form-control" value="${email}" readOnly>
-        </div>
-        
-        <br>
-        
-        <div>
           <h4 id="titleLessonInfo">수업 정보</h4>
           <hr>
         </div>
         <div>
           <label for="subject">과목</label>
           <c:choose>
-            <c:when test="${schoolTypeNo eq 1}">
-              <input name="subject" id="subject" class="form-control" value="초등 ${subjectName}" readOnly>
+            <c:when test="${lesson.subject.schoolTypeNo eq 1}">
+              <input name="subject" id="subject" class="form-control" value="초등 ${lesson.subjectName}" readOnly>
             </c:when>
-            <c:when test="${schoolTypeNo eq 2}">
-              <input name="subject" id="subject" class="form-control" value="중등 ${subjectName}" readOnly>
+            <c:when test="${lesson.subject.schoolTypeNo eq 2}">
+              <input name="subject" id="subject" class="form-control" value="중등 ${lesson.subjectName}" readOnly>
             </c:when>
-            <c:when test="${schoolTypeNo eq 3}">
-              <input name="subject" id="subject" class="form-control" value="고등 ${subjectName}" readOnly>
+            <c:when test="${lesson.subject.schoolTypeNo eq 3}">
+              <input name="subject" id="subject" class="form-control" value="고등 ${lesson.subjectName}" readOnly>
             </c:when>
           </c:choose>
         </div>
-
-
-
         <div>
-          <label for="totalLessonDays">총 소요일수</label> <input
-            name="totalLessonDays" id="totalLessonDays"
-            class="form-control" value="${totalHours}" readOnly>
+          <label for="teacherName">선생님 이름</label>
+          <input name="teacherName" id="teacherName" class="form-control" value="${teacherName}" readOnly>
         </div>
         <div>
-          <label for="doneLessonDays">수업 진행일수</label> <input
-            name="email" id="email" class="form-control" value="${lessonDayCount}"
+          <label for="studentName">학생 이름</label>
+          <input name="studentName" id="studentName" class="form-control" value="${studentName}" readOnly>
+        </div>
+        <div>
+          <label for="totalLessonDays">예정된 수업일수</label> <input
+            name="totalLessonDays" id="totalLessonDays"
+            class="form-control" value="${lesson.curriculum.totalHours}" readOnly>
+        </div>
+        <div>
+          <label for="doneLessonDays">진행된 수업일수</label> <input
+            name="email" id="email" class="form-control" value="${lesson.lessonDayCount}"
             readOnly>
         </div>
-        <hr>
         <div>
           <label for="residualLessonDays">잔여 수업일수</label> <input
             name="residualLessonDays" id="residualLessonDays"
-            class="form-control" value="${totalHours-lessonDayCount}" readOnly>
+            class="form-control" value="${lesson.curriculum.totalHours-lesson.lessonDayCount}" readOnly>
         </div>
       </div>
       
@@ -119,8 +102,8 @@
         </div>
         <form id="form1" action="stopLesson" method=post>
           <div>
-            <input type="hidden" name="lessonNo" value="${lessonNo}">
-            <textarea name="stopReason" id="stopReason" class="form-control" rows="26" placeholder="중단 사유를 입력하세요."></textarea>
+            <input type="hidden" name="lessonNo" value="${lesson.lessonNo}">
+            <textarea name="stopReason" id="stopReason" class="form-control" rows="20" placeholder="중단 사유를 입력하세요."></textarea>
           </div>
         </form>
       </div>
@@ -137,29 +120,27 @@
 <script>
   var requestInterruptionButton = document.querySelector('#btnRequestInterruption');
   requestInterruptionButton.addEventListener('click', function() {
-     var stopReason = $("#stopReason").val().replace(/(\s*)/g, "");
-        if (stopReason.length == 0) {
-          swal("중단 사유를 입력하세요.");
-          return;
-        }
-        else {
-          swal({
-              title: "중단신청",
-              text: "중단 신청을 하시면 일별과외 진행현황 조회만 가능합니다. 또한 중단 신청은 취소가 불가능합니다. 신청하시겠습니까?",
-              buttons: true,
-            })
-            .then((willDelete) => {
-              if (willDelete) {
-                swal("신청되었습니다.", {
-                  icon: "success",
-                });
-                document.getElementById("form1").submit();
-              } else {
-              }
+    var stopReason = $("#stopReason").val().replace(/(\s*)/g, "");
+    if (stopReason.length == 0) {
+      swal("중단 사유를 입력하세요.");
+      return;
+    } else {
+      swal({
+          title: "중단 신청",
+          text: "중단 신청은 취소가 불가능합니다.\n중단 신청을 하시면 일별과외 진행현황은 조회만 가능합니다.",
+          buttons: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal("신청되었습니다.", {
+              icon: "success",
             });
-        }
-    });
-  
+            document.getElementById("form1").submit();
+          } else {
+          }
+        });
+    }
+  });
   
   var cancelButton = document.querySelector('#btnCancel');
   cancelButton.addEventListener('click', function() {
@@ -172,11 +153,9 @@
     })
     .then((willDelete) => {
       if (willDelete) {
-        location.href = "list?lessonNo=" + ${lessonNo};
+        location.href = "list?lessonNo=" + ${lesson.lessonNo};
       } else {
       }
     });
   });
-
 </script>
-

@@ -116,6 +116,12 @@
 		cl.lesson_conts,
 		cl.lesson_days
   </sql>
+  
+  <sql id="subColumn">
+    sub.sub_no,
+    sub.sch_type_no,
+    sub.sub_name
+  </sql>
 
     <select id="findAllTeacherBy" resultMap="LessonMap" parameterType="int">
 	   <include refid="lessonColumn"/>,
@@ -166,7 +172,8 @@
       <if test="curriculum.curriculumLessonEndTime != null">c.curr_lesson_et=#{curriculum.curriculumLessonEndTime},</if> 
       <if test="curriculum.curriculumLessonDay != null">c.curr_lesson_dt=#{curriculum.curriculumLessonDay},</if> 
       <if test="startDate != null">l.sdt=#{startDate},</if> 
-      <if test="endDate != null">l.edt=#{endDate}</if> 
+      <if test="endDate != null">l.edt=#{endDate},</if> 
+      <if test="curriculum.totalHours != null">c.total_hr=#{curriculum.totalHours}</if> 
     </set>
 		where l.lesson_no = #{lessonNo}
   </update>
@@ -175,7 +182,7 @@
     update  curr_lesson_conts
     <set>
       <if test="clc.lessonContents != null">lesson_conts=#{clc.lessonContents},</if> 
-      <if test="clc.lessonDays != null">lesson_days=#{clc.lessonDays},</if> 
+      <if test="clc.lessonDays != null">lesson_days=#{clc.lessonDays}</if> 
     </set>
     where curr_lesson_no = #{clc.curriculumLessonNo}
   </update>
@@ -201,8 +208,8 @@
   </insert>
   
   <insert id="addCurriculum" parameterType="Lesson" > 
-    insert into curriculum (lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et)
-    values (#{lessonNo}, #{curriculum.curriculumLessonDay}, #{curriculum.curriculumLessonStartTime}, #{curriculum.curriculumLessonEndTime});
+    insert into curriculum (lesson_no, curr_lesson_dt, curr_lesson_st, curr_lesson_et, total_hr)
+    values (#{lessonNo}, #{curriculum.curriculumLessonDay}, #{curriculum.curriculumLessonStartTime}, #{curriculum.curriculumLessonEndTime}, #{curriculum.totalHours});
   </insert>
   
   <select id="findSubNo" parameterType="map" resultType="int">
@@ -248,7 +255,7 @@
         tch_lesson_stop=1,
         tch_stop_reason=#{stopReason},
       </if> 
-      <if test="memberTypeNo == 1">
+      <if test="memberTypeNo == 1 or memberTypeNo == 2">
         std_lesson_stop=1,
         std_stop_reason=#{stopReason},
       </if> 

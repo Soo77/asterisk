@@ -158,7 +158,13 @@ public class LessonController {
       String[] deletedCurriculumLessonNo
       ) throws Exception {
     
-    System.out.println(lessonconts.length);
+    int sum = 0;
+    for (int a : lessondays) {
+      System.out.println(a);
+      sum += a;
+    }
+    System.out.println(sum);
+    
     StringBuilder sb = new StringBuilder();
     // lesson 요일 변경
     sb.append("0000000");
@@ -176,10 +182,12 @@ public class LessonController {
     curr2.setCurriculumLessonStartTime(st);
     curr2.setCurriculumLessonEndTime(et);
     curr2.setCurriculumLessonDay(sb.toString());
+    curr2.setTotalHours(sum); 
     lesson2.setCurriculum(curr2);
     lessonService.updateDateAndTime(lesson2);
 
-
+    System.out.println("test");
+    System.out.println(lessonconts);
 
     for (int i = 0; i < lessonconts.length; i++) {
       Lesson lesson = new Lesson();
@@ -202,6 +210,8 @@ public class LessonController {
       }
       if (deletedCurriculumLessonNo != null) {
         for(String d : deletedCurriculumLessonNo) {
+          if (d.equals("null"))
+            continue;
           System.out.println("값: " + d);
           int num = Integer.parseInt(d);
           lessonService.deleteContentsAndDays(num);
@@ -245,17 +255,18 @@ public class LessonController {
       String subjectName
       ) throws Exception {
     
-    System.out.println(schoolTypeNo);
-    System.out.println(subjectName);
-
-    
+    int sum = 0;
+    for (int a : lessondays) {
+      System.out.println(a + " ");
+      sum += a;
+    }
+    System.out.println(sum);
     
     HashMap<String, Object> param = new HashMap<>();
     param.put("schoolTypeNo", schoolTypeNo);
     param.put("subjectName", subjectName);
     
     int thisNo = lessonService.findSubNo(param);
-    System.out.println(thisNo); 
     
     StringBuilder sb = new StringBuilder();
     // lesson 요일 변경
@@ -278,6 +289,7 @@ public class LessonController {
     curr2.setCurriculumLessonStartTime(st);
     curr2.setCurriculumLessonEndTime(et);
     curr2.setCurriculumLessonDay(sb.toString());
+    curr2.setTotalHours(sum);
     lesson2.setCurriculum(curr2);
     lessonService.addLesson(lesson2);
     lessonService.addCurriculum(lesson2);
@@ -293,7 +305,6 @@ public class LessonController {
       lesson.setCurriculum(curr);
       lesson.setClc(clc);
       
-      System.out.println(lesson);
       lessonService.addContentsAndDays(lesson);
     }
     

@@ -67,7 +67,6 @@
     WHERE sender=#{receiverNo} and receiver=#{senderNo}
   </update>
   
-  
   <select id="searchStd" parameterType="String" resultMap="MemberMap">
     select *from member where id like CONCAT('%',#{id},'%') and mem_type_no=1
   </select>
