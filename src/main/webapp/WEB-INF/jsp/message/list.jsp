@@ -35,11 +35,14 @@
 </style>
 </head>
 <body>
-  <br>
-  <br>
+
+  <div class="card-header d-flex justify-content-between p-2" style="background-color: #FFEEFF;">
 	<h2>쪽지 목록</h2>
-	<i class="fas fa-bell" id="messageReadShowAll">
-		${messageReadShowAll}개</i>
+	<div style="margin-top:60px; text-align: right;">
+		<b>알림&ensp;</b>
+		<i class="fas fa-bell" id="messageReadShowAll"> ${messageReadShowAll}개</i>
+	</div>
+	</div>
 
 	<div id="showList">
 	
@@ -59,7 +62,8 @@
 
 				<c:choose>
 					<c:when test="${loginUser.name eq messageMem[i].name}">
-						<img class="avatar" src="/upload/join/${messageMem[i].profilePhoto}">
+					<img class="avatar" onError="javascript:src='/upload/join/default.png'"
+        alt="" src="/upload/join/${messageInfo[i].profilePhoto}">
 						<div class="message">
 						  <a href=detail?memberNo=${messageMem[i].memberNo}>나에게 쪽지</a>
 						  <div class="datetime">23/03/2016 20:40</div>

@@ -233,9 +233,10 @@
   console.log(lessonNo);
     var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
     messageConts += "커리큘럼을 확인해보세요!<br><br>"
+    messageConts += "<div style='text-align: right;'>"
     messageConts += "<button onclick='lessonMatchingStd(this)' name="+lessonNo
     messageConts += " value="+memberNo
-    messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button>"
+    messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button></div>"
     
     if(memberNo == ""){
       swal("학생을 선택해주세요");
