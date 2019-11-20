@@ -147,7 +147,7 @@
 	     where addr_city LIKE CONCAT('%', #{mySido}, '%')
         and addr_sub LIKE CONCAT('%', #{myGugun}, '%')
         and gender LIKE CONCAT('%', #{myGender}, '%')
-        and dob LIKE CONCAT('%', #{myAge}, '%')
+       <!--  and dob LIKE CONCAT('%', #{myAge}, '%') -->
         and sub_name LIKE CONCAT('%', #{mySubject}, '%')
         and sch_type LIKE CONCAT('%', #{mySchool}, '%')
         and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
@@ -170,6 +170,28 @@
 	      and sch_type LIKE CONCAT('%', #{mySchool}, '%')
 	      and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
 	</select>
+	
+	<select id="reviewTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
+    select
+    m.mem_no, m.id, l.tch_review
+    from
+    member m
+    left outer join student stu on m.mem_no= stu.std_no
+    left outer join lesson l on stu.std_no = l.lesson_no
+    left outer join teacher t on l.lesson_no = t.tch_no
+    
+  </select>
+  
+  <select id="reviewStudent" parameterType="int" resultMap="MemberTeacherStudentMap">
+    select
+    m.mem_no, m.id, l.tch_review
+    from
+    member m
+    left outer join teacher t on m.mem_no= t.tch_no
+    left outer join lesson l on t.tch_no = l.lesson_no
+    left outer join student stu on l.lesson_no = stu.std_no
+    
+  </select>
 
 	
 

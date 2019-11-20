@@ -40,6 +40,11 @@ height: 100%;
   box-shadow: none;
 }
 
+.card-img-top {
+    width: 200px !important;
+    height: 200px !important;
+    object-fit: cover;
+}
 
 .img-raised.rounded-circle.img-fluid {
     width: 160px !important;
@@ -80,9 +85,6 @@ ul li::before {
                   class="img-raised rounded-circle img-fluid profile-photo"
                     onError="this.src='/upload/join/default.png'">
   
-                    
-                    
-                   
                 </div>
                 
                 <div class="name">
@@ -112,10 +114,6 @@ ul li::before {
                   <button onclick="messageShow(this)" value="${member.memberNo}"
                   class="btn btn-just-icon btn-link btn-message">
                     <i class="far fa-comment-dots"></i></button> 
-                  <a href="http://www.naver.com" class="btn btn-just-icon btn-link btn-photo">
-                    <i class="far fa-image"></i></a> 
-                  <a href="http://www.youtube.com" class="btn btn-just-icon btn-link btn-video">
-                    <i class="fab fa-youtube"></i></a>
                   </div>
                   
                   
@@ -274,43 +272,46 @@ ul li::before {
               ${member.lessonSubjects[0].subjectContents}
             </div>
             </div><hr>
+
             
-					
 					<div class="media">
               <label class="media title">미디어</label>
 					</div>
-					
 					<div class="card-deck">
-                      <div class="card">
-                        <img src="/upload/teacher_photo/${member.teacherPhotos[0].teacherPhoto}" class="card-img-top" alt="...">
-                      </div>
-                    </div>
-                    <br><br><br>
+					
 
-<div class="video-container"> 
-<iframe width="640" height="480" src="${member.teachers[0].videoAddress}" frameborder="0" allowfullscreen>
-</iframe> 
-</div><hr>
-            
+					<c:forEach var="photo" items="${member.teacherPhotos}">
+            <div class="card">
+              <img src="/upload/teacher_photo/${photo.teacherPhoto}" class="card-img-top" alt="...">
+            </div>
+					</c:forEach>
+          </div>
+          <br><br><br>
+
+					<div class="video-container"> 
+					<iframe width="640" height="480" src="${member.teachers[0].videoAddress}" frameborder="0" allowfullscreen>
+					</iframe> 
+					</div><hr>
+        
           <div class="teacher-review">
               <label class="teacher-review title">선생님 후기</label>
             <div class="teacher-review contents">
+        <c:forEach items="${reviewTeacher}" var="review">
              <div class="card">
               <div class="card-header card-header-text card-header-primary">
                 <div class="card-text">
-                  <h5 class="card-title">학생 1</h5>
+                  <h5 class="card-title">${review.id}</h5>
                 </div>
               </div>
               <div class="card-body">
-                                    과외과목: ${member.schoolType} ${member.subjectName}<br> 
-                                    과외기간: 2018.5 ~ 2019.5<br> 
-                                    후기: ${member.lessons[0].teacherReview}<br>
+                                    후기: ${review.lessons[0].teacherReview}<br>
               </div>
-             </div>
+             </div><br>
+        </c:forEach>
             </div>
-           </div><br><br>
+           </div>
            
-         </c:if>
+            </c:if>
         </c:forEach>
         <!-- 선생님 프로필 bottom end-->
         
@@ -419,24 +420,24 @@ ul li::before {
           
           
           
-				<div class="student-review">
-            <label class="student-review title">학생 후기</label>
+          
+          <div class="student-review">
+              <label class="student-review title">학생 후기</label>
             <div class="student-review contents">
+        <c:forEach items="${reviewStudent}" var="review">
              <div class="card">
               <div class="card-header card-header-text card-header-primary">
                 <div class="card-text">
-                  <h4 class="card-title">선생님1</h4>
+                  <h5 class="card-title">${review.id}</h5>
                 </div>
               </div>
               <div class="card-body">
-                                    과외과목: ${member.schoolType} ${member.subjectName}<br> 
-                                    과외기간: 2018.5 ~ 2019.5<br> 
-                                    후기: ${member.lessons[0].studentReview}<br>
+                                    후기: ${review.lessons[0].studentReview}<br>
               </div>
-             </div>
+             </div><br>
+        </c:forEach>
             </div>
-           </div><br><br>
-           
+           </div>
            
          </c:if>
         </c:forEach>
