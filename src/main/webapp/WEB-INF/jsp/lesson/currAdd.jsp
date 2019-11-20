@@ -19,24 +19,26 @@
     </div>
   </div>
 </div>
+
+
     <c:set var="teacherNo" value="${loginUser.memberNo}" scope="session"></c:set>
 <div class="main main-raised">
   <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
     <div id='content'>
-      <form action='currAddaction' method='post'>
+      <form id="form1" name="frm1" action='currAddaction' method='post'>
       <div style="padding-left: 13px; padding-right: 13px;">
         <div class="row">
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">수업시작일</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular">
+              <input max="9999-12-31" name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular">
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url2">수업종료일</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular">
-            </div>
+              <input max="9999-12-31" name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular">
+            </div> 
           </div>
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url3">수업시작시간</label>
@@ -184,9 +186,16 @@
               </tr>
           </tbody> 
         </table>
-        <div style="text-align: right;">
-          <input type="button" class="btn btn-primary lessonConts-add-button" value="수업내용 추가">  
-          <button class="btn btn-primary">등록</button>
+        
+        <div class="row">
+          <div class="col text-left"> 
+              <a href="list" class="btn btn-primary">취소</a>
+            </div> 
+          
+          <div class="col text-right">
+            <input type="button" class="btn btn-primary lessonConts-add-button" value="수업내용 추가">  
+            <button type="button" class="btn btn-primary" id="currAddBtn">등록</button>
+          </div>
         </div>
       </form> 
     </div>
@@ -198,7 +207,7 @@
 </div>
 
 
-
+<script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 <script language="javascript">
   function checking() {
     if (document.all['chk'].checked == true) {
@@ -274,5 +283,35 @@ function deleteRow(btn) {
 </script>
 
 <script>
-
+  $('#currAddBtn').click(function() {
+    console.log("1");
+    var lessonSdt = $('input[name=sdt]').val().replace(/(\s*)/g, "");
+     var lessonEdt = $('input[name=edt]').val().replace(/(\s*)/g, "");
+     var lessonSt = $('input[name=st]').val().replace(/(\s*)/g, "");
+     var lessonEt = $('input[name=et]').val().replace(/(\s*)/g, "");
+     var lessonWeekArr = $('input[name=weekArr]').val().replace(/(\s*)/g, "");
+     var lessonSchoolTypeNo = $('[name=schoolTypeNo]').val().replace(/(\s*)/g, "");
+     var lessonSubjectName = $('[name=subjectName]').val().replace(/(\s*)/g, "");
+     var lessonLessonDes = $('input[name=lessonDescription]').val().replace(/(\s*)/g, "");
+     var lessonLessonFee = $('input[name=lessonFee]').val().replace(/(\s*)/g, "");
+     var lessonLessonConts = $('input[name=lessonconts]').val().replace(/(\s*)/g, "");
+     var lessonLessonDays = $('input[name=lessondays]').val().replace(/(\s*)/g, "");
+    console.log("2");
+    if (lessonSdt.length > 0 &&
+        lessonEdt.length > 0 &&
+        lessonSt.length > 0 &&
+        lessonEt.length > 0 &&
+        lessonWeekArr.length > 0 &&
+        lessonSchoolTypeNo.length > 0 &&
+        lessonSubjectName.length > 0 &&
+        lessonLessonDes.length > 0 &&
+        lessonLessonFee.length > 0 &&
+        lessonEt.length > 0 &&
+        lessonLessonConts.length > 0 &&
+        lessonLessonDays.length > 0) {
+      document.getElementById("form1").submit();
+    } else {
+      swal("모두 입력하세요.");
+    }
+  });
 </script>

@@ -63,6 +63,9 @@ id="sectionsNav">
             <a href="/app/mypage/detail" class="dropdown-item">
               <i class="material-icons">person</i> 마이페이지
             </a>
+            <a href="javascript:void(0)" id="message-menu" class="dropdown-item">
+              <i class="material-icons">message</i> 쪽지함
+            </a>
             <a href="/app/auth/logout" class="dropdown-item">
               <i class="material-icons">power_settings_new</i> 로그아웃
             </a>
@@ -102,4 +105,16 @@ id="sectionsNav">
       }
     }
   });
+</script>
+
+<script>
+  $("#message-menu").on('click', function() {
+    popMessage();
+  });
+ 
+  function popMessage(){
+    var url = "/app/message/list";
+    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    window.open(url, "쪽지목록" ,option);
+  }
 </script>

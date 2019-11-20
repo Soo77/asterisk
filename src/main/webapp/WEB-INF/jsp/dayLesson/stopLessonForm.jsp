@@ -24,6 +24,13 @@
     #titleStopReason {
       font-weight: bold;
     }
+    
+    #stopReason {
+      background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+        linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+      border: 0.5px solid #d2d2d2;
+      border-radius: .25rem;
+    }
   </style>
   
 </head>

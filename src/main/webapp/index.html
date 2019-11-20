@@ -103,6 +103,9 @@
               <a href="/app/mypage/detail" class="dropdown-item">
                 <i class="material-icons">person</i> 마이페이지
               </a>
+              <a href="javascript:void(0)" id="message-menu" class="dropdown-item">
+                <i class="material-icons">message</i> 쪽지함
+              </a>
               <a href="/app/auth/logout" class="dropdown-item">
                 <i class="material-icons">power_settings_new</i> 로그아웃
               </a>
@@ -285,6 +288,7 @@
       </div>
     </div>
   </footer>
+  <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <!--   Core JS Files   -->
   <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="/assets/js/core/popper.min.js" type="text/javascript"></script>
@@ -326,6 +330,18 @@
         }
       }
     });
+  </script>
+
+  <script>
+    $("#message-menu").on('click', function() {
+      popMessage();
+    });
+   
+    function popMessage(){
+      var url = "/app/message/list";
+      var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+      window.open(url, "쪽지목록" ,option);
+    }
   </script>
 </body>
 

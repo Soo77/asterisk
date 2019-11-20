@@ -87,7 +87,7 @@
   </select>
   
   <update id="updateCheck" parameterType="String" >
-      UPDATE member SET userEmailChecked = 1 WHERE activation_key = #{activationKey}
+      UPDATE member SET email_checked = 1 WHERE activation_key = #{activationKey}
   </update>
   
   <update id="bindStudentAndParents" parameterType="Map">
