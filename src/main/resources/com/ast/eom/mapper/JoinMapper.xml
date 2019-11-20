@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ast.eom.dao.JoinDao">
+
+  <resultMap type="Member" id="MemberMap">
+    <result column="mem_no" property="memberNo"></result>
+  </resultMap>
 	
 	<insert id="insert" parameterType="Member"
     useGeneratedKeys="true"
@@ -70,6 +74,11 @@
 	<select id="checkOverId" parameterType="String" resultType="int">
 		select count(*) from member where id=#{id}
 	</select>
+	
+<!--   자녀 아이디 -->
+  <select id="checkOverChildId" parameterType="String" resultMap="MemberMap">
+    select *from member where id like CONCAT('%',#{id},'%') and mem_type_no=1
+  </select>
 	
 <!-- 	이메일 중복 -->
 	<select id="checkOverEmail" parameterType="String" resultType="int">

@@ -14,9 +14,11 @@
 			for (var i = 0; i < va.length; i++) {
 				if (va[i].style.color == "red") {
 					va[i].focus();
-					console.log(va[i]);
 					return false;
-				}
+				} else{
+					  swal("이메일로 인증링크를 보냈습니다")
+					  location.href("/app/auth/form");
+          }
 			}
 		}
 	</script>
@@ -54,6 +56,17 @@
 		.img-raised.rounded-circle.img-fluid {
       height: 160px;
       object-fit: cover;
+    }
+    
+    .req{
+    margin-top: 2px;
+    font-size: large;
+    color: purple;
+    }
+    
+    #view_file{
+    height: 160px;
+    object-fit: cover;
     }
 	</style>
 	<!-- CSS Just for demo purpose, don't include it in your project -->
@@ -102,29 +115,39 @@
 							</b><br> <br>
 
 							<div class="form-group">
-								<label for="id">아이디</label>
+								<label for="id">아이디
+								<span class="req"> *</span>
+								</label>
 								<input type="text" class="form-control" name="id" id="id" maxlength="50" required>
 								<div class="redch" id="id_check"></div>
 							</div>
 
 							<div class="form-group">
-								<label for="pw">비밀번호</label>
+								<label for="pw">비밀번호
+								<span class="req"> *</span>
+								</label>
 								<input type="password" class="form-control" name="password" id="pw" maxlength="50" required>
 							</div>
 
 							<div class="form-group">
-								<label for="okpw">비밀번호 확인</label>
+								<label for="okpw">비밀번호 확인
+								<span class="req"> *</span>
+								</label>
 								<input type="password" class="form-control" name="okpw" id="okpw" maxlength="50" required>
 							</div>
 							<div class="redch" id="pw_check"></div>
 
 							<div class="form-group">
-								<label for="name">이름</label>
+								<label for="name">이름
+								<span class="req"> *</span>
+								</label>
 								<input type="text" class="form-control" name="name" id="name" maxlength="50" required>
 							</div>
 
 							<div class="form-check">
-								<label for="exampleInput1" class="bmd-label-floating">성별</label><br>
+								<label for="exampleInput1" class="bmd-label-floating">성별
+								<span class="req"> *</span>
+								</label><br>
 								<div class="my-wrapper ml-2">
 									<label class="form-check-label"> 
 									<input class="form-check-input" type="radio" name="gender" value="M" checked>
@@ -139,13 +162,17 @@
 							</div>
 
 							<div class="form-group">
-								<label for="YEAR">생년월일</label>
+								<label for="YEAR">생년월일
+								<span class="req"> *</span>
+								</label>
 								<Input type="date" max="9999-12-31" name="birthDay" id="YEAR" class="form-control" required>
 							</div>
 
 
 							<div class="form-group bmd-form-group">
-								<label for="email">이메일</label>
+								<label for="email">이메일
+								<span class="req"> *</span>
+								</label>
 								<div id="mailselect">
 									<div class="input-group">
 										<input type="text" class="form-control" name="email" id="email" maxlength="50" required>
@@ -246,7 +273,6 @@
 								</label>
 							</div>
 
-
 							<div class="form-group">
 								<label for="subject-start-time">과외 시작시간</label><br>
 								<input type="time" class="form-control" name="lessonStartTime" />
@@ -258,7 +284,7 @@
 							</div>
 							
 							<div class="form-group">
-                 <label>수업료</label>
+                 <label>희망 수업료</label>
                  <div class="d-flex">
                    <select class="form-control" name="wantedFeeAmount">
                     <option value="1">20만원이하</option>

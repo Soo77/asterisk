@@ -1,5 +1,6 @@
 package com.ast.eom.dao;
 
+import java.util.List;
 import java.util.Map;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Parents;
@@ -20,4 +21,5 @@ public interface JoinDao {
   int teacherSchoolsInsert(Map<String, Object> schoolParams);
   int teacherSubjectInsert(Map<String, Object> subjectParams);
   int bindStudentAndParents(Map<String, Object> parentsMap);
+  List<Member> checkOverChildId(String id);
 }

@@ -3,13 +3,13 @@ package com.ast.eom.controller;
 import java.io.File;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -17,7 +17,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Parents;
 import com.ast.eom.domain.WantedLesson;
@@ -81,6 +79,10 @@ public class JoinController implements Runnable {
       String subjectNo, String wantedFeeAmount)
           throws Exception {
     
+    if(member.getTel().equals("")) {
+      member.setTel(null);
+    }
+    
     if (lessonDay != null) {
       StringBuilder sb = new StringBuilder();
       sb.append("0000000");
@@ -94,7 +96,6 @@ public class JoinController implements Runnable {
     member.setEmail(emailAddress);
     member.setDateOfBirth(birthDay);
     member.setMemberTypeNo(3);
-
 
     Map<String, Object> params = new HashMap<>();
     if (!lessoncertificate.isEmpty()) {
@@ -164,7 +165,11 @@ public class JoinController implements Runnable {
       Date birthDay, String mail,
       String studentId) 
           throws Exception {
-
+    
+    if(member.getTel().equals("")) {
+      member.setTel(null);
+    }
+    
     String emailAddress = member.getEmail() + "@" + mail;
     member.setEmail(emailAddress);
     member.setDateOfBirth(birthDay);
@@ -192,8 +197,8 @@ public class JoinController implements Runnable {
     this.emailAddress = emailAddress;
     executorService = Executors.newCachedThreadPool();
     executorService.submit(this);
-
-    return "/view/checkplease";
+    
+    return "redirect:/app/auth/form";
   }
 
   //학생 회원가입
@@ -204,6 +209,10 @@ public class JoinController implements Runnable {
       String[] lessonDay, String requirementsToTeacher,
       WantedLesson wantedLesson) 
           throws Exception {
+    
+    if(member.getTel().equals("")) {
+      member.setTel(null);
+    }
     
     if (lessonDay != null) {
       StringBuilder sb = new StringBuilder();
@@ -335,6 +344,12 @@ public class JoinController implements Runnable {
   @ResponseBody
   public int idCheck(String id) throws Exception {
     return joinService.checkOverId(id);
+  }
+  
+  @GetMapping("childCheck")
+  @ResponseBody
+  public List<Member> childCheck(String id) throws Exception {
+    return joinService.checkOverChildId(id);
   }
 
   @GetMapping("emailCheck")
