@@ -98,7 +98,7 @@
         let studentLi = document.getElementsByClassName('my-student-li')[0];
         let boardsLi = document.getElementsByClassName('my-board-li')[0];
         let loginUserLi = document.getElementsByClassName('my-login-user-li')[0];
-        let loginUserName = document.getElementsByClassName('my-loggedin-user')[0];
+        let loginUserId = document.getElementsByClassName('my-loggedin-user')[0];
 
         if (result.loginUserMemberType != 1) {
           studentLi.style.display = 'inline-block';
@@ -108,7 +108,7 @@
         }
         boardsLi.style.display = 'inline-block';
         loginUserLi.style.display = 'inline-block';
-        loginUserName.innerHTML = result.loginUserName;
+        loginUserId.innerHTML = result.loginUserId;
 
       } else {
         let loginLi = document.getElementsByClassName('my-login-li')[0];
