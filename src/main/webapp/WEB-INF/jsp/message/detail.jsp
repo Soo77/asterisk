@@ -54,26 +54,26 @@
 }
 </style>
 </head>
-<body>
+<body style="overflow: hidden;">
 	<h2>쪽지함</h2>
 
-	<div class="card-header d-flex justify-content-between p-2">
+	<div class="card-header d-flex justify-content-between p-2" style="background-color: #ccc;">
 		<div class="d-flex">
 			<div class="profile-photo">
 				<img class="avatar" src="/upload/join/${messageInfo[0].profilePhoto}">
 			</div>
 			<div class="data">
 				<h4 class="mb-0">${messageInfo[0].name}</h4>
-				<p class="text-muted mb-0">밥 뭐먹지</p>
+<!-- 				<p class="text-muted mb-0">밥 뭐먹지</p> -->
 			</div>
 		</div>
 
 		<div class="icons grey-text">
-			<a href="/app/message/list" id="closeButton"><i class="fas fa-times mr-2"></i></a>
+			<a href="/app/message/list" id="closeButton"><i class="fas fa-list-ul"></i></a>
 		</div>
 	</div>
 
-	<div class="messageRow">
+	<div class="messageRow" style="min-height:300px; overflow:auto; width:500px; height:400px;">
 
 			<c:forEach var="messageList" items="${messageList}">
 				<c:choose>
@@ -113,7 +113,13 @@
 				class="form-control" placeholder="내용을 입력">
 		</div>
 		<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
-		<br> <br> <a href="/app/message/list">쪽지목록</a>
+
+    <script>
+      $(document).ready(function(){
+    	  console.log("asd");
+		    $(document).scrollTop($(document).height());
+      })
+    </script>
 
 		<script>
     $("#messageIn").click(function() {
@@ -143,7 +149,7 @@
 	        	let str = "<div class='right'>" 
 	          str += '<div class="chat-right">'+messageConts+'</div>'
 	          if(${loginUser.memberNo} != ${receiverNo}){
-	           str += "읽지 않음"
+	           str += "읽지않음"
 	          }
 	          str += "<div class='datetime-right'>"+year+-month+-date+"</div><br></div>"
 	          $("#chat").append(str);
