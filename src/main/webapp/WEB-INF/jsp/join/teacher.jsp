@@ -29,7 +29,7 @@
     #view_lessonFile {
       display: none;
       width: 200px;
-      height: 150px;
+      height: 160px;
       object-fit: cover;
     }
 
@@ -55,6 +55,17 @@
     .img-raised.rounded-circle.img-fluid {
       height: 160px;
       object-fit: cover;
+    }
+    
+    .req{
+    margin-top: 2px;
+    font-size: large;
+    color: purple;
+    }
+    
+    #view_file{
+    height: 160px;
+    object-fit: cover;
     }
   </style>
 </head>
@@ -101,28 +112,38 @@
               </b><br> <br>
 
               <div class="form-group bmd-form-group">
-                <label for="id">아이디</label>
+                <label for="id">아이디
+                <span class="req"> *</span>
+                </label>
                 <input type="text" class="form-control" name="id" id="id" maxlength="50" required>
                 <div class="redch" id="id_check"></div>
               </div>
 
               <div class="form-group bmd-form-group">
-                <label for="pw">비밀번호</label>
+                <label for="pw">비밀번호
+                <span class="req"> *</span>
+                </label>
                 <input type="password" class="form-control" name="password" id="pw" maxlength="50" required>
               </div>
               <div class="form-group bmd-form-group">
-                <label for="okpw">비밀번호 확인</label>
+                <label for="okpw">비밀번호 확인
+                <span class="req"> *</span>
+                </label>
                 <input type="password" class="form-control" name="okpw" id="okpw" maxlength="50" required>
                 <div class="redch" id="pw_check"></div>
               </div>
 
               <div class="form-group bmd-form-group">
-                <label for="exampleInput1">이름</label>
+                <label for="exampleInput1">이름
+                <span class="req"> *</span>
+                </label>
                 <input type="text" class="form-control" name="name" id="name" maxlength="50" required>
               </div>
 
               <div class="form-check mb-3">
-                <label for="exampleInput1" class="bmd-label-floating">성별</label><br>
+                <label for="exampleInput1" class="bmd-label-floating">성별
+                <span class="req"> *</span>
+                </label><br>
                 <div class="my-wrapper ml-2">
                   <label class="form-check-label"> 
                   <input class="form-check-input" type="radio" name="gender" value="M" checked>
@@ -137,13 +158,17 @@
               </div>
 
               <div class="form-group">
-                <label for="YEAR">생년월일</label>
+                <label for="YEAR">생년월일
+                <span class="req"> *</span>
+                </label>
                 <Input type="date" max="9999-12-31" name="birthDay" id="YEAR" class="form-control" required>
               </div>
 
               <div id="mailselect">
                 <div class="input-group form-group">
-                  <label for="email">이메일</label>
+                  <label for="email">이메일
+                  <span class="req"> *</span>
+                  </label>
                   <input type="text" class="form-control" name="email" id="email" maxlength="50" required>
                   <div class="input-group-text">@</div>
                   <input type="text" class="form-control" name="mail" id="mail" value="" required>
@@ -277,35 +302,29 @@
               </div>
 
               <div class="form-group">
-                <label>은행명</label>
-                <select name="bankname" class="form-control" required>
-                  <option value="1">국민은행</option>
-                  <option value="2">신한은행</option>
-                  <option value="3">우리은행</option>
-                  <option value="4">카카오뱅크</option>
-                  <option value="5">기업은행</option>
-                  <option value="6">하나은행</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label>계좌번호</label>
+                <label>계좌번호
+                <span class="req"> *</span>
+                </label>
                 <input type="text" name="accountno" id="accountno" class="form-control" required><br>
                 <div id="ac_check" class="redch"></div>
               </div>
 
               <div class="form-group">
-                <label>자기소개</label>
+                <label>자기소개
+                <span class="req"> *</span>
+                </label>
                 <textarea rows="10" cols="30" id="teacherintro" class="form-control" name="teacherintro" required></textarea>
               </div>
 
               <div class="form-group">
-                <label class="bmd-label-floating my-lesson-certi">과외 신고서</label>
+                <label class="bmd-label-floating my-lesson-certi">과외 신고서
+                <span class="req"> *</span>
+                </label><br>
+                <img id="view_lessonFile" class="mb-3">
                 <div class="filebox my-lesson-certi">
                   <label for="lessoncertificate" class="btn btn-outline-primary btn-sm">파일선택</label>
                   <input type="file" id='lessoncertificate' name='lessoncertificate' required>
                 </div>
-                <img id="view_lessonFile" class="mb-3">
               </div>
 
               <div style="padding-bottom: 20px;">

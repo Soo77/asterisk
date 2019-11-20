@@ -3,13 +3,13 @@ package com.ast.eom.controller;
 import java.io.File;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -17,7 +17,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Parents;
 import com.ast.eom.domain.WantedLesson;
@@ -335,6 +333,12 @@ public class JoinController implements Runnable {
   @ResponseBody
   public int idCheck(String id) throws Exception {
     return joinService.checkOverId(id);
+  }
+  
+  @GetMapping("childCheck")
+  @ResponseBody
+  public List<Member> childCheck(String id) throws Exception {
+    return joinService.checkOverChildId(id);
   }
 
   @GetMapping("emailCheck")

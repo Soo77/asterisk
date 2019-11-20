@@ -42,6 +42,17 @@
       object-fit: cover;
     }
     
+    .req{
+    margin-top: 2px;
+    font-size: large;
+    color: purple;
+    }
+    
+    #view_file{
+    height: 160px;
+    object-fit: cover;
+    }
+    
   </style>
 </head>
 
@@ -87,29 +98,39 @@
               </b><br> <br>
 
               <div class="form-group">
-                <label for="id" class="required bmd-label-floating">아이디</label>
+                <label for="id">아이디
+                <span class="req"> *</span>
+                </label>
                 <input type="text" class="form-control" name="id" id="id" maxlength="50" required>
                 <div class="redch" id="id_check"></div>
               </div>
 
               <div class="form-group">
-                <label for="pw" class="bmd-label-floating">비밀번호</label>
+                <label for="pw">비밀번호
+                <span class="req"> *</span>
+                </label>
                 <input type="password" class="form-control" name="password" id="pw" maxlength="50" required>
               </div>
 
               <div class="form-group">
-                <label for="okpw" class="bmd-label-floating">비밀번호 확인</label>
+                <label for="okpw">비밀번호 확인
+                <span class="req"> *</span>
+                </label>
                 <input type="password" class="form-control" name="okpw" id="okpw" maxlength="50" required>
                 <div class="redch" id="pw_check"></div>
               </div>
 
               <div class="form-group">
-                <label for="name">이름</label>
+                <label for="name">이름
+                <span class="req"> *</span>
+                </label>
                 <input type="text" class="form-control" name="name" id="name" maxlength="50" required>
               </div>
 
               <div class="form-check mb-3">
-                <label for="exampleInput1" class="bmd-label-floating">성별</label><br>
+                <label for="exampleInput1" class="bmd-label-floating">성별
+                <span class="req"> *</span>
+                </label><br>
                 <div class="my-wrapper ml-2">
                   <label class="form-check-label"> 
                   <input class="form-check-input" type="radio" name="gender" value="M" checked>
@@ -127,13 +148,17 @@
               </div>
 
               <div class="form-group">
-                <label for="YEAR">생년월일</label>
+                <label for="YEAR">생년월일
+                <span class="req"> *</span>
+                </label>
                 <Input type="date" max="9999-12-31" name="birthDay" id="YEAR" class="form-control">
               </div>
 
               <div id="mailselect">
                 <div class="input-group form-group">
-                  <label for="email">이메일</label>
+                  <label for="email">이메일
+                  <span class="req"> *</span>
+                  </label>
                   <input type="text" class="form-control" name="email" id="email" maxlength="50" required>
                   <div class="input-group-text">@</div>
                   <input type="text" class="form-control" name="mail" id="mail" value="" required>
@@ -178,22 +203,46 @@
               </div>
 
               <label for="addressSearchButton">자녀 아이디</label>
-              <div class="form-group row pt-1 mb-3">
-                <div class="col">
-                  <div class="d-flex">
-                    <div class="flex-item pr-1" style="flex-basis: 93%;">
-                      <input type="text" class="form-control" id="textverify" name="studentId">
-                    </div>
-                    <div class="flex-item" style="flex-basis: 7%;">
-                      <button type="button" class="btn btn-outline-primary btn-sm" id="verify" style="margin-top: 2px;"
-                        onclick="verify2()">인증하기</button>
-                    </div>
-                  </div>
-                  <div id="checkverify"></div>
-                </div>
-              </div>
+							<div class="form-group row pt-1 mb-3">
+								<div class="col">
+									<div class="d-flex">
+										<div class="flex-item pr-1" style="flex-basis: 93%;">
+											<input type="text" class="form-control" id="textverify"
+												placeholder="자녀 아이디" name="studentId" readonly>
+										</div>
+										<div class="flex-item" style="flex-basis: 7%;">
+											<button type="button" class="btn btn-outline-primary btn-sm"
+												id="verify" style="margin-top: 2px;" data-toggle="modal"
+												data-target="#exampleModal">인증하기</button>
+										</div>
 
-              <div style="padding-bottom: 20px;">
+											<div id="exampleModal" class="modal fade"
+												data-backdrop="false">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal">
+																<span>×</span>
+															</button>
+														</div>
+														<div class="messageRow">
+															<input type="text" id="std" placeholder="학생 아이디 입력">
+															<button type="button" onclick="childSearch()"
+																class="btn btn-primary btn-sm">검색</button>
+														</div>
+														<div id="checkverify"></div>
+														<input type="text" class="form-control" id="choiceId" placeholder="자녀 아이디" readOnly>
+						                <button type="button" id="inInput" data-dismiss="modal"
+						                class="btn btn-primary btn-sm">확인</button>
+													</div>
+												</div>
+											</div>
+											
+									</div>
+								</div>
+							</div>
+
+							<div style="padding-bottom: 20px;">
 	              <button type="submit" class="btn btn-primary btn-sm" id="submit">가입</button>
 	              <input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
               </div>
@@ -476,34 +525,44 @@
 
   <!--     자녀 아이디 인증 -->
   <script>
-    function verify2() {
-      var id = $('#textverify').val();
+    function childSearch() {
+      var id = $('#std').val();
       $.ajax({
-        url: 'idCheck',
+        url: 'childCheck',
         type: 'get',
         data: "id=" + id,
-        success: function (result) {
-          if (result == 0) {
-            $("#checkverify").text("없는 아이디입니다");
-            $("#checkverify").css("color", "red");
-            $("#textverify").css("color", "red");
-            $("#submit").attr("disabled", true);
-          } else {
-            if (id) {
-              $("#checkverify").text("인증된 아이디입니다");
-              $("#checkverify").css("color", "green");
-              $("#textverify").css("color", "green");
-              $("#submit").attr("disabled", false);
-            } else if (id == "") {
-              $('#checkverify').text('아이디를 입력해주세요');
-              $('#checkverify').css('color', 'red');
-              $("#submit").attr("disabled", true);
-            }
-          }
+        success: function (data) {
+        	if(data == ""){
+        		$("#checkverify").text("없는 아이디입니다");
+        		$("#checkverify").css("color", "red");
+        		$("#std").css("color", "red");
+        		return false;
+        	}
+        	
+        	$("#checkverify").css("color", "black");
+          $("#std").css("color", "black");
+        	$("#checkverify").text("");
+        	for(var i in data){
+	        	let std = "아이디: <a href='javascript:void(0)'";
+	          std += " onclick='selectId(this)'";
+	          std += " id="+data[i].memberNo+">"+data[i].id+"</a>";
+	        	std += " 이름: "+data[i].name;
+	        	std += " 성별: "+data[i].gender;
+	        	std += " 생년월일: "+data[i].dateOfBirth+"<br>";
+	        	$('#checkverify').append(std);
+        	}
         }, error: function () {
           console.log("실패");
         }
       });
+    }
+    
+    <!-- 아이디 선택 -->
+    function selectId(clickId){
+	 	  let memNo = clickId.id;
+	 	  let val = clickId.text;
+ 	    $("#choiceId").attr("placeholder",val)
+ 	    $("#textverify").attr("value",val)
     }
   </script>
 </body>
