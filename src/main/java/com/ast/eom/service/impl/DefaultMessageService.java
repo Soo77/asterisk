@@ -1,5 +1,6 @@
 package com.ast.eom.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,21 @@ public class DefaultMessageService implements MessageService {
   @Override
   public List<Member> messageDetailInfo(int memberNo) throws Exception {
     return messageDao.messageDetailInfo(memberNo);
+  }
+
+  @Override
+  public List<Member> searchStd(String id) throws Exception {
+    return messageDao.searchStd(id);
+  }
+
+  @Override
+  public String lessonInvitationCheck(int lessonNo) throws Exception {
+    return messageDao.lessonInvitationCheck(lessonNo);
+  }
+
+  @Override
+  public void lessonInvitationStd(HashMap<String, Object> stat) throws Exception {
+    messageDao.lessonInvitationStd(stat);
   }
 
 }

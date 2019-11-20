@@ -9,8 +9,6 @@
   href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
   integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
   crossorigin='anonymous'>
-<script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 <style>
 body {
   height: 100%;
@@ -92,13 +90,12 @@ body {
 </head>
 <body class="text-center">
 <div id='content'>
-	<form action="findid" method="post" class="form-signin">
 		<h1>아이디 찾기</h1>
 
-		<input type="text" placeholder="이름" name="name" class="form-control" required autofocus>
+		<input type="text" placeholder="이름" id="name" class="form-control" required autofocus>
 		<div id=mailselect>
-			<input type="text" placeholder="이메일" name=mail0 id="mail0" maxlength="50" class="form-control" required>@
-			<input type="text" name="mail1" id="mail1" value="" class="form-control" required> 
+			<input type="text" placeholder="이메일" id="mail0" maxlength="50" class="form-control" required>@
+			<input type="text" id="mail1" value="" class="form-control" required> 
 			<select	name="mail2" id="mail2" class="form-control">
 				<option selected disabled>메일 선택</option>
 				<option value="naver.com">naver.com</option>
@@ -110,9 +107,37 @@ body {
 		</div>
 		<div id="email_check"></div>
 		
-		<button type="submit" id="submit" class="btn btn-primary">아이디를 찾아줘</button>
-	</form>
+		<button id="searchBtn" class="btn btn-primary">아이디를 찾아줘</button>
 	</div>
+	
+	<script>
+	$("#searchBtn").click(function() {
+		var mail0 = document.getElementById("mail0").value;
+		var mail1 = document.getElementById("mail1").value;
+		var name = document.getElementById("name").value;
+		$.ajax({
+			url: 'searchId',
+			type: 'post',
+			data: "mail0="+mail0+"&mail1="+mail1+"&name="+name,
+			success: function(data){
+				if(data == ""){
+					swal("아이디 찾기 결과", "가입되지 않은 정보입니다", "warning");
+				} else{
+					swal({
+						  title: "아이디 찾기 결과",
+						  text: "당신의 아이디는 "+data+"입니다",
+						  icon: "success",
+						  button: "로그인",
+					})
+					.then((result) => {
+						location.href = "/app/auth/form";
+					});
+				}
+			}
+			
+		})
+	})
+	</script>
 	
 <!--   메일 -->
 	<script>

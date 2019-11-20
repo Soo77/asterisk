@@ -26,7 +26,7 @@
     <!-- <collection resultMap="MemberTypeMap" property="memberType"/> -->
   </resultMap>
 
-  <select id="findId" parameterType="Member" resultType="Member">
+  <select id="findId" parameterType="Member" resultType="String">
    select id from member where email=#{email} and name=#{name}
   </select>
   

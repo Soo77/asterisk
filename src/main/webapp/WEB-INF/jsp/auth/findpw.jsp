@@ -9,8 +9,6 @@
   href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
   integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
   crossorigin='anonymous'>
-<script type="text/JavaScript"
-	src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
 <style>
 body {
   height: 100%;
@@ -135,19 +133,26 @@ body {
           data : "whatmail="+whatmail+"&name="+name+"&id="+id,
           success : function(result) {
         	  if(result == 1) {
-        		  alert("이메일로 임시 비밀번호 보냈다");
         		  $.ajax({
         	      url : 'mailsend',
         	      type : 'post',
         	      data : "whatmail="+whatmail,
         	      success : function(data) {
-        	    	  location.href = "../form";
+        	    	  swal({
+        	              title: "비밀번호 찾기 결과",
+        	              text: "이메일로 비밀번호를 전송했습니다",
+        	              icon: "success",
+        	              button: "로그인",
+        	          })
+        	          .then((result) => {
+        	            location.href = "/app/auth/form";
+        	          });
         	      }, error : function(){
         	    	  console.log("실패");  
         	      }
         	    });
         	  } else {
-        		  alert("입력 정보로 가입된 거 없다");
+        		  swal("비밀번호 찾기 결과", "가입되지 않은 정보입니다", "warning");
         	  }
     }, error : function() {
         console.log("실패");
