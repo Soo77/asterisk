@@ -17,8 +17,8 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
     
+    // 로그인 하지 않았다면 로그인 폼으로 보낸다.
     if (loginUser == null) {
-      // 로그인 하지 않았다면 로그인 폼으로 보낸다.
       response.sendRedirect("/app/auth/form");
       return false;
     }
@@ -27,6 +27,13 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     if (!loginUser.isUserEmailChecked()) {
       request.getSession().invalidate();
       response.sendRedirect("/app/auth/loginFail");
+      return false;
+    }
+    
+    // 정지된 유저를 걸러내는 코드
+    if (loginUser.getActivationKey() == null) {
+      request.getSession().invalidate();
+      response.sendRedirect("/");
       return false;
     }
     

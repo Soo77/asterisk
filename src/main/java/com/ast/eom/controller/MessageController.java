@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.ast.eom.dao.MessageDao;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Message;
 import com.ast.eom.service.MessageService;
@@ -73,23 +72,16 @@ public class MessageController {
     return messageService.messageIn(message);
   }
   
-  @GetMapping("studentFind")
-  public void studentFind() {
-  }
-  
-  @Autowired
-  MessageDao messageDao;
-  
   @PostMapping("searchStd")
   @ResponseBody
   public List<Member> searchStd(String id) throws Exception {
-    return messageDao.searchStd(id);
+    return messageService.searchStd(id);
   }
   
   @PostMapping("lessonInvitationCheck")
   @ResponseBody
   public String lessonInvitationCheck(int lessonNo) throws Exception {
-    return messageDao.lessonInvitationCheck(lessonNo);
+    return messageService.lessonInvitationCheck(lessonNo);
   }
   
   @PostMapping("lessonInvitationStd")
@@ -99,6 +91,6 @@ public class MessageController {
 	stat.put("stdNo", stdNo);
 	stat.put("lessonNo", lessonNo);
 	
-    messageDao.lessonInvitationStd(stat);
+	messageService.lessonInvitationStd(stat);
   }
 }

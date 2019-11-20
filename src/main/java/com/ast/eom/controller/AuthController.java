@@ -6,7 +6,6 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -15,14 +14,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.ast.eom.domain.Member;
 import com.ast.eom.service.AuthService;
 
@@ -39,13 +36,15 @@ public class AuthController implements Runnable {
   @GetMapping("form")
   public void form() {
   }
-
-  @GetMapping("loginsuccess")
-  public void loginsuccess() {
+  
+  @GetMapping("loginFail")
+  public void loginFail() {
   }
-
-  @GetMapping("loginfail")
-  public void loginfail() {
+  
+  @GetMapping("loginFailRedirect")
+  public void loginFailRedirect(HttpServletResponse response)
+      throws Exception {
+    response.sendRedirect("/app/auth/form");
   }
 
   @GetMapping("login")
@@ -71,8 +70,9 @@ public class AuthController implements Runnable {
   }
 
   // 아이디 찾기
-  @PostMapping("findid")
-  public String findid(HttpSession session, String mail0, String mail1,
+  @PostMapping("searchId")
+  @ResponseBody
+  public String searchId(String mail0, String mail1,
       String name) throws Exception {
     String email = mail0+"@"+mail1;
 
@@ -80,12 +80,7 @@ public class AuthController implements Runnable {
     member.setEmail(email);
     member.setName(name);
 
-    if(authService.findId(member) != null) {
-      session.setAttribute("findId", authService.findId(member));
-      return "redirect:../auth/findidcheck";
-    } else {
-      return "redirect:../auth/findidcheck";
-    }
+    return authService.findId(member);
   }
 
   // 비밀번호 찾기 일치
@@ -98,28 +93,17 @@ public class AuthController implements Runnable {
     member.setName(name);
     member.setEmail(whatmail);
     
-    authService.findPw(member);
     return authService.findPw(member);
   }
   
   // 아이디 찾기페이지
   @GetMapping("findid")
-  public void find() throws Exception {
+  public void findid() throws Exception {
   }
 
   // 비밀번호 찾기페이지
   @GetMapping("findpw")
   public void findpw() throws Exception {
-  }
-
-  //비밀번호 변경페이지
-  @GetMapping("changepw")
-  public void changepw() throws Exception {
-  }
-
-  // 아이디 기억페이지
-  @GetMapping("findidcheck")
-  public void findidcheck() throws Exception {
   }
 
   // 메일 전송
@@ -129,15 +113,6 @@ public class AuthController implements Runnable {
     this.whatmail = whatmail;
     executorService = Executors.newCachedThreadPool();
     executorService.submit(this);
-  }
-  
-  @GetMapping("loginFail")
-  public void loginFail() {}
-  
-  @GetMapping("loginFailRedirect")
-  public void loginFailRedirect(HttpServletResponse response)
-      throws Exception {
-    response.sendRedirect("/app/auth/form");
   }
 
   @Override
@@ -184,9 +159,9 @@ public class AuthController implements Runnable {
       message.setFrom(new InternetAddress(user));
       message.addRecipient(Message.RecipientType.TO, new InternetAddress(whatmail)); 
       // 메일 제목 
-      message.setSubject("엄과외 비밀번호 초기화됐당~"); 
+      message.setSubject("엄과외 비밀번호 초기화됐습니다."); 
       // 메일 내용 
-      message.setText("초기화된 비밀번호는"+sb+"입니당~!~!~!"); 
+      message.setText("초기화된 비밀번호는 "+sb+"입니다."); 
 
       // send the message 
       Transport.send(message); 

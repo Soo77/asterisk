@@ -102,23 +102,6 @@
           </div>
 
           <div class="form-group teacherDisplay">
-            <label for="inputBankName">은행명</label>
-            <select class="form-control selectpicker" data-style="btn btn-link" id="inputBankName" name="bankName">
-              <option selected>은행선택</option>
-              <option value="KB">국민은행</option>
-              <option value="Woori">우리은행</option>
-              <option value="Shinhan">신한은행</option>
-              <option value="kakao">카카오뱅크</option>
-            </select>
-          </div>
-
-          <div class="form-group teacherDisplay">
-            <label for="inputAccountNo">계좌번호</label>
-            <input type="text" class="form-control" id="inputAccountNo" value="${memberInfoMap.teacher.accountNo}"
-              name="accountNo">
-          </div>
-
-          <div class="form-group teacherDisplay">
             <label for="inputHighSchool">고등학교</label>
             <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
               <c:if test="${school.schoolTypeNo eq 3}">

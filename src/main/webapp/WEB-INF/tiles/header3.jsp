@@ -66,6 +66,9 @@ id="sectionsNav">
             <a href="javascript:void(0)" id="message-menu" class="dropdown-item">
               <i class="material-icons">message</i> 쪽지함
             </a>
+            <a href="/app/admin/list" class="dropdown-item admin-display" style="display: none;">
+              <i class="material-icons">assignment_ind</i> 관리자메뉴
+            </a>
             <a href="/app/auth/logout" class="dropdown-item">
               <i class="material-icons">power_settings_new</i> 로그아웃
             </a>
@@ -84,19 +87,26 @@ id="sectionsNav">
       if (result.signIn == true) {
         let teacherLi = document.getElementsByClassName('my-teacher-li')[0];
         let studentLi = document.getElementsByClassName('my-student-li')[0];
+        let adminDisplay = document.getElementsByClassName('admin-display')[0];
         let boardsLi = document.getElementsByClassName('my-board-li')[0];
         let loginUserLi = document.getElementsByClassName('my-login-user-li')[0];
-        let loginUserName = document.getElementsByClassName('my-loggedin-user')[0];
+        let loginUserId = document.getElementsByClassName('my-loggedin-user')[0];
 
-        if (result.loginUserMemberType != 1) {
-          studentLi.style.display = 'inline-block';
-        }
-        if (result.loginUserMemberType != 3) {
+        if (result.loginUserMemberType == 1 ||
+            result.loginUserMemberType == 2) {
           teacherLi.style.display = 'inline-block';
         }
+        if (result.loginUserMemberType == 3) {
+          studentLi.style.display = 'inline-block';
+        }
+        if (result.loginUserMemberType == 4) {
+          // 관리자페이지 디스플레이 전용
+          adminDisplay.style.display = 'flex';
+        }
+        
         boardsLi.style.display = 'inline-block';
         loginUserLi.style.display = 'inline-block';
-        loginUserName.innerHTML = result.loginUserName;
+        loginUserId.innerHTML = result.loginUserId;
 
       } else {
         let loginLi = document.getElementsByClassName('my-login-li')[0];
@@ -114,7 +124,7 @@ id="sectionsNav">
  
   function popMessage(){
     var url = "/app/message/list";
-    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+    var option = "width = 600, height = 600, top = 100, left = 200, location = no"
     window.open(url, "쪽지목록" ,option);
   }
 </script>

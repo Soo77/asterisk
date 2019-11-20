@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.ast.eom.dao.AdminDao;
 import com.ast.eom.dao.MypageDao;
+import com.ast.eom.domain.Lesson;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Parents;
 import com.ast.eom.domain.Student;
@@ -132,6 +133,43 @@ public class DefaultAdminService implements AdminService {
     for (Object m : memberInfoMapForDetail.keySet())
       System.out.println(memberInfoMapForDetail.get(m));
     return memberInfoMapForDetail;
+  }
+  
+  @Override
+  public Map<String, Object> getPendingLessons() throws Exception {
+    Map<String, Object> pendingLessonsInfoMap = new HashMap<>();
+    List<Lesson> pendingLessons = adminDao.getPendingLessons();
+    List<Member> studentList = new ArrayList<>();
+    List<Member> teacherList = new ArrayList<>();
+    
+    for (Lesson pl : pendingLessons) {
+      studentList.add(adminDao.getMember(pl.getStudentNo()));
+      teacherList.add(adminDao.getMember(pl.getTeacherNo()));
+    }
+    
+    pendingLessonsInfoMap.put("pendingLessons", pendingLessons);
+    pendingLessonsInfoMap.put("studentList", studentList);
+    pendingLessonsInfoMap.put("teacherList", teacherList);
+    
+    return pendingLessonsInfoMap;
+  }
+  
+  @Override
+  public int approve(int teacherNo) throws Exception {
+    adminDao.approveTeacherCertificationOf(teacherNo);
+    return 1;
+  }
+  
+  @Override
+  public int accept(int memberNo) throws Exception {
+    adminDao.acceptThis(memberNo);
+    return 1;
+  }
+  
+  @Override
+  public int reject(int memberNo) throws Exception {
+    adminDao.rejectThis(memberNo);
+    return 1;
   }
   
 }

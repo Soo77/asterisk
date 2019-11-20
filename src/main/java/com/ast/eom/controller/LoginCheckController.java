@@ -24,7 +24,7 @@ public class LoginCheckController {
     if (loginUser != null) {
       loginCheck.put("signIn", true);
       loginCheck.put("loginUserMemberType", loginUser.getMemberTypeNo());
-      loginCheck.put("loginUserName", loginUser.getName());
+      loginCheck.put("loginUserId", loginUser.getId());
     } else {
       loginCheck.put("signIn", false);
     }

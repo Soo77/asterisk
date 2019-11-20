@@ -1,5 +1,6 @@
 package com.ast.eom.service;
 
+import java.util.HashMap;
 import java.util.List;
 import com.ast.eom.domain.Member;
 import com.ast.eom.domain.Message;
@@ -13,4 +14,7 @@ public interface MessageService {
   List<Message> messageDetail(Message message) throws Exception;
   int messageIn(Message message) throws Exception;
   List<Member> messageDetailInfo(int memberNo) throws Exception;
+  List<Member> searchStd(String id) throws Exception;
+  String lessonInvitationCheck(int lessonNo) throws Exception;
+  void lessonInvitationStd(HashMap<String, Object> stat) throws Exception;
 }

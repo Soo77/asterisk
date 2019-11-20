@@ -16,8 +16,6 @@ public class AuthControllerCheckInterceptor implements HandlerInterceptor {
       return false;
     }
     
-    // 다음 인터셉터나 페이지 컨트롤러를 계속 실행하고 싶다면 true를 리턴한다.
-    // 여기서 요청 처리를 완료하고 싶다면 false를 리턴한다.
     return true; 
   }
 }
