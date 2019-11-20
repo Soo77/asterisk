@@ -7,21 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>가입 화면</title>
-	<script type="text/javascript">
-		// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
-		function checkValue() {
-			var va = document.querySelectorAll(".redch");
-			for (var i = 0; i < va.length; i++) {
-				if (va[i].style.color == "red") {
-					va[i].focus();
-					return false;
-				} else{
-					  swal("이메일로 인증링크를 보냈습니다")
-					  location.href("/app/auth/form");
-          }
-			}
-		}
-	</script>
+	
 	<style>
 		.filebox input[type="file"] {
 			/* 파일 필드 숨기기 */
@@ -46,8 +32,8 @@
 		}
 
 		#teacherhope {
-			background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
-				linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+			background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px);
+			linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 			border: 0.5px solid #d2d2d2;
 			border-radius: .25rem;
 
@@ -86,7 +72,7 @@
 		</div>
 	</div>
 
-	<form method="post" action="studentjoin" name="userInfo" enctype="multipart/form-data" onsubmit="return checkValue()">
+	<form method="post" action="studentjoin" name="userInfo" id="form1" enctype="multipart/form-data" onsubmit="return checkValue()">
 		<div class="main main-raised profile-page">
 			<div class="container">
 				<div class="row-fluid">
@@ -302,7 +288,7 @@
 							</div>
 							
 							<div style="padding-bottom: 20px;">
-								<button type="submit" class="btn btn-primary btn-sm" id="submit">가입</button>
+								<button type="submit" class="btn btn-primary btn-sm" id="submitBtn">가입</button>
 								<input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
 							</div>
 
@@ -313,6 +299,30 @@
 			</div>
 		</div>
 	</form>
+	
+	<script>
+    $('#submitBtn').click(function (e) {
+      e.preventDefault();
+      
+      var va = document.querySelectorAll(".redch");
+      for (var i = 0; i < va.length; i++) {
+        if (va[i].style.color == "red") {
+          va[i].focus();
+          return false;
+        }
+      }
+
+      swal({
+        title: "인증링크를 보냈습니다",
+        text: "이메일을 확인해주세요",
+        icon: "success",
+        button: "로그인",
+      })
+        .then((value) => {
+          document.getElementById('form1').submit();
+        });
+    });
+  </script>
 
 	<!-- 취소 -->
 	<script>
@@ -361,12 +371,12 @@
 			if (id == "") {
 				$('#id_check').text('아이디를 입력해주세요');
 				$('#id_check').css('color', 'red');
-				$("#submit").attr("disabled", true);
+				$("#submitBtn").attr("disabled", true);
 			} else if (!idpwtest.test(id)) {
 				$("#id_check").text("아이디는 4~12자의 영문과 숫자로 이루어져야 합니다");
 				$("#id_check").css("color", "red");
 				$("#id").css("color", "red");
-				$("#submit").attr("disabled", true);
+				$("#submitBtn").attr("disabled", true);
 			} else {
 				$.ajax({
 					url: 'idCheck',
@@ -377,12 +387,12 @@
 							$("#id_check").text("사용중인 아이디입니다");
 							$("#id_check").css("color", "red");
 							$("#id").css("color", "red");
-							$("#submit").attr("disabled", true);
+							$("#submitBtn").attr("disabled", true);
 						} else {
 							$("#id_check").text("사용 가능한 아이디입니다");
 							$("#id_check").css("color", "green");
 							$("#id").css("color", "green");
-							$("#submit").attr("disabled", false);
+							$("#submitBtn").attr("disabled", false);
 						}
 					},
 					error: function () {
@@ -405,24 +415,24 @@
 				$("#pw_check").css("color", "red");
 				$("#okpw").css("color", "red");
 				$("#pw").css("color", "red");
-				$("#submit").attr("disabled", true);
+				$("#submitBtn").attr("disabled", true);
 			} else if (okpw == "") {
 				$('#pw_check').text('비밀번호 확인을 해주세요');
 				$('#pw_check').css('color', 'red');
-				$("#submit").attr("disabled", true);
+				$("#submitBtn").attr("disabled", true);
 			} else {
 				if (pw != okpw) {
 					$("#pw_check").text("비밀번호가 틀립니다");
 					$("#pw_check").css("color", "red");
 					$("#okpw").css("color", "red");
 					$("#pw").css("color", "red");
-					$("#submit").attr("disabled", true);
+					$("#submitBtn").attr("disabled", true);
 				} else {
 					$("#pw_check").text("비밀번호가 일치합니다");
 					$("#pw_check").css("color", "green");
 					$("#okpw").css("color", "green");
 					$("#pw").css("color", "green");
-					$("#submit").attr("disabled", false);
+					$("#submitBtn").attr("disabled", false);
 				}
 			}
 		});
@@ -440,24 +450,24 @@
 				$("#pw_check").css("color", "red");
 				$("#okpw").css("color", "red");
 				$("#pw").css("color", "red");
-				$("#submit").attr("disabled", true);
+				$("#submitBtn").attr("disabled", true);
 			} else if (pw == "") {
 				$('#pw_check').text('비밀번호를 입력해주세요');
 				$('#pw_check').css('color', 'red');
-				$("#submit").attr("disabled", true);
+				$("#submitBtn").attr("disabled", true);
 			} else {
 				if (pw != okpw) {
 					$("#pw_check").text("비밀번호가 틀립니다");
 					$("#pw_check").css("color", "red");
 					$("#okpw").css("color", "red");
 					$("#pw").css("color", "red");
-					$("#submit").attr("disabled", true);
+					$("#submitBtn").attr("disabled", true);
 				} else {
 					$("#pw_check").text("비밀번호가 일치합니다");
 					$("#pw_check").css("color", "green");
 					$("#okpw").css("color", "green");
 					$("#pw").css("color", "green");
-					$("#submit").attr("disabled", false);
+					$("#submitBtn").attr("disabled", false);
 				}
 			}
 		});
@@ -492,14 +502,14 @@
         dp.readOnly = false;
         $('#email_check').text('이메일을 입력해주세요');
         $('#email_check').css('color', 'red');
-        $("#submit").attr("disabled", true);
+        $("#submitBtn").attr("disabled", true);
       } else if (!mailtest.test(mail)) {
         dp.readOnly = false;
         $("#email_check").text("이메일 형식이 맞지 않습니다");
         $("#email_check").css("color", "red");
         $("#email").css("color", "red");
         $("#mail").css("color", "red");
-        $("#submit").attr("disabled", true);
+        $("#submitBtn").attr("disabled", true);
       } else {
         $.ajax({
           url: 'emailCheck',
@@ -512,19 +522,19 @@
               $("#email_check").css("color", "red");
               $("#email").css("color", "red");
               $("#mail").css("color", "red");
-              $("#submit").attr("disabled", true);
+              $("#submitBtn").attr("disabled", true);
             } else {
               if (email) {
                 $("#email_check").text("사용 가능한 이메일입니다");
                 $("#email_check").css("color", "green");
                 $("#email").css("color", "green");
                 $("#mail").css("color", "green");
-                $("#submit").attr("disabled", false);
+                $("#submitBtn").attr("disabled", false);
               } else if (email == "") {
                 dp.readOnly = false;
                 $('#email_check').text('이메일을 입력해주세요');
                 $('#email_check').css('color', 'red');
-                $("#submit").attr("disabled", true);
+                $("#submitBtn").attr("disabled", true);
               }
             }
           },
@@ -544,13 +554,13 @@
 
 			if (tel == "") {
         $("#tel_check").text("");
-        $("#submit").attr("disabled", false);
+        $("#submitBtn").attr("disabled", false);
         return false;
       } else if (!teltest.test(tel)) {
         $("#tel_check").text("11개의 숫자만 입력해주세요");
         $("#tel_check").css("color", "red");
         $("#tel").css("color", "red");
-        $("#submit").attr("disabled", true);
+        $("#submitBtn").attr("disabled", true);
       } else {
 				$.ajax({
 					url: 'telCheck',
@@ -561,17 +571,17 @@
 							$("#tel_check").text("사용중인 번호입니다");
 							$("#tel_check").css("color", "red");
 							$("#tel").css("color", "red");
-							$("#submit").attr("disabled", true);
+							$("#submitBtn").attr("disabled", true);
 						} else {
 							if (id) {
 								$("#tel_check").text("가입 가능한 번호입니다");
 								$("#tel_check").css("color", "green");
 								$("#tel").css("color", "green");
-								$("#submit").attr("disabled", false);
+								$("#submitBtn").attr("disabled", false);
 							} else if (id == "") {
 								$('#tel_check').text('번호 입력해주세요');
 								$('#tel_check').css('color', 'red');
-								$("#submit").attr("disabled", true);
+								$("#submitBtn").attr("disabled", true);
 							}
 						}
 					},

@@ -155,7 +155,7 @@ public class JoinController implements Runnable {
     executorService = Executors.newCachedThreadPool();
     executorService.submit(this);
 
-    return "/view/checkplease";
+    return "redirect:/app/auth/form";
   }
 
   //학부모 회원가입
@@ -252,7 +252,7 @@ public class JoinController implements Runnable {
     executorService = Executors.newCachedThreadPool();
     executorService.submit(this);
 
-    return "/view/checkplease";
+    return "redirect:/app/auth/form";
   }
 
   @Override
