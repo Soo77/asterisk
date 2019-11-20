@@ -42,7 +42,6 @@ public class MemberTeacherStudent {
   private String myWantedFee;
   private String mySchool;
   private String mySubject;
-  
   public int getMemberNo() {
     return memberNo;
   }
@@ -231,6 +230,8 @@ public class MemberTeacherStudent {
         + myGugun + ", myGender=" + myGender + ", myAge=" + myAge + ", myWantedFee=" + myWantedFee
         + ", mySchool=" + mySchool + ", mySubject=" + mySubject + "]";
   }
+  
+ 
   
   
   
