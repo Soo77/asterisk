@@ -40,7 +40,7 @@
 	width: 50%;
 	border-radius: 10px;
 	padding: 5px 10px;
-	background: #B5E8E2;
+	background: #F6F6F6;
 	border: 1px solid #ccc;
 	margin-top: 5px;
 }
@@ -48,7 +48,7 @@
 .chat-right {
 	border-radius: 10px;
 	padding: 5px 10px; 
-	background: #FFE8FF;
+	background: #ECEBFF;
 	border: 1px solid #ccc;
 	margin-top: 5px;
 }
@@ -56,7 +56,7 @@
 </head>
 <body style="overflow: hidden;">
   
-	<div class="card-header d-flex justify-content-between p-2" style="background-color: #E8CEC2;">
+	<div class="card-header d-flex justify-content-between p-2" style="background-color: #F0F0F0;">
 		<div class="d-flex">
 			<div class="profile-photo">
 				<img class="avatar" onError="javascript:src='/upload/join/default.png'"
@@ -113,7 +113,7 @@
 				onKeypress="if(event.keyCode==13) {messageIn();}"
 				class="form-control" placeholder="내용을 입력">
 		</div>
-		<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
+		<button id="messageIn" name="messageIn" class="btn btn-outline-primary btn-sm">입력</button>
 
     <script>
       $(document).ready(function(){

@@ -159,9 +159,9 @@ public class AuthController implements Runnable {
       message.setFrom(new InternetAddress(user));
       message.addRecipient(Message.RecipientType.TO, new InternetAddress(whatmail)); 
       // 메일 제목 
-      message.setSubject("엄과외 비밀번호 초기화됐당~"); 
+      message.setSubject("엄과외 비밀번호 초기화됐습니다."); 
       // 메일 내용 
-      message.setText("초기화된 비밀번호는"+sb+"입니당~!~!~!"); 
+      message.setText("초기화된 비밀번호는 "+sb+"입니다."); 
 
       // send the message 
       Transport.send(message); 

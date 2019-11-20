@@ -36,7 +36,7 @@
 </head>
 <body>
 
-  <div class="card-header d-flex justify-content-between p-2" style="background-color: #FFEEFF;">
+  <div class="card-header d-flex justify-content-between p-2" style="background-color: #FFFFFF;">
 	<h2>쪽지 목록</h2>
 	<div style="margin-top:60px; text-align: right;">
 		<b>알림&ensp;</b>
