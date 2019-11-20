@@ -177,32 +177,30 @@
     var addButton = document.querySelector('#btnAdd');
     addButton.addEventListener('click', function() {
       var form = document.frm1;
-        if (form.title.value.length == 0) {
-          swal("제목을 입력하세요.");
-          form.title.focus();
-          return;
-        }
-        if (form.contents.value.length == 0) {
-          swal("내용을 입력하세요.");
-          form.contents.focus();
-          return;
-        }
-        else {
-          swal({
-              title: "글쓰기",
-              text: "등록하시겠습니까?",
-              buttons: true,
-            })
-            .then((willDelete) => {
-              if (willDelete) {
-                swal("등록되었습니다.", {
-                  icon: "success",
-                });
-                document.getElementById("form1").submit();
-              } else {
-              }
+      
+      var title = $("#inputTitle").val().replace(/(\s*)/g, "");
+      var contents = $("#exampleFormControlTextarea1").val().replace(/(\s*)/g, "");
+      
+      if (title.length == 0) {
+        swal("제목을 입력하세요.");
+      } else if (contents.length == 0) {
+        swal("내용을 입력하세요.");
+      } else {
+        swal({
+          title: "글쓰기",
+          text: "등록하시겠습니까?",
+          buttons: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal("등록되었습니다.", {
+              icon: "success",
             });
-        }
+            document.getElementById("form1").submit();
+          } else {
+          }
+        });
+      }
     });
 </script>
 

@@ -248,7 +248,7 @@
         tch_lesson_stop=1,
         tch_stop_reason=#{stopReason},
       </if> 
-      <if test="memberTypeNo == 1">
+      <if test="memberTypeNo == 1 or memberTypeNo == 2">
         std_lesson_stop=1,
         std_stop_reason=#{stopReason},
       </if> 
