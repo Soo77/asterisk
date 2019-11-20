@@ -33,47 +33,49 @@
 }
 
 .right {
-	margin-left: 200px;
+	margin-left: 275px;
 }
 
 .chat-left {
 	width: 50%;
 	border-radius: 10px;
 	padding: 5px 10px;
-	background: #B5E8E2;
+	background: #F6F6F6;
 	border: 1px solid #ccc;
 	margin-top: 5px;
 }
 
 .chat-right {
 	border-radius: 10px;
-	padding: 5px 10px;
-	background: #FACBBA;
+	padding: 5px 10px; 
+	background: #ECEBFF;
 	border: 1px solid #ccc;
 	margin-top: 5px;
 }
 </style>
 </head>
 <body style="overflow: hidden;">
-	<h2>쪽지함</h2>
-
-	<div class="card-header d-flex justify-content-between p-2" style="background-color: #ccc;">
+  
+	<div class="card-header d-flex justify-content-between p-2" style="background-color: #F0F0F0;">
 		<div class="d-flex">
 			<div class="profile-photo">
-				<img class="avatar" src="/upload/join/${messageInfo[0].profilePhoto}">
+				<img class="avatar" onError="javascript:src='/upload/join/default.png'"
+        alt="" src="/upload/join/${messageInfo[0].profilePhoto}">
 			</div>
 			<div class="data">
-				<h4 class="mb-0">${messageInfo[0].name}</h4>
-<!-- 				<p class="text-muted mb-0">밥 뭐먹지</p> -->
+				<h4 class="mb-0">쪽지함</h4>
+				<p>${messageInfo[0].name}</p>
 			</div>
 		</div>
 
 		<div class="icons grey-text">
-			<a href="/app/message/list" id="closeButton"><i class="fas fa-list-ul"></i></a>
+			<h3>
+			<a href="/app/message/list" style="color: black;"><i class="fas fa-list-ul"></i></a>
+			</h3>
 		</div>
 	</div>
 
-	<div class="messageRow" style="min-height:300px; overflow:auto; width:500px; height:400px;">
+	<div class="messageRow" style="min-height:300px; overflow:auto; width:600px; height:475px;">
 
 			<c:forEach var="messageList" items="${messageList}">
 				<c:choose>
@@ -106,18 +108,17 @@
 
 		</div>
 
-		<br>
-		<div style="width: 400px; display: inline-block;">
+		<div style="width: 530px; display: inline-block; background-color: white;">
 			<input type="text" id="messageConts" name="messageConts"
 				onKeypress="if(event.keyCode==13) {messageIn();}"
 				class="form-control" placeholder="내용을 입력">
 		</div>
-		<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
+		<button id="messageIn" name="messageIn" class="btn btn-outline-primary btn-sm">입력</button>
 
     <script>
       $(document).ready(function(){
-    	  console.log("asd");
-		    $(document).scrollTop($(document).height());
+		    let messageRow = document.getElementsByClassName("messageRow")[0];
+		    messageRow.scrollTop = messageRow.scrollHeight;
       })
     </script>
 
@@ -160,6 +161,8 @@
 	        }
 	      });
       }
+      let messageRow = document.getElementsByClassName("messageRow")[0];
+      messageRow.scrollTop = messageRow.scrollHeight;
     }
   </script>
 
@@ -168,9 +171,6 @@
   function lessonMatchingStd(lessonCheck){
 	  var memberNo = lessonCheck.value;
 	  var lessonNo = lessonCheck.name;
-	  
-	  console.log(memberNo);
-	  console.log(lessonNo);
 	  
 	  if(${loginUser.memberNo} != memberNo){
 		  return false;
