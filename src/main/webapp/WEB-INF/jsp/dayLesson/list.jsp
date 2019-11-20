@@ -35,7 +35,7 @@
   
   /* 캘린더 날짜 누르고 뜬 화면에서 날짜 */
   .event-container>p {
-    margin-top: 25%;
+    margin-top: 10%;
   }
   
   /* 캘린더 날짜 누르고 뜬 화면에서 내용 */
