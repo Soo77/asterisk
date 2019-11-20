@@ -23,8 +23,8 @@
     <put-attribute name="javascript3" value="/WEB-INF/tiles/javascript3.jsp"/>
   </definition>
   
-  <definition name="auth/form" extends="base2">
-    <put-attribute name="body2" value="/WEB-INF/jsp/auth/form.jsp"/>
+  <definition name="auth/*" extends="base2">
+    <put-attribute name="body2" value="/WEB-INF/jsp/auth/{1}.jsp"/>
   </definition>
   
   <definition name="message/*" extends="base1">
