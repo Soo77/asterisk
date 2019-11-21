@@ -13,6 +13,7 @@ public interface MemberTeacherStudentService {
   List<MemberTeacherStudent> searchBy(HashMap<String, Object> searchInfo) throws Exception;
   List<MemberTeacherStudent> review2(int no) throws Exception;
   List<MemberTeacherStudent> review1(int no) throws Exception;
+  List<MemberTeacherStudent> photo(int no) throws Exception;
   
 
   

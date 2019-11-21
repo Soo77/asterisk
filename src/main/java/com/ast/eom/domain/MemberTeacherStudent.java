@@ -38,7 +38,6 @@ public class MemberTeacherStudent {
   private String mySido;
   private String myGugun;
   private String myGender;
-  private String myAge;
   private String myWantedFee;
   private String mySchool;
   private String mySubject;
@@ -192,12 +191,6 @@ public class MemberTeacherStudent {
   public void setMyGender(String myGender) {
     this.myGender = myGender;
   }
-  public String getMyAge() {
-    return myAge;
-  }
-  public void setMyAge(String myAge) {
-    this.myAge = myAge;
-  }
   public String getMyWantedFee() {
     return myWantedFee;
   }
@@ -227,9 +220,11 @@ public class MemberTeacherStudent {
         + schoolType + ", subjectName=" + subjectName + ", teacherPhotos=" + teacherPhotos
         + ", teachers=" + teachers + ", lessonSubjects=" + lessonSubjects + ", schools=" + schools
         + ", lessons=" + lessons + ", students=" + students + ", mySido=" + mySido + ", myGugun="
-        + myGugun + ", myGender=" + myGender + ", myAge=" + myAge + ", myWantedFee=" + myWantedFee
-        + ", mySchool=" + mySchool + ", mySubject=" + mySubject + "]";
+        + myGugun + ", myGender=" + myGender + ", myWantedFee=" + myWantedFee + ", mySchool="
+        + mySchool + ", mySubject=" + mySubject + "]";
   }
+ 
+  
   
  
   

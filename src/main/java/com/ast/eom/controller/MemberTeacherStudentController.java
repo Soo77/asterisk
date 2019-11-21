@@ -55,11 +55,13 @@ public class MemberTeacherStudentController {
     List<MemberTeacherStudent> detailTeacher = memberTeacherStudentService.get2(no);
     List<MemberTeacherStudent> reviewStudent = memberTeacherStudentService.review1(no);
     List<MemberTeacherStudent> reviewTeacher = memberTeacherStudentService.review2(no);
+    List<MemberTeacherStudent> photoTeacher = memberTeacherStudentService.photo(no);
     
     model.addAttribute("detailStudent", detailStudent);
     model.addAttribute("detailTeacher", detailTeacher);
     model.addAttribute("reviewTeacher", reviewTeacher);
     model.addAttribute("reviewStudent", reviewStudent);
+    model.addAttribute("photoTeacher", photoTeacher);
   }
   
   @RequestMapping(value="search", method = {RequestMethod.GET})

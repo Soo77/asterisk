@@ -5,6 +5,36 @@
 <mapper namespace="com.ast.eom.dao.MemberTeacherStudentDao">
 
 	<!-- 컬럼 이름과 자바 객체의 프로퍼티 이름을 연결한다. -->
+	
+	 <resultMap type="Lesson" id="LessonMap">
+    <id column="lesson_no" property="lessonNo" />
+    <result column="tch_no" property="teacherNo" />
+    <result column="std_no" property="studentNo" />
+    <result column="sub_no" property="subjectNo" />
+    <result column="lesson_desc" property="lessonDescription" />
+    <result column="lesson_fee" property="lessonFee" />
+    <result column="lesson_stat" property="lessonState" />
+    <result column="std_lesson_stop" property="studentLessonStop" />
+    <result column="tch_lesson_stop" property="teacherLessonStop" />
+    <result column="sdt" property="startDate" />
+    <result column="edt" property="endDate" />
+    <result column="tch_review" property="teacherReview" />
+    <result column="std_review" property="studentReview" />
+    <result column="tch_eval" property="teacherEvaluation" />
+    <result column="payment" property="paymentMethod" />
+    <result column="pay_day" property="payDay" />
+    <result column="cal_date" property="calculationDay" />
+    <result column="cal_stat" property="calculationState" />
+    <result column="std_stop_reason" property="studentStopReason" />
+    <result column="tch_stop_reason" property="teacherStopReason" />
+    <result column="ref_stat" property="refundState" />
+    <result column="ref_date" property="refundDate" />
+    <result column="ref_amount" property="refundAmount" />
+    <result column="lesson_day_count" property="lessonDayCount" />
+    <result column="sub_name" property="subjectName" />
+  </resultMap>
+	
+	
 	<resultMap type="MemberTeacherStudent" id="MemberTeacherStudentMap">
 		<id column="mem_no" property="memberNo" />
 		<result column="mem_type_no" property="memberTypeNo" />
@@ -36,14 +66,6 @@
 	    <result column="tch_photo" property="teacherPhoto"/>
     </resultMap>
 	
-	<resultMap type="Lesson" id="LessonMap">
-		<id column="lesson_no" property="lessonNo" />
-		<result column="tch_no" property="teacherNo" />
-		<result column="tch_review" property="teacherReview" />
-		<result column="std_review" property="studentReview" />
-		<result column="tch_eval" property="teacherEvaluation" />
-	</resultMap>
-
 	<resultMap type="School" id="SchoolMap">
 		<id column="sch_no" property="schoolNo" />
 		<result column="tch_no" property="teacherNo" />
@@ -138,7 +160,7 @@
 	<select id="searchTeacher" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
 		m.mem_no, m.id, m.profile_photo,
-		m.gender, m.addr_city, m.addr_sub, m.dob, sub.sub_name, st.sch_type, ls.wanted_fee
+		m.gender, m.addr_city, m.addr_sub, sub.sub_name, st.sch_type, ls.wanted_fee
 		from member m
 		left outer join teacher t on m.mem_no = t.tch_no
 		left outer join lesson_subject ls on t.tch_no = ls.tch_no
@@ -147,7 +169,6 @@
 	     where addr_city LIKE CONCAT('%', #{mySido}, '%')
         and addr_sub LIKE CONCAT('%', #{myGugun}, '%')
         and gender LIKE CONCAT('%', #{myGender}, '%')
-       <!--  and dob LIKE CONCAT('%', #{myAge}, '%') -->
         and sub_name LIKE CONCAT('%', #{mySubject}, '%')
         and sch_type LIKE CONCAT('%', #{mySchool}, '%')
         and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
@@ -171,25 +192,32 @@
 	      and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
 	</select>
 	
-	<select id="reviewTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
+	<select id="photoTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
+		select
+		m.mem_no, tp.tch_photo
+		from
+		member m
+		left outer join teacher t on m.mem_no = t.tch_no
+		left outer join teacher_photo tp on t.tch_no = tp.tch_no
+		where m.mem_no= #{mem_no}
+	</select>
+	
+	
+  <select id="reviewTeacher" parameterType="int" resultMap="LessonMap">
     select
-    m.mem_no, m.id, l.tch_review
+    tch_review
     from
-    member m
-    left outer join student stu on m.mem_no= stu.std_no
-    left outer join lesson l on stu.std_no = l.lesson_no
-    left outer join teacher t on l.lesson_no = t.tch_no
+    lesson
+    where tch_no = #{no}
     
   </select>
   
-  <select id="reviewStudent" parameterType="int" resultMap="MemberTeacherStudentMap">
+  <select id="reviewStudent" parameterType="int" resultMap="LessonMap">
     select
-    m.mem_no, m.id, l.tch_review
+    std_review
     from
-    member m
-    left outer join teacher t on m.mem_no= t.tch_no
-    left outer join lesson l on t.tch_no = l.lesson_no
-    left outer join student stu on l.lesson_no = stu.std_no
+    lesson
+    where std_no = #{no}
     
   </select>
 

@@ -129,13 +129,6 @@ width:112px;
                 </label>
               </div>
               
-            <c:if test="${memberTypeNo == 3}">
-              <label class="age title">나이</label>
-              <div class="age-check">
-                <input type="text" id="age_1"> ~ 
-                <input type="text" id="age_2">
-              </div>
-            </c:if>
               <label class="lessons_fee title">수업료</label>
               <div class="form-check">
                 <label class="btn btn-primary wantedFee"> 
@@ -221,7 +214,6 @@ width:112px;
                             </h5>
                             <h5>
                               <span class="tim-note">
-                                ${member.schools[0].schoolName}/
                                 ${member.gender}/ ${member.addressCity}
                                 ${member.addressSuburb}/
                                 ${member.schoolType}/
@@ -492,15 +484,6 @@ $(document).ready(function(){
 	  'mySido': mySido,
 	};
       
-      /* if (sido1.startsWith('충청') ||
-          sido1.startsWith('전라') ||
-          sido1.startsWith('경상')) {
-        mySido = sido1.substring(0,3);
-        console.log("세글자:" + mySido);
-      } else {
-        mySido = sido1.substring(0,2);
-        console.log("두글자:" + mySido);
-      } */
       $.ajax({
           type    : "GET",
           url     : "/app/member/search",
@@ -528,7 +511,7 @@ $(document).ready(function(){
               html += '</h5>';
               html += '<h5>';
               html += '<span class="tim-note">';
-              html += ''+resultList[i].gender+'/'+resultList[i].addressCity+'';
+              html += ''+resultList[i].gender+'/'+resultList[i].addressCity+' ';
               html += ''+resultList[i].addressSuburb+'/';
               html += ''+resultList[i].schoolType+'/';
               html += ''+resultList[i].subjectName+'';
@@ -550,45 +533,7 @@ $(document).ready(function(){
               console.log("resultList[i].schoolType==>" + resultList[i].schoolType);
               console.log("resultList[i].subjectName==>" + resultList[i].subjectName);
               
-            } /* else if (memberTypeNo == 3) {
-              html += '<a href="detail?no='+resultList[i].memberNo+'">';
-              html += '<div class="card-body">';
-              html += '<div class="cardcard mb-3">';
-              html += '<div class="row no-gutters">';
-              html += '<div class="col-md-3">';
-              html += '<img src="/upload/join/'+resultList[i].profilePhoto+'" alt="Thumbnail Image"';
-              html += 'class="img-raised rounded-circle img-fluid">';
-              html += '</div>';
-              html += '<div class="col-md-9">';
-              html += '<h5 class="title">';
-              html += '<span class="tim-note">'+resultList[i].id+'</span>';
-              html += '</h5>';
-              html += '<h5>';
-              html += '<span class="tim-note">';
-              html += ''+resultList[i].schools[0].schoolName+'/';
-              html += ''+resultList[i].gender+'/'+resultList[i].addressCity+'';
-              html += ''+resultList[i].addressSuburb+'/';
-              html += ''+resultList[i].schoolType+'/';
-              html += ''+resultList[i].subjectName+'';
-              html += '</span>';
-              html += '</h5>';
-              html += '</div>';
-              html += '</div>';
-              html += '</div>';
-              html += '</div>';
-              html += '</a>';
-              html += '<hr>';
-              console.log("memberTypeNo===>" + memberTypeNo);
-              console.log("resultList[i].memberNo==>" + resultList[i].memberNo);
-              console.log("resultList[i].profilePhoto==>" + resultList[i].profilePhoto);
-              console.log("resultList[i].id==>" + resultList[i].id);
-              console.log("resultList[i].schools[0].schoolName==>" + resultList[i].schools[0].schoolName);
-              console.log("resultList[i].gender==>" + resultList[i].gender);
-              console.log("resultList[i].addressCity==>" + resultList[i].addressCity);
-              console.log("resultList[i].addressSuburb==>" + resultList[i].addressSuburb);
-              console.log("resultList[i].schoolType==>" + resultList[i].schoolType);
-              console.log("resultList[i].subjectName==>" + resultList[i].subjectName);
-            } */
+            }
           }
 
           $('.my-lesson-wrapper').html('');
@@ -605,29 +550,6 @@ $(document).ready(function(){
 
 </script>
 
-<!-- AJAX를 호출 할 때 쓸 함수 목록들 -->
-<script>
-  var getThisYear = function() {
-    var today = new Date();
-    return today.getFullYear();
-    
-  };
-  
-  var calculateAges = function() {
-    var ageList = new Array();
-    
-    var firstAge = $('#age_1').val();
-    var lastAge = $('#age_2').val();
-    
-    var thisYear = getThisYear();
-    
-    ageList.push(thisYear - firstAge + 1);
-    ageList.push(thisYear - lastAge + 1);
-    
-    return ageList;
-  };
-  
-</script>
 
 </body>
 </html>

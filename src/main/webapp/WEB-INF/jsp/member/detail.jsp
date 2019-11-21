@@ -278,13 +278,17 @@ ul li::before {
               <label class="media title">미디어</label>
 					</div>
 					<div class="card-deck">
-					
+          
+          
 
-					<c:forEach var="photo" items="${member.teacherPhotos}">
+					 <c:forEach var="photo" items="${photoTeacher}">
+           <c:forEach var="photo2" items="${photo.teacherPhotos}">
+          
             <div class="card">
-              <img src="/upload/teacher_photo/${photo.teacherPhoto}" class="card-img-top" alt="...">
+              <img src="/upload/teacher_photo/${photo2.teacherPhoto}" class="card-img-top" alt="...">
             </div>
 					</c:forEach>
+            </c:forEach> 
           </div>
           <br><br><br>
 
