@@ -163,8 +163,6 @@
                 <option value=1>국어</option>
                 <option value=2>영어</option>
                 <option value=3>수학</option>
-                <option value=4>과학</option>
-                <option value=5>사회</option>
               </select>
               <select class="form-control pt-0 mx-1 wantedSubject-fee" name="wantedFee">
                 <option value=1>20만원이하</option>
