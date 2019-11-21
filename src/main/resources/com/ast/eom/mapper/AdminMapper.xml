@@ -152,8 +152,15 @@
   </select>
   
   <select id="countLessonDays" parameterType="map" resultType="int">
-    select count(*) from day_lesson
-    where lesson_date &lt;= #{calculationDay} and lesson_date &gt;= #{after30day} and lesson_no=#{lessonNo};
+    
+    select
+      count(*)
+    from
+      day_lesson
+    where
+      lesson_date <![CDATA[>=]]> #{calculationDay} and
+      lesson_date <![CDATA[<=]]> #{after30days} and
+      lesson_no=#{lessonNo}
   </select>
 
   <update id="approveInterruption" parameterType="int">
