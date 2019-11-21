@@ -42,12 +42,12 @@
     .my-logo {
       font-weight: bold;
     }
-    
+
     @media (max-width: 991px) {
-	  #noticeHidden {
-	  display: none !important;
-	  }
-	  }
+      #noticeHidden {
+        display: none !important;
+      }
+    }
   </style>
 
 </head>
@@ -120,7 +120,7 @@
               </a>
             </div>
           </li>
-          <span id="#noticeHidden" class="notice" style="margin-left: -10px !important; 
+          <span id="noticeHidden" class="notice" style="margin-left: -10px !important; 
         color: #333"></span>
         </ul>
       </div>
@@ -312,25 +312,26 @@
   <script src="/assets/js/material-kit.js?v=2.0.6" type="text/javascript"></script>
 
   <script>
-	$.ajax({
-	  url: "/app/message/notice",
-	  success: function(data) {
-	    let message;
-	    if(data >= 100){
-	      message = "&ensp;<span class='badge badge-danger badge-counter'>"+"+99"
-	      message += "</span>"
-	    
-	    } else if(data == 0){
-	    } else {
-	      message = "&ensp;<span class='badge badge-danger badge-counter'>"+data
-	      message += "</span>"
-	    }
-	    $(".notice").append(message);
-	  }, error: function(){
-	    consol.elog("실패");
-	  }
-	})
-	</script>
+    $.ajax({
+      url: "/app/message/notice",
+      success: function (data) {
+    	  console.log(data);
+        let message;
+        if (data >= 100) {
+          message = "&ensp;<span class='badge badge-danger badge-counter'>" + "+99"
+          message += "</span>"
+
+        } else if (data == 0) {
+        } else {
+          message = "&ensp;<span class='badge badge-danger badge-counter'>" + data
+          message += "</span>"
+        }
+        $(".notice").append(message);
+      }, error: function () {
+        console.log("실패");
+      }
+    })
+  </script>
 
   <script>
     $.ajax({
@@ -346,19 +347,19 @@
           let loginUserName = document.getElementsByClassName('my-loggedin-user')[0];
 
           if (result.loginUserMemberType == 1 ||
-              result.loginUserMemberType == 2 ||
-              result.loginUserMemberType == 4) {
+            result.loginUserMemberType == 2 ||
+            result.loginUserMemberType == 4) {
             teacherLi.style.display = 'inline-block';
           }
           if (result.loginUserMemberType == 3 ||
-              result.loginUserMemberType == 4) {
+            result.loginUserMemberType == 4) {
             studentLi.style.display = 'inline-block';
           }
           if (result.loginUserMemberType == 4) {
             // 관리자페이지 디스플레이 전용
             adminDisplay.style.display = 'flex';
           }
-          
+
           boardsLi.style.display = 'inline-block';
           loginUserLi.style.display = 'inline-block';
           loginUserName.innerHTML = result.loginUserId;
@@ -373,14 +374,14 @@
   </script>
 
   <script>
-    $("#message-menu").on('click', function() {
+    $("#message-menu").on('click', function () {
       popMessage();
     });
-   
-    function popMessage(){
+
+    function popMessage() {
       var url = "/app/message/list";
       var option = "width = 600, height = 600, top = 100, left = 200, location = no"
-      window.open(url, "쪽지목록" ,option);
+      window.open(url, "쪽지목록", option);
     }
   </script>
 </body>
