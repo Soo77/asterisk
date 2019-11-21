@@ -182,10 +182,10 @@
           </div>
          </div> 
          
-         <div class="form-group">
+         <div class="form-group bmd-form-group is-filled" style="padding-right: 17px;">
           <label for="lesson-description">수업설명</label>
           <textarea class="form-control" id="lesson-description" name="lessonDescription" rows="3" readonly>${lesson.lessonDescription}
-          </textarea> 
+          </textarea>  
         </div>
       
       
@@ -223,7 +223,7 @@
             <a href="list" class="btn btn-primary">수업목록</a>
           </div> 
           <div class="col text-right">
-            <c:if test="${lesson.lessonState eq 0}">
+            <c:if test="${loginUser.memberTypeNo eq 1 and lesson.lessonState eq 2}">
               <input type="button" class="btn btn-primary pay-button" value="결제" onClick="location.href='../payment/detail'">
             </c:if>
           </div>
@@ -236,7 +236,7 @@
 
 
   </div>
-</div>
+</div> 
 
 <!-- 1,000 단위마다 콤마 찍는 함수 -->
 <script src="/js/payment/number-formatter.js"></script>

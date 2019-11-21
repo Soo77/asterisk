@@ -72,11 +72,6 @@ public class DefaultJoinService implements JoinService {
   }
 
   @Override
-  public int checkOverAccountNo(String accountno) throws Exception {
-    return joinDao.checkOverAccountNo(accountno);
-  }
-
-  @Override
   public int insertForStudentAndTeacher(Member member) {
     return joinDao.insertForStudentAndTeacher(member);
   }

@@ -40,6 +40,18 @@ height: 100%;
   box-shadow: none;
 }
 
+.card-img-top {
+    width: 200px !important;
+    height: 200px !important;
+    object-fit: cover;
+}
+
+.img-raised.rounded-circle.img-fluid {
+    width: 160px !important;
+    height: 160px !important;
+    object-fit: cover;
+}
+
 /*  ul ul.school {
   list-style: none;
   padding-left: 15px;
@@ -69,12 +81,14 @@ ul li::before {
              <c:if test="${member.memberTypeNo eq 3}">
              
                 <div class="avatar">
-                  <img src="/upload/join/${member.profilePhoto}" alt="Circle Image" class="img-raised rounded-circle img-fluid"
+                  <img src="/upload/join/${member.profilePhoto}" alt="Circle Image" 
+                  class="img-raised rounded-circle img-fluid profile-photo"
                     onError="this.src='/upload/join/default.png'">
+  
                 </div>
                 
                 <div class="name">
-                  <h3 class="title">${member.name}</h3>
+                  <h3 class="title">${member.id}</h3>
                   
                   <div class="age">
                   <c:set var="birth" value="${member.dateOfBirth}" />
@@ -100,10 +114,6 @@ ul li::before {
                   <button onclick="messageShow(this)" value="${member.memberNo}"
                   class="btn btn-just-icon btn-link btn-message">
                     <i class="far fa-comment-dots"></i></button> 
-                  <a href="http://www.naver.com" class="btn btn-just-icon btn-link btn-photo">
-                    <i class="far fa-image"></i></a> 
-                  <a href="http://www.youtube.com" class="btn btn-just-icon btn-link btn-video">
-                    <i class="fab fa-youtube"></i></a>
                   </div>
                   
                   
@@ -122,7 +132,7 @@ ul li::before {
                 </div>
                 
                 <div class="name">
-                  <h3 class="title">${member.name}</h3>
+                  <h3 class="title">${member.id}</h3>
                   
                   <div class="age">
                   <c:set var="birth" value="${member.dateOfBirth}" />
@@ -262,46 +272,50 @@ ul li::before {
               ${member.lessonSubjects[0].subjectContents}
             </div>
             </div><hr>
+
             
-					
 					<div class="media">
               <label class="media title">미디어</label>
 					</div>
-					
 					<div class="card-deck">
-  <div class="card">
-    <img src="/upload/join/${member.teacherPhoto}" class="card-img-top" alt="...">
-  </div>
-  <div class="card">
-    <img src="/upload/join/${member.teacherPhoto}" class="card-img-top" alt="...">
-  </div>
-</div>
-<br><br><br>
+          
+          
 
-<div class="video-container"> 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/5w0SKw5oBPg" frameborder="0" allowfullscreen>
-</iframe> 
-</div><hr>
-            
+					 <c:forEach var="photo" items="${photoTeacher}">
+           <c:forEach var="photo2" items="${photo.teacherPhotos}">
+          
+            <div class="card">
+              <img src="/upload/teacher_photo/${photo2.teacherPhoto}" class="card-img-top" alt="...">
+            </div>
+					</c:forEach>
+            </c:forEach> 
+          </div>
+          <br><br><br>
+
+					<div class="video-container"> 
+					<iframe width="640" height="480" src="${member.teachers[0].videoAddress}" frameborder="0" allowfullscreen>
+					</iframe> 
+					</div><hr>
+        
           <div class="teacher-review">
               <label class="teacher-review title">선생님 후기</label>
             <div class="teacher-review contents">
+        <c:forEach items="${reviewTeacher}" var="review">
              <div class="card">
               <div class="card-header card-header-text card-header-primary">
                 <div class="card-text">
-                  <h5 class="card-title">학생 1</h5>
+                  <h5 class="card-title">${review.id}</h5>
                 </div>
               </div>
               <div class="card-body">
-                                    과외과목: ${member.schoolType} ${member.subjectName}<br> 
-                                    과외기간: 2018.5 ~ 2019.5<br> 
-                                    후기: ${member.lessons[0].teacherReview}<br>
+                                    후기: ${review.lessons[0].teacherReview}<br>
               </div>
-             </div>
+             </div><br>
+        </c:forEach>
             </div>
-           </div><br><br>
+           </div>
            
-         </c:if>
+            </c:if>
         </c:forEach>
         <!-- 선생님 프로필 bottom end-->
         
@@ -410,24 +424,24 @@ ul li::before {
           
           
           
-				<div class="student-review">
-            <label class="student-review title">학생 후기</label>
+          
+          <div class="student-review">
+              <label class="student-review title">학생 후기</label>
             <div class="student-review contents">
+        <c:forEach items="${reviewStudent}" var="review">
              <div class="card">
               <div class="card-header card-header-text card-header-primary">
                 <div class="card-text">
-                  <h4 class="card-title">선생님1</h4>
+                  <h5 class="card-title">${review.id}</h5>
                 </div>
               </div>
               <div class="card-body">
-                                    과외과목: ${member.schoolType} ${member.subjectName}<br> 
-                                    과외기간: 2018.5 ~ 2019.5<br> 
-                                    후기: ${member.lessons[0].studentReview}<br>
+                                    후기: ${review.lessons[0].studentReview}<br>
               </div>
-             </div>
+             </div><br>
+        </c:forEach>
             </div>
-           </div><br><br>
-           
+           </div>
            
          </c:if>
         </c:forEach>
@@ -442,10 +456,11 @@ ul li::before {
   <script>
   function messageShow(memberNo){
 	  var url = "/app/message/detail?memberNo="+memberNo.value;
-	  var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	  var option = "width = 600, height = 600, top = 100, left = 200, location = no"
 	  window.open(url, "쪽지목록" ,option);
   }
   </script>
+  
 
 </body>
 </html>

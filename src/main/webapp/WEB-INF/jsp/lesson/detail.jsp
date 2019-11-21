@@ -333,7 +333,7 @@
          text: "삭제하시겠습니까?",
          buttons: true,
        })
-       .then((willDelete) => {`
+       .then((willDelete) => {
          if (willDelete) {
            swal("삭제되었습니다.", {
              icon: "success",
@@ -342,14 +342,6 @@
          } else {
          }
        });
-      
-      
-      
-/*       if (confirm("정말 삭제하시겠습니까??")==true) {    //확인 
-        document.deleteAll.submit(); 
-      } else {
-        return;
-      }  */
     }); 
   </script> 
   

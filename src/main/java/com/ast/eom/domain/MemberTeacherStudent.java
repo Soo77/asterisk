@@ -13,7 +13,7 @@ public class MemberTeacherStudent {
   private String gender;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date dateOfBirth;
-  private String name;
+  private String id;
   private String addressCity;
   private String addressSuburb;
   private String profilePhoto;
@@ -24,12 +24,11 @@ public class MemberTeacherStudent {
   
   private String memberTypeName;
   
-  private String teacherPhoto;
-
   private String schoolType;
   
   private String subjectName;
   
+  private List<TeacherPhoto> teacherPhotos;
   private List<Teacher> teachers;
   private List<LessonSubject> lessonSubjects;
   private List<School> schools;
@@ -39,59 +38,9 @@ public class MemberTeacherStudent {
   private String mySido;
   private String myGugun;
   private String myGender;
-  private String myAge;
   private String myWantedFee;
   private String mySchool;
   private String mySubject;
-  
-  public String getMySido() {
-    return mySido;
-  }
-  public void setMySido(String mySido) {
-    this.mySido = mySido;
-  }
-  public String getMyGugun() {
-    return myGugun;
-  }
-  public void setMyGugun(String myGugun) {
-    this.myGugun = myGugun;
-  }
-  public String getMyGender() {
-    return myGender;
-  }
-  public void setMyGender(String myGender) {
-    this.myGender = myGender;
-  }
-  public String getMyAge() {
-    return myAge;
-  }
-  public void setMyAge(String myAge) {
-    this.myAge = myAge;
-  }
-  public String getMyWantedFee() {
-    return myWantedFee;
-  }
-  public void setMyWantedFee(String myWantedFee) {
-    this.myWantedFee = myWantedFee;
-  }
-  public String getMySchool() {
-    return mySchool;
-  }
-  public void setMySchool(String mySchool) {
-    this.mySchool = mySchool;
-  }
-  public String getMySubject() {
-    return mySubject;
-  }
-  public void setMySubject(String mySubject) {
-    this.mySubject = mySubject;
-  }
-  public int getTeacherAge() {
-    return teacherAge;
-  }
-  public void setTeacherAge(int teacherAge) {
-    this.teacherAge = teacherAge;
-  }
   public int getMemberNo() {
     return memberNo;
   }
@@ -122,11 +71,11 @@ public class MemberTeacherStudent {
   public void setDateOfBirth(Date dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
   }
-  public String getName() {
-    return name;
+  public String getId() {
+    return id;
   }
-  public void setName(String name) {
-    this.name = name;
+  public void setId(String id) {
+    this.id = id;
   }
   public String getAddressCity() {
     return addressCity;
@@ -164,17 +113,17 @@ public class MemberTeacherStudent {
   public void setLessonEndTime(String lessonEndTime) {
     this.lessonEndTime = lessonEndTime;
   }
+  public int getTeacherAge() {
+    return teacherAge;
+  }
+  public void setTeacherAge(int teacherAge) {
+    this.teacherAge = teacherAge;
+  }
   public String getMemberTypeName() {
     return memberTypeName;
   }
   public void setMemberTypeName(String memberTypeName) {
     this.memberTypeName = memberTypeName;
-  }
-  public String getTeacherPhoto() {
-    return teacherPhoto;
-  }
-  public void setTeacherPhoto(String teacherPhoto) {
-    this.teacherPhoto = teacherPhoto;
   }
   public String getSchoolType() {
     return schoolType;
@@ -187,6 +136,12 @@ public class MemberTeacherStudent {
   }
   public void setSubjectName(String subjectName) {
     this.subjectName = subjectName;
+  }
+  public List<TeacherPhoto> getTeacherPhotos() {
+    return teacherPhotos;
+  }
+  public void setTeacherPhotos(List<TeacherPhoto> teacherPhotos) {
+    this.teacherPhotos = teacherPhotos;
   }
   public List<Teacher> getTeachers() {
     return teachers;
@@ -218,18 +173,62 @@ public class MemberTeacherStudent {
   public void setStudents(List<Student> students) {
     this.students = students;
   }
+  public String getMySido() {
+    return mySido;
+  }
+  public void setMySido(String mySido) {
+    this.mySido = mySido;
+  }
+  public String getMyGugun() {
+    return myGugun;
+  }
+  public void setMyGugun(String myGugun) {
+    this.myGugun = myGugun;
+  }
+  public String getMyGender() {
+    return myGender;
+  }
+  public void setMyGender(String myGender) {
+    this.myGender = myGender;
+  }
+  public String getMyWantedFee() {
+    return myWantedFee;
+  }
+  public void setMyWantedFee(String myWantedFee) {
+    this.myWantedFee = myWantedFee;
+  }
+  public String getMySchool() {
+    return mySchool;
+  }
+  public void setMySchool(String mySchool) {
+    this.mySchool = mySchool;
+  }
+  public String getMySubject() {
+    return mySubject;
+  }
+  public void setMySubject(String mySubject) {
+    this.mySubject = mySubject;
+  }
   @Override
   public String toString() {
     return "MemberTeacherStudent [memberNo=" + memberNo + ", memberTypeNo=" + memberTypeNo
         + ", registeredDate=" + registeredDate + ", gender=" + gender + ", dateOfBirth="
-        + dateOfBirth + ", name=" + name + ", addressCity=" + addressCity + ", addressSuburb="
+        + dateOfBirth + ", id=" + id + ", addressCity=" + addressCity + ", addressSuburb="
         + addressSuburb + ", profilePhoto=" + profilePhoto + ", lessonDays=" + lessonDays
         + ", lessonStartTime=" + lessonStartTime + ", lessonEndTime=" + lessonEndTime
-        + ", teacherAge=" + teacherAge + ", memberTypeName=" + memberTypeName + ", teacherPhoto="
-        + teacherPhoto + ", schoolType=" + schoolType + ", subjectName=" + subjectName
+        + ", teacherAge=" + teacherAge + ", memberTypeName=" + memberTypeName + ", schoolType="
+        + schoolType + ", subjectName=" + subjectName + ", teacherPhotos=" + teacherPhotos
         + ", teachers=" + teachers + ", lessonSubjects=" + lessonSubjects + ", schools=" + schools
-        + ", lessons=" + lessons + ", students=" + students + "]";
+        + ", lessons=" + lessons + ", students=" + students + ", mySido=" + mySido + ", myGugun="
+        + myGugun + ", myGender=" + myGender + ", myWantedFee=" + myWantedFee + ", mySchool="
+        + mySchool + ", mySubject=" + mySubject + "]";
   }
+ 
+  
+  
+ 
+  
+  
   
   
   

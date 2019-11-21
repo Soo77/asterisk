@@ -1,5 +1,7 @@
 package com.ast.eom.interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,8 +34,10 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
     
     // 정지된 유저를 걸러내는 코드
     if (loginUser.getActivationKey() == null) {
+      response.setContentType("text/html;charset=UTF-8");
+      PrintWriter out = response.getWriter();
       request.getSession().invalidate();
-      response.sendRedirect("/");
+      out.println("<script>alert('정지 상태인 유저입니다!'); location.href='/';</script>");
       return false;
     }
     

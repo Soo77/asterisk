@@ -291,14 +291,6 @@
               </div>
 
               <div class="form-group">
-                <label>계좌번호
-                <span class="req"> *</span>
-                </label>
-                <input type="text" name="accountno" id="accountno" class="form-control" required><br>
-                <div id="ac_check" class="redch"></div>
-              </div>
-
-              <div class="form-group">
                 <label>자기소개
                 <span class="req"> *</span>
                 </label>
@@ -639,44 +631,6 @@
     });
   </script>
 
-  <!--   계좌 중복 -->
-  <script>
-    $("#accountno").blur(function () {
-      var ac = document.getElementById("accountno").value;
-      var actest = /^[0-9]{4,}$/
-      if (!actest.test(ac)) {
-        $("#ac_check").text("4자리 이상의 숫자만 입력해주세요");
-        $("#ac_check").css("color", "red");
-        $("#accountno").css("color", "red");
-        $("#submitBtn").attr("disabled", true);
-      } else if (ac == "") {
-        $('#ac_check').text('계좌번호를 입력해주세요');
-        $('#ac_check').css('color', 'red');
-        $("#submitBtn").attr("disabled", true);
-      } else {
-        $.ajax({
-          url: 'acCheck',
-          type: 'get',
-          data: "accountno=" + ac,
-          success: function (result) {
-            if (result == 1) {
-              $("#ac_check").text("가입된 계좌입니다");
-              $("#ac_check").css("color", "red");
-              $("#accountno").css("color", "red");
-              $("#submitBtn").attr("disabled", true);
-            } else {
-              $("#ac_check").text("사용 가능한 계좌입니다");
-              $("#ac_check").css("color", "green");
-              $("#accountno").css("color", "green");
-              $("#submitBtn").attr("disabled", false);
-            }
-          }, error: function () {
-            console.log("실패");
-          }
-        });
-      }
-    });
-  </script>
 </body>
 
 </html>
