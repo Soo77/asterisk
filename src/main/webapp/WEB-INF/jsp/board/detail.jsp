@@ -300,10 +300,15 @@
           <div class="boardFile" id="boardFile">
             <c:forEach items="${board.files}" var="file">
               <img src='/upload/board/${file.fileName}' class='photo2'
-                onerror="this.style.display='none'" alt='' style="cursor: pointer;" onclick="doImgPop('/upload/board/${file.fileName}')">
+                onerror="this.style.display='none'" alt='' style="cursor: pointer;"
+                 onclick="openLayer('/upload/board/${file.fileName}','layerPop',400,100)" >
             </c:forEach>
           </div>
         </div>
+      </div>
+      
+      <div id="layerPop" style="position:absolute; display:none; border:3px solid #ccc;"><!-- 오픈레이어 테두리 -->
+        <img style="border:none; cursor: pointer;" id="image" src="" onclick="closeLayer('layerPop')"> <!--큰 이미지 오픈-->
       </div>
 
        <div id="insertBoardPhotos">
@@ -611,33 +616,25 @@
 </script>
 
 <script>
-  // 이미지 클릭시 원본 크기로 팝업 보기
-  function doImgPop(img){
-   img1= new Image();
-   img1.src=(img);
-   imgControll(img);
-  }
-  
-  function imgControll(img){
-   if((img1.width!=0)&&(img1.height!=0)){
-      viewImage(img);
-    }
-    else{
-       controller="imgControll('"+img+"')";
-       intervalID=setTimeout(controller,20);
-    }
-  }
-  
-  function viewImage(img){
-   W=img1.width;
-   H=img1.height;
-   O="width="+W+",height="+H+",scrollbars=yes";
-   imgWin=window.open("","",O);
-   imgWin.document.write("<html><head><title>이미지상세보기</title></head>");
-   imgWin.document.write("<body topmargin=2 leftmargin=2> ");
-   imgWin.document.write("<img src="+img+" onclick='self.close()' style='cursor:pointer;' title ='클릭하시면 창이 닫힙니다.'>");
-   imgWin.document.close();
-  }
+	//레이어 팝업 열기
+	var cnt = 0;
+	function openLayer(img, IdName, tpos, lpos){
+	  if(cnt==0){
+		cnt++;
+  	document.getElementById("image").src = img;
+		var pop = document.getElementById(IdName);
+		pop.style.display = "block";
+		pop.style.top = tpos + "px";
+		pop.style.left = lpos + "px";
+	  }
+	}
+	
+	//레이어 팝업 닫기
+	function closeLayer(IdName){
+		var pop = document.getElementById(IdName);
+		pop.style.display = "none";
+		cnt=0;
+	}	
 </script>
 
 <script>
