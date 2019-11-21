@@ -140,7 +140,7 @@
 	        url : 'messagein',
 	        type : 'post',
 	        data : "senderNo="+${loginUser.memberNo}+"&messageConts=" + 
-	        messageConts + "&receiverNo=" + ${receiverNo},
+	        messageConts + "&receiverNo=" + ${receiverNo} +"&lessonNo="+ -1, 
 	        success : function(result) {
 	        	let today = new Date();   
 	        	let year = today.getFullYear(); // 년도
@@ -161,8 +161,6 @@
 	        }
 	      });
       }
-      let messageRow = document.getElementsByClassName("messageRow")[0];
-      messageRow.scrollTop = messageRow.scrollHeight;
     }
   </script>
 

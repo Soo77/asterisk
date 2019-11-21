@@ -14,7 +14,6 @@ public interface JoinService {
   int checkOverId(String id) throws Exception;
   int checkOverEmail(String email) throws Exception;
   int checkOverTel(String tel) throws Exception;
-  int checkOverAccountNo(String accountno) throws Exception;
   int updateCheck(String key) throws Exception;
   int insertForStudentAndTeacher(Member member);
   int wantedLessonFotStudentInsert(WantedLesson wantedLesson);
