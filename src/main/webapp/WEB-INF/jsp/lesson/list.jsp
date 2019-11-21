@@ -47,9 +47,16 @@
       <c:choose>
         <c:when test="${loginUser.memberTypeNo eq 3}">
           <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
-            value="새 커리큘럼 등록"  >
+            value="새 커리큘럼 등록">
             <c:if test="${memberInfoMap.teacher.approvementState eq false}">
               <h2 style="color: grey; font-family: 'Nanum Gothic';">인증이 되지 않아 커리큘럼을 등록할 수 없습니다.</h2>
+            </c:if>
+        </c:when>
+        <c:when test="${loginUser.memberTypeNo ne 3}">
+          
+            <c:if test="${memberInfoMap.teacher.approvementState eq false}">
+              <h2 style="color: grey; font-family: 'Nanum Gothic';">마음에 드는 선생님을 찾아보세요.</h2>
+              <input  type="button" class="btn btn-primary" value="선생님 찾기" onClick="location.href='../member/list?memberTypeNo=3'">
             </c:if>
         </c:when>
         
