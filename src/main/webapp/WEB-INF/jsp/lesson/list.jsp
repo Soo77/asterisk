@@ -74,7 +74,7 @@
                 <p class="card-text text-left">
                   <c:choose>
                     <c:when test="${lesson.member.name eq NULL}">
-                      <td>이름: 미정<br></td>
+                      <td>이름: (학생을 초대하세요.)<br></td>
                     </c:when>
                     <c:otherwise>
                       <td>이름: ${lesson.member.name}<br></td>
@@ -283,7 +283,7 @@
     if (approveVal == 'false') {
       swal({
         title: "인증이 된 선생님만 등록할 수 있습니다.",
-        text: "인증이 된 선생님만 등록할 수 있습니다.",
+        text: "인증을 받은 뒤 등록해보세요.",
         icon: "info",  
         buttons: "확인", 
       });
