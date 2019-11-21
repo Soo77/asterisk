@@ -10,5 +10,6 @@ public interface AdminService {
   int reject(int memberNo) throws Exception;
   Map<String, Object> getPendingLessons() throws Exception;
   Map<String, Object> getPendingLessonsInfoMap(int lessonNo) throws Exception;
+  int approveInterruption(int lessonNo) throws Exception;
   
 }

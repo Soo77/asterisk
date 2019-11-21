@@ -151,6 +151,17 @@
     where lesson_stat = 3
   </select>
   
+  <select id="countLessonDays" parameterType="map" resultType="int">
+    select count(*) from day_lesson
+    where lesson_date &lt;= #{calculationDay} and lesson_date &gt;= #{after30day} and lesson_no=#{lessonNo};
+  </select>
+
+  <update id="approveInterruption" parameterType="int">
+    update lesson
+    set lesson_stat = 4, ref_stat = 0
+    where lesson_no = #{lessonNo}
+  </update>
+  
   <update id="approveTeacherCertificationOf" parameterType="int">
     update teacher
     set appr_stat = 1

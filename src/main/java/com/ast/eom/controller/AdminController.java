@@ -42,6 +42,13 @@ public class AdminController {
         adminService.getPendingLessonsInfoMap(lessonNo);
     session.setAttribute("pendingLessonsInfoMapDetail", pendingLessonsInfoMapDetail);
   }
+
+  @ResponseBody
+  @PostMapping("approveIntteruption")
+  public void approveIntteruption(
+      int lessonNo) throws Exception {
+    adminService.approveInterruption(lessonNo);
+  }
   
   @ResponseBody
   @GetMapping("getMemberInfo")
