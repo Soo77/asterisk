@@ -272,7 +272,7 @@
 							<div class="form-group">
                  <label>희망 수업료</label>
                  <div class="d-flex">
-                   <select class="form-control" name="wantedFeeAmount">
+                   <select class="form-control" name="wantedFee">
                     <option value="1">20만원이하</option>
                     <option value="2">20만원~30만원</option>
                     <option value="3">30만원~40만원</option>

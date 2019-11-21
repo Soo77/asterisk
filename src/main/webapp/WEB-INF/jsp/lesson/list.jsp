@@ -7,8 +7,9 @@
 <head>
   <style>
     .img-fluid {
-      width: 220px;
-      height: 220px;
+      width: 220px !important;
+      height: 220px !important;
+      max-width: none;
       object-fit: cover;
     }
 
@@ -39,30 +40,32 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container">
-    <div class="section text-center">
+  <div id="container" class="container">
+    <div id="section" class="section text-center">
       
      <input type="hidden" name="approve" value="${memberInfoMap.teacher.approvementState}">
+     <input id="memberTypeNo" type="hidden" name="approve" value="${loginUser.memberTypeNo}">
       <c:choose>
-        <c:when test="${loginUser.memberTypeNo eq 3}">
+        <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState eq true}">
           <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
-            value="새 커리큘럼 등록"  >
+            value="새 커리큘럼 등록">
         </c:when>
-         
-
+        <c:when test="${memberInfoMap.teacher.approvementState eq false}">
+          <h2 style="color: grey; font-family: 'Nanum Gothic';">인증이 되지 않아 커리큘럼을 등록할 수 없습니다.</h2>
+           <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" value="새 커리큘럼 등록"> 
+        </c:when>
       </c:choose>
 
       <c:set var="i" value="0" />
       <!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> -->
       <c:forEach items="${lessons}" var="lesson">
+      <input id="stdNo" type="hidden" name="approve" value="${lesson.studentNo}">
         <div class="text-center">
           <div class="card w-75">
             <div class="row no-gutters">
               <c:choose>
                 <c:when test="${loginUser.memberTypeNo eq 3 and lesson.member.profilePhoto eq NULL}">
-                  <div class="col-md-3">
-                    <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="card-img-top img-fluid">
-                  </div>
+                    <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="img-raised rounded img-fluid">
                 </c:when>
                 <c:otherwise>
                   <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}" alt="Raised Image"
@@ -74,7 +77,7 @@
                 <p class="card-text text-left">
                   <c:choose>
                     <c:when test="${lesson.member.name eq NULL}">
-                      <td>이름: (학생을 초대하세요.)<br></td>
+                      <td>(학생을 초대하세요.)<br></td>
                     </c:when>
                     <c:otherwise>
                       <td>이름: ${lesson.member.name}<br></td>
@@ -147,7 +150,7 @@
                           
                           <div class="messageRow">
                             <input type="text" id="std${i}" placeholder="학생 아이디 입력">
-                            <button onclick="list(this)" id="${i}" class="btn btn-primary btn-sm">검색</button>
+                            <button onclick="list(${i})" class="btn btn-primary btn-sm">검색</button>
                           </div>
                           
                           <div id="searchResult${i}"></div>
@@ -190,9 +193,17 @@
 </div>
 
 <script>
+  for (let i = 0; i < ${i}; i++) {
+    $(document).on('keyup', '#std'+i, function(event) {
+      if(event.keyCode==13) {list(i);}
+    });
+  }
+</script>
+
+<script>
 
   function list(search) {
-    var no = search.id;
+    var no = search;
     var id = document.getElementById("std" + no).value;
     $.ajax({
       url: "/app/message/searchStd",
@@ -293,6 +304,28 @@
     
   })
 </script>
+
+<script>
+var stdNoArr = $('#stdNo');
+var stdNoVal = $('#stdNo').val();
+var memberTypeNo = $('#memberTypeNo').val();
+
+if (memberTypeNo == 1) {
+  if (stdNoArr.length == 0) {
+    console.log("들어가지나요....");
+    let des = '';
+    des += '<h2 style="color: grey;">마음에 드는 선생님을 찾아보세요.</h2>';
+    des += '<input  type="button" class="btn btn-primary" value="선생님 찾기" onClick=location.href="../member/list?memberTypeNo=3">';
+    $('#section').append(des);  
+  }
+    console.log("되나요..");
+    console.log(stdNoArr.length);
+    console.log(stdNoVal + "이얏");  
+} 
+
+
+</script>
+
 
 
 <!--   Core JS Files   -->
