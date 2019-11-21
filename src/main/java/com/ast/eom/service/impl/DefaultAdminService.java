@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ast.eom.dao.AdminDao;
+import com.ast.eom.dao.LessonDao;
 import com.ast.eom.dao.MypageDao;
 import com.ast.eom.domain.Lesson;
 import com.ast.eom.domain.Member;
@@ -26,6 +24,8 @@ public class DefaultAdminService implements AdminService {
   AdminDao adminDao;
   @Autowired
   MypageDao mypageDao;
+  @Autowired
+  LessonDao lessonDao;
   
   HttpSession session;
   
@@ -152,6 +152,22 @@ public class DefaultAdminService implements AdminService {
     pendingLessonsInfoMap.put("teacherList", teacherList);
     
     return pendingLessonsInfoMap;
+  }
+  
+  @Override
+  public Map<String, Object> getPendingLessonsInfoMap(
+      int lessonNo) throws Exception {
+    Map<String, Object> pendingLessonsInfoMapDetail = new HashMap<>();
+    
+    Lesson lessonInfo = lessonDao.findCurrBy(lessonNo);
+    Member studentInfo = adminDao.getMember(lessonInfo.getStudentNo());
+    Member teacherInfo = adminDao.getMember(lessonInfo.getTeacherNo());
+    
+    pendingLessonsInfoMapDetail.put("lessonInfo", lessonInfo);
+    pendingLessonsInfoMapDetail.put("studentInfo", studentInfo);
+    pendingLessonsInfoMapDetail.put("teacherInfo", teacherInfo);
+    
+    return pendingLessonsInfoMapDetail;
   }
   
   @Override

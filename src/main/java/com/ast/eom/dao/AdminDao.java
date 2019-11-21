@@ -12,5 +12,4 @@ public interface AdminDao {
   int acceptThis(int memberNo) throws Exception;
   int rejectThis(int memberNo) throws Exception;
   List<Lesson> getPendingLessons() throws Exception;
-
 }
