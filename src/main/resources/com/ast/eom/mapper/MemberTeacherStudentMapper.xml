@@ -210,10 +210,10 @@
 			<choose>
 				<when test="mySido == null and myGugun == null and myGender == null
 							and mySubject == null">
-					sch_type LIKE CONCAT('%', #{mySchool}, '%')
+					st.sch_type LIKE CONCAT('%', #{mySchool}, '%')
 				</when>
 				<otherwise>
-					and sch_type LIKE CONCAT('%', #{mySchool}, '%')
+					and st.sch_type LIKE CONCAT('%', #{mySchool}, '%')
 				</otherwise>
 			</choose>
 			</when>
@@ -286,10 +286,10 @@
 			<choose>
 				<when test="mySido == null and myGugun == null and myGender == null
 							and mySubject == null">
-					sch_type LIKE CONCAT('%', #{mySchool}, '%')
+					st.sch_type LIKE CONCAT('%', #{mySchool}, '%')
 				</when>
 				<otherwise>
-					and sch_type LIKE CONCAT('%', #{mySchool}, '%')
+					and st.sch_type LIKE CONCAT('%', #{mySchool}, '%')
 				</otherwise>
 			</choose>
 			</when>
@@ -308,17 +308,6 @@
 			</when>
 		</choose>
 		
-<!-- 		<if test="myGugun != null">addr_sub LIKE CONCAT('%', #{myGugun}, '%') and</if> -->
-<!-- 		<if test="myGender != null">gender LIKE CONCAT('%', #{myGender}, '%') and</if> -->
-<!-- 		<if test="mySubject != null">sub_name LIKE CONCAT('%', #{mySubject}, '%') and</if> -->
-<!-- 		<if test="mySchool != null">sch_type LIKE CONCAT('%', #{mySchool}, '%') and</if> -->
-<!-- 		<if test="myWantedFee != null">wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')</if> -->
-<!-- 		  addr_city LIKE CONCAT('%', #{mySido}, '%') -->
-<!-- 	      and addr_sub LIKE CONCAT('%', #{myGugun}, '%') -->
-<!-- 	      and gender LIKE CONCAT('%', #{myGender}, '%') -->
-<!-- 	      and sub_name LIKE CONCAT('%', #{mySubject}, '%') -->
-<!-- 	      and sch_type LIKE CONCAT('%', #{mySchool}, '%') -->
-<!-- 	      and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%') -->
 	</select>
 	
 	<select id="photoTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">

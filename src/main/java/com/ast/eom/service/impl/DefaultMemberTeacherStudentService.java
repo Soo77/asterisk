@@ -46,7 +46,7 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
   public List<MemberTeacherStudent> photo (int no) throws Exception {
     
     List<MemberTeacherStudent> photoTeacher = memberTeacherStudentDao.photoTeacher(no);
-    System.out.println("photoTeacher======>" + photoTeacher);
+
     return photoTeacher;
     
   }
@@ -55,7 +55,7 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
   public List<MemberTeacherStudent> school (int no) throws Exception {
     
     List<MemberTeacherStudent> schoolTeacher = memberTeacherStudentDao.schoolTeacher(no);
-    System.out.println("schoolTeacher======>" + schoolTeacher);
+    
     return schoolTeacher;
     
   }
@@ -89,15 +89,10 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     if (memberTypeNo == 1) {
       List<MemberTeacherStudent> students = memberTeacherStudentDao.searchStudent(searchInfo);
       
-      System.out.println("students1======>" + students);
-      
       return students;
       
     } else if (memberTypeNo == 3) {
       List<MemberTeacherStudent> teachers = memberTeacherStudentDao.searchTeacher(searchInfo);
-      
-      
-      System.out.println("teachers3======>" + teachers);
       
       return teachers;
       

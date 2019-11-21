@@ -113,7 +113,7 @@
               <label class="gender title">성별</label>
               <div class="btn-group-toggle">
                 <label class="btn btn-primary gender"> 
-                <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M" checked> 남자
+                <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M"> 남자
                 </label> 
                 <label class="btn btn-primary gender"> 
                 <input class="form-check-input" type="radio" name="gender" id="gender_2" value="F"> 여자
@@ -400,24 +400,21 @@
 
       // 학교 선택 박스 초기화
       $("select[name^=school]").each(
-        function (index, item) {
-          if (index == 0) {
+        function () {
             $selschool = $(this);
-            $.each(eval(area0), function () {
-              $selschool.append("<option value=''>" + this
-                + "</option>");
+            $.each(eval(area0), function (index, item) {
+              if (index == 0) {
+                $selschool.append("<option value=''>" + this
+                  + "</option>");
+                
+              } else {
+                $selschool.append("<option value='"+index+"'>" + this
+                  + "</option>");
+                
+              }
             });
             $selschool.next().append("<option value=''>과목 선택</option>");
 
-          } else {
-            $selschool = $(this);
-            $.each(eval(area0), function () {
-              $selschool.append("<option value='" + this + "'>" + this
-                + "</option>");
-            });
-            $selschool.next().append("<option value=''>과목 선택</option>");
-
-          }
         });
 
       // 학교 선택시 과목 설정 

@@ -74,16 +74,24 @@ public class MemberTeacherStudentController {
     String mySido = request.getParameter("mySido");
     String myGugun = request.getParameter("myGugun");
     String myGender = request.getParameter("myGender");
-    String myAge = request.getParameter("myAge");
     String myWantedFee = request.getParameter("myWantedFee");
     String mySchool = request.getParameter("mySchool");
     String mySubject = request.getParameter("mySubject");
+    
+    if (mySchool.equals("1")) {
+      mySchool = "초등";
+    } else if (mySchool.equals("2")) {
+      mySchool = "중등";
+      
+    } else if (mySchool.equals("3")) {
+      mySchool = "고등";
+      
+    }
    
     searchInfo.put("memberTypeNo", memberTypeNo);
     searchInfo.put("mySido", mySido);
     searchInfo.put("myGugun", myGugun);
     searchInfo.put("myGender", myGender);
-    searchInfo.put("myAge", myAge);
     searchInfo.put("myWantedFee", myWantedFee);
     searchInfo.put("mySchool", mySchool);
     searchInfo.put("mySubject", mySubject);
