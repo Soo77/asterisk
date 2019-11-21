@@ -20,4 +20,5 @@ public interface MessageDao {
   String lessonInvitationCheck(int lessonNo) throws Exception;
   void lessonInvitationStd(HashMap<String, Object> stat) throws Exception;
   void updateState(int lessonNo) throws Exception;
+  Object readContsDate(HashMap<String, Object> no);
 }

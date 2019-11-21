@@ -2,6 +2,8 @@ package com.ast.eom.dao;
 
 import java.util.List;
 import java.util.Map;
+
+import com.ast.eom.domain.DayLesson;
 import com.ast.eom.domain.Lesson;
 
 public interface LessonDao {
@@ -33,7 +35,13 @@ public interface LessonDao {
   
   // 수업 상태 수정
   int updateLessonState(Map<String, Object> params) throws Exception;
+
+  // 수업 상태 수정 (결제 페이지용)
+  int updateLessonStateAndPaymentState(Map<String, Object> params) throws Exception;
   
   // 후기 작성
   int insertReview(Map<String, Object> params) throws Exception;
+  
+  // 일별 과외 탐색 (결제 페이지용)
+  List<DayLesson> getDayLessons(int lessonNo) throws Exception;
 }

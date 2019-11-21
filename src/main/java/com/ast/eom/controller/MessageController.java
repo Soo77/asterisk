@@ -39,6 +39,18 @@ public class MessageController {
     session.setAttribute("messageReadShowAll", messageService.messageReadShowAll(member.getMemberNo()));
 
     List<Member> message = messageService.messageList(member.getMemberNo());
+    
+    HashMap<String, Object> no = new HashMap<>();
+    ArrayList<Object> messageContsDate = new ArrayList<>();
+    for(int i=0; i<message.size(); i++) {
+    	int memNo = message.get(i).getMemberNo();
+    	no.put("memNo", memNo);
+        no.put("memberNo", member.getMemberNo());
+    	messageContsDate.add(messageService.readContsDate(no));
+    }
+    System.out.println(messageContsDate);
+    model.addAttribute("messageContsDate", messageContsDate);
+    
     model.addAttribute("messageMem", message);
     model.addAttribute("messageListSize", message.size());
     Message messageReadShow = new Message();

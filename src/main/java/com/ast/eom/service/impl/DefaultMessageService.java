@@ -72,4 +72,9 @@ public class DefaultMessageService implements MessageService {
     messageDao.lessonInvitationStd(stat);
   }
 
+@Override
+public Object readContsDate(HashMap<String, Object> no) {
+	return messageDao.readContsDate(no);
+}
+
 }
