@@ -7,8 +7,9 @@
 <head>
   <style>
     .img-fluid {
-      width: 220px;
-      height: 220px;
+      width: 220px !important;
+      height: 220px !important;
+      max-width: none;
       object-fit: cover;
     }
 
@@ -47,7 +48,11 @@
         <c:when test="${loginUser.memberTypeNo eq 3}">
           <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
             value="새 커리큘럼 등록"  >
+            <c:if test="${memberInfoMap.teacher.approvementState eq false}">
+              <h2 style="color: grey; font-family: 'Nanum Gothic';">인증이 되지 않아 커리큘럼을 등록할 수 없습니다.</h2>
+            </c:if>
         </c:when>
+        
          
 
       </c:choose>
@@ -61,7 +66,7 @@
               <c:choose>
                 <c:when test="${loginUser.memberTypeNo eq 3 and lesson.member.profilePhoto eq NULL}">
                   <div class="col-md-3">
-                    <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="card-img-top img-fluid">
+                    <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="img-raised rounded img-fluid">
                   </div>
                 </c:when>
                 <c:otherwise>
@@ -74,7 +79,7 @@
                 <p class="card-text text-left">
                   <c:choose>
                     <c:when test="${lesson.member.name eq NULL}">
-                      <td>이름: (학생을 초대하세요.)<br></td>
+                      <td>(학생을 초대하세요.)<br></td>
                     </c:when>
                     <c:otherwise>
                       <td>이름: ${lesson.member.name}<br></td>
