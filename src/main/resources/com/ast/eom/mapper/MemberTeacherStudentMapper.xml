@@ -32,6 +32,7 @@
     <result column="ref_amount" property="refundAmount" />
     <result column="lesson_day_count" property="lessonDayCount" />
     <result column="sub_name" property="subjectName" />
+    <result column="id" property="id" />
   </resultMap>
 	
 	
@@ -128,7 +129,7 @@
 		m.mem_no, m.mem_type_no, m.reg_date, m.gender, m.dob, m.id, 
 		m.addr_city, m.addr_sub, m.profile_photo, m.curr_lesson_dt, m.curr_lesson_st, m.curr_lesson_et,
 		tp.tch_photo, t.tch_intro, t.vid_addr, ls.wanted_fee, s.sch_name, s.major, 
-		st.sch_type, sub.sub_name, l.tch_review, l.tch_eval
+		st.sch_type, sub.sub_name, l.tch_review, l.tch_eval,l.lesson_no
 		from
 		member m
 		left outer join teacher t on m.mem_no = t.tch_no
@@ -343,21 +344,14 @@
 	
   <select id="reviewTeacher" parameterType="int" resultMap="LessonMap">
     select
-    tch_review
+    l.tch_review, l.tch_eval, std.std_no, m.id
     from
-    lesson
+    lesson l
+    left outer join student std on l.std_no = std.std_no
+    left outer join member m on std.std_no = m.mem_no
     where tch_no = #{no}
-    
   </select>
   
-  <select id="reviewStudent" parameterType="int" resultMap="LessonMap">
-    select
-    std_review
-    from
-    lesson
-    where std_no = #{no}
-    
-  </select>
 
 	
 

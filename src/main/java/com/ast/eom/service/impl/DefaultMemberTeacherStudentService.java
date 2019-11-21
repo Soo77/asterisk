@@ -32,17 +32,9 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     
   }
   
-  @Override
-  public List<MemberTeacherStudent> review1 (int no) throws Exception {
-    
-    List<MemberTeacherStudent> reviewStudent = memberTeacherStudentDao.reviewStudent(no);
-    
-    return reviewStudent;
-    
-  }
   
   @Override
-  public List<MemberTeacherStudent> review2 (int no) throws Exception {
+  public List<MemberTeacherStudent> review (int no) throws Exception {
     
     List<MemberTeacherStudent> reviewTeacher = memberTeacherStudentDao.reviewTeacher(no);
     

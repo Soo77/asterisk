@@ -36,6 +36,9 @@ public class Lesson {
   private Date refundDate;
   private int refundAmount;
   private int lessonDayCount;
+  private String id;
+   
+ 
   
   private CurriculumLessonContents clc;
   
@@ -49,41 +52,6 @@ public class Lesson {
   private List<Member> members;
   private List<Curriculum> curriculums;
   private List<DayLesson> dayLessons;
-  
-  @Override
-  public String toString() {
-    return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo
-        + ", parentsNo=" + parentsNo + ", lessonDescription=" + lessonDescription + ", subjectNo="
-        + subjectNo + ", lessonFee=" + lessonFee + ", lessonState=" + lessonState
-        + ", studentLessonStop=" + studentLessonStop + ", teacherLessonStop=" + teacherLessonStop
-        + ", startDate=" + startDate + ", endDate=" + endDate + ", teacherReview=" + teacherReview
-        + ", studentReview=" + studentReview + ", teacherEvaluation=" + teacherEvaluation
-        + ", paymentMethod=" + paymentMethod + ", payDay=" + payDay + ", calculationDay="
-        + calculationDay + ", calculationState=" + calculationState + ", studentStopReason="
-        + studentStopReason + ", teacherStopReason=" + teacherStopReason + ", refundState="
-        + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount
-        + ", lessonDayCount=" + lessonDayCount + ", clc=" + clc + ", member=" + member + ", clcs="
-        + clcs + ", curriculum=" + curriculum + ", subject=" + subject + ", subjectName="
-        + subjectName + ", dayintoWord=" + dayintoWord + ", members=" + members + ", curriculums="
-        + curriculums + ", dayLessons=" + dayLessons + "]";
-  }
-
-  public int getParentsNo() {
-    return parentsNo;
-  }
-
-  public void setParentsNo(int parentsNo) {
-    this.parentsNo = parentsNo;
-  }
-
-  public CurriculumLessonContents getClc() {
-    return clc;
-  }
-
-  public void setClc(CurriculumLessonContents clc) {
-    this.clc = clc;
-  }
-
   public int getLessonNo() {
     return lessonNo;
   }
@@ -102,17 +70,23 @@ public class Lesson {
   public void setStudentNo(int studentNo) {
     this.studentNo = studentNo;
   }
-  public int getSubjectNo() {
-    return subjectNo;
+  public int getParentsNo() {
+    return parentsNo;
   }
-  public void setSubjectNo(int subjectNo) {
-    this.subjectNo = subjectNo;
+  public void setParentsNo(int parentsNo) {
+    this.parentsNo = parentsNo;
   }
   public String getLessonDescription() {
     return lessonDescription;
   }
   public void setLessonDescription(String lessonDescription) {
     this.lessonDescription = lessonDescription;
+  }
+  public int getSubjectNo() {
+    return subjectNo;
+  }
+  public void setSubjectNo(int subjectNo) {
+    this.subjectNo = subjectNo;
   }
   public int getLessonFee() {
     return lessonFee;
@@ -228,6 +202,60 @@ public class Lesson {
   public void setLessonDayCount(int lessonDayCount) {
     this.lessonDayCount = lessonDayCount;
   }
+  public String getId() {
+    return id;
+  }
+  public void setId(String id) {
+    this.id = id;
+  }
+  public CurriculumLessonContents getClc() {
+    return clc;
+  }
+  public void setClc(CurriculumLessonContents clc) {
+    this.clc = clc;
+  }
+  public Member getMember() {
+    return member;
+  }
+  public void setMember(Member member) {
+    this.member = member;
+  }
+  public List<CurriculumLessonContents> getClcs() {
+    return clcs;
+  }
+  public void setClcs(List<CurriculumLessonContents> clcs) {
+    this.clcs = clcs;
+  }
+  public Curriculum getCurriculum() {
+    return curriculum;
+  }
+  public void setCurriculum(Curriculum curriculum) {
+    this.curriculum = curriculum;
+  }
+  public Subject getSubject() {
+    return subject;
+  }
+  public void setSubject(Subject subject) {
+    this.subject = subject;
+  }
+  public String getSubjectName() {
+    return subjectName;
+  }
+  public void setSubjectName(String subjectName) {
+    this.subjectName = subjectName;
+  }
+  public String getDayintoWord() {
+    return dayintoWord;
+  }
+  public void setDayintoWord(String dayintoWord) {
+    this.dayintoWord = dayintoWord;
+  }
+  public List<Member> getMembers() {
+    return members;
+  }
+  public void setMembers(List<Member> members) {
+    this.members = members;
+  }
   public List<Curriculum> getCurriculums() {
     return curriculums;
   }
@@ -240,50 +268,26 @@ public class Lesson {
   public void setDayLessons(List<DayLesson> dayLessons) {
     this.dayLessons = dayLessons;
   }
-  public List<Member> getMembers() {
-    return members;
+  @Override
+  public String toString() {
+    return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo
+        + ", parentsNo=" + parentsNo + ", lessonDescription=" + lessonDescription + ", subjectNo="
+        + subjectNo + ", lessonFee=" + lessonFee + ", lessonState=" + lessonState
+        + ", studentLessonStop=" + studentLessonStop + ", teacherLessonStop=" + teacherLessonStop
+        + ", startDate=" + startDate + ", endDate=" + endDate + ", teacherReview=" + teacherReview
+        + ", studentReview=" + studentReview + ", teacherEvaluation=" + teacherEvaluation
+        + ", paymentMethod=" + paymentMethod + ", payDay=" + payDay + ", calculationDay="
+        + calculationDay + ", calculationState=" + calculationState + ", studentStopReason="
+        + studentStopReason + ", teacherStopReason=" + teacherStopReason + ", refundState="
+        + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount
+        + ", lessonDayCount=" + lessonDayCount + ", id=" + id + ", clc=" + clc + ", member="
+        + member + ", clcs=" + clcs + ", curriculum=" + curriculum + ", subject=" + subject
+        + ", subjectName=" + subjectName + ", dayintoWord=" + dayintoWord + ", members=" + members
+        + ", curriculums=" + curriculums + ", dayLessons=" + dayLessons + "]";
   }
-  public void setMembers(List<Member> members) {
-    this.members = members;
-  }
-  public Member getMember() {
-    return member;
-  }
-  public void setMember(Member member) {
-    this.member = member;
-  }
-  public String getSubjectName() {
-    return subjectName;
-  }
-  public void setSubjectName(String subjectName) {
-    this.subjectName = subjectName;
-  }
-  public List<CurriculumLessonContents> getClcs() {
-    return clcs;
-  }
-  public void setClcs(List<CurriculumLessonContents> clcs) {
-    this.clcs = clcs;
-  }
-  public Subject getSubject() {
-    return subject;
-  }
-  public void setSubject(Subject subject) {
-    this.subject = subject;
-  }
-  public Curriculum getCurriculum() {
-    return curriculum;
-  }
-  public void setCurriculum(Curriculum curriculum) {
-    this.curriculum = curriculum;
-  }
-
-  public String getDayintoWord() {
-    return dayintoWord;
-  }
-
-  public void setDayintoWord(String dayintoWord) {
-    this.dayintoWord = dayintoWord;
-  }
+  
+ 
+  
   
   
   

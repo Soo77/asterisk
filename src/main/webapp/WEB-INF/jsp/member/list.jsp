@@ -5,7 +5,6 @@
 <html lang="en">
 
 <head>
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script> -->
 </head>
 <style>
 .btn.btn-primary {
@@ -21,13 +20,9 @@
   width: 48%;
 }
 
-.btn.btn-primary.age {
-  width: 48%;
-}
-
 .btn.btn-primary.wantedFee {
   width: 48%;
-} 
+}
 
 .btn.btn-primary.btn-round {
   width: 60%;
@@ -45,24 +40,25 @@
 }
 
 .img-raised.rounded-circle.img-fluid {
-    width: 120px !important;
-    height: 120px !important;
-    object-fit: cover;
-}   
+  width: 120px !important;
+  height: 120px !important;
+  object-fit: cover;
+}
 
-#age_1{
-width:112px;
-/* font-size:30px; */
-}    
-#age_2{
-width:112px;
-/* font-size:30px; */
-}    
-    
+
+
+.btn-primary:not (:disabled ):not (.disabled ):active, 
+.btn-primary:not (:disabled ):not (.disabled ).active, .show>.btn-primary.dropdown-toggle
+  {
+  color: #ffffff;
+  background-color: #52155d;
+  border-color: #52155d;
+}
 </style>
 
 <body>
-  <div class="page-header header-filter" data-parallax="true" style="background-image: url('')">
+  <div class="page-header header-filter" data-parallax="true"
+    style="background-image: url('')">
     <div class="container">
       <div class="row">
         <div class="col-md-8 ml-auto mr-auto">
@@ -92,97 +88,80 @@ width:112px;
           <!-- Sidebar ================================================== -->
           <div class="col-lg-3 col-md-4">
             <div class="sidemenubar" id="sideMenuBar">
-            <form name="form1" id="form1">
-            <input type="hidden" name="memberTypeNo" id="memberTypeNo" value="${memberTypeNo}">
-            <input type="hidden" name="mySido" id="mySido" value="">
-            <input type="hidden" name="myGugun" id="myGugun" value="">
-            <input type="hidden" name="myGender" id="myGender" value="">
-            <input type="hidden" name="myAge" id="myAge" value="">
-            <input type="hidden" name="myWantedFee" id="myWantedFee" value="">
-            <input type="hidden" name="mySchool" id="mySchool" value="">
-            <input type="hidden" name="mySubject" id="mySubject" value="">
-            </form>
-            
-           
+              <form name="form1" id="form1">
+                <input type="hidden" name="memberTypeNo"
+                  id="memberTypeNo" value="${memberTypeNo}"> <input
+                  type="hidden" name="mySido" id="mySido" value="">
+                <input type="hidden" name="myGugun" id="myGugun"
+                  value=""> <input type="hidden" name="myGender"
+                  id="myGender" value=""> <input type="hidden"
+                  name="myAge" id="myAge" value=""> <input
+                  type="hidden" name="myWantedFee" id="myWantedFee"
+                  value=""> <input type="hidden" name="mySchool"
+                  id="mySchool" value=""> <input type="hidden"
+                  name="mySubject" id="mySubject" value="">
+              </form>
+
+
               <label class="address title">지역</label>
               <div class="address">
-                <select class="custom-select" name="sido1" id="sido1"></select> 
+                <select class="custom-select" name="sido1" id="sido1"></select>
                 <select class="custom-select" name="gugun1" id="gugun1"></select>
               </div>
-              
-              
+
+
               <label class="gender title">성별</label>
-              <div class="form-check" >
+              <div class="btn-group-toggle">
                 <label class="btn btn-primary gender"> 
-                  <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M"> 남자 
-                  <span class="circle">
-                    <span class="check">
-                    </span> 
-                  </span> 
+                <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M" checked> 남자
                 </label> 
                 <label class="btn btn-primary gender"> 
-                  <input  class="form-check-input" type="radio" name="gender" id="gender_2" value="F"> 여자 
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
+                <input class="form-check-input" type="radio" name="gender" id="gender_2" value="F"> 여자
                 </label>
               </div>
-              
+
               <label class="lessons_fee title">수업료</label>
-              <div class="form-check">
+              <div class="btn-group-toggle">
                 <label class="btn btn-primary wantedFee"> 
-                  <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1"> 20만원 이하
-                  <span class="circle"> 
-                    <span class="check">
-                    </span> 
-                  </span> 
+                <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1"> 20만원 이하
                 </label> 
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2"> 20~30 만원
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label>
+                <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2"> 20~30 만원
+                </label> 
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3"> 30~40 만원
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
-                </label>
+                <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3"> 30~40 만원
+                </label> 
                 <label class="btn btn-primary wantedFee"> 
-                  <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4"> 40만원 이상 
-                  <span class="circle"> 
-                    <span class="check">
-                    </span>
-                  </span>
+                <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4"> 40만원 이상
                 </label>
               </div>
 
 
               <label class="subject title">과목으로 찾기</label>
-              <div class="checkbox-container checkbox-container-four active">
-                <select class="custom-select" name="school1" id="school1"></select> 
-                <select class="custom-select" name="subject1" id="subject1"></select>
+              <div
+                class="checkbox-container checkbox-container-four active">
+                <select class="custom-select" name="school1"
+                  id="school1"></select> <select class="custom-select"
+                  name="subject1" id="subject1"></select>
               </div>
 
               <div class="button search">
-                <button class="btn btn-primary btn-round my-button-yeah">조건 검색</button>
+                <button class="btn btn-primary btn-round my-button-yeah">조건
+                  검색</button>
               </div>
-              
+
             </div>
           </div>
           <!-- Sidebar / End -->
-          
+
           <!-- contents ================================================== -->
           <div class="col-lg-9 col-md-8">
             <div class="row">
               <div class="col-lg-10 col-md-10 col-sm-10"></div>
               <div class="col-lg-2 col-md-2 col-sm-2">
-                <div class="input-group"> 
-                  <select class="custom-select custom-select-sm" id="pageSize">
+                <div class="input-group">
+                  <select class="custom-select custom-select-sm"
+                    id="pageSize">
                     <option value="2">2</option>
                     <option value="8">8</option>
                     <option value="10">10</option>
@@ -195,16 +174,18 @@ width:112px;
 
             <c:if test="${memberTypeNo eq 3}">
               <div class="my-lesson-wrapper">
-              <c:forEach items="${memberList}" var="member"
-                begin="${pagination.pageSize * (pagination.curPage - 1)}"
-                end="${pagination.pageSize * pagination.curPage - 1}">
+                <c:forEach items="${memberList}" var="member"
+                  begin="${pagination.pageSize * (pagination.curPage - 1)}"
+                  end="${pagination.pageSize * pagination.curPage - 1}">
                   <a href="detail?no=${member.memberNo}">
                     <div class="card-body">
                       <div class="cardcard mb-3">
                         <div class="row no-gutters">
                           <div class="col-md-3">
-                          
-                           <img src="/upload/join/${member.profilePhoto}" alt="Thumbnail Image"
+
+                            <img
+                              src="/upload/join/${member.profilePhoto}"
+                              alt="Thumbnail Image"
                               class="img-raised rounded-circle img-fluid"
                               onError="this.src='/upload/join/default.png'">
                           </div>
@@ -217,8 +198,7 @@ width:112px;
                                 ${member.gender}/ ${member.addressCity}
                                 ${member.addressSuburb}/
                                 ${member.schoolType}/
-                                ${member.subjectName} 
-                                </span>
+                                ${member.subjectName} </span>
                             </h5>
                           </div>
                         </div>
@@ -228,18 +208,21 @@ width:112px;
                   <hr>
                 </c:forEach>
               </div>
-              </c:if>
-              
+            </c:if>
+
             <c:if test="${memberTypeNo eq 1}">
               <div class="my-lesson-wrapper">
-              <c:forEach items="${memberList}" var="member" begin="${pagination.pageSize * (pagination.curPage - 1)}"
-                end="${pagination.pageSize * pagination.curPage - 1}">
+                <c:forEach items="${memberList}" var="member"
+                  begin="${pagination.pageSize * (pagination.curPage - 1)}"
+                  end="${pagination.pageSize * pagination.curPage - 1}">
                   <a href="detail?no=${member.memberNo}">
                     <div class="card-body">
                       <div class="cardcard mb-3">
                         <div class="row no-gutters">
                           <div class="col-md-3">
-                             <img src="/upload/join/${member.profilePhoto}" alt="Thumbnail Image"
+                            <img
+                              src="/upload/join/${member.profilePhoto}"
+                              alt="Thumbnail Image"
                               class="img-raised rounded-circle img-fluid"
                               onError="this.src='/upload/join/default.png'">
                           </div>
@@ -252,8 +235,7 @@ width:112px;
                                 ${member.gender}/ ${member.addressCity}
                                 ${member.addressSuburb}/
                                 ${member.schoolType}/
-                                ${member.subjectName} 
-                              </span>
+                                ${member.subjectName} </span>
                             </h5>
                           </div>
                         </div>
@@ -263,8 +245,8 @@ width:112px;
                   <hr>
                 </c:forEach>
               </div>
-              </c:if>
-              
+            </c:if>
+
             <nav aria-label="Page navigation example">
               <ul class="pagination justify-content-center">
                 <c:if test="${pagination.curPage ne 1}">
@@ -307,8 +289,8 @@ width:112px;
     </div>
   </div>
 
-<!-- paging -->
-<script>
+  <!-- paging -->
+  <script>
   (function() {
     $('#pageSize').val('${pageSize}')
   })();
@@ -319,14 +301,14 @@ width:112px;
   });
 </script>
 
-<!-- 주소/상세주소 구하기 -->
-<script type="text/javascript">
+  <!-- 주소/상세주소 구하기 -->
+  <script type="text/javascript">
   $('document')
     .ready(
       function () {
-        var area0 = [ "시/도 선택", "서울특별시", "인천광역시", "대전광역시", "광주광역시",
-          "대구광역시", "울산광역시", "부산광역시", "세종특별자치시", "경기도", "강원도", "충청북도", "충청남도",
-          "전라북도", "전라남도", "경상북도", "경상남도", "제주특별자치도" ];
+        var area0 = [ "시/도 선택", "서울", "인천", "대전", "광주",
+          "대구", "울산", "부산", "세종특별자치시", "경기", "강원", "충북", "충남",
+          "전북", "전남", "경북", "경남", "제주특별자치도" ];
       var area1 = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구",
           "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구",
           "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구",
@@ -407,14 +389,14 @@ width:112px;
       });
 </script>
 
-<!-- 학교/과목 선택 -->
+  <!-- 학교/과목 선택 -->
   <script type="text/javascript">
   $('document').ready(
     function () {
       var area0 = [ "학교 선택", "초등학교", "중학교", "고등학교" ];
-      var area1 = [ "국어", "영어", "수학", "사회", "과학", "기타" ];
-      var area2 = [ "국어", "영어", "수학", "사회", "과학", "기타" ];
-      var area3 = [ "국어", "영어", "수학", "사회", "과학", "기타" ];
+      var area1 = [ "국어", "영어", "수학"];
+      var area2 = [ "국어", "영어", "수학"];
+      var area3 = [ "국어", "영어", "수학" ];
 
       // 학교 선택 박스 초기화
       $("select[name^=school]").each(
@@ -462,14 +444,14 @@ width:112px;
 </script>
 
 
-<script>
+  <script>
 var goView = function(data){
 }
 
 </script>
 
-<!-- 조건 선택 값 구하기 -->
-<script>
+  <!-- 조건 선택 값 구하기 -->
+  <script>
 $(document).ready(function(){
 	$(".my-button-yeah").click(function(){
 
@@ -484,7 +466,6 @@ $(document).ready(function(){
 	let memberTypeNo = $("#memberTypeNo").val();
 	let myGugun = $("#myGugun").val();
 	let myGender = $("#myGender").val();
-	let myAge = $("#myAge").val();
 	let myWantedFee = $("#myWantedFee").val();
 	let mySchool = $("#mySchool").val();
 	let mySubject = $("#mySubject").val();
@@ -494,7 +475,6 @@ $(document).ready(function(){
 	  'memberTypeNo' : memberTypeNo,
 	  'myGugun': myGugun,
 	  'myGender': myGender,
-	  'myAge': myAge,
 	  'myWantedFee': myWantedFee,
 	  'mySchool': mySchool,
 	  'mySubject': mySubject,
@@ -528,9 +508,9 @@ $(document).ready(function(){
               html += '</h5>';
               html += '<h5>';
               html += '<span class="tim-note">';
-              html += ''+resultList[i].gender+'/'+resultList[i].addressCity+' ';
-              html += ''+resultList[i].addressSuburb+'/';
-              html += ''+resultList[i].schoolType+'/';
+              html += ''+resultList[i].gender+'/ '+resultList[i].addressCity+' ';
+              html += ''+resultList[i].addressSuburb+'/ ';
+              html += ''+resultList[i].schoolType+'/ ';
               html += ''+resultList[i].subjectName+'';
               html += '</span>';
               html += '</h5>';
