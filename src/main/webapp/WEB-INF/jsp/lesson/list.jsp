@@ -44,6 +44,7 @@
     <div class="section text-center">
       
      <input type="hidden" name="approve" value="${memberInfoMap.teacher.approvementState}">
+     <input id="memberTypeNo" type="hidden" name="approve" value="${loginUser.memberTypeNo}">
       <c:choose>
         <c:when test="${loginUser.memberTypeNo eq 3}">
           <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
@@ -61,6 +62,7 @@
       <c:set var="i" value="0" />
       <!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> -->
       <c:forEach items="${lessons}" var="lesson">
+      <input id="stdNo" type="hidden" name="approve" value="${lesson.studentNo}">
         <div class="text-center">
           <div class="card w-75">
             <div class="row no-gutters">
@@ -307,6 +309,15 @@
 </script>
 
 <script>
+var stdNoArr = $('#stdNo');
+var stdNoVal = $('#stdNo').val();
+var memberTypeNo = $('#memberTypeNo').val();
+if (memberTypeNo == 1) {
+  for (let stdNo of stdNoArr) {
+    console.log(stdNoArr.length);
+    console.log(stdNoVal + "이얏");
+  }
+}
 
 
 </script>
