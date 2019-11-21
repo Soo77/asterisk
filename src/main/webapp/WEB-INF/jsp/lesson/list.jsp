@@ -60,6 +60,7 @@
       <!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> -->
       <c:forEach items="${lessons}" var="lesson">
       <input id="stdNo" type="hidden" name="approve" value="${lesson.studentNo}">
+      <input id="tchNo" type="hidden" name="approve" value="${lesson.teacherNo}">
         <div class="text-center">
           <div class="card w-75">
             <div class="row no-gutters">
@@ -306,22 +307,25 @@
 </script>
 
 <script>
-var stdNoArr = $('#stdNo');
-var stdNoVal = $('#stdNo').val();
-var memberTypeNo = $('#memberTypeNo').val();
-
-if (memberTypeNo == 1) {
-  if (stdNoArr.length == 0) {
-    console.log("들어가지나요....");
-    let des = '';
-    des += '<h2 style="color: grey;">마음에 드는 선생님을 찾아보세요.</h2>';
-    des += '<input  type="button" class="btn btn-primary" value="선생님 찾기" onClick=location.href="../member/list?memberTypeNo=3">';
-    $('#section').append(des);  
+  var stdNoArr = $('#stdNo');
+  var tchNoArr = $('#tchNo');
+  var tchNoVal = $('#tchNo').val();
+  var stdNoVal = $('#stdNo').val();
+  var memberTypeNo = $('#memberTypeNo').val();
+  
+  if (memberTypeNo == 1 || memberTypeNo == 2) {
+    if (stdNoArr.length == 0) {
+      let des = '';
+      des += '<h2 style="color: grey;">마음에 드는 선생님을 찾아보세요.</h2>';
+      des += '<input  type="button" class="btn btn-primary" value="선생님 찾기" onClick=location.href="../member/list?memberTypeNo=3">';
+      $('#section').append(des);  
+    }
   }
-    console.log("되나요..");
-    console.log(stdNoArr.length);
-    console.log(stdNoVal + "이얏");  
-} 
+   else if (memberTypeNo == 3) {
+     if (tchNoArr.length == 0) {
+       document.getElementsByClassName('btn btn-primary currAddBtn')[0].style.left = 'initial';
+     }
+  } 
 
 
 </script>

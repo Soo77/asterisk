@@ -146,9 +146,9 @@
             <div class="form-group has-default bmd-form-group pt-0">
               <select class="custom-select" name="subjectName">
                   <option value="">과목 선택</option>
-                  <option value="korean">국어</option>
-                  <option value="english">영어</option>
-                  <option value="math">수학</option>
+                  <option value="국어">국어</option>
+                  <option value="영어">영어</option>
+                  <option value="수학">수학</option>
               </select>  
             </div>
           </div>
