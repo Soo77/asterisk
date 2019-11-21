@@ -3,11 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
+
 <head>
   <style>
     .img-fluid {
-      width: 220px;
-      height: 220px;
+      width: 220px !important;
+      height: 220px !important;
+      max-width: none;
       object-fit: cover;
     }
 
@@ -18,6 +20,9 @@
       /* Added */
       margin-bottom: 10px;
       /* Added */
+    }
+    .swal-title {
+      font-size: 25px;   
     }
   </style>
 </head>
@@ -37,17 +42,18 @@
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
-
+      
+     <input type="hidden" name="approve" value="${memberInfoMap.teacher.approvementState}">
       <c:choose>
-        <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState ne 'true'}">
-          <input type="button" class="btn btn-primary currAddBtn"
-            style="margin-bottom: 15px; left: 335px; display: none;" value="새 커리큘럼 등록"
-            onClick="location.href='currAdd'">
+        <c:when test="${loginUser.memberTypeNo eq 3}">
+          <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
+            value="새 커리큘럼 등록"  >
+            <c:if test="${memberInfoMap.teacher.approvementState eq false}">
+              <h2 style="color: grey; font-family: 'Nanum Gothic';">인증이 되지 않아 커리큘럼을 등록할 수 없습니다.</h2>
+            </c:if>
         </c:when>
-        <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState eq 'true'}">
-          <input type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
-            value="새 커리큘럼 등록" onClick="location.href='currAdd'">
-        </c:when>
+        
+         
 
       </c:choose>
 
@@ -60,7 +66,7 @@
               <c:choose>
                 <c:when test="${loginUser.memberTypeNo eq 3 and lesson.member.profilePhoto eq NULL}">
                   <div class="col-md-3">
-                    <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="card-img-top img-fluid">
+                    <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="img-raised rounded img-fluid">
                   </div>
                 </c:when>
                 <c:otherwise>
@@ -73,7 +79,7 @@
                 <p class="card-text text-left">
                   <c:choose>
                     <c:when test="${lesson.member.name eq NULL}">
-                      <td>이름: 미정<br></td>
+                      <td>(학생을 초대하세요.)<br></td>
                     </c:when>
                     <c:otherwise>
                       <td>이름: ${lesson.member.name}<br></td>
@@ -127,16 +133,16 @@
                             </button>
                           </div>
                           <span class="messageLessonNo${i}" id="${lesson.lessonNo}">수업번호 : ${lesson.lessonNo}</span>
-                          수업과목:
+                                                                 수업과목:
                           <c:choose>
                             <c:when test="${lesson.subject.schoolTypeNo eq 1}">
-                              초등
+                                                                  초등
                             </c:when>
                             <c:when test="${lesson.subject.schoolTypeNo eq 2}">
-                              중등
+                                                                  중등
                             </c:when>
                             <c:when test="${lesson.subject.schoolTypeNo eq 3}">
-                              고등
+                                                                   고등
                             </c:when>
                             <c:otherwise>
                             </c:otherwise>
@@ -240,7 +246,8 @@
 
 <!-- 메세지 전송 -->
 <script>
-  function lessonMessage(no) {
+  function lessonMessage(no)
+  {
     var memberNo = document.getElementById("lessonMessage" + no).value;
     var lessonNo = document.getElementsByClassName("messageLessonNo" + no)[0].id;
     console.log(memberNo);
@@ -270,6 +277,27 @@
   }
 </script>
 
+<!-- currAddBtn 에 인증된 선생님만 add 할 수 있게 -->
+<script>
+  $('#currAddBtn').click(function (e) {
+    e.preventDefault();
+    
+    var approveVal = $('input[name=approve]').val();
+    console.log(approveVal);
+    
+    if (approveVal == 'false') {
+      swal({
+        title: "인증이 된 선생님만 등록할 수 있습니다.",
+        text: "인증을 받은 뒤 등록해보세요.",
+        icon: "info",  
+        buttons: "확인", 
+      });
+    } else { 
+      window.location='currAdd'; 
+    }
+    
+  })
+</script>
 
 
 <!--   Core JS Files   -->

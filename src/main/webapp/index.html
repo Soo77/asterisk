@@ -131,8 +131,7 @@
       <div class="row">
         <div class="col-md-6">
           <h1 class="title">선생님과 학생을 위한 과외매칭 플랫폼</h1>
-          <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text
-            here. Add here all the information that can make you or your product create the first impression.</h4>
+          <h4>엄과외에서 나와 맞는 과외를 찾아보세요!</h4>
           <br>
           <a href="/app/join/form" class="btn btn-danger btn-raised btn-lg">
             시작하기
@@ -347,10 +346,12 @@
           let loginUserName = document.getElementsByClassName('my-loggedin-user')[0];
 
           if (result.loginUserMemberType == 1 ||
-              result.loginUserMemberType == 2) {
+              result.loginUserMemberType == 2 ||
+              result.loginUserMemberType == 4) {
             teacherLi.style.display = 'inline-block';
           }
-          if (result.loginUserMemberType == 3) {
+          if (result.loginUserMemberType == 3 ||
+              result.loginUserMemberType == 4) {
             studentLi.style.display = 'inline-block';
           }
           if (result.loginUserMemberType == 4) {

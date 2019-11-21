@@ -122,10 +122,12 @@ $.ajax({
         let loginUserId = document.getElementsByClassName('my-loggedin-user')[0];
 
         if (result.loginUserMemberType == 1 ||
-            result.loginUserMemberType == 2) {
+            result.loginUserMemberType == 2 ||
+            result.loginUserMemberType == 4) {
           teacherLi.style.display = 'inline-block';
         }
-        if (result.loginUserMemberType == 3) {
+        if (result.loginUserMemberType == 3 ||
+            result.loginUserMemberType == 4) {
           studentLi.style.display = 'inline-block';
         }
         if (result.loginUserMemberType == 4) {
