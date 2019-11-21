@@ -48,6 +48,7 @@
   .teacher-profile-photo {
     width: 150px;
     height: 150px;
+    object-fit: cover;
   }
   h3,h4 {
     color: #3C4858;
