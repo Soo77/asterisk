@@ -52,13 +52,7 @@
               <h2 style="color: grey; font-family: 'Nanum Gothic';">인증이 되지 않아 커리큘럼을 등록할 수 없습니다.</h2>
             </c:if>
         </c:when>
-        <c:when test="${loginUser.memberTypeNo ne 3}">
-          
-            <c:if test="${memberInfoMap.teacher.approvementState eq false}">
-              <h2 style="color: grey; font-family: 'Nanum Gothic';">마음에 드는 선생님을 찾아보세요.</h2>
-              <input  type="button" class="btn btn-primary" value="선생님 찾기" onClick="location.href='../member/list?memberTypeNo=3'">
-            </c:if>
-        </c:when>
+        
         
          
 
@@ -311,6 +305,12 @@
     
   })
 </script>
+
+<script>
+
+
+</script>
+
 
 
 <!--   Core JS Files   -->
