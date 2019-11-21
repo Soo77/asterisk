@@ -81,7 +81,7 @@ public class WebConfig implements WebMvcConfigurer {
     registry.addInterceptor(new LoginCheckInterceptor()).addPathPatterns("/**")
         .excludePathPatterns("/auth/**").excludePathPatterns("/join/**")
         .excludePathPatterns("/loginCheck").excludePathPatterns("/admin/**")
-        .excludePathPatterns("/main/**");
+        .excludePathPatterns("/main/**").excludePathPatterns("/message/**");
     
     // 로그인을 하고도 로그인 창으로 가려는 유저를 걸러내는 인터셉터
     registry.addInterceptor(new AuthControllerCheckInterceptor())
