@@ -66,7 +66,9 @@
         alt="" src="/upload/join/${messageInfo[i].profilePhoto}">
 						<div class="message">
 						  <a href=detail?memberNo=${messageMem[i].memberNo}>나에게 쪽지</a>
-						  <div class="datetime">23/03/2016 20:40</div>
+<!-- 						  <h6 style="color: gray; display: inline-block;"> -->
+<%-- 						  ${messageContsDate[i].messageContents}</h6> --%>
+<%-- 						  <div class="datetime">${messageContsDate[i].sendDate}</div> --%>
 						</div>
 					</c:when>
 
@@ -75,7 +77,9 @@
 						<div class="message">
 							<a href=detail?memberNo=${messageMem[i].memberNo}>${messageMem[i].name}</a>
 						  ${bell}
-						  <div class="datetime">23/03/2016 20:40</div>
+<!-- 						  <h6 style="color: gray; display: inline-block;"> -->
+<%-- 						  ${messageContsDate[i].messageContents}</h6> --%>
+<%-- 						  <div class="datetime">${messageContsDate[i].sendDate}</div> --%>
 						</div>
 					</c:otherwise>
 				</c:choose>
