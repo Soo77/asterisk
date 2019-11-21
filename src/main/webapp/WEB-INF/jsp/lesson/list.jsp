@@ -40,23 +40,20 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container">
-    <div class="section text-center">
+  <div id="container" class="container">
+    <div id="section" class="section text-center">
       
      <input type="hidden" name="approve" value="${memberInfoMap.teacher.approvementState}">
      <input id="memberTypeNo" type="hidden" name="approve" value="${loginUser.memberTypeNo}">
       <c:choose>
-        <c:when test="${loginUser.memberTypeNo eq 3}">
+        <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState eq true}">
           <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
             value="새 커리큘럼 등록">
-            <c:if test="${memberInfoMap.teacher.approvementState eq false}">
-              <h2 style="color: grey; font-family: 'Nanum Gothic';">인증이 되지 않아 커리큘럼을 등록할 수 없습니다.</h2>
-            </c:if>
         </c:when>
-        
-        
-         
-
+        <c:when test="${memberInfoMap.teacher.approvementState eq false}">
+          <h2 style="color: grey; font-family: 'Nanum Gothic';">인증이 되지 않아 커리큘럼을 등록할 수 없습니다.</h2>
+           <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" value="새 커리큘럼 등록"> 
+        </c:when>
       </c:choose>
 
       <c:set var="i" value="0" />
@@ -312,12 +309,19 @@
 var stdNoArr = $('#stdNo');
 var stdNoVal = $('#stdNo').val();
 var memberTypeNo = $('#memberTypeNo').val();
+
 if (memberTypeNo == 1) {
-  for (let stdNo of stdNoArr) {
-    console.log(stdNoArr.length);
-    console.log(stdNoVal + "이얏");
+  if (stdNoArr.length == 0) {
+    console.log("들어가지나요....");
+    let des = '';
+    des += '<h2 style="color: grey;">마음에 드는 선생님을 찾아보세요.</h2>';
+    des += '<input  type="button" class="btn btn-primary" value="선생님 찾기" onClick=location.href="../member/list?memberTypeNo=3">';
+    $('#section').append(des);  
   }
-}
+    console.log("되나요..");
+    console.log(stdNoArr.length);
+    console.log(stdNoVal + "이얏");  
+} 
 
 
 </script>
