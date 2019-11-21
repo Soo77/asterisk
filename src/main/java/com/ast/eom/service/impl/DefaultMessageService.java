@@ -47,7 +47,8 @@ public class DefaultMessageService implements MessageService {
 
   @Override
   public int messageIn(Message message,int lessonNo) throws Exception {
-    messageDao.updateState(lessonNo);
+    if (lessonNo != -1)
+      messageDao.updateState(lessonNo);
     return messageDao.messageIn(message);
   }
 
