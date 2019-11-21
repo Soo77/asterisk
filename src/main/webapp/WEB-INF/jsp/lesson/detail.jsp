@@ -163,9 +163,9 @@
               <div class="form-group has-default bmd-form-group pt-0">
                 <select id="subNameT" class="custom-select" name="subjectName" disabled="disabled">
                   <option value="">과목 선택</option>
-                  <option id="korean1" value="korean">국어</option>
-                  <option id="english1" value="english">영어</option>
-                  <option id="math1" value="math">수학</option>
+                  <option id="korean1" value="국어">국어</option>
+                  <option id="english1" value="영어">영어</option>
+                  <option id="math1" value="수학">수학</option>
                 </select>
               </div> 
             </div>
@@ -433,17 +433,17 @@
 
   <script>
     let subName = $('input[name=subjectNameVal]').val();
-    if (subName == "korean") {
+    if (subName == "국어") {
       console.log("라라라 국어");
       $("korean1").attr("selected", "selected");
-      $('select[id=subNameT]').val("korean");
-    } else if (subName == "english") {
+      $('select[id=subNameT]').val("국어");
+    } else if (subName == "영어") {
       console.log("라라라 영어");
       $("english1").attr("selected", "selected");
-      $('select[id=subNameT]').val("english");
-    } else if (subName == "math") {
+      $('select[id=subNameT]').val("영어");
+    } else if (subName == "수학") {
       console.log("라라라 수학");
       $("math1").attr("selected", "selected");
-      $('select[id=subNameT]').val("math");
+      $('select[id=subNameT]').val("수학");
     } 
   </script>
