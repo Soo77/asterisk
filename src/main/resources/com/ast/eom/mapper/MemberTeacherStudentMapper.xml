@@ -159,19 +159,77 @@
 	
 	<select id="searchTeacher" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.id, m.profile_photo,
+		m.mem_no, m.id, m.profile_photo, t.appr_stat,
 		m.gender, m.addr_city, m.addr_sub, sub.sub_name, st.sch_type, ls.wanted_fee
 		from member m
 		left outer join teacher t on m.mem_no = t.tch_no
 		left outer join lesson_subject ls on t.tch_no = ls.tch_no
 		left outer join subject sub on ls.sub_no = sub.sub_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
-	     where addr_city LIKE CONCAT('%', #{mySido}, '%')
-        and addr_sub LIKE CONCAT('%', #{myGugun}, '%')
-        and gender LIKE CONCAT('%', #{myGender}, '%')
-        and sub_name LIKE CONCAT('%', #{mySubject}, '%')
-        and sch_type LIKE CONCAT('%', #{mySchool}, '%')
-        and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
+	    where t.appr_stat = 1 and 
+		<if test="mySido != null">addr_city LIKE CONCAT('%', #{mySido}, '%')</if>
+		<choose>
+			<when test="myGugun != null">
+			<choose>
+				<when test="mySido == null">
+					addr_sub LIKE CONCAT('%', #{myGugun}, '%')
+				</when>
+				<otherwise>
+					and addr_sub LIKE CONCAT('%', #{myGugun}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		<choose>
+			<when test="myGender != null">
+			<choose>
+				<when test="mySido == null and myGugun == null">
+					gender LIKE CONCAT('%', #{myGender}, '%')
+				</when>
+				<otherwise>
+					and gender LIKE CONCAT('%', #{myGender}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		<choose>
+			<when test="mySubject != null">
+			<choose>
+				<when test="mySido == null and myGugun == null and myGender == null">
+					sub_name LIKE CONCAT('%', #{mySubject}, '%')
+				</when>
+				<otherwise>
+					and sub_name LIKE CONCAT('%', #{mySubject}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		<choose>
+			<when test="mySchool != null">
+			<choose>
+				<when test="mySido == null and myGugun == null and myGender == null
+							and mySubject == null">
+					sch_type LIKE CONCAT('%', #{mySchool}, '%')
+				</when>
+				<otherwise>
+					and sch_type LIKE CONCAT('%', #{mySchool}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		<choose>
+			<when test="myWantedFee != null">
+			<choose>
+				<when test="mySido == null and myGugun == null and myGender == null
+							and mySubject == null and mySchool == null">
+					wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
+				</when>
+				<otherwise>
+					and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
 	</select>
 	
 	<select id="searchStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
@@ -184,12 +242,82 @@
 		left outer join wanted_lesson wl on stu.std_no = wl.std_no
 		left outer join subject sub on wl.sub_no = sub.sub_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
-		where addr_city LIKE CONCAT('%', #{mySido}, '%')
-	      and addr_sub LIKE CONCAT('%', #{myGugun}, '%')
-	      and gender LIKE CONCAT('%', #{myGender}, '%')
-	      and sub_name LIKE CONCAT('%', #{mySubject}, '%')
-	      and sch_type LIKE CONCAT('%', #{mySchool}, '%')
-	      and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
+		where
+		<if test="mySido != null">addr_city LIKE CONCAT('%', #{mySido}, '%')</if>
+		<choose>
+			<when test="myGugun != null">
+			<choose>
+				<when test="mySido == null">
+					addr_sub LIKE CONCAT('%', #{myGugun}, '%')
+				</when>
+				<otherwise>
+					and addr_sub LIKE CONCAT('%', #{myGugun}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		<choose>
+			<when test="myGender != null">
+			<choose>
+				<when test="mySido == null and myGugun == null">
+					gender LIKE CONCAT('%', #{myGender}, '%')
+				</when>
+				<otherwise>
+					and gender LIKE CONCAT('%', #{myGender}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		<choose>
+			<when test="mySubject != null">
+			<choose>
+				<when test="mySido == null and myGugun == null and myGender == null">
+					sub_name LIKE CONCAT('%', #{mySubject}, '%')
+				</when>
+				<otherwise>
+					and sub_name LIKE CONCAT('%', #{mySubject}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		<choose>
+			<when test="mySchool != null">
+			<choose>
+				<when test="mySido == null and myGugun == null and myGender == null
+							and mySubject == null">
+					sch_type LIKE CONCAT('%', #{mySchool}, '%')
+				</when>
+				<otherwise>
+					and sch_type LIKE CONCAT('%', #{mySchool}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		<choose>
+			<when test="myWantedFee != null">
+			<choose>
+				<when test="mySido == null and myGugun == null and myGender == null
+							and mySubject == null and mySchool == null">
+					wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
+				</when>
+				<otherwise>
+					and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')
+				</otherwise>
+			</choose>
+			</when>
+		</choose>
+		
+<!-- 		<if test="myGugun != null">addr_sub LIKE CONCAT('%', #{myGugun}, '%') and</if> -->
+<!-- 		<if test="myGender != null">gender LIKE CONCAT('%', #{myGender}, '%') and</if> -->
+<!-- 		<if test="mySubject != null">sub_name LIKE CONCAT('%', #{mySubject}, '%') and</if> -->
+<!-- 		<if test="mySchool != null">sch_type LIKE CONCAT('%', #{mySchool}, '%') and</if> -->
+<!-- 		<if test="myWantedFee != null">wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%')</if> -->
+<!-- 		  addr_city LIKE CONCAT('%', #{mySido}, '%') -->
+<!-- 	      and addr_sub LIKE CONCAT('%', #{myGugun}, '%') -->
+<!-- 	      and gender LIKE CONCAT('%', #{myGender}, '%') -->
+<!-- 	      and sub_name LIKE CONCAT('%', #{mySubject}, '%') -->
+<!-- 	      and sch_type LIKE CONCAT('%', #{mySchool}, '%') -->
+<!-- 	      and wanted_fee LIKE CONCAT('%', #{myWantedFee}, '%') -->
 	</select>
 	
 	<select id="photoTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
@@ -199,6 +327,16 @@
 		member m
 		left outer join teacher t on m.mem_no = t.tch_no
 		left outer join teacher_photo tp on t.tch_no = tp.tch_no
+		where m.mem_no= #{mem_no}
+	</select>
+	
+	<select id="schoolTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
+		select
+		m.mem_no, s.sch_name
+		from
+		member m
+		left outer join teacher t on m.mem_no = t.tch_no
+		left outer join school s on t.tch_no = s.tch_no
 		where m.mem_no= #{mem_no}
 	</select>
 	

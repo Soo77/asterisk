@@ -14,6 +14,7 @@ public interface MemberTeacherStudentService {
   List<MemberTeacherStudent> review2(int no) throws Exception;
   List<MemberTeacherStudent> review1(int no) throws Exception;
   List<MemberTeacherStudent> photo(int no) throws Exception;
+  List<MemberTeacherStudent> school(int no) throws Exception;
   
 
   

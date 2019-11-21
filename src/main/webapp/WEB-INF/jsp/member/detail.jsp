@@ -178,7 +178,11 @@ ul li::before {
               <label class="information main">기본 정보</label>
               <div class="main-info-body">
               <ul>
-                  <li class="school">학교: ${member.schools[0].schoolName}</li>
+              
+               <c:forEach items="${schoolTeacher}" var="school">
+                  <li class="school"> 학교: ${school.schools[1].schoolName}</li>
+                  </c:forEach>
+                  
                   <li class="major">전공: ${member.schools[0].major}</li>
                   <li class="address">지역: ${member.addressCity} ${member.addressSuburb}</li>
                   <li class="registeredDate">가입일: ${member.registeredDate}</li></ul>
@@ -186,13 +190,23 @@ ul li::before {
               </div>
               
               <div class="col-lg-6 col-sm-6">
-              <label class="information sub">추가 정보</label><br>
+              <label class="information sub">출신 학교</label><br>
               <div class="sub-info-body">
               <ul>
-                  <li class="preschool">출신 학교: ${member.schools[0].schoolName}</li>
-                  <li class="subject">과목: ${member.schoolType} ${member.subjectName}</li>
+              
+               <c:forEach items="${schoolTeacher}" var="school">
+                <c:forEach items="${school.schools}" var="school2">
+                  <li class="preschool">${school2.schoolName}</li>
+                  </c:forEach>
+                  </c:forEach>
                   </ul>
               </div>
+              <label class="information sub">과목</label><br>
+              <div class="sub-info-body">
+              <ul>
+                  <li class="subject">${member.schoolType} ${member.subjectName}</li>
+              </ul>
+                  </div>
               </div>
             </div>
             <!-- row end -->
@@ -200,7 +214,7 @@ ul li::before {
 
 
           <div class="lesson-time">
-            <label class="lesson-time-title">과외 가능 요일/시간</label>
+            <label class="lesson-time-title">과외 가능 요일/시간</label><br>
             <div class="lesson-time contents">
             <ul>
             <li>

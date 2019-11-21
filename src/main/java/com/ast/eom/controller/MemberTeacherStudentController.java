@@ -56,12 +56,14 @@ public class MemberTeacherStudentController {
     List<MemberTeacherStudent> reviewStudent = memberTeacherStudentService.review1(no);
     List<MemberTeacherStudent> reviewTeacher = memberTeacherStudentService.review2(no);
     List<MemberTeacherStudent> photoTeacher = memberTeacherStudentService.photo(no);
+    List<MemberTeacherStudent> schoolTeacher = memberTeacherStudentService.school(no);
     
     model.addAttribute("detailStudent", detailStudent);
     model.addAttribute("detailTeacher", detailTeacher);
     model.addAttribute("reviewTeacher", reviewTeacher);
     model.addAttribute("reviewStudent", reviewStudent);
     model.addAttribute("photoTeacher", photoTeacher);
+    model.addAttribute("schoolTeacher", schoolTeacher);
   }
   
   @RequestMapping(value="search", method = {RequestMethod.GET})

@@ -59,6 +59,15 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     
   }
   
+  @Override
+  public List<MemberTeacherStudent> school (int no) throws Exception {
+    
+    List<MemberTeacherStudent> schoolTeacher = memberTeacherStudentDao.schoolTeacher(no);
+    System.out.println("schoolTeacher======>" + schoolTeacher);
+    return schoolTeacher;
+    
+  }
+  
   
   @Override
   public List<MemberTeacherStudent> list(int memberTypeNo) throws Exception {

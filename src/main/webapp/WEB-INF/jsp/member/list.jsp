@@ -370,9 +370,16 @@ width:112px;
         $("select[name^=sido]").each(
           function () {
             $selsido = $(this);
-            $.each(eval(area0), function () {
-              $selsido.append("<option value='" + this + "'>" + this
-                + "</option>");
+            $.each(eval(area0), function (index, item) {
+              if (index == 0) {
+                $selsido.append("<option value=''>" + this
+                  + "</option>");
+
+              } else {
+                $selsido.append("<option value='" + this + "'>" + this
+                  + "</option>");
+              }
+
             });
             $selsido.next()
               .append("<option value=''>구/군 선택</option>");
@@ -411,13 +418,24 @@ width:112px;
 
       // 학교 선택 박스 초기화
       $("select[name^=school]").each(
-        function () {
-          $selschool = $(this);
-          $.each(eval(area0), function () {
-            $selschool.append("<option value='" + this + "'>" + this
-              + "</option>");
-          });
-          $selschool.next().append("<option value=''>과목 선택</option>");
+        function (index, item) {
+          if (index == 0) {
+            $selschool = $(this);
+            $.each(eval(area0), function () {
+              $selschool.append("<option value=''>" + this
+                + "</option>");
+            });
+            $selschool.next().append("<option value=''>과목 선택</option>");
+
+          } else {
+            $selschool = $(this);
+            $.each(eval(area0), function () {
+              $selschool.append("<option value='" + this + "'>" + this
+                + "</option>");
+            });
+            $selschool.next().append("<option value=''>과목 선택</option>");
+
+          }
         });
 
       // 학교 선택시 과목 설정 
@@ -458,7 +476,6 @@ $(document).ready(function(){
 		
 	$("#myGugun").val($('select[name="gugun1"]').val());
 	$("#myGender").val($('input[name="gender"]:checked').val());
-	$("#myAge").val(calculateAges());
 	$("#myWantedFee").val($('input[name="wantedFee"]:checked').val());
 	$("#mySchool").val($('select[name="school1"]').val());
 	$("#mySubject").val($('select[name="subject1"]').val());
