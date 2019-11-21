@@ -236,7 +236,7 @@
     messageConts += "<div style='text-align: right;'>"
     messageConts += "<button onclick='lessonMatchingStd(this)' name="+lessonNo
     messageConts += " value="+memberNo
-    messageConts += " class='btn btn-primary btn-sm'>커리큘럼 확인</button></div>"
+    messageConts += " class='btn btn-outline-primary btn-sm'>커리큘럼 확인</button></div>"
     
     if(memberNo == ""){
       swal("학생을 선택해주세요");

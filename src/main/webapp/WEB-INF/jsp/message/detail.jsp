@@ -113,7 +113,7 @@
 				onKeypress="if(event.keyCode==13) {messageIn();}"
 				class="form-control" placeholder="내용을 입력">
 		</div>
-		<button id="messageIn" name="messageIn" class="btn btn-outline-primary btn-sm">입력</button>
+		<button id="messageIn" name="messageIn" class="btn btn-primary btn-sm">입력</button>
 
     <script>
       $(document).ready(function(){
