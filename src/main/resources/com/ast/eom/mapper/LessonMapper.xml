@@ -270,6 +270,16 @@
     where lesson_no = #{lessonNo}
   </update>
   
+  <!-- 결제 페이지용 수업 상태 수정 -->
+  <update id="updateLessonStateAndPaymentState" parameterType="map">
+    update lesson
+    <set>
+      <if test="lessonStartDate != null">cal_date = #{lessonStartDate},</if>
+      <if test="lessonState != null">lesson_stat=#{lessonState}</if>
+    </set>
+    where lesson_no = #{lessonNo}
+  </update>
+
   <!-- 후기 작성 -->
   <update id="insertReview" parameterType="map">
     update lesson set
@@ -278,4 +288,8 @@
     where lesson_no = #{lessonNo}
   </update>
   
+  <!-- 결제 페이지용 일별 과외 탐색 -->
+  <select id="getDayLessons" parameterType="int">
+    select * from day_lesson where lesson_no = #{no}
+  </select>
 </mapper>

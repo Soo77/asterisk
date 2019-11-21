@@ -157,6 +157,7 @@
   let myLessonFee = numberFormat(${lessonFee});
   document.getElementById('lesson-fee').value = myLessonFee;
   document.getElementById('lesson-fee-sum').innerHTML = myLessonFee+' 원';
+  console.log('${lessonInfoForPayment}');
 </script>
 
 <!-- 결제 금액을 변경하면 합계에 반영 -->
