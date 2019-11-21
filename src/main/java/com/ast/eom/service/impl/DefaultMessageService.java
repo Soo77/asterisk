@@ -14,7 +14,7 @@ public class DefaultMessageService implements MessageService {
   
   @Autowired
   MessageDao messageDao;
-
+  
   @Override
   public List<Member> messageList(int memberNo) throws Exception {
     return messageDao.messageList(memberNo);
@@ -46,7 +46,8 @@ public class DefaultMessageService implements MessageService {
   }
 
   @Override
-  public int messageIn(Message message) throws Exception {
+  public int messageIn(Message message,int lessonNo) throws Exception {
+    messageDao.updateState(lessonNo);
     return messageDao.messageIn(message);
   }
 

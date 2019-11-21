@@ -63,13 +63,13 @@ public class MessageController {
 
   @PostMapping("messagein")
   @ResponseBody
-  public int messagein(int receiverNo, int senderNo, String messageConts) throws Exception {
+  public int messagein(int receiverNo, int senderNo, String messageConts, int lessonNo) throws Exception {
     Message message = new Message();
     message.setReceiverNo(receiverNo);
     message.setSenderNo(senderNo);
     message.setMessageContents(messageConts);
 
-    return messageService.messageIn(message);
+    return messageService.messageIn(message, lessonNo);
   }
   
   @PostMapping("searchStd")
