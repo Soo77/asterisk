@@ -65,9 +65,7 @@
             <div class="row no-gutters">
               <c:choose>
                 <c:when test="${loginUser.memberTypeNo eq 3 and lesson.member.profilePhoto eq NULL}">
-                  <div class="col-md-3">
                     <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="img-raised rounded img-fluid">
-                  </div>
                 </c:when>
                 <c:otherwise>
                   <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}" alt="Raised Image"
