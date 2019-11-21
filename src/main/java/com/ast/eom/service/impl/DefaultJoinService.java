@@ -95,4 +95,9 @@ public class DefaultJoinService implements JoinService {
   public List<Member> checkOverChildId(String id) {
     return joinDao.checkOverChildId(id);
   }
+
+  @Override
+  public boolean checkOverKey(String key) {
+    return joinDao.checkOverKey(key);
+  }
 }

@@ -21,4 +21,5 @@ public interface JoinService {
   int teacherSubjectInsert(Map<String, Object> subjectParams);
   int bindStudentAndParents(Map<String, Object> parentsMap);
   List<Member> checkOverChildId(String id);
+  boolean checkOverKey(String key);
 }

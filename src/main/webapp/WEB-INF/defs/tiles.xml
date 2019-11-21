@@ -22,11 +22,7 @@
     <put-attribute name="stylesheet3" value="/WEB-INF/tiles/stylesheet3.jsp"/>
     <put-attribute name="javascript3" value="/WEB-INF/tiles/javascript3.jsp"/>
   </definition>
-  
-  <definition name="view/*" extends="base1">
-    <put-attribute name="body" value="/WEB-INF/jsp/view/{1}.jsp"/>
-  </definition>
-  
+
   <definition name="auth/*" extends="base2">
     <put-attribute name="body2" value="/WEB-INF/jsp/auth/{1}.jsp"/>
   </definition>
