@@ -42,6 +42,12 @@
     .my-logo {
       font-weight: bold;
     }
+
+    @media (max-width: 991px) {
+      #noticeHidden {
+        display: none !important;
+      }
+    }
   </style>
 
 </head>
@@ -104,7 +110,7 @@
                 <i class="material-icons">person</i> 마이페이지
               </a>
               <a href="javascript:void(0)" id="message-menu" class="dropdown-item">
-                <i class="material-icons">message</i> 쪽지함
+                <i class="material-icons">message</i> 쪽지함<span class="notice" style="color: #333"></span>
               </a>
               <a href="/app/admin/list" class="dropdown-item admin-display" style="display: none;">
                 <i class="material-icons">assignment_ind</i> 관리자메뉴
@@ -114,6 +120,8 @@
               </a>
             </div>
           </li>
+          <span id="noticeHidden" class="notice" style="margin-left: -10px !important; 
+        color: #333"></span>
         </ul>
       </div>
     </div>
@@ -123,8 +131,7 @@
       <div class="row">
         <div class="col-md-6">
           <h1 class="title">선생님과 학생을 위한 과외매칭 플랫폼</h1>
-          <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text
-            here. Add here all the information that can make you or your product create the first impression.</h4>
+          <h4>엄과외에서 나와 맞는 과외를 찾아보세요!</h4>
           <br>
           <a href="/app/join/form" class="btn btn-danger btn-raised btn-lg">
             시작하기
@@ -306,6 +313,27 @@
 
   <script>
     $.ajax({
+      url: "/app/message/notice",
+      success: function (data) {
+        let message;
+        if (data >= 100) {
+          message = "&ensp;<span class='badge badge-danger badge-counter'>" + "+99"
+          message += "</span>"
+
+        } else if (data == 0) {
+        } else {
+          message = "&ensp;<span class='badge badge-danger badge-counter'>" + data
+          message += "</span>"
+        }
+        $(".notice").append(message);
+      }, error: function () {
+        console.log("실패");
+      }
+    })
+  </script>
+
+  <script>
+    $.ajax({
       url: '/app/loginCheck',
       type: 'get',
       success: function (result) {
@@ -318,17 +346,19 @@
           let loginUserName = document.getElementsByClassName('my-loggedin-user')[0];
 
           if (result.loginUserMemberType == 1 ||
-              result.loginUserMemberType == 2) {
+            result.loginUserMemberType == 2 ||
+            result.loginUserMemberType == 4) {
             teacherLi.style.display = 'inline-block';
           }
-          if (result.loginUserMemberType == 3) {
+          if (result.loginUserMemberType == 3 ||
+            result.loginUserMemberType == 4) {
             studentLi.style.display = 'inline-block';
           }
           if (result.loginUserMemberType == 4) {
             // 관리자페이지 디스플레이 전용
             adminDisplay.style.display = 'flex';
           }
-          
+
           boardsLi.style.display = 'inline-block';
           loginUserLi.style.display = 'inline-block';
           loginUserName.innerHTML = result.loginUserId;
@@ -343,14 +373,14 @@
   </script>
 
   <script>
-    $("#message-menu").on('click', function() {
+    $("#message-menu").on('click', function () {
       popMessage();
     });
-   
-    function popMessage(){
+
+    function popMessage() {
       var url = "/app/message/list";
       var option = "width = 600, height = 600, top = 100, left = 200, location = no"
-      window.open(url, "쪽지목록" ,option);
+      window.open(url, "쪽지목록", option);
     }
   </script>
 </body>

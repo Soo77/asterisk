@@ -53,15 +53,15 @@ public class MemberTeacherStudentController {
   public void detail(Model model, @RequestParam("no") int no) throws Exception {
     List<MemberTeacherStudent> detailStudent = memberTeacherStudentService.get(no);
     List<MemberTeacherStudent> detailTeacher = memberTeacherStudentService.get2(no);
-    List<MemberTeacherStudent> reviewStudent = memberTeacherStudentService.review1(no);
-    List<MemberTeacherStudent> reviewTeacher = memberTeacherStudentService.review2(no);
+    List<MemberTeacherStudent> reviewTeacher = memberTeacherStudentService.review(no);
     List<MemberTeacherStudent> photoTeacher = memberTeacherStudentService.photo(no);
+    List<MemberTeacherStudent> schoolTeacher = memberTeacherStudentService.school(no);
     
     model.addAttribute("detailStudent", detailStudent);
     model.addAttribute("detailTeacher", detailTeacher);
     model.addAttribute("reviewTeacher", reviewTeacher);
-    model.addAttribute("reviewStudent", reviewStudent);
     model.addAttribute("photoTeacher", photoTeacher);
+    model.addAttribute("schoolTeacher", schoolTeacher);
   }
   
   @RequestMapping(value="search", method = {RequestMethod.GET})

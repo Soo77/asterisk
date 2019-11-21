@@ -265,7 +265,6 @@ public class LessonController {
     HashMap<String, Object> param = new HashMap<>();
     param.put("schoolTypeNo", schoolTypeNo);
     param.put("subjectName", subjectName);
-    
     int thisNo = lessonService.findSubNo(param);
     
     StringBuilder sb = new StringBuilder();

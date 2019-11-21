@@ -223,12 +223,12 @@
             <a href="list" class="btn btn-primary">수업목록</a>
           </div> 
           <div class="col text-right">
-            <c:if test="${loginUser.memberTypeNo eq 1 and lesson.lessonState eq 2}">
+            <c:if test="${(loginUser.memberTypeNo eq 1 or loginUser.memberTypeNo eq 2) and lesson.lessonState eq 2}">
               <input type="button" class="btn btn-primary pay-button" value="결제" onClick="location.href='../payment/detail'">
             </c:if>
           </div>
         </div>
-      </form>
+      </form> 
     </div>
 
     <c:set var="garo" value="${lesson.lessonNo}" scope="session"></c:set>
