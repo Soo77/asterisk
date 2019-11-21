@@ -456,7 +456,7 @@ ul li::before {
   <script>
   function messageShow(memberNo){
 	  var url = "/app/message/detail?memberNo="+memberNo.value;
-	  var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+	  var option = "width = 600, height = 600, top = 100, left = 200, location = no"
 	  window.open(url, "쪽지목록" ,option);
   }
   </script>
