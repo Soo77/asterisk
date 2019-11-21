@@ -1,17 +1,17 @@
 package com.ast.eom.service.impl;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ast.eom.dao.AdminDao;
+import com.ast.eom.dao.LessonDao;
 import com.ast.eom.dao.MypageDao;
 import com.ast.eom.domain.Lesson;
 import com.ast.eom.domain.Member;
@@ -21,11 +21,12 @@ import com.ast.eom.service.AdminService;
 
 @Service
 public class DefaultAdminService implements AdminService {
-  
   @Autowired
   AdminDao adminDao;
   @Autowired
   MypageDao mypageDao;
+  @Autowired
+  LessonDao lessonDao;
   
   HttpSession session;
   
@@ -152,6 +153,78 @@ public class DefaultAdminService implements AdminService {
     pendingLessonsInfoMap.put("teacherList", teacherList);
     
     return pendingLessonsInfoMap;
+  }
+  
+  @Override
+  public Map<String, Object> getPendingLessonsInfoMap(
+      int lessonNo) throws Exception {
+    Map<String, Object> pendingLessonsInfoMapDetail = new HashMap<>();
+    
+    Lesson lessonInfo = lessonDao.findCurrBy(lessonNo);
+    
+    // 월 수업료
+    int lessonFee = lessonInfo.getLessonFee();
+    
+    // 과외 총 수업일
+    int lessonTotalDay = lessonInfo.getCurriculum().getTotalHours();
+    
+    // 과외의 총 달수
+    Date startDate = lessonInfo.getStartDate();
+    Date endDate = lessonInfo.getEndDate();
+    long diff = endDate.getTime() - startDate.getTime();
+    long diffDays = diff / (24 * 60 * 60 * 1000); // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루 단위가 나옴
+    System.out.println("총 몇일" + diffDays);
+    int lessonTotalMonth = (int) (diffDays / 28);
+    
+    // 한달 수업일
+    int dayLessonCountOfMonth = (int) (lessonInfo.getCurriculum().getTotalHours() / lessonTotalMonth);
+    
+    // 정산일을 기준으로 한달 동안 진행된 수업 일수를 구함
+    Date calculationDay = lessonInfo.getCalculationDay();
+    
+    String dt = String.valueOf(startDate);  // 시작 날짜
+    System.out.println("dt====>" + dt);
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    Calendar c = Calendar.getInstance();
+    c.setTime(sdf.parse(dt));
+    c.add(Calendar.DATE, 30);  //하루를 더해준다.
+    System.out.println("c==>"+c);
+    Date after30days = Date.valueOf(sdf.format(c.getTime()));  // dt는 하루를 더한 날짜
+
+    HashMap<String, Object> params = new HashMap<>();
+    params.put("calculationDay", calculationDay);
+    params.put("after30days", after30days);
+    params.put("lessonNo", lessonNo);
+    int progressDayLessonCountOfMonth = adminDao.countLessonDays(params);
+    
+    // 환불 금액 = 월수업료 / (총 수업일/총 달수) * 잔여일수
+    long refund = lessonFee / (lessonTotalDay / lessonTotalMonth)
+        * (dayLessonCountOfMonth - progressDayLessonCountOfMonth);
+    System.out.println("--------------------");
+    System.out.println("수업료_lessonFee===> "+lessonFee);
+    System.out.println("과외총요일_lessonTotalDay===> "+lessonTotalDay);
+    System.out.println("몇달_lessonTotalMonth===> "+lessonTotalMonth);
+    System.out.println("한달의총수업일_dayLessonCountOfMonth===> "+dayLessonCountOfMonth);
+    System.out.println("한달동안진행된수업일수_progressDayLessonCountOfMonth===> "+progressDayLessonCountOfMonth);
+    System.out.println("정산일_calculationDay===>"+calculationDay);
+    System.out.println("정산일+30일_after30days===>"+after30days);
+    Member studentInfo = adminDao.getMember(lessonInfo.getStudentNo());
+    Member teacherInfo = adminDao.getMember(lessonInfo.getTeacherNo());
+    
+    pendingLessonsInfoMapDetail.put("lessonInfo", lessonInfo);
+    pendingLessonsInfoMapDetail.put("studentInfo", studentInfo);
+    pendingLessonsInfoMapDetail.put("teacherInfo", teacherInfo);
+    pendingLessonsInfoMapDetail.put("dayLessonCountOfMonth", dayLessonCountOfMonth);
+    pendingLessonsInfoMapDetail.put("progressDayLessonCountOfMonth", progressDayLessonCountOfMonth);
+    pendingLessonsInfoMapDetail.put("refund", refund);
+    
+    return pendingLessonsInfoMapDetail;
+  }
+  
+  @Override
+  public int approveInterruption(int lessonNo) throws Exception {
+    adminDao.approveInterruption(lessonNo);
+    return 1;
   }
   
   @Override

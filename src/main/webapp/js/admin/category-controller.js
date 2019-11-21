@@ -49,21 +49,23 @@ class CategoryController {
         console.log(result);
         let html = '';
         for (let i = 0; i < result.pendingLessons.length; i++) {
-          html += '<tr class="my-table-row row-no-'+result.pendingLessons[i].lessonNo+'">'
+          html += '<tr class="my-table-row lesson-row-no-'+result.pendingLessons[i].lessonNo+'">'
           html += '<td>'+result.pendingLessons[i].lessonNo+'</td>';
           html += '<td>'+result.studentList[i].name+'</td>';
           html += '<td>'+result.teacherList[i].name+'</td>';
-          html += '<td>한국대 졸업, 과외경력 20년</td>';
+          html += '<td>중단 요청 수신 </td>';
           html += '</tr>'
         }
         
         let tbody = document.getElementById('tbody-99');
         tbody.innerHTML = html;
-
+        
+        let thisTableRow;
+        
         for (let i = 0; i < result.pendingLessons.length; i++) {
-          let thisTableRow = document.getElementsByClassName('row-no-'+result.pendingLessons[i].lessonNo)[0];
+          thisTableRow = document.getElementsByClassName('lesson-row-no-'+result.pendingLessons[i].lessonNo)[0];
           thisTableRow.addEventListener('click', () =>{
-            location.href = '#';
+            location.href = '/app/admin/interruptionDetail?lessonNo='+result.pendingLessons[i].lessonNo;
           });
         }
       }

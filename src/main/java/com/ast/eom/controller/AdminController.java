@@ -1,16 +1,14 @@
 package com.ast.eom.controller;
 
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.ast.eom.service.AdminService;
 
 @Controller
@@ -32,6 +30,24 @@ public class AdminController {
     Map<String, Object> memberInfoMapForDetail =
         adminService.getInfoMap(memberNo, memberTypeNo);
     session.setAttribute("memberInfoMapForDetail", memberInfoMapForDetail);
+  }
+  
+  @GetMapping("interruptionDetail")
+  public void interruptionDetail(
+      Model model,
+      HttpSession session,
+      int lessonNo) throws Exception {
+    
+    Map<String, Object> pendingLessonsInfoMapDetail =
+        adminService.getPendingLessonsInfoMap(lessonNo);
+    session.setAttribute("pendingLessonsInfoMapDetail", pendingLessonsInfoMapDetail);
+  }
+
+  @ResponseBody
+  @PostMapping("approveIntteruption")
+  public void approveIntteruption(
+      int lessonNo) throws Exception {
+    adminService.approveInterruption(lessonNo);
   }
   
   @ResponseBody
