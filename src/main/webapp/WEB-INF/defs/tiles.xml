@@ -30,6 +30,10 @@
   <definition name="message/*" extends="base1">
     <put-attribute name="body" value="/WEB-INF/jsp/message/{1}.jsp"/>
   </definition>
+  
+  <definition name="view/*" extends="base1">
+    <put-attribute name="body" value="/WEB-INF/jsp/view/{1}.jsp"/>
+  </definition>
 <!-- 
   <definition name="join/*" extends="base2">
     <put-attribute name="body2" value="/WEB-INF/jsp/join/{1}.jsp"/>

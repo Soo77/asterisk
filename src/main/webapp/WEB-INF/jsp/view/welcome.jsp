@@ -7,12 +7,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script language="JavaScript">
-function nextWin()
-{location = "../auth/form.jsp"}
+	console.log("dd");
+	swal({
+	    title: "인증 완료",
+	    text: "로그인이 가능합니다",
+	    icon: "success",
+	    button: "로그인",
+	  })
+	  .then(() => {
+	    location.href = '/app/auth/form';
+	  });
 </script>
 </head>
-<body onLoad="setTimeout('nextWin()', 2000)">
+<body>
   <h1>가입을 환영합니다.</h1>
-  
 </body>
 </html>

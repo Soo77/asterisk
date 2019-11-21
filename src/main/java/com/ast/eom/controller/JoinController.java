@@ -285,7 +285,7 @@ public class JoinController implements Runnable {
       message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailAddress)); 
 
       // 메일 제목 
-      message.setSubject("엄과외 회원가입 인증~"); 
+      message.setSubject("엄과외 회원가입 인증메일입니다"); 
 
       String htmlStr = "<h2>안녕하세요 엄과외입니다!</h2><br><br>" 
           + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
@@ -362,12 +362,6 @@ public class JoinController implements Runnable {
   @ResponseBody
   public int telCheck(String tel) throws Exception {
     return joinService.checkOverTel(tel);
-  }
-  
-  @GetMapping("acCheck")
-  @ResponseBody
-  public int acCheck(String accountno) throws Exception {
-    return joinService.checkOverAccountNo(accountno);
   }
 
 }
