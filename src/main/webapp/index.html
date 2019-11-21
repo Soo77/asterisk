@@ -315,7 +315,6 @@
     $.ajax({
       url: "/app/message/notice",
       success: function (data) {
-    	  console.log(data);
         let message;
         if (data >= 100) {
           message = "&ensp;<span class='badge badge-danger badge-counter'>" + "+99"

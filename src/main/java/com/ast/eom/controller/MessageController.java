@@ -26,6 +26,10 @@ public class MessageController {
   @ResponseBody
   public Object notice(HttpSession session) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
+    
+    if(member == null) {
+      return null;
+    }
     return messageService.messageReadShowAll(member.getMemberNo());
   }
     
