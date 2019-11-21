@@ -61,11 +61,11 @@ DROP TABLE IF EXISTS curr_lesson_conts RESTRICT;
 -- 선생님
 CREATE TABLE teacher (
   tch_no       INTEGER      NOT NULL, -- 선생님번호
-  acc_no       VARCHAR(30)  NOT NULL, -- 계좌번호
-  bank_name    VARCHAR(15)  NOT NULL, -- 은행명
   lesson_certi VARCHAR(255) NOT NULL, -- 과외신고서
   tch_intro    TEXT         NOT NULL, -- 자기소개
   appr_stat    BOOLEAN      NOT NULL DEFAULT false, -- 승인상태
+  bank_name    VARCHAR(15)  NULL,     -- 은행명
+  acc_no       VARCHAR(30)  NULL,     -- 계좌번호
   vid_addr     VARCHAR(255) NULL      -- 자기소개영상주소
 );
 
