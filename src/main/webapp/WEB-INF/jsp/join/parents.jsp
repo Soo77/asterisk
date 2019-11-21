@@ -57,7 +57,8 @@
     </div>
   </div>
 
-  <form method="post" action="parentsjoin" name="userInfo" id="form1" enctype="multipart/form-data">
+  <form method="post" action="parentsjoin" name="userInfo" id="form1" 
+  onsubmit='return joinAndEmail();' enctype="multipart/form-data">
     <div class="main main-raised profile-page">
       <div class="container">
         <div class="row-fluid">
@@ -66,7 +67,7 @@
               <div class="col-md-6 ml-auto mr-auto">
                 <div class="profile">
                   <div class="avatar">
-                    <img src="/images/photo.png" alt="Circle Image" id="view_file"
+                    <img src="/upload/join/default.png" alt="Circle Image" id="view_file"
                       class="img-raised rounded-circle img-fluid">
                   </div>
                   <div class="name">
@@ -239,27 +240,34 @@
   </form>
 
   <script>
-    $('#submitBtn').click(function (e) {
-      e.preventDefault();
-      
-      var va = document.querySelectorAll(".redch");
-      for (var i = 0; i < va.length; i++) {
-        if (va[i].style.color == "red") {
-          va[i].focus();
-          return false;
-        }
-      }
-
-      swal({
-        title: "인증링크를 보냈습니다",
-        text: "이메일을 확인해주세요",
-        icon: "success",
-        button: "로그인",
-      })
-        .then((value) => {
-          document.getElementById('form1').submit();
-        });
-    });
+	  $(document).keydown(function() {
+		  if (event.keyCode == 13) {
+		    return false;
+		  };
+		});
+	  
+   	function joinAndEmail() {
+     
+     var va = document.querySelectorAll(".redch");
+     for (var i = 0; i < va.length; i++) {
+       if (va[i].style.color == "red") {
+         va[i].focus();
+         return false;
+       }
+     }
+     
+     event.preventDefault();
+     
+     swal({
+       title: "인증링크를 보냈습니다",
+       text: "이메일을 확인해주세요",
+       icon: "success",
+       button: "로그인",
+     })
+       .then((value) => {
+         document.getElementById('form1').submit();
+       });
+   	}
   </script>
   
   <!-- 취소 -->
@@ -311,7 +319,7 @@
         $('#id_check').css('color', 'red');
         $("#submitBtn").attr("disabled", true);
       } else if (!idpwtest.test(id)) {
-        $("#id_check").text("아이디는 4~12자의 영문과 숫자로 이루어져야 합니다");
+        $("#id_check").text("아이디는 4~12자의 영문이나 숫자로 이루어져야 합니다");
         $("#id_check").css("color", "red");
         $("#id").css("color", "red");
         $("#submitBtn").attr("disabled", true);

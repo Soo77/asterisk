@@ -40,12 +40,12 @@
     values(#{teacherNo}, 3, #{highSchool}, now());
 
     insert into school(tch_no, sch_type_no, sch_name, mdt, major)
-    values(#{teacherNo}, 4, #{university}, now(), #{major});
+    values(#{teacherNo}, 4, #{university}, now(), #{major})
   </insert>
 
   <insert id="teacherSubjectInsert" parameterType="Map">
     insert into lesson_subject(tch_no, sub_no, rdt, wanted_fee)
-    values(#{teacherNo}, #{subjectNo}, now(), #{wantedFee});
+    values(#{teacherNo}, #{subjectNo}, now(), #{wantedFee})
   </insert>
   
   <insert id="parentsInsert" parameterType="Parents"
@@ -98,7 +98,12 @@
     update member m
     inner join student s on m.mem_no = s.std_no
     set s.parents_no =#{parentsNo}
-    where m.id = #{studentId};
+    where m.id = #{studentId}
   </update>
+  
+<!--   이메일 인증 체크 -->
+  <select id="checkOverKey" parameterType="String" resultType="boolean">
+  select email_checked from member where activation_key=#{activationKey}
+  </select>
 
 </mapper>

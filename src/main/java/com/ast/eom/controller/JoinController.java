@@ -19,6 +19,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -334,9 +335,13 @@ public class JoinController implements Runnable {
   }
 
   @GetMapping("emailConfirm")
-  public String emailConfirm(String key) throws Exception {
-    System.out.println(key);
-    joinService.updateCheck(key);
+  public String emailConfirm(Model model, String key) throws Exception {
+    boolean checkKey = joinService.checkOverKey(key);
+    model.addAttribute("checkKey", checkKey);
+    if(checkKey == false) {
+      joinService.updateCheck(key);
+      return "/view/welcome";
+    }
     return "/view/welcome";
   }
 
