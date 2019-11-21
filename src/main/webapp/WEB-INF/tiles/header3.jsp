@@ -5,6 +5,12 @@
   .my-logo {
     font-weight: bold;
   }
+  
+  @media (max-width: 991px) {
+  #noticeHidden {
+  display: none !important;
+  }
+  }
 </style>
 
 <nav class="navbar navbar-transparent navbar-color-on-scroll fixed-top navbar-expand-lg" color-on-scroll="100"
@@ -64,7 +70,7 @@ id="sectionsNav">
               <i class="material-icons">person</i> 마이페이지
             </a>
             <a href="javascript:void(0)" id="message-menu" class="dropdown-item">
-              <i class="material-icons">message</i> 쪽지함
+              <i class="material-icons">message</i> 쪽지함<span class="notice" style="color: #333"></span>
             </a>
             <a href="/app/admin/list" class="dropdown-item admin-display" style="display: none;">
               <i class="material-icons">assignment_ind</i> 관리자메뉴
@@ -74,10 +80,33 @@ id="sectionsNav">
             </a>
           </div>
         </li>
+        <span id="noticeHidden" class="notice" style="margin-left: -10px !important; 
+          color: #333"></span>
       </ul>
     </div>
   </div>
 </nav>
+
+<script>
+$.ajax({
+  url: "/app/message/notice",
+  success: function(data) {
+	  let message;
+	  if(data >= 100){
+		  message = "&ensp;<span class='badge badge-danger badge-counter'>"+"+99"
+		  message += "</span>"
+	  
+	  } else if(data == 0){
+	  } else {
+		  message = "&ensp;<span class='badge badge-danger badge-counter'>"+data
+		  message += "</span>"
+	  }
+    $(".notice").append(message);
+  }, error: function(){
+    consol.elog("실패");
+  }
+})
+</script>
 
 <script>
   $.ajax({

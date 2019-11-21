@@ -22,10 +22,17 @@ public class MessageController {
   @Autowired
   MessageService messageService;
   
+  @GetMapping("notice")
+  @ResponseBody
+  public Object notice(HttpSession session) throws Exception {
+    Member member = (Member)session.getAttribute("loginUser");
+    return messageService.messageReadShowAll(member.getMemberNo());
+  }
+    
   @GetMapping("list")
   public void list(HttpSession session, Model model) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
-    model.addAttribute("messageReadShowAll", messageService.messageReadShowAll(member.getMemberNo()));
+    session.setAttribute("messageReadShowAll", messageService.messageReadShowAll(member.getMemberNo()));
 
     List<Member> message = messageService.messageList(member.getMemberNo());
     model.addAttribute("messageMem", message);
