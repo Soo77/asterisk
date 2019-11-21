@@ -532,7 +532,7 @@
 			updateButton.style.display = 'inline';
 			var addButton = document.querySelector('#btnDelete');
 			addButton.style.display = 'inline';
-		} else if (${loginUser.memberTypeNo == 1 || loginUser.memberTypeNo == 2 || 
+		} else if (${lessonState == 4 || loginUser.memberTypeNo == 1 || loginUser.memberTypeNo == 2 || 
 							(loginUser.memberTypeNo == 3 && (lessonState == 3 || lessonState == 5))}) {
   			var sdt = document.querySelector('#modalLessonDate');
   			sdt.readOnly = true;
