@@ -65,9 +65,9 @@
 
   <insert id="wantedLessonFotStudentInsert" parameterType="WantedLesson">
     insert into
-    wanted_lesson(std_no,sub_no,rdt)
+    wanted_lesson(std_no,sub_no,rdt,wanted_fee)
     values
-    (#{studentNo},#{subjectNo},now())
+    (#{studentNo},#{subjectNo},now(),#{wantedFee})
   </insert>
   
 <!--   아이디 중복 -->
