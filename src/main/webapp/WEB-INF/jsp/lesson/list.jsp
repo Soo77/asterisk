@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
+
 <head>
   <style>
     .img-fluid {
@@ -18,6 +19,9 @@
       /* Added */
       margin-bottom: 10px;
       /* Added */
+    }
+    .swal-title {
+      font-size: 25px;   
     }
   </style>
 </head>
@@ -37,17 +41,14 @@
 <div class="main main-raised">
   <div class="container">
     <div class="section text-center">
-
+      
+     <input type="hidden" name="approve" value="${memberInfoMap.teacher.approvementState}">
       <c:choose>
-        <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState ne 'true'}">
-          <input type="button" class="btn btn-primary currAddBtn"
-            style="margin-bottom: 15px; left: 335px; display: none;" value="새 커리큘럼 등록"
-            onClick="location.href='currAdd'">
+        <c:when test="${loginUser.memberTypeNo eq 3}">
+          <input id="currAddBtn" type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
+            value="새 커리큘럼 등록"  >
         </c:when>
-        <c:when test="${loginUser.memberTypeNo eq 3 and memberInfoMap.teacher.approvementState eq 'true'}">
-          <input type="button" class="btn btn-primary currAddBtn" style="margin-bottom: 15px; left: 335px;"
-            value="새 커리큘럼 등록" onClick="location.href='currAdd'">
-        </c:when>
+         
 
       </c:choose>
 
@@ -127,16 +128,16 @@
                             </button>
                           </div>
                           <span class="messageLessonNo${i}" id="${lesson.lessonNo}">수업번호 : ${lesson.lessonNo}</span>
-                          수업과목:
+                                                                 수업과목:
                           <c:choose>
                             <c:when test="${lesson.subject.schoolTypeNo eq 1}">
-                              초등
+                                                                  초등
                             </c:when>
                             <c:when test="${lesson.subject.schoolTypeNo eq 2}">
-                              중등
+                                                                  중등
                             </c:when>
                             <c:when test="${lesson.subject.schoolTypeNo eq 3}">
-                              고등
+                                                                   고등
                             </c:when>
                             <c:otherwise>
                             </c:otherwise>
@@ -240,7 +241,8 @@
 
 <!-- 메세지 전송 -->
 <script>
-  function lessonMessage(no) {
+  function lessonMessage(no)
+  {
     var memberNo = document.getElementById("lessonMessage" + no).value;
     var lessonNo = document.getElementsByClassName("messageLessonNo" + no)[0].id;
     console.log(memberNo);
@@ -270,6 +272,27 @@
   }
 </script>
 
+<!-- currAddBtn 에 인증된 선생님만 add 할 수 있게 -->
+<script>
+  $('#currAddBtn').click(function (e) {
+    e.preventDefault();
+    
+    var approveVal = $('input[name=approve]').val();
+    console.log(approveVal);
+    
+    if (approveVal == 'false') {
+      swal({
+        title: "인증이 된 선생님만 등록할 수 있습니다.",
+        text: "인증이 된 선생님만 등록할 수 있습니다.",
+        icon: "info",  
+        buttons: "확인", 
+      });
+    } else { 
+      window.location='currAdd'; 
+    }
+    
+  })
+</script>
 
 
 <!--   Core JS Files   -->
