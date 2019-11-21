@@ -157,7 +157,7 @@
                           
                           <div class="messageRow">
                             <input type="text" id="std${i}" placeholder="학생 아이디 입력">
-                            <button onclick="list(this)" id="${i}" class="btn btn-primary btn-sm">검색</button>
+                            <button onclick="list(${i})" class="btn btn-primary btn-sm">검색</button>
                           </div>
                           
                           <div id="searchResult${i}"></div>
@@ -200,9 +200,17 @@
 </div>
 
 <script>
+  for (let i = 0; i < ${i}; i++) {
+    $(document).on('keyup', '#std'+i, function(event) {
+      if(event.keyCode==13) {list(i);}
+    });
+  }
+</script>
+
+<script>
 
   function list(search) {
-    var no = search.id;
+    var no = search;
     var id = document.getElementById("std" + no).value;
     $.ajax({
       url: "/app/message/searchStd",
