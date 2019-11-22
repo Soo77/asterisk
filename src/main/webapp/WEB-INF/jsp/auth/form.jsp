@@ -114,25 +114,40 @@
   function loginBtn(){
 	  var id = document.getElementById("id").value;
 	  var pw = document.getElementById("pw").value;
-		$.ajax({
-		    url : 'login',
-		    data : "id="+id+"&pw="+pw,
-		    success : function(result) {
-		    	if(result.memberTypeNo == null){
-			    	$("#loginCheck").text("가입되지 않은 정보입니다");
-			    	$("#loginCheck").css("color","red");
-		    	} else if(result.memberTypeNo == 1 || result.memberTypeNo == 2){
-		    		location.href="../member/list?memberTypeNo=3";
-		    	} else if(result.memberTypeNo == 3){
-		    		location.href="../member/list?memberTypeNo=1";
-		    	} else{
-		    		location.href="/";
-		    	}
-		    },
-		    error : function() {
-		      console.log("실패");
-		    }
-		});
+	  
+	  $.ajax({
+		  url : 'loginId',
+		  data : "id="+id,
+		  success : function(data){
+			  if(data == 0){
+				  $("#loginCheck").text("가입되지 않은 아이디입니다");
+			      $("#loginCheck").css("color","red");
+			  } else{
+				$.ajax({
+				    url : 'loginPw',
+				    data : "id="+id+"&pw="+pw,
+				    success : function(result) {
+				    	if(result == ""){
+					    	$("#loginCheck").text("비밀번호가 틀렸습니다");
+					    	$("#loginCheck").css("color","red");
+				    	} else if(result.memberTypeNo == 1 || result.memberTypeNo == 2){
+				    		location.href="../member/list?memberTypeNo=3";
+				    	} else if(result.memberTypeNo == 3){
+				    		location.href="../member/list?memberTypeNo=1";
+				    	} else{
+				    		location.href="/";
+				    	}
+				    },
+				    error : function() {
+				      console.log("실패2");
+				    }
+				});
+			  }
+		  },
+		  error : function() {
+		      console.log("실패1");
+		  }
+	  })
 	}
 </script>
 

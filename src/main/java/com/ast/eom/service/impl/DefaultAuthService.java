@@ -32,5 +32,15 @@ public class DefaultAuthService implements AuthService {
   public Member login(Map<String, String> params) throws Exception {
     return authDao.login(params);
   }
+
+	@Override
+	public int loginId(String id) throws Exception {
+		return authDao.loginId(id);
+	}
+	
+	@Override
+	public int loginPw(Map<String, String> params) throws Exception {
+		return authDao.loginPw(params);
+	}
   
 }

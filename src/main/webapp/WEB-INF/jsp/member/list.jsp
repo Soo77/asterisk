@@ -475,7 +475,7 @@
                 html += '<div class="row no-gutters">';
                 html += '<div class="col-md-3">';
                 html += '<img src="/upload/join/' + resultList[i].profilePhoto + '" alt="Thumbnail Image"';
-                html += 'class="img-raised rounded-circle img-fluid">';
+                html += 'class="img-raised rounded-circle img-fluid" onError="this.src=\'/upload/join/default.png\'">';
                 html += '</div>';
                 html += '<div class="col-md-9">';
                 html += '<h5 class="title">';
