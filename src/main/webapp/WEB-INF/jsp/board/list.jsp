@@ -9,6 +9,14 @@
       margin: 2px;
     }
     
+    .custom-select {
+      height: calc(2.125rem + 2px);
+      padding-top: 0.375rem;
+      padding-bottom: 0.375rem;
+      font-size: 75%;
+      width: 120px;
+    }
+    
   </style>
 </head>
 

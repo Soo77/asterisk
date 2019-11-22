@@ -26,6 +26,10 @@
       margin: 0px;
     }
     
+    .form-control{
+      border-radius: 5px;
+    }
+    
     .commentUpdateAndDelete {
       text-align: right;
     }
@@ -101,6 +105,11 @@
         linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
       border: 0.5px solid #d2d2d2;
       border-radius: .25rem;
+    }
+    
+    #commentContents {
+      padding: 10px;
+      border-radius: 5px;
     }
 
     @media (min-width: 576px) {
@@ -257,7 +266,7 @@
         <div class="col">
           <div class="form-group">
             <label for="inputTitle">제목</label>
-            <input type="text" class="form-control" id="inputTitle" name="title" value="${board.title}" readonly>
+            <input type="text" class="form-control pl-3" id="inputTitle" name="title" value="${board.title}" readonly>
           </div>
         </div>
       </div>
@@ -267,21 +276,21 @@
         <div class="col">
           <div class="form-group">
             <label for="id">작성자</label>
-            <input type="text" class="form-control" id="id" value="${board.memberId}" readonly>
+            <input type="text" class="form-control pl-3" id="id" value="${board.memberId}" readonly>
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
             <label for="createdDate">작성일</label>
-            <input type="text" class="form-control" id="createdDate" name="createdDate" value="${board.createdDate}" readonly>
+            <input type="text" class="form-control pl-3" id="createdDate" name="createdDate" value="${board.createdDate}" readonly>
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
             <label for="viewCount">조회수</label>
-            <input type="text" class="form-control" id="viewCount" name="viewCount" value="${board.viewCount}" readonly>
+            <input type="text" class="form-control pl-3" id="viewCount" name="viewCount" value="${board.viewCount}" readonly>
           </div>
         </div>
         
@@ -289,7 +298,7 @@
       
       <div class="row">
         <div class="col-12">
-          <textarea id="inputContents" class="form-control"
+          <textarea id="inputContents" class="form-control pl-3"
             name="contents" rows="30" style="resize: none;" readonly>${board.contents}</textarea>
         </div>
       </div>
