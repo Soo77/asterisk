@@ -15,7 +15,7 @@
       }
     </style> -->
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg7.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg/bg5.jpg')">
 </div>
 <div class="main main-raised"> 
   <div class="container">
