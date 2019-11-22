@@ -26,7 +26,7 @@
               <div class="profile">
                 <div class="avatar">
                   <img src="/upload/join/${loginUser.profilePhoto}" alt="Circle Image"
-                    class="img-raised rounded-circle img-fluid profile-photo">
+                    class="img-raised rounded-circle img-fluid profile-photo" onError="this.src='/upload/join/default.png'">
                   <input id="profile-photo-upload" type="file" name="profilePhotoName" hidden>
                 </div>
                 <div class="name">
