@@ -45,8 +45,6 @@
   object-fit: cover;
 }
 
-
-
 .btn-primary:not (:disabled ):not (.disabled ):active, 
 .btn-primary:not (:disabled ):not (.disabled ).active, .show>.btn-primary.dropdown-toggle
   {
@@ -112,26 +110,26 @@
 
               <label class="gender title">성별</label>
               <div class="btn-group-toggle">
-                <label class="btn btn-primary gender"> 
+                <label class="btn btn-primary gender my-gender-btn disabled"> 
                 <input class="form-check-input" type="radio" name="gender" id="gender_1" value="M"> 남자
                 </label> 
-                <label class="btn btn-primary gender"> 
+                <label class="btn btn-primary gender my-gender-btn disabled"> 
                 <input class="form-check-input" type="radio" name="gender" id="gender_2" value="F"> 여자
                 </label>
               </div>
 
               <label class="lessons_fee title">수업료</label>
               <div class="btn-group-toggle">
-                <label class="btn btn-primary wantedFee"> 
+                <label class="btn btn-primary wantedFee my-fee-btn disabled"> 
                 <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee1" value="1"> 20만원 이하
                 </label> 
-                <label class="btn btn-primary wantedFee"> 
+                <label class="btn btn-primary wantedFee my-fee-btn disabled"> 
                 <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee2" value="2"> 20~30 만원
                 </label> 
-                <label class="btn btn-primary wantedFee"> 
+                <label class="btn btn-primary wantedFee my-fee-btn disabled"> 
                 <input  class="form-check-input" type="radio" name="wantedFee" id="wantedFee3" value="3"> 30~40 만원
                 </label> 
-                <label class="btn btn-primary wantedFee"> 
+                <label class="btn btn-primary wantedFee my-fee-btn disabled"> 
                 <input class="form-check-input" type="radio" name="wantedFee" id="wantedFee4" value="4"> 40만원 이상
                 </label>
               </div>
@@ -541,6 +539,24 @@ $(document).ready(function(){
       
 	});
 });
+
+</script>
+
+<script>
+  let genderButtons = document.getElementsByClassName('my-gender-btn');
+  let feeButtons = document.getElementsByClassName('my-fee-btn');
+
+  for (genderBtn of genderButtons) {
+    genderBtn.addEventListener('click', (e) => {
+      console.log('yap!');
+      for (genderBtn of genderButtons) {
+        genderBtn.setAttribute('class', 'btn btn-primary gender my-gender-btn disabled');
+        console.log('for문 안');
+      }
+      e.target.setAttribute('class', 'btn btn-primary gender my-gender-btn');
+      console.log('test');
+    });
+  }
 
 </script>
 
