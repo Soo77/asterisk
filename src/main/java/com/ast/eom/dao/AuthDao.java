@@ -8,4 +8,6 @@ public interface AuthDao {
   int findPw(Member member) throws Exception;
   int pwChange(Member member) throws Exception;
   Member login(Map<String, String> params) throws Exception;
+  int loginId(String id) throws Exception;
+  int loginPw(Map<String, String> params) throws Exception;
 }
