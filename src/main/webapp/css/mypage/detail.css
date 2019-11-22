@@ -42,6 +42,10 @@ textarea {
   padding-right: 15px;
 }
 
+.form-control{
+  border-radius: 5px;
+}
+
 .childLessonButton {
   margin-top: 2px;
   padding-left: 15px;
@@ -211,3 +215,4 @@ textarea {
   border-bottom-left-radius: 0.35rem;
   border-bottom-right-radius: 0.35rem;
 }
+

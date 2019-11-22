@@ -54,9 +54,9 @@
 }
 </style>
 </head>
-<body style="overflow: hidden;">
+<body style="overflow: hidden; background-color: #FFF;">
   
-	<div class="card-header d-flex justify-content-between p-2" style="background-color: #F0F0F0;">
+	<div class="card-header d-flex justify-content-between p-2">
 		<div class="d-flex">
 			<div class="profile-photo">
 				<img class="avatar" onError="javascript:src='/upload/join/default.png'"
@@ -180,7 +180,16 @@
           data:"lessonNo="+lessonNo,
           success : function(result) {
         	  if(result != ""){
-        		  alert("이미 등록된 수업입니다")
+        		  swal({
+				       title: "이미 등록된 수업입니다",
+				       text: "나의 과외를 확인해주세요",
+				       icon: "warning",
+				       button: "나의 과외",
+				      })
+				       .then((value) => {
+				    	   var url = "/app/lesson/list";
+				         window.open(url);
+				       });
         		  return false;
         	  } else{
         		  $.ajax({
@@ -188,9 +197,16 @@
         	          type:"post",
         	          data:"stdNo="+memberNo+"&lessonNo="+lessonNo,
         	          success : function(result) {
-        	            var url = "/app/lesson/list";
-        	            alert("나의 수업을 확인해주세요");
-        	            window.open(url);
+        	        	  swal({
+     	                  title: "수업이 등록되었습니다",
+     	                  text: "나의 과외를 확인해주세요",
+     	                  icon: "success",
+     	                  button: "나의 과외",
+     	                 })
+     	                  .then((value) => {
+     	                    var url = "/app/lesson/list";
+     	                    window.open(url);
+     	                  });
         	          },
         	          error : function() {
         	           console.log("실패");
