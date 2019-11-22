@@ -39,7 +39,7 @@
 
           <div class="form-group">
             <label for="inputId">아이디</label>
-            <input type="text" class="form-control" id="inputId" value="${loginUser.id}" readonly>
+            <input type="text" class="form-control pl-3" id="inputId" value="${loginUser.id}" readonly>
           </div>
 
           <div class="form-group">
@@ -57,22 +57,22 @@
             <label for="inputEmail">이메일</label>
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" id="inputEmail" value="${mypageEmail[0]}" name="email1" readonly>
+                <input type="text" class="form-control pl-3" id="inputEmail" value="${mypageEmail[0]}" name="email1" readonly>
               </div>
               <div class="col">
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <div class="input-group-text">@</div>
                   </div>
-                  <input type="text" class="form-control" id="inputEmail2" value="${mypageEmail[1]}" name="email2" readonly>
+                  <input type="text" class="form-control pl-3" id="inputEmail2" value="${mypageEmail[1]}" name="email2" readonly>
                 </div>
-              </div>
+              </div> 
             </div>
           </div>
 
           <div class="form-group">
             <label for="inputDateOfBirth">생년월일</label>
-            <input type="date" class="form-control" id="inputDateOfBirth" value="${loginUser.dateOfBirth}" readonly>
+            <input type="date" class="form-control pl-3" id="inputDateOfBirth" value="${loginUser.dateOfBirth}" readonly>
           </div>
 
           <label for="addressSearchButton">주소</label>
@@ -80,7 +80,7 @@
             <div class="col">
               <div class="d-flex">
                 <div class="flex-item pr-1" style="flex-basis: 93%;">
-                  <input type="text" id="inputAddress" class="form-control" readonly value="${loginUser.addressCity}"
+                  <input type="text" id="inputAddress" class="form-control pl-3" readonly value="${loginUser.addressCity}"
                     name="addressCity">
                 </div>
                 <div class="flex-item" style="flex-basis: 7%;">
@@ -92,20 +92,20 @@
 
           <div class="form-group pt-1">
             <label for="inputAddress2" id="address2-label" class="col-sm-2 col-form-label"></label>
-            <input type="text" class="form-control" id="inputAddress2" value="${loginUser.addressSuburb}" readonly
+            <input type="text" class="form-control pl-3" id="inputAddress2" value="${loginUser.addressSuburb}" readonly
               name="addressSuburb">
           </div>
 
           <div class="form-group">
             <label for="inputTel">전화번호</label>
-            <input type="text" class="form-control" id="inputTel" value="${loginUser.tel}" name="tel">
+            <input type="text" class="form-control pl-3" id="inputTel" value="${loginUser.tel}" name="tel">
           </div>
 
           <div class="form-group teacherDisplay">
             <label for="inputHighSchool">고등학교</label>
             <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
               <c:if test="${school.schoolTypeNo eq 3}">
-                <input type="text" class="form-control" id="inputHighSchool" value="${school.schoolName}" readonly>
+                <input type="text" class="form-control pl-3" id="inputHighSchool" value="${school.schoolName}" readonly>
               </c:if>
             </c:forEach>
           </div>
@@ -114,7 +114,7 @@
             <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
               <c:if test="${school.schoolTypeNo eq 4}">
                 <c:set var="teacherUniversityConfirmation" value="${school.confirmed}" />
-                <input type="text" class="form-control" id="inputUniversity" value="${school.schoolName}" readonly>
+                <input type="text" class="form-control pl-3" id="inputUniversity" value="${school.schoolName}" readonly>
               </c:if>
             </c:forEach>
           </div>
@@ -123,7 +123,7 @@
             <label for="major">전공</label>
             <c:forEach items="${memberInfoMap.teacher.schools}" var="school">
               <c:if test="${school.schoolTypeNo eq 4}">
-                <input type="text" class="form-control" id="major" name="major" value="${school.major}">
+                <input type="text" class="form-control pl-3" id="major" name="major" value="${school.major}">
               </c:if>
             </c:forEach>
           </div>
@@ -154,17 +154,17 @@
                 class="btn btn-outline-primary btn-sm px-3 mb-1 remove-subject-button"><strong>&minus;</strong></button>
             </div>
             <div class="col-sm-10 d-flex">
-              <select class="form-control pt-0 mx-1 wantedSubject-school" name="schoolTypeNo">
+              <select class="form-control pt-0 mx-1 wantedSubject-school pl-3" name="schoolTypeNo">
                 <option value=1>초등학교</option>
                 <option value=2>중학교</option>
                 <option value=3>고등학교</option>
               </select>
-              <select class="form-control pt-0 mx-1 wantedSubject-subject" name="subjectNo">
+              <select class="form-control pt-0 mx-1 wantedSubject-subject pl-3" name="subjectNo">
                 <option value=1>국어</option>
                 <option value=2>영어</option>
                 <option value=3>수학</option>
               </select>
-              <select class="form-control pt-0 mx-1 wantedSubject-fee" name="wantedFee">
+              <select class="form-control pt-0 mx-1 wantedSubject-fee pl-3" name="wantedFee">
                 <option value=1>20만원이하</option>
                 <option value=2>20만원~30만원</option>
                 <option value=3>30만원~40만원</option>
@@ -240,19 +240,19 @@
 
           <div class="form-group teacherDisplay studentDisplay">
             <label for="subject-start-time">과외 시작시간</label><br>
-            <input type='time' value='${loginUser.lessonStartTime}' id="subject-start-time" class="form-control"
+            <input type='time' value='${loginUser.lessonStartTime}' id="subject-start-time" class="form-control pl-3"
               name="lessonStartTime" />
           </div>
 
           <div class="form-group teacherDisplay studentDisplay">
             <label for="subject-end-time">과외 종료시간</label><br>
-            <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control"
+            <input type='time' value='${loginUser.lessonEndTime}' id="subject-end-time" class="form-control pl-3"
               name="lessonEndTime" />
           </div>
 
           <div class="form-group studentDisplay">
             <label for="inputRequirements">과외 희망사항</label>
-            <textarea class="form-control" id="inputRequirements" rows="8"
+            <textarea class="form-control pl-3" id="inputRequirements" rows="8"
               name="requirementsToTeacher">${memberInfoMap.student.requirementsToTeacher}</textarea>
           </div>
 
