@@ -20,12 +20,11 @@
   </style>
 </head>
 
-<div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('assets/img/bg3.jpg')">
+<div id="background" class="page-header header-filter" data-parallax="true"> 
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
-        <div class="brand text-center">
+        <div class="brand text-center"> 
           <c:if test="${boardTypeNo == 1}">
             <h1>공부상담</h1>
           </c:if>
@@ -177,4 +176,16 @@
   	  location.href = "list?boardTypeNo=" + ${boardTypeNo} + "&pageSize=" + $(e.target).val()
   			  + "&curPage=1&searchType=" + $('#searchType').val() + "&keyword=" + $('#keyword').val();
   	});
+  </script>
+  
+  <script>
+    let boardNo = $('input[name=boardTypeNo]').val();
+    console.log(boardNo);
+    
+    if (boardNo == 4) {
+      console.log("들오나요..");
+      document.getElementById('background').style.backgroundImage= "url('/assets/img/bg/bg19.jpg')"
+    } else { 
+      document.getElementById('background').style.backgroundImage= "url('/assets/img/bg/bg10.jpg')" 
+    } 
   </script>
