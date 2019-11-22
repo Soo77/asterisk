@@ -21,21 +21,26 @@
   <div class="container pt-3">
       <div class="row-fluid">
         <div class="col">
-          <h3><b>수업 정보</b></h3>
+          <h3><b>과외 정보</b></h3>
           <hr>
+          <div class="form-group">
+            <label for="lessonNo">과외 번호</label>
+            <input type="text" class="form-control pl-2" id="lessonNo" value="${pendingLessonsInfoMapDetail.lessonInfo.lessonNo}" readonly>
+          </div>
+          
           <div class="form-group">
             <label for="subjectName">과목 이름</label>
             <c:choose>
               <c:when test="${pendingLessonsInfoMapDetail.lessonInfo.subject.schoolTypeNo eq 1}">
-                <input name="subject" id="subject" class="form-control" 
+                <input name="subject" id="subject" class="form-control pl-2" 
                 value="초등 ${pendingLessonsInfoMapDetail.lessonInfo.subjectName}" readOnly>
               </c:when>
               <c:when test="${pendingLessonsInfoMapDetail.lessonInfo.subject.schoolTypeNo eq 2}">
-                <input name="subject" id="subject" class="form-control" 
+                <input name="subject" id="subject" class="form-control pl-2" 
                 value="중등 ${pendingLessonsInfoMapDetail.lessonInfo.subjectName}" readOnly>
               </c:when>
               <c:when test="${pendingLessonsInfoMapDetail.lessonInfo.subject.schoolTypeNo eq 3}">
-                <input name="subject" id="subject" class="form-control" 
+                <input name="subject" id="subject" class="form-control pl-2" 
                 value="고등 ${pendingLessonsInfoMapDetail.lessonInfo.subjectName}" readOnly>
               </c:when>
             </c:choose>
@@ -43,91 +48,157 @@
         </div>
       </div>
 
-      <div class="row-fluid">
+      <div class="row-fluid mt-5">
         <div class="col">
           <h3><b>학생 정보</b></h3>
           <hr>
           <div class="form-group">
             <label for="stdId">이름</label>
-            <input type="text" class="form-control" id="stdName" value="${pendingLessonsInfoMapDetail.studentInfo.name}" readonly>
+            <input type="text" class="form-control pl-2" id="stdName" value="${pendingLessonsInfoMapDetail.studentInfo.name}" readonly>
           </div>
   
           <div class="form-group">
             <label for="stdEmail1">이메일</label>
-            <input type="text" class="form-control" id="stdEmail1" value="${pendingLessonsInfoMapDetail.studentInfo.email}" name="stdEmail1"
+            <input type="text" class="form-control pl-2" id="stdEmail1" value="${pendingLessonsInfoMapDetail.studentInfo.email}" name="stdEmail1"
               readonly>
           </div>
           
           <div class="form-group">
-            <label for="stdStopReason">학생 중단 사유</label>
-            <textarea class="form-control" id="stdStopReason" rows="8" name="stdStopReason"
+            <label for="stdStopReason">중단 사유</label>
+            <textarea class="form-control pl-2" id="stdStopReason" rows="8" name="stdStopReason"
                 readonly>${pendingLessonsInfoMapDetail.lessonInfo.studentStopReason}</textarea>
           </div>
         </div>
       </div>
       
-      <div class="row-fluid">
+      <div class="row-fluid mt-5">
         <div class="col">
           <h3><b>선생님 정보</b></h3>
           <hr>
           <div class="form-group">
             <label for="tchName">이름</label>
-            <input type="text" class="form-control" id="tchName" value="${pendingLessonsInfoMapDetail.teacherInfo.name}"readonly>
+            <input type="text" class="form-control pl-2" id="tchName" value="${pendingLessonsInfoMapDetail.teacherInfo.name}"readonly>
           </div>
   
           <div class="form-group">
             <label for="tchEmail1">이메일</label>
-            <input type="text" class="form-control" id="tchEmail1" value="${pendingLessonsInfoMapDetail.teacherInfo.email}" name="tchEmail1"
+            <input type="text" class="form-control pl-2" id="tchEmail1" value="${pendingLessonsInfoMapDetail.teacherInfo.email}" name="tchEmail1"
               readonly>
           </div>
           
           <div class="form-group">
-            <label for="tchStopReason">선생님 중단 사유</label>
-            <textarea class="form-control" id="tchStopReason" rows="8" name="tchStopReason"
+            <label for="tchStopReason">중단 사유</label>
+            <textarea class="form-control pl-2" id="tchStopReason" rows="8" name="tchStopReason"
                 readonly>${pendingLessonsInfoMapDetail.lessonInfo.teacherStopReason}</textarea>
           </div>
         </div>
       </div>
       
-      <div class="row-fluid">
+      <div class="row-fluid mt-5">
         <div class="col">
           <h3><b>수업 정산</b></h3>
           <hr>
           <div class="form-group">
-            <label for="lessonFee">월 수업료</label>
-            <input type="text" class="form-control" id="lessonFee" 
-            value="${pendingLessonsInfoMapDetail.lessonInfo.lessonFee}" name="lessonFee"
-              readonly>
+<%--           <label for="lessonFee">월 과외료</label> <input type="text"
+            class="form-control" id="lessonFee"
+            value="${pendingLessonsInfoMapDetail.lessonInfo.lessonFee}"
+            name="lessonFee" readonly> --%>
+            
+            <label for="lessonFee">월 과외료</label>
+            <div class="form-group has-default bmd-form-group pt-0">
+              <div class="d-flex">
+                <div class="flex-item" style="flex-basis: 99%;">
+                  <input id="lessonFee" name=lessonFee type="text" class="form-control pl-2"
+                    value="${pendingLessonsInfoMapDetail.lessonInfo.lessonFee}" readonly>
+                </div>
+                <div class="flex-item align-self-center pl-1" style="flex-basis: 1%;">
+                  <span>원</span>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+<%--           <label for=dayLessonCountOfMonth>한달 과외일수</label> <input
+            type="text" class="form-control" id="dayLessonCountOfMonth"
+            value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth}"
+            name="dayLessonCountOfMonth" readonly> --%>
+            
+          <label for="dayLessonCountOfMonth">한달 과외일수</label>
+          <div class="form-group has-default bmd-form-group pt-0">
+            <div class="d-flex">
+              <div class="flex-item" style="flex-basis: 99%;">
+                <input id="dayLessonCountOfMonth" name=dayLessonCountOfMonth type="text" class="form-control pl-2"
+                  value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth}" readonly>
+              </div>
+              <div class="flex-item align-self-center pl-1" style="flex-basis: 1%;">
+                <span>일</span>
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div class="form-group">
+<%--           <label for="progressDayLessonCountOfMonth">이번 달에 진행된 과외일수</label> <input
+            type="text" class="form-control" id="progressDayLessonCountOfMonth"
+            value="${pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}"
+            name="progressDayLessonCountOfMonth" readonly> --%>
           
-          <div class="form-group">
-            <label for="lessonFee">한달 수업일수</label>
-            <input type="text" class="form-control" id="lessonFee" 
-            value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth}" name="lessonFee"
-              readonly>
+          <label for="progressDayLessonCountOfMonth">진행된 과외일수</label>
+          <div class="form-group has-default bmd-form-group pt-0">
+            <div class="d-flex">
+              <div class="flex-item" style="flex-basis: 99%;">
+                <input id="progressDayLessonCountOfMonth" name=progressDayLessonCountOfMonth type="text" class="form-control pl-1"
+                  value="${pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}" readonly>
+              </div>
+              <div class="flex-item align-self-center pl-1" style="flex-basis: 1%;">
+                <span>일</span>
+              </div>
+            </div>
           </div>
-          
-          <div class="form-group">
-            <label for="lessonFee">이번 달에 진행된 수업일수</label>
-            <input type="text" class="form-control" id="lessonFee" 
-            value="${pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}" name="lessonFee"
-              readonly>
-          </div>
-          
-          <div class="form-group">
-            <label for="lessonFee">잔여 수업일수</label>
-            <input type="text" class="form-control" id="lessonFee" 
+        </div>
+
+        <div class="form-group">
+<%--           <label for="remainingLessonDay">잔여 과외일수</label> <input
+            type="text" class="form-control" id="remainingLessonDay"
             value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth
-            - pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}" name="lessonFee"
-              readonly>
+          - pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}"
+            name="remainingLessonDay" readonly> --%>
+            
+          <label for="remainingLessonDay">잔여 과외일수</label>
+          <div class="form-group has-default bmd-form-group pt-0">
+            <div class="d-flex">
+              <div class="flex-item" style="flex-basis: 99%;">
+                <input id="remainingLessonDay" name=remainingLessonDay type="text" class="form-control pl-2"
+                  value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth
+          - pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}" readonly>
+              </div>
+              <div class="flex-item align-self-center pl-1" style="flex-basis: 1%;">
+                <span>일</span>
+              </div>
+            </div>
           </div>
-          
-          <div class="form-group">
-            <label for="lessonFee">환불금액</label>
-            <input type="text" class="form-control" id="lessonFee" 
-            value="${pendingLessonsInfoMapDetail.refund}" name="lessonFee"
-              readonly>
+        </div>
+
+        <div class="form-group">
+<%--           <label for="refund">환불금액</label> <input type="text"
+            class="form-control" id="refund"
+            value="${pendingLessonsInfoMapDetail.refund}"
+            name="refund" readonly> --%>
+            
+          <label for="refund">환불 금액</label>
+          <div class="form-group has-default bmd-form-group pt-0">
+            <div class="d-flex">
+              <div class="flex-item" style="flex-basis: 99%;">
+                <input id="refund" name=refund type="text" class="form-control pl-2"
+                  value="${pendingLessonsInfoMapDetail.refund}" readonly>
+              </div>
+              <div class="flex-item align-self-center pl-1" style="flex-basis: 1%;">
+                <span>원</span>
+              </div>
+            </div>
           </div>
+        </div>
           
           <div class="pt-2 pb-2 text-right">
             <button type="button" class="btn btn-danger" id="approveIntteruption">중단 승인</button>

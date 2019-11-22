@@ -11,7 +11,7 @@
   }
 </style>
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg4.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -43,28 +43,28 @@
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url1">시작일</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular"
+              <input name="sdt" id="basic-url1" type="date" class="form-control pl-2" placeholder="Regular"
                 value="${lesson.startDate}" readonly>
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url2">종료일</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular"
+              <input name="edt" id="basic-url2" type="date" class="form-control pl-2" placeholder="Regular"
                 value="${lesson.endDate}"readonly>
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url3">시작 시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="st" id="basic-url3" type="time" class="form-control" placeholder="Regular"
+              <input name="st" id="basic-url3" type="time" class="form-control pl-2" placeholder="Regular"
                 value="${lesson.curriculum.curriculumLessonStartTime}"readonly>
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
             <label for="basic-url4">종료 시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="et" id="basic-url4" type="time" class="form-control" placeholder="Regular"
+              <input name="et" id="basic-url4" type="time" class="form-control pl-2" placeholder="Regular"
                 value="${lesson.curriculum.curriculumLessonEndTime}"readonly>
             </div>
           </div>
@@ -139,19 +139,19 @@
             <c:choose>
               <c:when test="${lesson.subject.schoolTypeNo eq 1}">
                 <div class="form-group has-default bmd-form-group pt-0">
-                  <input name="schoolType" type="text" class="form-control"
+                  <input name="schoolType" type="text" class="form-control pl-2"
                     value="초등"readonly> 
                 </div>
               </c:when>
               <c:when test="${lesson.subject.schoolTypeNo eq 2}">
                 <div class="form-group has-default bmd-form-group pt-0">
-                  <input name="schoolType" type="text" class="form-control"
+                  <input name="schoolType" type="text" class="form-control pl-2"
                     value="중등"readonly> 
                 </div>
               </c:when>
               <c:when test="${lesson.subject.schoolTypeNo eq 3}">
                 <div class="form-group has-default bmd-form-group pt-0">
-                  <input name="schoolType" type="text" class="form-control"
+                  <input name="schoolType" type="text" class="form-control pl-2"
                     value="고등"readonly> 
                 </div>
               </c:when>
@@ -160,7 +160,7 @@
           <div class="col-lg-4">
             <label for="basic-url2">과목</label>
             <div class="form-group has-default bmd-form-group pt-0">
-              <input name="subjectName" type="text" class="form-control"
+              <input name="subjectName" type="text" class="form-control pl-2"
                 value="${lesson.subject.subjectName}"readonly>
             </div>
           </div>
@@ -169,7 +169,7 @@
             <div class="form-group has-default bmd-form-group pt-0">
               <div class="d-flex"> 
                 <div class="flex-item" style="flex-basis: 95%;">
-                  <input id="lesson-fee" name=lessonFee type="text" class="form-control text-left pr-2 mr-2"
+                  <input id="lesson-fee" name=lessonFee type="text" class="form-control pl-2"
                     value="${lesson.lessonFee}" readonly>
                 </div>
                 <div class="flex-item align-self-center pl-1" style="flex-basis: 5%;">
@@ -182,7 +182,7 @@
          
          <div class="form-group bmd-form-group is-filled" style="padding-right: 17px;">
           <label for="lesson-description">과외 설명</label>
-          <textarea class="form-control" id="lesson-description" name="lessonDescription" rows="3" readonly>${lesson.lessonDescription}
+          <textarea class="form-control pl-2" id="lesson-description" name="lessonDescription" rows="3" readonly>${lesson.lessonDescription}
           </textarea>  
         </div>
       
@@ -198,10 +198,10 @@
               <tr id="${clc.curriculumLessonNo}">
                 <input id="rowno" type="hidden" name="curriculumLessonNo" value="${clc.curriculumLessonNo}">
                 <th scope="row">
-                <input name="lessonconts" type="text" class="form-control" value="${clc.lessonContents}"readonly></th>
+                <input name="lessonconts" type="text" class="form-control pl-2" value="${clc.lessonContents}"readonly></th>
                 <td> 
                   <div class="input-group mb-3">
-                    <input name="lessondays" type="text" class="form-control" value="${clc.lessonDays}"readonly>
+                    <input name="lessondays" type="text" class="form-control pl-2" value="${clc.lessonDays}"readonly>
                     <div class="input-group-append">
                       <span class="input-group-text" id="basic-addon2">일</span>
                     </div>

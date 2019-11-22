@@ -28,7 +28,7 @@
 </head>
 
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg2.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">

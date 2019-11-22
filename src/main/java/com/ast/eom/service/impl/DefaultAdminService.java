@@ -164,50 +164,48 @@ public class DefaultAdminService implements AdminService {
     
     // 월 수업료
     int lessonFee = lessonInfo.getLessonFee();
+    System.out.println("1. 수업료_lessonFee===> "+lessonFee);
     
     // 과외 총 수업일
     int lessonTotalDay = lessonInfo.getCurriculum().getTotalHours();
+    System.out.println("2. 과외총요일_lessonTotalDay===> "+lessonTotalDay);
     
     // 과외의 총 달수
     Date startDate = lessonInfo.getStartDate();
     Date endDate = lessonInfo.getEndDate();
-    long diff = endDate.getTime() - startDate.getTime();
-    long diffDays = diff / (24 * 60 * 60 * 1000); // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루 단위가 나옴
-    System.out.println("총 몇일" + diffDays);
-    int lessonTotalMonth = (int) (diffDays / 28);
+    double diff = endDate.getTime() - startDate.getTime();
+    double diffDays = diff / (24 * 60 * 60 * 1000); // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루 단위가 나옴
+    System.out.println("3. 총 몇일" + diffDays);
+    int lessonTotalMonth = (int)Math.ceil(diffDays / 28);
+    System.out.println("4. 몇달_lessonTotalMonth===> "+lessonTotalMonth);
     
     // 한달 수업일
     int dayLessonCountOfMonth = (int) (lessonInfo.getCurriculum().getTotalHours() / lessonTotalMonth);
+    System.out.println("5. 한달의총수업일_dayLessonCountOfMonth===> "+dayLessonCountOfMonth);
     
     // 정산일을 기준으로 한달 동안 진행된 수업 일수를 구함
     Date calculationDay = lessonInfo.getCalculationDay();
     
-    String dt = String.valueOf(startDate);  // 시작 날짜
-    System.out.println("dt====>" + dt);
+    String dt = String.valueOf(calculationDay);
+    System.out.println("7. 정산 날짜_dt====>" + dt);
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     Calendar c = Calendar.getInstance();
     c.setTime(sdf.parse(dt));
-    c.add(Calendar.DATE, 30);  //하루를 더해준다.
-    System.out.println("c==>"+c);
-    Date after30days = Date.valueOf(sdf.format(c.getTime()));  // dt는 하루를 더한 날짜
+    c.add(Calendar.DATE, 30);  //30일을 더해준다.
+    Date after30days = Date.valueOf(sdf.format(c.getTime()));
+    System.out.println("8. 정산일에서 30일 후_after30days===>"+after30days);
 
     HashMap<String, Object> params = new HashMap<>();
     params.put("calculationDay", calculationDay);
     params.put("after30days", after30days);
     params.put("lessonNo", lessonNo);
     int progressDayLessonCountOfMonth = adminDao.countLessonDays(params);
+    System.out.println("9. 한달동안진행된수업일수_progressDayLessonCountOfMonth===> "+progressDayLessonCountOfMonth);
     
     // 환불 금액 = 월수업료 / (총 수업일/총 달수) * 잔여일수
     long refund = lessonFee / (lessonTotalDay / lessonTotalMonth)
         * (dayLessonCountOfMonth - progressDayLessonCountOfMonth);
-    System.out.println("--------------------");
-    System.out.println("수업료_lessonFee===> "+lessonFee);
-    System.out.println("과외총요일_lessonTotalDay===> "+lessonTotalDay);
-    System.out.println("몇달_lessonTotalMonth===> "+lessonTotalMonth);
-    System.out.println("한달의총수업일_dayLessonCountOfMonth===> "+dayLessonCountOfMonth);
-    System.out.println("한달동안진행된수업일수_progressDayLessonCountOfMonth===> "+progressDayLessonCountOfMonth);
-    System.out.println("정산일_calculationDay===>"+calculationDay);
-    System.out.println("정산일+30일_after30days===>"+after30days);
+    System.out.println("10. 환불금액_refund===> "+refund);
     Member studentInfo = adminDao.getMember(lessonInfo.getStudentNo());
     Member teacherInfo = adminDao.getMember(lessonInfo.getTeacherNo());
     

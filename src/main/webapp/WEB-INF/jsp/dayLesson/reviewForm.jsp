@@ -32,7 +32,7 @@
 </head>
 
 <div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('/assets/img/lesson/bg.jpg')">
+  style="background-image: url('/assets/img/lesson/review.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -53,7 +53,7 @@
         <input type="hidden" name="lessonNo" value="${lessonNo}">
         <div class="row">
           <div class="col">
-            <textarea name="studentReview" id="studentReview" class="form-control" rows="20" placeholder="후기를 입력하세요."></textarea>
+            <textarea name="studentReview" id="studentReview" class="form-control pl-2" rows="20" placeholder="후기를 입력하세요."></textarea>
           </div>
         </div>
         <div class="row">

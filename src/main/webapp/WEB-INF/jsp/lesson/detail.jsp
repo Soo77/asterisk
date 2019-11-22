@@ -11,7 +11,7 @@
   }
 </style>
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg4.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -169,7 +169,7 @@
               <div class="form-group has-default bmd-form-group pt-0">
                 <div class="d-flex">
                   <div class="flex-item" style="flex-basis: 95%;">
-                    <input id="lesson-fee" name=lessonFee type="text" class="form-control text-right pr-2 mr-2"
+                    <input id="lesson-fee" name=lessonFee type="text" class="form-control pl-2"
                       value="${lesson.lessonFee}" readonly>
                   </div>
                   <div class="flex-item align-self-center pl-1" style="flex-basis: 5%;">
@@ -182,7 +182,7 @@
 
         <div class="form-group">
           <label for="lesson-description">과외 설명</label>
-          <textarea class="form-control" id="lesson-description" name="lessonDescription" rows="3">${lesson.lessonDescription}
+          <textarea class="form-control pl-2" id="lesson-description" name="lessonDescription" rows="3">${lesson.lessonDescription}
           </textarea> 
         </div>
 

@@ -13,7 +13,7 @@
   }
 </style>
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg4.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -164,7 +164,7 @@
          </div> 
         <div class="form-group">
           <label for="lesson-description">과외 설명</label>
-          <textarea class="form-control" id="lesson-description" name="lessonDescription" rows="3"></textarea>
+          <textarea class="form-control pl-2" id="lesson-description" name="lessonDescription" rows="3"></textarea>
         </div>
 
         <table id="table" class='table table-hover'>

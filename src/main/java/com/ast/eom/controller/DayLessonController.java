@@ -2,6 +2,7 @@ package com.ast.eom.controller;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import com.ast.eom.dao.MemberDao;
 import com.ast.eom.domain.DayLesson;
 import com.ast.eom.domain.Lesson;
 import com.ast.eom.domain.Member;
+import com.ast.eom.service.AdminService;
 import com.ast.eom.service.DayLessonService;
 import com.ast.eom.service.LessonService;
 
@@ -24,6 +26,7 @@ public class DayLessonController {
 
   @Autowired private DayLessonService dayLessonService;
   @Autowired private LessonService lessonService;
+  @Autowired private AdminService adminService;
   @Autowired private MemberDao memberDao;
 
   @GetMapping("list")
@@ -33,6 +36,9 @@ public class DayLessonController {
       int lessonNo) throws Exception {
     Lesson lesson = lessonService.get(lessonNo);
     int lessonState = lesson.getLessonState();
+    String curLessonSt = lesson.getCurriculum().getCurriculumLessonStartTime();
+    System.out.println("startHour==>"+curLessonSt);
+    String curLessonEt = lesson.getCurriculum().getCurriculumLessonEndTime();
     String studentReview = lesson.getStudentReview();
     int totalHours = lesson.getCurriculum().getTotalHours();
     int lessonDayCount = lesson.getLessonDayCount();
@@ -45,7 +51,10 @@ public class DayLessonController {
     }
     
     model.addAttribute("lessonNo", lessonNo);
+    model.addAttribute("lesson", lesson);
     model.addAttribute("lessonState", lessonState);
+    model.addAttribute("curLessonSt", curLessonSt);
+    model.addAttribute("curLessonEt", curLessonEt);
     model.addAttribute("remainDays", remainDays);
     model.addAttribute("percent", percent);
     model.addAttribute("dayLessons", dayLessons);
@@ -113,14 +122,18 @@ public class DayLessonController {
       HttpSession session,
       int lessonNo) throws Exception {
     
-    Lesson lesson = lessonService.lessonDetail(lessonNo);
+    Map<String, Object> pendingLessonsInfoMapDetail =
+        adminService.getPendingLessonsInfoMap(lessonNo);
+    session.setAttribute("pendingLessonsInfoMapDetail", pendingLessonsInfoMapDetail);
     
-    String teacherName = memberDao.detailMember(lesson.getTeacherNo()).getName();
-    String studentName = memberDao.detailMember(lesson.getStudentNo()).getName();
-    
-    model.addAttribute("lesson", lesson);
-    model.addAttribute("teacherName", teacherName);
-    model.addAttribute("studentName", studentName);
+//    Lesson lesson = lessonService.lessonDetail(lessonNo);
+//    
+//    String teacherName = memberDao.detailMember(lesson.getTeacherNo()).getName();
+//    String studentName = memberDao.detailMember(lesson.getStudentNo()).getName();
+//    
+    model.addAttribute("lessonNo", lessonNo);
+//    model.addAttribute("teacherName", teacherName);
+//    model.addAttribute("studentName", studentName);
     
   }
   

@@ -87,7 +87,7 @@
 </head>
 
 <div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('/assets/img/lesson/bg.jpg')">
+  style="background-image: url('/assets/img/lesson/bg4.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -187,30 +187,30 @@
           <div class="row">
             <div class="col">
               <label for="modalLessonDate">날짜</label>
-              <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="" value="">
+              <input class="form-control pl-2" name="lessonDate" id="modalLessonDate" type="date" max="" value="">
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label for="modalLessonStartHour">시작 시간</label>
-              <input class="form-control" name="lessonStartHour" id="modalLessonStartHour" type="time" value="">
+              <input class="form-control pl-2" name="lessonStartHour" id="modalLessonStartHour" type="time" value="${curLessonSt}">
             </div>
             <div class="col">
               <label for="modalLessonEndHour">종료 시간</label>
-              <input class="form-control" name="lessonEndHour" id="modalLessonEndHour" type="time" value="">
+              <input class="form-control pl-2" name="lessonEndHour" id="modalLessonEndHour" type="time" value="${curLessonEt}">
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label for="lessonSummary">내용 정리</label>
-              <textarea id="modalLessonSummary" class="form-control"
+              <textarea id="modalLessonSummary" class="form-control pl-2"
               name="lessonSummary" rows="10" style="resize: none;"></textarea>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label for="lessonEvaluation">평가</label>
-              <textarea id="modalLessonEvaluation" class="form-control"
+              <textarea id="modalLessonEvaluation" class="form-control pl-2"
               name="lessonEvaluation" rows="5" style="resize: none;"></textarea>
             </div>
           </div>
@@ -292,7 +292,7 @@
     } else if (${remainDays == 1}) {
   		swal({
   	        title: "등록",
-  	        text: "과외의 마지막 과외 등록입니다.\n등록하시면 더이상 수정이 불가능합니다.",
+  	        text: "과외의 마지막 날입니다.\n확인을 누르시면 과외가 종료됩니다.",
   	        buttons: true,
   	      })
   	      .then((willDelete) => {
@@ -359,7 +359,7 @@
                   	a += '<div class="card">';
                   	a += '<div class="card-body">';
                   	a += "<input type='hidden' id='dayLessonNo_" + value.dayLessonNo + "' value='" + value.dayLessonNo + "'>";
-                  	a += '<div class="row">';
+                  	a += '<div class="row pl-3 pr-3">';
               			a += '과외일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDateStr + '</div>';
               			a += '시작 시간 : <div class="col" id="lessonStartHour_' + value.dayLessonNo + '">' + value.lessonStartHour + '</div>';
               			a += '종료 시간 : <div class="col" id="lessonEndHour_' + value.dayLessonNo + '">' + value.lessonEndHour + '</div>';
@@ -516,8 +516,6 @@
 		
     $("#modalDayLessonNo").val('');
     $("#modalLessonDate").val('');
-    $("#modalLessonStartHour").val('12:00');
-    $("#modalLessonEndHour").val('12:00');
     $("#modalLessonSummary").val('');
     $("#modalLessonEvaluation").val('');
   }
