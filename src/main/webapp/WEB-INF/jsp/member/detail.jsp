@@ -56,6 +56,22 @@ img, video {
 ul.test {
   list-style-type: square;
 }
+
+.fas.fa-star {
+    font-size: large;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    color: yellow;
+    font-size: x-large;
+}
+
+
+
 </style>
 
 <body class="profile-page sidebar-collapse">
@@ -348,6 +364,7 @@ ul.test {
 
 
 
+            <c:if test="${not empty review.teacherReview}">
               <div class="teacher-review">
                 <label class="teacher-review title">선생님 후기</label>
                 <div class="teacher-review contents">
@@ -356,17 +373,35 @@ ul.test {
                       <div
                         class="card-header card-header-text card-header-primary">
                         <div class="card-text">
-                          <h5 class="card-title">${review.id}  ${review.teacherEvaluation}</h5>
+                          <h5 class="card-title">ID: ${review.id}&ensp;
+                           <c:set var="stars" value="${review.teacherEvaluation}" />
+                             <c:if test="${stars == '1'}">
+                              <i class="fas fa-star"></i>
+                             </c:if>
+                              <c:if test="${stars == '2'}">
+                              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                             </c:if>
+                              <c:if test="${stars == '3'}">
+                              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                             </c:if>
+                              <c:if test="${stars == '4'}">
+                              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                             </c:if>
+                              <c:if test="${stars == '5'}">
+                              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                             </c:if>
+                          </h5> 
                         </div>
                       </div>
                       <div class="card-body">
-                        후기: ${review.teacherReview}<br>
+                       ${review.teacherReview}<br>
                       </div>
                     </div>
                     <br>
                   </c:forEach>
                 </div>
               </div>
+              </c:if>
 
 
             </c:if>

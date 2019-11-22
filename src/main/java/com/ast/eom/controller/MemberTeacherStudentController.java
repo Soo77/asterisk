@@ -57,6 +57,10 @@ public class MemberTeacherStudentController {
     List<MemberTeacherStudent> photoTeacher = memberTeacherStudentService.photo(no);
     List<MemberTeacherStudent> schoolTeacher = memberTeacherStudentService.school(no);
     
+    for(int i=0; i < reviewTeacher.size(); i++) {
+      model.addAttribute("review", reviewTeacher.get(i));
+    }
+    
     model.addAttribute("detailStudent", detailStudent);
     model.addAttribute("detailTeacher", detailTeacher);
     model.addAttribute("reviewTeacher", reviewTeacher);
