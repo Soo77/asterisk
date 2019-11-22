@@ -11,17 +11,12 @@
   }
 </style>
 
-
-<script>
-  console.log(${lesson});
-</script>
-
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg3.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
-          <h1>수업내용</h1>
+          <h1>커리큘럼</h1>
         </div>
       </div>
     </div>
@@ -30,40 +25,44 @@
 <div class="main main-raised">
   <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
     <div id='content'>
-    <div class="mb-4"> 
     
-     <form name="deleteAll" action='deleteAll' method='post'>
-      <input type="hidden" name="lessonNo" value="${lesson.lessonNo}">
-      <input type="hidden" class="btn btn-danger deleteCurrBtn" value="커리큘럼 삭제"> 
-     </form> 
-    <h4>수업번호 : ${lesson.lessonNo}</h4>
-    </div> 
+    <div class="row">
+      <div class="col">
+        <h4>과외번호: ${lesson.lessonNo}</h4>
+      </div>
+      <div class="col text-right">
+        <form name="deleteAll" action='deleteAll' method='post'>
+        <input type="hidden" name="lessonNo" value="${lesson.lessonNo}">
+        <input type="hidden" class="btn btn-danger deleteCurrBtn" value="커리큘럼 삭제"> 
+       </form> 
+      </div>
+    </div>
+    
       <form action='update' method='post'>
-      <div style="padding-left: 13px; padding-right: 13px;">
         <div class="row">
           <div class="col-lg-3 col-sm-4">
-            <label for="basic-url1">수업시작일</label>
+            <label for="basic-url1">시작일</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular"
                 value="${lesson.startDate}" readonly>
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
-            <label for="basic-url2">수업종료일</label>
+            <label for="basic-url2">종료일</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular"
                 value="${lesson.endDate}"readonly>
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
-            <label for="basic-url3">수업시작시간</label>
+            <label for="basic-url3">시작 시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="st" id="basic-url3" type="time" class="form-control" placeholder="Regular"
                 value="${lesson.curriculum.curriculumLessonStartTime}"readonly>
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
-            <label for="basic-url4">수업종료시간</label>
+            <label for="basic-url4">종료 시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="et" id="basic-url4" type="time" class="form-control" placeholder="Regular"
                 value="${lesson.curriculum.curriculumLessonEndTime}"readonly>
@@ -72,8 +71,8 @@
         </div>
 
 
-        <label for="basic-url5">수업요일</label>
-        <div class="pb-5" id="basic-url5">
+        <label for="basic-url5">요일</label>
+        <div class="pb-3" id="basic-url5">
           <div class="form-check form-check-inline">
             <label class="form-check-label">
               <input class="form-check-input" type="checkbox" id='OPTI_1' name='weekArr' value="1" onclick="return false;"> 일
@@ -131,12 +130,11 @@
             </label>
           </div>
         </div>
-      </div>
     
      
       <div class="row">  
           <div class="col-lg-4 ">
-            <label for="basic-url2">초중고</label>
+            <label for="basic-url2">학교</label>
             
             <c:choose>
               <c:when test="${lesson.subject.schoolTypeNo eq 1}">
@@ -167,7 +165,7 @@
             </div>
           </div>
             <div class="col-lg-4">
-            <label for="basic-url2">수업료</label>
+            <label for="basic-url2">과외비</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <div class="d-flex"> 
                 <div class="flex-item" style="flex-basis: 95%;">
@@ -183,19 +181,15 @@
          </div> 
          
          <div class="form-group bmd-form-group is-filled" style="padding-right: 17px;">
-          <label for="lesson-description">수업설명</label>
+          <label for="lesson-description">과외 설명</label>
           <textarea class="form-control" id="lesson-description" name="lessonDescription" rows="3" readonly>${lesson.lessonDescription}
           </textarea>  
         </div>
       
-      
-      
-      
-      
         <table id="table" class='table table-hover'>
           <thead>
             <tr>
-              <th>수업 내용</th>
+              <th>과외 내용</th>
               <th>소요일</th>
             </tr>
           </thead>
@@ -219,13 +213,11 @@
           </tbody> 
         </table> 
         <div class="row">
-          <div class="col text-left"> 
-            <a href="list" class="btn btn-primary">수업목록</a>
-          </div> 
-          <div class="col text-right">
+          <div class="col text-right"> 
             <c:if test="${(loginUser.memberTypeNo eq 1 or loginUser.memberTypeNo eq 2) and lesson.lessonState eq 2}">
               <input type="button" class="btn btn-primary pay-button" value="결제" onClick="location.href='../payment/detail'">
             </c:if>
+            <a href="list" class="btn btn-primary">목록</a>
           </div>
         </div>
       </form> 
@@ -233,7 +225,6 @@
 
     <c:set var="garo" value="${lesson.lessonNo}" scope="session"></c:set>
     <c:set var="lessonFee" value="${lesson.lessonFee}" scope="session"></c:set>
-
 
   </div>
 </div> 
