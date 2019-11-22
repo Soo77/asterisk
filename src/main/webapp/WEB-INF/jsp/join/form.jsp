@@ -17,7 +17,7 @@
 
 <div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg7.jpg')">
 </div>
-<div class="main main-raised">
+<div class="main main-raised"> 
   <div class="container">
     <div class="section text-center">
       <div class="container">
@@ -27,16 +27,16 @@
               <div class="card text-center" style="width: 20rem;">
                 <div class="card-body">
                   <h4 class="card-title">학생으로 시작</h4>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <p class="card-text">꼭 맞는 과외와 선생님을 찾을 수 있습니다.<br>여러 선생님들을 만나보세요.</p>
                   <a href="../join/student" class="btn btn-primary">회원가입</a>
                 </div>
-              </div>
+              </div> 
             </div>
             <div class="col">
-              <div class="card text-center" style="width: 20rem;">
+              <div class="card text-center" style="width: 20rem;"> 
                 <div class="card-body">
                   <h4 class="card-title">선생님으로 시작</h4>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <p class="card-text">가르칠 학생들을 찾을 수 있습니다.<br>또한 과외 관리가 쉬워집니다.</p>
                   <a href="../join/teacher" class="btn btn-primary">회원가입</a>
                 </div>
               </div>
@@ -45,7 +45,7 @@
               <div class="card text-center" style="width: 20rem;">
                 <div class="card-body">
                   <h4 class="card-title">학부모로 시작</h4>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <p class="card-text">자녀의 공부 관리를 손쉽게 할 수 있고<br>자녀의 아이디와 연동할 수 있습니다.</p>
                   <a href="../join/parents" class="btn btn-primary">회원가입</a>
                 </div>
               </div>
