@@ -48,7 +48,7 @@
     padding: 20px;
   }
   
-  #percent {
+  #reaminDays {
     text-align: right;
   }
   
@@ -87,7 +87,7 @@
 </head>
 
 <div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('assets/img/bg3.jpg')">
+  style="background-image: url('/assets/img/lesson/bg.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -99,25 +99,18 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container p-3">
+  <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
   
     <c:forEach var="dayLesson" items="${dayLessons}" varStatus="status">
       <input type="hidden" name="hiddenLessonDate" id="dayLessonDate${status.index}" value="${dayLesson.lessonDate}">
       <input type="hidden" name="hiddenLessonSummary" id="dayLessonSummary${status.index}" value="${dayLesson.lessonSummary}">
     </c:forEach>
-  
-    <div class="row">
-      <div class="col">
-        <div id="container" class="calendar-container p-5"></div>
-      </div>
-    </div>
-    <hr>
 
     <div class="row">
       <div class="col">
         <div>
           <a href="../lesson/list?memberTypeNo=${loginUser.memberTypeNo}"
-            class="btn btn-primary" id="lessonList">수업목록</a>
+            class="btn btn-primary" id="lessonList">과외목록</a>
         </div>
       </div>
       <div class="col" id="stopAndAdd">
@@ -131,21 +124,27 @@
         <c:if test="${lessonState == 1}">
           <div id="dayLessonStop">
             <a href="stopLessonForm?lessonNo=${lessonNo}"
-            class="btn btn-danger" id="requestLessonInterrupt">수업중단</a>
+            class="btn btn-danger" id="requestLessonInterrupt">과외중단</a>
           </div>
         </c:if>
       </div>
     </div>
-    
+
+    <div class="row">
+      <div class="col">
+        <div id="container" class="calendar-container p-1"></div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col" id="my-progress">
         <div class="progress-container progress-primary">
           <div class="row">
             <div class="col">
-              <span class="progress-badge">남은 일수 : ${remainDays} 일</span>
+              <span class="progress-badge">${percent} %</span>
             </div>
-            <div class="col" id="percent">
-              <span>${percent} %</span>
+            <div class="col" id="reaminDays">
+              <span class="progress-badge">남은 일수 : ${remainDays} 일</span>
             </div>
           </div>
           <div class="progress">
@@ -187,30 +186,30 @@
           <input name="lessonNo" type="hidden" id="modalLessonNo" value="${lessonNo}">
           <div class="row">
             <div class="col">
-              <label for="modalLessonDate">수업일</label>
+              <label for="modalLessonDate">날짜</label>
               <input class="form-control" name="lessonDate" id="modalLessonDate" type="date" max="" value="">
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <label for="modalLessonStartHour">수업 시작시간</label>
+              <label for="modalLessonStartHour">시작 시간</label>
               <input class="form-control" name="lessonStartHour" id="modalLessonStartHour" type="time" value="">
             </div>
             <div class="col">
-              <label for="modalLessonEndHour">수업 종료시간</label>
+              <label for="modalLessonEndHour">종료 시간</label>
               <input class="form-control" name="lessonEndHour" id="modalLessonEndHour" type="time" value="">
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <label for="lessonSummary">수업 내용 정리</label>
+              <label for="lessonSummary">내용 정리</label>
               <textarea id="modalLessonSummary" class="form-control"
               name="lessonSummary" rows="10" style="resize: none;"></textarea>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <label for="lessonEvaluation">수업 평가</label>
+              <label for="lessonEvaluation">평가</label>
               <textarea id="modalLessonEvaluation" class="form-control"
               name="lessonEvaluation" rows="5" style="resize: none;"></textarea>
             </div>
@@ -281,19 +280,19 @@
     var modalLessonEvaluation = $("#modalLessonEvaluation").val().replace(/(\s*)/g, "");
     
     if (modalLessonDate.length == 0) {
-    	swal("수업일을 입력하세요.");
+    	swal("과외일을 입력하세요.");
     } else if (modalLessonStartHour.length == 0) {
-    	swal("수업 시작시간을 입력하세요.");
+    	swal("과외 시작시간을 입력하세요.");
     } else if (modalLessonEndHour.length == 0) {
-    	swal("수업 종료시간을 입력하세요.");
+    	swal("과외 종료시간을 입력하세요.");
     } else if (modalLessonSummary.length == 0) {
-    	swal("수업 내용 정리를 입력하세요.");
+    	swal("과외 내용 정리를 입력하세요.");
     } else if (modalLessonEvaluation.length == 0) {
-    	swal("수업 평가를 입력하세요.");
+    	swal("과외 평가를 입력하세요.");
     } else if (${remainDays == 1}) {
   		swal({
   	        title: "등록",
-  	        text: "과외의 마지막 수업 등록입니다.\n등록하시면 더이상 수정이 불가능합니다.",
+  	        text: "과외의 마지막 과외 등록입니다.\n등록하시면 더이상 수정이 불가능합니다.",
   	        buttons: true,
   	      })
   	      .then((willDelete) => {
@@ -322,15 +321,15 @@
     var modalLessonEvaluation = $("#modalLessonEvaluation").val().replace(/(\s*)/g, "");
     
     if (modalLessonDate.length == 0) {
-    	swal("수업일을 입력하세요.");
+    	swal("과외일을 입력하세요.");
     } else if (modalLessonStartHour.length == 0) {
-    	swal("수업 시작시간을 입력하세요.");
+    	swal("과외 시작시간을 입력하세요.");
     } else if (modalLessonEndHour.length == 0) {
-    	swal("수업 종료시간을 입력하세요.");
+    	swal("과외 종료시간을 입력하세요.");
     } else if (modalLessonSummary.length == 0) {
-    	swal("수업 내용 정리를 입력하세요.");
+    	swal("과외 내용 정리를 입력하세요.");
     } else if (modalLessonEvaluation.length == 0) {
-    	swal("수업 평가를 입력하세요.");
+    	swal("과외 평가를 입력하세요.");
     } else {
     	dayLessonUpdate()
     }
@@ -361,9 +360,9 @@
                   	a += '<div class="card-body">';
                   	a += "<input type='hidden' id='dayLessonNo_" + value.dayLessonNo + "' value='" + value.dayLessonNo + "'>";
                   	a += '<div class="row">';
-              			a += '수업일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDateStr + '</div>';
-              			a += '수업시작시간 : <div class="col" id="lessonStartHour_' + value.dayLessonNo + '">' + value.lessonStartHour + '</div>';
-              			a += '수업종료시간 : <div class="col" id="lessonEndHour_' + value.dayLessonNo + '">' + value.lessonEndHour + '</div>';
+              			a += '과외일 : <div class="col" id="lessonDate_' + value.dayLessonNo + '">' + value.lessonDateStr + '</div>';
+              			a += '시작 시간 : <div class="col" id="lessonStartHour_' + value.dayLessonNo + '">' + value.lessonStartHour + '</div>';
+              			a += '종료 시간 : <div class="col" id="lessonEndHour_' + value.dayLessonNo + '">' + value.lessonEndHour + '</div>';
               			a += '</div>';
             				a += '<hr>';
           					a += '<div class="row">';

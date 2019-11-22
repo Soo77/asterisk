@@ -36,7 +36,7 @@
 </head>
 
 <div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('assets/img/bg3.jpg')">
+  style="background-image: url('/assets/img/lesson/bg.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -53,7 +53,7 @@
     <div class="row">
       <div class="col">
         <div>
-          <h4 id="titleLessonInfo">수업 정보</h4>
+          <h4 id="titleLessonInfo">과외 정보</h4>
           <hr>
         </div>
         <div>
@@ -79,17 +79,17 @@
           <input name="studentName" id="studentName" class="form-control" value="${studentName}" readOnly>
         </div>
         <div>
-          <label for="totalLessonDays">예정된 수업일수</label> <input
+          <label for="totalLessonDays">예정된 과외일수</label> <input
             name="totalLessonDays" id="totalLessonDays"
             class="form-control" value="${lesson.curriculum.totalHours}" readOnly>
         </div>
         <div>
-          <label for="doneLessonDays">진행된 수업일수</label> <input
+          <label for="doneLessonDays">진행된 과외일수</label> <input
             name="email" id="email" class="form-control" value="${lesson.lessonDayCount}"
             readOnly>
         </div>
         <div>
-          <label for="residualLessonDays">잔여 수업일수</label> <input
+          <label for="residualLessonDays">잔여 과외일수</label> <input
             name="residualLessonDays" id="residualLessonDays"
             class="form-control" value="${lesson.curriculum.totalHours-lesson.lessonDayCount}" readOnly>
         </div>

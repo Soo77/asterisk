@@ -13,7 +13,7 @@
   }
 </style>
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg3.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -25,43 +25,40 @@
   </div>
 </div>
 
-
-    <c:set var="teacherNo" value="${loginUser.memberNo}" scope="session"></c:set>
+<c:set var="teacherNo" value="${loginUser.memberNo}" scope="session"></c:set>
 <div class="main main-raised">
   <div class="container pt-5 pb-4" style="padding-left: 45px; padding-right: 45px;">
     <div id='content'>
       <form id="form1" name="frm1" action='currAddaction' method='post'>
-      <div style="padding-left: 13px; padding-right: 13px;">
         <div class="row">
           <div class="col-lg-3 col-sm-4">
-            <label for="basic-url1">수업시작일</label>
+            <label for="basic-url1">시작일</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input max="9999-12-31" name="sdt" id="basic-url1" type="date" class="form-control" placeholder="Regular">
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
-            <label for="basic-url2">수업종료일</label>
+            <label for="basic-url2">종료일</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input max="9999-12-31" name="edt" id="basic-url2" type="date" class="form-control" placeholder="Regular">
             </div> 
           </div>
           <div class="col-lg-3 col-sm-4">
-            <label for="basic-url3">수업시작시간</label>
+            <label for="basic-url3">시작 시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="st" id="basic-url3" type="time" class="form-control" placeholder="Regular">
             </div>
           </div>
           <div class="col-lg-3 col-sm-4">
-            <label for="basic-url4">수업종료시간</label>
+            <label for="basic-url4">종료 시간</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <input name="et" id="basic-url4" type="time" class="form-control" placeholder="Regular">
             </div>
           </div>
         </div>
 
-
-        <label for="basic-url5">수업요일</label>
-        <div class="pb-5" id="basic-url5">
+        <label for="basic-url5">요일</label>
+        <div class="pb-3" id="basic-url5">
           <div class="form-check form-check-inline">
             <label class="form-check-label">
               <input class="form-check-input" type="checkbox" id='OPTI_1' name='weekArr' value="1"> 일
@@ -127,11 +124,10 @@
             </label>
           </div>
         </div>
-        </div>
         
         <div class="row">
           <div class="col-lg-4 col-sm-6">
-            <label for="basic-url2">초중고</label>
+            <label for="basic-url2">학교</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <select class="custom-select" name="schoolTypeNo">
                   <option value="">학교 선택</option>
@@ -153,11 +149,11 @@
             </div>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <label for="basic-url2">수업료</label>
+            <label for="basic-url2">과외비</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <div class="d-flex">
                 <div class="flex-item" style="flex-basis: 95%;">
-                  <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="수업료(숫자로만)">
+                  <input name="lessonFee" id="basic-url2" type="text" class="form-control" placeholder="과외료(숫자로만)">
                 </div>
                 <div class="flex-item align-self-center pl-1" style="flex-basis: 5%;">
                   <span>원</span>
@@ -167,20 +163,19 @@
           </div>
          </div> 
         <div class="form-group">
-          <label for="lesson-description">수업설명</label>
+          <label for="lesson-description">과외 설명</label>
           <textarea class="form-control" id="lesson-description" name="lessonDescription" rows="3"></textarea>
         </div>
 
         <table id="table" class='table table-hover'>
           <thead>
             <tr>
-              <th>수업 내용</th>
-              <th>소요일</th>
+              <th>과외 내용</th>
+              <th>소요일 </th>
             </tr>
           </thead>
           <tbody id="lesson-table">
               <tr id="${clc.curriculumLessonNo}">
-                <!--  <input type="hidden" name="curriculumLessonNo" value="${clc.curriculumLessonNo}"> -->
                 <th scope="row">
                 <input name="lessonconts" type="text" class="form-control"></th>
                 <td> 
@@ -197,13 +192,15 @@
         </table>
         
         <div class="row">
-          <div class="col text-left"> 
-              <a href="list" class="btn btn-primary">취소</a>
-            </div> 
-          
+          <div class="col text-center">
+            <input type="button" class="btn btn-outline-primary btn-sm lessonConts-add-button" value="+">
+          </div>
+        </div>
+        
+        <div class="row">
           <div class="col text-right">
-            <input type="button" class="btn btn-primary lessonConts-add-button" value="수업내용 추가">  
             <button type="button" class="btn btn-primary" id="currAddBtn">등록</button>
+            <a href="list" class="btn btn-primary">취소</a>
           </div>
         </div>
       </form> 

@@ -28,12 +28,12 @@
 </head>
 
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('assets/img/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/lesson/bg3.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
-          <h1>수업 리스트</h1>
+          <h1>과외 리스트</h1>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
       </c:choose>
 
       <c:set var="i" value="0" />
-      <!-- <h1 style="font-family: 'Nanum Gothic';">수업 리스트</h1> -->
+      <!-- <h1 style="font-family: 'Nanum Gothic';">과외 리스트</h1> -->
       <c:forEach items="${lessons}" var="lesson">
       <input id="stdNo" type="hidden" name="approve" value="${lesson.studentNo}">
       <input id="tchNo" type="hidden" name="approve" value="${lesson.teacherNo}">
@@ -74,7 +74,7 @@
                 </c:otherwise>
               </c:choose>
               <div style="font-family: 'Nanum Gothic';" class="card-body">
-                <h5 style="font-family: 'Nanum Gothic';" class="card-title text-left">수업번호: ${lesson.lessonNo}</h5>
+                <h5 style="font-family: 'Nanum Gothic';" class="card-title text-left">과외번호: ${lesson.lessonNo}</h5>
                 <p class="card-text text-left">
                   <c:choose>
                     <c:when test="${lesson.member.name eq NULL}">
@@ -84,7 +84,7 @@
                       <td>이름: ${lesson.member.name}<br></td>
                     </c:otherwise>
                   </c:choose>
-                  수업과목:
+                  과외과목:
                   <c:choose>
                     <c:when test="${lesson.subject.schoolTypeNo eq 1}">
                       초등
@@ -131,8 +131,8 @@
                               <span>×</span>
                             </button>
                           </div>
-                          <span class="messageLessonNo${i}" id="${lesson.lessonNo}">수업번호 : ${lesson.lessonNo}</span>
-                                                                 수업과목:
+                          <span class="messageLessonNo${i}" id="${lesson.lessonNo}">과외번호 : ${lesson.lessonNo}</span>
+                                                                 과외과목:
                           <c:choose>
                             <c:when test="${lesson.subject.schoolTypeNo eq 1}">
                                                                   초등
@@ -174,7 +174,7 @@
                     <button type="button" class="btn float-right">환불 대기중</button>&ensp;&ensp;
                   </c:when>
                   <c:when test="${lesson.lessonState eq 5}">
-                    <button type="button" class="btn float-right">종료된 수업</button>&ensp;&ensp;
+                    <button type="button" class="btn float-right">종료된 과외</button>&ensp;&ensp;
                   </c:when>
                   <c:when test="${lesson.lessonState eq 6}">
                     <button type="button" class="btn float-right">초대중</button>&ensp;&ensp;
@@ -259,7 +259,7 @@
     var lessonNo = document.getElementsByClassName("messageLessonNo" + no)[0].id;
     console.log(memberNo);
     console.log(lessonNo);
-    var messageConts = "${loginUser.name}님이<br>수업에 초대했습니다.<br>"
+    var messageConts = "${loginUser.name}님이<br>과외에 초대했습니다.<br>"
     messageConts += "커리큘럼을 확인해보세요!<br><br>"
     messageConts += "<div style='text-align: right;'>"
     messageConts += "<button onclick='lessonMatchingStd(this)' name=" + lessonNo

@@ -60,7 +60,7 @@
 </head>
 
 <body>
-	<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg3.jpg')">
+	<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg/bg5.jpg')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto">

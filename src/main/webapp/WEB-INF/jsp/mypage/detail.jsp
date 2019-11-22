@@ -44,12 +44,12 @@
 
           <div class="form-group">
             <label for="inputPassword">비밀번호</label>
-            <input type="password" class="form-control" id="inputPassword" name="password">
+            <input type="password" class="form-control pl-3" id="inputPassword" name="password">
           </div>
 
           <div class="form-group">
             <label for="inputPasswordCheck">비밀번호확인</label>
-            <input type="password" class="form-control" id="inputPasswordCheck">
+            <input type="password" class="form-control pl-3" id="inputPasswordCheck">
           </div>
           <div class="redch" id="pw_check"></div>
 
@@ -258,13 +258,13 @@
 
           <div class="form-group teacherDisplay">
             <label for="inputIntro">자기소개</label>
-            <textarea class="form-control" id="inputIntro" rows="8"
+            <textarea class="form-control pl-3" id="inputIntro" rows="8"
               name="teacherIntro">${memberInfoMap.teacher.teacherIntro}</textarea>
           </div>
 
           <div class="form-group teacherDisplay">
             <label for="inputIntroVideo">자기소개 동영상 주소</label>
-            <input type="text" class="form-control" id="inputIntroVideo" value="${memberInfoMap.teacher.videoAddress}"
+            <input type="text" class="form-control pl-3" id="inputIntroVideo" value="${memberInfoMap.teacher.videoAddress}"
               name="videoAddress">
           </div>
 
@@ -277,7 +277,7 @@
             </div>
             <div class="col-sm-10 mt-1 d-flex">
               <div class="flex-item pr-1" style="flex-basis: 93%;">
-                <input type="text" class="form-control" name="childrenId">
+                <input type="text" class="form-control pl-3" name="childrenId">
                 <input type="hidden" class="form-control" name="childrenNo">
               </div>
               <div class="flex-item" style="flex-basis: 7%; display: none;">
@@ -297,7 +297,7 @@
 
           <div class="form-check kakaotalkDiv parentsDisplay hiddenNode">
             <label class="form-check-label">
-              <input id="kakaotalkCheckbox" class="form-check-input" type="checkbox" name="kakaoCheck">
+              <input id="kakaotalkCheckbox" class="form-check-input pl-3" type="checkbox" name="kakaoCheck">
               과외 내용을 카톡으로 수신
               <span class="form-check-sign">
                 <span class="check"></span>
