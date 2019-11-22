@@ -96,8 +96,8 @@
 	  				<img class="avatar" src="/upload/join/${messageMem[i].profilePhoto}">
 	  				<a href=detail?memberNo=${messageMem[i].memberNo}>
 							<div class="message ms-pd">
-								<div style="color: black; display: block;">${messageMem[i].name}</div>
-							  ${bell}
+								<div style="color: black; display: block;">
+								${messageMem[i].name}&ensp;${bell}</div>
 							  <h6 style="color: gray; display: inline-block;">
 							    <c:choose>
 								    <c:when test="${messageConts ge 20}">
@@ -119,6 +119,18 @@
 		
 			<c:otherwise>
 	      <h4>쪽지를 보낸 사람이 없습니다</h4>
+	      <c:choose>
+	       <c:when test="${loginUser.memberTypeNo eq 3}">
+		       <a href="http://localhost:8888/app/member/list?memberTypeNo=1" 
+		       target="_blank" style="float: right;">
+		       <button class="btn btn-primary" style="text-align: center;">학생 찾기</button></a>
+	       </c:when>
+	       <c:otherwise>
+		       <a href="http://localhost:8888/app/member/list?memberTypeNo=3" 
+		       target="_blank" style="float: right;">
+	         <button class="btn btn-primary">선생님 찾기</button></a>
+	       </c:otherwise>
+	      </c:choose>
 	    </c:otherwise>
     </c:choose>
 

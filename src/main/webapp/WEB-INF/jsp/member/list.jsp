@@ -56,9 +56,9 @@
 
 <body>
   <div class="page-header header-filter" data-parallax="true"
-    style="background-image: url('')">
+    style="background-image: url('/assets/img/bg/bg12.jpg')">
     <div class="container">
-      <div class="row">
+      <div class="row"> 
         <div class="col-md-8 ml-auto mr-auto">
           <div class="brand text-center">
             <c:if test="${memberTypeNo == 1}">
