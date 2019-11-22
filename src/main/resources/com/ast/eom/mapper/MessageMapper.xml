@@ -12,11 +12,6 @@
     <result column="is_read" property="read"></result>
   </resultMap>
   
-  <resultMap type="Message" id="MessageMap2">
-    <result column="message_conts" property="messageContents"></result>
-    <result column="max(send_date)" property="sendDate"></result>
-  </resultMap>
-  
   <resultMap type="Member" id="MemberMap">
     <result column="mem_no" property="memberNo"></result>
     <result column="dob" property="dateOfBirth"></result>
@@ -52,11 +47,12 @@
      (#{messageNo},#{senderNo},#{receiverNo},#{messageContents},now(),#{read})
   </insert>
   
-  <select id="readContsDate" parameterType="Map" resultMap="MessageMap2">
-  select message_conts, max(send_date) 
+  <select id="readContsDate" parameterType="Map" resultMap="MessageMap">
+  select message_conts, send_date 
   from message 
   where receiver=#{memNo} and sender=#{memberNo}
   or receiver=#{memberNo} and sender=#{memNo}
+  order by send_date desc limit 1
   </select>
   
   <select id="messageReadShowAll" parameterType="int" resultType="int">
