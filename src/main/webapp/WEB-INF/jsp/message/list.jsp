@@ -41,9 +41,9 @@
 
 </style>
 </head>
-<body>
+<body style="background-color: #FFF;">
 
-  <div class="card-header d-flex justify-content-between p-2" style="background-color: #FFFFFF;">
+  <div class="card-header d-flex justify-content-between p-2">
 	<h2>쪽지 목록</h2>
 	<div style="margin-top:60px; text-align: right;">
 		<i class="fas fa-bell" id="messageReadShowAll"> ${messageReadShowAll}</i>

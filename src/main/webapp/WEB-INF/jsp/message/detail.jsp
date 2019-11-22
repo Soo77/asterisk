@@ -54,9 +54,9 @@
 }
 </style>
 </head>
-<body style="overflow: hidden;">
+<body style="overflow: hidden; background-color: #FFF;">
   
-	<div class="card-header d-flex justify-content-between p-2" style="background-color: #F0F0F0;">
+	<div class="card-header d-flex justify-content-between p-2">
 		<div class="d-flex">
 			<div class="profile-photo">
 				<img class="avatar" onError="javascript:src='/upload/join/default.png'"
