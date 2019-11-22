@@ -10,11 +10,11 @@ VALUES ('admin');
 
 -- 학교유형
 INSERT INTO school_type(sch_type)
-VALUES ('primary');
+VALUES ('초등학교');
 INSERT INTO school_type(sch_type)
-VALUES ('middle');
+VALUES ('중학교');
 INSERT INTO school_type(sch_type)
-VALUES ('high');
+VALUES ('고등학교');
 INSERT INTO school_type(sch_type)
 VALUES ('university');
 INSERT INTO school_type(sch_type)
@@ -147,25 +147,25 @@ VALUES (3, 3, 'comment_test3', now());
 
 -- 과목 (FK: sch_type_no)
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (1, 'korean');
+VALUES (1, '국어');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (1, 'english');
+VALUES (1, '영어');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (1, 'math');
+VALUES (1, '수학');
 
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'korean');
+VALUES (2, '국어');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'english');
+VALUES (2, '영어');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (2, 'math');
+VALUES (2, '수학');
 
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (3, 'korean');
+VALUES (3, '국어');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (3, 'english');
+VALUES (3, '영어');
 INSERT INTO subject(sch_type_no, sub_name)
-VALUES (3, 'math');
+VALUES (3, '수학');
 
 -- 과외희망(희망과목) (FK: std_no, sub_no)
 INSERT INTO wanted_lesson(std_no, sub_no, req, rdt, wanted_fee)
