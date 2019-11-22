@@ -58,7 +58,7 @@
 
 <body>
   <div class="page-header header-filter" data-parallax="true"
-    style="background-image: url('/assets/img/bg/bg12.jpg')">
+    style="background-image: url('/assets/img/bg/bg20.jpg')">   
     <div class="container">
       <div class="row"> 
         <div class="col-md-8 ml-auto mr-auto">
