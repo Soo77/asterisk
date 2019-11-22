@@ -47,19 +47,29 @@ public class AuthController implements Runnable {
     response.sendRedirect("/app/auth/form");
   }
 
-  @GetMapping("login")
+  @GetMapping("loginId")
+  @ResponseBody
+  public int loginid(String id) 
+      throws Exception {
+    return authService.loginId(id);
+  }
+  
+  @GetMapping("loginPw")
   @ResponseBody
   public Member login(HttpSession session, String id, String pw) 
       throws Exception {
-
-    Map<String, String> params = new HashMap<>();
-    params.put("id", id);
-    params.put("pw", pw);
-
-    Member member = authService.login(params);
-    session.setAttribute("loginUser", member);
-    
-    return member;
+	  Map<String, String> params = new HashMap<>();
+	  params.put("id", id);
+	  params.put("pw", pw);
+	
+	if(authService.loginPw(params) == 0) {
+		return null;
+	} else {
+	    Member member = authService.login(params);
+	    session.setAttribute("loginUser", member);
+	    
+	    return member;
+	}
   }
 
   @GetMapping("logout")
