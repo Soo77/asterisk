@@ -310,7 +310,7 @@
             <c:forEach items="${board.files}" var="file">
               <img src='/upload/board/${file.fileName}' class='photo2'
                 onerror="this.style.display='none'" alt='' style="cursor: pointer;"
-                 onclick="openLayer('/upload/board/${file.fileName}','layerPop',400,100)" >
+                 onclick="openLayer('/upload/board/${file.fileName}','layerPop', event)" >
             </c:forEach>
           </div>
         </div>
@@ -339,26 +339,6 @@
           </div>
         </div>
       </div>
-
-<!--       <div id="insertBoardPhotos">
-        <div class="form-group row teacherDisplay">
-          <div class="col">
-            <label for="inputPhotos" class="mb-3">사진 업로드</label>
-            <div class="d-flex photo-add-div">
-              <div id="my-image-wrapper"
-                class="col image-wrapper text-center"></div>
-            </div>
-            <div
-              class="d-flex photo-add-button btn btn-outline-primary mx-0 my-0 px-0 py-0"
-              style="border-top-left-radius: 0; border-top-right-radius: 0; border-top-width: 0px;">
-              <button type="button"
-                class="btn btn-outline-primary mx-0 my-0"
-                style="flex-basis: 100%; box-shadow: none; border: 0;">
-                사진 등록</button>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
     </form>
     
@@ -418,117 +398,6 @@
   </div>
 </div>
 
-<!-- <script>
-  let teacherPhotos = new Array();
-
-</script>
-<c:forEach items="${board.files}" var="board">
-  <script>
-      teacherPhotos.push('${board.fileName}');
-  </script>
-</c:forEach>
-<script>
-  class TeacherPhotoController {
-    teacherPhotos;
-    teacherPhotoCount = 0;
-    indexOfPhotos = 1;
-    initialPhotoLoadingCompleted = false;
-
-    constructor(teacherPhotos) {
-      this.teacherPhotos = teacherPhotos;
-    }
-
-    addEventOfDeletionPhoto(thisDeleteButton) {
-      thisDeleteButton.addEventListener('click', () => {
-        if (this.teacherPhotoCount == 1)
-          return;
-        let thisPhotoCard = thisDeleteButton.parentNode;
-
-        thisPhotoCard.parentNode.removeChild(thisPhotoCard);
-        this.teacherPhotoCount--;
-      });
-    }
-
-    addTeacherPhotoNode(photoFileName) {
-      let html = '';
-      html += '<div class="card my-images mr-1 photo-no-' + this.indexOfPhotos + '" style="display: none;">';
-      html += '<img class="card-img-top my-teacher-images" src="/upload/board' + photoFileName + '" alt="Card image cap">';
-      html += '<div class="card-body d-flex btn btn-outline-primary mx-0 my-0 px-0 py-0" style="box-shadow: none; border-top-left-radius: 0; border-top-right-radius: 0;">';
-      html += '<button type="button" class="btn btn-outline-primary mx-0 my-0" style="flex-basis: 100%; box-shadow: none; border: 0;">';
-      html += '삭제';
-      html += '</button>';
-      html += '</div>';
-      html += '<input type="text" class="photo-name-no-' + this.indexOfPhotos + '" name="teacherPhotoNames" value="' + photoFileName + '" hidden>';
-      html += '<input type="file" class="photo-file-no' + this.indexOfPhotos + '" name="fileName">';
-      html += '</div>';
-
-      $('#my-image-wrapper').append(html);
-
-      let thisPhotoCard = document.getElementsByClassName('photo-no-' + this.indexOfPhotos)[0];
-      let thisPhoto = document.getElementsByClassName('photo-no-' + this.indexOfPhotos)[0].childNodes[0];
-      let thisPhotoName = document.getElementsByClassName('photo-name-no-' + this.indexOfPhotos)[0];
-
-      let thisDeleteButton = thisPhotoCard.childNodes[1];
-      let thisFileInput = document.getElementsByClassName('photo-file-no' + this.indexOfPhotos)[0];
-
-      this.addEventOfDeletionPhoto(thisDeleteButton);
-
-      if (this.initialPhotoLoadingCompleted) {
-        thisFileInput.addEventListener('change', e => {
-          let get_file = e.target.files;
-          let reader = new FileReader();
-
-          reader.onload = ((thisPhoto, thisPhotoCard) => {
-            return (e) => {
-              thisPhotoCard.style.display = 'inline-block';
-              thisPhoto.src = e.target.result;
-            }
-          })(thisPhoto, thisPhotoCard);
-
-          reader.readAsDataURL(get_file[0]);
-          thisPhotoName.value = get_file[0].name;
-        });
-
-        let clickPhotoChangeEvent = new MouseEvent('click', {
-          bubbles: true, cancelable: true, view: window
-        });
-        thisFileInput.dispatchEvent(clickPhotoChangeEvent);
-      }
-
-      if (!this.initialPhotoLoadingCompleted)
-        thisPhotoCard.style.display = 'inline-block';
-
-      this.teacherPhotoCount++;
-      this.indexOfPhotos++;
-
-    }
-
-    addEventToPhotoAddButton() {
-      let photoAddButton = document.getElementsByClassName('photo-add-button')[0];
-      photoAddButton.addEventListener('click', () => {
-        this.addTeacherPhotoNode('c.jpg');
-      });
-    }
-
-    loadInitialTeacherPhotos() {
-      for (let photoName of this.teacherPhotos) {
-        this.addTeacherPhotoNode(photoName);
-      }
-
-      this.initialPhotoLoadingCompleted = true;
-
-      this.addEventToPhotoAddButton();
-    }
-
-
-  }
-
-  let teacherPhotoController = new TeacherPhotoController(teacherPhotos);
-  teacherPhotoController.loadInitialTeacherPhotos();
-
-
-</script>
- -->
 <script>
   // 게시글 수정
   var UpdateButton = document.querySelector('#btnUpdate');
@@ -627,14 +496,14 @@
 <script>
 	//레이어 팝업 열기
 	var cnt = 0;
-	function openLayer(img, IdName, tpos, lpos){
+	function openLayer(img, IdName, event){
 	  if(cnt==0){
 		cnt++;
   	document.getElementById("image").src = img;
 		var pop = document.getElementById(IdName);
 		pop.style.display = "block";
-		pop.style.top = tpos + "px";
-		pop.style.left = lpos + "px";
+		pop.style.top = event.clientX + "px";
+		pop.style.left = event.clientY + "px";
 	  }
 	}
 	
