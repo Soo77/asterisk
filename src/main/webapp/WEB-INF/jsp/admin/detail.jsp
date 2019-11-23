@@ -67,11 +67,6 @@
                 <div class="name">
                   <h3 class="title mb-2">${thisMember.name}</h3>
                   <h6>
-                    <i class="far fa-square student-ID-unchecked"></i><i
-                      class="far fa-check-square student-ID-checked"></i>
-                    <span class="student-ID-span">
-                      학생증 인증&nbsp;&nbsp;&nbsp;
-                    </span>
                     <i class="far fa-square tutor-certi-unchecked"></i><i
                       class="far fa-check-square tutor-certi-checked"></i>
                     <span class="tutor-certi-span">
@@ -87,16 +82,6 @@
           <div class="form-group">
             <label for="inputId">아이디</label>
             <input type="text" class="form-control" id="inputId" value="${thisMember.id}" readonly>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPassword">비밀번호</label>
-            <input type="password" class="form-control" id="inputPassword" name="password" readonly>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPasswordCheck">비밀번호확인</label>
-            <input type="password" class="form-control" id="inputPasswordCheck" readonly>
           </div>
 
           <div class="form-group">
@@ -598,12 +583,7 @@
 
 <!-- 신고서 인증 -->
 <script>
-  console.log('${thisMember}');
-  console.log('${memberInfoMapForDetail.teacher}');
-  console.log('${thisMember.activationKey}');
-
   let certiApprBtn = document.getElementsByClassName('certi-appr-btn')[0];
-
 
   if ('${memberInfoMapForDetail.teacher.approvementState}' === 'false') {
     certiApprBtn.style.display = 'inline-block';
