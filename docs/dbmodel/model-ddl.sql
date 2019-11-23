@@ -176,7 +176,7 @@ CREATE TABLE lesson (
   ref_stat         BOOLEAN  NULL     DEFAULT 0, -- 환불상태
   ref_date         DATETIME NULL,     -- 환불일
   ref_amount       INTEGER  NULL     DEFAULT 0, -- 환불금액
-  lesson_day_count INTEGER  NULL      -- 수업일카운트
+  lesson_day_count INTEGER  NULL     DEFAULT 0 -- 수업일카운트
 );
 
 -- 수업
