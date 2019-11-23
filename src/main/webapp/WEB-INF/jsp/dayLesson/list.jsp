@@ -187,7 +187,7 @@
           <div class="row">
             <div class="col">
               <label for="modalLessonDate">날짜</label>
-              <input class="form-control pl-2" name="lessonDate" id="modalLessonDate" type="date" value="">
+              <input class="form-control pl-2" name="lessonDate" id="modalLessonDate" type="date" value="" max="9999-12-31">
             </div>
           </div>
           <div class="row">
