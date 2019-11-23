@@ -130,12 +130,12 @@ h4, h5 , h6{
 	      <h4>쪽지를 보낸 사람이 없습니다</h4>
 	      <c:choose>
 	       <c:when test="${loginUser.memberTypeNo eq 3}">
-		       <a href="http://localhost:8888/app/member/list?memberTypeNo=1" 
+		       <a href="../member/list?memberTypeNo=1" 
 		       target="_blank" style="float: right;">
 		       <button class="btn btn-primary" style="text-align: center;">학생 찾기</button></a>
 	       </c:when>
 	       <c:otherwise>
-		       <a href="http://localhost:8888/app/member/list?memberTypeNo=3" 
+		       <a href="../member/list?memberTypeNo=3" 
 		       target="_blank" style="float: right;">
 	         <button class="btn btn-primary">선생님 찾기</button></a>
 	       </c:otherwise>

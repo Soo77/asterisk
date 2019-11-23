@@ -34,6 +34,9 @@ public class MypageController {
     member.setMemberTypeNo(loginUser.getMemberTypeNo());
     member.setEmail(email1+"@"+email2);
     
+    if (member.getTel().equals(""))
+      member.setTel(null);
+    
     if (lessonDay != null) {
       StringBuilder sb = new StringBuilder();
       sb.append("0000000");
@@ -54,7 +57,6 @@ public class MypageController {
     member.setId(loginUser.getId());
     member.setPassword(null);
     member.setName(loginUser.getName());
-    member.setAddressCity(loginUser.getAddressCity());
     member.setUserEmailChecked(loginUser.isUserEmailChecked());
     member.setActivationKey(loginUser.getActivationKey());
     if (member.getProfilePhoto() == null)
@@ -91,7 +93,7 @@ public class MypageController {
     
     Member loginUser = (Member) session.getAttribute("loginUser");
     supplementInitialMemberInfo(member, loginUser, email1, email2, lessonDay);
-
+    
     photoWriter.upload(
         profilePhotoName, teacherPhotoFiles, teacherPhotoNames,
         member, session);
@@ -113,7 +115,6 @@ public class MypageController {
       mypageService.updateMember(member);
       
     }
-    
     updateLoginUser(loginUser, member, session);
 
     return "redirect:detail";

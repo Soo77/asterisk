@@ -179,7 +179,7 @@
                           </div>
                           <div class="col-md-9">
                             <h5 class="title">
-                              <span class="tim-note">${member.id}</span>
+                              <span class="tim-note">${member.name}</span>
                             </h5>
                             <h5>
                               <span class="tim-note">
@@ -212,7 +212,7 @@
                           </div>
                           <div class="col-md-9">
                             <h5 class="title">
-                              <span class="tim-note">${member.id}</span>
+                              <span class="tim-note">${member.name}</span>
                             </h5>
                             <h5>
                               <span class="tim-note">
@@ -483,7 +483,7 @@
                 html += '</div>';
                 html += '<div class="col-md-9">';
                 html += '<h5 class="title">';
-                html += '<span class="tim-note">' + resultList[i].id + '</span>';
+                html += '<span class="tim-note">' + resultList[i].name + '</span>';
                 html += '</h5>';
                 html += '<h5>';
                 html += '<span class="tim-note">';

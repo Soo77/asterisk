@@ -97,7 +97,7 @@ ul.test {
                   </div>
 
                   <div class="name">
-                    <h3 class="title">${member.id}</h3>
+                    <h3 class="title">${member.name}</h3>
 
                     <div class="age">
                       <c:set var="birth" value="${member.dateOfBirth}" />
@@ -149,7 +149,7 @@ ul.test {
                   </div>
 
                   <div class="name">
-                    <h3 class="title">${member.id}</h3>
+                    <h3 class="title">${member.name}</h3>
 
                     <div class="age">
                       <c:set var="birth" value="${member.dateOfBirth}" />
@@ -373,7 +373,7 @@ ul.test {
                       <div
                         class="card-header card-header-text card-header-primary">
                         <div class="card-text">
-                          <h5 class="card-title">ID: ${review.id}&ensp;
+                          <h5 class="card-title">ID: ${review.name}&ensp;
                            <c:set var="stars" value="${review.teacherEvaluation}" />
                              <c:if test="${stars == '1'}">
                               <i class="fas fa-star"></i>

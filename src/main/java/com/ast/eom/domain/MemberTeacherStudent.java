@@ -13,6 +13,7 @@ public class MemberTeacherStudent {
   private String gender;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date dateOfBirth;
+  private String name;
   private String id;
   private String addressCity;
   private String addressSuburb;
@@ -70,6 +71,12 @@ public class MemberTeacherStudent {
   }
   public void setDateOfBirth(Date dateOfBirth) {
     this.dateOfBirth = dateOfBirth;
+  }
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
   }
   public String getId() {
     return id;
@@ -213,9 +220,9 @@ public class MemberTeacherStudent {
   public String toString() {
     return "MemberTeacherStudent [memberNo=" + memberNo + ", memberTypeNo=" + memberTypeNo
         + ", registeredDate=" + registeredDate + ", gender=" + gender + ", dateOfBirth="
-        + dateOfBirth + ", id=" + id + ", addressCity=" + addressCity + ", addressSuburb="
-        + addressSuburb + ", profilePhoto=" + profilePhoto + ", lessonDays=" + lessonDays
-        + ", lessonStartTime=" + lessonStartTime + ", lessonEndTime=" + lessonEndTime
+        + dateOfBirth + ", name=" + name + ", id=" + id + ", addressCity=" + addressCity
+        + ", addressSuburb=" + addressSuburb + ", profilePhoto=" + profilePhoto + ", lessonDays="
+        + lessonDays + ", lessonStartTime=" + lessonStartTime + ", lessonEndTime=" + lessonEndTime
         + ", teacherAge=" + teacherAge + ", memberTypeName=" + memberTypeName + ", schoolType="
         + schoolType + ", subjectName=" + subjectName + ", teacherPhotos=" + teacherPhotos
         + ", teachers=" + teachers + ", lessonSubjects=" + lessonSubjects + ", schools=" + schools
@@ -224,6 +231,7 @@ public class MemberTeacherStudent {
         + mySchool + ", mySubject=" + mySubject + "]";
   }
  
+  
   
   
  
