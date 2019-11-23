@@ -48,6 +48,12 @@
         display: none !important;
       }
     }
+    .navbar .navbar-nav .nav-item .nav-link {
+      text-transform: none;
+    }
+    .nav-link {
+      text-transform: none;
+    }
   </style>
 
 </head>
@@ -314,6 +320,7 @@
   <script>
     $.ajax({
       url: "/app/message/notice",
+      type: "post",
       success: function (data) {
         let message;
         if (data >= 100) {

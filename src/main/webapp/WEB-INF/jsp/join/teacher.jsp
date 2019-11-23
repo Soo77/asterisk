@@ -86,9 +86,8 @@
                       class="img-raised rounded-circle">
                   </div>
                   <div class="name">
-                    <h2 class="title">프로필 사진</h2>
                     <div class="filebox">
-                      <label for="filePath" class="btn btn-primary btn-sm">파일선택</label>
+                      <label for="filePath" class="btn btn-primary btn-sm" style="margin-top: 15px;">사진선택</label>
                       <input type="file" id='filePath' name='filePath'>
                     </div>
                   </div>
@@ -304,7 +303,7 @@
                 </label><br>
                 <img id="view_lessonFile" class="mb-3">
                 <div class="filebox my-lesson-certi">
-                  <label for="lessoncertificate" class="btn btn-outline-primary btn-sm">파일선택</label>
+                  <label for="lessoncertificate" class="btn btn-outline-primary btn-sm">사진선택</label>
                   <input type="file" id='lessoncertificate' name='lessoncertificate' required>
                 </div>
               </div>

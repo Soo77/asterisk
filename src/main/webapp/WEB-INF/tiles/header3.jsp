@@ -5,11 +5,16 @@
   .my-logo {
     font-weight: bold;
   }
-  
   @media (max-width: 991px) {
-  #noticeHidden {
-  display: none !important;
+    #noticeHidden {
+      display: none !important;
+    }
   }
+  .navbar .navbar-nav .nav-item .nav-link {
+    text-transform: none;
+  }
+  .nav-link {
+    text-transform: none;
   }
 </style>
 
@@ -90,6 +95,7 @@ id="sectionsNav">
 <script>
 $.ajax({
   url: "/app/message/notice",
+  type: "post",
   success: function(data) {
 	  let message;
 	  if(data >= 100){

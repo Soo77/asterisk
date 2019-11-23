@@ -86,9 +86,8 @@
 											class="img-raised rounded-circle img-fluid">
 									</div>
 									<div class="name">
-										<h2 class="title">프로필 사진</h2>
 										<div class="filebox">
-											<label for="filePath" class="btn btn-primary btn-sm">파일선택</label>
+											<label for="filePath" class="btn btn-primary btn-sm" style="margin-top: 15px;">사진선택</label>
 											<input type="file" id='filePath' name='filePath'>
 										</div>
 									</div>

@@ -22,7 +22,7 @@ public class MessageController {
   @Autowired
   MessageService messageService;
   
-  @GetMapping("notice")
+  @PostMapping("notice")
   @ResponseBody
   public Object notice(HttpSession session) throws Exception {
     Member member = (Member)session.getAttribute("loginUser");
