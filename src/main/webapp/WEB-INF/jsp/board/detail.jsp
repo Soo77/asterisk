@@ -316,7 +316,7 @@
         </div>
       </div>
       
-      <div id="layerPop" style="position:absolute; display:none; border:3px solid #ccc;"><!-- 오픈레이어 테두리 -->
+      <div id="layerPop" style="position:absolute; display:none; border:3px solid #ccc; z-index: 1;"><!-- 오픈레이어 테두리 -->
         <img style="border:none; cursor: pointer;" id="image" src="" onclick="closeLayer('layerPop')"> <!--큰 이미지 오픈-->
       </div>
 
