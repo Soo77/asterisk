@@ -7,6 +7,7 @@ public class Student extends Member {
   private int parentsNo;
   private String requirementsToTeacher;
   private int wantedFee;
+  private String studentName;
   
   private SchoolType schoolType;
 
@@ -18,8 +19,15 @@ public class Student extends Member {
   @Override
   public String toString() {
     return "Student [studentNo=" + studentNo + ", parentsNo=" + parentsNo + ", requirementsToTeacher="
-        + requirementsToTeacher + ", wantedFee=" + wantedFee + ", schoolType=" + schoolType + ", lessons=" + lessons
-        + ", wantedLessons=" + wantedLessons + ", schools=" + schools + ", lessonSubjects=" + lessonSubjects + "]";
+        + requirementsToTeacher + ", wantedFee=" + wantedFee + ", studentName=" + studentName + ", schoolType="
+        + schoolType + ", lessons=" + lessons + ", wantedLessons=" + wantedLessons + ", schools=" + schools
+        + ", lessonSubjects=" + lessonSubjects + "]";
+  }
+  public String getStudentName() {
+    return studentName;
+  }
+  public void setStudentName(String studentName) {
+    this.studentName = studentName;
   }
   public int getWantedFee() {
     return wantedFee;

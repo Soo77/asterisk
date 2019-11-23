@@ -36,4 +36,5 @@ public interface MypageDao {
   Member getChildBy(String childId) throws Exception;
   int deleteAllParentsNoOfStudents(int memberNo) throws Exception;
   int deleteAllWantedLessonRelatedTo(int memberNo) throws Exception;
+  List<Parents> getParentsListWith(int memberTypeNo) throws Exception;
 }
