@@ -187,7 +187,7 @@
           <div class="row">
             <div class="col">
               <label for="modalLessonDate">날짜</label>
-              <input class="form-control pl-2" name="lessonDate" id="modalLessonDate" type="date" max="" value="">
+              <input class="form-control pl-2" name="lessonDate" id="modalLessonDate" type="date" value="">
             </div>
           </div>
           <div class="row">
@@ -480,7 +480,7 @@
   }
 
 	$(document).ready(function() {
-		modalLessonDate.max = new Date().toISOString().split("T")[0];
+		//modalLessonDate.max = new Date().toISOString().split("T")[0];
 		dayLessonList();
 		if (${loginUser.memberTypeNo == 1 && lessonState == 5 && studentReview == null} ) {
 			swal({
