@@ -65,12 +65,13 @@
           <div class="card w-75">
             <div class="row no-gutters">
               <c:choose>
-                <c:when test="${loginUser.memberTypeNo eq 3 and lesson.member.profilePhoto eq NULL}">
-                    <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="img-raised rounded img-fluid">
+                <c:when test="${lesson.member.profilePhoto eq NULL}">
+                    <img src="<%=request.getContextPath()%>/upload/join/default2.png" class="img-raised rounded img-fluid"
+                    onError="this.src='/upload/join/default2.png'"> 
                 </c:when>
                 <c:otherwise>
                   <img src="<%=request.getContextPath()%>/upload/join/${lesson.member.profilePhoto}" alt="Raised Image"
-                    class="img-raised rounded img-fluid">
+                    class="img-raised rounded img-fluid" onError="this.src='/upload/join/default2.png'">
                 </c:otherwise>
               </c:choose>
               <div style="font-family: 'Nanum Gothic';" class="card-body">
