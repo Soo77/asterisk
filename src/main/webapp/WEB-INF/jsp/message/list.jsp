@@ -26,7 +26,7 @@
   width: 50px;
   height: 50px;
 	float: left;
-  margin: 7px 10px 0px 10px;
+  margin: 5px 10px 0px 10px;
 }
 
 .datetime {
@@ -37,6 +37,10 @@
 .ms-pd{
   padding-top: 5px;
   padding-bottom: 0px;
+}
+h4, h5 , h6{
+	margin-top: 0px;
+	text-transform: none;
 }
 
 </style>
@@ -54,7 +58,9 @@
 	
 	<c:choose>
 		<c:when test="${messageListSize ne 0}">
+		
 			<c:forEach begin="0" end="${messageListSize-1}" var="i">
+			
 				<c:choose>
 					<c:when test="${messageReadList[i] ne 0}">
 						<c:set var="bell"
@@ -67,45 +73,47 @@
 				</c:choose>
 
 				<c:set var="messageContsSub" value="${messageContsDate[i].messageContents}"></c:set>
-        <c:set var="messageContsReplace" value="${fn:replace(messageContsSub,'<br>', '')}"></c:set>
+        		<c:set var="messageContsReplace" value="${fn:replace(messageContsSub,'<br>', '')}"></c:set>
 				<c:set var="messageConts" value="${fn:length(messageContsReplace)}"></c:set>
+				
 				<c:choose>
 					<c:when test="${loginUser.name eq messageMem[i].name}">
-					<img class="avatar" onError="javascript:src='/upload/join/default.png'"
-        alt="" src="/upload/join/${messageInfo[i].profilePhoto}">
-						<a href=detail?memberNo=${messageMem[i].memberNo}>
-							<div class="message ms-pd">
-							  <div style="color: black; display: block;">나에게 쪽지</div>
-							  <h6 style="color: gray; display: inline-block;">
-							    <c:choose>
-									  <c:when test="${messageConts ge 25}">
-		  							  <c:set var="messageContsResult" value="${fn:substring(messageContsReplace,0,25)}"></c:set>
-									    ${messageContsResult}..
-									  </c:when>
-									  <c:otherwise>
-									    ${messageContsSub}
-									  </c:otherwise>
-								  </c:choose>
-								</h6>
-							  <div class="datetime"><h6>${messageContsDate[i].sendDate}</h6></div>
-							</div>
-						</a>
+						<img class="avatar" onError="javascript:src='/upload/join/default.png'"
+	        			alt="" src="/upload/join/${messageInfo[i].profilePhoto}">
+							<a href=detail?memberNo=${messageMem[i].memberNo}>
+								<div class="message ms-pd">
+								  <div style="color: black; display: block;">나에게 쪽지</div>
+								  <h6 style="color: gray; display: inline-block;">
+								    <c:choose>
+										  <c:when test="${messageConts ge 25}">
+			  							  <c:set var="messageContsResult" value="${fn:substring(messageContsReplace,0,25)}"></c:set>
+										  	<span>${messageContsResult}..</span>
+										  </c:when>
+										  <c:otherwise>
+										  	<span>${messageContsSub}</span>
+										  </c:otherwise>
+									  </c:choose>
+									&nbsp;</h6>
+								  <div class="datetime"><h6>${messageContsDate[i].sendDate}</h6></div>
+								</div>
+							</a>
 					</c:when>
 
 					<c:otherwise>
-	  				<img class="avatar" src="/upload/join/${messageMem[i].profilePhoto}">
+	  				<img class="avatar" onError="javascript:src='/upload/join/default.png'"
+        			alt="" src="/upload/join/${messageMem[i].profilePhoto}">
 	  				<a href=detail?memberNo=${messageMem[i].memberNo}>
 							<div class="message ms-pd">
 								<div style="color: black; display: block;">
 								${messageMem[i].name}&ensp;${bell}</div>
 							  <h6 style="color: gray; display: inline-block;">
 							    <c:choose>
-								    <c:when test="${messageConts ge 20}">
+								    <c:when test="${messageConts ge 25}">
 		                  <c:set var="messageContsResult" value="${fn:substring(messageContsReplace,0,25)}"></c:set>
-		                  ${messageContsResult}..
+		                  	<span>${messageContsResult}..</span>
 		                </c:when>
 		                <c:otherwise>
-		                  ${messageContsSub}
+		                	<span>${messageContsSub}</span>
 		                </c:otherwise>
 	                </c:choose>
 	              </h6>
@@ -114,6 +122,7 @@
 						</a>
 					</c:otherwise>
 				</c:choose>
+				
 			</c:forEach>
 		</c:when>
 		
@@ -132,6 +141,7 @@
 	       </c:otherwise>
 	      </c:choose>
 	    </c:otherwise>
+	    
     </c:choose>
 
 	</div>

@@ -90,6 +90,7 @@ id="sectionsNav">
 <script>
 $.ajax({
   url: "/app/message/notice",
+  type: "post",
   success: function(data) {
 	  let message;
 	  if(data >= 100){

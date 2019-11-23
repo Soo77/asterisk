@@ -71,9 +71,8 @@
                       class="img-raised rounded-circle img-fluid">
                   </div>
                   <div class="name">
-                    <h2 class="title">프로필 사진</h2>
                     <div class="filebox">
-                      <label for="filePath" class="btn btn-primary btn-sm">파일선택</label>
+                      <label for="filePath" class="btn btn-primary btn-sm" style="margin-top: 15px;">사진선택</label>
                       <input type="file" id='filePath' name='filePath'>
                     </div>
                   </div>
@@ -200,7 +199,7 @@
                     </div>
                     <div class="flex-item" style="flex-basis: 7%;">
                       <button type="button" class="btn btn-outline-primary btn-sm" id="verify" style="margin-top: 2px;"
-                        data-toggle="modal" data-target="#exampleModal">인증하기</button>
+                        data-toggle="modal" data-target="#exampleModal">등록하기</button>
                     </div>
 
                     <div id="exampleModal" class="modal fade" data-backdrop="false">

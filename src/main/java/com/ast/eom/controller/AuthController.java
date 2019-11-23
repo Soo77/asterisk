@@ -47,14 +47,14 @@ public class AuthController implements Runnable {
     response.sendRedirect("/app/auth/form");
   }
 
-  @GetMapping("loginId")
+  @PostMapping("loginId")
   @ResponseBody
   public int loginid(String id) 
       throws Exception {
     return authService.loginId(id);
   }
   
-  @GetMapping("login")
+  @PostMapping("login")
   @ResponseBody
   public Member login(HttpSession session, String id, String pw) 
       throws Exception {
