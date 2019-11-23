@@ -74,6 +74,16 @@
       <result column="lesson_days" property="lessonDays"/>
   </resultMap>
   
+  <resultMap type="DayLesson" id="DayLessonMap">
+      <id column="day_lesson_no" property="dayLessonNo"/>
+      <result column="lesson_no" property="lessonNo"/>
+      <result column="lesson_date" property="lessonDate"/>
+      <result column="lesson_start_hr" property="lessonStartHour"/>
+      <result column="lesson_end_hr" property="lessonEndHour"/>
+      <result column="lesson_summ" property="lessonSummary"/>
+      <result column="lesson_eval" property="lessonEvaluation"/>
+  </resultMap>
+  
   <sql id="lessonColumn">
     select 
 			l.lesson_no,
@@ -289,7 +299,7 @@
   </update>
   
   <!-- 결제 페이지용 일별 과외 탐색 -->
-  <select id="getDayLessons" parameterType="int">
+  <select id="getDayLessons" parameterType="int" resultMap="DayLessonMap">
     select * from day_lesson where lesson_no = #{no}
   </select>
 </mapper>
