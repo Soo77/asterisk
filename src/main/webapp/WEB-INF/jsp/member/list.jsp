@@ -44,6 +44,10 @@
     object-fit: cover;
   }
 
+  .tim-note {
+    text-transform: none;
+  }
+
   .btn-primary:not (:disabled):not (.disabled):active,
   .btn-primary:not (:disabled):not (.disabled).active,
   .show>.btn-primary.dropdown-toggle {
