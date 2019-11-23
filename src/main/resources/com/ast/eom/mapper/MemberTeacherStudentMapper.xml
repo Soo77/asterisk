@@ -42,6 +42,7 @@
 		<result column="reg_date" property="registeredDate" />
 		<result column="gender" property="gender" />
 		<result column="dob" property="dateOfBirth" />
+		<result column="name" property="name" />
 		<result column="id" property="id" />
 		<result column="addr_city" property="addressCity" />
 		<result column="addr_sub" property="addressSuburb" />
@@ -99,7 +100,7 @@
 
 	<select id="listTeacher" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.mem_type_no, m.id, m.gender, m.addr_city, m.addr_sub, m.profile_photo, 
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, m.profile_photo, 
 		s.sch_name, t.tch_no, t.appr_stat, sub.sub_name, st.sch_type
 		from member m
 		left outer join teacher t on m.mem_no = t.tch_no
@@ -113,7 +114,7 @@
 
 	<select id="listStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.mem_type_no, m.id, m.gender, m.addr_city, m.addr_sub, m.profile_photo,
+		m.mem_no, m.mem_type_no, m.name, m.gender, m.addr_city, m.addr_sub, m.profile_photo,
 		sub.sub_name, st.sch_type
 		from
 		member m
@@ -126,7 +127,7 @@
 
 	<select id="detailTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.mem_type_no, m.reg_date, m.gender, m.dob, m.id, 
+		m.mem_no, m.mem_type_no, m.reg_date, m.gender, m.dob, m.name, 
 		m.addr_city, m.addr_sub, m.profile_photo, m.curr_lesson_dt, m.curr_lesson_st, m.curr_lesson_et,
 		tp.tch_photo, t.tch_intro, t.vid_addr, ls.wanted_fee, s.sch_name, s.major, 
 		st.sch_type, sub.sub_name, l.tch_review, l.tch_eval,l.lesson_no
@@ -144,7 +145,7 @@
 	
 	<select id="detailStudent" parameterType="int" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.mem_type_no, m.reg_date, m.gender, m.dob, m.id, m.addr_city, m.addr_sub, m.profile_photo,
+		m.mem_no, m.mem_type_no, m.reg_date, m.gender, m.dob, m.name, m.addr_city, m.addr_sub, m.profile_photo,
 		m.curr_lesson_dt, m.curr_lesson_st, m.curr_lesson_et, mt.mem_type_name,
 		stu.req_to_teacher, st.sch_type, sub.sub_name, l.std_review, wl.wanted_fee
 		from
@@ -160,7 +161,7 @@
 	
 	<select id="searchTeacher" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.id, m.profile_photo, t.appr_stat,
+		m.mem_no, m.name, m.profile_photo, t.appr_stat,
 		m.gender, m.addr_city, m.addr_sub, sub.sub_name, st.sch_type, ls.wanted_fee
 		from member m
 		left outer join teacher t on m.mem_no = t.tch_no
@@ -235,7 +236,7 @@
 	
 	<select id="searchStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
 		select
-		m.mem_no, m.id, m.profile_photo,
+		m.mem_no, m.name, m.profile_photo,
 		m.gender, m.addr_city, m.addr_sub, sub.sub_name, st.sch_type, wl.wanted_fee
 		from
 		member m
@@ -333,7 +334,7 @@
 	
   <select id="reviewTeacher" parameterType="int" resultMap="LessonMap">
     select
-    l.tch_review, l.tch_eval, std.std_no, m.id
+    l.tch_review, l.tch_eval, std.std_no, m.name
     from
     lesson l
     left outer join student std on l.std_no = std.std_no
