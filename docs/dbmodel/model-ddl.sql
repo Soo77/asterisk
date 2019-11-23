@@ -175,7 +175,7 @@ CREATE TABLE lesson (
   tch_stop_reason  TEXT     NULL,     -- 선생님중단사유
   ref_stat         BOOLEAN  NULL     DEFAULT 0, -- 환불상태
   ref_date         DATETIME NULL,     -- 환불일
-  ref_amount       INTEGER  NULL,     -- 환불금액
+  ref_amount       INTEGER  NULL     DEFAULT 0, -- 환불금액
   lesson_day_count INTEGER  NULL      -- 수업일카운트
 );
 
