@@ -290,7 +290,7 @@ public class JoinController implements Runnable {
 
       String htmlStr = "<h2>안녕하세요 엄과외입니다!</h2><br><br>" 
           + "<p>인증하기 버튼을 누르시면 로그인을 하실 수 있습니다 : " 
-          + "<a href='http://localhost/app/join/emailConfirm?key="+key+"'>인증하기</a></p>"
+          + "<a href='http://14.52.43.55:8888/app/join/emailConfirm?key="+key+"'>인증하기</a></p>"
           + "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
 
       // 메일 내용 
