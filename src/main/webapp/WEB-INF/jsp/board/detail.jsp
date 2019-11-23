@@ -310,7 +310,7 @@
             <c:forEach items="${board.files}" var="file">
               <img src='/upload/board/${file.fileName}' class='photo2'
                 onerror="this.style.display='none'" alt='' style="cursor: pointer;"
-                 onclick="openLayer('/upload/board/${file.fileName}','layerPop', event)" >
+                 onclick="openLayer('/upload/board/${file.fileName}','layerPop')" >
             </c:forEach>
           </div>
         </div>
@@ -326,7 +326,7 @@
           <div class="col">
             <div class="filebox">
               <input class="upload-name" disabled="disabled"> <label
-                for="gallery-photo-add">파일선택</label> <input type="file"
+                for="gallery-photo-add">사진선택</label> <input type="file"
                 multiple="multiple" id="gallery-photo-add"
                 name="fileName">
             </div>
@@ -496,14 +496,14 @@
 <script>
 	//레이어 팝업 열기
 	var cnt = 0;
-	function openLayer(img, IdName, event){
+	function openLayer(img, IdName){
 	  if(cnt==0){
 		cnt++;
   	document.getElementById("image").src = img;
 		var pop = document.getElementById(IdName);
 		pop.style.display = "block";
-		pop.style.top = event.clientX + "px";
-		pop.style.left = event.clientY + "px";
+		pop.style.top = '50%';
+		pop.style.left = '25%';
 	  }
 	}
 	
