@@ -6,6 +6,7 @@
 
   <resultMap type="Member" id="MemberMap">
     <result column="mem_no" property="memberNo"></result>
+    <result column="dob" property="dateOfBirth"></result>
   </resultMap>
 	
 	<insert id="insert" parameterType="Member"

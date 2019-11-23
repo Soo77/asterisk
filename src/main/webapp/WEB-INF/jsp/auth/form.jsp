@@ -117,6 +117,7 @@
 	  
 	  $.ajax({
 		  url : 'loginId',
+		  type : 'post',
 		  data : "id="+id,
 		  success : function(data){
 			  if(data == 0){
@@ -125,6 +126,7 @@
 			  } else{
 				$.ajax({
 				    url : 'login',
+				    type : 'post',
 				    data : "id="+id+"&pw="+pw,
 				    success : function(result) {
 				    	if(result == ""){
