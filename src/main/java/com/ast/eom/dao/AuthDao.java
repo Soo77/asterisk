@@ -9,5 +9,4 @@ public interface AuthDao {
   int pwChange(Member member) throws Exception;
   Member login(Map<String, String> params) throws Exception;
   int loginId(String id) throws Exception;
-  int loginPw(Map<String, String> params) throws Exception;
 }

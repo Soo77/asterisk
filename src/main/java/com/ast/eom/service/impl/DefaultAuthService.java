@@ -38,9 +38,4 @@ public class DefaultAuthService implements AuthService {
 		return authDao.loginId(id);
 	}
 	
-	@Override
-	public int loginPw(Map<String, String> params) throws Exception {
-		return authDao.loginPw(params);
-	}
-  
 }

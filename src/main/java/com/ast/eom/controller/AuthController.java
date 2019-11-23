@@ -54,7 +54,7 @@ public class AuthController implements Runnable {
     return authService.loginId(id);
   }
   
-  @GetMapping("loginPw")
+  @GetMapping("login")
   @ResponseBody
   public Member login(HttpSession session, String id, String pw) 
       throws Exception {
@@ -62,14 +62,10 @@ public class AuthController implements Runnable {
 	  params.put("id", id);
 	  params.put("pw", pw);
 	
-	if(authService.loginPw(params) == 0) {
-		return null;
-	} else {
-	    Member member = authService.login(params);
-	    session.setAttribute("loginUser", member);
-	    
-	    return member;
-	}
+	  Member member = authService.login(params);
+	  session.setAttribute("loginUser", member);
+    
+	  return member;
   }
 
   @GetMapping("logout")

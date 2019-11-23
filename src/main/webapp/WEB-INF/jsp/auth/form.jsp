@@ -124,7 +124,7 @@
 			      $("#loginCheck").css("color","red");
 			  } else{
 				$.ajax({
-				    url : 'loginPw',
+				    url : 'login',
 				    data : "id="+id+"&pw="+pw,
 				    success : function(result) {
 				    	if(result == ""){
