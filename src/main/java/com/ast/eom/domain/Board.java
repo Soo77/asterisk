@@ -15,7 +15,7 @@ public class Board {
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
   private Date createdDate;
   private int viewCount;
-  private String memberId;
+  private String memberName;
   
   private List<BoardFile> files;
   private List<Comment> comments;
@@ -24,7 +24,7 @@ public class Board {
   public String toString() {
     return "Board [boardNo=" + boardNo + ", boardTypeNo=" + boardTypeNo + ", memberNo=" + memberNo
         + ", title=" + title + ", contents=" + contents + ", createdDate=" + createdDate
-        + ", viewCount=" + viewCount + ", memberId=" + memberId + ", files=" + files
+        + ", viewCount=" + viewCount + ", memberName=" + memberName + ", files=" + files
         + ", comments=" + comments + "]";
   }
   public int getBoardNo() {
@@ -69,11 +69,11 @@ public class Board {
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
-  public String getMemberId() {
-    return memberId;
+  public String getMemberName() {
+    return memberName;
   }
-  public void setMemberId(String memberId) {
-    this.memberId = memberId;
+  public void setMemberName(String memberName) {
+    this.memberName = memberName;
   }
   public List<BoardFile> getFiles() {
     return files;

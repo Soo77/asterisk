@@ -11,14 +11,14 @@ public class Comment {
   private String commentContents;
   @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
   private Date createdDate;
-  private String memberId;
+  private String memberName;
   private String profilePhoto;
   private int commentCnt;
   
   @Override
   public String toString() {
     return "Comment [commentNo=" + commentNo + ", boardNo=" + boardNo + ", memberNo=" + memberNo
-        + ", commentContents=" + commentContents + ", createdDate=" + createdDate + ", memberId=" + memberId
+        + ", commentContents=" + commentContents + ", createdDate=" + createdDate + ", memberName=" + memberName
         + ", profilePhoto=" + profilePhoto + ", commentCnt=" + commentCnt + "]";
   }
   public int getCommentCnt() {
@@ -57,11 +57,11 @@ public class Comment {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
-  public String getMemberId() {
-    return memberId;
+  public String getMemberName() {
+    return memberName;
   }
-  public void setMemberId(String memberId) {
-    this.memberId = memberId;
+  public void setMemberName(String memberName) {
+    this.memberName = memberName;
   }
   public String getProfilePhoto() {
     return profilePhoto;

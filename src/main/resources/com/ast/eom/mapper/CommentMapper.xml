@@ -10,13 +10,13 @@
     <result column="mem_no" property="memberNo" />
     <result column="conts" property="commentContents" />
     <result column="cdt" property="createdDate" />
-    <result column="id" property="memberId" />
+    <result column="name" property="memberName" />
     <result column="commentCnt" property="commentCnt" />
     <result column="profile_photo" property="profilePhoto" />
   </resultMap>
   
   <select id="findAll" parameterType="int" resultMap="CommentMap">
-    select c.*, m.id, m.profile_photo, count(*) over() as commentCnt
+    select c.*, m.name, m.profile_photo, count(*) over() as commentCnt
     from comment c
     inner join member m on c.mem_no=m.mem_no
     where board_no=#{boardNo}

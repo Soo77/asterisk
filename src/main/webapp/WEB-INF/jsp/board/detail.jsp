@@ -275,8 +275,8 @@
         
         <div class="col">
           <div class="form-group">
-            <label for="id">작성자</label>
-            <input type="text" class="form-control pl-3" id="id" value="${board.memberId}" readonly>
+            <label for="name">작성자</label>
+            <input type="text" class="form-control pl-3" id="name" value="${board.memberName}" readonly>
           </div>
         </div>
 
@@ -594,7 +594,7 @@
                         a += '</div>';
                         a += '<div class="col-11">'
                         a += '<div class="commentInfo'+value.commentNo+'" style="display: inline-block; margin-right: 10px; font-weight: bold;">'
-                            + value.memberId + '</div>'
+                            + value.memberName + '</div>'
                         a += '<div class="createdDate'+value.commentNo+'" style="display: inline-block; font-size: 80%">' + value.createdDate + '</div>';
                         a += '<div class="commentContents'+value.commentNo+'" style="word-break:break-all;">'
                             + value.commentContents + '</div>'
