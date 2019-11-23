@@ -96,6 +96,12 @@
       object-fit: cover;
     }
     
+    #comment-img {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+    }
+    
     .complete {
       text-align: right;
     }
@@ -117,12 +123,22 @@
         width: 50px;
         height: 50px;
       }
+      
+      #comment-img {
+        width: 30px;
+        height: 30px;
+      }
     }
 
     @media (min-width: 768px) {
       #my-comment-img {
         width: 70px;
         height: 70px;
+      }
+      
+      #comment-img {
+        width: 40px;
+        height: 40px;
       }
     }
 
@@ -131,12 +147,22 @@
         width: 100px;
         height: 100px;
       }
+      
+      #comment-img {
+        width: 60px;
+        height: 60px;
+      }
     }
 
     @media (min-width: 1200px) {
       #my-comment-img {
         width: 125px;
         height: 125px;
+      }
+      
+      #comment-img {
+        width: 70px;
+        height: 70px;
       }
     }
 
@@ -165,69 +191,6 @@
       padding: 0 .5em 0 .5em;
       font-size: 0.75em;
     }
-    
-    .my-images {
-      max-width: 16.3rem;
-
-    }
-
-    .my-teacher-images {
-      width: 16.3rem;
-      height: 16.3rem;
-      object-fit: cover;
-    }
-
-    @media (min-width: 576px) {
-      .my-images {
-        max-width: 28rem;
-      }
-
-      .my-teacher-images {
-        width: 28rem;
-        height: 28rem;
-        object-fit: cover;
-      }
-    }
-
-    /* Medium devices (tablets, 768px and up) */
-    @media (min-width: 768px) {
-      .my-images {
-        max-width: 18.2rem;
-      }
-
-      .my-teacher-images {
-        width: 18.2rem;
-        height: 18.2rem;
-        object-fit: cover;
-      }
-    }
-
-    /* Large devices (desktops, 992px and up) */
-    @media (min-width: 992px) {
-      .my-images {
-        max-width: 25rem;
-      }
-
-      .my-teacher-images {
-        width: 25rem;
-        height: 25rem;
-        object-fit: cover;
-      }
-    }
-
-    /* Extra large devices (large desktops, 1200px and up) */
-    @media (min-width: 1200px) {
-      .my-images {
-        max-width: 15rem;
-      }
-
-      .my-teacher-images {
-        width: 15rem;
-        height: 15rem;
-        object-fit: cover;
-      }
-    }
-    
   </style>
 </head>
 
@@ -583,16 +546,16 @@
                       function(key, value) {
                         a += '<div class="commentArea" style="border-bottom:1px solid darkgray; padding:10px;">';
                         a += '<div class="row">';
-                        a += '<div class="col-1">';
+                        a += '<div class="col-2 p-1 text-center">';
                         if (value.profilePhoto == null) {
                             a += '<img src="/upload/join/default.png"';
-                            a += ' alt="" class="img-raised rounded-circle img-fluid">';
+                            a += ' alt="" class="img-raised rounded-circle img-fluid" id="comment-img">';
                         } else {
                           	a += '<img src="/upload/join/' + value.profilePhoto+'"';
-                            a += ' class="img-raised rounded-circle img-fluid">';
+                            a += ' class="img-raised rounded-circle img-fluid" id="comment-img">';
                         }
                         a += '</div>';
-                        a += '<div class="col-11">'
+                        a += '<div class="col-10">'
                         a += '<div class="commentInfo'+value.commentNo+'" style="display: inline-block; margin-right: 10px; font-weight: bold;">'
                             + value.memberName + '</div>'
                         a += '<div class="createdDate'+value.commentNo+'" style="display: inline-block; font-size: 80%">' + value.createdDate + '</div>';
@@ -673,22 +636,6 @@
     	          }
     	        });
     	  }
-    	  
-/*         var updateContent = $('[name=commentContents_' + commentNo + ']')
-            .val();
-
-        $.ajax({
-          url : 'comment/update',
-          type : 'post',
-          data : {
-            'commentContents' : updateContent,
-            'commentNo' : commentNo
-          },
-          success : function(data) {
-            if (data == 1)
-              commentList(boardNo); //댓글 수정후 목록 출력 
-          }
-        }); */
       }
 
       //댓글 삭제 
