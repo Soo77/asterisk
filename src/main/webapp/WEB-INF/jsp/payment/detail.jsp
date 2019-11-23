@@ -128,7 +128,8 @@
               <h3>강사정보</h3>
               <div class="row">
                 <div class="col">
-                  <img src="/upload/join/${teacherInfoMap.member.profilePhoto}" class="img-fluid teacher-profile-photo">
+                  <img src="/upload/join/${teacherInfoMap.member.profilePhoto}" class="img-fluid teacher-profile-photo"
+                  onError="this.src='/upload/join/default.png'">
                 </div>
                 <div class="col">
                   <h4>${teacherInfoMap.member.name}</h4>
