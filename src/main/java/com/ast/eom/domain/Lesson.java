@@ -37,7 +37,7 @@ public class Lesson {
   private int refundAmount;
   private int lessonDayCount;
   private String id;
-   
+  private String schoolName;
  
   
   private CurriculumLessonContents clc;
@@ -52,6 +52,13 @@ public class Lesson {
   private List<Member> members;
   private List<Curriculum> curriculums;
   private List<DayLesson> dayLessons;
+  
+  public String getSchoolName() {
+    return schoolName;
+  }
+  public void setSchoolName(String schoolName) {
+    this.schoolName = schoolName;
+  }
   public int getLessonNo() {
     return lessonNo;
   }
@@ -270,20 +277,18 @@ public class Lesson {
   }
   @Override
   public String toString() {
-    return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo
-        + ", parentsNo=" + parentsNo + ", lessonDescription=" + lessonDescription + ", subjectNo="
-        + subjectNo + ", lessonFee=" + lessonFee + ", lessonState=" + lessonState
-        + ", studentLessonStop=" + studentLessonStop + ", teacherLessonStop=" + teacherLessonStop
-        + ", startDate=" + startDate + ", endDate=" + endDate + ", teacherReview=" + teacherReview
-        + ", studentReview=" + studentReview + ", teacherEvaluation=" + teacherEvaluation
-        + ", paymentMethod=" + paymentMethod + ", payDay=" + payDay + ", calculationDay="
-        + calculationDay + ", calculationState=" + calculationState + ", studentStopReason="
-        + studentStopReason + ", teacherStopReason=" + teacherStopReason + ", refundState="
-        + refundState + ", refundDate=" + refundDate + ", refundAmount=" + refundAmount
-        + ", lessonDayCount=" + lessonDayCount + ", id=" + id + ", clc=" + clc + ", member="
-        + member + ", clcs=" + clcs + ", curriculum=" + curriculum + ", subject=" + subject
-        + ", subjectName=" + subjectName + ", dayintoWord=" + dayintoWord + ", members=" + members
-        + ", curriculums=" + curriculums + ", dayLessons=" + dayLessons + "]";
+    return "Lesson [lessonNo=" + lessonNo + ", teacherNo=" + teacherNo + ", studentNo=" + studentNo + ", parentsNo="
+        + parentsNo + ", lessonDescription=" + lessonDescription + ", subjectNo=" + subjectNo + ", lessonFee="
+        + lessonFee + ", lessonState=" + lessonState + ", studentLessonStop=" + studentLessonStop
+        + ", teacherLessonStop=" + teacherLessonStop + ", startDate=" + startDate + ", endDate=" + endDate
+        + ", teacherReview=" + teacherReview + ", studentReview=" + studentReview + ", teacherEvaluation="
+        + teacherEvaluation + ", paymentMethod=" + paymentMethod + ", payDay=" + payDay + ", calculationDay="
+        + calculationDay + ", calculationState=" + calculationState + ", studentStopReason=" + studentStopReason
+        + ", teacherStopReason=" + teacherStopReason + ", refundState=" + refundState + ", refundDate=" + refundDate
+        + ", refundAmount=" + refundAmount + ", lessonDayCount=" + lessonDayCount + ", id=" + id + ", schoolName="
+        + schoolName + ", clc=" + clc + ", member=" + member + ", clcs=" + clcs + ", curriculum=" + curriculum
+        + ", subject=" + subject + ", subjectName=" + subjectName + ", dayintoWord=" + dayintoWord + ", members="
+        + members + ", curriculums=" + curriculums + ", dayLessons=" + dayLessons + "]";
   }
   
  
