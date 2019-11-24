@@ -173,6 +173,13 @@
     where p.parents_no = #{no}
   </select>
 
+  <select id="getParentsListWith" parameterType="int" resultMap="ParentsMap">
+    select *
+    from parents p
+    inner join member m on m.mem_no = p.parents_no
+    where m.mem_type_no = #{no}
+  </select>
+
   <select id="getChildrenIdAndName" parameterType="map" resultMap="MemberMap">
     select mem_no, id, name
     from member

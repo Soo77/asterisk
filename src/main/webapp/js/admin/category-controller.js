@@ -25,7 +25,42 @@ class CategoryController {
           html += '<td>'+result.memberList[i].memberNo+'</td>';
           html += '<td>'+result.memberList[i].name+'</td>';
           html += '<td>'+result.memberAge[i]+'세</td>';
-          html += '<td>한국대 졸업, 과외경력 20년</td>';
+
+          if (result.memberTypeNo == 1) {
+            html += '<td>'
+                  + result.memberInfoList[i].gender +' / '
+                  + result.memberInfoList[i].addressCity +' / '
+                  + result.memberInfoList[i].addressSuburb +' / '
+                  + result.memberInfoList[i].schoolType +' / '
+                  + result.memberInfoList[i].subjectName
+                  + '</td>';
+
+          } else if (result.memberTypeNo == 2) {
+            html += '<td>자녀: '
+            if (result.parentsInfoList[i].students[0].name === null) {
+              html += '없음';
+            } else {
+              html += result.parentsInfoList[i].students[0].name;
+              if (result.parentsInfoList[i].students[1] != null) {
+                html += ' / ' +result.parentsInfoList[i].students[1].name;
+              }
+            }
+            html += '</td>';
+          
+          } else if (result.memberTypeNo == 3) {
+            html += '<td>'
+                  + result.memberInfoList[i].gender +' / '
+                   + result.memberInfoList[i].addressCity +' / '
+                   + result.memberInfoList[i].addressSuburb +' / '
+                   + result.memberInfoList[i].schoolType +' / '
+                   + result.memberInfoList[i].subjectName
+                   + '</td>';
+          
+          } else {
+            html += '<td></td>';
+
+          }
+
           html += '</tr>'
         }
         

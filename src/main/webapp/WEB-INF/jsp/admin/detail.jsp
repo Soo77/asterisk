@@ -67,11 +67,6 @@
                 <div class="name">
                   <h3 class="title mb-2">${thisMember.name}</h3>
                   <h6>
-                    <i class="far fa-square student-ID-unchecked"></i><i
-                      class="far fa-check-square student-ID-checked"></i>
-                    <span class="student-ID-span">
-                      학생증 인증&nbsp;&nbsp;&nbsp;
-                    </span>
                     <i class="far fa-square tutor-certi-unchecked"></i><i
                       class="far fa-check-square tutor-certi-checked"></i>
                     <span class="tutor-certi-span">
@@ -87,16 +82,6 @@
           <div class="form-group">
             <label for="inputId">아이디</label>
             <input type="text" class="form-control" id="inputId" value="${thisMember.id}" readonly>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPassword">비밀번호</label>
-            <input type="password" class="form-control" id="inputPassword" name="password" readonly>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPasswordCheck">비밀번호확인</label>
-            <input type="password" class="form-control" id="inputPasswordCheck" readonly>
           </div>
 
           <div class="form-group">
@@ -147,24 +132,6 @@
           <div class="form-group">
             <label for="inputTel">전화번호</label>
             <input type="text" class="form-control" id="inputTel" value="${thisMember.tel}" name="tel" readonly>
-          </div>
-
-          <div class="form-group teacherDisplay">
-            <label for="inputBankName">은행명</label>
-            <select class="form-control selectpicker" data-style="btn btn-link" id="inputBankName" name="bankName"
-              readonly>
-              <option selected>은행선택</option>
-              <option value="KB">국민은행</option>
-              <option value="Woori">우리은행</option>
-              <option value="Shinhan">신한은행</option>
-              <option value="kakao">카카오뱅크</option>
-            </select>
-          </div>
-
-          <div class="form-group teacherDisplay">
-            <label for="inputAccountNo">계좌번호</label>
-            <input type="text" class="form-control" id="inputAccountNo"
-              value="${memberInfoMapForDetail.teacher.accountNo}" name="accountNo" readonly>
           </div>
 
           <div class="form-group teacherDisplay">
@@ -616,12 +583,7 @@
 
 <!-- 신고서 인증 -->
 <script>
-  console.log('${thisMember}');
-  console.log('${memberInfoMapForDetail.teacher}');
-  console.log('${thisMember.activationKey}');
-
   let certiApprBtn = document.getElementsByClassName('certi-appr-btn')[0];
-
 
   if ('${memberInfoMapForDetail.teacher.approvementState}' === 'false') {
     certiApprBtn.style.display = 'inline-block';

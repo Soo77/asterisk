@@ -30,8 +30,8 @@
 		}
 
 		#teacherhope {
-			background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px);
-			linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+			background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px),
+				linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 			border: 0.5px solid #d2d2d2;
 			border-radius: .25rem;
 
@@ -177,7 +177,7 @@
 
 							<div class="form-group bmd-form-group">
 								<label for="tel">휴대전화</label>
-								<input type="tel" class="form-control" name="tel" id="tel" maxlength="11">
+								<input type="tel" class="form-control" name="tel" id="tel" maxlength="11" required>
 								<div class="redch" id="tel_check"></div>
 							</div>
 
@@ -385,7 +385,7 @@
 			} else {
 				$.ajax({
 					url: 'idCheck',
-					type: 'get',
+					type: 'post',
 					data: "id=" + id,
 					success: function (result) {
 						if (result == 1) {
@@ -518,7 +518,7 @@
       } else {
         $.ajax({
           url: 'emailCheck',
-          type: 'get',
+          type: 'post',
           data: "email=" + addmail,
           success: function (result) {
             if (result == 1) {
@@ -553,49 +553,42 @@
 
 	<!--   휴대전화 중복 -->
 	<script>
-		$("#tel").blur(function () {
-			var tel = $('#tel').val();
-			var teltest = /^[0-9]{11}$/;
+	$("#tel").blur(function () {
+	      var tel = $('#tel').val();
+	      var teltest = /^[0-9]{11}$/;
 
-			if (tel == "") {
-        $("#tel_check").text("");
-        $("#submitBtn").attr("disabled", false);
-        return false;
-      } else if (!teltest.test(tel)) {
-        $("#tel_check").text("11개의 숫자만 입력해주세요");
-        $("#tel_check").css("color", "red");
-        $("#tel").css("color", "red");
-        $("#submitBtn").attr("disabled", true);
-      } else {
-				$.ajax({
-					url: 'telCheck',
-					type: 'get',
-					data: "tel=" + tel,
-					success: function (result) {
-						if (result == 1) {
-							$("#tel_check").text("사용중인 번호입니다");
-							$("#tel_check").css("color", "red");
-							$("#tel").css("color", "red");
-							$("#submitBtn").attr("disabled", true);
-						} else {
-							if (id) {
-								$("#tel_check").text("가입 가능한 번호입니다");
-								$("#tel_check").css("color", "green");
-								$("#tel").css("color", "green");
-								$("#submitBtn").attr("disabled", false);
-							} else if (id == "") {
-								$('#tel_check').text('번호 입력해주세요');
-								$('#tel_check').css('color', 'red');
-								$("#submitBtn").attr("disabled", true);
-							}
-						}
-					},
-					error: function () {
-						console.log("실패");
-					}
-				});
-			}
-		});
+	      if (tel == "") {
+	  	  	$('#tel_check').text('전화번호를 입력해주세요');
+	        $('#tel_check').css('color', 'red');
+	        $("#submitBtn").attr("disabled", true);
+	      } else if (!teltest.test(tel)) {
+	        $("#tel_check").text("11개의 숫자만 입력해주세요");
+	        $("#tel_check").css("color", "red");
+	        $("#tel").css("color", "red");
+	        $("#submitBtn").attr("disabled", true);
+	      } else {
+	        $.ajax({
+	          url: 'telCheck',
+	          type: 'post',
+	          data: "tel=" + tel,
+	          success: function (result) {
+	            if (result == 1) {
+	              $("#tel_check").text("사용중인 번호입니다");
+	              $("#tel_check").css("color", "red");
+	              $("#tel").css("color", "red");
+	              $("#submitBtn").attr("disabled", true);
+	            } else {
+	                $("#tel_check").text("가입 가능한 번호입니다");
+	                $("#tel_check").css("color", "green");
+	                $("#tel").css("color", "green");
+	                $("#submitBtn").attr("disabled", false);
+	            }
+	          }, error: function () {
+	            console.log("실패");
+	          }
+	        });
+	      }
+	    });
 	</script>
 </body>
 

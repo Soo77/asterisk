@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ast.eom.service.AdminService;
 
@@ -52,8 +53,12 @@ public class AdminController {
   
   @ResponseBody
   @GetMapping("getMemberInfo")
-  public Object getMemberInfo(int memberTypeNo) throws Exception {
-    return adminService.loadMemberInfoMapOf(memberTypeNo);
+  public Object getMemberInfo(
+      int memberTypeNo,
+      @RequestParam(defaultValue = "20") int pageSize,
+      @RequestParam(defaultValue = "1") int curPage) throws Exception {
+    return adminService.loadMemberInfoMapOf(memberTypeNo,
+        pageSize, curPage);
   }
   
   @ResponseBody

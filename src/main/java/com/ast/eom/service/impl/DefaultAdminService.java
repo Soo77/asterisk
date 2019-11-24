@@ -7,17 +7,23 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.ast.eom.dao.AdminDao;
 import com.ast.eom.dao.LessonDao;
 import com.ast.eom.dao.MypageDao;
 import com.ast.eom.domain.Lesson;
 import com.ast.eom.domain.Member;
+import com.ast.eom.domain.MemberTeacherStudent;
+import com.ast.eom.domain.Pagination;
 import com.ast.eom.domain.Parents;
 import com.ast.eom.domain.Student;
 import com.ast.eom.service.AdminService;
+import com.ast.eom.service.MemberTeacherStudentService;
 
 @Service
 public class DefaultAdminService implements AdminService {
@@ -27,6 +33,11 @@ public class DefaultAdminService implements AdminService {
   MypageDao mypageDao;
   @Autowired
   LessonDao lessonDao;
+  @Autowired
+  MemberTeacherStudentService memberTeacherStudentService;
+  
+  int pageSize;
+  int curPage;
   
   HttpSession session;
   
@@ -57,15 +68,66 @@ public class DefaultAdminService implements AdminService {
     memberInfoMapForAdmin.put("memberList", memberList);
     memberInfoMapForAdmin.put("memberAge", memberAge);
     
+    List<MemberTeacherStudent> memberInfoList = null;
+    List<Parents> parentsInfoList = null;
+    int listCnt = -1;
+    
+    if (memberTypeNo == 1) { 
+      memberInfoList = memberTeacherStudentService.list2(memberTypeNo); 
+      listCnt = memberInfoList.size();
+      
+    } else if (memberTypeNo == 2) { 
+      parentsInfoList = mypageDao.getParentsListWith(memberTypeNo);
+      for (int i = 0; i < parentsInfoList.size(); i++) {
+        Parents parents = mypageDao.getParents(
+            parentsInfoList.get(i).getParentsNo());
+        
+        List<Student> children = parents.getStudents();
+        List<Integer> childrenNo = new ArrayList<>();
+        
+        for (Student child : children) {
+          childrenNo.add(child.getStudentNo());
+        }
+        
+        List<Member> member = mypageDao.getChildrenIdAndName(childrenNo);
+        if (member.size() > 0) {
+          for (int j = 0; j < children.size(); j++) {
+            children.get(j).setId(member.get(j).getId());
+            children.get(j).setName(member.get(j).getName());
+          }
+          parents.setStudents(children);
+        }
+        
+        parentsInfoList.set(i, parents);
+        listCnt = parentsInfoList.size();
+      }
+    } else if (memberTypeNo == 3) { 
+      memberInfoList = memberTeacherStudentService.list(memberTypeNo);
+      listCnt = memberInfoList.size();
+    }
+
+    Pagination pagination = new Pagination(listCnt, curPage, pageSize);
+    
+    memberInfoMapForAdmin.put("memberInfoList", memberInfoList);
+    memberInfoMapForAdmin.put("parentsInfoList", parentsInfoList);
+    memberInfoMapForAdmin.put("memberTypeNo", memberTypeNo);
+    memberInfoMapForAdmin.put("listCnt", listCnt);
+    memberInfoMapForAdmin.put("pagination", pagination);
+    memberInfoMapForAdmin.put("pageSize", pageSize);
+    
   }
   
   @Override
-  public Object loadMemberInfoMapOf(int memberTypeNo) throws Exception {
+  public Object loadMemberInfoMapOf(
+      int memberTypeNo, int pageSize, int curPage) throws Exception {
+    
+    this.pageSize = pageSize;
+    this.curPage = curPage;
     
     Map<String, Object> memberInfoMapForAdmin = new HashMap<>();
     
     if (memberTypeNo == 1) {
-      prepareBasicMemberInfoMapOf(memberTypeNo, memberInfoMapForAdmin);
+      prepareBasicMemberInfoMapOf(memberTypeNo,memberInfoMapForAdmin);
       return memberInfoMapForAdmin;
       
     } else if (memberTypeNo == 2) {
@@ -130,9 +192,7 @@ public class DefaultAdminService implements AdminService {
       memberInfoMapForDetail.put("lessonSubjects", mypageDao.getLessonSubjects(memberNo));
       memberInfoMapForDetail.put("teacherPhotos", mypageDao.getTeacherPhotos(memberNo));
     }
-    System.out.println(thisMember);
-    for (Object m : memberInfoMapForDetail.keySet())
-      System.out.println(memberInfoMapForDetail.get(m));
+    
     return memberInfoMapForDetail;
   }
   

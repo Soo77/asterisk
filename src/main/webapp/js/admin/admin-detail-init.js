@@ -14,11 +14,9 @@ class MypageInit {
 
   displayTeacherInfo() {
     if (memberTypeNo == 3) {
-      let studentIdSpan = document.getElementsByClassName('student-ID-span')[0];
       let tutorCertiSpan = document.getElementsByClassName('tutor-certi-span')[0];
       let teacherDisplay = document.getElementsByClassName('teacherDisplay');
 
-      studentIdSpan.style.display = 'inline-block';
       tutorCertiSpan.style.display = 'inline-block';
 
       for (let td of teacherDisplay)
@@ -46,14 +44,6 @@ class MypageInit {
 
   checkTeacherApprovement(teacherUniversityConfirmation, teacherApprovementState) {
     if (this.memberTypeNo == 3) {
-      if (teacherUniversityConfirmation == 'true') {
-        let studentIdchecked = document.getElementsByClassName('student-ID-checked')[0];
-        studentIdchecked.style.display = 'inline-block';
-      } else if (teacherUniversityConfirmation == 'false' || teacherUniversityConfirmation == '') {
-        let studentIdUnchecked = document.getElementsByClassName('student-ID-unchecked')[0];
-        studentIdUnchecked.style.display = 'inline-block';
-      }
-
       if (teacherApprovementState == 'true') {
         let tutorCertichecked = document.getElementsByClassName('tutor-certi-checked')[0];
         tutorCertichecked.style.display = 'inline-block';
