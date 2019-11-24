@@ -10,11 +10,3 @@ public interface CommentDao {
   public int delete(int commentNo) throws Exception;
   public int deleteAll(int boardNo) throws Exception;
 }
-
-
-
-
-
-
-
-

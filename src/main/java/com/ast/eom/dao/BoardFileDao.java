@@ -8,11 +8,3 @@ public interface BoardFileDao {
   List<BoardFile> findAll(int boardNo) throws Exception;
   int deleteAll(int boardNo) throws Exception;
 }
-
-
-
-
-
-
-
-

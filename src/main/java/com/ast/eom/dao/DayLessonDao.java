@@ -9,11 +9,3 @@ public interface DayLessonDao {
   int update(DayLesson dayLesson) throws Exception;
   int delete(int dayLessonNo) throws Exception;
 }
-
-
-
-
-
-
-
-
