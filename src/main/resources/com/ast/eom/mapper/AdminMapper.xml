@@ -165,7 +165,7 @@
 
   <update id="approveInterruption" parameterType="int">
     update lesson
-    set lesson_stat = 4, ref_stat = 0
+    set lesson_stat = 5, ref_stat = 0
     where lesson_no = #{lessonNo}
   </update>
   
