@@ -81,7 +81,6 @@ class CategoryController {
     $.ajax({
       url: '/app/admin/getPendingLessons',
       success: (result) => {
-        console.log(result);
         let html = '';
         for (let i = 0; i < result.pendingLessons.length; i++) {
           html += '<tr class="my-table-row lesson-row-no-'+result.pendingLessons[i].lessonNo+'">'

@@ -122,14 +122,12 @@ class MypageInit {
       let childVerificationButtonDiv = addedChildIdObject.childNodes[3].childNodes[5];
 
       childVerificationButton.addEventListener('click', () => {
-        console.log(childIdInput.value);
         $.ajax({
           url: '/app/mypage/verifyTheChild',
           data : {
             'childId' : childIdInput.value.trim()
           },
           success : (result) => {
-            console.log(result);
             if (result.memberNo == null) {
               swal('해당하는 아이디의 유저가 없습니다!');
             } else {

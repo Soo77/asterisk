@@ -314,21 +314,6 @@
   </div>
 </div>
 
-<!-- 값 테스트용 출력 (디버깅 이후 지울 것)-->
-<script>
-  //console.log('${memberInfoMap.teacher}');
-  //console.log('${memberInfboMap.lessonSubjects}');
-  //console.log('${memberInfoMap.parents}');
-  console.log('${memberInfoMap.student}');
-  //console.log('${memberInfoMap.wantedLessons}');
-</script>
-
-<c:forEach items="${memberInfoMap.teacherLessons}" var="teacherLesson">
-  <script>
-    console.log("${teacherLesson}");
-  </script>
-</c:forEach>
-
 <!-- 프로필 사진 클릭 시 파일업로드 및 선택한 사진으로 변경 -->
 <script src="/js/mypage/profile-photo.js"></script>
 
