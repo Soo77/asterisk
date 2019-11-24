@@ -174,7 +174,9 @@
               <div class="redch" id="email_check"></div>
 
               <div class="form-group bmd-form-group">
-                <label for="exampleInput1">휴대전화</label>
+                <label for="exampleInput1">휴대전화
+                <span class="req"> *</span>
+                </label>
                 <input type="tel" class="form-control" name="tel" id="tel" maxlength="11" required>
                 <div class="redch" id="tel_check"></div>
               </div>
