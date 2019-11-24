@@ -99,11 +99,6 @@
           <h3><b>수업 정산</b></h3>
           <hr>
           <div class="form-group">
-<%--           <label for="lessonFee">월 과외료</label> <input type="text"
-            class="form-control" id="lessonFee"
-            value="${pendingLessonsInfoMapDetail.lessonInfo.lessonFee}"
-            name="lessonFee" readonly> --%>
-            
             <label for="lessonFee">월 과외료</label>
             <div class="form-group has-default bmd-form-group pt-0">
               <div class="d-flex">
@@ -119,11 +114,6 @@
         </div>
 
         <div class="form-group">
-<%--           <label for=dayLessonCountOfMonth>한달 과외일수</label> <input
-            type="text" class="form-control" id="dayLessonCountOfMonth"
-            value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth}"
-            name="dayLessonCountOfMonth" readonly> --%>
-            
           <label for="dayLessonCountOfMonth">한달 과외일수</label>
           <div class="form-group has-default bmd-form-group pt-0">
             <div class="d-flex">
@@ -139,11 +129,6 @@
         </div>
 
         <div class="form-group">
-<%--           <label for="progressDayLessonCountOfMonth">이번 달에 진행된 과외일수</label> <input
-            type="text" class="form-control" id="progressDayLessonCountOfMonth"
-            value="${pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}"
-            name="progressDayLessonCountOfMonth" readonly> --%>
-          
           <label for="progressDayLessonCountOfMonth">진행된 과외일수</label>
           <div class="form-group has-default bmd-form-group pt-0">
             <div class="d-flex">
@@ -159,12 +144,6 @@
         </div>
 
         <div class="form-group">
-<%--           <label for="remainingLessonDay">잔여 과외일수</label> <input
-            type="text" class="form-control" id="remainingLessonDay"
-            value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth
-          - pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}"
-            name="remainingLessonDay" readonly> --%>
-            
           <label for="remainingLessonDay">잔여 과외일수</label>
           <div class="form-group has-default bmd-form-group pt-0">
             <div class="d-flex">
@@ -181,11 +160,6 @@
         </div>
 
         <div class="form-group">
-<%--           <label for="refund">환불금액</label> <input type="text"
-            class="form-control" id="refund"
-            value="${pendingLessonsInfoMapDetail.refund}"
-            name="refund" readonly> --%>
-            
           <label for="refund">환불 금액</label>
           <div class="form-group has-default bmd-form-group pt-0">
             <div class="d-flex">
@@ -212,26 +186,25 @@
   let approveIntteruption = document.getElementById('approveIntteruption');
   approveIntteruption.addEventListener('click', () => {
 	  swal({
-	      title: "중단 승인",
-	      text: "중단을 승인합니다.",
-	      type: "warning",
-	      showCancelButton: true,
-	      confirmButtonClass: "btn-danger",
-	      confirmButtonText: "Confirm",
-	      closeOnConfirm: false
-	    })
-	    .then(() => {
-	      $.ajax({
-	        url:'/app/admin/approveIntteruption',
-	        method: 'post',
-	        data : {
-	          'lessonNo': Number('${pendingLessonsInfoMapDetail.lessonInfo.lessonNo}')
-	        },
-	        success: (result) => {
-	          location.href="/app/admin/list";
-	        }
-	      });
-	    });
+      title: "중단 승인",
+      text: "중단을 승인합니다.",
+      buttons: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+    	  $.ajax({
+  	        url:'/app/admin/approveIntteruption',
+  	        method: 'post',
+  	        data : {
+  	          'lessonNo': Number('${pendingLessonsInfoMapDetail.lessonInfo.lessonNo}')
+  	        },
+  	        success: (result) => {
+  	          location.href="/app/admin/list";
+  	        }
+  	      });
+      } else {
+      }
+    });
   });
 </script>
 

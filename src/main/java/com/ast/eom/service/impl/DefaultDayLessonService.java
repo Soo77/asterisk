@@ -15,12 +15,6 @@ public class DefaultDayLessonService implements DayLessonService {
   @Resource private DayLessonDao dayLessonDao;
   @Resource private LessonDao lessonDao;
 
-//  @Override
-//  public DayLesson get(int dayLessonNo) throws Exception {
-//    DayLesson dayLesson = dayLessonDao.findBy(dayLessonNo);
-//    return dayLesson;
-//  }
-  
   @Override
   public List<DayLesson> list(int lessonNo) throws Exception {
     return dayLessonDao.findAll(lessonNo);

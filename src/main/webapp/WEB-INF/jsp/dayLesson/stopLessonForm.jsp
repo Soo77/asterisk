@@ -120,31 +120,21 @@
         </h3>
         <hr>
         <div class="form-group">
-<%--           <label for="lessonFee">월 과외료</label> <input type="text"
-            class="form-control" id="lessonFee"
-            value="${pendingLessonsInfoMapDetail.lessonInfo.lessonFee}"
-            name="lessonFee" readonly> --%>
-            
-            <label for="lessonFee">월 과외료</label>
-            <div class="form-group has-default bmd-form-group pt-0">
-              <div class="d-flex">
-                <div class="flex-item" style="flex-basis: 99%;">
-                  <input id="lessonFee" name=lessonFee type="text" class="form-control pl-2"
-                    value="${pendingLessonsInfoMapDetail.lessonInfo.lessonFee}" readonly>
-                </div>
-                <div class="flex-item align-self-center pl-1" style="flex-basis: 1%;">
-                  <span>원</span>
-                </div>
+          <label for="lessonFee">월 과외료</label>
+          <div class="form-group has-default bmd-form-group pt-0">
+            <div class="d-flex">
+              <div class="flex-item" style="flex-basis: 99%;">
+                <input id="lessonFee" name=lessonFee type="text" class="form-control pl-2"
+                  value="${pendingLessonsInfoMapDetail.lessonInfo.lessonFee}" readonly>
+              </div>
+              <div class="flex-item align-self-center pl-1" style="flex-basis: 1%;">
+                <span>원</span>
               </div>
             </div>
+          </div>
         </div>
 
         <div class="form-group">
-<%--           <label for=dayLessonCountOfMonth>한달 과외일수</label> <input
-            type="text" class="form-control" id="dayLessonCountOfMonth"
-            value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth}"
-            name="dayLessonCountOfMonth" readonly> --%>
-            
           <label for="dayLessonCountOfMonth">한달 과외일수</label>
           <div class="form-group has-default bmd-form-group pt-0">
             <div class="d-flex">
@@ -160,11 +150,6 @@
         </div>
 
         <div class="form-group">
-<%--           <label for="progressDayLessonCountOfMonth">이번 달에 진행된 과외일수</label> <input
-            type="text" class="form-control" id="progressDayLessonCountOfMonth"
-            value="${pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}"
-            name="progressDayLessonCountOfMonth" readonly> --%>
-          
           <label for="progressDayLessonCountOfMonth">진행된 과외일수</label>
           <div class="form-group has-default bmd-form-group pt-0">
             <div class="d-flex">
@@ -180,12 +165,6 @@
         </div>
 
         <div class="form-group">
-<%--           <label for="remainingLessonDay">잔여 과외일수</label> <input
-            type="text" class="form-control" id="remainingLessonDay"
-            value="${pendingLessonsInfoMapDetail.dayLessonCountOfMonth
-          - pendingLessonsInfoMapDetail.progressDayLessonCountOfMonth}"
-            name="remainingLessonDay" readonly> --%>
-            
           <label for="remainingLessonDay">잔여 과외일수</label>
           <div class="form-group has-default bmd-form-group pt-0">
             <div class="d-flex">
@@ -202,11 +181,6 @@
         </div>
 
         <div class="form-group">
-<%--           <label for="refund">환불금액</label> <input type="text"
-            class="form-control" id="refund"
-            value="${pendingLessonsInfoMapDetail.refund}"
-            name="refund" readonly> --%>
-            
           <label for="refund">환불 금액</label>
           <div class="form-group has-default bmd-form-group pt-0">
             <div class="d-flex">
@@ -245,19 +219,19 @@
       return;
     } else {
       swal({
-          title: "중단 신청",
-          text: "중단 신청은 취소가 불가능합니다.\n중단 신청을 하시면 일별과외 진행현황은 조회만 가능합니다.",
-          buttons: true,
-        })
-        .then((willDelete) => {
-          if (willDelete) {
-            swal("신청되었습니다.", {
-              icon: "success",
-            });
-            document.getElementById("form1").submit();
-          } else {
-          }
-        });
+        title: "중단 신청",
+        text: "중단 신청은 취소가 불가능합니다.\n중단 신청을 하시면 일별과외 진행현황은 조회만 가능합니다.",
+        buttons: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("신청되었습니다.", {
+            icon: "success",
+          });
+          document.getElementById("form1").submit();
+        } else {
+        }
+      });
     }
   });
   

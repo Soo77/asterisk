@@ -8,13 +8,6 @@
       text-align: right;
     }
     
-    .photo2 {
-      height: 150px;
-      width: 150px;
-      margin: 2px;
-      object-fit: cover;
-    }
-    
     .row {
       margin: 5px;
     }
@@ -97,7 +90,7 @@
   </div>
 </div>
 <div class="main main-raised">
-  <div class="container p-3">
+  <div class="container pt-5 pb-5">
     <form id="form1" name="frm1" action='add' method='post'
       enctype='multipart/form-data'>
 
@@ -107,7 +100,7 @@
         <div class="col">
           <div class="form-group bmd-form-group">
             <label class="bmd-label-static">제목</label>
-            <input type="text" class="form-control"  id="inputTitle" name='title' >
+            <input type="text" class="form-control pl-2"  id="inputTitle" name='title' >
           </div>
         </div>
       </div>
@@ -116,7 +109,7 @@
           <div class="col">
           <div class="form-group bmd-form-group">
             <label for="exampleFormControlTextarea1">내용</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" name="contents" rows="30" style="resize: none;"></textarea>
+            <textarea class="form-control pl-2" id="exampleFormControlTextarea1" name="contents" rows="30" style="resize: none;"></textarea>
           </div>
         </div>
       </div>

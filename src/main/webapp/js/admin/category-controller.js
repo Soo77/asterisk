@@ -87,7 +87,11 @@ class CategoryController {
           html += '<td>'+result.pendingLessons[i].lessonNo+'</td>';
           html += '<td>'+result.studentList[i].name+'</td>';
           html += '<td>'+result.teacherList[i].name+'</td>';
-          html += '<td>중단 요청 수신 </td>';
+          if (result.pendingLessons[i].studentLessonStop == 1) {
+        	  html += '<td>학생쪽 중단 요청 수신 </td>';
+          } else if (result.pendingLessons[i].teacherLessonStop == 1) {
+        	  html += '<td>선생님쪽 중단 요청 수신 </td>';
+          }
           html += '</tr>'
         }
         

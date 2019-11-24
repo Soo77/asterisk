@@ -23,11 +23,8 @@ public class FileWriter {
     for (MultipartFile file : fileName) {
       if (file.isEmpty())
         continue;
-      // 클라이언트가 보낸 파일을 디스크에 저장한다.
       String filename = UUID.randomUUID().toString();
-      System.out.println("====>filename: " + filename);
       file.transferTo(new File(uploadDir + "/" + filename));
-      // 저장한 파일명을 PhotoFile에 보관한다.
       BoardFile boardFile = new BoardFile();
       boardFile.setFileName(filename);
       boardFiles.add(boardFile);

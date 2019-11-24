@@ -17,6 +17,9 @@
       width: 120px;
     }
     
+    .my-board {
+    }
+    
   </style>
 </head>
 
@@ -102,7 +105,7 @@
         <c:forEach items="${boards}" var="board"
           begin="${pagination.pageSize * (pagination.curPage - 1)}"
           end="${pagination.pageSize * pagination.curPage - 1}">
-          <tr>
+          <tr class="my-board">
             <td>${board.boardNo}</td>
             <td><a href='detail?no=${board.boardNo}'>${board.title}</a></td>
             <td>${board.memberName}</td>

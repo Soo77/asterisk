@@ -14,12 +14,6 @@
     <result column="lesson_eval" property="lessonEvaluation" />
   </resultMap>
 
-<!--   <select id="findBy" parameterType="int" resultMap="DayLessonMap">
-    select *
-    from day_lesson
-    where day_lesson_no=#{dayLessonNo}
-  </select> -->
-  
   <select id="findAll" parameterType="int" resultMap="DayLessonMap">
       select *
       from day_lesson

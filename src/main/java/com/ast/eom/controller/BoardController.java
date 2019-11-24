@@ -71,7 +71,13 @@ public class BoardController {
   @GetMapping("detail")
   public void detail(HttpSession session, Model model, int no) throws Exception {
     Board board = boardService.get(no);
+    boolean fileExist = true;
+    if (board.getFiles().get(0).getFileName() == null) {
+      fileExist = false;
+    }
+
     model.addAttribute("board", board);
+    model.addAttribute("fileExist", fileExist);
   }
   
   @PostMapping("update")

@@ -19,3 +19,16 @@
 .my-table-row {
   cursor: pointer;
 }
+
+.lesson-number {
+  min-width: 52px;
+}
+.member-name {
+  min-width: 65px;
+}
+.member-age {
+  min-width: 56px;
+}
+.interruption-etc {
+  min-width: 250px;
+}

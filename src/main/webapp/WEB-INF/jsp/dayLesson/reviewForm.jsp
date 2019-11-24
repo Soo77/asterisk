@@ -99,19 +99,19 @@ $('#star_grade a').click(function(){
         return;
       } else {
         swal({
-            title: "후기 등록",
-            text: "등록하시면 수정이 불가능합니다.",
-            buttons: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-              swal("등록되었습니다.", {
-                icon: "success",
-              });
-              document.getElementById("form1").submit();
-            } else {
-            }
-          });
+          title: "후기 등록",
+          text: "등록하시면 수정이 불가능합니다.",
+          buttons: true,
+        })
+        .then((willDelete) => {
+          if (willDelete) {
+            swal("등록되었습니다.", {
+              icon: "success",
+            });
+            document.getElementById("form1").submit();
+          } else {
+          }
+        });
       }
   });
 </script>

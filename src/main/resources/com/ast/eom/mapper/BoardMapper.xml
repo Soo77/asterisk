@@ -108,5 +108,4 @@
     board_no=#{haha}
   </delete>
   
-
 </mapper>

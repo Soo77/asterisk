@@ -98,10 +98,10 @@
             <table class='table table-hover'>
               <thead>
                 <tr>
-                  <th>수업번호</th>
-                  <th>학생</th>
-                  <th>선생님</th>
-                  <th>비고</th>
+                  <th class="lesson-number">수업번호</th>
+                  <th class="member-name">학생</th>
+                  <th class="member-name">선생님</th>
+                  <th class="interruption-etc">비고</th>
                 </tr>
               </thead>
               <tbody id="tbody-99">
