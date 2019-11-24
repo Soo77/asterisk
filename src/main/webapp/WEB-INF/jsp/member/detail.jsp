@@ -76,7 +76,7 @@ ul.test {
 
 <body class="profile-page sidebar-collapse">
   <div class="page-header header-filter" data-parallax="true"
-    style="background-image: url('../assets/img/city-profile.jpg');"></div>
+    style="background-image: url('/assets/img/bg/bg20.jpg');"></div>
   <div class="main main-raised">
     <div class="profile-content">
       <div class="container">

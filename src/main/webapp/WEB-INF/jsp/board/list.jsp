@@ -149,6 +149,16 @@
 </div>
 
   <script>
+    let boardTypeNo = $('input[name=boardTypeNo]').val();
+    
+    if (boardTypeNo == 4) {
+      document.getElementById('background').style.backgroundImage= "url('/assets/img/bg/bg19.jpg')"
+    } else { 
+      document.getElementById('background').style.backgroundImage= "url('/assets/img/bg/bg10.jpg')" 
+    } 
+  </script>
+
+  <script>
     $(document).on('click', '#btnSearch', function(e){
       e.preventDefault();
       search()
@@ -176,16 +186,4 @@
   	  location.href = "list?boardTypeNo=" + ${boardTypeNo} + "&pageSize=" + $(e.target).val()
   			  + "&curPage=1&searchType=" + $('#searchType').val() + "&keyword=" + $('#keyword').val();
   	});
-  </script>
-  
-  <script>
-    let boardNo = $('input[name=boardTypeNo]').val();
-    console.log(boardNo);
-    
-    if (boardNo == 4) {
-      console.log("들오나요..");
-      document.getElementById('background').style.backgroundImage= "url('/assets/img/bg/bg19.jpg')"
-    } else { 
-      document.getElementById('background').style.backgroundImage= "url('/assets/img/bg/bg10.jpg')" 
-    } 
   </script>

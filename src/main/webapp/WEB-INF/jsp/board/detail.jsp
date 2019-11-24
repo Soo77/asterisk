@@ -194,8 +194,7 @@
   </style>
 </head>
 
-<div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('assets/img/bg3.jpg')">
+<div id="background" class="page-header header-filter" data-parallax="true">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
@@ -360,6 +359,16 @@
 
   </div>
 </div>
+
+<script>
+    let boardTypeNo = $('input[name=boardTypeNo]').val();
+    
+    if (boardTypeNo == 4) {
+      document.getElementById('background').style.backgroundImage= "url('/assets/img/bg/bg19.jpg')"
+    } else { 
+      document.getElementById('background').style.backgroundImage= "url('/assets/img/bg/bg10.jpg')" 
+    } 
+</script>
 
 <script>
   // 게시글 수정
