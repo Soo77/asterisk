@@ -345,25 +345,25 @@ public class JoinController implements Runnable {
     return "/view/welcome";
   }
 
-  @GetMapping("idCheck")
+  @PostMapping("idCheck")
   @ResponseBody
   public int idCheck(String id) throws Exception {
     return joinService.checkOverId(id);
   }
   
-  @GetMapping("childCheck")
+  @PostMapping("childCheck")
   @ResponseBody
   public List<Member> childCheck(String id) throws Exception {
     return joinService.checkOverChildId(id);
   }
 
-  @GetMapping("emailCheck")
+  @PostMapping("emailCheck")
   @ResponseBody
   public int emailCheck(String email) throws Exception {
     return joinService.checkOverEmail(email);
   }
 
-  @GetMapping("telCheck")
+  @PostMapping("telCheck")
   @ResponseBody
   public int telCheck(String tel) throws Exception {
     return joinService.checkOverTel(tel);

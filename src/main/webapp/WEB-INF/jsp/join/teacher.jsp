@@ -175,7 +175,7 @@
 
               <div class="form-group bmd-form-group">
                 <label for="exampleInput1">휴대전화</label>
-                <input type="tel" class="form-control" name="tel" id="tel" maxlength="11">
+                <input type="tel" class="form-control" name="tel" id="tel" maxlength="11" required>
                 <div class="redch" id="tel_check"></div>
               </div>
 
@@ -426,7 +426,7 @@
       } else {
         $.ajax({
           url: 'idCheck',
-          type: 'get',
+          type: 'post',
           data: "id=" + id,
           success: function (result) {
             if (result == 1) {
@@ -559,7 +559,7 @@
       } else {
         $.ajax({
           url: 'emailCheck',
-          type: 'get',
+          type: 'post',
           data: "email=" + addmail,
           success: function (result) {
             if (result == 1) {
@@ -599,9 +599,9 @@
       var teltest = /^[0-9]{11}$/;
 
       if (tel == "") {
-        $("#tel_check").text("");
-        $("#submitBtn").attr("disabled", false);
-        return false;
+  	  	$('#tel_check').text('전화번호를 입력해주세요');
+        $('#tel_check').css('color', 'red');
+        $("#submitBtn").attr("disabled", true);
       } else if (!teltest.test(tel)) {
         $("#tel_check").text("11개의 숫자만 입력해주세요");
         $("#tel_check").css("color", "red");
@@ -610,7 +610,7 @@
       } else {
         $.ajax({
           url: 'telCheck',
-          type: 'get',
+          type: 'post',
           data: "tel=" + tel,
           success: function (result) {
             if (result == 1) {
@@ -619,16 +619,10 @@
               $("#tel").css("color", "red");
               $("#submitBtn").attr("disabled", true);
             } else {
-              if (id) {
                 $("#tel_check").text("가입 가능한 번호입니다");
                 $("#tel_check").css("color", "green");
                 $("#tel").css("color", "green");
                 $("#submitBtn").attr("disabled", false);
-              } else if (id == "") {
-                $('#tel_check').text('전화번호를 입력해주세요');
-                $('#tel_check').css('color', 'red');
-                $("#submitBtn").attr("disabled", true);
-              }
             }
           }, error: function () {
             console.log("실패");
