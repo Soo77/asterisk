@@ -557,7 +557,7 @@
     feeButtons[2].addEventListener('click', () => {
       feeButtons[0].setAttribute('class', 'btn btn-primary wantedFee my-fee-btn disabled');
       feeButtons[1].setAttribute('class', 'btn btn-primary wantedFee my-fee-btn disabled');
-      feeButtons[2].setAttribute('class', 'btn btn-primary wantedFee my-fee-btn disabled');
+      feeButtons[3].setAttribute('class', 'btn btn-primary wantedFee my-fee-btn disabled');
       feeButtons[2].setAttribute('class', 'btn btn-primary wantedFee my-fee-btn');
     });
     feeButtons[3].addEventListener('click', () => {

@@ -305,7 +305,7 @@
             </label>
           </div>
 
-          <div class="modification-button-div pt-2 pb-2">
+          <div class="modification-button-div pt-2 pb-2 text-right">
             <button id="submit" class="btn btn-primary">수정</button>
           </div>
         </form>

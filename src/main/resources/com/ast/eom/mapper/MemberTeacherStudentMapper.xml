@@ -122,7 +122,7 @@
 		left outer join wanted_lesson wl on stu.std_no = wl.std_no
 		left outer join subject sub on wl.sub_no = sub.sub_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
-		where m.mem_type_no = #{memberTypeNo}
+		where m.mem_type_no = #{memberTypeNo} and wl.req = #{subjectOrder}
 	</select>
 
 	<select id="detailTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">
@@ -140,7 +140,7 @@
 		left outer join subject sub on ls.sub_no = sub.sub_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
 		left outer join lesson l on t.tch_no = l.tch_no
-		where m.mem_no= #{mem_no}
+		where m.mem_no= #{mem_no} and ls.sub_conts = #{subjectOrder}
 	</select>
 	
 	<select id="detailStudent" parameterType="int" resultMap="MemberTeacherStudentMap">
@@ -232,6 +232,7 @@
 			</choose>
 			</when>
 		</choose>
+    and ls.sub_conts = #{subjectOrder}
 	</select>
 	
 	<select id="searchStudent" parameterType="map" resultMap="MemberTeacherStudentMap">
@@ -308,7 +309,7 @@
 			</choose>
 			</when>
 		</choose>
-		
+		and wl.req = #{subjectOrder}
 	</select>
 	
 	<select id="photoTeacher" parameterType="int" resultMap="MemberTeacherStudentMap">

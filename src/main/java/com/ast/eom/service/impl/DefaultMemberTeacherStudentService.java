@@ -67,6 +67,7 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     HashMap<String, Object> params = new HashMap<>();
     
       params.put("memberTypeNo", memberTypeNo);
+      params.put("subjectOrder", "1");
       
     return memberTeacherStudentDao.listTeacher(params);
   }
@@ -77,6 +78,7 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     HashMap<String, Object> params = new HashMap<>();
     
       params.put("memberTypeNo", memberTypeNo);
+      params.put("subjectOrder", "1");
       
     return memberTeacherStudentDao.listStudent(params);
   }
@@ -85,7 +87,7 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
   public List<MemberTeacherStudent> searchBy(HashMap<String, Object> searchInfo) throws Exception {
     
     int memberTypeNo = Integer.parseInt((String)searchInfo.get("memberTypeNo"));
-    
+    searchInfo.put("subjectOrder", "1");
     if (memberTypeNo == 1) {
       List<MemberTeacherStudent> students = memberTeacherStudentDao.searchStudent(searchInfo);
       

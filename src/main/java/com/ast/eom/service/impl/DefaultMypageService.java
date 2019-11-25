@@ -93,11 +93,12 @@ public class DefaultMypageService implements MypageService {
     mypageDao.updateStudent(student);
     
     int[] thisSubjectNo = new int[schoolTypeNo.length];
+    String[] thisSubjectOrder = new String[schoolTypeNo.length];
     for (int i = 1; i < schoolTypeNo.length; i++) {
       int schoolTypeNo2 = Integer.parseInt(schoolTypeNo[i]);
       int subjectNo2 = Integer.parseInt(subjectNo[i]);
       thisSubjectNo[i] = (3*(schoolTypeNo2-1)+subjectNo2);
-      System.out.println("과목: " + thisSubjectNo[i]);
+      thisSubjectOrder[i-1] = String.valueOf(i);
     }
     
     Map<String, Object> studentInfo = new HashMap<>();
@@ -109,6 +110,7 @@ public class DefaultMypageService implements MypageService {
       studentInfo.put("studentNo", member.getMemberNo());
       studentInfo.put("subjectNo", thisSubjectNo[i]);
       studentInfo.put("wantedFee", wantedFee[i]);
+      studentInfo.put("subjectOrder", thisSubjectOrder[i-1]);
       mypageDao.insertWantedLessonOf(studentInfo);
     }
     
@@ -151,11 +153,12 @@ public class DefaultMypageService implements MypageService {
     mypageDao.updateTeacher(teacher);
     
     int[] thisSubjectNo = new int[schoolTypeNo.length];
+    String[] thisSubjectOrder = new String[schoolTypeNo.length];
     for (int i = 1; i < schoolTypeNo.length; i++) {
       int schoolTypeNo2 = Integer.parseInt(schoolTypeNo[i]);
       int subjectNo2 = Integer.parseInt(subjectNo[i]);
       thisSubjectNo[i] = (3*(schoolTypeNo2-1)+subjectNo2);
-      System.out.println("과목: " + thisSubjectNo[i]);
+      thisSubjectOrder[i-1] = String.valueOf(i);
     }
     
     Map<String, Object> teacherInfo = new HashMap<>();
@@ -167,6 +170,7 @@ public class DefaultMypageService implements MypageService {
       teacherInfo.put("teacherNo", member.getMemberNo());
       teacherInfo.put("subjectNo", thisSubjectNo[i]);
       teacherInfo.put("wantedFee", wantedFee[i]);
+      teacherInfo.put("subjectOrder", thisSubjectOrder[i-1]);
       mypageDao.insertLessonSubjectOf(teacherInfo);
     }
     

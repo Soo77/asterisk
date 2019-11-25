@@ -149,6 +149,7 @@ public class JoinController implements Runnable {
     subjectParams.put("teacherNo", member.getMemberNo());
     subjectParams.put("subjectNo", subjectNo);
     subjectParams.put("wantedFee", wantedFeeAmountInt);
+    subjectParams.put("subjectOrder", "1");
     
     joinService.teacherSubjectInsert(subjectParams);
 
@@ -247,6 +248,7 @@ public class JoinController implements Runnable {
     joinService.studentInsert(params);
     
     wantedLesson.setStudentNo(member.getMemberNo());
+    wantedLesson.setRequirements("1");
     joinService.wantedLessonFotStudentInsert(wantedLesson);
 
     this.emailAddress = emailAddress;
