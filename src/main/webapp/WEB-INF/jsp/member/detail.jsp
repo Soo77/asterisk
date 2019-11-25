@@ -357,7 +357,7 @@ ul.test {
               <div class="video-container">
                 <iframe width="640" height="480"
                   src="${member.teachers[0].videoAddress}"
-                  frameborder="0" allowfullscreen> </iframe>
+                  frameborder="0" id="teacher-video" allowfullscreen> </iframe>
               </div>
               <hr>
 
@@ -537,6 +537,32 @@ ul.test {
       <!-- Container / End -->
     </div>
   </div>
+
+  <script>
+  let videoAddress = '${detailTeacher[0].teachers[0].videoAddress}';
+  let teacherVideo = document.getElementById('teacher-video');
+
+  let youtubeEmbedAddrStrIndex = videoAddress.search('youtube.com/embed/');
+  let youtubeAddrStrIndex = videoAddress.search('youtube.com');
+  let youbeAddrStrIndex = videoAddress.search('youtu.be');
+
+  if (youtubeEmbedAddrStrIndex > 0) {
+
+  } else if (youtubeAddrStrIndex > 0) {
+    let editedAddr = videoAddress.substring(0, youtubeAddrStrIndex+11);
+    console.log(editedAddr);
+    editedAddr += '/embed/'+videoAddress.substring(youtubeAddrStrIndex+20);
+    teacherVideo.src = editedAddr;
+    console.log(editedAddr);
+
+  } else if (youbeAddrStrIndex > 0) {
+    let editedAddr = videoAddress.substring(0, youbeAddrStrIndex);
+    editedAddr += 'www.youtube.com';
+    editedAddr += '/embed'+videoAddress.substring(youbeAddrStrIndex+8);
+    teacherVideo.src = editedAddr;
+
+  }
+  </script>
 
   <script>
   function messageShow(memberNo){
