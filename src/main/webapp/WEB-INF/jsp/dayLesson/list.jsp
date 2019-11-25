@@ -400,8 +400,6 @@
 			data : insertData,
 			success : function(data) {
 				if (data == 1) {
-/* 					$('#modal').modal('hide');
-					dayLessonList(); */
 					location.href = "list?lessonNo=" + lessonNo;
 				}
 			}
@@ -440,7 +438,6 @@
 	    			},
 	    			success : function(data) {
 	    				if (data == 1)
-	    					/* dayLessonList(lessonNo); */
 	    					location.href = "list?lessonNo=" + lessonNo;
 	    			}
 	    		});
@@ -480,9 +477,10 @@
   }
 
 	$(document).ready(function() {
-		//modalLessonDate.max = new Date().toISOString().split("T")[0];
+		//modalLessonDate.max = new Date().toISOString().split("T")[0]; // 오늘 날짜
 		dayLessonList();
-		if (${loginUser.memberTypeNo == 1 && lessonState == 5 && studentReview == null} ) {
+		if (${loginUser.memberTypeNo == 1 && lessonState == 5 && studentReview == null
+			&& std_lesson_stop == 0 && tch_lesson_stop == 0} ) {
 			swal({
           title: "후기작성",
   	      text: "다른 학생들에게 이 선생님에 대해 알려주세요!",
