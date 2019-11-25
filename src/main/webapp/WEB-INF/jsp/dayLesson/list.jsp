@@ -479,7 +479,7 @@
 	$(document).ready(function() {
 		//modalLessonDate.max = new Date().toISOString().split("T")[0]; // 오늘 날짜
 		dayLessonList();
-		if (${loginUser.memberTypeNo == 1 && lessonState == 5 && studentReview == null} ) {
+		if (${loginUser.memberTypeNo == 1 && lessonState == 5 && teacherReview == null} ) {
 			swal({
           title: "후기작성",
   	      text: "다른 학생들에게 이 선생님에 대해 알려주세요!",

@@ -341,7 +341,7 @@
     lesson l
     left outer join student std on l.std_no = std.std_no
     left outer join member m on std.std_no = m.mem_no
-    where tch_no = #{no}
+    where tch_no = #{no} and lesson_stat = 5
   </select>
   
 
