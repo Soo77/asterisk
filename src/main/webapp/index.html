@@ -335,7 +335,7 @@
          let reviewPhotos = document.getElementsByClassName('review-photo');
          let reviewMembers = document.getElementsByClassName('review-member');
          let reviewContents = document.getElementsByClassName('review-contents');
- 
+          console.log(result.randomMembers);
          let html; 
          for (let i = 0; i < reviewPhotos.length; i++) {
            reviewPhotos[i].src = '/upload/join/' + result.randomMembers[i].profilePhoto;
