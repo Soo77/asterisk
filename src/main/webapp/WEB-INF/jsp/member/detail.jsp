@@ -342,7 +342,7 @@ ul.test {
                 <c:forEach var="photo" items="${photoTeacher}">
                   <c:forEach var="photo2" items="${photo.teacherPhotos}">
 
-                    <div class="card">
+                    <div class="card d-inline text-center">
                       <img
                         src="/upload/teacher_photo/${photo2.teacherPhoto}"
                         class="card-img-top" alt="...">
