@@ -78,25 +78,25 @@ h4, h5 , h6{
 				
 				<c:choose>
 					<c:when test="${loginUser.name eq messageMem[i].name}">
-						<img class="avatar" onError="javascript:src='/upload/join/default.png'"
-	        			alt="" src="/upload/join/${messageInfo[i].profilePhoto}">
-							<a href=detail?memberNo=${messageMem[i].memberNo}>
-								<div class="message ms-pd">
-								  <div style="color: black; display: block;">나에게 쪽지</div>
-								  <h6 style="color: gray; display: inline-block;">
-								    <c:choose>
-										  <c:when test="${messageConts ge 25}">
-			  							  <c:set var="messageContsResult" value="${fn:substring(messageContsReplace,0,25)}"></c:set>
-										  	<span>${messageContsResult}..</span>
-										  </c:when>
-										  <c:otherwise>
-										  	<span>${messageContsSub}</span>
-										  </c:otherwise>
-									  </c:choose>
-									&nbsp;</h6>
-								  <div class="datetime"><h6>${messageContsDate[i].sendDate}</h6></div>
-								</div>
-							</a>
+<!-- 						<img class="avatar" onError="javascript:src='/upload/join/default.png'" -->
+<%-- 	        			alt="" src="/upload/join/${messageInfo[i].profilePhoto}"> --%>
+<!-- 							<a href=detail?memberNo=${messageMem[i].memberNo}> -->
+<!-- 								<div class="message ms-pd"> -->
+<!-- 								  <div style="color: black; display: block;">나에게 쪽지</div> -->
+<!-- 								  <h6 style="color: gray; display: inline-block;"> -->
+<%-- 								    <c:choose> --%>
+<%-- 										  <c:when test="${messageConts ge 25}"> --%>
+<%-- 			  							  <c:set var="messageContsResult" value="${fn:substring(messageContsReplace,0,25)}"></c:set> --%>
+<%-- 										  	<span>${messageContsResult}..</span> --%>
+<%-- 										  </c:when> --%>
+<%-- 										  <c:otherwise> --%>
+<%-- 										  	<span>${messageContsSub}</span> --%>
+<%-- 										  </c:otherwise> --%>
+<%-- 									  </c:choose> --%>
+<!-- 									&nbsp;</h6> -->
+<%-- 								  <div class="datetime"><h6>${messageContsDate[i].sendDate}</h6></div> --%>
+<!-- 								</div> -->
+<!-- 							</a> -->
 					</c:when>
 
 					<c:otherwise>

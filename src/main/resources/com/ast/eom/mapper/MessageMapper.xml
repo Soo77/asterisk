@@ -34,10 +34,12 @@
   </select>
 	
 	<select id="messageList" parameterType="int" resultMap="MemberMap">
-     select distinct m.name, m.mem_no, m.profile_photo from member m inner 
-     join message s on m.mem_no = s.sender or m.mem_no = s.receiver
+		 select m.name, m.mem_no, m.profile_photo
+     from member m inner join message s 
+     on m.mem_no = s.sender or m.mem_no = s.receiver
      where s.sender=#{memberNo} or s.receiver=#{memberNo} 
-     order by s.message_no desc
+     group by m.mem_no
+     order by max(s.send_date) DESC;
   </select>
   
 	<insert id="messageIn" parameterType="Message">
