@@ -38,6 +38,7 @@ public class Lesson {
   private int lessonDayCount;
   private String id;
   private String schoolName;
+  private String name;
  
   
   private CurriculumLessonContents clc;
@@ -53,6 +54,12 @@ public class Lesson {
   private List<Curriculum> curriculums;
   private List<DayLesson> dayLessons;
   
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
   public String getSchoolName() {
     return schoolName;
   }
@@ -286,9 +293,9 @@ public class Lesson {
         + calculationDay + ", calculationState=" + calculationState + ", studentStopReason=" + studentStopReason
         + ", teacherStopReason=" + teacherStopReason + ", refundState=" + refundState + ", refundDate=" + refundDate
         + ", refundAmount=" + refundAmount + ", lessonDayCount=" + lessonDayCount + ", id=" + id + ", schoolName="
-        + schoolName + ", clc=" + clc + ", member=" + member + ", clcs=" + clcs + ", curriculum=" + curriculum
-        + ", subject=" + subject + ", subjectName=" + subjectName + ", dayintoWord=" + dayintoWord + ", members="
-        + members + ", curriculums=" + curriculums + ", dayLessons=" + dayLessons + "]";
+        + schoolName + ", name=" + name + ", clc=" + clc + ", member=" + member + ", clcs=" + clcs + ", curriculum="
+        + curriculum + ", subject=" + subject + ", subjectName=" + subjectName + ", dayintoWord=" + dayintoWord
+        + ", members=" + members + ", curriculums=" + curriculums + ", dayLessons=" + dayLessons + "]";
   }
   
  

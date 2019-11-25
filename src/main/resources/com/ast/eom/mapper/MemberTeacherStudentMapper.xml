@@ -33,6 +33,7 @@
     <result column="lesson_day_count" property="lessonDayCount" />
     <result column="sub_name" property="subjectName" />
     <result column="id" property="id" />
+    <result column="name" property="name" />
   </resultMap>
 	
 	

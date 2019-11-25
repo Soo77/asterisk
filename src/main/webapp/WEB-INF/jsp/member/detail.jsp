@@ -345,7 +345,7 @@ ul.test {
                     <div class="card">
                       <img
                         src="/upload/teacher_photo/${photo2.teacherPhoto}"
-                        class="card-img" alt="...">
+                        class="card-img-top" alt="...">
                     </div>
                   </c:forEach>
                 </c:forEach>
