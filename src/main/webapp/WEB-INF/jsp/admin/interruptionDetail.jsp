@@ -5,7 +5,7 @@
 <link href="/assets/demo/demo.css" rel="stylesheet" />
 <link href="/css/mypage/detail.css" rel="stylesheet" />
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg3.jpg')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/assets/img/bg/bg15.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
