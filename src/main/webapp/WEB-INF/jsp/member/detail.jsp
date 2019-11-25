@@ -565,15 +565,19 @@ ul.test {
 
   }
 
+  let count = 0;
   $.get(editedAddr, function() {
     // console.log('성공');
     $('iframe').attr('src', editedAddr);
+    count++;
   }).done(function() {
+    count++;
     // console.log('두 번째 성공');
   }).fail(function(e) {
     let videoContainer = document.getElementsByClassName('video-container')[0];
-    videoContainer.style.display = 'none';
-    console.log('접속 실패');
+    if (count != 0)
+      videoContainer.style.display = 'none';
+    // console.log('접속 실패');
 
   }).always(function() {
     console.log('완료');
