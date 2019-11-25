@@ -479,7 +479,7 @@
 	$(document).ready(function() {
 		//modalLessonDate.max = new Date().toISOString().split("T")[0]; // 오늘 날짜
 		dayLessonList();
-		if (${loginUser.memberTypeNo == 1 && lessonState == 5 && studentReview == null) {
+		if (${loginUser.memberTypeNo == 1 && lessonState == 5 && studentReview == null} ) {
 			swal({
           title: "후기작성",
   	      text: "다른 학생들에게 이 선생님에 대해 알려주세요!",
@@ -492,11 +492,6 @@
         	  location.href = "../lesson/list";
           }
         });
-		}	else if (${lessonState == 5 } && ${studentReview != null}) {
-			var dayLessonAddButton = document.querySelector('#btnDayLessonAdd');
-			dayLessonAddButton.style.display = 'none';
-			var dayLessonStopButton = document.querySelector('#dayLessonStop');
-			dayLessonStopButton.style.display = 'none';
 		}
 	});
 </script>
@@ -526,8 +521,8 @@
 			updateButton.style.display = 'inline';
 			var addButton = document.querySelector('#btnDelete');
 			addButton.style.display = 'inline';
-		} else if (${lessonState == 4 || loginUser.memberTypeNo == 1 || loginUser.memberTypeNo == 2 || 
-							(loginUser.memberTypeNo == 3 && (lessonState == 3 || lessonState == 5))}) {
+		} else if (${lessonState == 7 || loginUser.memberTypeNo == 1 || loginUser.memberTypeNo == 2 || 
+			(loginUser.memberTypeNo == 3 && (lessonState == 3 || lessonState == 5 || lessonState == 7))}) {
   			var sdt = document.querySelector('#modalLessonDate');
   			sdt.readOnly = true;
   			var sh = document.querySelector('#modalLessonStartHour');
