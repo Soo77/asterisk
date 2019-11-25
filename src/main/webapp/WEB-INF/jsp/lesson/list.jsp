@@ -180,6 +180,9 @@
                   <c:when test="${lesson.lessonState eq 6}">
                     <button type="button" class="btn float-right">초대중</button>&ensp;&ensp;
                   </c:when>
+                  <c:when test="${lesson.lessonState eq 7}">
+                    <button type="button" class="btn float-right">중단된 과외</button>&ensp;&ensp;
+                  </c:when>
                   
                 </c:choose>
               </div>
