@@ -152,9 +152,9 @@ public class DayLessonController {
   @PostMapping("review")
   public String review(
       int lessonNo,
-      String studentReview,
+      String teacherReview,
       int teacherEvaluation) throws Exception {
-    lessonService.insertReview(lessonNo, studentReview, teacherEvaluation);
+    lessonService.insertReview(lessonNo, teacherReview, teacherEvaluation);
     return "redirect:list?lessonNo=" + lessonNo;
   }
 }

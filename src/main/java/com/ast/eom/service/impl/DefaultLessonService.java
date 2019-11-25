@@ -111,10 +111,10 @@ public class DefaultLessonService implements LessonService {
   
   // 후기 작성
   @Override
-  public void insertReview(int lessonNo, String studentReview, int teacherEvaluation) throws Exception {
+  public void insertReview(int lessonNo, String teacherReview, int teacherEvaluation) throws Exception {
     HashMap<String, Object> params = new HashMap<>();
     params.put("lessonNo", lessonNo);
-    params.put("studentReview", studentReview);
+    params.put("teacherReview", teacherReview);
     params.put("teacherEvaluation", teacherEvaluation);
     
     lessonDao.insertReview(params);

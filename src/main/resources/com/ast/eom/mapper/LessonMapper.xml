@@ -293,7 +293,7 @@
   <!-- 후기 작성 -->
   <update id="insertReview" parameterType="map">
     update lesson set
-    std_review = #{studentReview},
+    tch_review = #{teacherReview},
     tch_eval = #{teacherEvaluation}
     where lesson_no = #{lessonNo}
   </update>
