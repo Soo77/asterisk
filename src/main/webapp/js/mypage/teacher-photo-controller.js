@@ -80,7 +80,7 @@ class TeacherPhotoController {
     addEventToPhotoAddButton() {
       let photoAddButton = document.getElementsByClassName('photo-add-button')[0];
       photoAddButton.addEventListener('click', () => {
-        this.addTeacherPhotoNode('c.jpg');
+        this.addTeacherPhotoNode();
       });
     }
 
