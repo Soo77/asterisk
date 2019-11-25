@@ -83,12 +83,12 @@ public class MemberTeacherStudentController {
     String mySubject = request.getParameter("mySubject");
     
     if (mySchool.equals("1")) {
-      mySchool = "초등";
+      mySchool = "초";
     } else if (mySchool.equals("2")) {
-      mySchool = "중등";
+      mySchool = "중";
       
     } else if (mySchool.equals("3")) {
-      mySchool = "고등";
+      mySchool = "고";
       
     }
    

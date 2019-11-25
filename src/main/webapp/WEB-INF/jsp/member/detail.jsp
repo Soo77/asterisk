@@ -201,12 +201,15 @@ ul.test {
                       <ul class="test">
 
                         <c:forEach items="${schoolTeacher}" var="school">
-                          <li class="school">학교:
-                            ${school.schools[1].schoolName}</li>
+                          <c:if test="${not empty school.schools[1].schoolName}">
+                            <li class="school">학교:
+                              ${school.schools[1].schoolName}</li>
+                          </c:if>
                         </c:forEach>
-
-                        <li class="major">전공:
-                          ${member.schools[0].major}</li>
+                        <c:if test="${not empty member.schools[0].major}">
+                          <li class="major">전공:
+                            ${member.schools[0].major}</li>
+                        </c:if>
                         <li class="address">지역:
                           ${member.addressCity} ${member.addressSuburb}</li>
                         <li class="registeredDate">가입일:
@@ -216,25 +219,19 @@ ul.test {
                   </div>
 
                   <div class="col-lg-6 col-sm-6">
-                    <label class="information sub title">출신 학교</label><br>
-                    <div class="sub-info-body">
-                      <ul class="test">
-
-                        <c:forEach items="${schoolTeacher}" var="school">
-                          <c:forEach items="${school.schools}"
-                            var="school2">
-                            <li class="preschool">${school2.schoolName}</li>
+                    <c:if test="${not empty schoolTeacher[0].schools[0].schoolName}">
+                      <label class="information sub title">출신 학교</label><br>
+                      <div class="sub-info-body">
+                        <ul class="test">
+                          <c:forEach items="${schoolTeacher}" var="school">
+                            <c:forEach items="${school.schools}"
+                              var="school2">
+                              <li class="preschool">${school2.schoolName}</li>
+                            </c:forEach>
                           </c:forEach>
-                        </c:forEach>
-                      </ul>
-                    </div>
-                    <label class="information sub title">과목</label><br>
-                    <div class="sub-info-body">
-                      <ul class="test">
-                        <li class="subject">${member.schoolType}
-                          ${member.subjectName}</li>
-                      </ul>
-                    </div>
+                        </ul>
+                      </div>
+                    </c:if>
                   </div>
                 </div>
                 <!-- row end -->
@@ -246,6 +243,8 @@ ul.test {
                 <label class="lesson-time title">과외 가능 요일/시간</label><br>
                 <div class="lesson-time contents">
                   <ul class="test">
+                    <li class="subject">${member.schoolType}
+                        ${member.subjectName}</li>
                     <li>
                       <div class="lesson-time days">
                         <c:set var="week" value="${member.lessonDays}" />
@@ -346,7 +345,7 @@ ul.test {
                     <div class="card">
                       <img
                         src="/upload/teacher_photo/${photo2.teacherPhoto}"
-                        class="card-img-top" alt="...">
+                        class="card-img" alt="...">
                     </div>
                   </c:forEach>
                 </c:forEach>
@@ -415,11 +414,11 @@ ul.test {
 
               <div class="information">
                 <div class="row">
-                  <div class="col-lg-6 col-sm-6">
+                  <div class="col-lg col-sm">
                     <label class="information main title">기본 정보</label>
                     <div class="main-info-body">
                       <ul class="test">
-                        <li class="school">학교: ${member.schoolType}</li>
+                        <!-- <li class="school">학교: ${member.schoolType}</li> -->
                         <li class="address">지역:
                           ${member.addressCity} ${member.addressSuburb}</li>
                         <li class="registeredDate">가입일:
@@ -428,7 +427,7 @@ ul.test {
                     </div>
                   </div>
 
-                  <div class="col-lg-6 col-sm-6">
+                  <!-- <div class="col-lg-6 col-sm-6">
                     <label class="information sub title">추가 정보</label><br>
                     <div class="sub-info-body">
                       <ul class="test">
@@ -436,7 +435,7 @@ ul.test {
                           ${member.schoolType} ${member.subjectName}</li>
                       </ul>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <!-- row end -->
               </div>
@@ -447,6 +446,8 @@ ul.test {
                 <label class="lesson-time title">과외 가능 요일/시간</label>
                 <div class="lesson-time contents">
                   <ul class="test">
+                    <li class="subject">과목:
+                        ${member.schoolType} ${member.subjectName}</li>
                     <li>
                       <div class="lesson-time days">
                         <c:set var="week" value="${member.lessonDays}" />

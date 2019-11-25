@@ -140,7 +140,7 @@
 		left outer join subject sub on ls.sub_no = sub.sub_no
 		left outer join school_type st on sub.sch_type_no = st.sch_type_no
 		left outer join lesson l on t.tch_no = l.tch_no
-		where m.mem_no= #{mem_no} and ls.sub_conts = #{subjectOrder}
+		where m.mem_no= #{mem_no}
 	</select>
 	
 	<select id="detailStudent" parameterType="int" resultMap="MemberTeacherStudentMap">

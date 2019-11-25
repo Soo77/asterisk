@@ -175,8 +175,7 @@
                 <div class="col">
                   <div class="d-flex">
                     <div class="flex-item pr-1" style="flex-basis: 93%;">
-                      <input type="text" id="sido" name="addressCity" class="form-control" readonly
-                        value="${loginUser.addressCity}" name="addressCity">
+                      <input type="text" id="sido" name="addressCity" class="form-control" readonly>
                     </div>
                     <div class="flex-item" style="flex-basis: 7%;">
                       <button class="btn btn-sm btn-outline-primary" type="button" id="addressSearchButton"
@@ -228,9 +227,9 @@
                 </div>
               </div>
 
-              <div style="padding-bottom: 20px;">
-                <button type="submit" class="btn btn-primary btn-sm" id="submitBtn">가입</button>
-                <input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
+              <div style="padding-bottom: 20px; text-align: right;">
+                <button type="submit" class="btn btn-primary" id="submitBtn">가입</button>
+                <input id="cancelbtn" class="btn btn-primary" type="button" value="취소">
               </div>
 
             </div>
