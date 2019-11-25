@@ -419,7 +419,7 @@ ul.test {
                     <label class="information main title">기본 정보</label>
                     <div class="main-info-body">
                       <ul class="test">
-                        <li class="school">학교: ${member.schoolType}</li>
+                        <!-- <li class="school">학교: ${member.schoolType}</li> -->
                         <li class="address">지역:
                           ${member.addressCity} ${member.addressSuburb}</li>
                         <li class="registeredDate">가입일:
