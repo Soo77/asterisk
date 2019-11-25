@@ -37,7 +37,7 @@ public class DayLessonController {
     String curLessonSt = lesson.getCurriculum().getCurriculumLessonStartTime();
     System.out.println("startHour==>"+curLessonSt);
     String curLessonEt = lesson.getCurriculum().getCurriculumLessonEndTime();
-    String studentReview = lesson.getStudentReview();
+    String teacherReview = lesson.getTeacherReview();
     int totalHours = lesson.getCurriculum().getTotalHours();
     int lessonDayCount = lesson.getLessonDayCount();
     int remainDays = totalHours - lessonDayCount;
@@ -56,7 +56,7 @@ public class DayLessonController {
     model.addAttribute("remainDays", remainDays);
     model.addAttribute("percent", percent);
     model.addAttribute("dayLessons", dayLessons);
-    model.addAttribute("studentReview", studentReview);
+    model.addAttribute("teacherReview", teacherReview);
   }
   
   @GetMapping("dayLesson/list")
