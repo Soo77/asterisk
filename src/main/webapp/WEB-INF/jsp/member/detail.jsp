@@ -541,27 +541,44 @@ ul.test {
   <script>
   let videoAddress = '${detailTeacher[0].teachers[0].videoAddress}';
   let teacherVideo = document.getElementById('teacher-video');
+  let editedAddr = '';
 
   let youtubeEmbedAddrStrIndex = videoAddress.search('youtube.com/embed/');
   let youtubeAddrStrIndex = videoAddress.search('youtube.com');
   let youbeAddrStrIndex = videoAddress.search('youtu.be');
 
   if (youtubeEmbedAddrStrIndex > 0) {
+    editedAddr = videoAddress;
 
   } else if (youtubeAddrStrIndex > 0) {
-    let editedAddr = videoAddress.substring(0, youtubeAddrStrIndex+11);
+    editedAddr = videoAddress.substring(0, youtubeAddrStrIndex+11);
     console.log(editedAddr);
     editedAddr += '/embed/'+videoAddress.substring(youtubeAddrStrIndex+20);
     teacherVideo.src = editedAddr;
     console.log(editedAddr);
 
   } else if (youbeAddrStrIndex > 0) {
-    let editedAddr = videoAddress.substring(0, youbeAddrStrIndex);
+    editedAddr = videoAddress.substring(0, youbeAddrStrIndex);
     editedAddr += 'www.youtube.com';
     editedAddr += '/embed'+videoAddress.substring(youbeAddrStrIndex+8);
     teacherVideo.src = editedAddr;
 
   }
+
+  $.get(editedAddr, function() {
+    // console.log('성공');
+    $('iframe').attr('src', editedAddr);
+  }).done(function() {
+    // console.log('두 번째 성공');
+  }).fail(function(e) {
+    let videoContainer = document.getElementsByClassName('video-container')[0];
+    videoContainer.style.display = 'none';
+    console.log('접속 실패');
+
+  }).always(function() {
+    console.log('완료');
+  });
+
   </script>
 
   <script>
