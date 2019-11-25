@@ -228,9 +228,9 @@
                 </div>
               </div>
 
-              <div style="padding-bottom: 20px;">
-                <button type="submit" class="btn btn-primary btn-sm" id="submitBtn">가입</button>
-                <input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
+              <div style="padding-bottom: 20px; text-align: right;">
+                <button type="submit" class="btn btn-primary" id="submitBtn">가입</button>
+                <input id="cancelbtn" class="btn btn-primary" type="button" value="취소">
               </div>
 
             </div>

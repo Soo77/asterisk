@@ -181,13 +181,13 @@
                 <div class="redch" id="tel_check"></div>
               </div>
 
-              <label for="addressSearchButton">주소</label>
+              <label for="addressSearchButton">주소
+              <span class="req"> *</span></label>
               <div class="form-group row pt-1 mb-0">
                 <div class="col">
                   <div class="d-flex">
                     <div class="flex-item pr-1" style="flex-basis: 93%;">
-                      <input type="text" id="sido" name="addressCity" class="form-control" readonly
-                        value="${loginUser.addressCity}" name="addressCity">
+                      <input type="text" id="sido" name="addressCity" class="form-control" required readonly>
                     </div>
                     <div class="flex-item" style="flex-basis: 7%;">
                       <button class="btn btn-sm btn-outline-primary" type="button" id="addressSearchButton"
@@ -199,27 +199,31 @@
 
               <div class="form-group pt-1">
                 <label for="inputAddress2" id="address2-label" class="col-sm-2 col-form-label"></label>
-                <input type="text" id="sigungu" class="form-control" name="addressSuburb" readonly>
+                <input type="text" id="sigungu" class="form-control" name="addressSuburb" required readonly>
               </div>
 
               <div class="form-group">
-                <label for="highschool">고등학교명</label>
-                <input type="text" id="highschool" class="form-control" name="highSchoolName">
+                <label for="highschool">고등학교명
+                <span class="req"> *</span></label>
+                <input type="text" id="highschool" class="form-control" name="highSchoolName" required>
               </div>
 
               <div class="form-group">
-                <label for="middleschool">대학교명</label>
-                <input type="text" id="middleschool" class="form-control" name="universityName">
+                <label for="middleschool">대학교명
+                <span class="req"> *</span></label>
+                <input type="text" id="middleschool" class="form-control" name="universityName" required>
               </div>
 
               <div class="form-group">
-                <label for="major">전공</label>
-                <input type="text" id="major" class="form-control" name="major">
+                <label for="major">전공
+                <span class="req"> *</span></label>
+                <input type="text" id="major" class="form-control" name="major" required>
               </div>
 
               <div class="form-group">
-                <label for="subject">전문 과목</label>
-                <select name="subjectNo" id="subject" class="form-control">
+                <label for="subject">전문 과목
+                <span class="req"> *</span></label>
+                <select name="subjectNo" id="subject" class="form-control" required>
                   <optgroup label="초등학교">
                     <option value="1">국어</option>
                     <option value="2">영어</option>
@@ -238,7 +242,8 @@
                 </select>
               </div>
 
-              <label class="mb-3">과외 가능 요일</label>
+              <label class="mb-3">과외 가능 요일
+              <span class="req"> *</span></label>
               <div class="form-check ml-2 mb-3">
                 <label class="form-check-label"> <input class="form-check-input" type="checkbox" name="lessonDay"
                     value="0"> 일 <span class="form-check-sign"> <span class="check"></span>
@@ -271,17 +276,20 @@
               </div>
 
               <div class="form-group">
-                <label for="subject-start-time">과외 시작시간</label><br>
-                <input type="time" class="form-control" name="lessonStartTime" />
+                <label for="subject-start-time">과외 시작시간
+                <span class="req"> *</span></label>
+                <input type="time" class="form-control" name="lessonStartTime" required/>
               </div>
 
               <div class="form-group">
-                <label for="subject-end-time">과외 종료시간</label><br>
-                <input type="time" class="form-control" name="lessonEndTime" />
+                <label for="subject-end-time">과외 종료시간
+                <span class="req"> *</span></label>
+                <input type="time" class="form-control" name="lessonEndTime" required/>
               </div>
 
               <div class="form-group">
-                 <label>수업료</label>
+                 <label>수업료
+                 <span class="req"> *</span></label>
                  <div class="d-flex">
                    <select class="form-control" name="wantedFeeAmount">
 		                <option value="1">20만원이하</option>
@@ -310,9 +318,9 @@
                 </div>
               </div>
 
-              <div style="padding-bottom: 20px;">
-                <button type="submit" class="btn btn-primary btn-sm" id="submitBtn">가입</button>
-                <input id="cancelbtn" class="btn btn-primary btn-sm" type="button" value="취소">
+              <div style="padding-bottom: 20px; text-align: right;">
+                <button type="submit" class="btn btn-primary" id="submitBtn">가입</button>
+                <input id="cancelbtn" class="btn btn-primary" type="button" value="취소">
               </div>
 
             </div>
@@ -331,6 +339,7 @@
     });
     
     function joinAndEmail() {
+     event.preventDefault();
      
      var va = document.querySelectorAll(".redch");
      for (var i = 0; i < va.length; i++) {
@@ -340,7 +349,29 @@
        }
      }
      
-     event.preventDefault();
+     var lessonWeekArr = $('input[name=lessonDay]');
+     var addressCity = document.getElementById('sido').value;
+     var addressSuburb = document.getElementById('sigungu').value;
+     
+     if(addressCity == ""){
+    	 swal("주소를 입력해주세요.");
+    	 return false;
+     }
+     
+     if(addressSuburb == ""){
+    	 swal("상세 주소를 입력해주세요.");
+    	 return false;
+     }
+     
+     let weekCount=0;
+     for (let lessonWeek of lessonWeekArr) {
+       if (lessonWeek.checked == true)
+         weekCount++;
+     }
+     if (weekCount == 0) {
+       swal("과외 요일을 입력해주세요.");
+       return false;
+     }
      
      swal({
        title: "인증링크를 보냈습니다",
@@ -358,7 +389,7 @@
   <script>
     var cbtn = document.querySelector("#cancelbtn");
     cbtn.addEventListener("click", function () {
-      location.href = "/";
+    	location.href = "../auth/form";
     });
 
   </script>
