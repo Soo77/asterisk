@@ -175,8 +175,7 @@
                 <div class="col">
                   <div class="d-flex">
                     <div class="flex-item pr-1" style="flex-basis: 93%;">
-                      <input type="text" id="sido" name="addressCity" class="form-control" readonly
-                        value="${loginUser.addressCity}" name="addressCity">
+                      <input type="text" id="sido" name="addressCity" class="form-control" readonly>
                     </div>
                     <div class="flex-item" style="flex-basis: 7%;">
                       <button class="btn btn-sm btn-outline-primary" type="button" id="addressSearchButton"
