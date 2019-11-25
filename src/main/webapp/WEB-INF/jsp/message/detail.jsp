@@ -64,7 +64,7 @@
 			</div>
 			<div class="data">
 				<h4 class="mb-0">쪽지함</h4>
-				<p>${messageInfo[0].name}</p>
+				<p>${messageInfo[0].name}&nbsp;(${messageInfo[0].id})</p>
 			</div>
 		</div>
 
