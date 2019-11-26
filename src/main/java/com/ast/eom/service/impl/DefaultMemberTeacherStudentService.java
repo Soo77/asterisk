@@ -103,5 +103,15 @@ public class DefaultMemberTeacherStudentService implements MemberTeacherStudentS
     }
     
   }
+
+  @Override
+  public List<MemberTeacherStudent> list3(int memberTypeNo) throws Exception {
+    HashMap<String, Object> params = new HashMap<>();
+    
+    params.put("memberTypeNo", memberTypeNo);
+    params.put("subjectOrder", "1");
+    
+    return memberTeacherStudentDao.listTeacher2(params);
+  }
   
 }

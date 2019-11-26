@@ -102,7 +102,7 @@ public class DefaultAdminService implements AdminService {
         listCnt = parentsInfoList.size();
       }
     } else if (memberTypeNo == 3) { 
-      memberInfoList = memberTeacherStudentService.list(memberTypeNo);
+      memberInfoList = memberTeacherStudentService.list3(memberTypeNo);
       listCnt = memberInfoList.size();
     }
 

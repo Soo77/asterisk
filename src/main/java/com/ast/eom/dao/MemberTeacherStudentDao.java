@@ -16,6 +16,7 @@ public interface MemberTeacherStudentDao {
   List<MemberTeacherStudent> reviewStudent(int no) throws Exception;
   List<MemberTeacherStudent> photoTeacher(int no) throws Exception;
   List<MemberTeacherStudent> schoolTeacher(int no) throws Exception;
+  List<MemberTeacherStudent> listTeacher2(HashMap<String, Object> params) throws Exception;
   
 }
 
