@@ -93,7 +93,7 @@ $('#star_grade a').click(function(){
 	  var rating = $('.on').length;
 	  $("#teacherEvaluation").val(rating);
     var form = document.frm1;
-    var stopReason = $("#studentReview").val().replace(/(\s*)/g, "");
+    var stopReason = $("#teacherReview").val().replace(/(\s*)/g, "");
       if (stopReason.length == 0) {
         swal("내용을 입력하세요.");
         return;
