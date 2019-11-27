@@ -628,10 +628,12 @@
   
   //댓글 수정
   function commentUpdateProc(commentNo) {
-	  var updateContent = $('[name=commentContents_' + commentNo + ']')
+	  var content = $('[name=commentContents_' + commentNo + ']')
       .val().replace(/(\s*)/g, "");
 	  
-	  if (updateContent.length == 0) {
+	  var updateContent = $('[name=commentContents_' + commentNo + ']').val();
+	  
+	  if (content.length == 0) {
 		  swal("댓글을 입력하세요.");
 	  } else {
 		  $.ajax({
